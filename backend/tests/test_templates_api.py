@@ -107,7 +107,8 @@ def test_create_template_rejects_unknown_schema(templates_client):
     response = client.post("/api/v1/templates", json={"template": template})
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "schema not found"
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+    assert response.json()["error"]["message"] == "schema not found"
 
 
 def test_create_template_rejects_unknown_target_field(templates_client):
@@ -119,7 +120,11 @@ def test_create_template_rejects_unknown_target_field(templates_client):
     response = client.post("/api/v1/templates", json={"template": template})
 
     assert response.status_code == 400
-    assert response.json()["detail"] == "template references unknown target field: missing_field"
+    assert response.json()["error"]["code"] == "SCHEMA_INVALID"
+    assert (
+        response.json()["error"]["message"]
+        == "template references unknown target field: missing_field"
+    )
 
 
 def test_get_template_returns_404_for_unknown_template(templates_client):
@@ -128,4 +133,5 @@ def test_get_template_returns_404_for_unknown_template(templates_client):
     response = client.get("/api/v1/templates/missing_template")
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "template not found"
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+    assert response.json()["error"]["message"] == "template not found"

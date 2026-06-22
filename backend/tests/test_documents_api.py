@@ -87,7 +87,8 @@ def test_document_detail_returns_404_for_unknown_doc(documents_client):
     response = client.get("/api/v1/documents/missing_doc")
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "document not found"
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+    assert response.json()["error"]["message"] == "document not found"
 
 
 def test_import_document_upserts_existing_record(documents_client):

@@ -89,7 +89,8 @@ def test_create_schema_rejects_duplicate_field_ids(schemas_client):
     response = client.post("/api/v1/schemas", json={"schema": schema})
 
     assert response.status_code == 400
-    assert response.json()["detail"] == "duplicate field_id: title"
+    assert response.json()["error"]["code"] == "SCHEMA_INVALID"
+    assert response.json()["error"]["message"] == "duplicate field_id: title"
 
 
 def test_get_schema_returns_404_for_unknown_schema(schemas_client):
@@ -98,4 +99,5 @@ def test_get_schema_returns_404_for_unknown_schema(schemas_client):
     response = client.get("/api/v1/schemas/missing_schema")
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "schema not found"
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+    assert response.json()["error"]["message"] == "schema not found"

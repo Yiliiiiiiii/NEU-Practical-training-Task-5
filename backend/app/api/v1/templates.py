@@ -4,6 +4,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db, get_storage_service
+from app.errors import NotFoundError, SchemaInvalidError
 from app.schemas.api import (
     TemplateCreateRequest,
     TemplateListItem,
@@ -39,7 +40,7 @@ def update_template(
     service: Annotated[TemplateService, Depends(get_template_service)],
 ) -> TemplateSaveResponse:
     if template_id != request.template.template_id:
-        raise HTTPException(status_code=400, detail="template_id path/body mismatch")
+        raise SchemaInvalidError("template_id path/body mismatch")
     return _save_template(request.template, service)
 
 
@@ -78,7 +79,7 @@ def _save_template(template: MappingTemplate, service: TemplateService) -> Templ
     try:
         record = service.save_template(template)
     except LookupError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
+        raise NotFoundError(str(exc)) from exc
     except TemplateValidationError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        raise SchemaInvalidError(str(exc)) from exc
     return TemplateSaveResponse(template_id=record.template_id, status="saved")

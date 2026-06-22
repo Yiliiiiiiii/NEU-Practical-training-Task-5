@@ -4,6 +4,11 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db, get_storage_service
+from app.errors import (
+    MappingReviewRequiredError,
+    PackageNotReadyError,
+    TaskStateError,
+)
 from app.schemas.api import (
     CanonicalResponse,
     ConsistencyReportResponse,
@@ -121,7 +126,10 @@ def convert_task(
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=409, detail=str(exc)) from exc
+        message = str(exc)
+        if "requires review" in message:
+            raise MappingReviewRequiredError(message) from exc
+        raise TaskStateError(message) from exc
     return ConvertResponse(task_id=task_id, status=status, outputs=outputs)
 
 
@@ -163,7 +171,10 @@ def create_package(
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=409, detail=str(exc)) from exc
+        message = str(exc)
+        if "not ready" in message or "missing" in message:
+            raise PackageNotReadyError(message) from exc
+        raise TaskStateError(message) from exc
     return PackageResponse(**result)
 
 

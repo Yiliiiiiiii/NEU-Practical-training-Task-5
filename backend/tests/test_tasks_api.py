@@ -113,11 +113,13 @@ def test_create_task_returns_404_for_unknown_document(tasks_client):
     )
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "document not found"
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+    assert response.json()["error"]["message"] == "document not found"
 
 
 def test_task_detail_returns_404_for_unknown_task(tasks_client):
     response = tasks_client.get("/api/v1/tasks/missing_task")
 
     assert response.status_code == 404
-    assert response.json()["detail"] == "task not found"
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+    assert response.json()["error"]["message"] == "task not found"

@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.router import api_router
 from app.config import Settings
 from app.database import init_db
+from app.error_handlers import register_error_handlers
 
 
 def create_app(settings: Settings | None = None, init_database: bool | None = None) -> FastAPI:
@@ -21,6 +22,7 @@ def create_app(settings: Settings | None = None, init_database: bool | None = No
         allow_headers=["*"],
         expose_headers=["X-SHA256"],
     )
+    register_error_handlers(app)
     app.include_router(api_router, prefix="/api/v1")
 
     @app.get("/health")

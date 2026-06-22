@@ -4,6 +4,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db, get_storage_service
+from app.errors import SchemaInvalidError
 from app.schemas.api import (
     SchemaCreateRequest,
     SchemaCreateResponse,
@@ -33,7 +34,7 @@ def create_schema(
     try:
         record = service.create_schema(request.target_schema)
     except SchemaValidationError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        raise SchemaInvalidError(str(exc)) from exc
     return SchemaCreateResponse(schema_id=record.schema_id, status="created")
 
 
