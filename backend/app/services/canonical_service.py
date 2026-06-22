@@ -11,7 +11,7 @@ from app.db.models import (
 )
 from app.engines.canonical_builder import CanonicalBuilder
 from app.engines.transform_engine import TransformEngine
-from app.schemas.canonical import CanonicalField, CanonicalModel
+from app.schemas.canonical import CanonicalModel
 from app.schemas.mapping import FieldCandidate, FieldMapping
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.target_schema import TargetSchema
@@ -19,6 +19,8 @@ from app.schemas.uir import UIRDocument
 from app.services.candidate_service import CandidateService
 from app.services.storage_service import StorageService
 from app.services.trace_service import TraceService
+
+BLOCKED_STATUSES = {"review_required", "failed", "cancelled"}
 
 
 class CanonicalService:
@@ -35,27 +37,46 @@ class CanonicalService:
         template: MappingTemplate,
     ) -> CanonicalModel:
         task = self._get_task(task_id)
+
+        if task.status in BLOCKED_STATUSES:
+            raise ValueError(
+                f"cannot build canonical: task status is '{task.status}'"
+            )
+
         document = self._get_document(task.doc_id)
         uir = UIRDocument.model_validate(self.storage.read_json(document.storage_path))
 
-        mappings = self._load_confirmed_mappings(task_id)
+        if task.schema_id != target_schema.schema_id:
+            raise ValueError(
+                f"cannot build canonical: schema_id mismatch "
+                f"(task={task.schema_id}, provided={target_schema.schema_id})"
+            )
+        if task.template_id != template.template_id:
+            raise ValueError(
+                f"cannot build canonical: template_id mismatch "
+                f"(task={task.template_id}, provided={template.template_id})"
+            )
 
-        fields, trace_events = self.transform_engine.execute(
+        mappings = self._load_confirmed_mappings(task_id)
+        candidates = self._load_candidates(task_id)
+        source_context = {c.source_path: c for c in candidates}
+
+        fields, trace_events, errors = self.transform_engine.execute(
             uir=uir,
             mappings=mappings,
             transform_rules=template.transform_rules,
             enum_maps=template.enum_maps,
             defaults=template.defaults,
+            source_context=source_context,
         )
 
         for field in target_schema.fields:
             if field.field_id not in fields and field.required:
-                fields[field.field_id] = CanonicalField(
-                    value=None,
-                    type=field.type,
-                    source_candidates=[],
-                    source_blocks=[],
-                )
+                if field.field_id not in template.defaults:
+                    raise ValueError(
+                        f"cannot build canonical: required field "
+                        f"'{field.field_id}' has no mapping or default"
+                    )
 
         canonical = self.builder.build(
             task_id=task_id,
@@ -84,9 +105,6 @@ class CanonicalService:
 
         trace_service = TraceService(self.db, self.storage)
         trace_service.record_batch(task_id, trace_events)
-        self.db.commit()
-
-        task.status = "rendered"
         self.db.commit()
 
         return canonical

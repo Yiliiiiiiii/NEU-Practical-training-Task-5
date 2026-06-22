@@ -46,7 +46,7 @@ def _run(uir, mappings, rules, enum_maps=None, defaults=None):
 def test_rename_moves_source_value_to_target():
     uir = make_uir()
     mappings = [make_mapping("title", "metadata.title")]
-    fields, traces = _run(uir, mappings, [])
+    fields, traces, _ = _run(uir, mappings, [])
     assert fields["title"].value == "test"
     assert len(traces) == 0
 
@@ -67,7 +67,7 @@ def test_type_cast_integer_to_string():
             params={"to": "string"},
         )
     ]
-    fields, traces = _run(uir, mappings, rules)
+    fields, traces, _ = _run(uir, mappings, rules)
     assert fields["count"].value == "42"
     assert fields["count"].type == "string"
     assert any(t["action"] == "type_cast" for t in traces)
@@ -89,7 +89,7 @@ def test_type_cast_string_to_integer():
             params={"to": "integer"},
         )
     ]
-    fields, traces = _run(uir, mappings, rules)
+    fields, traces, _ = _run(uir, mappings, rules)
     assert fields["count"].value == 123
     assert fields["count"].type == "integer"
 
@@ -110,7 +110,7 @@ def test_type_cast_string_to_float():
             params={"to": "float"},
         )
     ]
-    fields, _ = _run(uir, mappings, rules)
+    fields, _, _ = _run(uir, mappings, rules)
     assert fields["price"].value == 9.99
 
 
@@ -130,7 +130,7 @@ def test_type_cast_string_to_bool():
             params={"to": "bool"},
         )
     ]
-    fields, _ = _run(uir, mappings, rules)
+    fields, _, _ = _run(uir, mappings, rules)
     assert fields["active"].value is True
 
 
@@ -145,7 +145,7 @@ def test_date_format_chinese_date():
             params={"output_format": "YYYY-MM-DD"},
         )
     ]
-    fields, traces = _run(uir, mappings, rules)
+    fields, traces, _ = _run(uir, mappings, rules)
     assert fields["publish_date"].value == "2026-06-01"
     assert any(t["action"] == "date_format" for t in traces)
 
@@ -161,7 +161,7 @@ def test_date_format_iso_date_passthrough():
             params={"output_format": "YYYY-MM-DD"},
         )
     ]
-    fields, _ = _run(uir, mappings, rules)
+    fields, _, _ = _run(uir, mappings, rules)
     assert fields["publish_date"].value == "2026-06-01"
 
 
@@ -176,7 +176,7 @@ def test_enum_map_hits():
         )
     ]
     enum_maps = {"doc_type": {"通知": "notice", "制度": "policy"}}
-    fields, traces = _run(uir, mappings, rules, enum_maps=enum_maps)
+    fields, traces, _ = _run(uir, mappings, rules, enum_maps=enum_maps)
     assert fields["doc_type"].value == "notice"
     assert any(t["status"] == "success" for t in traces)
 
@@ -192,7 +192,7 @@ def test_enum_map_miss_warning():
         )
     ]
     enum_maps = {"doc_type": {"通知": "notice"}}
-    _, traces = _run(uir, mappings, rules, enum_maps=enum_maps)
+    _, traces, _ = _run(uir, mappings, rules, enum_maps=enum_maps)
     assert any(t["status"] == "warning" for t in traces)
 
 
@@ -212,7 +212,7 @@ def test_default_fills_missing_field():
             params={"value": "zh-CN"},
         )
     ]
-    fields, traces = _run(uir, mappings, rules)
+    fields, traces, _ = _run(uir, mappings, rules)
     assert fields["language"].value == "zh-CN"
     assert any(t["action"] == "default_value" for t in traces)
 
@@ -237,7 +237,7 @@ def test_merge_combines_multiple_sources():
             params={"separator": "：", "skip_empty": True},
         )
     ]
-    fields, traces = _run(uir, mappings, rules)
+    fields, traces, _ = _run(uir, mappings, rules)
     assert fields["full_title"].value == "数据治理：管理办法"
     assert any(t["action"] == "merge" for t in traces)
 
@@ -259,7 +259,7 @@ def test_split_breaks_into_fields():
             params={"separator": "|"},
         )
     ]
-    fields, traces = _run(uir, mappings, rules)
+    fields, traces, _ = _run(uir, mappings, rules)
     assert fields["org_name"].value == "信息中心"
     assert fields["org_code"].value == "IC"
     assert any(t["action"] == "split" for t in traces)
@@ -268,7 +268,7 @@ def test_split_breaks_into_fields():
 def test_unconfirmed_mapping_skipped():
     uir = make_uir()
     mappings = [make_mapping("title", "metadata.title", status="review_required")]
-    fields, _ = _run(uir, mappings, [])
+    fields, _, _ = _run(uir, mappings, [])
     assert "title" not in fields
 
 
@@ -280,7 +280,7 @@ def test_defaults_dict_fills_missing():
         blocks=[],
     )
     defaults = {"language": "zh-CN", "doc_type": "policy"}
-    fields, traces = _run(uir, [], [], defaults=defaults)
+    fields, traces, _ = _run(uir, [], [], defaults=defaults)
     assert fields["language"].value == "zh-CN"
     assert fields["doc_type"].value == "policy"
 
@@ -296,5 +296,5 @@ def test_chinese_date_with_spaces():
             params={},
         )
     ]
-    fields, _ = _run(uir, mappings, rules)
+    fields, _, _ = _run(uir, mappings, rules)
     assert fields["publish_date"].value == "2026-06-01"

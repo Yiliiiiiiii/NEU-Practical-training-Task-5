@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Any
 
 from app.schemas.canonical import CanonicalField
-from app.schemas.mapping import FieldMapping
+from app.schemas.mapping import FieldCandidate, FieldMapping
 from app.schemas.transform import TransformRule
 from app.schemas.uir import UIRDocument
 from app.utils.ids import new_id
@@ -28,7 +28,9 @@ class TransformEngine:
         transform_rules: list[TransformRule],
         enum_maps: dict[str, dict[str, str]],
         defaults: dict[str, object],
-    ) -> tuple[dict[str, CanonicalField], list[dict[str, Any]]]:
+        source_context: dict[str, FieldCandidate] | None = None,
+    ) -> tuple[dict[str, CanonicalField], list[dict[str, Any]], list[str]]:
+        ctx = source_context or {}
         values: dict[str, Any] = {}
         trace_events: list[dict[str, Any]] = []
         errors: list[str] = []
@@ -36,19 +38,38 @@ class TransformEngine:
         for mapping in mappings:
             if mapping.status != "confirmed":
                 continue
-            source_value = self._resolve_source(
-                uir, mapping.source_field.source_path
-            )
+            src_path = mapping.source_field.source_path
+            candidate = ctx.get(src_path)
+            if candidate is not None and candidate.value_sample is not None:
+                source_value = candidate.value_sample
+                source_blocks = list(candidate.source_blocks)
+                candidate_ids = [candidate.candidate_id]
+            else:
+                source_value = self._resolve_source(uir, src_path)
+                source_blocks = []
+                candidate_ids = []
+            if source_value is None:
+                errors.append(f"missing source field: {src_path}")
+                trace_events.append({
+                    "trace_id": new_id("trace"),
+                    "stage": "field_transform",
+                    "action": "missing_source",
+                    "target_field_id": mapping.target_field_id,
+                    "source": {"path": src_path},
+                    "result": {"value": None},
+                    "status": "warning",
+                    "reason": f"source field '{src_path}' not found",
+                })
             values[mapping.target_field_id] = {
                 "value": source_value,
                 "type": self._infer_type(source_value),
-                "candidate_id": mapping.candidate_id,
-                "source_blocks": [],
+                "candidate_ids": candidate_ids,
+                "source_blocks": source_blocks,
             }
 
         for rule in transform_rules:
             try:
-                self._apply_rule(rule, values, enum_maps, trace_events)
+                self._apply_rule(rule, values, ctx, uir, enum_maps, trace_events)
             except Exception as exc:
                 errors.append(f"rule {rule.rule_id}: {exc}")
                 trace_events.append({
@@ -65,7 +86,7 @@ class TransformEngine:
                 values[field_id] = {
                     "value": default_val,
                     "type": self._infer_type(default_val),
-                    "candidate_id": "",
+                    "candidate_ids": [],
                     "source_blocks": [],
                 }
                 trace_events.append({
@@ -84,22 +105,24 @@ class TransformEngine:
             canonical_fields[field_id] = CanonicalField(
                 value=info["value"],
                 type=info.get("type", "string"),
-                source_candidates=([info["candidate_id"]] if info.get("candidate_id") else []),
+                source_candidates=list(info.get("candidate_ids", [])),
                 source_blocks=info.get("source_blocks", []),
             )
 
-        return canonical_fields, trace_events
+        return canonical_fields, trace_events, errors
 
     def _apply_rule(
         self,
         rule: TransformRule,
         values: dict[str, Any],
+        ctx: dict[str, FieldCandidate],
+        uir: UIRDocument,
         enum_maps: dict[str, dict[str, str]],
         trace_events: list[dict[str, Any]],
     ) -> None:
         operation = rule.operation
         if operation == "rename":
-            self._rename(rule, values, trace_events)
+            self._rename(rule, values, ctx, uir, trace_events)
         elif operation == "type_cast":
             self._type_cast(rule, values, trace_events)
         elif operation == "date_format":
@@ -109,28 +132,44 @@ class TransformEngine:
         elif operation == "default":
             self._default(rule, values, trace_events)
         elif operation == "merge":
-            self._merge(rule, values, trace_events)
+            self._merge(rule, values, ctx, uir, trace_events)
         elif operation == "split":
-            self._split(rule, values, trace_events)
+            self._split(rule, values, ctx, uir, trace_events)
         else:
             raise ValueError(f"unknown operation: {operation}")
+
+    def _resolve_from_context(
+        self,
+        source_field: str,
+        ctx: dict[str, FieldCandidate],
+        uir: UIRDocument,
+    ) -> tuple[Any, list[str], list[str]]:
+        candidate = ctx.get(source_field)
+        if candidate is not None and candidate.value_sample is not None:
+            return candidate.value_sample, [candidate.candidate_id], list(candidate.source_blocks)
+        uir_val = self._resolve_source(uir, source_field)
+        return uir_val, [], []
 
     def _rename(
         self,
         rule: TransformRule,
         values: dict[str, Any],
+        ctx: dict[str, FieldCandidate],
+        uir: UIRDocument,
         trace_events: list[dict[str, Any]],
     ) -> None:
         target = rule.target_field_id
         if not target:
             return
-        source_value = self._get_value_from_source(rule.source_field, values)
+        source_value, cand_ids, source_blocks = self._resolve_from_context(
+            rule.source_field, ctx, uir
+        )
         before = values.get(target, {}).get("value") if target in values else None
         values[target] = {
             "value": source_value,
             "type": self._infer_type(source_value),
-            "candidate_id": "",
-            "source_blocks": [],
+            "candidate_ids": cand_ids,
+            "source_blocks": source_blocks,
         }
         trace_events.append({
             "trace_id": new_id("trace"),
@@ -186,19 +225,34 @@ class TransformEngine:
         before = source_val
         output_format = rule.params.get("output_format", "YYYY-MM-DD")
         result_val = self._convert_date(source_val, output_format)
-        entry["value"] = result_val
-        entry["type"] = "date"
-        trace_events.append({
-            "trace_id": new_id("trace"),
-            "stage": "field_transform",
-            "action": "date_format",
-            "target_field_id": target,
-            "source": {"value": before},
-            "result": {"value": result_val},
-            "rule_id": rule.rule_id,
-            "reason": f"date format conversion to {output_format}",
-            "status": "success",
-        })
+        if result_val == source_val and source_val:
+            entry["value"] = result_val
+            entry["type"] = "string"
+            trace_events.append({
+                "trace_id": new_id("trace"),
+                "stage": "field_transform",
+                "action": "date_format",
+                "target_field_id": target,
+                "source": {"value": before},
+                "result": {"value": result_val},
+                "rule_id": rule.rule_id,
+                "reason": "date parse failed, keeping original value",
+                "status": "warning",
+            })
+        else:
+            entry["value"] = result_val
+            entry["type"] = "date"
+            trace_events.append({
+                "trace_id": new_id("trace"),
+                "stage": "field_transform",
+                "action": "date_format",
+                "target_field_id": target,
+                "source": {"value": before},
+                "result": {"value": result_val},
+                "rule_id": rule.rule_id,
+                "reason": f"date format conversion to {output_format}",
+                "status": "success",
+            })
 
     def _enum_map(
         self,
@@ -212,7 +266,7 @@ class TransformEngine:
             return
         entry = values[target]
         source_val = entry["value"]
-        mapping = enum_maps.get(target, {})
+        mapping = rule.params.get("map") or enum_maps.get(target, {})
         mapped_val = mapping.get(str(source_val), str(source_val))
         if str(source_val) not in mapping:
             trace_events.append({
@@ -254,7 +308,7 @@ class TransformEngine:
             values[target] = {
                 "value": default_val,
                 "type": self._infer_type(default_val),
-                "candidate_id": "",
+                "candidate_ids": [],
                 "source_blocks": [],
             }
             trace_events.append({
@@ -273,6 +327,8 @@ class TransformEngine:
         self,
         rule: TransformRule,
         values: dict[str, Any],
+        ctx: dict[str, FieldCandidate],
+        uir: UIRDocument,
         trace_events: list[dict[str, Any]],
     ) -> None:
         target = rule.target_field_id
@@ -281,8 +337,14 @@ class TransformEngine:
         separator = rule.params.get("separator", "")
         skip_empty = rule.params.get("skip_empty", True)
         parts = []
+        all_cand_ids: list[str] = []
+        all_source_blocks: list[str] = []
         for src in rule.source_fields:
-            val = self._get_value_from_source(src, values)
+            val, cand_ids, src_blocks = self._resolve_from_context(src, ctx, uir)
+            if val is None:
+                val = self._get_value_from_source(src, values)
+            all_cand_ids.extend(cand_ids)
+            all_source_blocks.extend(src_blocks)
             if skip_empty and (val is None or val == ""):
                 continue
             parts.append(str(val) if val is not None else "")
@@ -291,8 +353,8 @@ class TransformEngine:
         values[target] = {
             "value": merged,
             "type": "string",
-            "candidate_id": "",
-            "source_blocks": [],
+            "candidate_ids": list(dict.fromkeys(all_cand_ids)),
+            "source_blocks": list(dict.fromkeys(all_source_blocks)),
         }
         trace_events.append({
             "trace_id": new_id("trace"),
@@ -310,20 +372,39 @@ class TransformEngine:
         self,
         rule: TransformRule,
         values: dict[str, Any],
+        ctx: dict[str, FieldCandidate],
+        uir: UIRDocument,
         trace_events: list[dict[str, Any]],
     ) -> None:
         separator = rule.params.get("separator", "|")
-        source_value = self._get_value_from_source(rule.source_field, values)
+        source_field = rule.source_field
+        source_value, cand_ids, source_blocks = self._resolve_from_context(
+            source_field, ctx, uir
+        )
+        if source_value is None:
+            source_value = self._get_value_from_source(source_field, values)
         before = source_value
         parts = str(source_value).split(separator) if source_value is not None else [""]
         targets = rule.target_fields or []
+        if len(parts) < len(targets):
+            trace_events.append({
+                "trace_id": new_id("trace"),
+                "stage": "field_transform",
+                "action": "split",
+                "target_field_id": targets[0] if targets else None,
+                "source": {"value": before},
+                "result": {"value": parts},
+                "rule_id": rule.rule_id,
+                "reason": f"split produced {len(parts)} segments, expected {len(targets)}",
+                "status": "warning",
+            })
         for i, target_id in enumerate(targets):
             val = parts[i] if i < len(parts) else ""
             values[target_id] = {
                 "value": val,
                 "type": "string",
-                "candidate_id": "",
-                "source_blocks": [],
+                "candidate_ids": list(cand_ids),
+                "source_blocks": list(source_blocks),
             }
         trace_events.append({
             "trace_id": new_id("trace"),
