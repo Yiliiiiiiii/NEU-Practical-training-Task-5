@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 4 candidate extraction and rule mapping baseline.
+Current implementation status: Phase 5 transform engine and canonical model.
 
 Implemented:
 
@@ -22,12 +22,15 @@ Implemented:
 - Mapping report JSON generation
 - Manual review API for confirming or changing field mappings
 - Mock-only LLM client seam for later fallback integration
-- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, and review
+- Transform engine: rename, type_cast, date_format, enum_map, default, merge, split
+- Trace service: records every transform action with before/after values
+- Canonical builder: constructs unified canonical model from UIR and transformed fields
+- Canonical service: orchestrates transform and canonical construction, persists results
+- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform engine, trace service, and canonical builder
 
 Not implemented yet:
 
-- Transform engine
-- Canonical rendering
+- Multi-format rendering (content.json, content.md, chunks.json)
 - Validation, manifest, package ZIP, verifier
 - Frontend
 - Real LLM fallback
