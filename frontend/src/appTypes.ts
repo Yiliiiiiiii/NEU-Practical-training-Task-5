@@ -29,6 +29,7 @@ export interface WorkbenchSelection {
   schemaId: string | null;
   templateId: string | null;
   taskId: string | null;
+  taskStatus: string | null;
 }
 
 export type ToastInput = Omit<ToastMessage, "id">;

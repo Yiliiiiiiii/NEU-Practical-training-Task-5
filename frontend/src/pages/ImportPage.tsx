@@ -155,6 +155,7 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
         schemaId: nextResult.schemaId,
         templateId: nextResult.templateId,
         taskId: nextResult.taskId,
+        taskStatus: nextResult.status,
       });
       onToast?.({
         tone: "success",

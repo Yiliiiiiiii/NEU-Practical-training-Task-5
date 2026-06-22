@@ -1,16 +1,17 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
-import type { ToastInput, ToastMessage, ViewId, WorkbenchSelection, WorkflowStage } from "./appTypes";
+import type {
+  StageState,
+  ToastInput,
+  ToastMessage,
+  ViewId,
+  WorkbenchSelection,
+  WorkflowStage,
+} from "./appTypes";
 import { AppShell } from "./components/AppShell";
 import { ImportPage } from "./pages/ImportPage";
-
-const WORKFLOW_STAGES: WorkflowStage[] = [
-  { label: "Import", detail: "UIR, schema, template", state: "ready" },
-  { label: "Mapping", detail: "Candidates and review", state: "pending" },
-  { label: "Convert", detail: "Canonical and outputs", state: "pending" },
-  { label: "Reports", detail: "Validation and trace", state: "pending" },
-  { label: "Package", detail: "Manifest and ZIP", state: "pending" },
-];
+import { MappingPage } from "./pages/MappingPage";
+import { TasksPage } from "./pages/TasksPage";
 
 const VIEW_COPY: Record<ViewId, { title: string; body: string }> = {
   import: {
@@ -40,13 +41,46 @@ const EMPTY_SELECTION: WorkbenchSelection = {
   schemaId: null,
   templateId: null,
   taskId: null,
+  taskStatus: null,
 };
+
+const MAPPED_STATUSES = new Set(["mapping_completed", "rendered", "completed"]);
+
+function stageStateForMapping(status: string | null, hasTask: boolean): StageState {
+  if (status === "review_required") {
+    return "blocked";
+  }
+  if (status && MAPPED_STATUSES.has(status)) {
+    return "done";
+  }
+  if (status === "candidates_ready" || hasTask) {
+    return "ready";
+  }
+  return "pending";
+}
 
 export default function App() {
   const [activeView, setActiveView] = useState<ViewId>("import");
   const [refreshCount, setRefreshCount] = useState(0);
   const [selection, setSelection] = useState<WorkbenchSelection>(EMPTY_SELECTION);
   const [toastLog, setToastLog] = useState<ToastMessage[]>([]);
+  const workflowStages = useMemo<WorkflowStage[]>(() => {
+    const hasImportBundle = Boolean(selection.docId && selection.schemaId && selection.templateId);
+    const mappingState = stageStateForMapping(selection.taskStatus, Boolean(selection.taskId));
+    const convertState =
+      mappingState === "done" || selection.taskStatus === "review_required" ? "ready" : "pending";
+    return [
+      {
+        label: "Import",
+        detail: "UIR, schema, template",
+        state: hasImportBundle ? "done" : "ready",
+      },
+      { label: "Mapping", detail: "Candidates and review", state: mappingState },
+      { label: "Convert", detail: "Canonical and outputs", state: convertState },
+      { label: "Reports", detail: "Validation and trace", state: "pending" },
+      { label: "Package", detail: "Manifest and ZIP", state: "pending" },
+    ];
+  }, [selection.docId, selection.schemaId, selection.taskId, selection.taskStatus, selection.templateId]);
   const toasts = useMemo<ToastMessage[]>(
     () =>
       [
@@ -66,7 +100,7 @@ export default function App() {
   );
   const copy = VIEW_COPY[activeView];
 
-  function pushToast(toast: ToastInput) {
+  const pushToast = useCallback((toast: ToastInput) => {
     setToastLog((current) => [
       ...current,
       {
@@ -74,11 +108,38 @@ export default function App() {
         id: `${Date.now()}-${current.length}`,
       },
     ]);
-  }
+  }, []);
+
+  const updateSelection = useCallback((nextSelection: WorkbenchSelection) => {
+    setSelection(nextSelection);
+  }, []);
 
   function renderView() {
     if (activeView === "import") {
-      return <ImportPage onSelectionChange={setSelection} onToast={pushToast} />;
+      return <ImportPage onSelectionChange={updateSelection} onToast={pushToast} />;
+    }
+
+    if (activeView === "tasks") {
+      return (
+        <TasksPage
+          onSelectTask={(nextSelection) => {
+            updateSelection(nextSelection);
+            setActiveView("mapping");
+          }}
+          onToast={pushToast}
+          selectedTaskId={selection.taskId}
+        />
+      );
+    }
+
+    if (activeView === "mapping") {
+      return (
+        <MappingPage
+          onSelectionChange={updateSelection}
+          onToast={pushToast}
+          selection={selection}
+        />
+      );
     }
 
     return (
@@ -105,7 +166,7 @@ export default function App() {
       currentTaskId={selection.taskId}
       onRefresh={() => setRefreshCount((count) => count + 1)}
       onViewChange={setActiveView}
-      stages={WORKFLOW_STAGES}
+      stages={workflowStages}
       toasts={toasts}
     >
       {renderView()}
