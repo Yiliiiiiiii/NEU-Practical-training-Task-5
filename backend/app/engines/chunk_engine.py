@@ -12,6 +12,9 @@ class ChunkEngine:
         canonical: CanonicalModel,
         chunk_size: int = DEFAULT_CHUNK_SIZE,
     ) -> ChunksJSON:
+        if chunk_size <= 0:
+            raise ValueError("chunk_size must be greater than zero")
+
         chunks: list[Chunk] = []
         current_text_parts: list[str] = []
         current_source_blocks: list[str] = []
@@ -59,6 +62,8 @@ class ChunkEngine:
                 current_source_blocks, current_title_path,
             ))
 
+        chunks = self._split_oversized_chunks(canonical, chunks, chunk_size)
+
         return ChunksJSON(
             chunks_version="1.0",
             doc_id=canonical.doc_id,
@@ -90,6 +95,30 @@ class ChunkEngine:
             keywords=keywords,
             text_hash=f"sha256:{text_hash}",
         )
+
+    def _split_oversized_chunks(
+        self,
+        canonical: CanonicalModel,
+        chunks: list[Chunk],
+        chunk_size: int,
+    ) -> list[Chunk]:
+        normalized: list[Chunk] = []
+        for chunk in chunks:
+            text_parts = [
+                chunk.text[offset : offset + chunk_size]
+                for offset in range(0, len(chunk.text), chunk_size)
+            ] or [""]
+            for text in text_parts:
+                normalized.append(
+                    self._make_chunk(
+                        canonical,
+                        len(normalized),
+                        [text],
+                        chunk.source_blocks,
+                        chunk.title_path,
+                    )
+                )
+        return normalized
 
     @staticmethod
     def _fallback_summary(text: str) -> str:

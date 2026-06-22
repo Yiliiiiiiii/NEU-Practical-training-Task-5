@@ -2,6 +2,7 @@ from typing import Any
 
 from pydantic import Field
 
+from app.schemas.canonical import CanonicalModel
 from app.schemas.common import StrictBaseModel
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.target_schema import TargetSchema
@@ -212,7 +213,7 @@ class MappingReviewResponse(StrictBaseModel):
 
 class ConvertRequest(StrictBaseModel):
     render_outputs: bool = True
-    chunk_size: int = 500
+    chunk_size: int = Field(default=500, gt=0)
 
 
 class ConvertResponse(StrictBaseModel):
@@ -221,9 +222,5 @@ class ConvertResponse(StrictBaseModel):
     outputs: list[str]
 
 
-class CanonicalResponse(StrictBaseModel):
-    task_id: str
-    doc_id: str
-    schema_id: str
-    fields: dict[str, Any]
-    blocks: list[dict[str, Any]]
+class CanonicalResponse(CanonicalModel):
+    pass

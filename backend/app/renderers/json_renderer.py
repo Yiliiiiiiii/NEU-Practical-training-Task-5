@@ -64,6 +64,12 @@ class JSONRenderer:
             field = canonical.fields.get(key)
             if field and field.value:
                 return str(field.value)
+        for block in canonical.blocks:
+            if block.type == "paragraph" and block.text.strip():
+                return block.text.strip()[:200]
+        for block in canonical.blocks:
+            if block.text.strip():
+                return block.text.strip()[:200]
         return None
 
     @staticmethod
@@ -74,4 +80,11 @@ class JSONRenderer:
                 if isinstance(field.value, list):
                     return [str(v) for v in field.value]
                 return [str(field.value)]
-        return []
+        fallback: list[str] = []
+        for key in ("title", "publish_org", "author", "doc_type"):
+            field = canonical.fields.get(key)
+            if field and field.value:
+                value = str(field.value)
+                if value not in fallback:
+                    fallback.append(value)
+        return fallback[:5]

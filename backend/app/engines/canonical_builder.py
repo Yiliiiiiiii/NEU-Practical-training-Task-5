@@ -16,6 +16,8 @@ class CanonicalBuilder:
         blocks = self._build_blocks(uir)
         assets = self._build_assets(uir)
         doc_meta = dict(uir.metadata)
+        if uir.source and uir.source.source_name:
+            doc_meta.setdefault("source_name", uir.source.source_name)
         return CanonicalModel(
             canonical_version="1.0",
             task_id=task_id,

@@ -6,6 +6,7 @@ from app.renderers.json_renderer import JSONRenderer
 from app.renderers.markdown_renderer import MarkdownRenderer
 from app.schemas.canonical import CanonicalModel
 from app.services.storage_service import StorageService
+from app.services.trace_service import TraceService
 
 
 class RenderService:
@@ -43,6 +44,35 @@ class RenderService:
             chunks_json.model_dump(mode="json"),
         )
 
+        TraceService(self.db, self.storage).record_batch(
+            task_id,
+            [
+                {
+                    "stage": "render",
+                    "action": "render_content_json",
+                    "source": {"canonical_task_id": canonical.task_id},
+                    "result": {"path": "content.json"},
+                    "reason": "rendered content.json from canonical model",
+                    "status": "success",
+                },
+                {
+                    "stage": "render",
+                    "action": "render_content_markdown",
+                    "source": {"canonical_task_id": canonical.task_id},
+                    "result": {"path": "content.md"},
+                    "reason": "rendered content.md from canonical model",
+                    "status": "success",
+                },
+                {
+                    "stage": "render",
+                    "action": "render_chunks_json",
+                    "source": {"canonical_task_id": canonical.task_id},
+                    "result": {"path": "chunks.json"},
+                    "reason": "rendered chunks.json from canonical model",
+                    "status": "success",
+                },
+            ],
+        )
         task.status = "rendered"
         self.db.commit()
 

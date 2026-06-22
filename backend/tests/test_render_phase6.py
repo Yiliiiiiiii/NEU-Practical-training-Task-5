@@ -2,9 +2,13 @@ import json
 from pathlib import Path
 
 import pytest
+from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import StaticPool
 
+from app.api.deps import get_db, get_storage_service
+from app.config import Settings
 from app.db.models import (
     Base,
     ConversionTask,
@@ -13,11 +17,14 @@ from app.db.models import (
     FieldMappingRecord,
     MappingTemplateRecord,
     TargetSchemaRecord,
+    TransformTraceRecord,
 )
 from app.engines.transform_engine import TransformEngine
+from app.main import create_app
 from app.renderers.chunks_renderer import ChunksRenderer
 from app.renderers.json_renderer import JSONRenderer
 from app.renderers.markdown_renderer import MarkdownRenderer
+from app.schemas.canonical import CanonicalBlock, CanonicalModel
 from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
 from app.services.canonical_service import CanonicalService
@@ -33,7 +40,11 @@ def _load_json(name: str) -> dict:
 
 @pytest.fixture()
 def db_session():
-    engine = create_engine("sqlite:///:memory:")
+    engine = create_engine(
+        "sqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
     Base.metadata.create_all(engine)
     TestSession = sessionmaker(bind=engine)
     with TestSession() as session:
@@ -43,6 +54,20 @@ def db_session():
 @pytest.fixture()
 def storage(tmp_path):
     return StorageService(tmp_path / "storage")
+
+
+def _test_client(db_session, storage) -> TestClient:
+    app = create_app(
+        Settings(storage_root=str(storage.root), database_url="sqlite:///unused.db"),
+        init_database=False,
+    )
+
+    def override_db():
+        yield db_session
+
+    app.dependency_overrides[get_db] = override_db
+    app.dependency_overrides[get_storage_service] = lambda: storage
+    return TestClient(app)
 
 
 def _seed_full_pipeline(db_session, storage, doc_name, schema_name, template_name):
@@ -393,3 +418,164 @@ def test_render_service_sets_rendered_status(db_session, storage):
 
     task = db_session.get(ConversionTask, task_id)
     assert task.status == "rendered"
+
+
+def test_convert_without_render_outputs_stays_transforming(db_session, storage):
+    task_id, _, _, _ = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+
+    with _test_client(db_session, storage) as client:
+        response = client.post(
+            f"/api/v1/tasks/{task_id}/convert",
+            json={"render_outputs": False, "chunk_size": 500},
+        )
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "transforming"
+    assert response.json()["outputs"] == []
+    db_session.expire_all()
+    assert db_session.get(ConversionTask, task_id).status == "transforming"
+
+
+def test_canonical_api_returns_complete_persisted_model(db_session, storage):
+    task_id, canonical, _, _ = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_policy_doc.json",
+        "target_schema_policy.json",
+        "mapping_template_policy.json",
+    )
+
+    with _test_client(db_session, storage) as client:
+        response = client.get(f"/api/v1/tasks/{task_id}/canonical")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body == canonical.model_dump(mode="json")
+    assert "assets" in body
+    assert "source_candidates" in next(iter(body["fields"].values()))
+
+
+def test_render_write_failure_does_not_set_rendered_or_write_trace(db_session, storage):
+    task_id, _, _, _ = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+
+    class FailingStorage(StorageService):
+        def save_json(self, relative_path, data):
+            if str(relative_path).endswith("chunks.json"):
+                raise OSError("simulated chunks write failure")
+            return super().save_json(relative_path, data)
+
+    failing_storage = FailingStorage(storage.root)
+    with pytest.raises(OSError, match="simulated chunks write failure"):
+        RenderService(db_session, failing_storage).render_all(task_id)
+
+    db_session.expire_all()
+    assert db_session.get(ConversionTask, task_id).status != "rendered"
+    render_traces = (
+        db_session.query(TransformTraceRecord)
+        .filter(
+            TransformTraceRecord.task_id == task_id,
+            TransformTraceRecord.stage == "render",
+        )
+        .all()
+    )
+    assert render_traces == []
+
+
+def test_successful_render_records_trace_for_all_outputs(db_session, storage):
+    task_id, _, _, _ = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+
+    RenderService(db_session, storage).render_all(task_id)
+
+    render_traces = (
+        db_session.query(TransformTraceRecord)
+        .filter(
+            TransformTraceRecord.task_id == task_id,
+            TransformTraceRecord.stage == "render",
+        )
+        .all()
+    )
+    assert {trace.action for trace in render_traces} == {
+        "render_content_json",
+        "render_content_markdown",
+        "render_chunks_json",
+    }
+
+
+def test_chunk_engine_splits_single_oversized_block_without_text_loss():
+    text = "0123456789" * 12
+    canonical = CanonicalModel(
+        canonical_version="1.0",
+        task_id="task_long_block",
+        doc_id="doc_long_block",
+        schema_id="schema_long_block",
+        blocks=[
+            CanonicalBlock(
+                block_id="blk_long",
+                type="paragraph",
+                text=text,
+                source_blocks=["blk_long"],
+            )
+        ],
+    )
+
+    chunks = ChunksRenderer().render(canonical, chunk_size=25).chunks
+
+    assert len(chunks) > 1
+    assert all(len(chunk.text) <= 25 for chunk in chunks)
+    assert "".join(chunk.text for chunk in chunks) == text
+    assert all(chunk.source_blocks == ["blk_long"] for chunk in chunks)
+
+
+def test_policy_content_metadata_uses_source_and_local_summary_fallback(
+    db_session,
+    storage,
+):
+    _, canonical, _, _ = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_policy_doc.json",
+        "target_schema_policy.json",
+        "mapping_template_policy.json",
+    )
+
+    content = JSONRenderer().render(canonical)
+
+    assert content.metadata.source_name == "policy_doc_demo"
+    assert content.metadata.document_summary
+    assert content.metadata.keywords
+
+
+def test_convert_rejects_non_positive_chunk_size(db_session, storage):
+    task_id, _, _, _ = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+
+    with _test_client(db_session, storage) as client:
+        response = client.post(
+            f"/api/v1/tasks/{task_id}/convert",
+            json={"render_outputs": True, "chunk_size": 0},
+        )
+
+    assert response.status_code == 422
