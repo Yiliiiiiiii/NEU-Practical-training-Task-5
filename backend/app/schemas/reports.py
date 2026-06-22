@@ -18,7 +18,7 @@ class MappingReport(StrictBaseModel):
     schema_id: str
     summary: dict[str, Any]
     mappings: list[dict[str, Any]] = Field(default_factory=list)
-    unmapped: list[dict[str, Any]] = Field(default_factory=list)
+    unmapped: list[str] = Field(default_factory=list)
     review_required_items: list[dict[str, Any]] = Field(default_factory=list)
 
 

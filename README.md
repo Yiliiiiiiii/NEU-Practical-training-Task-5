@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 3 schema and template management baseline.
+Current implementation status: Phase 4 candidate extraction and rule mapping baseline.
 
 Implemented:
 
@@ -17,12 +17,15 @@ Implemented:
 - Target Schema create, list, and detail APIs
 - Mapping Template create, update, list, and detail APIs
 - Template-to-Schema binding validation for target field references
-- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, and Mapping Template APIs
+- Field candidate extraction from UIR metadata, blocks, heading text, label-value text, and table columns
+- Deterministic field mapping with exact, alias, regex-label, type, and fuzzy strategies
+- Mapping report JSON generation
+- Manual review API for confirming or changing field mappings
+- Mock-only LLM client seam for later fallback integration
+- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, and review
 
 Not implemented yet:
 
-- Field candidate extraction
-- Mapping engine
 - Transform engine
 - Canonical rendering
 - Validation, manifest, package ZIP, verifier
@@ -49,7 +52,7 @@ Expected response:
 {"status":"ok"}
 ```
 
-Phase 2 API slice:
+Implemented API slice:
 
 ```text
 POST /api/v1/documents/import
@@ -65,9 +68,15 @@ POST /api/v1/templates
 PUT  /api/v1/templates/{template_id}
 GET  /api/v1/templates
 GET  /api/v1/templates/{template_id}
+POST /api/v1/tasks/{task_id}/generate-candidates
+GET  /api/v1/tasks/{task_id}/candidates
+POST /api/v1/tasks/{task_id}/map
+GET  /api/v1/tasks/{task_id}/mappings
+POST /api/v1/tasks/{task_id}/mappings/review
+GET  /api/v1/tasks/{task_id}/reports/mapping
 ```
 
-Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. The actual schema/template records are managed by the Phase 3 endpoints and will be wired into conversion execution in later phases.
+Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping execution loads those records when a task is run; Transform, Canonical, Render, Validate, Manifest, and Zip stages remain later phases.
 
 ## Development Setup
 

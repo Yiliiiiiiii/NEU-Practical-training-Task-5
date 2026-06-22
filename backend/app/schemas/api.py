@@ -129,3 +129,82 @@ class TemplateListItem(StrictBaseModel):
 
 class TemplateListResponse(StrictBaseModel):
     items: list[TemplateListItem]
+
+
+class GenerateCandidatesRequest(StrictBaseModel):
+    include_metadata: bool = True
+    include_blocks: bool = True
+    include_tables: bool = True
+
+
+class GenerateCandidatesResponse(StrictBaseModel):
+    task_id: str
+    candidate_count: int
+    status: str
+
+
+class CandidateListItem(StrictBaseModel):
+    candidate_id: str
+    task_id: str
+    doc_id: str
+    source_path: str
+    source_name: str
+    display_name: str | None = None
+    value_sample: Any | None = None
+    inferred_type: str
+    source_blocks: list[str]
+    confidence: float
+    evidence: list[str]
+
+
+class CandidateListResponse(StrictBaseModel):
+    items: list[CandidateListItem]
+
+
+class MappingRunRequest(StrictBaseModel):
+    enable_llm_fallback: bool = False
+    review_threshold: float = 0.8
+
+
+class MappingRunResponse(StrictBaseModel):
+    task_id: str
+    mapped_count: int
+    review_required_count: int
+    status: str
+
+
+class MappingListItem(StrictBaseModel):
+    mapping_id: str
+    task_id: str
+    candidate_id: str
+    source_name: str
+    source_path: str
+    target_field_id: str
+    target_field_name: str
+    method: str
+    confidence: float
+    status: str
+    need_review: bool
+    evidence: list[str]
+
+
+class MappingListResponse(StrictBaseModel):
+    items: list[MappingListItem]
+
+
+class MappingReviewItem(StrictBaseModel):
+    mapping_id: str
+    new_target_field_id: str | None = None
+    decision: str = "confirmed"
+    comment: str | None = None
+    reviewer: str = "human"
+
+
+class MappingReviewRequest(StrictBaseModel):
+    reviews: list[MappingReviewItem]
+
+
+class MappingReviewResponse(StrictBaseModel):
+    task_id: str
+    updated: int
+    status: str
