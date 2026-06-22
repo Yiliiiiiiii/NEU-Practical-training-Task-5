@@ -1,0 +1,87 @@
+:root {
+  --bg: oklch(0.975 0.004 250);
+  --surface: oklch(0.995 0.002 250);
+  --surface-2: oklch(0.955 0.006 250);
+  --ink: oklch(0.245 0.018 255);
+  --muted: oklch(0.48 0.018 255);
+  --line: oklch(0.87 0.009 250);
+  --accent: oklch(0.53 0.12 222);
+  --accent-weak: oklch(0.93 0.035 222);
+  --success: oklch(0.52 0.13 152);
+  --warning: oklch(0.67 0.14 72);
+  --danger: oklch(0.58 0.18 28);
+  --focus: oklch(0.65 0.16 222);
+  --shadow: 0 8px 22px oklch(0.23 0.02 255 / 0.08);
+  font-family: ui-sans-serif, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.hero-panel {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 16px;
+  }
+
+  .hero-panel {
+    padding: 20px;
+  }
+}
