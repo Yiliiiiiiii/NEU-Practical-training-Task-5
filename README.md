@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 5 transform engine and canonical model.
+Current implementation status: Phase 6 canonical conversion and multi-format rendering.
 
 Implemented:
 
@@ -26,11 +26,15 @@ Implemented:
 - Trace service: records every transform action with before/after values
 - Canonical builder: constructs unified canonical model from UIR and transformed fields
 - Canonical service: orchestrates transform and canonical construction, persists results
-- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform engine, trace service, and canonical builder
+- Content JSON renderer with stable protocol metadata and canonical field projection
+- Content Markdown renderer with YAML front matter and block provenance comments
+- Deterministic chunks renderer with stable chunk IDs, heading context, source backlinks, and SHA-256 hashes
+- Conversion service and API orchestration for canonical construction and three-output rendering
+- Render trace events and task state transitions after all outputs are written successfully
+- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform, canonical construction, conversion APIs, and multi-format rendering
 
 Not implemented yet:
 
-- Multi-format rendering (content.json, content.md, chunks.json)
 - Validation, manifest, package ZIP, verifier
 - Frontend
 - Real LLM fallback
@@ -77,9 +81,11 @@ POST /api/v1/tasks/{task_id}/map
 GET  /api/v1/tasks/{task_id}/mappings
 POST /api/v1/tasks/{task_id}/mappings/review
 GET  /api/v1/tasks/{task_id}/reports/mapping
+POST /api/v1/tasks/{task_id}/convert
+GET  /api/v1/tasks/{task_id}/canonical
 ```
 
-Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping execution loads those records when a task is run; Transform, Canonical, Render, Validate, Manifest, and Zip stages remain later phases.
+Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping and conversion execution load those records when a task is run. Transform, canonical construction, and rendering are implemented; validation, manifest generation, packaging, and verification remain later phases.
 
 ## Development Setup
 

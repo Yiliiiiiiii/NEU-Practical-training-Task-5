@@ -27,40 +27,40 @@ cd backend
 
 当前已验收功能基线：
 
-- 已完成并验收 Phase 0 至 Phase 5。
-- Phase 5 功能提交为 `10c6360`，Mimo 返修提交为 `c2552bb`，Codex 验收补充修正为 `08082cf`。
-- 当前功能分支为 `phase5-transform-canonical`。
-- Phase 5 验收基线为 `91 passed`，Ruff 全部通过。
-- `main` 尚不包含后续阶段提交。**不得从旧的 `main` 开始 Phase 6。**
-- Phase 6 必须从包含 `08082cf` 以及本交接文档最新修改的 `HEAD` 创建分支。
+- 已完成并验收 Phase 0 至 Phase 6。
+- Phase 5 的 Codex 验收补充修正为 `08082cf`。
+- Phase 6 的 Mimo 功能提交为 `58ce284`，Codex 验收补充修正为 `5d122e8`。
+- 当前功能分支为 `phase6-multiformat-rendering`。
+- Phase 6 验收基线为 `108 passed`，Ruff 全部通过。
+- `main` 尚不包含后续阶段提交。**不得从旧的 `main` 开始 Phase 7。**
+- Phase 7 必须从包含 `5d122e8` 以及本交接文档最新修改的 `HEAD` 创建分支。
 
-如果基线测试失败、工作区存在来源不明的修改、当前提交不包含 `08082cf`，立即停止并报告，不要猜测或覆盖文件。
+如果基线测试失败、工作区存在来源不明的修改、当前提交不包含 `5d122e8`，立即停止并报告，不要猜测或覆盖文件。
 
 ## 2. 下一项唯一任务
 
 下一步只执行：
 
 ```text
-Phase 6：多形态渲染
+Phase 7：成果包与一致性校验
 ```
 
 建议分支：
 
 ```powershell
-git switch -c phase6-multiformat-rendering
+git switch -c phase7-package-validation
 ```
 
-Phase 6 完成并汇报后必须停止。未经用户或 Codex 验收通过，不得开始 Phase 7。
+Phase 7 完成并汇报后必须停止。未经用户或 Codex 验收通过，不得开始 Phase 8。
 
 后续阶段依次为：
 
-1. Phase 6：多形态渲染
-2. Phase 7：成果包与一致性校验
-3. Phase 8：前端最小页面
-4. Phase 9：测试与稳定化
-5. Phase 10：验收强化与产品化基线
+1. Phase 7：成果包与一致性校验
+2. Phase 8：前端最小页面
+3. Phase 9：测试与稳定化
+4. Phase 10：验收强化与产品化基线
 
-不得跨 Phase 提前实现功能。例如 Phase 6 不实现 validation、manifest、ZIP、前端或真实模型接入。
+不得跨 Phase 提前实现功能。例如 Phase 7 不实现前端、真实模型接入或 Phase 10 的独立外部 verifier。
 
 ## 3. 规格优先级
 
@@ -104,6 +104,20 @@ Phase 5 首次实现虽然全量测试通过，但真实 demo 数据流仍失败
 7. 对溯源字段必须验证真实来源，包括 `source_candidates`、`source_blocks`、`block_id` 和 hash，不能只断言字段存在。
 8. 错误路径必须同时验证返回值、trace、持久化副作用和 task 状态，不能只断言抛异常。
 9. Codex 验收会增加报告之外的反例。实现不得只针对列出的测试名称硬编码。
+
+### 4.2 Phase 6 验收经验与新增强制规则
+
+Phase 6 的报告声称真实 API 链路、写入失败和“无偏差”均已覆盖，但验收发现测试名称与测试行为不一致：所谓真实链路直接操作 SQL 和 engine，没有请求 API；所谓写入失败只测试了 canonical 缺失；单个超长 block 不会被切分；`render_outputs=false` 仍返回 `rendered`；GET canonical 丢失持久化字段；Router 内含业务编排；README 和阶段计划也未按要求更新。后续必须遵守：
+
+1. 测试名称、完成报告和实际测试体必须逐项一致。报告中的每项证据都要能定位到真实断言和被测边界。
+2. “API 已实现”必须用 TestClient 或等价客户端发送真实请求并检查状态码、响应模型和持久化副作用；仅检查 OpenAPI 路由存在不算 API 行为测试。
+3. “写入失败”必须在目标写入边界注入故障，验证 task 状态、数据库事务、trace 和最终文件；不能用前置对象缺失替代 I/O 失败。
+4. 布尔选项、状态分支和可选输出必须覆盖每个分支。例如 `render_outputs=true/false` 都要验证状态和响应。
+5. 小 `chunk_size` 下多个短 block 能产生多个 chunk，不代表单个超长 block 可切分；边界测试必须精确构造触发条件并验证文本无丢失。
+6. “真实链路”必须经过对应 service、持久化和 API 边界。直接调用 engine 或手工写 SQL 只能作为局部测试。
+7. Router 内不得自行查询多张表、更新状态或编排多个 service；这些逻辑必须有独立 service 和单元测试。
+8. README、阶段计划和交接文档属于完成标准。未创建或未更新时必须在“偏差与遗留”中如实报告，不能写“无偏差”。
+9. Codex 会阅读测试体而不是按测试数量或名称验收。后续报告必须附上每个高风险行为对应的断言摘要。
 
 ## 5. 强制工程约束
 
@@ -177,7 +191,7 @@ git status --short
 
 必须报告实际测试数量、失败数量和 Ruff 输出。不能使用“应该通过”“看起来正常”等表述代替命令证据。
 
-### 6.3 Phase 6 渲染额外门禁
+### 6.3 已验收的 Phase 6 渲染契约
 
 - `content.json`、`content.md`、`chunks.json` 必须从同一个已持久化 CanonicalModel 生成。
 - 至少一个集成测试必须通过 Phase 5 的真实服务构建 canonical 后再调用 render service；只手工构造 CanonicalModel 不足以验收。
@@ -197,11 +211,21 @@ git status --short
 - 运行项目实际提供的 lint、test、build 命令，并报告完整结果。
 - 启动本地服务后验证主要页面和关键交互；有浏览器工具时保存验收截图。
 
-### 6.5 Phase 7 和 Phase 9 的额外门禁
+### 6.5 Phase 7 成果包额外门禁
 
-- ZIP 内容、文件路径、SHA-256、Manifest 和 consistency 结果必须通过真实文件测试。
-- 必须包含至少一个故意损坏的 badcase，并证明验证器能拒绝它。
-- 端到端测试必须从 UIR 导入开始，最终解压并校验成果包，不能只 mock 中间结果。
+- `validation_report.json` 只校验 `content.json.data` 与 Target Schema 的 required、type、enum、range 和 pattern 契约。
+- `consistency_report.json` 校验内容、block、chunk、asset 和报告结构，但不得校验 Manifest，避免循环依赖。
+- `manifest.json` 覆盖除自身外的全部 payload 文件；条目按规范化相对路径稳定排序，记录真实 bytes、完整 SHA-256、media type、required 和 role。
+- ZIP 必须在临时目录完成并通过内部检查后原子发布；失败不得留下可下载的部分包或伪 `completed` 状态。
+- ZIP 内容、路径、SHA-256、Manifest 和 consistency 结果必须通过真实文件测试，不得只 mock 中间结果。
+- 必须包含 required/type/enum 错误、断裂 chunk 回链、损坏 payload、写入/打包失败等 badcase，并证明流程拒绝 critical error。
+- 端到端测试必须从 UIR 导入开始，经真实 API/服务生成输出，最终下载、解压并逐文件校验成果包。
+- Phase 10 的独立包外 verifier 尚不在本阶段范围；Phase 7 仍须在发布 ZIP 前执行内部 Manifest 与 payload 校验。
+
+### 6.6 Phase 9 稳定化额外门禁
+
+- 必须重跑所有后端与前端门禁，并覆盖并发、重试、幂等、损坏输入和历史回归。
+- 必须包含至少一个故意损坏的成果包，并证明验证器或稳定化检查能拒绝它。
 
 ## 7. Git 约束
 
@@ -224,7 +248,9 @@ docs: update phase 5 implementation status
 
 - Phase 4 的 LLM 仅有 mock seam；真实 fallback 属于 Phase 10.1。
 - `enable_llm_fallback` 不能被解释为允许模型直接写最终内容。
-- Transform 和 canonical 已实现并通过 Phase 5 验收；render、validate、manifest、ZIP 和 frontend 当前尚未实现。
+- Transform 和 canonical 已通过 Phase 5 验收；Content JSON、Markdown、chunks、conversion service 和渲染 API 已通过 Phase 6 验收。
+- Validation、consistency、Manifest、ZIP 和下载 API 尚未实现，属于 Phase 7；frontend 尚未实现，属于 Phase 8。
+- Phase 6 未在实现前创建要求的阶段计划，且完成报告错误声明“无偏差”。这是已记录的过程偏差，不补写事后计划；Phase 7 必须先提交真实计划再修改生产代码。
 - 任务创建阶段目前记录 Schema/Template 引用，映射执行时才加载对应记录；不要在无规格和无测试的情况下改变这一行为。
 - 运行环境为 Windows PowerShell，后端虚拟环境位于 `backend/.venv`。
 - 本地 FastAPI 通常运行在 `http://127.0.0.1:8000`；启动新服务前先检查端口占用。
@@ -287,4 +313,4 @@ Mimo 提交报告后停止。用户会让 Codex 执行以下工作：
 
 你的优势是长上下文，因此要充分阅读规格和现有代码；不要用长上下文一次性生成大量未经验证的代码。你的首要目标不是速度，而是让每个小步骤可证明、可追溯、可验收。
 
-现在从完整阅读 `SchemaPack_Agent_项目实施文档_修订版.md` 开始，然后只制定并执行 Phase 6 计划。
+现在从完整阅读 `SchemaPack_Agent_项目实施文档_修订版.md` 和 `docs/MIMO_PHASE7_START.md` 开始，然后只制定并执行 Phase 7 计划。
