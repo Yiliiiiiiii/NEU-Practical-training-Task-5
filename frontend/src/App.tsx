@@ -63,7 +63,6 @@ function stageStateForMapping(status: string | null, hasTask: boolean): StageSta
 
 export default function App() {
   const [activeView, setActiveView] = useState<ViewId>("import");
-  const [refreshCount, setRefreshCount] = useState(0);
   const [selection, setSelection] = useState<WorkbenchSelection>(EMPTY_SELECTION);
   const [toastLog, setToastLog] = useState<ToastMessage[]>([]);
   const workflowStages = useMemo<WorkflowStage[]>(() => {
@@ -96,33 +95,19 @@ export default function App() {
       },
     ];
   }, [selection.docId, selection.schemaId, selection.taskId, selection.taskStatus, selection.templateId]);
-  const toasts = useMemo<ToastMessage[]>(
-    () =>
-      [
-        ...toastLog,
-        ...(refreshCount
-          ? [
-              {
-                id: "refresh",
-                tone: "info" as const,
-                title: "Workbench refreshed",
-                detail: "Current view state is still local.",
-              },
-            ]
-          : []),
-      ].slice(-3),
-    [refreshCount, toastLog],
-  );
+  const toasts = toastLog.slice(-3);
   const copy = VIEW_COPY[activeView];
 
   const pushToast = useCallback((toast: ToastInput) => {
-    setToastLog((current) => [
-      ...current,
-      {
-        ...toast,
-        id: `${Date.now()}-${current.length}`,
-      },
-    ]);
+    const id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    setToastLog((current) => [...current, { ...toast, id }]);
+    window.setTimeout(() => {
+      setToastLog((current) => current.filter((message) => message.id !== id));
+    }, 6000);
+  }, []);
+
+  const dismissToast = useCallback((id: string) => {
+    setToastLog((current) => current.filter((message) => message.id !== id));
   }, []);
 
   const updateSelection = useCallback((nextSelection: WorkbenchSelection) => {
@@ -199,7 +184,14 @@ export default function App() {
     <AppShell
       activeView={activeView}
       currentTaskId={selection.taskId}
-      onRefresh={() => setRefreshCount((count) => count + 1)}
+      onDismissToast={dismissToast}
+      onRefresh={() =>
+        pushToast({
+          tone: "info",
+          title: "Workbench ready",
+          detail: "Use the page-level refresh action to reload API data.",
+        })
+      }
       onViewChange={setActiveView}
       stages={workflowStages}
       toasts={toasts}

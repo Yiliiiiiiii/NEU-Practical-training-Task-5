@@ -17,6 +17,7 @@ interface AppShellProps {
   toasts: ToastMessage[];
   children: ReactNode;
   onRefresh: () => void;
+  onDismissToast: (id: string) => void;
   onViewChange: (view: ViewId) => void;
 }
 
@@ -27,6 +28,7 @@ export function AppShell({
   toasts,
   children,
   onRefresh,
+  onDismissToast,
   onViewChange,
 }: AppShellProps) {
   return (
@@ -82,7 +84,7 @@ export function AppShell({
         {children}
       </main>
 
-      <ToastRegion messages={toasts} />
+      <ToastRegion messages={toasts} onDismiss={onDismissToast} />
     </div>
   );
 }

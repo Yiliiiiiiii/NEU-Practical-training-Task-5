@@ -280,7 +280,7 @@ select:focus-visible {
 
 .pipeline-card {
   display: grid;
-  grid-template-columns: minmax(210px, 0.7fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
   gap: 18px;
   padding: 16px;
 }
@@ -301,7 +301,7 @@ select:focus-visible {
 
 .stage-rail {
   display: grid;
-  grid-template-columns: repeat(5, minmax(118px, 1fr));
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
   gap: 8px;
   margin: 0;
   padding: 0;
@@ -312,7 +312,7 @@ select:focus-visible {
 .stage-rail__item {
   display: flex;
   gap: 9px;
-  min-width: 118px;
+  min-width: 100px;
   padding: 9px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1000,6 +1000,8 @@ select:focus-visible {
 
 .toast {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   gap: 3px;
   padding: 12px 14px;
   font-size: 13px;
@@ -1008,6 +1010,29 @@ select:focus-visible {
   border-radius: 8px;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.toast__content {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.toast__dismiss {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--muted);
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.toast__dismiss:hover {
+  color: var(--ink);
+  background: var(--surface-2);
 }
 
 .toast span {
@@ -1024,6 +1049,12 @@ select:focus-visible {
 
 .toast--danger {
   border-color: color-mix(in oklch, var(--danger), var(--line) 50%);
+}
+
+@media (max-width: 1100px) {
+  .pipeline-card {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1057,9 +1088,6 @@ select:focus-visible {
     flex: 0 0 170px;
   }
 
-  .pipeline-card {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 640px) {

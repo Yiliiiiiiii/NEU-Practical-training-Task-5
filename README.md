@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 7 package validation, manifest generation, and standard ZIP packaging.
+Current implementation status: Phase 8 desktop document workbench with end-to-end package delivery.
 
 Implemented:
 
@@ -36,12 +36,14 @@ Implemented:
 - Manifest generation with stable relative paths, bytes, media types, roles, and SHA-256 hashes excluding `manifest.json`
 - Package service for validation, consistency checks, manifest verification, atomic ZIP publication, package trace events, and database records
 - Package, report, trace, and ZIP download APIs
+- Desktop React workbench for demo/pasted JSON import, task creation, candidate generation, mapping review, conversion, report inspection, packaging, and ZIP download
+- Typed frontend API client with local CORS support and exposed package SHA-256 response evidence
 - Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform, canonical construction, conversion APIs, multi-format rendering, and package validation
+- Vitest, ESLint, and production build gates for the frontend workbench
 
 Not implemented yet:
 
 - Independent external package verifier
-- Frontend
 - Real LLM fallback
 
 ## Backend
@@ -62,6 +64,28 @@ Expected response:
 
 ```json
 {"status":"ok"}
+```
+
+## Frontend
+
+The Phase 8 workbench is designed for desktop use. Start the backend first, then run:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://127.0.0.1:5173`. The default API base URL is
+`http://127.0.0.1:8000/api/v1`; override it with `VITE_API_BASE_URL` when needed.
+
+Frontend quality gates:
+
+```powershell
+cd frontend
+npm run test
+npm run lint
+npm run build
 ```
 
 Implemented API slice:
