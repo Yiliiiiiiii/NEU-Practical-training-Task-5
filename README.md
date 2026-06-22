@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 6 canonical conversion and multi-format rendering.
+Current implementation status: Phase 7 package validation, manifest generation, and standard ZIP packaging.
 
 Implemented:
 
@@ -31,11 +31,16 @@ Implemented:
 - Deterministic chunks renderer with stable chunk IDs, heading context, source backlinks, and SHA-256 hashes
 - Conversion service and API orchestration for canonical construction and three-output rendering
 - Render trace events and task state transitions after all outputs are written successfully
-- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform, canonical construction, conversion APIs, and multi-format rendering
+- Content validation reports for required, type, enum, range, pattern, length, and date contracts
+- Cross-format consistency reports for canonical, content JSON, Markdown, and chunks
+- Manifest generation with stable relative paths, bytes, media types, roles, and SHA-256 hashes excluding `manifest.json`
+- Package service for validation, consistency checks, manifest verification, atomic ZIP publication, package trace events, and database records
+- Package, report, trace, and ZIP download APIs
+- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform, canonical construction, conversion APIs, multi-format rendering, and package validation
 
 Not implemented yet:
 
-- Validation, manifest, package ZIP, verifier
+- Independent external package verifier
 - Frontend
 - Real LLM fallback
 
@@ -83,9 +88,14 @@ POST /api/v1/tasks/{task_id}/mappings/review
 GET  /api/v1/tasks/{task_id}/reports/mapping
 POST /api/v1/tasks/{task_id}/convert
 GET  /api/v1/tasks/{task_id}/canonical
+POST /api/v1/tasks/{task_id}/package
+GET  /api/v1/tasks/{task_id}/package/download
+GET  /api/v1/tasks/{task_id}/reports/validation
+GET  /api/v1/tasks/{task_id}/reports/consistency
+GET  /api/v1/tasks/{task_id}/trace
 ```
 
-Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping and conversion execution load those records when a task is run. Transform, canonical construction, and rendering are implemented; validation, manifest generation, packaging, and verification remain later phases.
+Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping, conversion, and packaging execution load those records when a task is run. Transform, canonical construction, rendering, validation, manifest generation, and package ZIP creation are implemented. The independent external package verifier remains a later phase.
 
 ## Development Setup
 

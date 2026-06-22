@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 import tempfile
@@ -39,17 +40,21 @@ class PackageService:
         task = self._get_task(task_id)
         if task.status in ("review_required", "failed", "cancelled"):
             raise ValueError(f"task status '{task.status}' does not allow packaging")
+        if task.status not in {"rendered", "completed"}:
+            raise ValueError(f"task status '{task.status}' is not ready for packaging")
+
+        trace_service = TraceService(self.db, self.storage)
 
         content_json_path = f"tasks/{task_id}/content.json"
         content_md_path = f"tasks/{task_id}/content.md"
         chunks_path = f"tasks/{task_id}/chunks.json"
 
-        for p in [content_json_path, content_md_path, chunks_path]:
-            self.storage.resolve(p)
-
-        content_json_data = self.storage.read_json(content_json_path)
-        content_md_text = self.storage.read_text(content_md_path)
-        chunks_data = self.storage.read_json(chunks_path)
+        try:
+            content_json_data = self.storage.read_json(content_json_path)
+            content_md_text = self.storage.read_text(content_md_path)
+            chunks_data = self.storage.read_json(chunks_path)
+        except FileNotFoundError as exc:
+            raise ValueError("rendered outputs are missing; run convert first") from exc
 
         canonical_record = self.db.get(CanonicalModelRecord, task_id)
         if canonical_record is None:
@@ -62,6 +67,8 @@ class PackageService:
         chunks = ChunksJSON.model_validate(chunks_data)
 
         schema_record = self.db.get(TargetSchemaRecord, task.schema_id)
+        if schema_record is None:
+            raise LookupError("target schema not found")
         target_schema = TargetSchema.model_validate_json(schema_record.schema_json)
 
         validation_report = validate_content_data(
@@ -75,6 +82,20 @@ class PackageService:
             validation_report.model_dump(mode="json"),
         )
         self._persist_validation_report(task_id, validation_report)
+        if not validation_report.passed:
+            task.status = "failed"
+            task.error_code = "validation_error"
+            task.error_message = "validation report has errors"
+            trace_service.record_event(
+                task_id=task_id,
+                stage="package",
+                action="create_package",
+                reason="validation report has errors",
+                status="failed",
+            )
+            trace_service.export_trace_json(task_id)
+            self.db.commit()
+            raise ValueError("validation report has errors, packaging blocked")
 
         consistency_report = validate_consistency(
             task_id=task_id,
@@ -93,16 +114,33 @@ class PackageService:
             task.status = "failed"
             task.error_code = "consistency_critical"
             task.error_message = "consistency report has critical errors"
+            trace_service.record_event(
+                task_id=task_id,
+                stage="package",
+                action="create_package",
+                reason="consistency report has critical errors",
+                status="failed",
+            )
+            trace_service.export_trace_json(task_id)
             self.db.commit()
             raise ValueError("consistency report has critical errors, packaging blocked")
 
-        self._generate_metadata(task)
+        trace_service.record_event(
+            task_id=task_id,
+            stage="package",
+            action="create_package",
+            reason="package validation and consistency checks passed",
+            status="started",
+        )
+
+        self._generate_metadata(task, package_version)
         self._generate_config_snapshot(task)
         self._ensure_mapping_report(task_id)
-        self._ensure_trace(task_id)
+        trace_service.export_trace_json(task_id)
 
         package_id = new_id("pkg")
         zip_path = f"packages/{package_id}/standard_package.zip"
+        zip_dest = self.storage.resolve(zip_path)
 
         with tempfile.TemporaryDirectory() as tmpdir:
             staging = Path(tmpdir) / "staging"
@@ -131,6 +169,7 @@ class PackageService:
                 staging_dir=staging,
                 package_version=package_version,
             )
+            self._verify_manifest_files(staging, manifest)
             self.storage.save_json(
                 f"tasks/{task_id}/manifest.json",
                 manifest.model_dump(mode="json"),
@@ -140,15 +179,33 @@ class PackageService:
                 staging / "manifest.json",
             )
 
-            zip_dest = self.storage.resolve(zip_path)
             zip_dest.parent.mkdir(parents=True, exist_ok=True)
-            with zipfile.ZipFile(zip_dest, "w", zipfile.ZIP_DEFLATED) as zf:
-                for f in sorted(staging.rglob("*")):
-                    if f.is_dir():
-                        continue
-                    arcname = f.relative_to(staging).as_posix()
-                    zf.write(f, arcname)
-
+            zip_tmp = zip_dest.with_suffix(".zip.tmp")
+            try:
+                with zipfile.ZipFile(zip_tmp, "w", zipfile.ZIP_DEFLATED) as zf:
+                    for f in sorted(staging.rglob("*")):
+                        if f.is_dir():
+                            continue
+                        arcname = f.relative_to(staging).as_posix()
+                        zf.write(f, arcname)
+                zip_tmp.replace(zip_dest)
+                self._verify_zip_payload(zip_dest, manifest)
+            except Exception as exc:
+                zip_tmp.unlink(missing_ok=True)
+                zip_dest.unlink(missing_ok=True)
+                task.status = "failed"
+                task.error_code = "package_io_error"
+                task.error_message = "failed to write or verify package zip"
+                trace_service.record_event(
+                    task_id=task_id,
+                    stage="package",
+                    action="create_package",
+                    reason="failed to write or verify package zip",
+                    status="failed",
+                )
+                trace_service.export_trace_json(task_id)
+                self.db.commit()
+                raise ValueError("failed to write or verify package zip") from exc
             zip_sha256 = self.storage.sha256(zip_path)
 
             record = OutputPackageRecord(
@@ -172,6 +229,16 @@ class PackageService:
                 ))
 
             task.status = "completed"
+            task.error_code = None
+            task.error_message = None
+            trace_service.record_event(
+                task_id=task_id,
+                stage="package",
+                action="complete_package",
+                reason="package zip verified and persisted",
+                status="success",
+            )
+            trace_service.export_trace_json(task_id)
             self.db.commit()
 
         return {
@@ -202,9 +269,9 @@ class PackageService:
             raise LookupError("task not found")
         return task
 
-    def _generate_metadata(self, task: ConversionTask) -> None:
+    def _generate_metadata(self, task: ConversionTask, package_version: str) -> None:
         metadata = {
-            "package_version": "1.0.0",
+            "package_version": package_version,
             "task_id": task.task_id,
             "doc_id": task.doc_id,
             "schema_id": task.schema_id,
@@ -235,10 +302,6 @@ class PackageService:
         except FileNotFoundError:
             self.storage.save_json(path, {"task_id": task_id, "mappings": []})
 
-    def _ensure_trace(self, task_id: str) -> None:
-        trace_service = TraceService(self.db, self.storage)
-        trace_service.export_trace_json(task_id)
-
     def _persist_validation_report(self, task_id: str, report) -> None:
         self.db.query(ValidationReportRecord).filter(
             ValidationReportRecord.task_id == task_id
@@ -264,3 +327,42 @@ class PackageService:
             warning_count=0,
             report_json=report.model_dump_json(),
         ))
+
+    @staticmethod
+    def _verify_manifest_files(staging: Path, manifest) -> None:
+        seen: list[str] = []
+        for manifest_file in manifest.files:
+            rel_path = Path(manifest_file.path)
+            if rel_path.is_absolute() or ".." in rel_path.parts:
+                raise ValueError(f"unsafe manifest path: {manifest_file.path}")
+            file_path = staging / rel_path
+            if not file_path.is_file():
+                raise ValueError(f"manifest file missing: {manifest_file.path}")
+            raw = file_path.read_bytes()
+            if len(raw) != manifest_file.bytes:
+                raise ValueError(f"manifest byte mismatch: {manifest_file.path}")
+            if hashlib.sha256(raw).hexdigest() != manifest_file.sha256:
+                raise ValueError(f"manifest sha256 mismatch: {manifest_file.path}")
+            seen.append(manifest_file.path)
+        if seen != sorted(seen):
+            raise ValueError("manifest files are not sorted")
+        if "manifest.json" in seen:
+            raise ValueError("manifest must not include itself")
+
+    @staticmethod
+    def _verify_zip_payload(zip_path: Path, manifest) -> None:
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            names = set(zf.namelist())
+            expected = {f.path for f in manifest.files} | {"manifest.json"}
+            if names != expected:
+                raise ValueError("zip entries do not match manifest payload")
+            for name in names:
+                rel_path = Path(name)
+                if rel_path.is_absolute() or ".." in rel_path.parts or "\\" in name:
+                    raise ValueError(f"unsafe zip path: {name}")
+            for manifest_file in manifest.files:
+                raw = zf.read(manifest_file.path)
+                if len(raw) != manifest_file.bytes:
+                    raise ValueError(f"zip byte mismatch: {manifest_file.path}")
+                if hashlib.sha256(raw).hexdigest() != manifest_file.sha256:
+                    raise ValueError(f"zip sha256 mismatch: {manifest_file.path}")

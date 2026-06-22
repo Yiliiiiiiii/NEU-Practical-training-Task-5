@@ -1,7 +1,9 @@
+import re
+
 from app.schemas.canonical import CanonicalModel
 from app.schemas.chunks import ChunksJSON
 from app.schemas.content import ContentJSON
-from app.schemas.reports import ConsistencyCheck, ConsistencyReport
+from app.schemas.reports import ConsistencyCheck, ConsistencyReport, ReportIssue
 
 
 def validate_consistency(
@@ -13,7 +15,8 @@ def validate_consistency(
 ) -> ConsistencyReport:
     checks: list[ConsistencyCheck] = []
 
-    canonical_block_ids = {b.block_id for b in canonical.blocks}
+    canonical_order = [b.block_id for b in canonical.blocks]
+    canonical_block_ids = set(canonical_order)
     json_block_ids = [b.block_id for b in content_json.blocks]
 
     if set(json_block_ids) != canonical_block_ids:
@@ -31,6 +34,22 @@ def validate_consistency(
             passed=True,
             severity="critical",
             message="all canonical block_ids present in content.json",
+        ))
+
+    if json_block_ids != canonical_order:
+        checks.append(ConsistencyCheck(
+            check_name="block_order_consistency",
+            passed=False,
+            severity="critical",
+            message="content.json block order does not match canonical block order",
+            details={"expected": canonical_order, "actual": json_block_ids},
+        ))
+    else:
+        checks.append(ConsistencyCheck(
+            check_name="block_order_consistency",
+            passed=True,
+            severity="critical",
+            message="content.json block order matches canonical block order",
         ))
 
     for block in content_json.blocks:
@@ -59,6 +78,16 @@ def validate_consistency(
                 severity="critical",
                 message=f"block '{block_id}' missing in markdown annotation",
             ))
+
+    markdown_order = re.findall(r"<!--\s*block_id:\s*([^|\s>-]+)", content_md)
+    if markdown_order and markdown_order != canonical_order:
+        checks.append(ConsistencyCheck(
+            check_name="markdown_block_order_consistency",
+            passed=False,
+            severity="critical",
+            message="content.md block order does not match canonical block order",
+            details={"expected": canonical_order, "actual": markdown_order},
+        ))
 
     chunk_source_blocks: set[str] = set()
     for chunk in chunks.chunks:
@@ -93,13 +122,21 @@ def validate_consistency(
                     message=f"chunk '{chunk.chunk_id}' has text not in canonical",
                 ))
 
-    errors = []
-    warnings = []
+    errors: list[ReportIssue] = []
+    warnings: list[ReportIssue] = []
     for c in checks:
         if not c.passed and c.severity == "critical":
-            errors.append(c)
+            errors.append(ReportIssue(
+                level="error",
+                code=c.check_name,
+                message=c.message or c.check_name,
+            ))
         elif not c.passed:
-            warnings.append(c)
+            warnings.append(ReportIssue(
+                level="warning",
+                code=c.check_name,
+                message=c.message or c.check_name,
+            ))
 
     passed = len(errors) == 0
 
@@ -107,6 +144,6 @@ def validate_consistency(
         task_id=task_id,
         passed=passed,
         checks=checks,
-        errors=[],
-        warnings=[],
+        errors=errors,
+        warnings=warnings,
     )

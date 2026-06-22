@@ -275,6 +275,22 @@ def test_validation_required_missing():
     assert any(i.code == "required_missing" for i in report.issues)
 
 
+def test_validation_honors_field_required_without_json_schema_required():
+    """Field.required is enforced even when json_schema.required is omitted."""
+    from app.validators.content_validator import validate_content_data
+    schema = TargetSchema(
+        schema_id="s", name="s", version="1.0.0",
+        fields=[{"field_id": "title", "name": "title", "display_name": "Title",
+                 "type": "string", "required": True}],
+        json_schema={"type": "object",
+                     "properties": {"title": {"type": "string"}}},
+    )
+    report = validate_content_data("t", "s", {}, schema)
+    assert not report.passed
+    assert any(i.code == "required_missing" and i.path == "data.title"
+               for i in report.issues)
+
+
 def test_validation_type_mismatch():
     """Validation catches type mismatch."""
     from app.validators.content_validator import validate_content_data
@@ -287,6 +303,20 @@ def test_validation_type_mismatch():
     )
     report = validate_content_data("t", "s", {"count": "not_a_number"}, schema)
     assert report.passed
+    assert any(i.code == "type_mismatch" for i in report.issues)
+
+
+def test_validation_integer_rejects_bool():
+    """Python bool values must not satisfy integer fields."""
+    from app.validators.content_validator import validate_content_data
+    schema = TargetSchema(
+        schema_id="s", name="s", version="1.0.0",
+        fields=[{"field_id": "count", "name": "count", "display_name": "Count",
+                 "type": "integer", "required": False}],
+        json_schema={"type": "object",
+                     "properties": {"count": {"type": "integer"}}},
+    )
+    report = validate_content_data("t", "s", {"count": True}, schema)
     assert any(i.code == "type_mismatch" for i in report.issues)
 
 
@@ -307,6 +337,35 @@ def test_validation_enum_violation():
 
 
 # ─── 4. Consistency broken source_blocks → critical error ───
+
+
+def test_validation_numeric_range_and_date_format():
+    """Validation catches numeric range and invalid date values."""
+    from app.validators.content_validator import validate_content_data
+    schema = TargetSchema(
+        schema_id="s", name="s", version="1.0.0",
+        fields=[
+            {"field_id": "score", "name": "score", "display_name": "Score",
+             "type": "float", "required": False},
+            {"field_id": "publish_date", "name": "publish_date",
+             "display_name": "Publish Date", "type": "date", "required": False},
+        ],
+        json_schema={
+            "type": "object",
+            "properties": {
+                "score": {"type": "number", "minimum": 0, "maximum": 100},
+                "publish_date": {"type": "string", "format": "date"},
+            },
+        },
+    )
+    report = validate_content_data(
+        "t",
+        "s",
+        {"score": 101, "publish_date": "2026-99-99"},
+        schema,
+    )
+    assert any(i.code == "maximum_violation" for i in report.issues)
+    assert any(i.code == "date_format_mismatch" for i in report.issues)
 
 
 def test_consistency_broken_source_blocks():
@@ -343,6 +402,52 @@ def test_consistency_broken_source_blocks():
 
 
 # ─── 5. Manifest excludes self, correct SHA-256 ───
+
+
+def test_consistency_detects_block_order_mismatch():
+    """content.json block order must match canonical block order."""
+    from app.schemas.canonical import CanonicalBlock, CanonicalField, CanonicalModel
+    from app.schemas.chunks import Chunk, ChunksJSON
+    from app.schemas.content import ContentBlock, ContentJSON, ContentSchemaRef
+    from app.validators.consistency_validator import validate_consistency
+
+    canonical = CanonicalModel(
+        canonical_version="1.0", task_id="t", doc_id="d", schema_id="s",
+        fields={"title": CanonicalField(value="test", type="string")},
+        blocks=[
+            CanonicalBlock(block_id="blk_1", type="paragraph", text="one",
+                           source_blocks=["blk_1"], text_hash="sha256:1"),
+            CanonicalBlock(block_id="blk_2", type="paragraph", text="two",
+                           source_blocks=["blk_2"], text_hash="sha256:2"),
+        ],
+    )
+    content_json = ContentJSON(
+        doc_id="d", task_id="t",
+        schema_ref=ContentSchemaRef(schema_id="s", version="1.0.0"),
+        data={"title": "test"},
+        blocks=[
+            ContentBlock(block_id="blk_2", type="paragraph", text="two",
+                         source_blocks=["blk_2"]),
+            ContentBlock(block_id="blk_1", type="paragraph", text="one",
+                         source_blocks=["blk_1"]),
+        ],
+    )
+    content_md = (
+        "<!-- block_id: blk_1 | source_blocks: blk_1 -->\none\n"
+        "<!-- block_id: blk_2 | source_blocks: blk_2 -->\ntwo"
+    )
+    chunks = ChunksJSON(
+        doc_id="d", task_id="t",
+        chunks=[
+            Chunk(chunk_id="chk_t_0", order=0, text="one\ntwo",
+                  source_blocks=["blk_1", "blk_2"], text_hash="sha256:abc")
+        ],
+    )
+
+    report = validate_consistency("t", content_json, content_md, chunks, canonical)
+    assert not report.passed
+    assert any(c.check_name == "block_order_consistency" and not c.passed
+               for c in report.checks)
 
 
 def test_manifest_excludes_self_and_correct_sha(tmp_path):
@@ -499,3 +604,68 @@ def test_duplicate_package_idempotent(client, db_session, storage):
     assert pkg_id_1 != pkg_id_2
     resp = client.get(f"/api/v1/tasks/{task_id}/package/download")
     assert resp.status_code == 200
+
+
+def test_package_blocks_validation_errors(client, db_session, storage):
+    """Validation errors prevent completed packages and leave no downloadable zip."""
+    task_id = _seed_full_pipeline(
+        db_session, storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+    content_path = storage.resolve(f"tasks/{task_id}/content.json")
+    content_data = json.loads(content_path.read_text(encoding="utf-8"))
+    content_data["data"]["title"] = ""
+    content_path.write_text(json.dumps(content_data, ensure_ascii=False), encoding="utf-8")
+
+    resp = client.post(f"/api/v1/tasks/{task_id}/package", json={})
+    assert resp.status_code == 409
+    task = db_session.get(ConversionTask, task_id)
+    assert task.status == "failed"
+    assert task.error_code == "validation_error"
+
+    resp = client.get(f"/api/v1/tasks/{task_id}/package/download")
+    assert resp.status_code == 404
+
+
+def test_package_records_trace_event_and_exports_trace_json(client, db_session, storage):
+    """Successful packaging records package-stage trace and exports it into trace.json."""
+    task_id = _seed_full_pipeline(
+        db_session, storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+    resp = client.post(f"/api/v1/tasks/{task_id}/package", json={})
+    assert resp.status_code == 200
+
+    trace_data = storage.read_json(f"tasks/{task_id}/trace.json")
+    assert any(
+        event["stage"] == "package" and event["action"] == "create_package"
+        for event in trace_data["events"]
+    )
+
+
+def test_requested_package_version_is_written_to_metadata_and_manifest(
+    client, db_session, storage
+):
+    """Requested package_version is consistent in metadata.json and manifest.json."""
+    task_id = _seed_full_pipeline(
+        db_session, storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+    resp = client.post(
+        f"/api/v1/tasks/{task_id}/package",
+        json={"package_version": "1.2.3"},
+    )
+    assert resp.status_code == 200
+    resp = client.get(f"/api/v1/tasks/{task_id}/package/download")
+
+    with zipfile.ZipFile(__import__("io").BytesIO(resp.content)) as zf:
+        metadata = json.loads(zf.read("metadata.json"))
+        manifest = json.loads(zf.read("manifest.json"))
+    assert metadata["package_version"] == "1.2.3"
+    assert manifest["package_version"] == "1.2.3"
