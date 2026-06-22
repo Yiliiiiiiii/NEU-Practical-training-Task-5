@@ -2,10 +2,15 @@ from fastapi import FastAPI
 
 from app.api.v1.router import api_router
 from app.config import Settings
+from app.database import init_db
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(settings: Settings | None = None, init_database: bool | None = None) -> FastAPI:
     app_settings = settings or Settings()
+    should_init_database = settings is None if init_database is None else init_database
+    if should_init_database:
+        init_db()
+
     app = FastAPI(title=app_settings.app_name)
     app.include_router(api_router, prefix="/api/v1")
 

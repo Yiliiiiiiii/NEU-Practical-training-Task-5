@@ -10,6 +10,17 @@ def test_health_returns_ok():
     assert response.json() == {"status": "ok"}
 
 
+def test_create_app_initializes_database_by_default(monkeypatch):
+    import app.main as main_module
+
+    calls = []
+    monkeypatch.setattr(main_module, "init_db", lambda: calls.append("called"), raising=False)
+
+    main_module.create_app()
+
+    assert calls == ["called"]
+
+
 def test_settings_defaults_are_safe():
     from app.config import Settings
 
