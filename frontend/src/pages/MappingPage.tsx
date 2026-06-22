@@ -110,67 +110,82 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
     void refreshRows(selection.taskId);
   }, [refreshRows, selection.taskId]);
 
-  async function runAction(action: () => Promise<void>) {
+  async function runAction(action: () => Promise<void>, failureTitle: string) {
     setIsBusy(true);
     try {
       await action();
+    } catch (error) {
+      onToast?.({
+        tone: "danger",
+        title: failureTitle,
+        detail: error instanceof Error ? error.message : "Unexpected mapping failure.",
+      });
     } finally {
       setIsBusy(false);
     }
   }
 
   async function handleGenerateCandidates() {
-    await runAction(async () => {
-      const taskId = requireTaskId(selection.taskId);
-      const response = await api.generateCandidates(taskId);
-      const candidateResponse = await api.listCandidates(taskId);
-      setCandidates(candidateResponse.items);
-      setRunSummary(`${response.candidate_count} candidates generated`);
-      onSelectionChange({ ...selection, taskStatus: response.status });
-      onToast?.({
-        tone: "success",
-        title: "Candidates generated",
-        detail: `${response.candidate_count} source fields found.`,
-      });
-    });
+    await runAction(
+      async () => {
+        const taskId = requireTaskId(selection.taskId);
+        const response = await api.generateCandidates(taskId);
+        const candidateResponse = await api.listCandidates(taskId);
+        setCandidates(candidateResponse.items);
+        setRunSummary(`${response.candidate_count} candidates generated`);
+        onSelectionChange({ ...selection, taskStatus: response.status });
+        onToast?.({
+          tone: "success",
+          title: "Candidates generated",
+          detail: `${response.candidate_count} source fields found.`,
+        });
+      },
+      "Candidate generation failed",
+    );
   }
 
   async function handleRunMapping() {
-    await runAction(async () => {
-      const taskId = requireTaskId(selection.taskId);
-      const response = await api.runMapping(taskId);
-      const mappingResponse = await api.listMappings(taskId);
-      setMappings(mappingResponse.items);
-      setRunSummary(
-        `${response.mapped_count} mapped, ${response.review_required_count} need review`,
-      );
-      onSelectionChange({ ...selection, taskStatus: response.status });
-      onToast?.({
-        tone: response.review_required_count ? "warning" : "success",
-        title: "Mapping completed",
-        detail: `${response.review_required_count} rows need review.`,
-      });
-    });
+    await runAction(
+      async () => {
+        const taskId = requireTaskId(selection.taskId);
+        const response = await api.runMapping(taskId);
+        const mappingResponse = await api.listMappings(taskId);
+        setMappings(mappingResponse.items);
+        setRunSummary(
+          `${response.mapped_count} mapped, ${response.review_required_count} need review`,
+        );
+        onSelectionChange({ ...selection, taskStatus: response.status });
+        onToast?.({
+          tone: response.review_required_count ? "warning" : "success",
+          title: "Mapping completed",
+          detail: `${response.review_required_count} rows need review.`,
+        });
+      },
+      "Mapping failed",
+    );
   }
 
   async function handleReview(mapping: MappingListItem, targetFieldId: string) {
-    await runAction(async () => {
-      const taskId = requireTaskId(selection.taskId);
-      const response = await api.reviewMappings(taskId, [
-        {
-          mapping_id: mapping.mapping_id,
-          new_target_field_id: targetFieldId,
-          decision: "confirmed",
-          reviewer: "human",
-        },
-      ]);
-      await refreshRows(taskId);
-      onToast?.({
-        tone: "success",
-        title: "Review saved",
-        detail: `${response.updated} mapping updated.`,
-      });
-    });
+    await runAction(
+      async () => {
+        const taskId = requireTaskId(selection.taskId);
+        const response = await api.reviewMappings(taskId, [
+          {
+            mapping_id: mapping.mapping_id,
+            new_target_field_id: targetFieldId,
+            decision: "confirmed",
+            reviewer: "human",
+          },
+        ]);
+        await refreshRows(taskId);
+        onToast?.({
+          tone: "success",
+          title: "Review saved",
+          detail: `${response.updated} mapping updated.`,
+        });
+      },
+      "Review failed",
+    );
   }
 
   return (

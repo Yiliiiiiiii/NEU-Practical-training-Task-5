@@ -37,7 +37,12 @@ export async function extractApiError(response: Response, label: string): Promis
     return text ? `${prefix}: ${text}` : prefix;
   }
 
-  const body = (await response.json()) as unknown;
+  let body: unknown;
+  try {
+    body = (await response.json()) as unknown;
+  } catch {
+    return prefix;
+  }
   if (isObject(body)) {
     if (typeof body.detail === "string") {
       return `${prefix}: ${body.detail}`;

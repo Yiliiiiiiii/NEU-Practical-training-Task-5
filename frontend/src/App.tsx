@@ -95,12 +95,12 @@ export default function App() {
       },
     ];
   }, [selection.docId, selection.schemaId, selection.taskId, selection.taskStatus, selection.templateId]);
-  const toasts = toastLog.slice(-3);
+  const toasts = toastLog;
   const copy = VIEW_COPY[activeView];
 
   const pushToast = useCallback((toast: ToastInput) => {
     const id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-    setToastLog((current) => [...current, { ...toast, id }]);
+    setToastLog((current) => [...current, { ...toast, id }].slice(-3));
     window.setTimeout(() => {
       setToastLog((current) => current.filter((message) => message.id !== id));
     }, 6000);
