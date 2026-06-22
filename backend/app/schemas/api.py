@@ -208,3 +208,22 @@ class MappingReviewResponse(StrictBaseModel):
     task_id: str
     updated: int
     status: str
+
+
+class ConvertRequest(StrictBaseModel):
+    render_outputs: bool = True
+    chunk_size: int = 500
+
+
+class ConvertResponse(StrictBaseModel):
+    task_id: str
+    status: str
+    outputs: list[str]
+
+
+class CanonicalResponse(StrictBaseModel):
+    task_id: str
+    doc_id: str
+    schema_id: str
+    fields: dict[str, Any]
+    blocks: list[dict[str, Any]]
