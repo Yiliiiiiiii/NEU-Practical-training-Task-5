@@ -1,0 +1,65 @@
+{
+  "template_id": "tpl_policy_v1",
+  "schema_id": "schema_policy_v1",
+  "name": "政策文档映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "title": ["title", "标题", "政策名称", "文件名称"],
+    "publish_org": ["publish_org", "发布单位", "制发单位", "发布机构"],
+    "publish_date": ["publish_date", "发布日期", "印发日期", "发布时间"],
+    "doc_no": ["doc_no", "文号", "发文字号"],
+    "doc_type": ["doc_type", "文件类型", "文种", "类型"],
+    "main_content": ["main_content", "正文", "主要内容", "内容"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "publish_date",
+      "pattern": "(发布日期|印发日期)[:：]\\s*(\\d{4}年\\d{1,2}月\\d{1,2}日)",
+      "group": 2
+    },
+    {
+      "target_field_id": "doc_no",
+      "pattern": "(文号|发文字号)[:：]\\s*([^。\\n]+)",
+      "group": 2
+    }
+  ],
+  "transform_rules": [
+    {
+      "rule_id": "policy_publish_date_format",
+      "operation": "date_format",
+      "source_field": "metadata.印发日期",
+      "target_field_id": "publish_date",
+      "params": {"output_format": "YYYY-MM-DD"}
+    },
+    {
+      "rule_id": "policy_doc_type_enum",
+      "operation": "enum_map",
+      "source_field": "metadata.文件类型",
+      "target_field_id": "doc_type",
+      "params": {
+        "map": {
+          "办法": "policy",
+          "制度": "policy",
+          "通知": "notice",
+          "报告": "report"
+        }
+      }
+    },
+    {
+      "rule_id": "policy_main_content_merge",
+      "operation": "merge",
+      "source_fields": ["blocks.blk_p_005.text", "blocks.blk_p_006.text"],
+      "target_field_id": "main_content",
+      "params": {"separator": "\n", "skip_empty": true}
+    }
+  ],
+  "defaults": {},
+  "enum_maps": {
+    "doc_type": {
+      "办法": "policy",
+      "制度": "policy",
+      "通知": "notice",
+      "报告": "report"
+    }
+  }
+}

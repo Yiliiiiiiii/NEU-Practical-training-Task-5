@@ -1,0 +1,64 @@
+{
+  "schema_id": "schema_general_v1",
+  "name": "通用文档标准结构",
+  "version": "1.0.0",
+  "description": "用于普通文档的标准化输出",
+  "fields": [
+    {
+      "field_id": "title",
+      "name": "title",
+      "display_name": "标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["标题", "文档标题", "题名"],
+      "constraints": {"min_length": 1, "max_length": 200}
+    },
+    {
+      "field_id": "author",
+      "name": "author",
+      "display_name": "作者",
+      "type": "string",
+      "required": false,
+      "aliases": ["作者", "撰写人", "编制单位"],
+      "constraints": {"max_length": 100}
+    },
+    {
+      "field_id": "created_date",
+      "name": "created_date",
+      "display_name": "创建日期",
+      "type": "date",
+      "required": false,
+      "aliases": ["创建日期", "编制日期", "成文日期"],
+      "constraints": {"format": "YYYY-MM-DD"}
+    },
+    {
+      "field_id": "language",
+      "name": "language",
+      "display_name": "语言",
+      "type": "string",
+      "required": true,
+      "aliases": ["语言", "语种"],
+      "constraints": {"enum": ["zh-CN", "en-US"]}
+    },
+    {
+      "field_id": "summary",
+      "name": "summary",
+      "display_name": "摘要",
+      "type": "string",
+      "required": false,
+      "aliases": ["摘要", "简介", "summary_hint"],
+      "constraints": {"max_length": 500}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": ["title", "language"],
+    "properties": {
+      "title": {"type": "string", "minLength": 1},
+      "author": {"type": "string"},
+      "created_date": {"type": "string", "format": "date"},
+      "language": {"type": "string", "enum": ["zh-CN", "en-US"]},
+      "summary": {"type": "string"}
+    }
+  }
+}

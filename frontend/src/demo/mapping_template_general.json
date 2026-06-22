@@ -1,0 +1,45 @@
+{
+  "template_id": "tpl_general_v1",
+  "schema_id": "schema_general_v1",
+  "name": "通用文档映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "title": ["title", "标题", "文档标题", "题名"],
+    "author": ["author", "作者", "撰写人", "编制单位"],
+    "created_date": ["created_date", "创建日期", "编制日期", "成文日期"],
+    "summary": ["summary", "摘要", "简介", "summary_hint"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "created_date",
+      "pattern": "(创建日期|编制日期)[:：]\\s*(\\d{4}年\\d{1,2}月\\d{1,2}日)",
+      "group": 2
+    }
+  ],
+  "transform_rules": [
+    {
+      "rule_id": "general_created_date_format",
+      "operation": "date_format",
+      "source_field": "metadata.创建日期",
+      "target_field_id": "created_date",
+      "params": {"output_format": "YYYY-MM-DD"}
+    },
+    {
+      "rule_id": "general_language_default",
+      "operation": "default",
+      "target_field_id": "language",
+      "params": {"value": "zh-CN"}
+    },
+    {
+      "rule_id": "general_summary_rename",
+      "operation": "rename",
+      "source_field": "metadata.summary_hint",
+      "target_field_id": "summary",
+      "params": {}
+    }
+  ],
+  "defaults": {
+    "language": "zh-CN"
+  },
+  "enum_maps": {}
+}
