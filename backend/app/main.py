@@ -19,6 +19,7 @@ def create_app(settings: Settings | None = None, init_database: bool | None = No
         allow_credentials=False,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["X-SHA256"],
     )
     app.include_router(api_router, prefix="/api/v1")
 

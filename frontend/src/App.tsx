@@ -11,6 +11,8 @@ import type {
 import { AppShell } from "./components/AppShell";
 import { ImportPage } from "./pages/ImportPage";
 import { MappingPage } from "./pages/MappingPage";
+import { PackagePage } from "./pages/PackagePage";
+import { TaskDetailPage } from "./pages/TaskDetailPage";
 import { TasksPage } from "./pages/TasksPage";
 
 const VIEW_COPY: Record<ViewId, { title: string; body: string }> = {
@@ -67,8 +69,13 @@ export default function App() {
   const workflowStages = useMemo<WorkflowStage[]>(() => {
     const hasImportBundle = Boolean(selection.docId && selection.schemaId && selection.templateId);
     const mappingState = stageStateForMapping(selection.taskStatus, Boolean(selection.taskId));
-    const convertState =
-      mappingState === "done" || selection.taskStatus === "review_required" ? "ready" : "pending";
+    const isRendered = selection.taskStatus === "rendered" || selection.taskStatus === "completed";
+    const isCompleted = selection.taskStatus === "completed";
+    const convertState = isRendered
+      ? "done"
+      : mappingState === "done" || selection.taskStatus === "review_required"
+        ? "ready"
+        : "pending";
     return [
       {
         label: "Import",
@@ -77,8 +84,16 @@ export default function App() {
       },
       { label: "Mapping", detail: "Candidates and review", state: mappingState },
       { label: "Convert", detail: "Canonical and outputs", state: convertState },
-      { label: "Reports", detail: "Validation and trace", state: "pending" },
-      { label: "Package", detail: "Manifest and ZIP", state: "pending" },
+      {
+        label: "Reports",
+        detail: "Validation and trace",
+        state: isCompleted ? "done" : isRendered ? "ready" : "pending",
+      },
+      {
+        label: "Package",
+        detail: "Manifest and ZIP",
+        state: isCompleted ? "done" : isRendered ? "ready" : "pending",
+      },
     ];
   }, [selection.docId, selection.schemaId, selection.taskId, selection.taskStatus, selection.templateId]);
   const toasts = useMemo<ToastMessage[]>(
@@ -135,6 +150,26 @@ export default function App() {
     if (activeView === "mapping") {
       return (
         <MappingPage
+          onSelectionChange={updateSelection}
+          onToast={pushToast}
+          selection={selection}
+        />
+      );
+    }
+
+    if (activeView === "detail") {
+      return (
+        <TaskDetailPage
+          onSelectionChange={updateSelection}
+          onToast={pushToast}
+          selection={selection}
+        />
+      );
+    }
+
+    if (activeView === "package") {
+      return (
+        <PackagePage
           onSelectionChange={updateSelection}
           onToast={pushToast}
           selection={selection}
