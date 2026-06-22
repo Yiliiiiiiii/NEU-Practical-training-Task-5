@@ -10,6 +10,21 @@ def test_health_returns_ok():
     assert response.json() == {"status": "ok"}
 
 
+def test_cors_allows_local_frontend_preflight():
+    from app.main import create_app
+
+    response = TestClient(create_app(init_database=False)).options(
+        "/api/v1/tasks",
+        headers={
+            "Origin": "http://127.0.0.1:5173",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == "http://127.0.0.1:5173"
+
+
 def test_create_app_initializes_database_by_default(monkeypatch):
     import app.main as main_module
 

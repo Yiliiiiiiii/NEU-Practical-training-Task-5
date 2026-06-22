@@ -13,3 +13,7 @@ class Settings(BaseSettings):
     llm_mode: Literal["disabled", "mock", "openai_compatible"] = "mock"
     offline_mode: bool = False
     max_upload_bytes: int = Field(default=10 * 1024 * 1024, ge=1)
+    cors_origins: list[str] = [
+        "http://127.0.0.1:5173",
+        "http://localhost:5173",
+    ]
