@@ -6,18 +6,25 @@ from sqlalchemy.orm import Session
 from app.api.deps import get_db, get_storage_service
 from app.schemas.api import (
     CanonicalResponse,
+    ConsistencyReportResponse,
     ConvertRequest,
     ConvertResponse,
+    PackageRequest,
+    PackageResponse,
     TaskCreateRequest,
     TaskCreateResponse,
     TaskDetailResponse,
     TaskListItem,
     TaskListResponse,
+    TraceListResponse,
+    ValidationReportResponse,
 )
 from app.services.canonical_service import CanonicalService
 from app.services.conversion_service import ConversionService
+from app.services.package_service import PackageService
 from app.services.storage_service import StorageService
 from app.services.task_service import TaskService
+from app.services.trace_service import TraceService
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
@@ -129,3 +136,89 @@ def get_canonical(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     return CanonicalResponse.model_validate(model.model_dump(mode="json"))
+
+
+def get_package_service(
+    db: Annotated[Session, Depends(get_db)],
+    storage: Annotated[StorageService, Depends(get_storage_service)],
+) -> PackageService:
+    return PackageService(db=db, storage=storage)
+
+
+def get_trace_service(
+    db: Annotated[Session, Depends(get_db)],
+    storage: Annotated[StorageService, Depends(get_storage_service)],
+) -> TraceService:
+    return TraceService(db=db, storage=storage)
+
+
+@router.post("/{task_id}/package", response_model=PackageResponse)
+def create_package(
+    task_id: str,
+    request: Annotated[PackageRequest, Body()],
+    service: Annotated[PackageService, Depends(get_package_service)],
+) -> PackageResponse:
+    try:
+        result = service.create_package(task_id, request.package_version)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    return PackageResponse(**result)
+
+
+@router.get("/{task_id}/package/download")
+def download_package(
+    task_id: str,
+    service: Annotated[PackageService, Depends(get_package_service)],
+):
+    from fastapi.responses import FileResponse
+    try:
+        path = service.get_download_path(task_id)
+        record = service.get_package(task_id)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return FileResponse(
+        path=str(path),
+        media_type="application/zip",
+        filename="standard_package.zip",
+        headers={"X-SHA256": record.sha256 or ""},
+    )
+
+
+@router.get("/{task_id}/reports/validation", response_model=ValidationReportResponse)
+def get_validation_report(
+    task_id: str,
+    service: Annotated[PackageService, Depends(get_package_service)],
+) -> ValidationReportResponse:
+    storage = service.storage
+    try:
+        data = storage.read_json(f"tasks/{task_id}/validation_report.json")
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="validation report not found") from exc
+    return ValidationReportResponse(**data)
+
+
+@router.get("/{task_id}/reports/consistency", response_model=ConsistencyReportResponse)
+def get_consistency_report(
+    task_id: str,
+    service: Annotated[PackageService, Depends(get_package_service)],
+) -> ConsistencyReportResponse:
+    storage = service.storage
+    try:
+        data = storage.read_json(f"tasks/{task_id}/consistency_report.json")
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="consistency report not found") from exc
+    return ConsistencyReportResponse(**data)
+
+
+@router.get("/{task_id}/trace", response_model=TraceListResponse)
+def get_trace(
+    task_id: str,
+    trace_svc: Annotated[TraceService, Depends(get_trace_service)],
+) -> TraceListResponse:
+    traces = trace_svc.list_traces(task_id)
+    return TraceListResponse(
+        task_id=task_id,
+        events=[t.model_dump(mode="json") for t in traces],
+    )

@@ -224,3 +224,35 @@ class ConvertResponse(StrictBaseModel):
 
 class CanonicalResponse(CanonicalModel):
     pass
+
+
+class PackageRequest(StrictBaseModel):
+    package_version: str = "1.0.0"
+
+
+class PackageResponse(StrictBaseModel):
+    package_id: str
+    status: str
+    zip_path: str
+    sha256: str | None = None
+
+
+class ValidationReportResponse(StrictBaseModel):
+    task_id: str
+    schema_id: str
+    passed: bool
+    summary: dict[str, Any]
+    issues: list[dict[str, Any]]
+
+
+class ConsistencyReportResponse(StrictBaseModel):
+    task_id: str
+    passed: bool
+    checks: list[dict[str, Any]]
+    errors: list[dict[str, Any]] = Field(default_factory=list)
+    warnings: list[dict[str, Any]] = Field(default_factory=list)
+
+
+class TraceListResponse(StrictBaseModel):
+    task_id: str
+    events: list[dict[str, Any]]
