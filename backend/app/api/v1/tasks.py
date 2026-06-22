@@ -227,7 +227,10 @@ def get_consistency_report(
 def get_trace(
     task_id: str,
     trace_svc: Annotated[TraceService, Depends(get_trace_service)],
+    task_svc: Annotated[TaskService, Depends(get_task_service)],
 ) -> TraceListResponse:
+    if task_svc.get_task(task_id) is None:
+        raise HTTPException(status_code=404, detail="task not found")
     traces = trace_svc.list_traces(task_id)
     return TraceListResponse(
         task_id=task_id,
