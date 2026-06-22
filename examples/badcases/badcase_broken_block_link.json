@@ -1,0 +1,65 @@
+{
+  "case_id": "badcase_broken_block_link",
+  "description": "A chunk links to a source block that is absent from canonical blocks.",
+  "input": {
+    "task_id": "task_badcase_broken_link",
+    "canonical": {
+      "canonical_version": "1.0",
+      "task_id": "task_badcase_broken_link",
+      "doc_id": "doc_badcase_broken_link",
+      "schema_id": "schema_badcase_broken_link",
+      "fields": {
+        "title": {
+          "value": "Broken link example",
+          "type": "string"
+        }
+      },
+      "blocks": [
+        {
+          "block_id": "blk_valid",
+          "type": "paragraph",
+          "text": "Valid canonical text",
+          "source_blocks": ["blk_valid"]
+        }
+      ]
+    },
+    "content_json": {
+      "doc_id": "doc_badcase_broken_link",
+      "task_id": "task_badcase_broken_link",
+      "schema_ref": {
+        "schema_id": "schema_badcase_broken_link",
+        "version": "1.0.0"
+      },
+      "data": {
+        "title": "Broken link example"
+      },
+      "blocks": [
+        {
+          "block_id": "blk_valid",
+          "type": "paragraph",
+          "text": "Valid canonical text",
+          "source_blocks": ["blk_valid"]
+        }
+      ]
+    },
+    "content_md": "<!-- block_id: blk_valid | source_blocks: blk_valid -->\nValid canonical text",
+    "chunks": {
+      "doc_id": "doc_badcase_broken_link",
+      "task_id": "task_badcase_broken_link",
+      "chunks": [
+        {
+          "chunk_id": "chk_badcase_0",
+          "order": 0,
+          "text": "Valid canonical text",
+          "source_blocks": ["blk_missing"]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "error_code": "TASK_STATE_ERROR",
+    "issue_code": "chunk_source_blocks_backlink",
+    "task_status": "failed",
+    "trace_action": "create_package"
+  }
+}

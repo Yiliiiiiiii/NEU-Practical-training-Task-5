@@ -1,0 +1,45 @@
+{
+  "case_id": "badcase_missing_required",
+  "description": "A required title is absent from rendered content data.",
+  "input": {
+    "task_id": "task_badcase_missing_required",
+    "data": {
+      "language": "zh-CN"
+    },
+    "schema": {
+      "schema_id": "schema_badcase_required",
+      "name": "Required field badcase",
+      "version": "1.0.0",
+      "fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "language",
+          "name": "language",
+          "display_name": "Language",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "json_schema": {
+        "type": "object",
+        "required": ["title", "language"],
+        "properties": {
+          "title": {"type": "string"},
+          "language": {"type": "string"}
+        }
+      }
+    }
+  },
+  "expected": {
+    "error_code": "VALIDATION_ERROR",
+    "issue_code": "required_missing",
+    "task_status": "failed",
+    "trace_action": "create_package"
+  }
+}

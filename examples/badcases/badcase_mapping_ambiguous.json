@@ -1,0 +1,51 @@
+{
+  "case_id": "badcase_mapping_ambiguous",
+  "description": "A generic string candidate only reaches type-match confidence and needs review.",
+  "input": {
+    "task_id": "task_badcase_mapping_ambiguous",
+    "review_threshold": 0.9,
+    "candidate": {
+      "candidate_id": "cand_fuzzy_title",
+      "task_id": "task_badcase_mapping_ambiguous",
+      "doc_id": "doc_badcase_mapping_ambiguous",
+      "source_path": "metadata.document_titl",
+      "source_name": "document titl",
+      "display_name": "Document titl",
+      "value_sample": "SchemaPack",
+      "inferred_type": "string",
+      "confidence": 0.8
+    },
+    "schema": {
+      "schema_id": "schema_badcase_mapping",
+      "name": "Ambiguous mapping schema",
+      "version": "1.0.0",
+      "fields": [
+        {
+          "field_id": "title",
+          "name": "document title",
+          "display_name": "Document Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "author",
+          "name": "document author",
+          "display_name": "Document Author",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "template": {
+      "template_id": "template_badcase_mapping",
+      "schema_id": "schema_badcase_mapping",
+      "name": "Ambiguous mapping template",
+      "version": "1.0.0"
+    }
+  },
+  "expected": {
+    "error_code": "MAPPING_REVIEW_REQUIRED",
+    "task_status": "review_required",
+    "trace_action": "run_mapping"
+  }
+}

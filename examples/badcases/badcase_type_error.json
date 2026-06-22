@@ -1,0 +1,42 @@
+{
+  "case_id": "badcase_type_error",
+  "description": "A non-numeric string cannot be converted to an integer.",
+  "input": {
+    "uir": {
+      "uir_version": "1.0",
+      "doc_id": "doc_badcase_type_error",
+      "metadata": {
+        "count": "not-an-integer"
+      },
+      "blocks": []
+    },
+    "mapping": {
+      "mapping_id": "map_badcase_count",
+      "task_id": "task_badcase_type_error",
+      "candidate_id": "cand_badcase_count",
+      "source_field": {
+        "source_path": "metadata.count",
+        "source_name": "count"
+      },
+      "target_field_id": "count",
+      "target_field_name": "count",
+      "method": "exact_match",
+      "confidence": 1.0,
+      "status": "confirmed"
+    },
+    "rule": {
+      "rule_id": "cast_badcase_count",
+      "operation": "type_cast",
+      "target_field_id": "count",
+      "params": {
+        "to": "integer"
+      }
+    }
+  },
+  "expected": {
+    "error_code": "TASK_STATE_ERROR",
+    "task_status": "failed",
+    "trace_action": "type_cast",
+    "trace_status": "error"
+  }
+}
