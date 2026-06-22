@@ -1,7 +1,19 @@
 import hashlib
 import json
+import os
+import tempfile
+import threading
 from pathlib import Path
 from typing import Any
+
+_WRITE_LOCKS_GUARD = threading.Lock()
+_WRITE_LOCKS: dict[str, threading.RLock] = {}
+
+
+def _write_lock(path: Path) -> threading.RLock:
+    key = os.path.normcase(os.path.normpath(str(path)))
+    with _WRITE_LOCKS_GUARD:
+        return _WRITE_LOCKS.setdefault(key, threading.RLock())
 
 
 class StorageService:
@@ -15,26 +27,56 @@ class StorageService:
             raise ValueError("unsafe storage path")
 
         resolved = (self.root / path).resolve()
-        if self.root != resolved and self.root not in resolved.parents:
+        resolved = self._without_extended_prefix(resolved)
+        root_key = os.path.normcase(os.path.normpath(str(self.root)))
+        resolved_key = os.path.normcase(os.path.normpath(str(resolved)))
+        if os.path.commonpath([root_key, resolved_key]) != root_key:
             raise ValueError("unsafe storage path")
         return resolved
 
     def save_json(self, relative_path: str | Path, data: Any) -> Path:
         path = self.resolve(relative_path)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(
+        return self._atomic_write(
+            path,
             json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True),
-            encoding="utf-8",
         )
-        return path
 
     def read_json(self, relative_path: str | Path) -> Any:
         return json.loads(self.resolve(relative_path).read_text(encoding="utf-8"))
 
     def write_text(self, relative_path: str | Path, text: str) -> Path:
         path = self.resolve(relative_path)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text, encoding="utf-8")
+        return self._atomic_write(path, text)
+
+    @staticmethod
+    def _without_extended_prefix(path: Path) -> Path:
+        value = str(path)
+        if value.startswith("\\\\?\\"):
+            value = value[4:]
+        return Path(value)
+
+    @staticmethod
+    def _atomic_write(path: Path, text: str) -> Path:
+        with _write_lock(path):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            temp_path: Path | None = None
+            try:
+                with tempfile.NamedTemporaryFile(
+                    mode="w",
+                    encoding="utf-8",
+                    delete=False,
+                    dir=path.parent,
+                    prefix=f".{path.name}.",
+                    suffix=".tmp",
+                ) as temp_file:
+                    temp_file.write(text)
+                    temp_file.flush()
+                    os.fsync(temp_file.fileno())
+                    temp_path = Path(temp_file.name)
+                temp_path.replace(path)
+            finally:
+                if temp_path is not None:
+                    temp_path.unlink(missing_ok=True)
         return path
 
     def read_text(self, relative_path: str | Path) -> str:
