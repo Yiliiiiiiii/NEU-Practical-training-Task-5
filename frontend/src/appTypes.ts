@@ -23,3 +23,12 @@ export interface ToastMessage {
   title: string;
   detail?: string;
 }
+
+export interface WorkbenchSelection {
+  docId: string | null;
+  schemaId: string | null;
+  templateId: string | null;
+  taskId: string | null;
+}
+
+export type ToastInput = Omit<ToastMessage, "id">;

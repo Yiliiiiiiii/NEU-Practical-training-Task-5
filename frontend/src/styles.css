@@ -135,6 +135,9 @@ select:focus-visible {
 }
 
 .icon-button,
+.primary-button,
+.secondary-button,
+.file-button,
 .nav-item {
   border: 0;
   background: transparent;
@@ -156,6 +159,50 @@ select:focus-visible {
 .icon-button:hover {
   border-color: color-mix(in oklch, var(--accent), var(--line) 68%);
   background: var(--accent-weak);
+}
+
+.primary-button,
+.secondary-button,
+.file-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.primary-button {
+  color: white;
+  background: var(--accent-ink);
+}
+
+.primary-button:hover {
+  background: color-mix(in oklch, var(--accent-ink), black 10%);
+}
+
+.secondary-button,
+.file-button {
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.secondary-button:hover,
+.secondary-button--active,
+.file-button:hover {
+  border-color: color-mix(in oklch, var(--accent), var(--line) 60%);
+  background: var(--accent-weak);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .workspace-rail {
@@ -394,6 +441,124 @@ select:focus-visible {
   color: var(--ink);
 }
 
+.json-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.json-editor-panel {
+  display: grid;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.json-editor-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.json-editor-panel h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.json-editor-panel p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.file-button {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 0 9px;
+}
+
+.file-button input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.json-editor-panel__textarea {
+  width: 100%;
+  min-height: 300px;
+  resize: vertical;
+  padding: 12px;
+  color: var(--code-ink);
+  border: 0;
+  background: var(--code-bg);
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.json-status {
+  padding: 8px 12px;
+  color: color-mix(in oklch, var(--success), black 20%);
+  font-size: 12px;
+  border-top: 1px solid var(--line);
+  background: var(--success-weak);
+}
+
+.json-status--error {
+  color: color-mix(in oklch, var(--danger), black 15%);
+  background: var(--danger-weak);
+}
+
+.action-strip,
+.result-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.action-strip > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.action-strip strong {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.action-strip span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.result-strip {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  color: color-mix(in oklch, var(--success), black 20%);
+  background: var(--success-weak);
+}
+
+.result-strip span {
+  overflow-wrap: anywhere;
+}
+
 .toast-region {
   position: fixed;
   right: 18px;
@@ -488,6 +653,9 @@ select:focus-visible {
 @media (prefers-reduced-motion: no-preference) {
   .nav-item,
   .icon-button,
+  .primary-button,
+  .secondary-button,
+  .file-button,
   .toast {
     transition:
       background-color 160ms ease-out,

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 
-import type { ToastMessage, ViewId, WorkflowStage } from "./appTypes";
+import type { ToastInput, ToastMessage, ViewId, WorkbenchSelection, WorkflowStage } from "./appTypes";
 import { AppShell } from "./components/AppShell";
+import { ImportPage } from "./pages/ImportPage";
 
 const WORKFLOW_STAGES: WorkflowStage[] = [
   { label: "Import", detail: "UIR, schema, template", state: "ready" },
@@ -34,34 +35,53 @@ const VIEW_COPY: Record<ViewId, { title: string; body: string }> = {
   },
 };
 
+const EMPTY_SELECTION: WorkbenchSelection = {
+  docId: null,
+  schemaId: null,
+  templateId: null,
+  taskId: null,
+};
+
 export default function App() {
   const [activeView, setActiveView] = useState<ViewId>("import");
   const [refreshCount, setRefreshCount] = useState(0);
+  const [selection, setSelection] = useState<WorkbenchSelection>(EMPTY_SELECTION);
+  const [toastLog, setToastLog] = useState<ToastMessage[]>([]);
   const toasts = useMemo<ToastMessage[]>(
     () =>
-      refreshCount
-        ? [
-            {
-              id: "refresh",
-              tone: "info",
-              title: "Workbench refreshed",
-              detail: "Live API wiring arrives in the next implementation task.",
-            },
-          ]
-        : [],
-    [refreshCount],
+      [
+        ...toastLog,
+        ...(refreshCount
+          ? [
+              {
+                id: "refresh",
+                tone: "info" as const,
+                title: "Workbench refreshed",
+                detail: "Current view state is still local.",
+              },
+            ]
+          : []),
+      ].slice(-3),
+    [refreshCount, toastLog],
   );
   const copy = VIEW_COPY[activeView];
 
-  return (
-    <AppShell
-      activeView={activeView}
-      currentTaskId={null}
-      onRefresh={() => setRefreshCount((count) => count + 1)}
-      onViewChange={setActiveView}
-      stages={WORKFLOW_STAGES}
-      toasts={toasts}
-    >
+  function pushToast(toast: ToastInput) {
+    setToastLog((current) => [
+      ...current,
+      {
+        ...toast,
+        id: `${Date.now()}-${current.length}`,
+      },
+    ]);
+  }
+
+  function renderView() {
+    if (activeView === "import") {
+      return <ImportPage onSelectionChange={setSelection} onToast={pushToast} />;
+    }
+
+    return (
       <section className="document-panel" aria-labelledby="view-title">
         <div className="document-panel__header">
           <div>
@@ -76,6 +96,19 @@ export default function App() {
           <span>Functional panels will fill this space task by task.</span>
         </div>
       </section>
+    );
+  }
+
+  return (
+    <AppShell
+      activeView={activeView}
+      currentTaskId={selection.taskId}
+      onRefresh={() => setRefreshCount((count) => count + 1)}
+      onViewChange={setActiveView}
+      stages={WORKFLOW_STAGES}
+      toasts={toasts}
+    >
+      {renderView()}
     </AppShell>
   );
 }
