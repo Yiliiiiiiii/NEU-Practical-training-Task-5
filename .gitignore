@@ -6,6 +6,8 @@ __pycache__/
 .mypy_cache/
 .coverage
 htmlcov/
+coverage.json
+coverage/
 
 # Virtual environments
 .venv/
