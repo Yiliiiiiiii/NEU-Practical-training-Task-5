@@ -56,3 +56,25 @@ def test_concurrent_json_writes_publish_one_complete_value(storage):
     raw = storage.resolve("tasks/t1/content.json").read_text(encoding="utf-8")
     assert json.loads(raw) in values
     assert list(storage.resolve("tasks/t1").glob("*.tmp")) == []
+
+
+def test_atomic_publish_can_retry_after_one_shot_replace_failure(storage, monkeypatch):
+    original_replace = Path.replace
+    attempts = 0
+
+    def fail_once(source, destination):
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise OSError("one-shot publish failure")
+        return original_replace(source, destination)
+
+    monkeypatch.setattr(Path, "replace", fail_once)
+
+    with pytest.raises(OSError, match="one-shot publish failure"):
+        storage.save_json("tasks/retry/content.json", {"attempt": 1})
+
+    storage.save_json("tasks/retry/content.json", {"attempt": 2})
+
+    assert storage.read_json("tasks/retry/content.json") == {"attempt": 2}
+    assert list(storage.resolve("tasks/retry").glob("*.tmp")) == []

@@ -38,9 +38,12 @@ class PackageService:
         package_version: str = "1.0.0",
     ) -> dict:
         task = self._get_task(task_id)
-        if task.status in ("review_required", "failed", "cancelled"):
+        retrying_package_io = (
+            task.status == "failed" and task.error_code == "package_io_error"
+        )
+        if task.status in ("review_required", "failed", "cancelled") and not retrying_package_io:
             raise ValueError(f"task status '{task.status}' does not allow packaging")
-        if task.status not in {"rendered", "completed"}:
+        if task.status not in {"rendered", "completed"} and not retrying_package_io:
             raise ValueError(f"task status '{task.status}' is not ready for packaging")
 
         trace_service = TraceService(self.db, self.storage)

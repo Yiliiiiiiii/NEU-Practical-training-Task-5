@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_db, get_storage_service
+from app.api.deps import get_db, get_storage_service, get_task_mutation_registry
 from app.errors import (
     MappingReviewRequiredError,
     PackageNotReadyError,
@@ -28,6 +28,7 @@ from app.services.canonical_service import CanonicalService
 from app.services.conversion_service import ConversionService
 from app.services.package_service import PackageService
 from app.services.storage_service import StorageService
+from app.services.task_lock_service import TaskMutationConflict, TaskMutationRegistry
 from app.services.task_service import TaskService
 from app.services.trace_service import TraceService
 
@@ -116,13 +117,19 @@ def convert_task(
     task_id: str,
     request: Annotated[ConvertRequest, Body()],
     service: Annotated[ConversionService, Depends(get_conversion_service)],
+    mutation_registry: Annotated[
+        TaskMutationRegistry, Depends(get_task_mutation_registry)
+    ],
 ) -> ConvertResponse:
     try:
-        status, outputs = service.convert(
-            task_id=task_id,
-            render_outputs=request.render_outputs,
-            chunk_size=request.chunk_size,
-        )
+        with mutation_registry.task_mutation(task_id):
+            status, outputs = service.convert(
+                task_id=task_id,
+                render_outputs=request.render_outputs,
+                chunk_size=request.chunk_size,
+            )
+    except TaskMutationConflict as exc:
+        raise TaskStateError(str(exc)) from exc
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
@@ -165,9 +172,15 @@ def create_package(
     task_id: str,
     request: Annotated[PackageRequest, Body()],
     service: Annotated[PackageService, Depends(get_package_service)],
+    mutation_registry: Annotated[
+        TaskMutationRegistry, Depends(get_task_mutation_registry)
+    ],
 ) -> PackageResponse:
     try:
-        result = service.create_package(task_id, request.package_version)
+        with mutation_registry.task_mutation(task_id):
+            result = service.create_package(task_id, request.package_version)
+    except TaskMutationConflict as exc:
+        raise TaskStateError(str(exc)) from exc
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:

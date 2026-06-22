@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from app.db.models import Base, CanonicalModelRecord, ConversionTask, TargetSchemaRecord
+from app.engines.manifest_engine import generate_manifest
 from app.schemas.canonical import CanonicalBlock, CanonicalField, CanonicalModel
 from app.schemas.chunks import Chunk, ChunksJSON
 from app.schemas.content import ContentBlock, ContentJSON, ContentSchemaRef
@@ -138,6 +139,34 @@ def test_zip_verifier_rejects_entry_set_unsafe_path_size_and_hash(tmp_path):
         PackageService._verify_zip_payload(zip_path, _manifest([wrong_hash]))
 
 
+def test_payload_byte_tampering_is_rejected_by_manifest_and_zip_verifiers(tmp_path):
+    staging = tmp_path / "tampered"
+    staging.mkdir()
+    payload = staging / "content.json"
+    payload.write_bytes(b'{"value":"original"}')
+    manifest = generate_manifest(
+        task_id="task_tampered",
+        doc_id="doc_tampered",
+        package_id="pkg_tampered",
+        staging_dir=staging,
+    )
+
+    payload.write_bytes(b'{"value":"tampered"}')
+    with pytest.raises(ValueError, match="manifest sha256 mismatch"):
+        PackageService._verify_manifest_files(staging, manifest)
+
+    zip_path = tmp_path / "tampered.zip"
+    _write_zip(
+        zip_path,
+        {
+            "content.json": payload.read_bytes(),
+            "manifest.json": manifest.model_dump_json().encode(),
+        },
+    )
+    with pytest.raises(ValueError, match="zip sha256 mismatch"):
+        PackageService._verify_zip_payload(zip_path, manifest)
+
+
 def test_package_service_rejects_invalid_state_and_missing_prerequisites(package_context):
     db, storage = package_context
     service = PackageService(db, storage)
@@ -262,6 +291,7 @@ def test_package_verification_failure_cleans_output_and_marks_task_failed(
 ):
     db, storage = package_context
     task = _seed_package(db, storage, task_id="task_io_failure")
+    verifier = PackageService._verify_zip_payload
 
     def fail_verification(*_args):
         raise ValueError("simulated damaged package")
@@ -275,3 +305,12 @@ def test_package_verification_failure_cleans_output_and_marks_task_failed(
     assert task.status == "failed"
     assert task.error_code == "package_io_error"
     assert not list((storage.root / "packages").rglob("*.zip"))
+
+    monkeypatch.setattr(PackageService, "_verify_zip_payload", staticmethod(verifier))
+    result = PackageService(db, storage).create_package(task.task_id)
+
+    db.refresh(task)
+    assert result["status"] == "completed"
+    assert task.status == "completed"
+    assert task.error_code is None
+    assert task.error_message is None

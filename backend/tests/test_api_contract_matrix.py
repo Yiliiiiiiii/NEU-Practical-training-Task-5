@@ -125,6 +125,17 @@ def test_list_endpoints_reject_invalid_pagination(contract_client, path):
     _assert_error(client.get(path), 422, "VALIDATION_ERROR")
 
 
+def test_syntactically_malformed_json_uses_validation_envelope(contract_client):
+    client, _ = contract_client
+    response = client.post(
+        "/api/v1/tasks",
+        content=b'{"doc_id":',
+        headers={"content-type": "application/json"},
+    )
+
+    _assert_error(response, 422, "VALIDATION_ERROR")
+
+
 @pytest.mark.parametrize(
     ("method", "path", "payload"),
     [

@@ -3,7 +3,8 @@ from typing import Annotated
 from fastapi import APIRouter, Body, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_db, get_storage_service
+from app.api.deps import get_db, get_storage_service, get_task_mutation_registry
+from app.errors import TaskStateError
 from app.schemas.api import (
     CandidateListItem,
     CandidateListResponse,
@@ -20,6 +21,7 @@ from app.services.candidate_service import CandidateService
 from app.services.mapping_service import MappingService
 from app.services.review_service import ReviewService
 from app.services.storage_service import StorageService
+from app.services.task_lock_service import TaskMutationConflict, TaskMutationRegistry
 
 router = APIRouter(prefix="/tasks/{task_id}", tags=["mappings"])
 
@@ -48,16 +50,22 @@ def get_review_service(
 def generate_candidates(
     task_id: str,
     service: Annotated[CandidateService, Depends(get_candidate_service)],
+    mutation_registry: Annotated[
+        TaskMutationRegistry, Depends(get_task_mutation_registry)
+    ],
     request: Annotated[GenerateCandidatesRequest | None, Body()] = None,
 ) -> GenerateCandidatesResponse:
     request = request or GenerateCandidatesRequest()
     try:
-        candidates = service.generate_candidates(
-            task_id=task_id,
-            include_metadata=request.include_metadata,
-            include_blocks=request.include_blocks,
-            include_tables=request.include_tables,
-        )
+        with mutation_registry.task_mutation(task_id):
+            candidates = service.generate_candidates(
+                task_id=task_id,
+                include_metadata=request.include_metadata,
+                include_blocks=request.include_blocks,
+                include_tables=request.include_tables,
+            )
+    except TaskMutationConflict as exc:
+        raise TaskStateError(str(exc)) from exc
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     return GenerateCandidatesResponse(
@@ -102,13 +110,19 @@ def run_mapping(
     task_id: str,
     request: Annotated[MappingRunRequest, Body()],
     service: Annotated[MappingService, Depends(get_mapping_service)],
+    mutation_registry: Annotated[
+        TaskMutationRegistry, Depends(get_task_mutation_registry)
+    ],
 ) -> MappingRunResponse:
     try:
-        mappings, report, status = service.run_mapping(
-            task_id=task_id,
-            review_threshold=request.review_threshold,
-            enable_llm_fallback=request.enable_llm_fallback,
-        )
+        with mutation_registry.task_mutation(task_id):
+            mappings, report, status = service.run_mapping(
+                task_id=task_id,
+                review_threshold=request.review_threshold,
+                enable_llm_fallback=request.enable_llm_fallback,
+            )
+    except TaskMutationConflict as exc:
+        raise TaskStateError(str(exc)) from exc
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     return MappingRunResponse(
@@ -154,9 +168,15 @@ def review_mappings(
     task_id: str,
     request: Annotated[MappingReviewRequest, Body()],
     service: Annotated[ReviewService, Depends(get_review_service)],
+    mutation_registry: Annotated[
+        TaskMutationRegistry, Depends(get_task_mutation_registry)
+    ],
 ) -> MappingReviewResponse:
     try:
-        updated = service.save_mapping_reviews(task_id=task_id, reviews=request.reviews)
+        with mutation_registry.task_mutation(task_id):
+            updated = service.save_mapping_reviews(task_id=task_id, reviews=request.reviews)
+    except TaskMutationConflict as exc:
+        raise TaskStateError(str(exc)) from exc
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     return MappingReviewResponse(task_id=task_id, updated=updated, status="review_saved")

@@ -193,3 +193,78 @@ def test_policy_document_true_api_e2e(api_e2e_client):
         "blk_p_005",
         "blk_p_006",
     ]
+
+
+def _zip_payload(zip_bytes: bytes, name: str) -> bytes:
+    with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
+        return archive.read(name)
+
+
+def test_full_pipeline_retries_replace_current_records_and_keep_render_bytes_stable(
+    api_e2e_client,
+):
+    task_id, _, first_zip = _run_full_api_pipeline(
+        api_e2e_client,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+    first_package_id = json.loads(_zip_payload(first_zip, "manifest.json"))["package_id"]
+
+    reimport = _assert_ok(
+        api_e2e_client.post(
+            "/api/v1/documents/import",
+            json={"uir": _load("example_uir_general_doc.json")},
+        )
+    )
+    assert reimport["doc_id"] == "doc_demo_general_001"
+    assert _assert_ok(api_e2e_client.get("/api/v1/documents"))["total"] == 1
+
+    candidate_counts = []
+    for _ in range(2):
+        candidate_counts.append(
+            _assert_ok(
+                api_e2e_client.post(f"/api/v1/tasks/{task_id}/generate-candidates", json={})
+            )["candidate_count"]
+        )
+    assert candidate_counts[0] == candidate_counts[1]
+    candidates = _assert_ok(api_e2e_client.get(f"/api/v1/tasks/{task_id}/candidates"))
+    assert len(candidates["items"]) == candidate_counts[-1]
+
+    mapped_counts = []
+    for _ in range(2):
+        mapped_counts.append(
+            _assert_ok(
+                api_e2e_client.post(
+                    f"/api/v1/tasks/{task_id}/map",
+                    json={"review_threshold": 0.0, "enable_llm_fallback": False},
+                )
+            )["mapped_count"]
+        )
+    assert mapped_counts[0] == mapped_counts[1]
+    mappings = _assert_ok(api_e2e_client.get(f"/api/v1/tasks/{task_id}/mappings"))
+    assert len(mappings["items"]) == mapped_counts[-1]
+
+    for _ in range(2):
+        converted = _assert_ok(
+            api_e2e_client.post(
+                f"/api/v1/tasks/{task_id}/convert",
+                json={"render_outputs": True, "chunk_size": 128},
+            )
+        )
+        assert converted["status"] == "rendered"
+
+    second_package = _assert_ok(
+        api_e2e_client.post(f"/api/v1/tasks/{task_id}/package", json={})
+    )
+    third_package = _assert_ok(
+        api_e2e_client.post(f"/api/v1/tasks/{task_id}/package", json={})
+    )
+    assert len({first_package_id, second_package["package_id"], third_package["package_id"]}) == 3
+
+    latest = api_e2e_client.get(f"/api/v1/tasks/{task_id}/package/download")
+    assert latest.status_code == 200
+    latest_manifest = json.loads(_zip_payload(latest.content, "manifest.json"))
+    assert latest_manifest["package_id"] == third_package["package_id"]
+    for name in ("content.json", "content.md", "chunks.json"):
+        assert _zip_payload(first_zip, name) == _zip_payload(latest.content, name)

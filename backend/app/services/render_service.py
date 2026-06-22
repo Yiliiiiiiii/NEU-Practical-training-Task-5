@@ -31,18 +31,36 @@ class RenderService:
         content_md = self.md_renderer.render(canonical)
         chunks_json = self.chunks_renderer.render(canonical, chunk_size=chunk_size)
 
-        self.storage.save_json(
+        output_paths = [
             f"tasks/{task_id}/content.json",
-            content_json.model_dump(mode="json"),
-        )
-        self.storage.write_text(
             f"tasks/{task_id}/content.md",
-            content_md,
-        )
-        self.storage.save_json(
             f"tasks/{task_id}/chunks.json",
-            chunks_json.model_dump(mode="json"),
-        )
+        ]
+        try:
+            self.storage.save_json(
+                output_paths[0],
+                content_json.model_dump(mode="json"),
+            )
+            self.storage.write_text(output_paths[1], content_md)
+            self.storage.save_json(
+                output_paths[2],
+                chunks_json.model_dump(mode="json"),
+            )
+        except Exception as exc:
+            for path in output_paths:
+                self.storage.resolve(path).unlink(missing_ok=True)
+            task.status = "failed"
+            task.error_code = "render_io_error"
+            task.error_message = "failed to publish render outputs"
+            TraceService(self.db, self.storage).record_event(
+                task_id=task_id,
+                stage="render",
+                action="render_outputs",
+                reason=str(exc),
+                status="failed",
+            )
+            self.db.commit()
+            raise
 
         TraceService(self.db, self.storage).record_batch(
             task_id,
@@ -74,6 +92,8 @@ class RenderService:
             ],
         )
         task.status = "rendered"
+        task.error_code = None
+        task.error_message = None
         self.db.commit()
 
         return ["content.json", "content.md", "chunks.json"]

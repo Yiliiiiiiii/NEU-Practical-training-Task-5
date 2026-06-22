@@ -26,8 +26,12 @@ class ConversionService:
         task = self.db.get(ConversionTask, task_id)
         if task is None:
             raise LookupError("task not found")
-        if task.status not in CONVERTIBLE_STATUSES:
+        retrying_render = task.status == "failed" and task.error_code == "render_io_error"
+        if task.status not in CONVERTIBLE_STATUSES and not retrying_render:
             raise ValueError(f"task status '{task.status}' does not allow convert")
+        if retrying_render:
+            task.status = "mapping_completed"
+            self.db.commit()
 
         schema_record = self.db.get(TargetSchemaRecord, task.schema_id)
         if schema_record is None:
@@ -42,6 +46,8 @@ class ConversionService:
 
         if not render_outputs:
             task.status = "transforming"
+            task.error_code = None
+            task.error_message = None
             self.db.commit()
             return task.status, []
 

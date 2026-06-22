@@ -28,6 +28,7 @@ from app.schemas.canonical import CanonicalBlock, CanonicalModel
 from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
 from app.services.canonical_service import CanonicalService
+from app.services.conversion_service import ConversionService
 from app.services.render_service import RenderService
 from app.services.storage_service import StorageService
 
@@ -461,7 +462,7 @@ def test_canonical_api_returns_complete_persisted_model(db_session, storage):
     assert "source_candidates" in next(iter(body["fields"].values()))
 
 
-def test_render_write_failure_does_not_set_rendered_or_write_trace(db_session, storage):
+def test_render_write_failure_cleans_partial_outputs_and_allows_retry(db_session, storage):
     task_id, _, _, _ = _seed_full_pipeline(
         db_session,
         storage,
@@ -481,7 +482,11 @@ def test_render_write_failure_does_not_set_rendered_or_write_trace(db_session, s
         RenderService(db_session, failing_storage).render_all(task_id)
 
     db_session.expire_all()
-    assert db_session.get(ConversionTask, task_id).status != "rendered"
+    task = db_session.get(ConversionTask, task_id)
+    assert task.status == "failed"
+    assert task.error_code == "render_io_error"
+    for name in ("content.json", "content.md", "chunks.json"):
+        assert not storage.resolve(f"tasks/{task_id}/{name}").exists()
     render_traces = (
         db_session.query(TransformTraceRecord)
         .filter(
@@ -490,7 +495,22 @@ def test_render_write_failure_does_not_set_rendered_or_write_trace(db_session, s
         )
         .all()
     )
-    assert render_traces == []
+    assert [(trace.action, trace.status) for trace in render_traces] == [
+        ("render_outputs", "failed")
+    ]
+
+    status, outputs = ConversionService(db_session, storage).convert(
+        task_id,
+        render_outputs=True,
+        chunk_size=500,
+    )
+
+    db_session.refresh(task)
+    assert status == "rendered"
+    assert set(outputs) == {"content.json", "content.md", "chunks.json"}
+    assert task.error_code is None
+    assert task.error_message is None
+    assert all(storage.resolve(f"tasks/{task_id}/{name}").is_file() for name in outputs)
 
 
 def test_successful_render_records_trace_for_all_outputs(db_session, storage):
