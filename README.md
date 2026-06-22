@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 8 desktop document workbench with end-to-end package delivery.
+Current implementation status: Phase 9 tested and stabilized desktop document workbench.
 
 Implemented:
 
@@ -38,12 +38,20 @@ Implemented:
 - Package, report, trace, and ZIP download APIs
 - Desktop React workbench for demo/pasted JSON import, task creation, candidate generation, mapping review, conversion, report inspection, packaging, and ZIP download
 - Typed frontend API client with local CORS support and exposed package SHA-256 response evidence
-- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, Mapping Template APIs, candidate extraction, mapping, reports, review, transform, canonical construction, conversion APIs, multi-format rendering, and package validation
-- Vitest, ESLint, and production build gates for the frontend workbench
+- Unified API error envelope for validation, missing resources, state conflicts, review requirements, package readiness, and unexpected failures
+- Atomic UTF-8 JSON/text publication with same-path concurrency protection and temporary-file cleanup
+- Process-local task mutation guard for candidate generation, mapping, review, conversion, and packaging
+- Recoverable render/package I/O failures with partial-output cleanup, failure traces, and deterministic retry
+- Exact contract inventory for all 26 MVP API routes
+- True API-driven general and policy demo pipelines through verified ZIP download
+- Versioned badcases for missing required fields, invalid casts, ambiguous mappings, and broken provenance links
+- Package corruption tests for manifest tampering, ZIP payload changes, unsafe paths, byte counts, and SHA-256 mismatches
+- Strict backend and frontend line, branch, function, lint, and production build gates
 
 Not implemented yet:
 
 - Independent external package verifier
+- Frozen evaluation dataset and formal accuracy/F1 claims
 - Real LLM fallback
 
 ## Backend
@@ -84,8 +92,47 @@ Frontend quality gates:
 ```powershell
 cd frontend
 npm run test
+npm run test:coverage
 npm run lint
 npm run build
+```
+
+## Phase 9 Quality Baseline
+
+Measured on 2026-06-22:
+
+- Backend: 271 tests, 98.22% line coverage, 94.66% branch coverage.
+- Frontend: 50 tests, 97.07% line coverage, 90.51% branch coverage, 98.83% function coverage.
+- Every core backend file under `app/api/v1`, `app/engines`, `app/services`, and `app/validators` has at least 95% line coverage.
+- Both demo document types complete the real HTTP workflow from import through package download and per-entry manifest verification.
+- Concurrent same-task mutations return a deterministic `409 TASK_STATE_ERROR`; different task locks remain independent.
+- Atomic-write, retry, idempotency, malformed request, badcase, and deliberately damaged package tests are version controlled.
+
+Backend quality gates:
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m pytest --cov=app --cov-branch --cov-report=json:coverage.json -q
+.\.venv\Scripts\python tests\coverage_gate.py coverage.json
+.\.venv\Scripts\python -m ruff check .
+```
+
+Frontend quality gates:
+
+```powershell
+cd frontend
+npm run test:coverage
+npm run lint
+npm run build
+```
+
+Phase 9 badcases:
+
+```text
+examples/badcases/badcase_missing_required.json
+examples/badcases/badcase_type_error.json
+examples/badcases/badcase_mapping_ambiguous.json
+examples/badcases/badcase_broken_block_link.json
 ```
 
 Implemented API slice:
