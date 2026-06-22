@@ -1,0 +1,63 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "doc_demo_general_001",
+  "source": {
+    "source_type": "normalized_uir",
+    "source_name": "general_doc_demo",
+    "upstream_agents": ["parser", "cleaner", "normalizer"]
+  },
+  "metadata": {
+    "文档标题": "数据平台操作手册",
+    "撰写人": "数据中心",
+    "创建日期": "2026年6月10日",
+    "summary_hint": "介绍数据平台的登录、检索和导出流程。"
+  },
+  "blocks": [
+    {
+      "block_id": "blk_g_001",
+      "type": "heading",
+      "level": 1,
+      "text": "数据平台操作手册",
+      "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]},
+      "attributes": {"section_no": "0"}
+    },
+    {
+      "block_id": "blk_g_002",
+      "type": "paragraph",
+      "text": "本文档用于说明数据平台的基础操作流程。",
+      "source_anchor": {"page": 1, "bbox": [0, 45, 420, 90]},
+      "attributes": {}
+    },
+    {
+      "block_id": "blk_g_003",
+      "type": "heading",
+      "level": 2,
+      "text": "一、登录系统",
+      "source_anchor": {"page": 1, "bbox": [0, 95, 420, 130]},
+      "attributes": {"section_no": "1"}
+    },
+    {
+      "block_id": "blk_g_004",
+      "type": "paragraph",
+      "text": "用户通过统一身份认证进入数据平台。",
+      "source_anchor": {"page": 1, "bbox": [0, 135, 420, 190]},
+      "attributes": {"topic": "login"}
+    },
+    {
+      "block_id": "blk_g_005",
+      "type": "list",
+      "text": "1. 打开门户；2. 输入账号；3. 完成双因素认证。",
+      "source_anchor": {"page": 1, "bbox": [0, 195, 420, 260]},
+      "attributes": {"list_style": "ordered"}
+    },
+    {
+      "block_id": "blk_g_006",
+      "type": "paragraph",
+      "text": "创建日期：2026年6月10日。平台支持检索数据目录并导出结果。",
+      "source_anchor": {"page": 2, "bbox": [0, 0, 420, 80]},
+      "attributes": {"contains_date": true}
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

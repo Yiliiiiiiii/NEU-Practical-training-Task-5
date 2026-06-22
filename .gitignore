@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+backend/.venv/
+
+# Node
+node_modules/
+dist/
+frontend/dist/
+
+# Runtime storage and databases
+storage/
+backend/storage/
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment files
+.env
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local reference material outside this project
+课程大纲-软件工程班-哲航科技-90人.xlsx

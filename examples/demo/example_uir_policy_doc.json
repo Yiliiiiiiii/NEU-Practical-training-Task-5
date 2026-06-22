@@ -1,0 +1,69 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "doc_demo_policy_001",
+  "source": {
+    "source_type": "normalized_uir",
+    "source_name": "policy_doc_demo",
+    "upstream_agents": ["parser", "cleaner", "normalizer"]
+  },
+  "metadata": {
+    "政策名称": "数据治理管理办法",
+    "制发单位": "信息中心",
+    "文号": "数治〔2026〕12号",
+    "文件类型": "办法"
+  },
+  "blocks": [
+    {
+      "block_id": "blk_p_001",
+      "type": "heading",
+      "level": 1,
+      "text": "数据治理管理办法",
+      "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]},
+      "attributes": {"section_no": "0"}
+    },
+    {
+      "block_id": "blk_p_002",
+      "type": "paragraph",
+      "text": "发布日期：2026年6月1日",
+      "source_anchor": {"page": 1, "bbox": [0, 45, 420, 80]},
+      "attributes": {"field_hint": "publish_date"}
+    },
+    {
+      "block_id": "blk_p_003",
+      "type": "paragraph",
+      "text": "制发单位：信息中心。文号：数治〔2026〕12号。",
+      "source_anchor": {"page": 1, "bbox": [0, 85, 420, 140]},
+      "attributes": {"contains_doc_no": true}
+    },
+    {
+      "block_id": "blk_p_004",
+      "type": "heading",
+      "level": 2,
+      "text": "第一章 总则",
+      "source_anchor": {"page": 1, "bbox": [0, 145, 420, 180]},
+      "attributes": {"section_no": "1"}
+    },
+    {
+      "block_id": "blk_p_005",
+      "type": "paragraph",
+      "text": "为规范数据治理工作，提升数据资产管理水平，制定本办法。",
+      "source_anchor": {"page": 1, "bbox": [0, 185, 420, 250]},
+      "attributes": {"topic": "governance"}
+    },
+    {
+      "block_id": "blk_p_006",
+      "type": "paragraph",
+      "text": "本办法适用于数据标准、数据质量和数据安全相关管理活动。",
+      "source_anchor": {"page": 2, "bbox": [0, 0, 420, 80]},
+      "attributes": {"topic": "scope"}
+    }
+  ],
+  "assets": [],
+  "normalization_records": [
+    {
+      "entity_id": "org_info_center",
+      "standard_name": "信息中心",
+      "source_block_id": "blk_p_003"
+    }
+  ]
+}

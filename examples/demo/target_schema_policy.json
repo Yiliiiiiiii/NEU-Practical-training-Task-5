@@ -1,0 +1,74 @@
+{
+  "schema_id": "schema_policy_v1",
+  "name": "政策文档标准结构",
+  "version": "1.0.0",
+  "description": "用于政策制度类文档的标准化输出",
+  "fields": [
+    {
+      "field_id": "title",
+      "name": "title",
+      "display_name": "标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["标题", "政策名称", "文件名称"],
+      "constraints": {"min_length": 1, "max_length": 200}
+    },
+    {
+      "field_id": "publish_org",
+      "name": "publish_org",
+      "display_name": "发布单位",
+      "type": "string",
+      "required": false,
+      "aliases": ["发布单位", "制发单位", "发布机构"],
+      "constraints": {"max_length": 100}
+    },
+    {
+      "field_id": "publish_date",
+      "name": "publish_date",
+      "display_name": "发布日期",
+      "type": "date",
+      "required": false,
+      "aliases": ["发布日期", "印发日期", "发布时间"],
+      "constraints": {"format": "YYYY-MM-DD"}
+    },
+    {
+      "field_id": "doc_no",
+      "name": "doc_no",
+      "display_name": "文号",
+      "type": "string",
+      "required": false,
+      "aliases": ["文号", "发文字号"],
+      "constraints": {"max_length": 80}
+    },
+    {
+      "field_id": "doc_type",
+      "name": "doc_type",
+      "display_name": "文档类型",
+      "type": "string",
+      "required": true,
+      "aliases": ["文件类型", "文种", "类型"],
+      "constraints": {"enum": ["policy", "notice", "report"]}
+    },
+    {
+      "field_id": "main_content",
+      "name": "main_content",
+      "display_name": "正文",
+      "type": "string",
+      "required": false,
+      "aliases": ["正文", "主要内容", "内容"],
+      "constraints": {}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": ["title", "doc_type"],
+    "properties": {
+      "title": {"type": "string", "minLength": 1},
+      "publish_org": {"type": "string"},
+      "publish_date": {"type": "string", "format": "date"},
+      "doc_no": {"type": "string"},
+      "doc_type": {"type": "string", "enum": ["policy", "notice", "report"]},
+      "main_content": {"type": "string"}
+    }
+  }
+}
