@@ -3,6 +3,8 @@ from typing import Any
 from pydantic import Field
 
 from app.schemas.common import StrictBaseModel
+from app.schemas.mapping_template import MappingTemplate
+from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
 
 
@@ -85,3 +87,45 @@ class TaskDetailResponse(StrictBaseModel):
     template_version: str
     input_hash: str
     options: dict[str, Any]
+
+
+class SchemaCreateRequest(StrictBaseModel):
+    target_schema: TargetSchema = Field(alias="schema")
+
+
+class SchemaCreateResponse(StrictBaseModel):
+    schema_id: str
+    status: str
+
+
+class SchemaListItem(StrictBaseModel):
+    schema_id: str
+    name: str
+    version: str
+    fields_count: int
+
+
+class SchemaListResponse(StrictBaseModel):
+    items: list[SchemaListItem]
+
+
+class TemplateCreateRequest(StrictBaseModel):
+    template: MappingTemplate
+
+
+class TemplateSaveResponse(StrictBaseModel):
+    template_id: str
+    status: str
+
+
+class TemplateListItem(StrictBaseModel):
+    template_id: str
+    schema_id: str
+    name: str
+    version: str
+    aliases_count: int
+    rules_count: int
+
+
+class TemplateListResponse(StrictBaseModel):
+    items: list[TemplateListItem]

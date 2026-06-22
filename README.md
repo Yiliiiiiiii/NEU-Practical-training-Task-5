@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 2 document and task management baseline.
+Current implementation status: Phase 3 schema and template management baseline.
 
 Implemented:
 
@@ -14,11 +14,13 @@ Implemented:
 - Runtime-safe `StorageService` for UTF-8 JSON/text files and SHA-256
 - UIR document import, list, and detail APIs
 - Conversion task create, list, and detail APIs
-- Pytest baseline for bootstrap, schemas, examples, storage, documents, and tasks
+- Target Schema create, list, and detail APIs
+- Mapping Template create, update, list, and detail APIs
+- Template-to-Schema binding validation for target field references
+- Pytest baseline for bootstrap, schemas, examples, storage, documents, tasks, Target Schema APIs, and Mapping Template APIs
 
 Not implemented yet:
 
-- Schema/template CRUD
 - Field candidate extraction
 - Mapping engine
 - Transform engine
@@ -56,9 +58,16 @@ GET  /api/v1/documents/{doc_id}
 POST /api/v1/tasks
 GET  /api/v1/tasks
 GET  /api/v1/tasks/{task_id}
+POST /api/v1/schemas
+GET  /api/v1/schemas
+GET  /api/v1/schemas/{schema_id}
+POST /api/v1/templates
+PUT  /api/v1/templates/{template_id}
+GET  /api/v1/templates
+GET  /api/v1/templates/{template_id}
 ```
 
-Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. That check belongs to Phase 3, when Schema and Mapping Template CRUD are implemented.
+Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. The actual schema/template records are managed by the Phase 3 endpoints and will be wired into conversion execution in later phases.
 
 ## Development Setup
 
