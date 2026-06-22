@@ -39,7 +39,7 @@ class TransformEngine:
             if mapping.status != "confirmed":
                 continue
             src_path = mapping.source_field.source_path
-            candidate = ctx.get(src_path)
+            candidate = ctx.get(mapping.candidate_id) or ctx.get(src_path)
             if candidate is not None and candidate.value_sample is not None:
                 source_value = candidate.value_sample
                 source_blocks = list(candidate.source_blocks)
@@ -77,9 +77,14 @@ class TransformEngine:
                     "stage": "field_transform",
                     "action": rule.operation,
                     "target_field_id": rule.target_field_id,
+                    "source": {"path": rule.source_field},
+                    "result": {},
+                    "rule_id": rule.rule_id,
                     "status": "error",
                     "reason": str(exc),
                 })
+                if rule.on_error == "raise":
+                    raise
 
         for field_id, default_val in defaults.items():
             if field_id not in values or values[field_id].get("value") is None:
@@ -148,7 +153,11 @@ class TransformEngine:
         if candidate is not None and candidate.value_sample is not None:
             return candidate.value_sample, [candidate.candidate_id], list(candidate.source_blocks)
         uir_val = self._resolve_source(uir, source_field)
-        return uir_val, [], []
+        source_blocks = []
+        path_parts = source_field.split(".")
+        if uir_val is not None and path_parts[0] == "blocks" and len(path_parts) >= 2:
+            source_blocks = [path_parts[1]]
+        return uir_val, [], source_blocks
 
     def _rename(
         self,
@@ -161,9 +170,13 @@ class TransformEngine:
         target = rule.target_field_id
         if not target:
             return
+        if not rule.source_field:
+            raise ValueError("rename rule has no source_field")
         source_value, cand_ids, source_blocks = self._resolve_from_context(
             rule.source_field, ctx, uir
         )
+        if source_value is None:
+            raise ValueError(f"source field '{rule.source_field}' not found")
         before = values.get(target, {}).get("value") if target in values else None
         values[target] = {
             "value": source_value,
@@ -224,8 +237,8 @@ class TransformEngine:
         source_val = str(entry["value"]) if entry["value"] is not None else ""
         before = source_val
         output_format = rule.params.get("output_format", "YYYY-MM-DD")
-        result_val = self._convert_date(source_val, output_format)
-        if result_val == source_val and source_val:
+        result_val, parsed = self._try_convert_date(source_val)
+        if not parsed:
             entry["value"] = result_val
             entry["type"] = "string"
             trace_events.append({
@@ -378,26 +391,19 @@ class TransformEngine:
     ) -> None:
         separator = rule.params.get("separator", "|")
         source_field = rule.source_field
+        if not source_field:
+            raise ValueError("split rule has no source_field")
         source_value, cand_ids, source_blocks = self._resolve_from_context(
             source_field, ctx, uir
         )
         if source_value is None:
             source_value = self._get_value_from_source(source_field, values)
+        if source_value is None:
+            raise ValueError(f"source field '{source_field}' not found")
         before = source_value
-        parts = str(source_value).split(separator) if source_value is not None else [""]
+        parts = str(source_value).split(separator)
         targets = rule.target_fields or []
-        if len(parts) < len(targets):
-            trace_events.append({
-                "trace_id": new_id("trace"),
-                "stage": "field_transform",
-                "action": "split",
-                "target_field_id": targets[0] if targets else None,
-                "source": {"value": before},
-                "result": {"value": parts},
-                "rule_id": rule.rule_id,
-                "reason": f"split produced {len(parts)} segments, expected {len(targets)}",
-                "status": "warning",
-            })
+        insufficient_segments = len(parts) < len(targets)
         for i, target_id in enumerate(targets):
             val = parts[i] if i < len(parts) else ""
             values[target_id] = {
@@ -414,8 +420,12 @@ class TransformEngine:
             "source": {"value": before},
             "result": {"value": parts},
             "rule_id": rule.rule_id,
-            "reason": f"split into {len(targets)} fields",
-            "status": "success",
+            "reason": (
+                f"split produced {len(parts)} segments, expected {len(targets)}"
+                if insufficient_segments
+                else f"split into {len(targets)} fields"
+            ),
+            "status": "warning" if insufficient_segments else "success",
         })
 
     def _resolve_source(self, uir: UIRDocument, source_path: str) -> Any:
@@ -469,21 +479,40 @@ class TransformEngine:
         if to_type == "float":
             return float(str(value).replace(",", ""))
         if to_type == "bool":
-            return str(value).lower() in ("true", "1", "yes")
+            if isinstance(value, bool):
+                return value
+            normalized = str(value).strip().lower()
+            if normalized in {"true", "1", "yes"}:
+                return True
+            if normalized in {"false", "0", "no"}:
+                return False
+            raise ValueError(f"cannot cast {value!r} to bool")
         if to_type == "date":
-            return TransformEngine._convert_date(str(value))
-        return value
+            result, parsed = TransformEngine._try_convert_date(str(value))
+            if not parsed:
+                raise ValueError(f"cannot cast {value!r} to date")
+            return result
+        raise ValueError(f"unsupported target type: {to_type}")
 
     @staticmethod
     def _convert_date(value: str, output_format: str = "YYYY-MM-DD") -> str:
+        result, _parsed = TransformEngine._try_convert_date(value)
+        return result
+
+    @staticmethod
+    def _try_convert_date(value: str) -> tuple[str, bool]:
         match = CHINESE_DATE_RE.search(value)
         if match:
             y, m, d = match.group(1), match.group(2), match.group(3)
-            return f"{y}-{int(m):02d}-{int(d):02d}"
+            try:
+                parsed = datetime(int(y), int(m), int(d))
+            except ValueError:
+                return value, False
+            return parsed.strftime("%Y-%m-%d"), True
         for fmt in FALLBACK_DATE_FORMATS:
             try:
                 parsed = datetime.strptime(value, fmt)
-                return parsed.strftime("%Y-%m-%d")
+                return parsed.strftime("%Y-%m-%d"), True
             except ValueError:
                 continue
-        return value
+        return value, False

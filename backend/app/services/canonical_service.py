@@ -58,8 +58,19 @@ class CanonicalService:
             )
 
         mappings = self._load_confirmed_mappings(task_id)
+        unresolved_mappings = [
+            mapping
+            for mapping in mappings
+            if mapping.need_review or mapping.status != "confirmed"
+        ]
+        if unresolved_mappings:
+            raise ValueError("cannot build canonical: unresolved mapping requires review")
+
         candidates = self._load_candidates(task_id)
-        source_context = {c.source_path: c for c in candidates}
+        source_context = {}
+        for candidate in candidates:
+            source_context[candidate.source_path] = candidate
+            source_context[candidate.candidate_id] = candidate
 
         fields, trace_events, errors = self.transform_engine.execute(
             uir=uir,
@@ -71,12 +82,14 @@ class CanonicalService:
         )
 
         for field in target_schema.fields:
-            if field.field_id not in fields and field.required:
-                if field.field_id not in template.defaults:
-                    raise ValueError(
-                        f"cannot build canonical: required field "
-                        f"'{field.field_id}' has no mapping or default"
-                    )
+            transformed_field = fields.get(field.field_id)
+            if field.required and (
+                transformed_field is None or transformed_field.value is None
+            ):
+                raise ValueError(
+                    f"cannot build canonical: required field "
+                    f"'{field.field_id}' has no mapping or default"
+                )
 
         canonical = self.builder.build(
             task_id=task_id,

@@ -540,8 +540,16 @@ def storage(tmp_path):
     return StorageService(tmp_path / "storage")
 
 
-def _setup_task(db_session, storage, status, mappings_status="confirmed",
-                required_missing=False):
+def _setup_task(
+    db_session,
+    storage,
+    status,
+    mappings_status="confirmed",
+    required_missing=False,
+    mapping_need_review=False,
+    candidate_path="metadata.title",
+    candidate_value='"Test"',
+):
     uir_data = {
         "uir_version": "1.0",
         "doc_id": "doc_sm",
@@ -606,15 +614,15 @@ def _setup_task(db_session, storage, status, mappings_status="confirmed",
     if mappings_status != "none":
         cand = FieldCandidateRecord(
             candidate_id="cand_sm", task_id="task_sm", doc_id="doc_sm",
-            source_path="metadata.title", source_name="title",
-            display_name="title", value_sample='"Test"',
+            source_path=candidate_path, source_name="title",
+            display_name="title", value_sample=candidate_value,
             inferred_type="string", source_blocks_json="[]", confidence=0.95,
         )
         db_session.add(cand)
         mapping = FieldMappingRecord(
             mapping_id="map_sm", task_id="task_sm", candidate_id="cand_sm",
             target_field_id="title", method="exact_match", confidence=1.0,
-            status=mappings_status, need_review=False,
+            status=mappings_status, need_review=mapping_need_review,
             evidence_json='["test"]',
         )
         db_session.add(mapping)
@@ -689,3 +697,220 @@ def test_engine_does_not_set_task_status():
     uir = UIRDocument(uir_version="1.0", doc_id="d", metadata={}, blocks=[])
     engine.execute(uir, [], [], {}, {})
     assert True
+
+
+def test_source_context_can_resolve_mapping_by_candidate_id():
+    uir = UIRDocument(
+        uir_version="1.0",
+        doc_id="doc_candidate_id",
+        metadata={"title": "UIR value"},
+        blocks=[],
+    )
+    candidate = _make_candidate(
+        "cand_exact",
+        "task_candidate_id",
+        "doc_candidate_id",
+        "metadata.title",
+        "title",
+        "candidate value",
+        [],
+    )
+    mapping = _make_mapping(
+        "map_exact",
+        "task_candidate_id",
+        "cand_exact",
+        "metadata.title",
+        "title",
+        "canonical_title",
+    )
+
+    fields, _, _ = _run_engine(
+        uir,
+        [mapping],
+        [],
+        source_context={candidate.candidate_id: candidate},
+    )
+
+    assert fields["canonical_title"].value == "candidate value"
+    assert fields["canonical_title"].source_candidates == ["cand_exact"]
+
+
+def test_missing_rename_source_records_error_and_preserves_target():
+    uir = UIRDocument(
+        uir_version="1.0",
+        doc_id="doc_missing_rename",
+        metadata={"title": "existing value"},
+        blocks=[],
+    )
+    mapping = _make_mapping(
+        "map_title",
+        "task_missing_rename",
+        "cand_title",
+        "metadata.title",
+        "title",
+        "title",
+    )
+    rule = TransformRule(
+        rule_id="rename_missing",
+        operation="rename",
+        source_field="metadata.not_found",
+        target_field_id="title",
+    )
+
+    fields, traces, errors = _run_engine(uir, [mapping], [rule])
+
+    assert fields["title"].value == "existing value"
+    assert errors == ["rule rename_missing: source field 'metadata.not_found' not found"]
+    error_trace = next(trace for trace in traces if trace["status"] == "error")
+    assert error_trace["rule_id"] == "rename_missing"
+
+
+def test_mapping_review_flag_blocks_even_when_task_status_is_mapping_completed(
+    db_session,
+    storage,
+):
+    from app.schemas.mapping_template import MappingTemplate
+    from app.schemas.target_schema import TargetSchema
+
+    _setup_task(
+        db_session,
+        storage,
+        status="mapping_completed",
+        mappings_status="confirmed",
+        mapping_need_review=True,
+    )
+    schema_obj = TargetSchema.model_validate_json(
+        db_session.get(TargetSchemaRecord, "schema_sm").schema_json
+    )
+    template_obj = MappingTemplate.model_validate_json(
+        db_session.get(MappingTemplateRecord, "tpl_sm").template_json
+    )
+
+    with pytest.raises(ValueError, match="unresolved mapping"):
+        CanonicalService(db_session, storage).build_canonical(
+            "task_sm", schema_obj, template_obj
+        )
+
+    assert db_session.get(CanonicalModelRecord, "task_sm") is None
+
+
+def test_required_field_with_none_value_blocks_canonical_build(db_session, storage):
+    from app.schemas.mapping_template import MappingTemplate
+    from app.schemas.target_schema import TargetSchema
+
+    _setup_task(
+        db_session,
+        storage,
+        status="mapping_completed",
+        mappings_status="confirmed",
+        candidate_path="metadata.not_found",
+        candidate_value="null",
+    )
+    schema_obj = TargetSchema.model_validate_json(
+        db_session.get(TargetSchemaRecord, "schema_sm").schema_json
+    )
+    template_obj = MappingTemplate.model_validate_json(
+        db_session.get(MappingTemplateRecord, "tpl_sm").template_json
+    )
+
+    with pytest.raises(ValueError, match="required field 'title'"):
+        CanonicalService(db_session, storage).build_canonical(
+            "task_sm", schema_obj, template_obj
+        )
+
+    assert db_session.get(CanonicalModelRecord, "task_sm") is None
+
+
+def test_policy_merge_raw_block_paths_preserves_block_provenance():
+    uir = _make_uir("example_uir_policy_doc.json")
+    template = _make_template("mapping_template_policy.json")
+    merge_rule = TransformRule.model_validate(
+        next(rule for rule in template["transform_rules"] if rule["operation"] == "merge")
+    )
+
+    fields, _, _ = _run_engine(uir, [], [merge_rule], source_context={})
+
+    assert fields["main_content"].source_blocks == ["blk_p_005", "blk_p_006"]
+
+
+def test_valid_iso_date_records_success_trace():
+    uir = UIRDocument(
+        uir_version="1.0",
+        doc_id="doc_iso_date",
+        metadata={"published": "2026-06-01"},
+        blocks=[],
+    )
+    mapping = _make_mapping(
+        "map_iso",
+        "task_iso",
+        "cand_iso",
+        "metadata.published",
+        "published",
+        "publish_date",
+    )
+    rule = TransformRule(
+        rule_id="date_iso",
+        operation="date_format",
+        target_field_id="publish_date",
+    )
+
+    _, traces, errors = _run_engine(uir, [mapping], [rule])
+
+    date_trace = next(trace for trace in traces if trace["action"] == "date_format")
+    assert date_trace["status"] == "success"
+    assert errors == []
+
+
+def test_missing_split_source_records_error_without_creating_targets():
+    uir = UIRDocument(
+        uir_version="1.0",
+        doc_id="doc_missing_split",
+        metadata={},
+        blocks=[],
+    )
+    rule = TransformRule(
+        rule_id="split_missing",
+        operation="split",
+        source_field="metadata.not_found",
+        target_fields=["left", "right"],
+    )
+
+    fields, traces, errors = _run_engine(uir, [], [rule])
+
+    assert "left" not in fields
+    assert "right" not in fields
+    assert errors == ["rule split_missing: source field 'metadata.not_found' not found"]
+    assert next(trace for trace in traces if trace["status"] == "error")[
+        "rule_id"
+    ] == "split_missing"
+
+
+def test_invalid_bool_cast_preserves_original_and_records_error():
+    uir = UIRDocument(
+        uir_version="1.0",
+        doc_id="doc_invalid_bool",
+        metadata={"active": "sometimes"},
+        blocks=[],
+    )
+    mapping = _make_mapping(
+        "map_bool",
+        "task_bool",
+        "cand_bool",
+        "metadata.active",
+        "active",
+        "is_active",
+    )
+    rule = TransformRule(
+        rule_id="cast_bool",
+        operation="type_cast",
+        target_field_id="is_active",
+        params={"to": "bool"},
+    )
+
+    fields, traces, errors = _run_engine(uir, [mapping], [rule])
+
+    assert fields["is_active"].value == "sometimes"
+    assert errors == ["rule cast_bool: cannot cast 'sometimes' to bool"]
+    assert next(trace for trace in traces if trace["status"] == "error")[
+        "rule_id"
+    ] == "cast_bool"
