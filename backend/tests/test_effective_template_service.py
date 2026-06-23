@@ -253,6 +253,75 @@ def test_invalid_regex_candidates_are_ignored_while_valid_rules_apply(effective_
     assert pack_ids == ["kp_regex"]
 
 
+def test_malformed_json_scope_and_payload_are_ignored(effective_context):
+    db = effective_context
+    db.add_all([
+        KnowledgePackRecord(
+            pack_id="kp_bad_scope",
+            name="Bad Scope",
+            scope_json="{",
+            status="active",
+            version="1.0.0",
+            item_count=1,
+            reviewer="tester",
+        ),
+        KnowledgePackRecord(
+            pack_id="kp_bad_payload",
+            name="Bad Payload",
+            scope_json=json.dumps({"template_id": "template_k"}),
+            status="active",
+            version="1.0.0",
+            item_count=1,
+            reviewer="tester",
+        ),
+    ])
+    db.add(KnowledgePackItemRecord(
+        item_id="kpi_bad_payload",
+        pack_id="kp_bad_payload",
+        item_type="alias_candidate",
+        target_field_id="title",
+        payload_json="{",
+        source_candidate_id=None,
+    ))
+    db.commit()
+
+    resolved, pack_ids = EffectiveTemplateService(db).resolve(_template())
+
+    assert resolved.aliases == {"title": ["title"]}
+    assert pack_ids == ["kp_bad_payload"]
+
+
+def test_invalid_regex_syntax_is_ignored(effective_context):
+    db = effective_context
+    db.add(KnowledgePackRecord(
+        pack_id="kp_regex_syntax",
+        name="Regex Syntax",
+        scope_json=json.dumps({"template_id": "template_k"}),
+        status="active",
+        version="1.0.0",
+        item_count=1,
+        reviewer="tester",
+    ))
+    db.add(KnowledgePackItemRecord(
+        item_id="kpi_regex_syntax_bad",
+        pack_id="kp_regex_syntax",
+        item_type="regex_candidate",
+        target_field_id="title",
+        payload_json=json.dumps({
+            "target_field_id": "title",
+            "pattern": "[",
+            "group": 0,
+        }),
+        source_candidate_id=None,
+    ))
+    db.commit()
+
+    resolved, pack_ids = EffectiveTemplateService(db).resolve(_template())
+
+    assert resolved.regex_rules == []
+    assert pack_ids == ["kp_regex_syntax"]
+
+
 def test_invalid_transform_candidates_are_ignored_while_valid_rules_apply(effective_context):
     db = effective_context
     db.add(KnowledgePackRecord(

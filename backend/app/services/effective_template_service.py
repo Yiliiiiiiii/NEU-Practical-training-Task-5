@@ -1,4 +1,5 @@
 import json
+import re
 from typing import Any
 
 from pydantic import ValidationError
@@ -53,7 +54,8 @@ class EffectiveTemplateService:
                 elif item.item_type == "regex_candidate":
                     try:
                         regex_rule = RegexRule.model_validate(payload)
-                    except ValidationError:
+                        re.compile(regex_rule.pattern)
+                    except (ValidationError, re.error):
                         continue
                     data.setdefault("regex_rules", []).append(regex_rule.model_dump(mode="json"))
                 elif item.item_type == "enum_map_candidate" and item.target_field_id:
@@ -105,7 +107,10 @@ class EffectiveTemplateService:
 
     @staticmethod
     def _load_json_object(raw_json: str | None) -> dict[str, Any]:
-        value = json.loads(raw_json or "{}")
+        try:
+            value = json.loads(raw_json or "{}")
+        except json.JSONDecodeError:
+            return {}
         if isinstance(value, dict):
             return value
         return {}
