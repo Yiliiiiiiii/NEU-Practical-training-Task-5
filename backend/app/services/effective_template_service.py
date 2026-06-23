@@ -71,6 +71,8 @@ class EffectiveTemplateService:
                             continue
                         enum_map.setdefault(key, value)
                 elif item.item_type == "default_candidate" and item.target_field_id:
+                    if "value" not in payload:
+                        continue
                     data.setdefault("defaults", {})[item.target_field_id] = payload.get("value")
                 elif item.item_type == "transform_candidate":
                     try:

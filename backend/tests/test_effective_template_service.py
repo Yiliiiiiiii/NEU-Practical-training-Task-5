@@ -322,6 +322,53 @@ def test_invalid_regex_syntax_is_ignored(effective_context):
     assert pack_ids == ["kp_regex_syntax"]
 
 
+def test_default_candidates_apply_only_when_value_key_exists(effective_context):
+    db = effective_context
+    db.add(KnowledgePackRecord(
+        pack_id="kp_defaults",
+        name="Defaults",
+        scope_json=json.dumps({"template_id": "template_k"}),
+        status="active",
+        version="1.0.0",
+        item_count=3,
+        reviewer="tester",
+    ))
+    db.add_all([
+        KnowledgePackItemRecord(
+            item_id="kpi_default_malformed",
+            pack_id="kp_defaults",
+            item_type="default_candidate",
+            target_field_id="existing",
+            payload_json="{",
+            source_candidate_id=None,
+        ),
+        KnowledgePackItemRecord(
+            item_id="kpi_default_missing_value",
+            pack_id="kp_defaults",
+            item_type="default_candidate",
+            target_field_id="missing_value",
+            payload_json=json.dumps({"note": "ignore"}),
+            source_candidate_id=None,
+        ),
+        KnowledgePackItemRecord(
+            item_id="kpi_default_valid",
+            pack_id="kp_defaults",
+            item_type="default_candidate",
+            target_field_id="status",
+            payload_json=json.dumps({"value": "draft"}),
+            source_candidate_id=None,
+        ),
+    ])
+    db.commit()
+    template = _template().model_copy(deep=True)
+    template.defaults = {"existing": "keep"}
+
+    resolved, pack_ids = EffectiveTemplateService(db).resolve(template)
+
+    assert resolved.defaults == {"existing": "keep", "status": "draft"}
+    assert pack_ids == ["kp_defaults"]
+
+
 def test_invalid_transform_candidates_are_ignored_while_valid_rules_apply(effective_context):
     db = effective_context
     db.add(KnowledgePackRecord(
