@@ -364,6 +364,34 @@ def test_pending_candidates_do_not_create_pack_until_approved(knowledge_context)
         ))
 
 
+def test_duplicate_candidate_ids_do_not_create_pack(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+    candidate = next(
+        item for item in service.derive_learning_candidates(run.real_run_id)
+        if item.candidate_type == "alias_candidate"
+    )
+    service.decide_candidate(
+        candidate.candidate_id,
+        CandidateDecisionRequest(
+            decision="approved",
+            reviewer="tester",
+            final_payload={"aliases": ["doc_title"]},
+            reason="confirmed by review",
+        ),
+    )
+
+    with pytest.raises(ValueError, match="candidate_ids must be unique"):
+        service.create_knowledge_pack(KnowledgePackCreateRequest(
+            name="Duplicate aliases",
+            scope={"schema_id": "schema_k", "template_id": "template_k"},
+            candidate_ids=[candidate.candidate_id, candidate.candidate_id],
+            reviewer="tester",
+        ))
+
+
 def test_approved_alias_candidate_creates_draft_pack_items(knowledge_context):
     db, storage = knowledge_context
     task_id = _seed_reviewed_task(db, storage)
@@ -389,11 +417,42 @@ def test_approved_alias_candidate_creates_draft_pack_items(knowledge_context):
         candidate_ids=[candidate.candidate_id],
         reviewer="tester",
     ))
+    item = (
+        db.query(KnowledgePackItemRecord)
+        .filter(KnowledgePackItemRecord.pack_id == pack.pack_id)
+        .one()
+    )
 
     assert decided.status == "approved"
     assert pack.status == "draft"
     assert pack.item_count == 1
     assert pack.scope["template_id"] == "template_k"
+    assert item.item_type == "alias_candidate"
+    assert item.target_field_id == "title"
+    assert json.loads(item.payload_json) == {"aliases": ["doc_title"]}
+    assert item.source_candidate_id == candidate.candidate_id
+
+
+def test_approved_candidate_without_final_payload_uses_proposed_payload(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+    candidate = next(
+        item for item in service.derive_learning_candidates(run.real_run_id)
+        if item.candidate_type == "alias_candidate"
+    )
+
+    decided = service.decide_candidate(
+        candidate.candidate_id,
+        CandidateDecisionRequest(
+            decision="approved",
+            reviewer="tester",
+            reason="confirmed by review",
+        ),
+    )
+
+    assert decided.final_payload == {"aliases": ["doc_title"]}
 
 
 def test_approved_candidate_preserves_explicit_empty_final_payload(knowledge_context):

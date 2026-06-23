@@ -61,15 +61,7 @@ class KnowledgeService:
 
     def derive_learning_candidates(self, real_run_id: str) -> list[LearningCandidateView]:
         run = self._real_run(real_run_id)
-        existing = (
-            self.db.query(LearningCandidateRecord)
-            .filter(LearningCandidateRecord.real_run_id == real_run_id)
-            .order_by(
-                LearningCandidateRecord.created_at.asc(),
-                LearningCandidateRecord.candidate_id.asc(),
-            )
-            .all()
-        )
+        existing = self._candidates_for_run(real_run_id)
         if existing:
             return [self._candidate_view(record) for record in existing]
 
@@ -80,7 +72,7 @@ class KnowledgeService:
         for record in created:
             self.db.add(record)
         self.db.commit()
-        return [self._candidate_view(record) for record in created]
+        return [self._candidate_view(record) for record in self._candidates_for_run(real_run_id)]
 
     def decide_candidate(
         self,
@@ -113,6 +105,8 @@ class KnowledgeService:
     ) -> KnowledgePackView:
         if not request.candidate_ids:
             raise KnowledgeValidationError("candidate_ids must not be empty")
+        if len(set(request.candidate_ids)) != len(request.candidate_ids):
+            raise KnowledgeValidationError("candidate_ids must be unique")
         records = [self._candidate(candidate_id) for candidate_id in request.candidate_ids]
         for record in records:
             if record.status != "approved":
@@ -279,6 +273,17 @@ class KnowledgeService:
         if run is None:
             raise LookupError("real run not found")
         return run
+
+    def _candidates_for_run(self, real_run_id: str) -> list[LearningCandidateRecord]:
+        return (
+            self.db.query(LearningCandidateRecord)
+            .filter(LearningCandidateRecord.real_run_id == real_run_id)
+            .order_by(
+                LearningCandidateRecord.created_at.asc(),
+                LearningCandidateRecord.candidate_id.asc(),
+            )
+            .all()
+        )
 
     def _candidate(self, candidate_id: str) -> LearningCandidateRecord:
         record = self.db.get(LearningCandidateRecord, candidate_id)
