@@ -119,7 +119,7 @@ def test_enum_map_candidates_merge_with_existing_keys(effective_context):
     resolved, pack_ids = EffectiveTemplateService(db).resolve(template)
 
     assert resolved.enum_maps["status"] == {
-        "draft": "D",
+        "draft": "OLD",
         "archived": "A",
         "published": "P",
     }
@@ -151,7 +151,7 @@ def test_resolve_does_not_mutate_input_template(effective_context):
             pack_id="kp_alias",
             item_type="alias_candidate",
             target_field_id="title",
-            payload_json=json.dumps({"aliases": "bad_alias"}),
+            payload_json=json.dumps({"aliases": ["valid_alias", 1, None]}),
             source_candidate_id=None,
         ),
     ])
@@ -161,8 +161,51 @@ def test_resolve_does_not_mutate_input_template(effective_context):
     resolved, pack_ids = EffectiveTemplateService(db).resolve(template)
 
     assert template.aliases == {"title": ["title"]}
-    assert resolved.aliases == {"title": ["title", "doc_title"]}
+    assert resolved.aliases == {"title": ["title", "doc_title", "valid_alias"]}
     assert pack_ids == ["kp_alias"]
+
+
+def test_malformed_enum_maps_are_ignored_without_dropping_valid_entries(effective_context):
+    db = effective_context
+    db.add(KnowledgePackRecord(
+        pack_id="kp_enum_bad",
+        name="Enum Bad",
+        scope_json=json.dumps({"template_id": "template_k"}),
+        status="active",
+        version="1.0.0",
+        item_count=2,
+        reviewer="tester",
+    ))
+    db.add_all([
+        KnowledgePackItemRecord(
+            item_id="kpi_enum_invalid_map",
+            pack_id="kp_enum_bad",
+            item_type="enum_map_candidate",
+            target_field_id="status",
+            payload_json=json.dumps({"map": ["bad"]}),
+            source_candidate_id=None,
+        ),
+        KnowledgePackItemRecord(
+            item_id="kpi_enum_mixed_entries",
+            pack_id="kp_enum_bad",
+            item_type="enum_map_candidate",
+            target_field_id="status",
+            payload_json=json.dumps({"map": {
+                "new": "N",
+                "bad_value": 1,
+                "none_value": None,
+            }}),
+            source_candidate_id=None,
+        ),
+    ])
+    db.commit()
+    template = _template().model_copy(deep=True)
+    template.enum_maps = {"status": {"existing": "E"}}
+
+    resolved, pack_ids = EffectiveTemplateService(db).resolve(template)
+
+    assert resolved.enum_maps["status"] == {"existing": "E", "new": "N"}
+    assert pack_ids == ["kp_enum_bad"]
 
 
 def test_active_packs_and_items_use_stable_tie_ordering(effective_context):

@@ -45,16 +45,24 @@ class EffectiveTemplateService:
                         continue
                     aliases = data.setdefault("aliases", {}).setdefault(item.target_field_id, [])
                     for alias in new_aliases:
+                        if not isinstance(alias, str):
+                            continue
                         if alias not in aliases:
                             aliases.append(alias)
                 elif item.item_type == "regex_candidate":
                     data.setdefault("regex_rules", []).append(payload)
                 elif item.item_type == "enum_map_candidate" and item.target_field_id:
+                    learned_map = payload.get("map")
+                    if not isinstance(learned_map, dict):
+                        continue
                     enum_map = data.setdefault("enum_maps", {}).setdefault(
                         item.target_field_id,
                         {},
                     )
-                    enum_map.update(payload.get("map", {}))
+                    for key, value in learned_map.items():
+                        if not isinstance(key, str) or not isinstance(value, str):
+                            continue
+                        enum_map.setdefault(key, value)
                 elif item.item_type == "default_candidate" and item.target_field_id:
                     data.setdefault("defaults", {})[item.target_field_id] = payload.get("value")
                 elif item.item_type == "transform_candidate":
