@@ -19,7 +19,7 @@ npm run dev
 
 Open `http://127.0.0.1:5173`.
 
-## LLM Fallback
+## DeepSeek LLM Fallback
 
 Offline/default-safe modes:
 
@@ -28,14 +28,14 @@ $env:LLM_MODE="disabled"
 $env:OFFLINE_MODE="true"
 ```
 
-OpenAI-compatible mode:
+SchemaPack Agent is configured to use DeepSeek for live fallback calls:
 
 ```powershell
 $env:LLM_MODE="openai_compatible"
-$env:LLM_BASE_URL="https://your-compatible-host/v1"
-$env:LLM_API_KEY="<secret>"
-$env:LLM_MODEL="schema-map-model"
-$env:LLM_PROMPT_VERSION="prompt-v10"
+$env:LLM_BASE_URL="https://api.deepseek.com"
+$env:LLM_API_KEY="<your-deepseek-api-key>"
+$env:LLM_MODEL="deepseek-v4-flash"
+$env:LLM_PROMPT_VERSION="deepseek-phase10-v1"
 ```
 
 Local automated tests use mock transports and do not claim a live cloud model call.
