@@ -192,3 +192,70 @@ class ReviewRecord(Base):
     comment: Mapped[str | None] = mapped_column(Text, nullable=True)
     reviewer: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+
+class RealRunRecord(Base):
+    __tablename__ = "real_runs"
+
+    real_run_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    task_id: Mapped[str] = mapped_column(Text, ForeignKey("conversion_tasks.task_id"))
+    doc_id: Mapped[str] = mapped_column(Text)
+    schema_id: Mapped[str] = mapped_column(Text)
+    template_id: Mapped[str] = mapped_column(Text)
+    input_hash: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text)
+    summary_json: Mapped[str] = mapped_column(Text, default="{}")
+    report_paths_json: Mapped[str] = mapped_column(Text, default="{}")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+
+class LearningCandidateRecord(Base):
+    __tablename__ = "learning_candidates"
+
+    candidate_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    real_run_id: Mapped[str] = mapped_column(Text, ForeignKey("real_runs.real_run_id"))
+    task_id: Mapped[str] = mapped_column(Text, ForeignKey("conversion_tasks.task_id"))
+    candidate_type: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text, default="pending")
+    risk_level: Mapped[str] = mapped_column(Text)
+    target_field_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    proposed_payload_json: Mapped[str] = mapped_column(Text, default="{}")
+    final_payload_json: Mapped[str] = mapped_column(Text, default="{}")
+    evidence_json: Mapped[str] = mapped_column(Text, default="{}")
+    generator: Mapped[str] = mapped_column(Text)
+    confidence: Mapped[float] = mapped_column(Float, default=0.0)
+    decision_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    reviewer: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+
+
+class KnowledgePackRecord(Base):
+    __tablename__ = "knowledge_packs"
+
+    pack_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    name: Mapped[str] = mapped_column(Text)
+    scope_json: Mapped[str] = mapped_column(Text, default="{}")
+    status: Mapped[str] = mapped_column(Text, default="draft")
+    version: Mapped[str] = mapped_column(Text)
+    item_count: Mapped[int] = mapped_column(Integer, default=0)
+    regression_report_path: Mapped[str | None] = mapped_column(Text, nullable=True)
+    reviewer: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    activated_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+
+class KnowledgePackItemRecord(Base):
+    __tablename__ = "knowledge_pack_items"
+
+    item_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    pack_id: Mapped[str] = mapped_column(Text, ForeignKey("knowledge_packs.pack_id"))
+    item_type: Mapped[str] = mapped_column(Text)
+    target_field_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    payload_json: Mapped[str] = mapped_column(Text, default="{}")
+    source_candidate_id: Mapped[str | None] = mapped_column(
+        Text,
+        ForeignKey("learning_candidates.candidate_id"),
+        nullable=True,
+    )
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
