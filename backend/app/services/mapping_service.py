@@ -16,6 +16,7 @@ from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
 from app.schemas.target_schema import TargetField, TargetSchema
 from app.services.candidate_service import CandidateService
+from app.services.effective_template_service import EffectiveTemplateService
 from app.services.storage_service import StorageService
 from app.utils.ids import new_id
 
@@ -45,6 +46,7 @@ class MappingService:
 
         schema = self._load_schema(task.schema_id)
         template = self._load_template(task.template_id)
+        template, knowledge_pack_ids = EffectiveTemplateService(self.db).resolve(template)
         mappings = self.engine.map_fields(
             task_id=task_id,
             candidates=candidates,
@@ -64,7 +66,7 @@ class MappingService:
         for mapping in mappings:
             self.db.add(self._to_record(mapping))
 
-        report = self._build_report(task_id, schema, mappings, llm_audit)
+        report = self._build_report(task_id, schema, mappings, llm_audit, knowledge_pack_ids)
         self.storage.save_json(
             f"tasks/{task_id}/mapping_report.json",
             report.model_dump(mode="json"),
@@ -196,6 +198,7 @@ class MappingService:
         schema: TargetSchema,
         mappings: list[FieldMapping],
         llm_audit: dict,
+        knowledge_pack_ids: list[str],
     ) -> MappingReport:
         mapped_targets = {mapping.target_field_id for mapping in mappings}
         unmapped = [
@@ -228,6 +231,7 @@ class MappingService:
                 "llm_suggestion_count": llm_audit.get("suggestion_count", 0),
                 "llm_latency_ms": llm_audit.get("latency_ms"),
                 "llm_error": llm_audit.get("error"),
+                "knowledge_pack_ids": knowledge_pack_ids,
             },
             mappings=[
                 {

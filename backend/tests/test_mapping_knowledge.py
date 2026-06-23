@@ -27,6 +27,7 @@ from app.schemas.knowledge import (
     RealRunView,
 )
 from app.services.knowledge_service import KnowledgeService
+from app.services.mapping_service import MappingService
 from app.services.storage_service import StorageService
 
 
@@ -488,3 +489,39 @@ def test_approved_candidate_preserves_explicit_empty_final_payload(knowledge_con
 
     assert decided.final_payload == {}
     assert json.loads(item.payload_json) == {}
+
+
+def test_active_knowledge_pack_affects_future_mapping_and_report(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    db.query(FieldMappingRecord).delete()
+    db.query(ReviewRecord).delete()
+    db.add(KnowledgePackRecord(
+        pack_id="kp_active_title",
+        name="Active title aliases",
+        scope_json=json.dumps({"schema_id": "schema_k", "template_id": "template_k"}),
+        status="active",
+        version="1.0.0",
+        item_count=1,
+        reviewer="tester",
+    ))
+    db.add(KnowledgePackItemRecord(
+        item_id="kpi_active_title",
+        pack_id="kp_active_title",
+        item_type="alias_candidate",
+        target_field_id="title",
+        payload_json=json.dumps({"aliases": ["doc_title"]}),
+        source_candidate_id=None,
+    ))
+    db.commit()
+
+    mappings, report, status = MappingService(db, storage).run_mapping(
+        task_id,
+        review_threshold=0.8,
+        enable_llm_fallback=False,
+    )
+
+    assert status == "mapping_completed"
+    assert mappings[0].method == "alias_match"
+    assert mappings[0].target_field_id == "title"
+    assert report.summary["knowledge_pack_ids"] == ["kp_active_title"]
