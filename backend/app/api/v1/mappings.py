@@ -3,7 +3,14 @@ from typing import Annotated
 from fastapi import APIRouter, Body, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_db, get_storage_service, get_task_mutation_registry
+from app.api.deps import (
+    get_db,
+    get_settings,
+    get_storage_service,
+    get_task_mutation_registry,
+)
+from app.clients.llm_client import LLMClient
+from app.config import Settings
 from app.errors import TaskStateError
 from app.schemas.api import (
     CandidateListItem,
@@ -36,8 +43,13 @@ def get_candidate_service(
 def get_mapping_service(
     db: Annotated[Session, Depends(get_db)],
     storage: Annotated[StorageService, Depends(get_storage_service)],
+    settings: Annotated[Settings, Depends(get_settings)],
 ) -> MappingService:
-    return MappingService(db=db, storage=storage)
+    return MappingService(
+        db=db,
+        storage=storage,
+        llm_client=LLMClient.from_settings(settings),
+    )
 
 
 def get_review_service(

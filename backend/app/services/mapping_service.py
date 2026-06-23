@@ -2,6 +2,7 @@ import json
 
 from sqlalchemy.orm import Session
 
+from app.clients.llm_client import LLMClient
 from app.db.models import (
     ConversionTask,
     FieldCandidateRecord,
@@ -13,16 +14,23 @@ from app.engines.mapping_engine import MappingEngine
 from app.schemas.mapping import FieldCandidate, FieldMapping
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
-from app.schemas.target_schema import TargetSchema
+from app.schemas.target_schema import TargetField, TargetSchema
 from app.services.candidate_service import CandidateService
 from app.services.storage_service import StorageService
+from app.utils.ids import new_id
 
 
 class MappingService:
-    def __init__(self, db: Session, storage: StorageService) -> None:
+    def __init__(
+        self,
+        db: Session,
+        storage: StorageService,
+        llm_client: LLMClient | None = None,
+    ) -> None:
         self.db = db
         self.storage = storage
         self.engine = MappingEngine()
+        self.llm_client = llm_client or LLMClient(enabled=False, mode="disabled")
 
     def run_mapping(
         self,
@@ -44,12 +52,19 @@ class MappingService:
             template=template,
             review_threshold=review_threshold,
         )
+        llm_audit = self._apply_llm_fallback(
+            task_id=task_id,
+            mappings=mappings,
+            candidates=candidates,
+            schema=schema,
+            enable_llm_fallback=enable_llm_fallback,
+        )
 
         self.db.query(FieldMappingRecord).filter(FieldMappingRecord.task_id == task_id).delete()
         for mapping in mappings:
             self.db.add(self._to_record(mapping))
 
-        report = self._build_report(task_id, schema, mappings)
+        report = self._build_report(task_id, schema, mappings, llm_audit)
         self.storage.save_json(
             f"tasks/{task_id}/mapping_report.json",
             report.model_dump(mode="json"),
@@ -104,11 +119,83 @@ class MappingService:
         )
         return [CandidateService._from_record(record) for record in records]
 
+    def _apply_llm_fallback(
+        self,
+        *,
+        task_id: str,
+        mappings: list[FieldMapping],
+        candidates: list[FieldCandidate],
+        schema: TargetSchema,
+        enable_llm_fallback: bool,
+    ) -> dict:
+        if not enable_llm_fallback:
+            return {
+                "enabled": False,
+                "mode": self.llm_client.mode,
+                "model": self.llm_client.model,
+                "prompt_version": self.llm_client.prompt_version,
+                "status": "disabled",
+                "suggestion_count": 0,
+                "latency_ms": None,
+                "error": None,
+            }
+
+        mapped_targets = {mapping.target_field_id for mapping in mappings}
+        used_candidates = {mapping.candidate_id for mapping in mappings}
+        target_by_id = {field.field_id: field for field in schema.fields}
+        candidate_by_id = {candidate.candidate_id: candidate for candidate in candidates}
+        unmapped_targets = [
+            field for field in schema.fields if field.field_id not in mapped_targets
+        ]
+        unused_candidates = [
+            candidate for candidate in candidates if candidate.candidate_id not in used_candidates
+        ]
+        suggestions = self.llm_client.suggest_mappings(
+            candidates=[candidate.model_dump(mode="json") for candidate in unused_candidates],
+            target_fields=[field.model_dump(mode="json") for field in unmapped_targets],
+        )
+        for suggestion in suggestions:
+            if suggestion.target_field_id in mapped_targets:
+                continue
+            candidate = candidate_by_id.get(suggestion.candidate_id)
+            target = target_by_id.get(suggestion.target_field_id)
+            if candidate is None or target is None or candidate.candidate_id in used_candidates:
+                continue
+            mappings.append(self._llm_mapping(task_id, candidate, target, suggestion))
+            mapped_targets.add(target.field_id)
+            used_candidates.add(candidate.candidate_id)
+        return dict(self.llm_client.last_audit)
+
+    @staticmethod
+    def _llm_mapping(
+        task_id: str,
+        candidate: FieldCandidate,
+        target: TargetField,
+        suggestion,
+    ) -> FieldMapping:
+        return FieldMapping(
+            mapping_id=new_id("map"),
+            task_id=task_id,
+            candidate_id=candidate.candidate_id,
+            source_field={
+                "source_path": candidate.source_path,
+                "source_name": candidate.source_name,
+            },
+            target_field_id=target.field_id,
+            target_field_name=target.name,
+            method="llm_fallback",
+            confidence=suggestion.confidence,
+            status="review_required",
+            need_review=True,
+            evidence=[suggestion.reason],
+        )
+
     def _build_report(
         self,
         task_id: str,
         schema: TargetSchema,
         mappings: list[FieldMapping],
+        llm_audit: dict,
     ) -> MappingReport:
         mapped_targets = {mapping.target_field_id for mapping in mappings}
         unmapped = [
@@ -133,7 +220,14 @@ class MappingService:
                 ),
                 "review_required": len(review_required),
                 "average_confidence": round(avg_confidence, 3),
-                "llm_enabled": False,
+                "llm_enabled": bool(llm_audit.get("enabled")),
+                "llm_mode": llm_audit.get("mode"),
+                "llm_model": llm_audit.get("model"),
+                "llm_prompt_version": llm_audit.get("prompt_version"),
+                "llm_status": llm_audit.get("status"),
+                "llm_suggestion_count": llm_audit.get("suggestion_count", 0),
+                "llm_latency_ms": llm_audit.get("latency_ms"),
+                "llm_error": llm_audit.get("error"),
             },
             mappings=[
                 {

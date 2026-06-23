@@ -10,6 +10,11 @@ def clear_settings_env(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
         "STORAGE_ROOT",
         "DATABASE_URL",
         "LLM_MODE",
+        "LLM_BASE_URL",
+        "LLM_API_KEY",
+        "LLM_MODEL",
+        "LLM_PROMPT_VERSION",
+        "LLM_TIMEOUT_SECONDS",
         "OFFLINE_MODE",
         "MAX_UPLOAD_BYTES",
     ]
