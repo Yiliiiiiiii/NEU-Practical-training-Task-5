@@ -36,7 +36,7 @@ export function JsonWorkbench({
         </div>
         <label className="file-button">
           <FileUp aria-hidden="true" size={15} />
-          File
+          文件
           <input accept="application/json,.json" onChange={handleFileChange} type="file" />
         </label>
       </div>
@@ -49,7 +49,7 @@ export function JsonWorkbench({
         value={value}
       />
       <div className={error ? "json-status json-status--error" : "json-status"}>
-        {error ?? "Valid JSON object"}
+        {error ?? "JSON 对象有效"}
       </div>
     </section>
   );

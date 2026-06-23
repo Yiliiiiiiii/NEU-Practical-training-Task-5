@@ -24,8 +24,8 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
     } catch (error) {
       onToast?.({
         tone: "danger",
-        title: "Task list failed",
-        detail: error instanceof Error ? error.message : "Unexpected task list failure.",
+        title: "Task 列表加载失败",
+        detail: error instanceof Error ? error.message : "Task 列表加载异常。",
       });
     } finally {
       setIsLoading(false);
@@ -46,7 +46,7 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
     });
     onToast?.({
       tone: "info",
-      title: "Task selected",
+      title: "已选择 Task",
       detail: task.task_id,
     });
   }
@@ -55,13 +55,13 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
     <section className="document-panel" aria-labelledby="tasks-page-title">
       <div className="document-panel__header">
         <div>
-          <span className="section-label">Task registry</span>
-          <h2 id="tasks-page-title">Tasks</h2>
-          <p>Open an existing conversion task and continue review from the mapping stage.</p>
+          <span className="section-label">Task 注册表</span>
+          <h2 id="tasks-page-title">Task 列表</h2>
+          <p>打开已有转换 Task，并从 Mapping 阶段继续审核。</p>
         </div>
         <button className="secondary-button" disabled={isLoading} onClick={loadTasks} type="button">
           <RotateCw aria-hidden="true" size={15} />
-          {isLoading ? "Loading..." : "Refresh tasks"}
+          {isLoading ? "加载中..." : "刷新 Task"}
         </button>
       </div>
 
@@ -71,11 +71,11 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
             <thead>
               <tr>
                 <th>Task</th>
-                <th>Document</th>
+                <th>文档</th>
                 <th>Schema</th>
                 <th>Template</th>
-                <th>Status</th>
-                <th>Open</th>
+                <th>状态</th>
+                <th>打开</th>
               </tr>
             </thead>
             <tbody>
@@ -83,7 +83,7 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
                 <tr key={task.task_id}>
                   <td>
                     <strong>{task.task_id}</strong>
-                    {task.task_id === selectedTaskId ? <small>Current selection</small> : null}
+                    {task.task_id === selectedTaskId ? <small>当前选择</small> : null}
                   </td>
                   <td>{task.doc_id}</td>
                   <td>{task.schema_id}</td>
@@ -98,7 +98,7 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
                       type="button"
                     >
                       <ListRestart aria-hidden="true" size={15} />
-                      Open
+                      打开
                     </button>
                   </td>
                 </tr>
@@ -108,8 +108,8 @@ export function TasksPage({ selectedTaskId, onSelectTask, onToast }: TasksPagePr
         </div>
       ) : (
         <div className="empty-state">
-          <strong>No tasks loaded.</strong>
-          <span>Create one from Import, or refresh after another client has created tasks.</span>
+          <strong>暂无 Task。</strong>
+          <span>可先从导入页创建，也可刷新查看其他客户端创建的 Task。</span>
         </div>
       )}
     </section>

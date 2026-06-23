@@ -9,7 +9,7 @@ interface ToastRegionProps {
 
 export function ToastRegion({ messages, onDismiss }: ToastRegionProps) {
   return (
-    <section className="toast-region" aria-live="polite" aria-label="Status messages">
+    <section className="toast-region" aria-live="polite" aria-label="状态消息">
       {messages.map((message) => (
         <article className={`toast toast--${message.tone}`} key={message.id}>
           <div className="toast__content">
@@ -17,10 +17,10 @@ export function ToastRegion({ messages, onDismiss }: ToastRegionProps) {
             {message.detail ? <span>{message.detail}</span> : null}
           </div>
           <button
-            aria-label={`Dismiss ${message.title}`}
+            aria-label={`关闭 ${message.title}`}
             className="toast__dismiss"
             onClick={() => onDismiss(message.id)}
-            title="Dismiss message"
+            title="关闭消息"
             type="button"
           >
             <X aria-hidden="true" size={15} />

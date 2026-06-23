@@ -15,10 +15,10 @@ interface MappingTableProps {
 
 function labelForStatus(mapping: MappingListItem): string {
   if (mapping.need_review) {
-    return "Needs review";
+    return "需审核";
   }
   if (mapping.status === "confirmed") {
-    return "Confirmed";
+    return "已确认";
   }
   return mapping.status;
 }
@@ -51,8 +51,8 @@ export function MappingTable({
   if (!mappings.length) {
     return (
       <div className="empty-state">
-        <strong>No mappings yet.</strong>
-        <span>Generate candidates and run mapping to populate review rows.</span>
+        <strong>暂无 Mapping。</strong>
+        <span>生成候选字段并执行 Mapping 后，这里会显示审核行。</span>
       </div>
     );
   }
@@ -62,14 +62,14 @@ export function MappingTable({
       <table className="data-table">
         <thead>
           <tr>
-            <th>Source</th>
-            <th>Sample</th>
-            <th>Target</th>
-            <th>Method</th>
-            <th>Confidence</th>
-            <th>Status</th>
-            <th>Evidence</th>
-            <th>Review</th>
+            <th>源字段 Source</th>
+            <th>样本 Sample</th>
+            <th>目标字段 Target</th>
+            <th>方法 Method</th>
+            <th>置信度</th>
+            <th>状态</th>
+            <th>证据</th>
+            <th>审核</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +89,7 @@ export function MappingTable({
                 </td>
                 <td>
                   <select
-                    aria-label={`Target field for ${mapping.source_name}`}
+                    aria-label={`为 ${mapping.source_name} 选择 Target field`}
                     onChange={(event) =>
                       setDraftTargets((current) => ({
                         ...current,
@@ -127,7 +127,7 @@ export function MappingTable({
                     type="button"
                   >
                     <CheckCircle2 aria-hidden="true" size={15} />
-                    Confirm
+                    确认
                   </button>
                 </td>
               </tr>

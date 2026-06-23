@@ -22,21 +22,21 @@ describe("API failure normalization", () => {
       { status: 404, headers: { "content-type": "application/json" } },
     );
 
-    await expect(extractApiError(response, "Load task")).resolves.toBe(
-      "Load task failed (404): task not found",
+    await expect(extractApiError(response, "加载 Task")).resolves.toBe(
+      "加载 Task 失败 (404): task not found",
     );
   });
 
   it.each([
-    ["plain text", new Response("backend offline", { status: 503 }), "Request failed (503): backend offline"],
-    ["empty text", new Response("", { status: 503 }), "Request failed (503)"],
+    ["plain text", new Response("backend offline", { status: 503 }), "请求 失败 (503): backend offline"],
+    ["empty text", new Response("", { status: 503 }), "请求 失败 (503)"],
     [
       "legacy detail",
       new Response(JSON.stringify({ detail: "legacy error" }), {
         status: 400,
         headers: { "content-type": "application/json" },
       }),
-      "Request failed (400): legacy error",
+      "请求 失败 (400): legacy error",
     ],
     [
       "unknown JSON",
@@ -44,10 +44,10 @@ describe("API failure normalization", () => {
         status: 500,
         headers: { "content-type": "application/json" },
       }),
-      "Request failed (500)",
+      "请求 失败 (500)",
     ],
   ])("handles %s responses", async (_name, response, expected) => {
-    await expect(extractApiError(response as Response, "Request")).resolves.toBe(expected);
+    await expect(extractApiError(response as Response, "请求")).resolves.toBe(expected);
   });
 
   it("falls back safely when a JSON response body is malformed", async () => {
@@ -56,7 +56,7 @@ describe("API failure normalization", () => {
       headers: { "content-type": "application/json" },
     });
 
-    await expect(extractApiError(response, "Request")).resolves.toBe("Request failed (502)");
+    await expect(extractApiError(response, "请求")).resolves.toBe("请求 失败 (502)");
   });
 });
 
@@ -104,8 +104,8 @@ describe("apiRequest", () => {
       ),
     );
 
-    await expect(apiRequest("/tasks/task/convert", {}, "Convert task")).rejects.toThrow(
-      "Convert task failed (409): busy",
+    await expect(apiRequest("/tasks/task/convert", {}, "Convert Task")).rejects.toThrow(
+      "Convert Task 失败 (409): busy",
     );
   });
 });
@@ -218,7 +218,7 @@ describe("API method surface", () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("missing", { status: 404 })));
 
     await expect(downloadPackage("missing")).rejects.toThrow(
-      "Download package failed (404): missing",
+      "下载 Package 失败 (404): missing",
     );
   });
 });

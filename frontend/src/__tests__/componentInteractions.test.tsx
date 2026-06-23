@@ -15,10 +15,10 @@ afterEach(() => {
 
 describe("CodePanel", () => {
   it("renders an empty state and ignores copy without content", () => {
-    render(<CodePanel emptyMessage="Nothing here" title="Empty JSON" value={null} />);
+    render(<CodePanel emptyMessage="暂无内容" title="Empty JSON" value={null} />);
 
-    expect(screen.getByText("Nothing here")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Copy panel JSON" })).toBeDisabled();
+    expect(screen.getByText("暂无内容")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "复制面板 JSON" })).toBeDisabled();
   });
 
   it("copies formatted JSON and resets its feedback icon", async () => {
@@ -31,14 +31,14 @@ describe("CodePanel", () => {
     render(<CodePanel title="Canonical" value={{ title: "Document" }} />);
 
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Copy panel JSON" }));
+      fireEvent.click(screen.getByRole("button", { name: "复制面板 JSON" }));
     });
     expect(writeText).toHaveBeenCalledWith('{\n  "title": "Document"\n}');
 
     act(() => {
       vi.advanceTimersByTime(1400);
     });
-    expect(screen.getByTitle("Copy Canonical")).toBeInTheDocument();
+    expect(screen.getByTitle("复制 Canonical")).toBeInTheDocument();
   });
 });
 
@@ -106,7 +106,7 @@ describe("mapping and report components", () => {
     const { rerender } = render(
       <MappingTable mappings={[]} onReview={vi.fn()} targetFields={[]} />,
     );
-    expect(screen.getByText("No mappings yet.")).toBeInTheDocument();
+    expect(screen.getByText("暂无 Mapping。")).toBeInTheDocument();
 
     rerender(
       <MappingTable
@@ -125,7 +125,7 @@ describe("mapping and report components", () => {
         targetFields={[]}
       />,
     );
-    expect(screen.getByText("Confirmed")).toBeInTheDocument();
+    expect(screen.getByText("已确认")).toBeInTheDocument();
     expect(screen.getByText("reviewed")).toBeInTheDocument();
     expect(screen.getAllByRole("option").map((option) => option.textContent)).toEqual([
       "title",
@@ -158,20 +158,20 @@ describe("App toast lifecycle", () => {
   it("keeps the newest three messages, supports dismiss, and expires them", () => {
     vi.useFakeTimers();
     render(<App />);
-    const refresh = screen.getByRole("button", { name: "Refresh" });
+    const refresh = screen.getByRole("button", { name: "刷新" });
 
     fireEvent.click(refresh);
     fireEvent.click(refresh);
     fireEvent.click(refresh);
     fireEvent.click(refresh);
-    expect(screen.getAllByText("Workbench ready")).toHaveLength(3);
+    expect(screen.getAllByText("工作台已就绪")).toHaveLength(3);
 
-    fireEvent.click(screen.getAllByRole("button", { name: "Dismiss Workbench ready" })[0]);
-    expect(screen.getAllByText("Workbench ready")).toHaveLength(2);
+    fireEvent.click(screen.getAllByRole("button", { name: "关闭 工作台已就绪" })[0]);
+    expect(screen.getAllByText("工作台已就绪")).toHaveLength(2);
 
     act(() => {
       vi.advanceTimersByTime(6000);
     });
-    expect(screen.queryByText("Workbench ready")).not.toBeInTheDocument();
+    expect(screen.queryByText("工作台已就绪")).not.toBeInTheDocument();
   });
 });

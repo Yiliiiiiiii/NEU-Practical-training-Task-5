@@ -34,21 +34,21 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
         setVerifierReport(null);
         onToast?.({
           tone: "warning",
-          title: "Verifier report unavailable",
-          detail: error instanceof Error ? error.message : "Package was built, but report lookup failed.",
+          title: "Verifier 报告不可用",
+          detail: error instanceof Error ? error.message : "Package 已生成，但报告查询失败。",
         });
       }
       onSelectionChange({ ...selection, taskStatus: response.status });
       onToast?.({
         tone: "success",
-        title: "Package verified",
+        title: "Package 已验证",
         detail: response.package_id,
       });
     } catch (error) {
       onToast?.({
         tone: "danger",
-        title: "Packaging failed",
-        detail: error instanceof Error ? error.message : "Unexpected packaging failure.",
+        title: "Package 失败",
+        detail: error instanceof Error ? error.message : "Package 生成异常。",
       });
     } finally {
       setIsBusy(false);
@@ -71,14 +71,14 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
       setDownloadSha(download.sha256);
       onToast?.({
         tone: "success",
-        title: "Download started",
+        title: "下载已开始",
         detail: download.sha256 ? `SHA-256 ${download.sha256}` : "standard_package.zip",
       });
     } catch (error) {
       onToast?.({
         tone: "danger",
-        title: "Download failed",
-        detail: error instanceof Error ? error.message : "Unexpected download failure.",
+        title: "下载失败",
+        detail: error instanceof Error ? error.message : "ZIP 下载异常。",
       });
     } finally {
       setIsBusy(false);
@@ -89,8 +89,8 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
     return (
       <section className="document-panel">
         <div className="empty-state">
-          <strong>No task selected.</strong>
-          <span>Open and convert a task before creating a standard package.</span>
+          <strong>未选择 Task。</strong>
+          <span>请先打开并成功转换一个 Task，再创建标准 Package。</span>
         </div>
       </section>
     );
@@ -102,9 +102,9 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
     <section className="document-panel package-page" aria-labelledby="package-page-title">
       <div className="document-panel__header">
         <div>
-          <span className="section-label">Verified delivery</span>
-          <h2 id="package-page-title">Package download</h2>
-          <p>Validate all outputs, build the manifest, and download the verified ZIP artifact.</p>
+          <span className="section-label">交付校验</span>
+          <h2 id="package-page-title">Package 下载</h2>
+          <p>校验全部输出，生成 Manifest，并下载已验证的 ZIP artifact。</p>
         </div>
         <StatusBadge status={selection.taskStatus ?? "created"} />
       </div>
@@ -113,7 +113,7 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
         <Archive aria-hidden="true" size={21} />
         <div>
           <strong>standard_package.zip</strong>
-          <span>Content, chunks, reports, metadata, trace, and SHA-256 manifest evidence.</span>
+          <span>包含 content、chunks、reports、metadata、trace 与 SHA-256 Manifest 证据。</span>
         </div>
         <label>
           Package version
@@ -130,13 +130,13 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
           type="button"
         >
           <PackageCheck aria-hidden="true" size={16} />
-          {isBusy ? "Working..." : "Build package"}
+          {isBusy ? "处理中..." : "生成 Package"}
         </button>
       </div>
 
       {!readyToPackage ? (
         <div className="inline-notice inline-notice--warning">
-          Convert the task successfully before packaging.
+          请先成功转换 Task，再执行 Package。
         </div>
       ) : null}
 
@@ -154,13 +154,13 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
             type="button"
           >
             <Download aria-hidden="true" size={16} />
-            Download ZIP
+            下载 ZIP
           </button>
         </>
       ) : (
         <div className="empty-state">
-          <strong>No package generated in this session.</strong>
-          <span>Building runs validation and consistency checks before publishing the ZIP.</span>
+          <strong>本次会话尚未生成 Package。</strong>
+          <span>生成 Package 前会先执行 validation 与 consistency 检查。</span>
         </div>
       )}
     </section>

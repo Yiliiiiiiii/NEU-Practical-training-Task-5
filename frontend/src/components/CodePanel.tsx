@@ -10,7 +10,7 @@ interface CodePanelProps {
 export function CodePanel({
   title,
   value,
-  emptyMessage = "No data loaded yet.",
+  emptyMessage = "暂无数据。",
 }: CodePanelProps) {
   const [didCopy, setDidCopy] = useState(false);
   const formatted = value === null ? "" : JSON.stringify(value, null, 2);
@@ -29,11 +29,11 @@ export function CodePanel({
       <div className="code-panel__bar">
         <strong>{title}</strong>
         <button
-          aria-label="Copy panel JSON"
+          aria-label="复制面板 JSON"
           className="icon-button code-panel__copy"
           disabled={!formatted}
           onClick={() => void handleCopy()}
-          title={`Copy ${title}`}
+          title={`复制 ${title}`}
           type="button"
         >
           {didCopy ? <Check aria-hidden="true" size={14} /> : <Copy aria-hidden="true" size={14} />}

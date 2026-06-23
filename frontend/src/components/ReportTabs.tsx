@@ -22,8 +22,8 @@ export function ReportTabs({ reports }: ReportTabsProps) {
   const active = REPORT_TABS.find((tab) => tab.id === activeTab) ?? REPORT_TABS[0];
 
   return (
-    <section className="report-workbench" aria-label="Task reports">
-      <div className="report-tabs" aria-label="Report type">
+    <section className="report-workbench" aria-label="Task 报告">
+      <div className="report-tabs" aria-label="报告类型">
         {REPORT_TABS.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -41,7 +41,7 @@ export function ReportTabs({ reports }: ReportTabsProps) {
         })}
       </div>
       <CodePanel
-        emptyMessage={`${active.label} report has not been generated yet.`}
+        emptyMessage={`${active.label} report 尚未生成。`}
         title={`${active.label} report`}
         value={reports[active.id]}
       />

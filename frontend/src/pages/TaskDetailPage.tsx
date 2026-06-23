@@ -77,8 +77,8 @@ export function TaskDetailPage({
     } catch (error) {
       onToast?.({
         tone: "danger",
-        title: "Task detail failed",
-        detail: error instanceof Error ? error.message : "Unexpected task detail failure.",
+        title: "Task 详情加载失败",
+        detail: error instanceof Error ? error.message : "Task 详情加载异常。",
       });
     } finally {
       setIsBusy(false);
@@ -101,14 +101,14 @@ export function TaskDetailPage({
       await loadArtifacts();
       onToast?.({
         tone: "success",
-        title: "Conversion completed",
+        title: "Convert 已完成",
         detail: response.outputs.join(", "),
       });
     } catch (error) {
       onToast?.({
         tone: "danger",
-        title: "Conversion failed",
-        detail: error instanceof Error ? error.message : "Unexpected conversion failure.",
+        title: "Convert 失败",
+        detail: error instanceof Error ? error.message : "Convert 过程中发生未知错误。",
       });
     } finally {
       setIsBusy(false);
@@ -119,8 +119,8 @@ export function TaskDetailPage({
     return (
       <section className="document-panel">
         <div className="empty-state">
-          <strong>No task selected.</strong>
-          <span>Open a task from Tasks before inspecting canonical output.</span>
+          <strong>未选择 Task。</strong>
+          <span>请先从 Task 列表打开一个 Task，再检查 Canonical 输出。</span>
         </div>
       </section>
     );
@@ -134,14 +134,14 @@ export function TaskDetailPage({
     <section className="document-panel detail-page" aria-labelledby="detail-page-title">
       <div className="document-panel__header">
         <div>
-          <span className="section-label">Conversion evidence</span>
-          <h2 id="detail-page-title">Task detail</h2>
-          <p>Run canonical conversion, inspect provenance, and read each report from the real API.</p>
+          <span className="section-label">转换证据</span>
+          <h2 id="detail-page-title">Task 详情</h2>
+          <p>执行 Canonical 转换，检查 provenance，并读取真实 API 返回的各类报告。</p>
         </div>
         <div className="button-row">
           <button className="secondary-button" disabled={isBusy} onClick={loadTask} type="button">
             <RotateCw aria-hidden="true" size={15} />
-            Refresh
+            刷新
           </button>
           <button
             className="primary-button"
@@ -150,22 +150,22 @@ export function TaskDetailPage({
             type="button"
           >
             <Play aria-hidden="true" size={15} />
-            {isBusy ? "Working..." : "Convert task"}
+            {isBusy ? "处理中..." : "执行 Convert"}
           </button>
         </div>
       </div>
 
-      <div className="task-facts" aria-label="Task facts">
+      <div className="task-facts" aria-label="Task 信息">
         <div><span>Task</span><strong>{taskId}</strong></div>
-        <div><span>Status</span><StatusBadge status={task?.status ?? selection.taskStatus ?? "created"} /></div>
-        <div><span>Document</span><strong>{task?.doc_id ?? selection.docId ?? "-"}</strong></div>
+        <div><span>状态</span><StatusBadge status={task?.status ?? selection.taskStatus ?? "created"} /></div>
+        <div><span>文档</span><strong>{task?.doc_id ?? selection.docId ?? "-"}</strong></div>
         <div><span>Schema</span><strong>{task?.schema_id ?? selection.schemaId ?? "-"}</strong></div>
         <div><span>Template</span><strong>{task?.template_id ?? selection.templateId ?? "-"}</strong></div>
       </div>
 
       {conversionBlocked ? (
         <div className="inline-notice inline-notice--warning">
-          Resolve mapping review or the failed task state before conversion.
+          请先完成 Mapping 审核，或处理失败状态，再执行转换。
         </div>
       ) : null}
 
@@ -175,11 +175,11 @@ export function TaskDetailPage({
             <FileJson2 aria-hidden="true" size={17} />
             <div>
               <strong>Canonical model</strong>
-              <span>Fields, blocks, assets, and source provenance.</span>
+              <span>字段、blocks、assets 与源 provenance。</span>
             </div>
           </div>
           <CodePanel
-            emptyMessage="Convert the task to generate the canonical model."
+            emptyMessage="转换 Task 后生成 Canonical model。"
             title="canonical.json"
             value={canonical}
           />

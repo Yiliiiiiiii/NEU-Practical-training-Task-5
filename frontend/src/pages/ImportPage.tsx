@@ -49,15 +49,15 @@ const DEMOS: Record<
 const PANEL_COPY: Record<ResourceKey, { title: string; description: string }> = {
   uir: {
     title: "UIR Document",
-    description: "Normalized document with metadata, blocks, assets, and source anchors.",
+    description: "包含 metadata、blocks、assets 与 source anchors 的标准化文档。",
   },
   schema: {
     title: "Target Schema",
-    description: "Canonical field contract with required fields, types, and constraints.",
+    description: "定义 Canonical 字段、required、type 与约束的契约。",
   },
   template: {
     title: "Mapping Template",
-    description: "Aliases, regex rules, transforms, defaults, and enum maps.",
+    description: "包含 aliases、regex rules、transforms、defaults 与 enum maps。",
   },
 };
 
@@ -69,13 +69,13 @@ function parseJsonObject(raw: string): { value: JsonObject | null; error: string
   try {
     const value = JSON.parse(raw) as unknown;
     if (!value || typeof value !== "object" || Array.isArray(value)) {
-      return { value: null, error: "JSON must be an object." };
+      return { value: null, error: "JSON 必须是对象。" };
     }
     return { value: value as JsonObject, error: null };
   } catch (error) {
     return {
       value: null,
-      error: error instanceof Error ? error.message : "Invalid JSON.",
+      error: error instanceof Error ? error.message : "JSON 无法解析。",
     };
   }
 }
@@ -118,8 +118,8 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
     if (!parsed.uir.value || !parsed.schema.value || !parsed.template.value || hasErrors) {
       onToast?.({
         tone: "warning",
-        title: "JSON needs attention",
-        detail: "Fix the highlighted JSON before creating a task.",
+        title: "JSON 需要处理",
+        detail: "先修正高亮 JSON，再创建 Task。",
       });
       return;
     }
@@ -159,14 +159,14 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
       });
       onToast?.({
         tone: "success",
-        title: "Task created",
+        title: "Task 已创建",
         detail: nextResult.taskId,
       });
     } catch (error) {
       onToast?.({
         tone: "danger",
-        title: "Import failed",
-        detail: error instanceof Error ? error.message : "Unexpected import failure.",
+        title: "导入失败",
+        detail: error instanceof Error ? error.message : "导入过程中发生未知错误。",
       });
     } finally {
       setIsSubmitting(false);
@@ -177,9 +177,9 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
     <section className="document-panel import-page" aria-labelledby="import-page-title">
       <div className="document-panel__header">
         <div>
-          <span className="section-label">Phase 8 setup</span>
-          <h2 id="import-page-title">Import and setup</h2>
-          <p>Load documents and contracts, then create a conversion task against the real API.</p>
+          <span className="section-label">Phase 8 初始化</span>
+          <h2 id="import-page-title">导入与创建 Task</h2>
+          <p>加载文档与契约，然后通过真实 API 创建转换 Task。</p>
         </div>
         <div className="button-row">
           <button
@@ -188,7 +188,7 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
             type="button"
           >
             <RotateCcw aria-hidden="true" size={15} />
-            Load general demo
+            加载 general demo
           </button>
           <button
             className={`secondary-button ${activeDemo === "policy" ? "secondary-button--active" : ""}`}
@@ -196,7 +196,7 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
             type="button"
           >
             <Database aria-hidden="true" size={15} />
-            Load policy demo
+            加载 policy demo
           </button>
         </div>
       </div>
@@ -220,11 +220,11 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
 
       <div className="action-strip">
         <div>
-          <strong>{hasErrors ? "JSON validation blocked" : "Ready to create task"}</strong>
+          <strong>{hasErrors ? "JSON 校验阻止创建" : "已准备创建 Task"}</strong>
           <span>
             {hasErrors
-              ? "Resolve parser errors above before calling the backend."
-              : "The next action imports all three resources and creates a task."}
+              ? "请先修正上方解析错误，再调用后端。"
+              : "下一步会导入三类资源，并创建一个 Task。"}
           </span>
         </div>
         <button
@@ -234,7 +234,7 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
           type="button"
         >
           <Play aria-hidden="true" size={16} />
-          {isSubmitting ? "Creating..." : "Create task"}
+          {isSubmitting ? "创建中..." : "创建 Task"}
         </button>
       </div>
 
@@ -245,7 +245,7 @@ export function ImportPage({ onSelectionChange, onToast }: ImportPageProps) {
           <span>Doc {result.docId}</span>
           <span>Schema {result.schemaId}</span>
           <span>Template {result.templateId}</span>
-          <span>Status {result.status}</span>
+          <span>状态 {result.status}</span>
         </div>
       ) : null}
     </section>

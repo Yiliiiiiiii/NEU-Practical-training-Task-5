@@ -26,15 +26,15 @@ function isRecord(value: JsonValue | undefined): value is Record<string, JsonVal
 
 function getVerifiedPayloadCount(report: ReportResponse | null): string {
   if (!report || !isRecord(report.summary)) {
-    return "Unavailable";
+    return "不可用";
   }
   const count = report.summary.verified_payloads;
-  return typeof count === "number" ? String(count) : "Unavailable";
+  return typeof count === "number" ? String(count) : "不可用";
 }
 
 function getIssueCount(report: ReportResponse | null): string {
   if (!report || !Array.isArray(report.issues)) {
-    return "Unavailable";
+    return "不可用";
   }
   return String(report.issues.length);
 }
@@ -47,26 +47,26 @@ export function PackageSummary({ result, verifierReport, downloadSha }: PackageS
     <section className="package-summary" aria-labelledby="package-summary-title">
       <div className="package-summary__header">
         <div>
-          <span className="section-label">Artifact evidence</span>
-          <h3 id="package-summary-title">Package Summary</h3>
+          <span className="section-label">Artifact 证据</span>
+          <h3 id="package-summary-title">Package 摘要</h3>
         </div>
         <StatusBadge status={result.status} />
       </div>
 
       <div className="package-proof">
         <div><span>Package ID</span><strong>{result.package_id}</strong></div>
-        <div><span>ZIP path</span><strong>{result.zip_path}</strong></div>
-        <div><span>SHA-256</span><code>{result.sha256 ?? "Unavailable"}</code></div>
-        <div><span>Files</span><strong>{STANDARD_PACKAGE_FILES.length}</strong></div>
+        <div><span>ZIP 路径</span><strong>{result.zip_path}</strong></div>
+        <div><span>SHA-256</span><code>{result.sha256 ?? "不可用"}</code></div>
+        <div><span>文件数</span><strong>{STANDARD_PACKAGE_FILES.length}</strong></div>
         <div className="package-proof__verifier">
-          <span>External verifier</span>
-          <strong>{verifierReport?.passed === true ? "Verifier passed" : "Verifier pending"}</strong>
-          <small>{verifiedPayloads} payloads, {issueCount} issues</small>
+          <span>外部 verifier</span>
+          <strong>{verifierReport?.passed === true ? "Verifier 通过" : "Verifier 待执行"}</strong>
+          <small>{verifiedPayloads} 个 payload，{issueCount} 个 issue</small>
         </div>
-        {downloadSha ? <div><span>Download header</span><code>{downloadSha}</code></div> : null}
+        {downloadSha ? <div><span>下载响应头</span><code>{downloadSha}</code></div> : null}
       </div>
 
-      <div className="manifest-file-list" aria-label="Standard package files">
+      <div className="manifest-file-list" aria-label="标准 Package 文件">
         {STANDARD_PACKAGE_FILES.map((file) => (
           <span className="file-chip" key={file}>{file}</span>
         ))}

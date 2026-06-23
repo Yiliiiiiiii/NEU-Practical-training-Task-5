@@ -14,7 +14,7 @@ interface MappingPageProps {
 
 function requireTaskId(taskId: string | null): string {
   if (!taskId) {
-    throw new Error("Select or enter a task first.");
+    throw new Error("请先选择或输入 Task。");
   }
   return taskId;
 }
@@ -61,8 +61,8 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
           setTargetFields([]);
           onToast?.({
             tone: "warning",
-            title: "Schema fields unavailable",
-            detail: error instanceof Error ? error.message : "Target field lookup failed.",
+            title: "Schema 字段不可用",
+            detail: error instanceof Error ? error.message : "Target field 查询失败。",
           });
         }
       });
@@ -114,8 +114,8 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
       } catch (error) {
         onToast?.({
           tone: "warning",
-          title: "Mapping rows unavailable",
-          detail: error instanceof Error ? error.message : "Generate candidates before mapping.",
+          title: "Mapping 行不可用",
+          detail: error instanceof Error ? error.message : "请先生成候选字段再执行 Mapping。",
         });
       }
     },
@@ -139,7 +139,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
       onToast?.({
         tone: "danger",
         title: failureTitle,
-        detail: error instanceof Error ? error.message : "Unexpected mapping failure.",
+        detail: error instanceof Error ? error.message : "Mapping 过程中发生未知错误。",
       });
     } finally {
       setIsBusy(false);
@@ -153,15 +153,15 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         const response = await api.generateCandidates(taskId);
         const candidateResponse = await api.listCandidates(taskId);
         setCandidates(candidateResponse.items);
-        setRunSummary(`${response.candidate_count} candidates generated`);
+        setRunSummary(`${response.candidate_count} 个候选字段已生成`);
         onSelectionChange({ ...selection, taskStatus: response.status });
         onToast?.({
           tone: "success",
-          title: "Candidates generated",
-          detail: `${response.candidate_count} source fields found.`,
+          title: "候选字段已生成",
+          detail: `找到 ${response.candidate_count} 个源字段。`,
         });
       },
-      "Candidate generation failed",
+      "候选字段生成失败",
     );
   }
 
@@ -173,16 +173,16 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         const mappingResponse = await api.listMappings(taskId);
         setMappings(mappingResponse.items);
         setRunSummary(
-          `${response.mapped_count} mapped, ${response.review_required_count} need review`,
+          `${response.mapped_count} 个已 Mapping，${response.review_required_count} 个需审核`,
         );
         onSelectionChange({ ...selection, taskStatus: response.status });
         onToast?.({
           tone: response.review_required_count ? "warning" : "success",
-          title: "Mapping completed",
-          detail: `${response.review_required_count} rows need review.`,
+          title: "Mapping 已完成",
+          detail: `${response.review_required_count} 行需审核。`,
         });
       },
-      "Mapping failed",
+      "Mapping 失败",
     );
   }
 
@@ -201,11 +201,11 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         await refreshRows(taskId);
         onToast?.({
           tone: "success",
-          title: "Review saved",
-          detail: `${response.updated} mapping updated.`,
+          title: "审核已保存",
+          detail: `${response.updated} 条 Mapping 已更新。`,
         });
       },
-      "Review failed",
+      "审核保存失败",
     );
   }
 
@@ -213,9 +213,9 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
     <section className="document-panel mapping-page" aria-labelledby="mapping-page-title">
       <div className="document-panel__header">
         <div>
-          <span className="section-label">Field alignment</span>
-          <h2 id="mapping-page-title">Mapping review</h2>
-          <p>Generate source candidates, run deterministic mapping, then confirm review rows.</p>
+          <span className="section-label">字段对齐</span>
+          <h2 id="mapping-page-title">Mapping 审核</h2>
+          <p>生成源字段候选，执行确定性 Mapping，然后确认需审核的行。</p>
         </div>
         <div className="button-row">
           <button
@@ -225,7 +225,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
             type="button"
           >
             <RotateCw aria-hidden="true" size={15} />
-            Refresh rows
+            刷新行
           </button>
           <button
             className="secondary-button"
@@ -234,7 +234,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
             type="button"
           >
             <Wand2 aria-hidden="true" size={15} />
-            Generate candidates
+            生成候选字段
           </button>
           <button
             className="primary-button"
@@ -243,7 +243,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
             type="button"
           >
             <GitBranch aria-hidden="true" size={15} />
-            Run mapping
+            执行 Mapping
           </button>
         </div>
       </div>
@@ -260,7 +260,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         </label>
         <button className="secondary-button" onClick={useManualTaskId} type="button">
           <ListChecks aria-hidden="true" size={15} />
-          Use task
+          使用 Task
         </button>
         <label className="fallback-toggle">
           <input
@@ -277,7 +277,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
       <div className="metric-row">
         <div className="metric">
           <strong>{candidates.length}</strong>
-          <span>Candidates</span>
+          <span>候选字段</span>
         </div>
         <div className="metric">
           <strong>{mappings.length}</strong>
@@ -285,11 +285,11 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         </div>
         <div className="metric">
           <strong>{mappings.filter((mapping) => mapping.need_review).length}</strong>
-          <span>Need review</span>
+          <span>需审核</span>
         </div>
         <div className="metric">
           <strong>{derivedTargetFields.length}</strong>
-          <span>Target fields</span>
+          <span>目标字段</span>
         </div>
       </div>
 

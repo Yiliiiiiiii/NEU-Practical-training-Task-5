@@ -13,7 +13,7 @@ describe("api client helpers", () => {
       headers: { "content-type": "application/json" },
     });
 
-    await expect(extractApiError(response, "Load task")).resolves.toContain(
+    await expect(extractApiError(response, "加载 Task")).resolves.toContain(
       "task not found",
     );
   });

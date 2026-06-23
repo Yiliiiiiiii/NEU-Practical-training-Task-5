@@ -4,12 +4,12 @@ interface ConfidenceBadgeProps {
 
 function confidenceLevel(value: number): { label: string; tone: "high" | "medium" | "low" } {
   if (value >= 0.9) {
-    return { label: "High", tone: "high" };
+    return { label: "高", tone: "high" };
   }
   if (value >= 0.75) {
-    return { label: "Review", tone: "medium" };
+    return { label: "需审核", tone: "medium" };
   }
-  return { label: "Low", tone: "low" };
+  return { label: "低", tone: "low" };
 }
 
 export function ConfidenceBadge({ value }: ConfidenceBadgeProps) {

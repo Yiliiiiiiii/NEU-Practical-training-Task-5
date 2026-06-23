@@ -37,7 +37,7 @@ export function AppShell({
         <div className="brand-lockup">
           <ClipboardCheck aria-hidden="true" size={22} strokeWidth={2.2} />
           <div>
-            <span className="brand-kicker">Data governance workbench</span>
+            <span className="brand-kicker">数据治理工作台</span>
             <h1>SchemaPack Agent</h1>
             <small>数据格式标准化转换智能体</small>
           </div>
@@ -45,15 +45,15 @@ export function AppShell({
         <div className="topbar__meta">
           <span className="topbar-pill">Phase 10</span>
           <span title={API_BASE_URL}>API {API_BASE_URL.replace(/^https?:\/\//, "")}</span>
-          <span>{currentTaskId ? `Task ${currentTaskId}` : "No task selected"}</span>
+          <span>{currentTaskId ? `Task ${currentTaskId}` : "未选择 Task"}</span>
           <button className="icon-button" onClick={onRefresh} type="button">
             <RefreshCw aria-hidden="true" size={16} />
-            Refresh
+            刷新
           </button>
         </div>
       </header>
 
-      <aside className="workspace-rail" aria-label="Workbench navigation">
+      <aside className="workspace-rail" aria-label="工作台导航">
         <nav className="nav-list">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
@@ -75,15 +75,15 @@ export function AppShell({
         </nav>
         <div className="rail-status">
           <strong>SchemaPack Agent</strong>
-          <span>Running</span>
+          <span>运行中</span>
         </div>
       </aside>
 
       <main className="workspace-main">
-        <section className="pipeline-card" aria-label="Workflow summary">
+        <section className="pipeline-card" aria-label="Workflow 概览">
           <div>
             <h2>UIR -&gt; Schema -&gt; Mapping -&gt; Transform</h2>
-            <p>Canonical -&gt; Render -&gt; Validate -&gt; Manifest -&gt; Zip</p>
+            <p>Canonical -&gt; Render -&gt; Validate -&gt; Manifest -&gt; ZIP</p>
           </div>
           <StageRail stages={stages} />
         </section>

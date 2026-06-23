@@ -29,7 +29,7 @@ export function buildApiUrl(base: string, path: string): string {
 }
 
 export async function extractApiError(response: Response, label: string): Promise<string> {
-  const prefix = `${label} failed (${response.status})`;
+  const prefix = `${label} 失败 (${response.status})`;
   const contentType = response.headers.get("content-type") ?? "";
 
   if (!contentType.includes("application/json")) {
@@ -57,7 +57,7 @@ export async function extractApiError(response: Response, label: string): Promis
 export async function apiRequest<T>(
   path: string,
   options: RequestInit = {},
-  label = "API request",
+  label = "API 请求",
 ): Promise<T> {
   const headers = new Headers(options.headers);
   if (options.body && !headers.has("content-type")) {
@@ -92,37 +92,37 @@ export const api = {
     return apiRequest<DocumentImportResponse>(
       "/documents/import",
       { method: "POST", body: jsonBody({ uir }) },
-      "Import UIR",
+      "导入 UIR",
     );
   },
   listDocuments() {
-    return apiRequest<DocumentListResponse>("/documents", {}, "Load documents");
+    return apiRequest<DocumentListResponse>("/documents", {}, "加载 documents");
   },
   createSchema(schema: TargetSchema) {
     return apiRequest<{ schema_id: string; status: string }>(
       "/schemas",
       { method: "POST", body: jsonBody({ schema }) },
-      "Create schema",
+      "创建 Schema",
     );
   },
   listSchemas() {
-    return apiRequest<SchemaListResponse>("/schemas", {}, "Load schemas");
+    return apiRequest<SchemaListResponse>("/schemas", {}, "加载 schemas");
   },
   getSchema(schemaId: string) {
-    return apiRequest<TargetSchema>(`/schemas/${schemaId}`, {}, "Load schema");
+    return apiRequest<TargetSchema>(`/schemas/${schemaId}`, {}, "加载 Schema");
   },
   createTemplate(template: MappingTemplate) {
     return apiRequest<{ template_id: string; status: string }>(
       "/templates",
       { method: "POST", body: jsonBody({ template }) },
-      "Create template",
+      "创建 Template",
     );
   },
   listTemplates() {
-    return apiRequest<TemplateListResponse>("/templates", {}, "Load templates");
+    return apiRequest<TemplateListResponse>("/templates", {}, "加载 templates");
   },
   getTemplate(templateId: string) {
-    return apiRequest<MappingTemplate>(`/templates/${templateId}`, {}, "Load template");
+    return apiRequest<MappingTemplate>(`/templates/${templateId}`, {}, "加载 Template");
   },
   createTask(payload: {
     doc_id: string;
@@ -135,27 +135,27 @@ export const api = {
     return apiRequest<TaskCreateResponse>(
       "/tasks",
       { method: "POST", body: jsonBody(payload) },
-      "Create task",
+      "创建 Task",
     );
   },
   listTasks() {
-    return apiRequest<TaskListResponse>("/tasks", {}, "Load tasks");
+    return apiRequest<TaskListResponse>("/tasks", {}, "加载 Task");
   },
   getTask(taskId: string) {
-    return apiRequest<TaskDetailResponse>(`/tasks/${taskId}`, {}, "Load task");
+    return apiRequest<TaskDetailResponse>(`/tasks/${taskId}`, {}, "加载 Task");
   },
   generateCandidates(taskId: string) {
     return apiRequest<GenerateCandidatesResponse>(
       `/tasks/${taskId}/generate-candidates`,
       { method: "POST", body: jsonBody({}) },
-      "Generate candidates",
+      "生成候选字段",
     );
   },
   listCandidates(taskId: string) {
     return apiRequest<CandidateListResponse>(
       `/tasks/${taskId}/candidates`,
       {},
-      "Load candidates",
+      "加载候选字段",
     );
   },
   runMapping(taskId: string, reviewThreshold = 0.8, enableLlmFallback = false) {
@@ -168,11 +168,11 @@ export const api = {
           review_threshold: reviewThreshold,
         }),
       },
-      "Run mapping",
+      "执行 Mapping",
     );
   },
   listMappings(taskId: string) {
-    return apiRequest<MappingListResponse>(`/tasks/${taskId}/mappings`, {}, "Load mappings");
+    return apiRequest<MappingListResponse>(`/tasks/${taskId}/mappings`, {}, "加载 Mapping");
   },
   reviewMappings(
     taskId: string,
@@ -187,55 +187,55 @@ export const api = {
     return apiRequest<{ task_id: string; updated: number; status: string }>(
       `/tasks/${taskId}/mappings/review`,
       { method: "POST", body: jsonBody({ reviews }) },
-      "Save mapping review",
+      "保存 Mapping 审核",
     );
   },
   convertTask(taskId: string) {
     return apiRequest<ConvertResponse>(
       `/tasks/${taskId}/convert`,
       { method: "POST", body: jsonBody({ render_outputs: true, chunk_size: 500 }) },
-      "Convert task",
+      "Convert Task",
     );
   },
   getCanonical(taskId: string) {
-    return apiRequest<ReportResponse>(`/tasks/${taskId}/canonical`, {}, "Load canonical");
+    return apiRequest<ReportResponse>(`/tasks/${taskId}/canonical`, {}, "加载 Canonical");
   },
   getMappingReport(taskId: string) {
     return apiRequest<ReportResponse>(
       `/tasks/${taskId}/reports/mapping`,
       {},
-      "Load mapping report",
+      "加载 Mapping report",
     );
   },
   getValidationReport(taskId: string) {
     return apiRequest<ReportResponse>(
       `/tasks/${taskId}/reports/validation`,
       {},
-      "Load validation report",
+      "加载 Validation report",
     );
   },
   getConsistencyReport(taskId: string) {
     return apiRequest<ReportResponse>(
       `/tasks/${taskId}/reports/consistency`,
       {},
-      "Load consistency report",
+      "加载 Consistency report",
     );
   },
   getPackageVerifierReport(taskId: string) {
     return apiRequest<ReportResponse>(
       `/tasks/${taskId}/reports/package-verifier`,
       {},
-      "Load package verifier report",
+      "加载 Package verifier report",
     );
   },
   getTrace(taskId: string) {
-    return apiRequest<ReportResponse>(`/tasks/${taskId}/trace`, {}, "Load trace");
+    return apiRequest<ReportResponse>(`/tasks/${taskId}/trace`, {}, "加载 Trace");
   },
   createPackage(taskId: string, packageVersion = "1.0.0") {
     return apiRequest<PackageResponse>(
       `/tasks/${taskId}/package`,
       { method: "POST", body: jsonBody({ package_version: packageVersion }) },
-      "Create package",
+      "生成 Package",
     );
   },
 };
@@ -243,7 +243,7 @@ export const api = {
 export async function downloadPackage(taskId: string): Promise<DownloadResult> {
   const response = await fetch(buildApiUrl(API_BASE_URL, `/tasks/${taskId}/package/download`));
   if (!response.ok) {
-    throw new Error(await extractApiError(response, "Download package"));
+    throw new Error(await extractApiError(response, "下载 Package"));
   }
   return {
     blob: await response.blob(),

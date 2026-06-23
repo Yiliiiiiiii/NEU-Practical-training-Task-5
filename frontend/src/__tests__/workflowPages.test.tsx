@@ -150,7 +150,7 @@ describe("ImportPage", () => {
     const onToast = vi.fn();
     render(<ImportPage onSelectionChange={onSelectionChange} onToast={onToast} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Create task" }));
+    fireEvent.click(screen.getByRole("button", { name: "创建 Task" }));
 
     await waitFor(() => expect(onSelectionChange).toHaveBeenCalled());
     expect(onSelectionChange).toHaveBeenCalledWith({
@@ -161,32 +161,32 @@ describe("ImportPage", () => {
       taskStatus: "created",
     });
     expect(await screen.findByText("Task task_1")).toBeInTheDocument();
-    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Task created" }));
+    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Task 已创建" }));
   });
 
   it("blocks invalid JSON, supports demo switching, and reports API failure", async () => {
     const onToast = vi.fn();
     render(<ImportPage onToast={onToast} />);
 
-    fireEvent.click(screen.getByRole("button", { name: /Load policy demo/i }));
-    expect(screen.getByRole("button", { name: /Load policy demo/i })).toHaveClass(
+    fireEvent.click(screen.getByRole("button", { name: /加载 policy demo/i }));
+    expect(screen.getByRole("button", { name: /加载 policy demo/i })).toHaveClass(
       "secondary-button--active",
     );
     const uirEditor = screen.getByRole("textbox", { name: "UIR Document" });
     fireEvent.change(uirEditor, { target: { value: "[]" } });
-    expect(screen.getByText("JSON must be an object.")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Create task" })).toBeDisabled();
+    expect(screen.getByText("JSON 必须是对象。")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "创建 Task" })).toBeDisabled();
 
     fireEvent.change(uirEditor, { target: { value: "{" } });
     expect(uirEditor).toHaveAttribute("aria-invalid", "true");
 
-    fireEvent.click(screen.getByRole("button", { name: /Load general demo/i }));
+    fireEvent.click(screen.getByRole("button", { name: /加载 general demo/i }));
     vi.spyOn(api, "importDocument").mockRejectedValue("offline");
-    fireEvent.click(screen.getByRole("button", { name: "Create task" }));
+    fireEvent.click(screen.getByRole("button", { name: "创建 Task" }));
 
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Import failed", detail: "Unexpected import failure." }),
+        expect.objectContaining({ title: "导入失败", detail: "导入过程中发生未知错误。" }),
       ),
     );
   });
@@ -205,12 +205,12 @@ describe("TasksPage", () => {
       />,
     );
 
-    expect(await screen.findByText("Current selection")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Open" }));
+    expect(await screen.findByText("当前选择")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "打开" }));
     expect(onSelectTask).toHaveBeenCalledWith(ACTIVE_SELECTION);
-    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Task selected" }));
+    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "已选择 Task" }));
 
-    fireEvent.click(screen.getByRole("button", { name: /Refresh tasks/i }));
+    fireEvent.click(screen.getByRole("button", { name: /刷新 Task/i }));
     await waitFor(() => expect(api.listTasks).toHaveBeenCalledTimes(2));
   });
 
@@ -219,10 +219,10 @@ describe("TasksPage", () => {
     const onToast = vi.fn();
     render(<TasksPage onSelectTask={vi.fn()} onToast={onToast} selectedTaskId={null} />);
 
-    expect(await screen.findByText("No tasks loaded.")).toBeInTheDocument();
+    expect(await screen.findByText("暂无 Task。")).toBeInTheDocument();
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Task list failed", detail: "network down" }),
+        expect.objectContaining({ title: "Task 列表加载失败", detail: "network down" }),
       ),
     );
   });
@@ -261,15 +261,15 @@ describe("MappingPage", () => {
     );
 
     expect(await screen.findByText("Title")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Generate candidates/i }));
-    expect(await screen.findByText("2 candidates generated")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Run mapping/i }));
-    expect(await screen.findByText("1 mapped, 1 need review")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /生成候选字段/i }));
+    expect(await screen.findByText("2 个候选字段已生成")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /执行 Mapping/i }));
+    expect(await screen.findByText("1 个已 Mapping，1 个需审核")).toBeInTheDocument();
 
-    fireEvent.change(screen.getByLabelText("Target field for Title"), {
+    fireEvent.change(screen.getByLabelText("为 Title 选择 Target field"), {
       target: { value: "summary" },
     });
-    fireEvent.click(screen.getByRole("button", { name: "Confirm" }));
+    fireEvent.click(screen.getByRole("button", { name: "确认" }));
     await waitFor(() =>
       expect(api.reviewMappings).toHaveBeenCalledWith(
         "task_1",
@@ -279,7 +279,7 @@ describe("MappingPage", () => {
     expect(onSelectionChange).toHaveBeenCalledWith(
       expect.objectContaining({ taskStatus: "review_required" }),
     );
-    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Review saved" }));
+    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "审核已保存" }));
   });
 
   it("runs mapping with DeepSeek fallback enabled from the page control", async () => {
@@ -296,7 +296,7 @@ describe("MappingPage", () => {
     });
     expect(fallbackToggle).toBeChecked();
 
-    fireEvent.click(screen.getByRole("button", { name: /Run mapping/i }));
+    fireEvent.click(screen.getByRole("button", { name: /执行 Mapping/i }));
 
     await waitFor(() => expect(api.runMapping).toHaveBeenCalledWith("task_1", 0.8, true));
   });
@@ -315,15 +315,15 @@ describe("MappingPage", () => {
     );
 
     fireEvent.change(screen.getByPlaceholderText("task_id"), { target: { value: "  manual  " } });
-    fireEvent.click(screen.getByRole("button", { name: "Use task" }));
+    fireEvent.click(screen.getByRole("button", { name: "使用 Task" }));
     expect(onSelectionChange).toHaveBeenCalledWith(
       expect.objectContaining({ taskId: "manual", taskStatus: "created" }),
     );
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
         expect.objectContaining({
-          title: "Schema fields unavailable",
-          detail: "Target field lookup failed.",
+          title: "Schema 字段不可用",
+          detail: "Target field 查询失败。",
         }),
       ),
     );
@@ -340,11 +340,11 @@ describe("MappingPage", () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /Generate candidates/i }));
+    fireEvent.click(screen.getByRole("button", { name: /生成候选字段/i }));
 
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Candidate generation failed", detail: "task busy" }),
+        expect.objectContaining({ title: "候选字段生成失败", detail: "task busy" }),
       ),
     );
   });
@@ -365,7 +365,7 @@ describe("MappingPage", () => {
         selection={EMPTY_SELECTION}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: "Use task" }));
+    fireEvent.click(screen.getByRole("button", { name: "使用 Task" }));
     expect(onSelectionChange).not.toHaveBeenCalled();
 
     rerender(
@@ -375,10 +375,10 @@ describe("MappingPage", () => {
         selection={ACTIVE_SELECTION}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: /Run mapping/i }));
+    fireEvent.click(screen.getByRole("button", { name: /执行 Mapping/i }));
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ tone: "success", title: "Mapping completed" }),
+        expect.objectContaining({ tone: "success", title: "Mapping 已完成" }),
       ),
     );
   });
@@ -392,7 +392,7 @@ describe("TaskDetailPage", () => {
         selection={EMPTY_SELECTION}
       />,
     );
-    expect(screen.getByText("No task selected.")).toBeInTheDocument();
+    expect(screen.getByText("未选择 Task。")).toBeInTheDocument();
   });
 
   it("loads task evidence, tolerates optional report absence, and converts", async () => {
@@ -408,13 +408,13 @@ describe("TaskDetailPage", () => {
     );
 
     expect(await screen.findByText(/canonical_version/)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Convert task" }));
+    fireEvent.click(screen.getByRole("button", { name: "执行 Convert" }));
 
     await waitFor(() => expect(api.convertTask).toHaveBeenCalledWith("task_1"));
     expect(onSelectionChange).toHaveBeenCalledWith(
       expect.objectContaining({ taskStatus: "rendered" }),
     );
-    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Conversion completed" }));
+    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Convert 已完成" }));
   });
 
   it("blocks review tasks and reports detail failures", async () => {
@@ -427,8 +427,8 @@ describe("TaskDetailPage", () => {
         selection={{ ...ACTIVE_SELECTION, taskStatus: "review_required" }}
       />,
     );
-    expect(await screen.findByText(/Resolve mapping review/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Convert task" })).toBeDisabled();
+    expect(await screen.findByText(/请先完成 Mapping 审核/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "执行 Convert" })).toBeDisabled();
 
     vi.mocked(api.getTask).mockRejectedValue("unknown failure");
     rerender(
@@ -441,8 +441,8 @@ describe("TaskDetailPage", () => {
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
         expect.objectContaining({
-          title: "Task detail failed",
-          detail: "Unexpected task detail failure.",
+          title: "Task 详情加载失败",
+          detail: "Task 详情加载异常。",
         }),
       ),
     );
@@ -459,11 +459,11 @@ describe("TaskDetailPage", () => {
       />,
     );
     await screen.findByText(/canonical_version/);
-    fireEvent.click(screen.getByRole("button", { name: "Convert task" }));
+    fireEvent.click(screen.getByRole("button", { name: "执行 Convert" }));
 
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Conversion failed", detail: "conversion blocked" }),
+        expect.objectContaining({ title: "Convert 失败", detail: "conversion blocked" }),
       ),
     );
     expect(screen.getByText("task_1")).toBeInTheDocument();
@@ -475,7 +475,7 @@ describe("PackagePage", () => {
     const { rerender } = render(
       <PackagePage onSelectionChange={vi.fn()} selection={EMPTY_SELECTION} />,
     );
-    expect(screen.getByText("No task selected.")).toBeInTheDocument();
+    expect(screen.getByText("未选择 Task。")).toBeInTheDocument();
 
     rerender(
       <PackagePage
@@ -483,8 +483,8 @@ describe("PackagePage", () => {
         selection={{ ...ACTIVE_SELECTION, taskStatus: "created" }}
       />,
     );
-    expect(screen.getByText(/Convert the task successfully/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Build package" })).toBeDisabled();
+    expect(screen.getByText(/请先成功转换 Task/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "生成 Package" })).toBeDisabled();
   });
 
   it("builds and downloads a package with SHA evidence", async () => {
@@ -514,17 +514,17 @@ describe("PackagePage", () => {
     );
 
     fireEvent.change(screen.getByLabelText("Package version"), { target: { value: "" } });
-    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
+    fireEvent.click(screen.getByRole("button", { name: "生成 Package" }));
     expect(await screen.findByText("pkg_1")).toBeInTheDocument();
     expect(api.createPackage).toHaveBeenCalledWith("task_1", "1.0.0");
     expect(onSelectionChange).toHaveBeenCalledWith(
       expect.objectContaining({ taskStatus: "completed" }),
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Download ZIP" }));
+    fireEvent.click(screen.getByRole("button", { name: "下载 ZIP" }));
     expect(await screen.findByText("download-sha")).toBeInTheDocument();
     expect(clickSpy).toHaveBeenCalled();
-    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Download started" }));
+    expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "下载已开始" }));
   });
 
   it("shows the external verifier report after building a package", async () => {
@@ -541,10 +541,10 @@ describe("PackagePage", () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
+    fireEvent.click(screen.getByRole("button", { name: "生成 Package" }));
 
-    expect(await screen.findByText("Verifier passed")).toBeInTheDocument();
-    expect(screen.getByText(/9 payloads, 0 issues/i)).toBeInTheDocument();
+    expect(await screen.findByText("Verifier 通过")).toBeInTheDocument();
+    expect(screen.getByText(/9 个 payload，0 个 issue/i)).toBeInTheDocument();
     expect(api.getPackageVerifierReport).toHaveBeenCalledWith("task_1");
   });
 
@@ -557,9 +557,9 @@ describe("PackagePage", () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
+    fireEvent.click(screen.getByRole("button", { name: "生成 Package" }));
 
-    expect(await screen.findByText("Package Summary")).toBeInTheDocument();
+    expect(await screen.findByText("Package 摘要")).toBeInTheDocument();
     expect(screen.getByText("manifest.json")).toBeInTheDocument();
     expect(screen.getByText("content.json")).toBeInTheDocument();
     expect(screen.getByText("trace.json")).toBeInTheDocument();
@@ -576,10 +576,10 @@ describe("PackagePage", () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
+    fireEvent.click(screen.getByRole("button", { name: "生成 Package" }));
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Packaging failed", detail: "validation blocked" }),
+        expect.objectContaining({ title: "Package 失败", detail: "validation blocked" }),
       ),
     );
   });
@@ -594,12 +594,12 @@ describe("PackagePage", () => {
         selection={{ ...ACTIVE_SELECTION, taskStatus: "rendered" }}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
-    fireEvent.click(await screen.findByRole("button", { name: "Download ZIP" }));
+    fireEvent.click(screen.getByRole("button", { name: "生成 Package" }));
+    fireEvent.click(await screen.findByRole("button", { name: "下载 ZIP" }));
 
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Download failed", detail: expect.stringContaining("404") }),
+        expect.objectContaining({ title: "下载失败", detail: expect.stringContaining("404") }),
       ),
     );
   });
@@ -623,12 +623,12 @@ describe("PackagePage", () => {
         selection={{ ...ACTIVE_SELECTION, taskStatus: "completed" }}
       />,
     );
-    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
-    fireEvent.click(await screen.findByRole("button", { name: "Download ZIP" }));
+    fireEvent.click(screen.getByRole("button", { name: "生成 Package" }));
+    fireEvent.click(await screen.findByRole("button", { name: "下载 ZIP" }));
 
     await waitFor(() =>
       expect(onToast).toHaveBeenCalledWith(
-        expect.objectContaining({ title: "Download started", detail: "standard_package.zip" }),
+        expect.objectContaining({ title: "下载已开始", detail: "standard_package.zip" }),
       ),
     );
   });
@@ -638,16 +638,16 @@ describe("App workflow shell", () => {
   it("navigates every desktop workbench view and emits refresh feedback", async () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole("button", { name: /Tasks Inspect/i }));
-    expect(screen.getByRole("heading", { name: "Tasks" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Mapping Review/i }));
-    expect(screen.getByRole("heading", { name: "Mapping review" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Detail Read/i }));
-    expect(screen.getByText("Open a task from Tasks before inspecting canonical output.")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Package Create/i }));
-    expect(screen.getByText("Open and convert a task before creating a standard package.")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Refresh" }));
-    expect(screen.getByText("Workbench ready")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Task 查看/i }));
+    expect(screen.getByRole("heading", { name: "Task 列表" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Mapping 审核/i }));
+    expect(screen.getByRole("heading", { name: "Mapping 审核" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /详情 查看/i }));
+    expect(screen.getByText("请先从 Task 列表打开一个 Task，再检查 Canonical 输出。")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Package 生成/i }));
+    expect(screen.getByText("请先打开并成功转换一个 Task，再创建标准 Package。")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "刷新" }));
+    expect(screen.getByText("工作台已就绪")).toBeInTheDocument();
   });
 
   it.each(["candidates_ready", "review_required", "mapping_completed", "rendered", "completed"])(
@@ -655,10 +655,10 @@ describe("App workflow shell", () => {
     async (status) => {
       vi.mocked(api.listTasks).mockResolvedValue({ items: [{ ...TASK, status }], total: 1 });
       render(<App />);
-      fireEvent.click(screen.getByRole("button", { name: /Tasks/i }));
-      fireEvent.click(await screen.findByRole("button", { name: "Open" }));
+      fireEvent.click(screen.getByRole("button", { name: "Task 查看转换 Task" }));
+      fireEvent.click(await screen.findByRole("button", { name: "打开" }));
 
-      expect(await screen.findByRole("heading", { name: "Mapping review" })).toBeInTheDocument();
+      expect(await screen.findByRole("heading", { name: "Mapping 审核" })).toBeInTheDocument();
       expect(screen.getByText("Task task_1")).toBeInTheDocument();
     },
   );

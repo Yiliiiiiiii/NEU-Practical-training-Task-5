@@ -17,24 +17,24 @@ import { TasksPage } from "./pages/TasksPage";
 
 const VIEW_COPY: Record<ViewId, { title: string; body: string }> = {
   import: {
-    title: "Import and setup",
-    body: "Load demo or pasted JSON for the UIR document, Target Schema, and Mapping Template.",
+    title: "导入与创建 Task",
+    body: "加载 demo 或粘贴 JSON，准备 UIR、Target Schema 和 Mapping Template。",
   },
   tasks: {
-    title: "Tasks",
-    body: "Browse conversion tasks and open the one you want to inspect.",
+    title: "Task 列表",
+    body: "浏览转换 Task，打开需要检查的一项。",
   },
   mapping: {
-    title: "Mapping review",
-    body: "Generate candidates, run deterministic mapping, and confirm review-required rows.",
+    title: "Mapping 审核",
+    body: "生成候选字段，执行确定性 Mapping，并确认需人工审核的行。",
   },
   detail: {
-    title: "Task detail and reports",
-    body: "Read canonical output, rendered content, validation, consistency, mapping, and trace reports.",
+    title: "Task 详情与报告",
+    body: "查看 Canonical 输出、Render 内容、Validation、Consistency、Mapping 和 Trace 报告。",
   },
   package: {
-    title: "Package download",
-    body: "Generate the standard package and download standard_package.zip with SHA-256 evidence.",
+    title: "Package 下载",
+    body: "生成标准 Package，并下载带 SHA-256 证据的 standard_package.zip。",
   },
 };
 
@@ -109,23 +109,23 @@ export default function App() {
         : "pending";
     return [
       {
-        label: "Import UIR",
-        detail: "Document, schema, template",
+        label: "导入 UIR",
+        detail: "文档、Schema、Template",
         state: hasImportBundle ? "done" : "ready",
       },
-      { label: "Generate candidates", detail: "Source fields", state: candidateState },
-      { label: "Field mapping", detail: "Schema alignment", state: mappingState },
-      { label: "Human review", detail: "Confirm low confidence", state: reviewState },
+      { label: "生成候选字段", detail: "源字段", state: candidateState },
+      { label: "字段 Mapping", detail: "Schema 对齐", state: mappingState },
+      { label: "人工确认", detail: "低置信度行", state: reviewState },
       { label: "Transform", detail: "Canonical model", state: transformState },
-      { label: "Render", detail: "JSON, Markdown, chunks", state: isRendered ? "done" : "pending" },
+      { label: "Render", detail: "JSON、Markdown、chunks", state: isRendered ? "done" : "pending" },
       {
         label: "Validate",
-        detail: "Reports and trace",
+        detail: "报告与 Trace",
         state: isCompleted ? "done" : isRendered ? "ready" : "pending",
       },
       {
         label: "Package",
-        detail: "Manifest and ZIP",
+        detail: "Manifest 与 ZIP",
         state: isCompleted ? "done" : isRendered ? "ready" : "pending",
       },
     ];
@@ -204,12 +204,12 @@ export default function App() {
             <span className="section-label">Phase 8</span>
             <h2 id="view-title">{copy.title}</h2>
           </div>
-          <span className="doc-chip">Real API workflow</span>
+          <span className="doc-chip">真实 API workflow</span>
         </div>
         <p>{copy.body}</p>
         <div className="empty-state">
-          <strong>Workbench surface ready.</strong>
-          <span>Functional panels will fill this space task by task.</span>
+          <strong>工作台界面已就绪。</strong>
+          <span>功能面板会按 Task 流程逐步填充这里。</span>
         </div>
       </section>
     );
@@ -223,8 +223,8 @@ export default function App() {
       onRefresh={() =>
         pushToast({
           tone: "info",
-          title: "Workbench ready",
-          detail: "Use the page-level refresh action to reload API data.",
+          title: "工作台已就绪",
+          detail: "使用当前页面的刷新操作重新加载 API 数据。",
         })
       }
       onViewChange={setActiveView}
