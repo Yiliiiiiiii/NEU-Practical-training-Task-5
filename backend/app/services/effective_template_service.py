@@ -1,6 +1,7 @@
 import json
 from typing import Any
 
+from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
 from app.db.models import KnowledgePackItemRecord, KnowledgePackRecord
@@ -50,7 +51,11 @@ class EffectiveTemplateService:
                         if alias not in aliases:
                             aliases.append(alias)
                 elif item.item_type == "regex_candidate":
-                    data.setdefault("regex_rules", []).append(payload)
+                    try:
+                        regex_rule = RegexRule.model_validate(payload)
+                    except ValidationError:
+                        continue
+                    data.setdefault("regex_rules", []).append(regex_rule.model_dump(mode="json"))
                 elif item.item_type == "enum_map_candidate" and item.target_field_id:
                     learned_map = payload.get("map")
                     if not isinstance(learned_map, dict):
@@ -66,7 +71,13 @@ class EffectiveTemplateService:
                 elif item.item_type == "default_candidate" and item.target_field_id:
                     data.setdefault("defaults", {})[item.target_field_id] = payload.get("value")
                 elif item.item_type == "transform_candidate":
-                    data.setdefault("transform_rules", []).append(payload)
+                    try:
+                        transform_rule = TransformRule.model_validate(payload)
+                    except ValidationError:
+                        continue
+                    data.setdefault("transform_rules", []).append(
+                        transform_rule.model_dump(mode="json")
+                    )
 
         return MappingTemplate(
             **{

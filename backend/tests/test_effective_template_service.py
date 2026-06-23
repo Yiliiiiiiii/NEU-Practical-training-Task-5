@@ -208,6 +208,106 @@ def test_malformed_enum_maps_are_ignored_without_dropping_valid_entries(effectiv
     assert pack_ids == ["kp_enum_bad"]
 
 
+def test_invalid_regex_candidates_are_ignored_while_valid_rules_apply(effective_context):
+    db = effective_context
+    db.add(KnowledgePackRecord(
+        pack_id="kp_regex",
+        name="Regex",
+        scope_json=json.dumps({"template_id": "template_k"}),
+        status="active",
+        version="1.0.0",
+        item_count=2,
+        reviewer="tester",
+    ))
+    db.add_all([
+        KnowledgePackItemRecord(
+            item_id="kpi_regex_bad",
+            pack_id="kp_regex",
+            item_type="regex_candidate",
+            target_field_id="title",
+            payload_json=json.dumps({"target_field_id": "title", "group": 0}),
+            source_candidate_id=None,
+        ),
+        KnowledgePackItemRecord(
+            item_id="kpi_regex_good",
+            pack_id="kp_regex",
+            item_type="regex_candidate",
+            target_field_id="title",
+            payload_json=json.dumps({
+                "target_field_id": "title",
+                "pattern": r"Title:\s+(.+)",
+                "group": 1,
+            }),
+            source_candidate_id=None,
+        ),
+    ])
+    db.commit()
+
+    resolved, pack_ids = EffectiveTemplateService(db).resolve(_template())
+
+    assert [rule.model_dump() for rule in resolved.regex_rules] == [{
+        "target_field_id": "title",
+        "pattern": r"Title:\s+(.+)",
+        "group": 1,
+    }]
+    assert pack_ids == ["kp_regex"]
+
+
+def test_invalid_transform_candidates_are_ignored_while_valid_rules_apply(effective_context):
+    db = effective_context
+    db.add(KnowledgePackRecord(
+        pack_id="kp_transform",
+        name="Transform",
+        scope_json=json.dumps({"schema_id": "schema_k"}),
+        status="active",
+        version="1.0.0",
+        item_count=2,
+        reviewer="tester",
+    ))
+    db.add_all([
+        KnowledgePackItemRecord(
+            item_id="kpi_transform_bad",
+            pack_id="kp_transform",
+            item_type="transform_candidate",
+            target_field_id=None,
+            payload_json=json.dumps({
+                "rule_id": "bad",
+                "operation": "copy",
+                "source_field": "raw_title",
+            }),
+            source_candidate_id=None,
+        ),
+        KnowledgePackItemRecord(
+            item_id="kpi_transform_good",
+            pack_id="kp_transform",
+            item_type="transform_candidate",
+            target_field_id="title",
+            payload_json=json.dumps({
+                "rule_id": "good",
+                "operation": "copy",
+                "source_field": "raw_title",
+                "target_field_id": "title",
+            }),
+            source_candidate_id=None,
+        ),
+    ])
+    db.commit()
+
+    resolved, pack_ids = EffectiveTemplateService(db).resolve(_template())
+
+    assert [rule.model_dump() for rule in resolved.transform_rules] == [{
+        "rule_id": "good",
+        "operation": "copy",
+        "source_field": "raw_title",
+        "source_fields": [],
+        "target_field_id": "title",
+        "target_fields": [],
+        "params": {},
+        "on_error": "record_and_continue",
+    }]
+    assert pack_ids == ["kp_transform"]
+
+
 def test_active_packs_and_items_use_stable_tie_ordering(effective_context):
     db = effective_context
     created_at = datetime(2026, 1, 1)
