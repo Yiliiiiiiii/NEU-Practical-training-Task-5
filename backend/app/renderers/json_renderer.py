@@ -23,6 +23,10 @@ class JSONRenderer:
             source_name=canonical.doc_meta.get("source_name"),
             document_summary=self._summary_from_fields(canonical),
             keywords=self._keywords_from_fields(canonical),
+            content_tags=self._content_tags(canonical),
+            management_tags=self._management_tags(canonical),
+            quality_tags=self._quality_tags(canonical),
+            upstream_entities=self._upstream_entities(canonical),
         )
         blocks = [
             ContentBlock(
@@ -88,3 +92,50 @@ class JSONRenderer:
                 if value not in fallback:
                     fallback.append(value)
         return fallback[:5]
+
+    @staticmethod
+    def _content_tags(canonical: CanonicalModel) -> list[str]:
+        tags: list[str] = []
+        doc_type = canonical.fields.get("doc_type")
+        if doc_type and doc_type.value:
+            tags.append(str(doc_type.value))
+        combined = " ".join(
+            str(field.value)
+            for field in canonical.fields.values()
+            if field.value is not None
+        ).lower()
+        if "policy" in combined or "notice" in combined or "政策" in combined:
+            tags.append("policy")
+        if any(block.type == "table" for block in canonical.blocks):
+            tags.append("table")
+        if not tags:
+            tags.append("general")
+        return list(dict.fromkeys(tags))[:6]
+
+    @staticmethod
+    def _management_tags(canonical: CanonicalModel) -> list[str]:
+        tags = [f"schema:{canonical.schema_id}"]
+        tags.append("has_blocks" if canonical.blocks else "no_blocks")
+        if canonical.assets:
+            tags.append("has_assets")
+        return tags
+
+    @staticmethod
+    def _quality_tags(canonical: CanonicalModel) -> list[str]:
+        linked_blocks = all(block.source_blocks for block in canonical.blocks)
+        return [
+            "source_linked" if linked_blocks else "source_link_missing",
+            "has_summary" if JSONRenderer._summary_from_fields(canonical) else "summary_fallback",
+        ]
+
+    @staticmethod
+    def _upstream_entities(canonical: CanonicalModel) -> list[str]:
+        entities: list[str] = []
+        for field_id in ("publish_org", "author", "owner"):
+            field = canonical.fields.get(field_id)
+            if field and field.value:
+                entities.append(f"{field_id}:{field.value}")
+        source_name = canonical.doc_meta.get("source_name")
+        if source_name:
+            entities.append(f"source_name:{source_name}")
+        return list(dict.fromkeys(str(entity) for entity in entities))

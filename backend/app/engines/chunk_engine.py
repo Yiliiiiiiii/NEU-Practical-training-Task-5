@@ -28,8 +28,11 @@ class ChunkEngine:
             if is_heading:
                 if current_text_parts:
                     chunks.append(self._make_chunk(
-                        canonical, order, current_text_parts,
-                        current_source_blocks, current_title_path,
+                        canonical,
+                        order,
+                        current_text_parts,
+                        current_source_blocks,
+                        current_title_path,
                     ))
                     order += 1
                     current_text_parts = []
@@ -47,8 +50,11 @@ class ChunkEngine:
                 )
                 if len(candidate_text) > chunk_size and current_text_parts:
                     chunks.append(self._make_chunk(
-                        canonical, order, current_text_parts,
-                        current_source_blocks, current_title_path,
+                        canonical,
+                        order,
+                        current_text_parts,
+                        current_source_blocks,
+                        current_title_path,
                     ))
                     order += 1
                     current_text_parts = []
@@ -58,8 +64,11 @@ class ChunkEngine:
 
         if current_text_parts:
             chunks.append(self._make_chunk(
-                canonical, order, current_text_parts,
-                current_source_blocks, current_title_path,
+                canonical,
+                order,
+                current_text_parts,
+                current_source_blocks,
+                current_title_path,
             ))
 
         chunks = self._split_oversized_chunks(canonical, chunks, chunk_size)
@@ -90,7 +99,7 @@ class ChunkEngine:
             text=text,
             source_blocks=unique_blocks,
             title_path=list(title_path),
-            labels=ChunkLabels(),
+            labels=self._fallback_labels(text, title_path, unique_blocks),
             summary=summary,
             keywords=keywords,
             text_hash=f"sha256:{text_hash}",
@@ -122,24 +131,45 @@ class ChunkEngine:
 
     @staticmethod
     def _fallback_summary(text: str) -> str:
-        sentences = text.replace("\n", " ").split("。")
+        normalized = text.replace("\n", " ").strip()
+        sentences = normalized.replace("。", ".").split(".")
         first = sentences[0].strip() if sentences else ""
-        if first and not first.endswith("。"):
+        if first and normalized.endswith(("。", ".")):
             first += "。"
         return first[:200] if first else ""
 
     @staticmethod
     def _fallback_keywords(text: str) -> list[str]:
         words: list[str] = []
-        punctuation = "，。、；：\u201c\u201d\u2018\u2019（）《》"
+        punctuation = ",.;:\"'()[]{}，。、；：“”‘’（）《》"
         for segment in text.replace("\n", " ").split():
             clean = segment.strip(punctuation)
             if len(clean) >= 2:
                 words.append(clean)
         seen: set[str] = set()
         unique: list[str] = []
-        for w in words:
-            if w not in seen:
-                seen.add(w)
-                unique.append(w)
+        for word in words:
+            if word not in seen:
+                seen.add(word)
+                unique.append(word)
         return unique[:5]
+
+    @staticmethod
+    def _fallback_labels(
+        text: str,
+        title_path: list[str],
+        source_blocks: list[str],
+    ) -> ChunkLabels:
+        lowered = " ".join([*title_path, text]).lower()
+        content_tags: list[str] = []
+        if "policy" in lowered or "notice" in lowered or "政策" in lowered:
+            content_tags.append("policy")
+        if "|" in text:
+            content_tags.append("table")
+        if not content_tags:
+            content_tags.append("general")
+        return ChunkLabels(
+            content_tags=list(dict.fromkeys(content_tags)),
+            management_tags=["heading_context" if title_path else "body"],
+            quality_tags=["linked" if source_blocks else "unlinked"],
+        )

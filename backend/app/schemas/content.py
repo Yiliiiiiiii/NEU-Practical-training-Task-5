@@ -14,6 +14,10 @@ class ContentMetadata(StrictBaseModel):
     source_name: str | None = None
     document_summary: str | None = None
     keywords: list[str] = Field(default_factory=list)
+    content_tags: list[str] = Field(default_factory=list)
+    management_tags: list[str] = Field(default_factory=list)
+    quality_tags: list[str] = Field(default_factory=list)
+    upstream_entities: list[str] = Field(default_factory=list)
 
 
 class ContentBlock(StrictBaseModel):
