@@ -56,6 +56,18 @@ class KnowledgeService:
 
     def derive_learning_candidates(self, real_run_id: str) -> list[LearningCandidateView]:
         run = self._real_run(real_run_id)
+        existing = (
+            self.db.query(LearningCandidateRecord)
+            .filter(LearningCandidateRecord.real_run_id == real_run_id)
+            .order_by(
+                LearningCandidateRecord.created_at.asc(),
+                LearningCandidateRecord.candidate_id.asc(),
+            )
+            .all()
+        )
+        if existing:
+            return [self._candidate_view(record) for record in existing]
+
         created: list[LearningCandidateRecord] = []
         created.extend(self._review_alias_candidates(run))
         created.extend(self._trace_badcase_candidates(run))
@@ -74,6 +86,8 @@ class KnowledgeService:
             .all()
         )
         for review in reviews:
+            if review.decision not in {"confirmed", "changed"}:
+                continue
             mapping = self.db.get(FieldMappingRecord, review.mapping_id)
             if mapping is None or mapping.task_id != run.task_id:
                 continue

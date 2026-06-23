@@ -296,8 +296,53 @@ def test_derive_learning_candidates_from_review_llm_unmapped_and_trace(knowledge
 
     candidates = service.derive_learning_candidates(run.real_run_id)
     by_type = {candidate.candidate_type: candidate for candidate in candidates}
+    badcases_by_generator = {
+        candidate.generator: candidate
+        for candidate in candidates
+        if candidate.candidate_type == "badcase_candidate"
+    }
 
     assert by_type["alias_candidate"].target_field_id == "title"
     assert by_type["alias_candidate"].proposed_payload == {"aliases": ["doc_title"]}
-    assert by_type["badcase_candidate"].evidence["unmapped_required_fields"] == ["owner"]
-    assert any(candidate.generator == "transform_trace" for candidate in candidates)
+    assert badcases_by_generator["mapping_report"].proposed_payload == {
+        "case_type": "unmapped_required"
+    }
+    assert badcases_by_generator["mapping_report"].evidence["unmapped_required_fields"] == ["owner"]
+    assert badcases_by_generator["transform_trace"].proposed_payload == {
+        "case_type": "transform_error"
+    }
+    assert badcases_by_generator["transform_trace"].target_field_id == "owner"
+
+
+def test_derive_learning_candidates_is_idempotent_for_real_run(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+
+    first = service.derive_learning_candidates(run.real_run_id)
+    second = service.derive_learning_candidates(run.real_run_id)
+
+    assert [candidate.candidate_id for candidate in second] == [
+        candidate.candidate_id for candidate in first
+    ]
+    assert (
+        db.query(LearningCandidateRecord)
+        .filter(LearningCandidateRecord.real_run_id == run.real_run_id)
+        .count()
+        == len(first)
+    )
+
+
+def test_rejected_reviews_do_not_produce_alias_candidate(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    review = db.get(ReviewRecord, "rev_title")
+    review.decision = "rejected"
+    db.commit()
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+
+    candidates = service.derive_learning_candidates(run.real_run_id)
+
+    assert all(candidate.candidate_type != "alias_candidate" for candidate in candidates)
