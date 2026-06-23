@@ -2,7 +2,7 @@ import { Archive, Download, PackageCheck } from "lucide-react";
 import { useState } from "react";
 
 import { api, downloadPackage } from "../api/client";
-import type { PackageResponse } from "../api/types";
+import type { JsonValue, PackageResponse, ReportResponse } from "../api/types";
 import type { ToastInput, WorkbenchSelection } from "../appTypes";
 import { StatusBadge } from "../components/StatusBadge";
 
@@ -12,9 +12,29 @@ interface PackagePageProps {
   onToast?: (toast: ToastInput) => void;
 }
 
+function isRecord(value: JsonValue | undefined): value is Record<string, JsonValue> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function getVerifiedPayloadCount(report: ReportResponse | null): string {
+  if (!report || !isRecord(report.summary)) {
+    return "Unavailable";
+  }
+  const count = report.summary.verified_payloads;
+  return typeof count === "number" ? String(count) : "Unavailable";
+}
+
+function getIssueCount(report: ReportResponse | null): string {
+  if (!report || !Array.isArray(report.issues)) {
+    return "Unavailable";
+  }
+  return String(report.issues.length);
+}
+
 export function PackagePage({ selection, onSelectionChange, onToast }: PackagePageProps) {
   const [packageVersion, setPackageVersion] = useState("1.0.0");
   const [result, setResult] = useState<PackageResponse | null>(null);
+  const [verifierReport, setVerifierReport] = useState<ReportResponse | null>(null);
   const [downloadSha, setDownloadSha] = useState<string | null>(null);
   const [isBusy, setIsBusy] = useState(false);
 
@@ -26,6 +46,16 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
     try {
       const response = await api.createPackage(selection.taskId, packageVersion.trim() || "1.0.0");
       setResult(response);
+      try {
+        setVerifierReport(await api.getPackageVerifierReport(selection.taskId));
+      } catch (error) {
+        setVerifierReport(null);
+        onToast?.({
+          tone: "warning",
+          title: "Verifier report unavailable",
+          detail: error instanceof Error ? error.message : "Package was built, but report lookup failed.",
+        });
+      }
       onSelectionChange({ ...selection, taskStatus: response.status });
       onToast?.({
         tone: "success",
@@ -135,6 +165,13 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
           <div><span>ZIP path</span><strong>{result.zip_path}</strong></div>
           <div><span>SHA-256</span><code>{result.sha256 ?? "Unavailable"}</code></div>
           {downloadSha ? <div><span>Download header</span><code>{downloadSha}</code></div> : null}
+          {verifierReport ? (
+            <div className="package-proof__verifier">
+              <span>External verifier</span>
+              <strong>{verifierReport.passed === true ? "Verifier passed" : "Verifier failed"}</strong>
+              <small>{getVerifiedPayloadCount(verifierReport)} payloads, {getIssueCount(verifierReport)} issues</small>
+            </div>
+          ) : null}
           <button
             className="secondary-button package-proof__download"
             disabled={isBusy}

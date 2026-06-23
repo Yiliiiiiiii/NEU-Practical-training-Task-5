@@ -158,12 +158,15 @@ export const api = {
       "Load candidates",
     );
   },
-  runMapping(taskId: string, reviewThreshold = 0.8) {
+  runMapping(taskId: string, reviewThreshold = 0.8, enableLlmFallback = false) {
     return apiRequest<MappingRunResponse>(
       `/tasks/${taskId}/map`,
       {
         method: "POST",
-        body: jsonBody({ enable_llm_fallback: false, review_threshold: reviewThreshold }),
+        body: jsonBody({
+          enable_llm_fallback: enableLlmFallback,
+          review_threshold: reviewThreshold,
+        }),
       },
       "Run mapping",
     );
@@ -216,6 +219,13 @@ export const api = {
       `/tasks/${taskId}/reports/consistency`,
       {},
       "Load consistency report",
+    );
+  },
+  getPackageVerifierReport(taskId: string) {
+    return apiRequest<ReportResponse>(
+      `/tasks/${taskId}/reports/package-verifier`,
+      {},
+      "Load package verifier report",
     );
   },
   getTrace(taskId: string) {

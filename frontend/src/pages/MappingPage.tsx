@@ -26,6 +26,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
   const [targetFields, setTargetFields] = useState<string[]>([]);
   const [isBusy, setIsBusy] = useState(false);
   const [runSummary, setRunSummary] = useState<string | null>(null);
+  const [enableLlmFallback, setEnableLlmFallback] = useState(true);
 
   useEffect(() => {
     setTaskIdInput(selection.taskId ?? "");
@@ -148,7 +149,7 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
     await runAction(
       async () => {
         const taskId = requireTaskId(selection.taskId);
-        const response = await api.runMapping(taskId);
+        const response = await api.runMapping(taskId, 0.8, enableLlmFallback);
         const mappingResponse = await api.listMappings(taskId);
         setMappings(mappingResponse.items);
         setRunSummary(
@@ -241,6 +242,15 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
           <ListChecks aria-hidden="true" size={15} />
           Use task
         </button>
+        <label className="fallback-toggle">
+          <input
+            checked={enableLlmFallback}
+            disabled={isBusy}
+            onChange={(event) => setEnableLlmFallback(event.target.checked)}
+            type="checkbox"
+          />
+          <span>DeepSeek fallback</span>
+        </label>
         {runSummary ? <span>{runSummary}</span> : null}
       </div>
 

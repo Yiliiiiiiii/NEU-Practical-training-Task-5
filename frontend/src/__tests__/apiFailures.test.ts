@@ -153,7 +153,7 @@ describe("API method surface", () => {
     await api.getTask("task");
     await api.generateCandidates("task");
     await api.listCandidates("task");
-    await api.runMapping("task", 0.95);
+    await api.runMapping("task", 0.95, true);
     await api.listMappings("task");
     await api.reviewMappings("task", [{ mapping_id: "mapping", decision: "confirmed" }]);
     await api.convertTask("task");
@@ -163,6 +163,7 @@ describe("API method surface", () => {
     await api.getConsistencyReport("task");
     await api.getTrace("task");
     await api.createPackage("task", "2.0.0");
+    await api.getPackageVerifierReport("task");
 
     const paths = fetchMock.mock.calls.map(([url]) => String(url).replace(`${API_BASE_URL}/`, ""));
     expect(paths).toEqual([
@@ -189,9 +190,11 @@ describe("API method surface", () => {
       "tasks/task/reports/consistency",
       "tasks/task/trace",
       "tasks/task/package",
+      "tasks/task/reports/package-verifier",
     ]);
     const mappingBody = JSON.parse((fetchMock.mock.calls[13][1] as RequestInit).body as string);
     expect(mappingBody.review_threshold).toBe(0.95);
+    expect(mappingBody.enable_llm_fallback).toBe(true);
   });
 
   it("downloads ZIP bytes and SHA evidence", async () => {

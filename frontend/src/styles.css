@@ -548,6 +548,27 @@ select:focus-visible {
   background: var(--surface);
 }
 
+.task-picker .fallback-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: auto;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.task-picker .fallback-toggle input {
+  width: 15px;
+  min-height: 15px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--accent);
+}
+
 .task-picker > span {
   color: var(--muted);
   font-size: 13px;
@@ -801,6 +822,15 @@ select:focus-visible {
 
 .package-proof code {
   font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+.package-proof__verifier {
+  border-left: 3px solid var(--accent);
+}
+
+.package-proof__verifier small {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .package-proof__download {

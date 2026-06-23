@@ -109,6 +109,11 @@ beforeEach(() => {
   vi.spyOn(api, "getMappingReport").mockResolvedValue({ passed: true });
   vi.spyOn(api, "getValidationReport").mockResolvedValue({ passed: true });
   vi.spyOn(api, "getConsistencyReport").mockResolvedValue({ passed: true });
+  vi.spyOn(api, "getPackageVerifierReport").mockResolvedValue({
+    passed: true,
+    summary: { verified_payloads: 9 },
+    issues: [],
+  });
   vi.spyOn(api, "getTrace").mockResolvedValue({ events: [] });
   vi.spyOn(api, "convertTask").mockResolvedValue({
     task_id: "task_1",
@@ -275,6 +280,25 @@ describe("MappingPage", () => {
       expect.objectContaining({ taskStatus: "review_required" }),
     );
     expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Review saved" }));
+  });
+
+  it("runs mapping with DeepSeek fallback enabled from the page control", async () => {
+    render(
+      <MappingPage
+        onSelectionChange={vi.fn()}
+        onToast={vi.fn()}
+        selection={ACTIVE_SELECTION}
+      />,
+    );
+
+    const fallbackToggle = await screen.findByRole("checkbox", {
+      name: /DeepSeek fallback/i,
+    });
+    expect(fallbackToggle).toBeChecked();
+
+    fireEvent.click(screen.getByRole("button", { name: /Run mapping/i }));
+
+    await waitFor(() => expect(api.runMapping).toHaveBeenCalledWith("task_1", 0.8, true));
   });
 
   it("accepts a manual task ID and surfaces lookup failures", async () => {
@@ -501,6 +525,27 @@ describe("PackagePage", () => {
     expect(await screen.findByText("download-sha")).toBeInTheDocument();
     expect(clickSpy).toHaveBeenCalled();
     expect(onToast).toHaveBeenCalledWith(expect.objectContaining({ title: "Download started" }));
+  });
+
+  it("shows the external verifier report after building a package", async () => {
+    vi.mocked(api.getPackageVerifierReport).mockResolvedValue({
+      passed: true,
+      summary: { verified_payloads: 9 },
+      issues: [],
+    });
+    render(
+      <PackagePage
+        onSelectionChange={vi.fn()}
+        onToast={vi.fn()}
+        selection={{ ...ACTIVE_SELECTION, taskStatus: "rendered" }}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
+
+    expect(await screen.findByText("Verifier passed")).toBeInTheDocument();
+    expect(screen.getByText(/9 payloads, 0 issues/i)).toBeInTheDocument();
+    expect(api.getPackageVerifierReport).toHaveBeenCalledWith("task_1");
   });
 
   it("reports package creation failures", async () => {
