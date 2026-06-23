@@ -1,5 +1,6 @@
 import json
 from collections.abc import Iterator
+from contextlib import contextmanager
 
 import pytest
 from fastapi.testclient import TestClient
@@ -21,6 +22,7 @@ from app.main import create_app
 from app.schemas.api import TaskReplayRequest
 from app.services.package_service import PackageService
 from app.services.storage_service import StorageService
+from app.services.task_lock_service import TaskMutationConflict
 from app.services.task_service import TaskService
 
 
@@ -183,6 +185,46 @@ def test_task_replay_api_returns_child_counts(replay_client, replay_context):
     assert body["repeat_model_calls"] is False
 
 
+def test_task_replay_api_missing_parent_returns_404(replay_client):
+    response = replay_client.post("/api/v1/tasks/missing/replay", json={})
+
+    assert response.status_code == 404
+    assert response.json()["error"]["code"] == "NOT_FOUND"
+
+
+def test_task_replay_api_parent_without_mappings_returns_state_error(
+    replay_client,
+    replay_context,
+):
+    db, _storage = replay_context
+    parent_task_id = _seed_parent(db, with_mapping=False)
+
+    response = replay_client.post(f"/api/v1/tasks/{parent_task_id}/replay", json={})
+
+    assert response.status_code == 409
+    assert response.json()["error"]["code"] == "TASK_STATE_ERROR"
+
+
+def test_task_replay_api_mutation_conflict_returns_state_error(
+    replay_client,
+):
+    class ConflictRegistry:
+        @contextmanager
+        def task_mutation(self, task_id):
+            raise TaskMutationConflict(f"task '{task_id}' is busy")
+            yield
+
+    replay_client.app.dependency_overrides[deps.get_task_mutation_registry] = (
+        lambda: ConflictRegistry()
+    )
+
+    response = replay_client.post("/api/v1/tasks/task_parent/replay", json={})
+
+    assert response.status_code == 409
+    assert response.json()["error"]["code"] == "TASK_STATE_ERROR"
+    replay_client.app.dependency_overrides.pop(deps.get_task_mutation_registry, None)
+
+
 def test_replay_rejects_parent_without_confirmed_mappings(replay_context):
     db, storage = replay_context
     parent_task_id = _seed_parent(db, with_mapping=False)
@@ -231,3 +273,13 @@ def test_config_snapshot_contains_replay_lineage_and_model_audit(replay_context)
     assert db.get(ConversionTask, child.task_id).config_snapshot_path == (
         f"tasks/{child.task_id}/config_snapshot.json"
     )
+
+
+def test_package_verifier_report_missing_returns_404(replay_client, replay_context):
+    db, _storage = replay_context
+    parent_task_id = _seed_parent(db)
+
+    response = replay_client.get(f"/api/v1/tasks/{parent_task_id}/reports/package-verifier")
+
+    assert response.status_code == 404
+    assert response.json()["error"]["code"] == "NOT_FOUND"

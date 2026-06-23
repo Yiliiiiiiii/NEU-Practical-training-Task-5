@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.clients.llm_client import LLMClient
+from app.clients.llm_client import LLMClient, LLMSuggestion
 from app.db.models import (
     Base,
     ConversionTask,
@@ -112,6 +112,71 @@ def _seed_unmapped_task(db) -> str:
     ))
     db.commit()
     return "task_llm"
+
+
+def _seed_autogenerate_task(db, storage: StorageService) -> str:
+    uir = {
+        "uir_version": "1.0",
+        "doc_id": "doc_auto",
+        "metadata": {"doc_title": "Auto Candidate Title"},
+        "blocks": [],
+        "assets": [],
+    }
+    storage.save_json("documents/doc_auto/uir.json", uir)
+    schema = {
+        "schema_id": "schema_auto",
+        "name": "Auto Schema",
+        "version": "1.0.0",
+        "fields": [
+            {
+                "field_id": "title",
+                "name": "title",
+                "display_name": "Title",
+                "type": "string",
+                "required": True,
+            }
+        ],
+    }
+    template = {
+        "template_id": "template_auto",
+        "schema_id": "schema_auto",
+        "name": "Auto Template",
+        "version": "1.0.0",
+        "aliases": {"title": ["doc_title"]},
+    }
+    db.add(Document(
+        doc_id="doc_auto",
+        title="Auto",
+        uir_version="1.0",
+        storage_path="documents/doc_auto/uir.json",
+        block_count=0,
+    ))
+    db.add(TargetSchemaRecord(
+        schema_id="schema_auto",
+        name=schema["name"],
+        version=schema["version"],
+        schema_json=json.dumps(schema),
+        json_schema="{}",
+    ))
+    db.add(MappingTemplateRecord(
+        template_id="template_auto",
+        schema_id="schema_auto",
+        name=template["name"],
+        version=template["version"],
+        template_json=json.dumps(template),
+    ))
+    db.add(ConversionTask(
+        task_id="task_auto",
+        doc_id="doc_auto",
+        schema_id="schema_auto",
+        schema_version="1.0.0",
+        template_id="template_auto",
+        template_version="1.0.0",
+        status="created",
+        input_hash="sha256:auto",
+    ))
+    db.commit()
+    return "task_auto"
 
 
 def test_openai_compatible_llm_client_parses_structured_suggestions():
@@ -231,3 +296,211 @@ def test_mapping_service_keeps_rule_only_report_when_fallback_disabled(mapping_c
     assert status == "mapping_completed"
     assert report.summary["llm_enabled"] is False
     assert report.summary["llm_suggestion_count"] == 0
+
+
+def test_mapping_service_generates_candidates_when_missing(mapping_context):
+    db, storage = mapping_context
+    task_id = _seed_autogenerate_task(db, storage)
+
+    mappings, report, status = MappingService(db, storage).run_mapping(
+        task_id,
+        review_threshold=0.8,
+        enable_llm_fallback=False,
+    )
+
+    assert status == "mapping_completed"
+    assert len(mappings) == 1
+    assert mappings[0].target_field_id == "title"
+    assert report.summary["mapped_fields"] == 1
+    assert db.query(FieldCandidateRecord).filter_by(task_id=task_id).count() >= 1
+
+
+def test_mapping_service_raises_for_missing_schema_or_template(mapping_context):
+    db, storage = mapping_context
+    db.add(Document(
+        doc_id="doc_missing_refs",
+        title="Missing",
+        uir_version="1.0",
+        storage_path="documents/missing/uir.json",
+        block_count=0,
+    ))
+    db.add(ConversionTask(
+        task_id="task_missing_schema",
+        doc_id="doc_missing_refs",
+        schema_id="missing_schema",
+        schema_version="1.0.0",
+        template_id="missing_template",
+        template_version="1.0.0",
+        status="created",
+        input_hash="sha256:missing",
+    ))
+    schema = {
+        "schema_id": "schema_exists",
+        "name": "Schema Exists",
+        "version": "1.0.0",
+        "fields": [
+            {
+                "field_id": "title",
+                "name": "title",
+                "display_name": "Title",
+                "type": "string",
+            }
+        ],
+    }
+    db.add(TargetSchemaRecord(
+        schema_id="schema_exists",
+        name=schema["name"],
+        version=schema["version"],
+        schema_json=json.dumps(schema),
+        json_schema="{}",
+    ))
+    db.add(ConversionTask(
+        task_id="task_missing_template",
+        doc_id="doc_missing_refs",
+        schema_id="schema_exists",
+        schema_version="1.0.0",
+        template_id="missing_template",
+        template_version="1.0.0",
+        status="created",
+        input_hash="sha256:missing",
+    ))
+    for task_id in ("task_missing_schema", "task_missing_template"):
+        db.add(FieldCandidateRecord(
+            candidate_id=f"cand_{task_id}",
+            task_id=task_id,
+            doc_id="doc_missing_refs",
+            source_path="metadata.title",
+            source_name="title",
+            display_name="Title",
+            value_sample=json.dumps("Missing"),
+            inferred_type="string",
+            source_blocks_json="[]",
+            confidence=0.95,
+        ))
+    db.commit()
+
+    with pytest.raises(LookupError, match="schema not found"):
+        MappingService(db, storage).run_mapping("task_missing_schema", 0.8)
+    with pytest.raises(LookupError, match="template not found"):
+        MappingService(db, storage).run_mapping("task_missing_template", 0.8)
+
+
+def test_mapping_service_skips_duplicate_or_invalid_llm_suggestions(mapping_context):
+    db, storage = mapping_context
+    schema = {
+        "schema_id": "schema_skip",
+        "name": "Skip Schema",
+        "version": "1.0.0",
+        "fields": [
+            {
+                "field_id": "title",
+                "name": "title",
+                "display_name": "Title",
+                "type": "string",
+                "required": True,
+            },
+            {
+                "field_id": "owner",
+                "name": "owner",
+                "display_name": "Owner",
+                "type": "string",
+                "required": True,
+            },
+        ],
+    }
+    template = {
+        "template_id": "template_skip",
+        "schema_id": "schema_skip",
+        "name": "Skip Template",
+        "version": "1.0.0",
+        "aliases": {"title": ["doc_title"]},
+    }
+    db.add(Document(
+        doc_id="doc_skip",
+        title="Skip",
+        uir_version="1.0",
+        storage_path="documents/doc_skip/uir.json",
+        block_count=0,
+    ))
+    db.add(TargetSchemaRecord(
+        schema_id="schema_skip",
+        name=schema["name"],
+        version=schema["version"],
+        schema_json=json.dumps(schema),
+        json_schema="{}",
+    ))
+    db.add(MappingTemplateRecord(
+        template_id="template_skip",
+        schema_id="schema_skip",
+        name=template["name"],
+        version=template["version"],
+        template_json=json.dumps(template),
+    ))
+    db.add(ConversionTask(
+        task_id="task_skip",
+        doc_id="doc_skip",
+        schema_id="schema_skip",
+        schema_version="1.0.0",
+        template_id="template_skip",
+        template_version="1.0.0",
+        status="candidates_ready",
+        input_hash="sha256:skip",
+    ))
+    for candidate_id, source_name in (
+        ("cand_skip_title", "doc_title"),
+        ("cand_skip_owner", "zzzzzzzz"),
+    ):
+        db.add(FieldCandidateRecord(
+            candidate_id=candidate_id,
+            task_id="task_skip",
+            doc_id="doc_skip",
+            source_path=f"metadata.{source_name}",
+            source_name=source_name,
+            display_name=source_name,
+            value_sample=json.dumps(source_name),
+            inferred_type="string",
+            source_blocks_json="[]",
+            confidence=0.95,
+        ))
+    db.commit()
+
+    class InvalidSuggestionClient:
+        mode = "mock"
+        model = "fake"
+        prompt_version = "test"
+        last_audit = {
+            "enabled": True,
+            "mode": "mock",
+            "model": "fake",
+            "prompt_version": "test",
+            "status": "success",
+            "suggestion_count": 2,
+            "latency_ms": 0,
+            "error": None,
+        }
+
+        def suggest_mappings(self, candidates, target_fields):
+            return [
+                LLMSuggestion(
+                    candidate_id="cand_skip_owner",
+                    target_field_id="title",
+                    confidence=0.9,
+                    reason="duplicate target",
+                ),
+                LLMSuggestion(
+                    candidate_id="missing_candidate",
+                    target_field_id="owner",
+                    confidence=0.9,
+                    reason="invalid candidate",
+                ),
+            ]
+
+    mappings, report, status = MappingService(
+        db,
+        storage,
+        llm_client=InvalidSuggestionClient(),
+    ).run_mapping("task_skip", review_threshold=0.8, enable_llm_fallback=True)
+
+    assert status == "mapping_completed"
+    assert [mapping.target_field_id for mapping in mappings] == ["title"]
+    assert report.summary["llm_suggestion_count"] == 2
