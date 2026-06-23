@@ -394,3 +394,38 @@ def test_approved_alias_candidate_creates_draft_pack_items(knowledge_context):
     assert pack.status == "draft"
     assert pack.item_count == 1
     assert pack.scope["template_id"] == "template_k"
+
+
+def test_approved_candidate_preserves_explicit_empty_final_payload(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+    candidate = next(
+        item for item in service.derive_learning_candidates(run.real_run_id)
+        if item.candidate_type == "alias_candidate"
+    )
+
+    decided = service.decide_candidate(
+        candidate.candidate_id,
+        CandidateDecisionRequest(
+            decision="approved",
+            reviewer="tester",
+            final_payload={},
+            reason="confirmed empty payload",
+        ),
+    )
+    pack = service.create_knowledge_pack(KnowledgePackCreateRequest(
+        name="Empty payload",
+        scope={"schema_id": "schema_k", "template_id": "template_k"},
+        candidate_ids=[candidate.candidate_id],
+        reviewer="tester",
+    ))
+    item = (
+        db.query(KnowledgePackItemRecord)
+        .filter(KnowledgePackItemRecord.pack_id == pack.pack_id)
+        .one()
+    )
+
+    assert decided.final_payload == {}
+    assert json.loads(item.payload_json) == {}

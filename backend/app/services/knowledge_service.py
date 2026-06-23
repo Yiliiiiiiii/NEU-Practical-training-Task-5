@@ -92,9 +92,10 @@ class KnowledgeService:
         record.reviewer = request.reviewer
         record.decision_reason = request.reason
         if request.decision == "approved":
-            final_payload = request.final_payload or json.loads(
-                record.proposed_payload_json or "{}"
-            )
+            if "final_payload" in request.model_fields_set:
+                final_payload = request.final_payload
+            else:
+                final_payload = json.loads(record.proposed_payload_json or "{}")
             record.final_payload_json = json.dumps(
                 final_payload,
                 ensure_ascii=False,
