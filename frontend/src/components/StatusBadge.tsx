@@ -22,9 +22,10 @@ function normalizeStatus(status: string): StageState {
 
 export function StatusBadge({ status, label }: StatusBadgeProps) {
   const normalized = normalizeStatus(status);
+  const rawStatus = String(status).replace(/[^a-z0-9_-]/gi, "_").toLowerCase();
 
   return (
-    <span className={`status-badge status-badge--${normalized}`}>
+    <span className={`status-badge status-badge--${normalized} status-badge--${rawStatus}`}>
       <span aria-hidden="true" className="status-badge__dot" />
       {label ?? status}
     </span>

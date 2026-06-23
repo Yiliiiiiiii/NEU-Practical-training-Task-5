@@ -6,7 +6,7 @@ interface StageRailProps {
 
 export function StageRail({ stages }: StageRailProps) {
   return (
-    <ol className="stage-rail" aria-label="Conversion pipeline">
+    <ol className="stage-rail" aria-label="SchemaFlow pipeline">
       {stages.map((stage, index) => (
         <li className={`stage-rail__item stage-rail__item--${stage.state}`} key={stage.label}>
           <span className="stage-rail__index">{index + 1}</span>

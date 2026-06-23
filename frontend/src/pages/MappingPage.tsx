@@ -2,7 +2,7 @@ import { GitBranch, ListChecks, RotateCw, Wand2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { api } from "../api/client";
-import type { CandidateListItem, MappingListItem } from "../api/types";
+import type { CandidateListItem, JsonValue, MappingListItem } from "../api/types";
 import type { ToastInput, WorkbenchSelection } from "../appTypes";
 import { MappingTable } from "../components/MappingTable";
 
@@ -17,6 +17,16 @@ function requireTaskId(taskId: string | null): string {
     throw new Error("Select or enter a task first.");
   }
   return taskId;
+}
+
+function formatSample(value: JsonValue | null): string {
+  if (value === null) {
+    return "-";
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  return JSON.stringify(value);
 }
 
 export function MappingPage({ selection, onSelectionChange, onToast }: MappingPageProps) {
@@ -67,6 +77,16 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         ? targetFields
         : Array.from(new Set(mappings.map((mapping) => mapping.target_field_id))),
     [mappings, targetFields],
+  );
+  const candidateSamples = useMemo(
+    () =>
+      Object.fromEntries(
+        candidates.map((candidate) => [
+          candidate.candidate_id,
+          formatSample(candidate.value_sample),
+        ]),
+      ),
+    [candidates],
   );
 
   function useManualTaskId() {
@@ -273,7 +293,12 @@ export function MappingPage({ selection, onSelectionChange, onToast }: MappingPa
         </div>
       </div>
 
-      <MappingTable mappings={mappings} onReview={handleReview} targetFields={derivedTargetFields} />
+      <MappingTable
+        candidateSamples={candidateSamples}
+        mappings={mappings}
+        onReview={handleReview}
+        targetFields={derivedTargetFields}
+      />
     </section>
   );
 }

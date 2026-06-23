@@ -2,11 +2,14 @@ import { CheckCircle2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import type { MappingListItem } from "../api/types";
+import { ConfidenceBadge } from "./ConfidenceBadge";
+import { MethodBadge } from "./MethodBadge";
 import { StatusBadge } from "./StatusBadge";
 
 interface MappingTableProps {
   mappings: MappingListItem[];
   targetFields: string[];
+  candidateSamples?: Record<string, string>;
   onReview: (mapping: MappingListItem, targetFieldId: string) => void | Promise<void>;
 }
 
@@ -20,7 +23,12 @@ function labelForStatus(mapping: MappingListItem): string {
   return mapping.status;
 }
 
-export function MappingTable({ mappings, targetFields, onReview }: MappingTableProps) {
+export function MappingTable({
+  mappings,
+  targetFields,
+  candidateSamples = {},
+  onReview,
+}: MappingTableProps) {
   const [draftTargets, setDraftTargets] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -55,6 +63,7 @@ export function MappingTable({ mappings, targetFields, onReview }: MappingTableP
         <thead>
           <tr>
             <th>Source</th>
+            <th>Sample</th>
             <th>Target</th>
             <th>Method</th>
             <th>Confidence</th>
@@ -67,10 +76,16 @@ export function MappingTable({ mappings, targetFields, onReview }: MappingTableP
           {mappings.map((mapping) => {
             const draftTarget = draftTargets[mapping.mapping_id] ?? mapping.target_field_id;
             return (
-              <tr key={mapping.mapping_id}>
+              <tr
+                className={mapping.need_review ? "data-table__row--review" : undefined}
+                key={mapping.mapping_id}
+              >
                 <td>
                   <strong>{mapping.source_name}</strong>
-                  <small>{mapping.source_path}</small>
+                  <small className="field-path">{mapping.source_path}</small>
+                </td>
+                <td className="sample-cell">
+                  {candidateSamples[mapping.candidate_id] ?? "-"}
                 </td>
                 <td>
                   <select
@@ -90,12 +105,12 @@ export function MappingTable({ mappings, targetFields, onReview }: MappingTableP
                     ))}
                   </select>
                 </td>
-                <td>{mapping.method}</td>
-                <td>{Math.round(mapping.confidence * 100)}%</td>
+                <td><MethodBadge method={mapping.method} /></td>
+                <td><ConfidenceBadge value={mapping.confidence} /></td>
                 <td>
                   <StatusBadge
                     label={labelForStatus(mapping)}
-                    status={mapping.need_review ? "blocked" : mapping.status}
+                    status={mapping.need_review ? "review_required" : mapping.status}
                   />
                 </td>
                 <td>

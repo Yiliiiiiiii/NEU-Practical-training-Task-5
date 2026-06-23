@@ -548,6 +548,23 @@ describe("PackagePage", () => {
     expect(api.getPackageVerifierReport).toHaveBeenCalledWith("task_1");
   });
 
+  it("shows a package summary and standard file list after packaging", async () => {
+    render(
+      <PackagePage
+        onSelectionChange={vi.fn()}
+        onToast={vi.fn()}
+        selection={{ ...ACTIVE_SELECTION, taskStatus: "rendered" }}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Build package" }));
+
+    expect(await screen.findByText("Package Summary")).toBeInTheDocument();
+    expect(screen.getByText("manifest.json")).toBeInTheDocument();
+    expect(screen.getByText("content.json")).toBeInTheDocument();
+    expect(screen.getByText("trace.json")).toBeInTheDocument();
+  });
+
   it("reports package creation failures", async () => {
     vi.mocked(api.createPackage).mockRejectedValue(new Error("validation blocked"));
     const onToast = vi.fn();

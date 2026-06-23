@@ -46,17 +46,47 @@ const EMPTY_SELECTION: WorkbenchSelection = {
   taskStatus: null,
 };
 
-const MAPPED_STATUSES = new Set(["mapping_completed", "rendered", "completed"]);
+const CANDIDATE_DONE_STATUSES = new Set([
+  "candidates_ready",
+  "review_required",
+  "mapping_completed",
+  "rendered",
+  "completed",
+]);
+const MAPPING_DONE_STATUSES = new Set([
+  "review_required",
+  "mapping_completed",
+  "rendered",
+  "completed",
+]);
+const REVIEW_DONE_STATUSES = new Set(["mapping_completed", "rendered", "completed"]);
 
-function stageStateForMapping(status: string | null, hasTask: boolean): StageState {
+function stageStateForCandidates(status: string | null, hasTask: boolean): StageState {
+  if (status && CANDIDATE_DONE_STATUSES.has(status)) {
+    return "done";
+  }
+  return hasTask ? "ready" : "pending";
+}
+
+function stageStateForMapping(status: string | null): StageState {
+  if (status === "review_required") {
+    return "done";
+  }
+  if (status && MAPPING_DONE_STATUSES.has(status)) {
+    return "done";
+  }
+  if (status === "candidates_ready") {
+    return "ready";
+  }
+  return "pending";
+}
+
+function stageStateForReview(status: string | null): StageState {
   if (status === "review_required") {
     return "blocked";
   }
-  if (status && MAPPED_STATUSES.has(status)) {
+  if (status && REVIEW_DONE_STATUSES.has(status)) {
     return "done";
-  }
-  if (status === "candidates_ready" || hasTask) {
-    return "ready";
   }
   return "pending";
 }
@@ -67,25 +97,30 @@ export default function App() {
   const [toastLog, setToastLog] = useState<ToastMessage[]>([]);
   const workflowStages = useMemo<WorkflowStage[]>(() => {
     const hasImportBundle = Boolean(selection.docId && selection.schemaId && selection.templateId);
-    const mappingState = stageStateForMapping(selection.taskStatus, Boolean(selection.taskId));
+    const candidateState = stageStateForCandidates(selection.taskStatus, Boolean(selection.taskId));
+    const mappingState = stageStateForMapping(selection.taskStatus);
+    const reviewState = stageStateForReview(selection.taskStatus);
     const isRendered = selection.taskStatus === "rendered" || selection.taskStatus === "completed";
     const isCompleted = selection.taskStatus === "completed";
-    const convertState = isRendered
+    const transformState = isRendered
       ? "done"
-      : mappingState === "done" || selection.taskStatus === "review_required"
+      : selection.taskStatus === "mapping_completed"
         ? "ready"
         : "pending";
     return [
       {
-        label: "Import",
-        detail: "UIR, schema, template",
+        label: "Import UIR",
+        detail: "Document, schema, template",
         state: hasImportBundle ? "done" : "ready",
       },
-      { label: "Mapping", detail: "Candidates and review", state: mappingState },
-      { label: "Convert", detail: "Canonical and outputs", state: convertState },
+      { label: "Generate candidates", detail: "Source fields", state: candidateState },
+      { label: "Field mapping", detail: "Schema alignment", state: mappingState },
+      { label: "Human review", detail: "Confirm low confidence", state: reviewState },
+      { label: "Transform", detail: "Canonical model", state: transformState },
+      { label: "Render", detail: "JSON, Markdown, chunks", state: isRendered ? "done" : "pending" },
       {
-        label: "Reports",
-        detail: "Validation and trace",
+        label: "Validate",
+        detail: "Reports and trace",
         state: isCompleted ? "done" : isRendered ? "ready" : "pending",
       },
       {

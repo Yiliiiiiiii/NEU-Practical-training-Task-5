@@ -7,6 +7,6 @@ describe("App", () => {
   it("renders the workbench shell", () => {
     render(<App />);
 
-    expect(screen.getByText("SchemaPack Agent")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "SchemaPack Agent" })).toBeInTheDocument();
   });
 });

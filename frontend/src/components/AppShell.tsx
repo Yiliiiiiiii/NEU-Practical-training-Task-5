@@ -37,11 +37,13 @@ export function AppShell({
         <div className="brand-lockup">
           <ClipboardCheck aria-hidden="true" size={22} strokeWidth={2.2} />
           <div>
-            <span className="brand-kicker">Document Workbench</span>
+            <span className="brand-kicker">Data governance workbench</span>
             <h1>SchemaPack Agent</h1>
+            <small>数据格式标准化转换智能体</small>
           </div>
         </div>
         <div className="topbar__meta">
+          <span className="topbar-pill">Phase 10</span>
           <span title={API_BASE_URL}>API {API_BASE_URL.replace(/^https?:\/\//, "")}</span>
           <span>{currentTaskId ? `Task ${currentTaskId}` : "No task selected"}</span>
           <button className="icon-button" onClick={onRefresh} type="button">
@@ -71,13 +73,17 @@ export function AppShell({
             );
           })}
         </nav>
+        <div className="rail-status">
+          <strong>SchemaPack Agent</strong>
+          <span>Running</span>
+        </div>
       </aside>
 
       <main className="workspace-main">
         <section className="pipeline-card" aria-label="Workflow summary">
           <div>
-            <h2>UIR -&gt; Schema -&gt; Template -&gt; Task</h2>
-            <p>Run the package pipeline from one readable document surface.</p>
+            <h2>UIR -&gt; Schema -&gt; Mapping -&gt; Transform</h2>
+            <p>Canonical -&gt; Render -&gt; Validate -&gt; Manifest -&gt; Zip</p>
           </div>
           <StageRail stages={stages} />
         </section>

@@ -23,11 +23,16 @@ describe("MappingTable", () => {
             evidence: ["alias"],
           },
         ]}
+        candidateSamples={{ c1: "Document title sample" }}
         onReview={() => undefined}
         targetFields={["title"]}
       />,
     );
 
     expect(screen.getByText("Needs review")).toBeInTheDocument();
+    expect(screen.getByText("Document title sample")).toBeInTheDocument();
+    expect(screen.getAllByText("alias")).toHaveLength(2);
+    expect(screen.getByText(/72%/)).toBeInTheDocument();
+    expect(screen.getByText(/Low/i)).toBeInTheDocument();
   });
 });

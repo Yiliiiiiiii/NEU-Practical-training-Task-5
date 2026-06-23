@@ -2,33 +2,15 @@ import { Archive, Download, PackageCheck } from "lucide-react";
 import { useState } from "react";
 
 import { api, downloadPackage } from "../api/client";
-import type { JsonValue, PackageResponse, ReportResponse } from "../api/types";
+import type { PackageResponse, ReportResponse } from "../api/types";
 import type { ToastInput, WorkbenchSelection } from "../appTypes";
+import { PackageSummary } from "../components/PackageSummary";
 import { StatusBadge } from "../components/StatusBadge";
 
 interface PackagePageProps {
   selection: WorkbenchSelection;
   onSelectionChange: (selection: WorkbenchSelection) => void;
   onToast?: (toast: ToastInput) => void;
-}
-
-function isRecord(value: JsonValue | undefined): value is Record<string, JsonValue> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function getVerifiedPayloadCount(report: ReportResponse | null): string {
-  if (!report || !isRecord(report.summary)) {
-    return "Unavailable";
-  }
-  const count = report.summary.verified_payloads;
-  return typeof count === "number" ? String(count) : "Unavailable";
-}
-
-function getIssueCount(report: ReportResponse | null): string {
-  if (!report || !Array.isArray(report.issues)) {
-    return "Unavailable";
-  }
-  return String(report.issues.length);
 }
 
 export function PackagePage({ selection, onSelectionChange, onToast }: PackagePageProps) {
@@ -159,19 +141,12 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
       ) : null}
 
       {result ? (
-        <div className="package-proof">
-          <div><span>Package ID</span><strong>{result.package_id}</strong></div>
-          <div><span>Status</span><StatusBadge status={result.status} /></div>
-          <div><span>ZIP path</span><strong>{result.zip_path}</strong></div>
-          <div><span>SHA-256</span><code>{result.sha256 ?? "Unavailable"}</code></div>
-          {downloadSha ? <div><span>Download header</span><code>{downloadSha}</code></div> : null}
-          {verifierReport ? (
-            <div className="package-proof__verifier">
-              <span>External verifier</span>
-              <strong>{verifierReport.passed === true ? "Verifier passed" : "Verifier failed"}</strong>
-              <small>{getVerifiedPayloadCount(verifierReport)} payloads, {getIssueCount(verifierReport)} issues</small>
-            </div>
-          ) : null}
+        <>
+          <PackageSummary
+            downloadSha={downloadSha}
+            result={result}
+            verifierReport={verifierReport}
+          />
           <button
             className="secondary-button package-proof__download"
             disabled={isBusy}
@@ -181,7 +156,7 @@ export function PackagePage({ selection, onSelectionChange, onToast }: PackagePa
             <Download aria-hidden="true" size={16} />
             Download ZIP
           </button>
-        </div>
+        </>
       ) : (
         <div className="empty-state">
           <strong>No package generated in this session.</strong>
