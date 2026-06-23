@@ -25,6 +25,7 @@ from app.services.trace_service import TraceService
 from app.utils.ids import new_id
 from app.validators.consistency_validator import validate_consistency
 from app.validators.content_validator import validate_content_data
+from app.verifiers.package_verifier import verify_package_zip
 
 
 class PackageService:
@@ -38,12 +39,16 @@ class PackageService:
         package_version: str = "1.0.0",
     ) -> dict:
         task = self._get_task(task_id)
-        retrying_package_io = (
-            task.status == "failed" and task.error_code == "package_io_error"
+        retrying_package_failure = (
+            task.status == "failed"
+            and task.error_code in {"package_io_error", "package_verifier_error"}
         )
-        if task.status in ("review_required", "failed", "cancelled") and not retrying_package_io:
+        if (
+            task.status in ("review_required", "failed", "cancelled")
+            and not retrying_package_failure
+        ):
             raise ValueError(f"task status '{task.status}' does not allow packaging")
-        if task.status not in {"rendered", "completed"} and not retrying_package_io:
+        if task.status not in {"rendered", "completed"} and not retrying_package_failure:
             raise ValueError(f"task status '{task.status}' is not ready for packaging")
 
         trace_service = TraceService(self.db, self.storage)
@@ -192,7 +197,6 @@ class PackageService:
                         arcname = f.relative_to(staging).as_posix()
                         zf.write(f, arcname)
                 zip_tmp.replace(zip_dest)
-                self._verify_zip_payload(zip_dest, manifest)
             except Exception as exc:
                 zip_tmp.unlink(missing_ok=True)
                 zip_dest.unlink(missing_ok=True)
@@ -209,6 +213,27 @@ class PackageService:
                 trace_service.export_trace_json(task_id)
                 self.db.commit()
                 raise ValueError("failed to write or verify package zip") from exc
+
+            verifier_report = verify_package_zip(zip_dest)
+            self.storage.save_json(
+                f"tasks/{task_id}/package_verifier_report.json",
+                verifier_report.model_dump(mode="json"),
+            )
+            if not verifier_report.passed:
+                zip_dest.unlink(missing_ok=True)
+                task.status = "failed"
+                task.error_code = "package_verifier_error"
+                task.error_message = "package verifier rejected zip"
+                trace_service.record_event(
+                    task_id=task_id,
+                    stage="package",
+                    action="verify_package",
+                    reason="package verifier rejected zip",
+                    status="failed",
+                )
+                trace_service.export_trace_json(task_id)
+                self.db.commit()
+                raise ValueError("package verifier rejected zip")
             zip_sha256 = self.storage.sha256(zip_path)
 
             record = OutputPackageRecord(

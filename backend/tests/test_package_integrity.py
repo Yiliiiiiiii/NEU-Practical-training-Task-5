@@ -17,6 +17,7 @@ from app.schemas.package import Manifest, ManifestFile
 from app.schemas.target_schema import TargetField, TargetSchema
 from app.services.package_service import PackageService
 from app.services.storage_service import StorageService
+from app.verifiers.package_verifier import PackageVerifierIssue, PackageVerifierReport
 
 
 @pytest.fixture()
@@ -291,22 +292,33 @@ def test_package_verification_failure_cleans_output_and_marks_task_failed(
 ):
     db, storage = package_context
     task = _seed_package(db, storage, task_id="task_io_failure")
-    verifier = PackageService._verify_zip_payload
 
-    def fail_verification(*_args):
-        raise ValueError("simulated damaged package")
+    def fail_verification(zip_path, *, max_json_bytes=5_000_000):
+        return PackageVerifierReport(
+            passed=False,
+            zip_path=str(zip_path),
+            zip_sha256=None,
+            summary={},
+            issues=[
+                PackageVerifierIssue(
+                    code="simulated_damaged_package",
+                    message="simulated damaged package",
+                    path="content.json",
+                )
+            ],
+        )
 
-    monkeypatch.setattr(PackageService, "_verify_zip_payload", fail_verification)
+    monkeypatch.setattr("app.services.package_service.verify_package_zip", fail_verification)
 
-    with pytest.raises(ValueError, match="failed to write or verify package zip"):
+    with pytest.raises(ValueError, match="package verifier rejected zip"):
         PackageService(db, storage).create_package(task.task_id)
 
     db.refresh(task)
     assert task.status == "failed"
-    assert task.error_code == "package_io_error"
+    assert task.error_code == "package_verifier_error"
     assert not list((storage.root / "packages").rglob("*.zip"))
 
-    monkeypatch.setattr(PackageService, "_verify_zip_payload", staticmethod(verifier))
+    monkeypatch.undo()
     result = PackageService(db, storage).create_package(task.task_id)
 
     db.refresh(task)

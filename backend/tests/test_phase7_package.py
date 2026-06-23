@@ -26,6 +26,7 @@ from app.schemas.target_schema import TargetSchema
 from app.services.canonical_service import CanonicalService
 from app.services.render_service import RenderService
 from app.services.storage_service import StorageService
+from app.verifiers.package_verifier import PackageVerifierIssue, PackageVerifierReport
 
 EXAMPLES = Path(__file__).resolve().parent.parent.parent / "examples" / "demo"
 
@@ -669,3 +670,67 @@ def test_requested_package_version_is_written_to_metadata_and_manifest(
         manifest = json.loads(zf.read("manifest.json"))
     assert metadata["package_version"] == "1.2.3"
     assert manifest["package_version"] == "1.2.3"
+
+
+def test_package_service_saves_external_verifier_report_outside_zip(
+    client, db_session, storage
+):
+    """Phase 10 verifier report is persisted outside the standard package ZIP."""
+    task_id = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+
+    resp = client.post(f"/api/v1/tasks/{task_id}/package", json={})
+    assert resp.status_code == 200
+
+    verifier_report = storage.read_json(f"tasks/{task_id}/package_verifier_report.json")
+    assert verifier_report["passed"] is True
+    assert verifier_report["summary"]["verified_payloads"] >= 1
+
+    download = client.get(f"/api/v1/tasks/{task_id}/package/download")
+    assert download.status_code == 200
+    with zipfile.ZipFile(__import__("io").BytesIO(download.content)) as zf:
+        assert "package_verifier_report.json" not in zf.namelist()
+
+
+def test_package_service_blocks_completion_when_external_verifier_rejects_zip(
+    client, db_session, storage, monkeypatch
+):
+    """A verifier failure prevents completed package records and removes the ZIP."""
+    task_id = _seed_full_pipeline(
+        db_session,
+        storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+
+    def reject_package(zip_path, *, max_json_bytes=5_000_000):
+        return PackageVerifierReport(
+            passed=False,
+            zip_path=str(zip_path),
+            zip_sha256=None,
+            summary={},
+            issues=[
+                PackageVerifierIssue(
+                    code="forced_reject",
+                    message="forced verifier rejection",
+                    path="content.json",
+                )
+            ],
+        )
+
+    monkeypatch.setattr("app.services.package_service.verify_package_zip", reject_package)
+
+    resp = client.post(f"/api/v1/tasks/{task_id}/package", json={})
+
+    assert resp.status_code == 409
+    task = db_session.get(ConversionTask, task_id)
+    assert task.status == "failed"
+    assert task.error_code == "package_verifier_error"
+    packages_dir = storage.resolve("packages")
+    assert not packages_dir.exists() or not list(packages_dir.rglob("*.zip"))
