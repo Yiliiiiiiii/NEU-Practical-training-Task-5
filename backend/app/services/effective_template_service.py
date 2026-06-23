@@ -19,7 +19,7 @@ class EffectiveTemplateService:
         packs = (
             self.db.query(KnowledgePackRecord)
             .filter(KnowledgePackRecord.status == "active")
-            .order_by(KnowledgePackRecord.created_at.asc())
+            .order_by(KnowledgePackRecord.created_at.asc(), KnowledgePackRecord.pack_id.asc())
             .all()
         )
         for pack in packs:
@@ -31,20 +31,30 @@ class EffectiveTemplateService:
             items = (
                 self.db.query(KnowledgePackItemRecord)
                 .filter(KnowledgePackItemRecord.pack_id == pack.pack_id)
-                .order_by(KnowledgePackItemRecord.created_at.asc())
+                .order_by(
+                    KnowledgePackItemRecord.created_at.asc(),
+                    KnowledgePackItemRecord.item_id.asc(),
+                )
                 .all()
             )
             for item in items:
                 payload = self._load_json_object(item.payload_json)
                 if item.item_type == "alias_candidate" and item.target_field_id:
+                    new_aliases = payload.get("aliases")
+                    if not isinstance(new_aliases, list):
+                        continue
                     aliases = data.setdefault("aliases", {}).setdefault(item.target_field_id, [])
-                    for alias in payload.get("aliases", []):
+                    for alias in new_aliases:
                         if alias not in aliases:
                             aliases.append(alias)
                 elif item.item_type == "regex_candidate":
                     data.setdefault("regex_rules", []).append(payload)
                 elif item.item_type == "enum_map_candidate" and item.target_field_id:
-                    data.setdefault("enum_maps", {})[item.target_field_id] = payload.get("map", {})
+                    enum_map = data.setdefault("enum_maps", {}).setdefault(
+                        item.target_field_id,
+                        {},
+                    )
+                    enum_map.update(payload.get("map", {}))
                 elif item.item_type == "default_candidate" and item.target_field_id:
                     data.setdefault("defaults", {})[item.target_field_id] = payload.get("value")
                 elif item.item_type == "transform_candidate":
