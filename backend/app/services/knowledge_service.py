@@ -7,12 +7,17 @@ from app.db.models import (
     ConversionTask,
     FieldCandidateRecord,
     FieldMappingRecord,
+    KnowledgePackItemRecord,
+    KnowledgePackRecord,
     LearningCandidateRecord,
     RealRunRecord,
     ReviewRecord,
     TransformTraceRecord,
 )
 from app.schemas.knowledge import (
+    CandidateDecisionRequest,
+    KnowledgePackCreateRequest,
+    KnowledgePackView,
     LearningCandidateView,
     RealRunView,
 )
@@ -76,6 +81,67 @@ class KnowledgeService:
             self.db.add(record)
         self.db.commit()
         return [self._candidate_view(record) for record in created]
+
+    def decide_candidate(
+        self,
+        candidate_id: str,
+        request: CandidateDecisionRequest,
+    ) -> LearningCandidateView:
+        record = self._candidate(candidate_id)
+        record.status = request.decision
+        record.reviewer = request.reviewer
+        record.decision_reason = request.reason
+        if request.decision == "approved":
+            final_payload = request.final_payload or json.loads(
+                record.proposed_payload_json or "{}"
+            )
+            record.final_payload_json = json.dumps(
+                final_payload,
+                ensure_ascii=False,
+                sort_keys=True,
+            )
+        else:
+            record.final_payload_json = "{}"
+        self.db.commit()
+        self.db.refresh(record)
+        return self._candidate_view(record)
+
+    def create_knowledge_pack(
+        self,
+        request: KnowledgePackCreateRequest,
+    ) -> KnowledgePackView:
+        if not request.candidate_ids:
+            raise KnowledgeValidationError("candidate_ids must not be empty")
+        records = [self._candidate(candidate_id) for candidate_id in request.candidate_ids]
+        for record in records:
+            if record.status != "approved":
+                raise KnowledgeValidationError("candidate must be approved before publishing")
+
+        pack = KnowledgePackRecord(
+            pack_id=new_id("kp"),
+            name=request.name,
+            scope_json=json.dumps(request.scope, ensure_ascii=False, sort_keys=True),
+            status="draft",
+            version="1.0.0",
+            item_count=len(records),
+            regression_report_path=None,
+            reviewer=request.reviewer,
+        )
+        self.db.add(pack)
+        self.db.flush()
+        for record in records:
+            payload = json.loads(record.final_payload_json or "{}")
+            self.db.add(KnowledgePackItemRecord(
+                item_id=new_id("kpi"),
+                pack_id=pack.pack_id,
+                item_type=record.candidate_type,
+                target_field_id=record.target_field_id,
+                payload_json=json.dumps(payload, ensure_ascii=False, sort_keys=True),
+                source_candidate_id=record.candidate_id,
+            ))
+        self.db.commit()
+        self.db.refresh(pack)
+        return self._pack_view(pack)
 
     def _review_alias_candidates(self, run: RealRunRecord) -> list[LearningCandidateRecord]:
         candidates: list[LearningCandidateRecord] = []
@@ -213,6 +279,12 @@ class KnowledgeService:
             raise LookupError("real run not found")
         return run
 
+    def _candidate(self, candidate_id: str) -> LearningCandidateRecord:
+        record = self.db.get(LearningCandidateRecord, candidate_id)
+        if record is None:
+            raise LookupError("learning candidate not found")
+        return record
+
     @staticmethod
     def _real_run_view(record: RealRunRecord) -> RealRunView:
         return RealRunView(
@@ -242,4 +314,17 @@ class KnowledgeService:
             evidence=json.loads(record.evidence_json or "{}"),
             generator=record.generator,
             confidence=record.confidence,
+        )
+
+    @staticmethod
+    def _pack_view(record: KnowledgePackRecord) -> KnowledgePackView:
+        return KnowledgePackView(
+            pack_id=record.pack_id,
+            name=record.name,
+            scope=json.loads(record.scope_json or "{}"),
+            status=record.status,
+            version=record.version,
+            item_count=record.item_count,
+            regression_report_path=record.regression_report_path,
+            reviewer=record.reviewer,
         )

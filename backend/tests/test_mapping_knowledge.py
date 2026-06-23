@@ -346,3 +346,51 @@ def test_rejected_reviews_do_not_produce_alias_candidate(knowledge_context):
     candidates = service.derive_learning_candidates(run.real_run_id)
 
     assert all(candidate.candidate_type != "alias_candidate" for candidate in candidates)
+
+
+def test_pending_candidates_do_not_create_pack_until_approved(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+    [candidate, *_] = service.derive_learning_candidates(run.real_run_id)
+
+    with pytest.raises(ValueError, match="candidate must be approved"):
+        service.create_knowledge_pack(KnowledgePackCreateRequest(
+            name="Title aliases",
+            scope={"schema_id": "schema_k", "template_id": "template_k"},
+            candidate_ids=[candidate.candidate_id],
+            reviewer="tester",
+        ))
+
+
+def test_approved_alias_candidate_creates_draft_pack_items(knowledge_context):
+    db, storage = knowledge_context
+    task_id = _seed_reviewed_task(db, storage)
+    service = KnowledgeService(db, storage)
+    run = service.capture_real_run(task_id)
+    candidate = next(
+        item for item in service.derive_learning_candidates(run.real_run_id)
+        if item.candidate_type == "alias_candidate"
+    )
+
+    decided = service.decide_candidate(
+        candidate.candidate_id,
+        CandidateDecisionRequest(
+            decision="approved",
+            reviewer="tester",
+            final_payload={"aliases": ["doc_title"]},
+            reason="confirmed by review",
+        ),
+    )
+    pack = service.create_knowledge_pack(KnowledgePackCreateRequest(
+        name="Title aliases",
+        scope={"schema_id": "schema_k", "template_id": "template_k"},
+        candidate_ids=[candidate.candidate_id],
+        reviewer="tester",
+    ))
+
+    assert decided.status == "approved"
+    assert pack.status == "draft"
+    assert pack.item_count == 1
+    assert pack.scope["template_id"] == "template_k"
