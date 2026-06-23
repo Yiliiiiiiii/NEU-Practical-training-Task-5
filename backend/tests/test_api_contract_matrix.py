@@ -27,6 +27,7 @@ MVP_ENDPOINTS = {
     ("post", "/api/v1/tasks"),
     ("get", "/api/v1/tasks"),
     ("get", "/api/v1/tasks/{task_id}"),
+    ("post", "/api/v1/tasks/{task_id}/replay"),
     ("post", "/api/v1/tasks/{task_id}/generate-candidates"),
     ("get", "/api/v1/tasks/{task_id}/candidates"),
     ("post", "/api/v1/tasks/{task_id}/map"),
@@ -83,7 +84,7 @@ def test_openapi_exposes_exact_mvp_endpoint_inventory(contract_client):
     }
 
     assert actual == MVP_ENDPOINTS
-    assert len(actual) == 26
+    assert len(actual) == 27
 
 
 @pytest.mark.parametrize(
@@ -103,6 +104,7 @@ def test_openapi_exposes_exact_mvp_endpoint_inventory(contract_client):
         ("post", "/api/v1/tasks/task/mappings/review", {}),
         ("post", "/api/v1/tasks/task/convert", {"chunk_size": 0}),
         ("post", "/api/v1/tasks/task/package", {"package_version": 1}),
+        ("post", "/api/v1/tasks/task/replay", {"options_override": []}),
     ],
 )
 def test_body_endpoints_reject_malformed_requests(contract_client, method, path, payload):

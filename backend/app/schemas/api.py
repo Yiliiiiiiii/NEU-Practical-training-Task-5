@@ -90,6 +90,21 @@ class TaskDetailResponse(StrictBaseModel):
     options: dict[str, Any]
 
 
+class TaskReplayRequest(StrictBaseModel):
+    reuse_confirmed_mappings: bool = True
+    repeat_model_calls: bool = False
+    options_override: dict[str, Any] = Field(default_factory=dict)
+
+
+class TaskReplayResponse(StrictBaseModel):
+    parent_task_id: str
+    child_task_id: str
+    status: str
+    copied_candidates: int
+    copied_mappings: int
+    repeat_model_calls: bool
+
+
 class SchemaCreateRequest(StrictBaseModel):
     target_schema: TargetSchema = Field(alias="schema")
 

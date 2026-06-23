@@ -21,6 +21,8 @@ from app.schemas.api import (
     TaskDetailResponse,
     TaskListItem,
     TaskListResponse,
+    TaskReplayRequest,
+    TaskReplayResponse,
     TraceListResponse,
     ValidationReportResponse,
 )
@@ -109,6 +111,35 @@ def get_task(
         template_version=task.template_version,
         input_hash=task.input_hash,
         options=service.task_options(task),
+    )
+
+
+@router.post("/{task_id}/replay", response_model=TaskReplayResponse)
+def replay_task(
+    task_id: str,
+    service: Annotated[TaskService, Depends(get_task_service)],
+    mutation_registry: Annotated[
+        TaskMutationRegistry, Depends(get_task_mutation_registry)
+    ],
+    request: Annotated[TaskReplayRequest | None, Body()] = None,
+) -> TaskReplayResponse:
+    request = request or TaskReplayRequest()
+    try:
+        with mutation_registry.task_mutation(task_id):
+            child, counts = service.replay_task(task_id, request)
+    except TaskMutationConflict as exc:
+        raise TaskStateError(str(exc)) from exc
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise TaskStateError(str(exc)) from exc
+    return TaskReplayResponse(
+        parent_task_id=task_id,
+        child_task_id=child.task_id,
+        status=child.status,
+        copied_candidates=counts["candidates"],
+        copied_mappings=counts["mappings"],
+        repeat_model_calls=request.repeat_model_calls,
     )
 
 

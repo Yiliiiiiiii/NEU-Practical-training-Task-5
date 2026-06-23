@@ -12,6 +12,7 @@ from app.db.models import (
     CanonicalModelRecord,
     ConsistencyReportRecord,
     ConversionTask,
+    FieldMappingRecord,
     OutputPackageRecord,
     PackageFileRecord,
     TargetSchemaRecord,
@@ -19,6 +20,7 @@ from app.db.models import (
 )
 from app.engines.manifest_engine import generate_manifest
 from app.schemas.canonical import CanonicalModel
+from app.schemas.run_snapshot import ExecutionSnapshot
 from app.schemas.target_schema import TargetSchema
 from app.services.storage_service import StorageService
 from app.services.trace_service import TraceService
@@ -309,7 +311,44 @@ class PackageService:
         self.storage.save_json(f"tasks/{task.task_id}/metadata.json", metadata)
 
     def _generate_config_snapshot(self, task: ConversionTask) -> None:
-        snapshot = {
+        mapping_summary = self._mapping_report_summary(task.task_id)
+        prompt_version = mapping_summary.get("llm_prompt_version")
+        model = {
+            "enabled": mapping_summary.get("llm_enabled", False),
+            "mode": mapping_summary.get("llm_mode", "disabled"),
+            "model": mapping_summary.get("llm_model"),
+            "status": mapping_summary.get("llm_status", "disabled"),
+            "suggestion_count": mapping_summary.get("llm_suggestion_count", 0),
+            "latency_ms": mapping_summary.get("llm_latency_ms"),
+            "error": mapping_summary.get("llm_error"),
+        }
+        confirmed_mapping_ids = [
+            row.mapping_id for row in (
+                self.db.query(FieldMappingRecord)
+                .filter(
+                    FieldMappingRecord.task_id == task.task_id,
+                    FieldMappingRecord.status == "confirmed",
+                    FieldMappingRecord.need_review.is_(False),
+                )
+                .order_by(FieldMappingRecord.mapping_id.asc())
+                .all()
+            )
+        ]
+        snapshot = ExecutionSnapshot(
+            snapshot_version="1.1",
+            task_id=task.task_id,
+            parent_task_id=task.parent_task_id,
+            input_hash=task.input_hash,
+            schema_ref={"schema_id": task.schema_id, "version": task.schema_version},
+            template_ref={"template_id": task.template_id, "version": task.template_version},
+            options=json.loads(task.options_json or "{}"),
+            engine_version="1.0.0",
+            prompt_version=prompt_version,
+            model=model,
+            confirmed_mapping_ids=confirmed_mapping_ids,
+            created_at=datetime.now(UTC).isoformat(),
+        ).model_dump(mode="json")
+        snapshot.update({
             "input_hash": task.input_hash,
             "schema_id": task.schema_id,
             "schema_version": task.schema_version,
@@ -317,11 +356,21 @@ class PackageService:
             "template_version": task.template_version,
             "options": json.loads(task.options_json or "{}"),
             "engine_version": "1.0.0",
-            "llm_mode": "disabled",
-            "llm_model": None,
-            "prompt_version": None,
-        }
-        self.storage.save_json(f"tasks/{task.task_id}/config_snapshot.json", snapshot)
+            "llm_mode": model["mode"],
+            "llm_model": model["model"],
+            "prompt_version": prompt_version,
+        })
+        path = f"tasks/{task.task_id}/config_snapshot.json"
+        self.storage.save_json(path, snapshot)
+        task.config_snapshot_path = path
+
+    def _mapping_report_summary(self, task_id: str) -> dict:
+        try:
+            data = self.storage.read_json(f"tasks/{task_id}/mapping_report.json")
+        except FileNotFoundError:
+            return {}
+        summary = data.get("summary", {})
+        return summary if isinstance(summary, dict) else {}
 
     def _ensure_mapping_report(self, task_id: str) -> None:
         path = f"tasks/{task_id}/mapping_report.json"
