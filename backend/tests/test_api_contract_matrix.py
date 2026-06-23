@@ -40,6 +40,7 @@ MVP_ENDPOINTS = {
     ("get", "/api/v1/tasks/{task_id}/package/download"),
     ("get", "/api/v1/tasks/{task_id}/reports/validation"),
     ("get", "/api/v1/tasks/{task_id}/reports/consistency"),
+    ("get", "/api/v1/tasks/{task_id}/reports/package-verifier"),
     ("get", "/api/v1/tasks/{task_id}/trace"),
 }
 
@@ -84,7 +85,7 @@ def test_openapi_exposes_exact_mvp_endpoint_inventory(contract_client):
     }
 
     assert actual == MVP_ENDPOINTS
-    assert len(actual) == 27
+    assert len(actual) == 28
 
 
 @pytest.mark.parametrize(
@@ -157,6 +158,7 @@ def test_syntactically_malformed_json_uses_validation_envelope(contract_client):
         ("get", "/api/v1/tasks/missing/package/download", None),
         ("get", "/api/v1/tasks/missing/reports/validation", None),
         ("get", "/api/v1/tasks/missing/reports/consistency", None),
+        ("get", "/api/v1/tasks/missing/reports/package-verifier", None),
         ("get", "/api/v1/tasks/missing/trace", None),
     ],
 )

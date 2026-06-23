@@ -1,0 +1,3102 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SchemaPack Agent",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/documents/import": {
+      "post": {
+        "tags": [
+          "documents"
+        ],
+        "summary": "Import Document",
+        "operationId": "import_document_api_v1_documents_import_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentImportRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentImportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/documents": {
+      "get": {
+        "tags": [
+          "documents"
+        ],
+        "summary": "List Documents",
+        "operationId": "list_documents_api_v1_documents_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/documents/{doc_id}": {
+      "get": {
+        "tags": [
+          "documents"
+        ],
+        "summary": "Get Document",
+        "operationId": "get_document_api_v1_documents__doc_id__get",
+        "parameters": [
+          {
+            "name": "doc_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Doc Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDetailResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/generate-candidates": {
+      "post": {
+        "tags": [
+          "mappings"
+        ],
+        "summary": "Generate Candidates",
+        "operationId": "generate_candidates_api_v1_tasks__task_id__generate_candidates_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/GenerateCandidatesRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateCandidatesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/candidates": {
+      "get": {
+        "tags": [
+          "mappings"
+        ],
+        "summary": "List Candidates",
+        "operationId": "list_candidates_api_v1_tasks__task_id__candidates_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandidateListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/map": {
+      "post": {
+        "tags": [
+          "mappings"
+        ],
+        "summary": "Run Mapping",
+        "operationId": "run_mapping_api_v1_tasks__task_id__map_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MappingRunRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingRunResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/mappings": {
+      "get": {
+        "tags": [
+          "mappings"
+        ],
+        "summary": "List Mappings",
+        "operationId": "list_mappings_api_v1_tasks__task_id__mappings_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/mappings/review": {
+      "post": {
+        "tags": [
+          "mappings"
+        ],
+        "summary": "Review Mappings",
+        "operationId": "review_mappings_api_v1_tasks__task_id__mappings_review_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MappingReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingReviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/reports/mapping": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Mapping Report",
+        "operationId": "get_mapping_report_api_v1_tasks__task_id__reports_mapping_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingReport"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schemas": {
+      "get": {
+        "tags": [
+          "schemas"
+        ],
+        "summary": "List Schemas",
+        "operationId": "list_schemas_api_v1_schemas_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemaListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "schemas"
+        ],
+        "summary": "Create Schema",
+        "operationId": "create_schema_api_v1_schemas_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchemaCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemaCreateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schemas/{schema_id}": {
+      "get": {
+        "tags": [
+          "schemas"
+        ],
+        "summary": "Get Schema",
+        "operationId": "get_schema_api_v1_schemas__schema_id__get",
+        "parameters": [
+          {
+            "name": "schema_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Schema Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TargetSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks": {
+      "post": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Create Task",
+        "operationId": "create_task_api_v1_tasks_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskCreateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "List Tasks",
+        "operationId": "list_tasks_api_v1_tasks_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Get Task",
+        "operationId": "get_task_api_v1_tasks__task_id__get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskDetailResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/replay": {
+      "post": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Replay Task",
+        "operationId": "replay_task_api_v1_tasks__task_id__replay_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskReplayRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskReplayResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/convert": {
+      "post": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Convert Task",
+        "operationId": "convert_task_api_v1_tasks__task_id__convert_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConvertResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/canonical": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Get Canonical",
+        "operationId": "get_canonical_api_v1_tasks__task_id__canonical_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CanonicalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/package": {
+      "post": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Create Package",
+        "operationId": "create_package_api_v1_tasks__task_id__package_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PackageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/package/download": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Download Package",
+        "operationId": "download_package_api_v1_tasks__task_id__package_download_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/reports/validation": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Get Validation Report",
+        "operationId": "get_validation_report_api_v1_tasks__task_id__reports_validation_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/reports/consistency": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Get Consistency Report",
+        "operationId": "get_consistency_report_api_v1_tasks__task_id__reports_consistency_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsistencyReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/reports/package-verifier": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Get Package Verifier Report",
+        "operationId": "get_package_verifier_report_api_v1_tasks__task_id__reports_package_verifier_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PackageVerifierReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}/trace": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Get Trace",
+        "operationId": "get_trace_api_v1_tasks__task_id__trace_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TraceListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/templates": {
+      "get": {
+        "tags": [
+          "templates"
+        ],
+        "summary": "List Templates",
+        "operationId": "list_templates_api_v1_templates_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "templates"
+        ],
+        "summary": "Create Template",
+        "operationId": "create_template_api_v1_templates_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSaveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/templates/{template_id}": {
+      "put": {
+        "tags": [
+          "templates"
+        ],
+        "summary": "Update Template",
+        "operationId": "update_template_api_v1_templates__template_id__put",
+        "parameters": [
+          {
+            "name": "template_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Template Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSaveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "templates"
+        ],
+        "summary": "Get Template",
+        "operationId": "get_template_api_v1_templates__template_id__get",
+        "parameters": [
+          {
+            "name": "template_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Template Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MappingTemplate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CandidateListItem": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "title": "Candidate Id"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "source_path": {
+            "type": "string",
+            "title": "Source Path"
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "value_sample": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value Sample"
+          },
+          "inferred_type": {
+            "type": "string",
+            "title": "Inferred Type"
+          },
+          "source_blocks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Blocks"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "task_id",
+          "doc_id",
+          "source_path",
+          "source_name",
+          "inferred_type",
+          "source_blocks",
+          "confidence",
+          "evidence"
+        ],
+        "title": "CandidateListItem"
+      },
+      "CandidateListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CandidateListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "CandidateListResponse"
+      },
+      "CanonicalAsset": {
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "title": "Asset Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "source_block_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Block Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "asset_id",
+          "type",
+          "path"
+        ],
+        "title": "CanonicalAsset"
+      },
+      "CanonicalBlock": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "source_blocks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Blocks"
+          },
+          "text_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Hash"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "type",
+          "text",
+          "source_blocks"
+        ],
+        "title": "CanonicalBlock"
+      },
+      "CanonicalField": {
+        "properties": {
+          "value": {
+            "title": "Value"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "source_candidates": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Candidates"
+          },
+          "source_blocks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "value",
+          "type"
+        ],
+        "title": "CanonicalField"
+      },
+      "CanonicalResponse": {
+        "properties": {
+          "canonical_version": {
+            "type": "string",
+            "title": "Canonical Version"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "doc_meta": {
+            "type": "object",
+            "title": "Doc Meta"
+          },
+          "fields": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CanonicalField"
+            },
+            "type": "object",
+            "title": "Fields"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/CanonicalBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          },
+          "assets": {
+            "items": {
+              "$ref": "#/components/schemas/CanonicalAsset"
+            },
+            "type": "array",
+            "title": "Assets"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "canonical_version",
+          "task_id",
+          "doc_id",
+          "schema_id"
+        ],
+        "title": "CanonicalResponse"
+      },
+      "ConsistencyReportResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "passed": {
+            "type": "boolean",
+            "title": "Passed"
+          },
+          "checks": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Checks"
+          },
+          "errors": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Errors"
+          },
+          "warnings": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "passed",
+          "checks"
+        ],
+        "title": "ConsistencyReportResponse"
+      },
+      "ConvertRequest": {
+        "properties": {
+          "render_outputs": {
+            "type": "boolean",
+            "title": "Render Outputs",
+            "default": true
+          },
+          "chunk_size": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Chunk Size",
+            "default": 500
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ConvertRequest"
+      },
+      "ConvertResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "outputs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Outputs"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "status",
+          "outputs"
+        ],
+        "title": "ConvertResponse"
+      },
+      "DocumentDetailResponse": {
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "metadata": {
+            "type": "object",
+            "title": "Metadata"
+          },
+          "blocks_preview": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Blocks Preview"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "doc_id",
+          "metadata",
+          "blocks_preview"
+        ],
+        "title": "DocumentDetailResponse"
+      },
+      "DocumentImportRequest": {
+        "properties": {
+          "uir": {
+            "$ref": "#/components/schemas/UIRDocument"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "uir"
+        ],
+        "title": "DocumentImportRequest"
+      },
+      "DocumentImportResponse": {
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "block_count": {
+            "type": "integer",
+            "title": "Block Count"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "doc_id",
+          "status",
+          "block_count"
+        ],
+        "title": "DocumentImportResponse"
+      },
+      "DocumentListItem": {
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "block_count": {
+            "type": "integer",
+            "title": "Block Count"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "doc_id",
+          "block_count"
+        ],
+        "title": "DocumentListItem"
+      },
+      "DocumentListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "DocumentListResponse"
+      },
+      "GenerateCandidatesRequest": {
+        "properties": {
+          "include_metadata": {
+            "type": "boolean",
+            "title": "Include Metadata",
+            "default": true
+          },
+          "include_blocks": {
+            "type": "boolean",
+            "title": "Include Blocks",
+            "default": true
+          },
+          "include_tables": {
+            "type": "boolean",
+            "title": "Include Tables",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "GenerateCandidatesRequest"
+      },
+      "GenerateCandidatesResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "candidate_count": {
+            "type": "integer",
+            "title": "Candidate Count"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "candidate_count",
+          "status"
+        ],
+        "title": "GenerateCandidatesResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MappingListItem": {
+        "properties": {
+          "mapping_id": {
+            "type": "string",
+            "title": "Mapping Id"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "candidate_id": {
+            "type": "string",
+            "title": "Candidate Id"
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name"
+          },
+          "source_path": {
+            "type": "string",
+            "title": "Source Path"
+          },
+          "target_field_id": {
+            "type": "string",
+            "title": "Target Field Id"
+          },
+          "target_field_name": {
+            "type": "string",
+            "title": "Target Field Name"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "need_review": {
+            "type": "boolean",
+            "title": "Need Review"
+          },
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mapping_id",
+          "task_id",
+          "candidate_id",
+          "source_name",
+          "source_path",
+          "target_field_id",
+          "target_field_name",
+          "method",
+          "confidence",
+          "status",
+          "need_review",
+          "evidence"
+        ],
+        "title": "MappingListItem"
+      },
+      "MappingListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/MappingListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "MappingListResponse"
+      },
+      "MappingReport": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "mappings": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Mappings"
+          },
+          "unmapped": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unmapped"
+          },
+          "review_required_items": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Review Required Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "schema_id",
+          "summary"
+        ],
+        "title": "MappingReport"
+      },
+      "MappingReviewItem": {
+        "properties": {
+          "mapping_id": {
+            "type": "string",
+            "title": "Mapping Id"
+          },
+          "new_target_field_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "New Target Field Id"
+          },
+          "decision": {
+            "type": "string",
+            "title": "Decision",
+            "default": "confirmed"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          },
+          "reviewer": {
+            "type": "string",
+            "title": "Reviewer",
+            "default": "human"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mapping_id"
+        ],
+        "title": "MappingReviewItem"
+      },
+      "MappingReviewRequest": {
+        "properties": {
+          "reviews": {
+            "items": {
+              "$ref": "#/components/schemas/MappingReviewItem"
+            },
+            "type": "array",
+            "title": "Reviews"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reviews"
+        ],
+        "title": "MappingReviewRequest"
+      },
+      "MappingReviewResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "updated": {
+            "type": "integer",
+            "title": "Updated"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "updated",
+          "status"
+        ],
+        "title": "MappingReviewResponse"
+      },
+      "MappingRunRequest": {
+        "properties": {
+          "enable_llm_fallback": {
+            "type": "boolean",
+            "title": "Enable Llm Fallback",
+            "default": false
+          },
+          "review_threshold": {
+            "type": "number",
+            "title": "Review Threshold",
+            "default": 0.8
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "MappingRunRequest"
+      },
+      "MappingRunResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "mapped_count": {
+            "type": "integer",
+            "title": "Mapped Count"
+          },
+          "review_required_count": {
+            "type": "integer",
+            "title": "Review Required Count"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "mapped_count",
+          "review_required_count",
+          "status"
+        ],
+        "title": "MappingRunResponse"
+      },
+      "MappingTemplate": {
+        "properties": {
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "aliases": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Aliases"
+          },
+          "regex_rules": {
+            "items": {
+              "$ref": "#/components/schemas/RegexRule"
+            },
+            "type": "array",
+            "title": "Regex Rules"
+          },
+          "transform_rules": {
+            "items": {
+              "$ref": "#/components/schemas/TransformRule"
+            },
+            "type": "array",
+            "title": "Transform Rules"
+          },
+          "defaults": {
+            "type": "object",
+            "title": "Defaults"
+          },
+          "enum_maps": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "type": "object",
+            "title": "Enum Maps"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "template_id",
+          "schema_id",
+          "name",
+          "version"
+        ],
+        "title": "MappingTemplate"
+      },
+      "PackageRequest": {
+        "properties": {
+          "package_version": {
+            "type": "string",
+            "title": "Package Version",
+            "default": "1.0.0"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "PackageRequest"
+      },
+      "PackageResponse": {
+        "properties": {
+          "package_id": {
+            "type": "string",
+            "title": "Package Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "zip_path": {
+            "type": "string",
+            "title": "Zip Path"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sha256"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "package_id",
+          "status",
+          "zip_path"
+        ],
+        "title": "PackageResponse"
+      },
+      "PackageVerifierReportResponse": {
+        "properties": {
+          "passed": {
+            "type": "boolean",
+            "title": "Passed"
+          },
+          "zip_path": {
+            "type": "string",
+            "title": "Zip Path"
+          },
+          "zip_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip Sha256"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "issues": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Issues"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "passed",
+          "zip_path",
+          "summary",
+          "issues"
+        ],
+        "title": "PackageVerifierReportResponse"
+      },
+      "RegexRule": {
+        "properties": {
+          "target_field_id": {
+            "type": "string",
+            "title": "Target Field Id"
+          },
+          "pattern": {
+            "type": "string",
+            "title": "Pattern"
+          },
+          "group": {
+            "type": "integer",
+            "title": "Group",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target_field_id",
+          "pattern"
+        ],
+        "title": "RegexRule"
+      },
+      "SchemaCreateRequest": {
+        "properties": {
+          "schema": {
+            "$ref": "#/components/schemas/TargetSchema"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema"
+        ],
+        "title": "SchemaCreateRequest"
+      },
+      "SchemaCreateResponse": {
+        "properties": {
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema_id",
+          "status"
+        ],
+        "title": "SchemaCreateResponse"
+      },
+      "SchemaListItem": {
+        "properties": {
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "fields_count": {
+            "type": "integer",
+            "title": "Fields Count"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema_id",
+          "name",
+          "version",
+          "fields_count"
+        ],
+        "title": "SchemaListItem"
+      },
+      "SchemaListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SchemaListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "SchemaListResponse"
+      },
+      "SourceAnchor": {
+        "properties": {
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "bbox": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bbox"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SourceAnchor"
+      },
+      "TargetField": {
+        "properties": {
+          "field_id": {
+            "type": "string",
+            "title": "Field Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "required": {
+            "type": "boolean",
+            "title": "Required",
+            "default": false
+          },
+          "aliases": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Aliases"
+          },
+          "constraints": {
+            "type": "object",
+            "title": "Constraints"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "field_id",
+          "name",
+          "display_name",
+          "type"
+        ],
+        "title": "TargetField"
+      },
+      "TargetSchema": {
+        "properties": {
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/TargetField"
+            },
+            "type": "array",
+            "title": "Fields"
+          },
+          "json_schema": {
+            "type": "object",
+            "title": "Json Schema"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema_id",
+          "name",
+          "version",
+          "fields"
+        ],
+        "title": "TargetSchema"
+      },
+      "TaskCreateRequest": {
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "1.0.0"
+          },
+          "template_version": {
+            "type": "string",
+            "title": "Template Version",
+            "default": "1.0.0"
+          },
+          "options": {
+            "type": "object",
+            "title": "Options"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "doc_id",
+          "schema_id",
+          "template_id"
+        ],
+        "title": "TaskCreateRequest"
+      },
+      "TaskCreateResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "status"
+        ],
+        "title": "TaskCreateResponse"
+      },
+      "TaskDetailResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version"
+          },
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "template_version": {
+            "type": "string",
+            "title": "Template Version"
+          },
+          "input_hash": {
+            "type": "string",
+            "title": "Input Hash"
+          },
+          "options": {
+            "type": "object",
+            "title": "Options"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "status",
+          "doc_id",
+          "schema_id",
+          "schema_version",
+          "template_id",
+          "template_version",
+          "input_hash",
+          "options"
+        ],
+        "title": "TaskDetailResponse"
+      },
+      "TaskListItem": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "doc_id",
+          "schema_id",
+          "template_id",
+          "status"
+        ],
+        "title": "TaskListItem"
+      },
+      "TaskListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TaskListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "TaskListResponse"
+      },
+      "TaskReplayRequest": {
+        "properties": {
+          "reuse_confirmed_mappings": {
+            "type": "boolean",
+            "title": "Reuse Confirmed Mappings",
+            "default": true
+          },
+          "repeat_model_calls": {
+            "type": "boolean",
+            "title": "Repeat Model Calls",
+            "default": false
+          },
+          "options_override": {
+            "type": "object",
+            "title": "Options Override"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "TaskReplayRequest"
+      },
+      "TaskReplayResponse": {
+        "properties": {
+          "parent_task_id": {
+            "type": "string",
+            "title": "Parent Task Id"
+          },
+          "child_task_id": {
+            "type": "string",
+            "title": "Child Task Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "copied_candidates": {
+            "type": "integer",
+            "title": "Copied Candidates"
+          },
+          "copied_mappings": {
+            "type": "integer",
+            "title": "Copied Mappings"
+          },
+          "repeat_model_calls": {
+            "type": "boolean",
+            "title": "Repeat Model Calls"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "parent_task_id",
+          "child_task_id",
+          "status",
+          "copied_candidates",
+          "copied_mappings",
+          "repeat_model_calls"
+        ],
+        "title": "TaskReplayResponse"
+      },
+      "TemplateCreateRequest": {
+        "properties": {
+          "template": {
+            "$ref": "#/components/schemas/MappingTemplate"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "template"
+        ],
+        "title": "TemplateCreateRequest"
+      },
+      "TemplateListItem": {
+        "properties": {
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "aliases_count": {
+            "type": "integer",
+            "title": "Aliases Count"
+          },
+          "rules_count": {
+            "type": "integer",
+            "title": "Rules Count"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "template_id",
+          "schema_id",
+          "name",
+          "version",
+          "aliases_count",
+          "rules_count"
+        ],
+        "title": "TemplateListItem"
+      },
+      "TemplateListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TemplateListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "TemplateListResponse"
+      },
+      "TemplateSaveResponse": {
+        "properties": {
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "template_id",
+          "status"
+        ],
+        "title": "TemplateSaveResponse"
+      },
+      "TraceListResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "events": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Events"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "events"
+        ],
+        "title": "TraceListResponse"
+      },
+      "TransformRule": {
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "title": "Rule Id"
+          },
+          "operation": {
+            "type": "string",
+            "title": "Operation"
+          },
+          "source_field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Field"
+          },
+          "source_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Fields"
+          },
+          "target_field_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Field Id"
+          },
+          "target_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Target Fields"
+          },
+          "params": {
+            "type": "object",
+            "title": "Params"
+          },
+          "on_error": {
+            "type": "string",
+            "title": "On Error",
+            "default": "record_and_continue"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "rule_id",
+          "operation"
+        ],
+        "title": "TransformRule"
+      },
+      "UIRAsset": {
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "title": "Asset Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "source_block_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Block Id"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sha256"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "asset_id",
+          "type",
+          "path"
+        ],
+        "title": "UIRAsset"
+      },
+      "UIRBlock": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
+          },
+          "source_anchor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceAnchor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "title": "Attributes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "type"
+        ],
+        "title": "UIRBlock"
+      },
+      "UIRDocument": {
+        "properties": {
+          "uir_version": {
+            "type": "string",
+            "title": "Uir Version"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UIRSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "title": "Metadata"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/UIRBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          },
+          "assets": {
+            "items": {
+              "$ref": "#/components/schemas/UIRAsset"
+            },
+            "type": "array",
+            "title": "Assets"
+          },
+          "normalization_records": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Normalization Records"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "uir_version",
+          "doc_id"
+        ],
+        "title": "UIRDocument"
+      },
+      "UIRSource": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name"
+          },
+          "upstream_agents": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Upstream Agents"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_name"
+        ],
+        "title": "UIRSource"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "ValidationReportResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "passed": {
+            "type": "boolean",
+            "title": "Passed"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "issues": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Issues"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "task_id",
+          "schema_id",
+          "passed",
+          "summary",
+          "issues"
+        ],
+        "title": "ValidationReportResponse"
+      }
+    }
+  }
+}

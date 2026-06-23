@@ -16,6 +16,7 @@ from app.schemas.api import (
     ConvertResponse,
     PackageRequest,
     PackageResponse,
+    PackageVerifierReportResponse,
     TaskCreateRequest,
     TaskCreateResponse,
     TaskDetailResponse,
@@ -265,6 +266,27 @@ def get_consistency_report(
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail="consistency report not found") from exc
     return ConsistencyReportResponse(**data)
+
+
+@router.get(
+    "/{task_id}/reports/package-verifier",
+    response_model=PackageVerifierReportResponse,
+)
+def get_package_verifier_report(
+    task_id: str,
+    service: Annotated[PackageService, Depends(get_package_service)],
+    task_svc: Annotated[TaskService, Depends(get_task_service)],
+) -> PackageVerifierReportResponse:
+    if task_svc.get_task(task_id) is None:
+        raise HTTPException(status_code=404, detail="task not found")
+    try:
+        data = service.storage.read_json(f"tasks/{task_id}/package_verifier_report.json")
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail="package verifier report not found",
+        ) from exc
+    return PackageVerifierReportResponse(**data)
 
 
 @router.get("/{task_id}/trace", response_model=TraceListResponse)

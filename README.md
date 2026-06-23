@@ -2,7 +2,7 @@
 
 SchemaPack Agent is the project for topic 5: standardizing an upstream UIR document into schema-driven output packages.
 
-Current implementation status: Phase 9 tested and stabilized desktop document workbench.
+Current implementation status: Phase 10 acceptance and productization baseline.
 
 Implemented:
 
@@ -47,12 +47,21 @@ Implemented:
 - Versioned badcases for missing required fields, invalid casts, ambiguous mappings, and broken provenance links
 - Package corruption tests for manifest tampering, ZIP payload changes, unsafe paths, byte counts, and SHA-256 mismatches
 - Strict backend and frontend line, branch, function, lint, and production build gates
+- Independent external package verifier module and CLI
+- Package verifier reports stored outside the ZIP and exposed through API
+- Auditable LLM mapping fallback with disabled, mock, and OpenAI-compatible modes
+- Deterministic task replay with `parent_task_id`
+- Expanded config snapshots with mapping lineage and model audit
+- Frozen evaluation fixture under `examples/eval/` with 30 cases and 150 gold mappings
+- Mapping evaluation CLI and generated report under `docs/reports/`
+- Deterministic content labels, chunk labels, upstream entities, and consumer smoke CLI
+- Frozen OpenAPI JSON and delivery documents
 
 Not implemented yet:
 
-- Independent external package verifier
-- Frozen evaluation dataset and formal accuracy/F1 claims
-- Real LLM fallback
+- A live cloud-model acceptance run with user-provided credentials
+- Human-reviewed public accuracy claims beyond the synthetic regression fixture
+- Package signing or cryptographic attestation beyond SHA-256
 
 ## Backend
 
@@ -135,6 +144,37 @@ examples/badcases/badcase_mapping_ambiguous.json
 examples/badcases/badcase_broken_block_link.json
 ```
 
+## Phase 10 Acceptance Baseline
+
+External package verifier:
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m app.tools.package_verifier <path-to-standard_package.zip>
+```
+
+Consumer smoke test:
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m app.tools.consume_package <path-to-standard_package.zip>
+```
+
+Frozen mapping evaluation:
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m app.tools.evaluate_mappings ..\examples\eval\eval_cases.json --json-out ..\docs\reports\evaluation_report.json --md-out ..\docs\reports\evaluation_report.md
+```
+
+Measured on the synthetic frozen fixture:
+
+- Samples: 30
+- Gold mappings: 150
+- Precision/Recall/F1: 1.0000 / 1.0000 / 1.0000
+
+These metrics are regression evidence for the checked-in fixture. Human review of gold mappings is still required before making external accuracy claims.
+
 Implemented API slice:
 
 ```text
@@ -166,7 +206,7 @@ GET  /api/v1/tasks/{task_id}/reports/consistency
 GET  /api/v1/tasks/{task_id}/trace
 ```
 
-Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping, conversion, and packaging execution load those records when a task is run. Transform, canonical construction, rendering, validation, manifest generation, and package ZIP creation are implemented. The independent external package verifier remains a later phase.
+Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping, conversion, packaging, replay, config snapshotting, external package verification, and evaluation tooling are implemented.
 
 ## Development Setup
 

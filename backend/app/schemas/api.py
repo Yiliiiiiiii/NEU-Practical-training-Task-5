@@ -268,6 +268,14 @@ class ConsistencyReportResponse(StrictBaseModel):
     warnings: list[dict[str, Any]] = Field(default_factory=list)
 
 
+class PackageVerifierReportResponse(StrictBaseModel):
+    passed: bool
+    zip_path: str
+    zip_sha256: str | None = None
+    summary: dict[str, Any]
+    issues: list[dict[str, Any]]
+
+
 class TraceListResponse(StrictBaseModel):
     task_id: str
     events: list[dict[str, Any]]

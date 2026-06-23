@@ -556,6 +556,23 @@ def test_get_consistency_report_api(client, db_session, storage):
     assert "checks" in data
 
 
+def test_get_package_verifier_report_api(client, db_session, storage):
+    """GET /reports/package-verifier returns the external verifier report."""
+    task_id = _seed_full_pipeline(
+        db_session, storage,
+        "example_uir_general_doc.json",
+        "target_schema_general.json",
+        "mapping_template_general.json",
+    )
+    client.post(f"/api/v1/tasks/{task_id}/package", json={})
+    resp = client.get(f"/api/v1/tasks/{task_id}/reports/package-verifier")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["passed"] is True
+    assert data["issues"] == []
+    assert data["summary"]["verified_payloads"] >= 1
+
+
 # ─── 10. GET trace via API ───
 
 
