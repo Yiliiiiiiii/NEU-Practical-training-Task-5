@@ -1,0 +1,3907 @@
+{
+  "dataset_version": "2026-06-23.phase10.v1",
+  "frozen": true,
+  "gold_reviewer": "Codex generated; requires human spot-check before external accuracy claims",
+  "cases": [
+    {
+      "sample_id": "eval_general_001",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_001_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_001_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_001_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_001_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-01",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_001_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_001_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_001_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_001_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_001_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_001_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_002",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_002_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_002_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_002_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_002_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-02",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_002_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_002_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_002_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_002_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_002_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_002_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_003",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_003_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_003_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_003_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_003_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-03",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_003_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_003_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_003_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_003_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_003_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_003_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_004",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_004_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_004_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_004_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_004_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-04",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_004_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_004_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_004_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_004_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_004_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_004_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_005",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_005_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_005_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_005_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_005_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-05",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_005_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_005_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_005_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_005_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_005_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_005_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_006",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_006_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_006_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_006_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_006_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-06",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_006_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_006_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_006_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_006_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_006_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_006_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_007",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_007_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_007_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_007_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_007_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-07",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_007_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_007_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_007_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_007_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_007_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_007_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_008",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_008_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_008_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_008_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_008_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-08",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_008_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_008_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_008_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_008_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_008_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_008_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_009",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_009_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_009_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_009_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_009_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-09",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_009_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_009_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_009_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_009_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_009_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_009_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_general_010",
+      "domain": "general",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "summary",
+          "name": "summary",
+          "display_name": "Summary",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "created_date",
+          "name": "created_date",
+          "display_name": "Created Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "category",
+          "name": "category",
+          "display_name": "Category",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_general_010_title",
+          "source_name": "doc_title",
+          "display_name": "Doc Title",
+          "value_sample": "General Document 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_010_owner",
+          "source_name": "author_name",
+          "display_name": "Author Name",
+          "value_sample": "Team 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_010_summary",
+          "source_name": "abstract_text",
+          "display_name": "Abstract Text",
+          "value_sample": "Summary for general sample 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_010_date",
+          "source_name": "created_on",
+          "display_name": "Created On",
+          "value_sample": "2026-06-10",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_general_010_category",
+          "source_name": "doc_category",
+          "display_name": "Doc Category",
+          "value_sample": "general",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "doc_title"
+          ],
+          "owner": [
+            "author_name"
+          ],
+          "summary": [
+            "abstract_text"
+          ],
+          "created_date": [
+            "created_on"
+          ],
+          "category": [
+            "doc_category"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_general_010_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_general_010_owner",
+          "target_field_id": "owner"
+        },
+        {
+          "candidate_id": "cand_eval_general_010_summary",
+          "target_field_id": "summary",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_general_010_date",
+          "target_field_id": "created_date"
+        },
+        {
+          "candidate_id": "cand_eval_general_010_category",
+          "target_field_id": "category",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_001",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_001_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-01",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_001_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_001_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_002",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_002_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-02",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_002_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_002_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_003",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_003_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-03",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_003_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_003_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_004",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_004_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-04",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_004_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_004_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_005",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_005_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-05",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_005_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_005_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_006",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_006_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-06",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_006_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_006_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_007",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_007_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-07",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_007_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_007_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_008",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_008_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-08",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_008_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_008_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_009",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_009_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-09",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_009_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_009_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_policy_010",
+      "domain": "policy",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "title",
+          "name": "title",
+          "display_name": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_org",
+          "name": "publish_org",
+          "display_name": "Publish Org",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "publish_date",
+          "name": "publish_date",
+          "display_name": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "field_id": "policy_type",
+          "name": "policy_type",
+          "display_name": "Policy Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "main_content",
+          "name": "main_content",
+          "display_name": "Main Content",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_policy_010_title",
+          "source_name": "policy_name",
+          "display_name": "Policy Name",
+          "value_sample": "Policy Notice 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_org",
+          "source_name": "issuer_unit",
+          "display_name": "Issuer Unit",
+          "value_sample": "Municipal Office 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_date",
+          "source_name": "release_date",
+          "display_name": "Release Date",
+          "value_sample": "2026-07-10",
+          "inferred_type": "date",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_type",
+          "source_name": "policy_kind",
+          "display_name": "Policy Kind",
+          "value_sample": "notice",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_content",
+          "source_name": "body_text",
+          "display_name": "Body Text",
+          "value_sample": "Policy body paragraph 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "title": [
+            "policy_name"
+          ],
+          "publish_org": [
+            "issuer_unit"
+          ],
+          "publish_date": [
+            "release_date"
+          ],
+          "policy_type": [
+            "policy_kind"
+          ],
+          "main_content": [
+            "body_text"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_policy_010_title",
+          "target_field_id": "title"
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_org",
+          "target_field_id": "publish_org",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_date",
+          "target_field_id": "publish_date"
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_type",
+          "target_field_id": "policy_type"
+        },
+        {
+          "candidate_id": "cand_eval_policy_010_content",
+          "target_field_id": "main_content",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_001",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_001_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-001",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_001_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_001_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 10.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_001_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 1",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_001_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_001_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_001_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_001_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_001_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_001_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_002",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_002_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-002",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_002_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_002_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 20.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_002_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 2",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_002_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_002_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_002_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_002_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_002_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_002_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_003",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_003_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-003",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_003_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_003_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 30.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_003_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 3",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_003_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_003_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_003_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_003_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_003_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_003_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_004",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_004_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-004",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_004_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_004_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 40.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_004_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 4",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_004_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_004_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_004_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_004_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_004_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_004_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_005",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_005_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-005",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_005_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_005_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 50.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_005_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 5",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_005_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_005_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_005_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_005_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_005_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_005_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_006",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_006_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-006",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_006_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_006_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 60.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_006_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 6",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_006_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_006_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_006_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_006_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_006_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_006_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_007",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_007_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-007",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_007_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_007_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 70.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_007_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 7",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_007_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_007_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_007_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_007_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_007_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_007_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_008",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_008_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-008",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_008_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_008_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 80.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_008_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 8",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_008_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_008_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_008_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_008_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_008_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_008_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_009",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_009_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-009",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_009_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_009_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 90.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_009_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 9",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_009_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_009_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_009_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_009_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_009_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_009_status",
+          "target_field_id": "status"
+        }
+      ]
+    },
+    {
+      "sample_id": "eval_table_010",
+      "domain": "table",
+      "source": {
+        "kind": "synthetic",
+        "license": "project-owned"
+      },
+      "target_fields": [
+        {
+          "field_id": "record_id",
+          "name": "record_id",
+          "display_name": "Record Id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "item_name",
+          "name": "item_name",
+          "display_name": "Item Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "amount",
+          "name": "amount",
+          "display_name": "Amount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "field_id": "owner",
+          "name": "owner",
+          "display_name": "Owner",
+          "type": "string",
+          "required": true
+        },
+        {
+          "field_id": "status",
+          "name": "status",
+          "display_name": "Status",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "cand_eval_table_010_record",
+          "source_name": "row_id",
+          "display_name": "Row Id",
+          "value_sample": "R-010",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_010_item",
+          "source_name": "name_col",
+          "display_name": "Name Col",
+          "value_sample": "Item 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_010_amount",
+          "source_name": "amount_value",
+          "display_name": "Amount Value",
+          "value_sample": 100.0,
+          "inferred_type": "float",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_010_owner",
+          "source_name": "owner_unit",
+          "display_name": "Owner Unit",
+          "value_sample": "Unit 10",
+          "inferred_type": "string",
+          "confidence": 0.95
+        },
+        {
+          "candidate_id": "cand_eval_table_010_status",
+          "source_name": "state_label",
+          "display_name": "State Label",
+          "value_sample": "active",
+          "inferred_type": "string",
+          "confidence": 0.95
+        }
+      ],
+      "template": {
+        "aliases": {
+          "record_id": [
+            "row_id"
+          ],
+          "item_name": [
+            "name_col"
+          ],
+          "amount": [
+            "amount_value"
+          ],
+          "owner": [
+            "owner_unit"
+          ],
+          "status": [
+            "state_label"
+          ]
+        }
+      },
+      "gold_mappings": [
+        {
+          "candidate_id": "cand_eval_table_010_record",
+          "target_field_id": "record_id"
+        },
+        {
+          "candidate_id": "cand_eval_table_010_item",
+          "target_field_id": "item_name",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_010_amount",
+          "target_field_id": "amount"
+        },
+        {
+          "candidate_id": "cand_eval_table_010_owner",
+          "target_field_id": "owner",
+          "difficulty": "hard"
+        },
+        {
+          "candidate_id": "cand_eval_table_010_status",
+          "target_field_id": "status"
+        }
+      ]
+    }
+  ]
+}

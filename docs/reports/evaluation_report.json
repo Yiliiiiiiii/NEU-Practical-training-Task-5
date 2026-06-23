@@ -1,0 +1,35 @@
+{
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "true_positive": 150,
+  "false_positive": 0,
+  "false_negative": 0,
+  "confidence_buckets": {
+    "[0.9,1.0]": {
+      "count": 150,
+      "correct": 150,
+      "accuracy": 1.0
+    },
+    "[0.75,0.9)": {
+      "count": 0,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "<0.75": {
+      "count": 0,
+      "correct": 0,
+      "accuracy": 0.0
+    }
+  },
+  "sample_count": 30,
+  "gold_mapping_count": 150,
+  "prediction_count": 150,
+  "unmapped_required_fields": 0,
+  "review_required_count": 0,
+  "domains": [
+    "general",
+    "policy",
+    "table"
+  ]
+}
