@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 
-export type ViewId = "import" | "tasks" | "mapping" | "detail" | "package";
+export type ViewId = "import" | "tasks" | "mapping" | "knowledge" | "detail" | "package";
 
 export interface NavItem {
   id: ViewId;

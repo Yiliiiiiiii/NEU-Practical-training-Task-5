@@ -1,6 +1,8 @@
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { API_BASE_URL, api } from "../api/client";
+import { KnowledgePage } from "../pages/KnowledgePage";
 
 const jsonHeaders = { "content-type": "application/json" };
 
@@ -224,5 +226,62 @@ describe("knowledge API client", () => {
       path: "/knowledge/metrics",
     });
     expect(fetchCall(7).init?.method).toBeUndefined();
+  });
+});
+
+describe("KnowledgePage", () => {
+  it("loads pending candidates and approves one", async () => {
+    vi.spyOn(api, "getKnowledgeMetrics").mockResolvedValue({
+      real_runs: 1,
+      pending_candidates: 1,
+      approved_candidates: 0,
+      rejected_candidates: 0,
+      active_packs: 0,
+    });
+    vi.spyOn(api, "listKnowledgeCandidates").mockResolvedValue({
+      items: [
+        {
+          candidate_id: "lc_1",
+          real_run_id: "run_1",
+          task_id: "task_1",
+          candidate_type: "alias_candidate",
+          status: "pending",
+          risk_level: "medium",
+          target_field_id: "title",
+          proposed_payload: { aliases: ["doc_title"] },
+          final_payload: {},
+          evidence: { source_name: "doc_title" },
+          generator: "review_feedback",
+          confidence: 0.95,
+        },
+      ],
+    });
+    vi.spyOn(api, "listKnowledgePacks").mockResolvedValue({ items: [] });
+    vi.spyOn(api, "decideKnowledgeCandidate").mockResolvedValue({
+      candidate_id: "lc_1",
+      real_run_id: "run_1",
+      task_id: "task_1",
+      candidate_type: "alias_candidate",
+      status: "approved",
+      risk_level: "medium",
+      target_field_id: "title",
+      proposed_payload: { aliases: ["doc_title"] },
+      final_payload: { aliases: ["doc_title"] },
+      evidence: { source_name: "doc_title" },
+      generator: "review_feedback",
+      confidence: 0.95,
+    });
+
+    render(
+      <KnowledgePage
+        onToast={vi.fn()}
+        selection={{ docId: null, schemaId: null, templateId: null, taskId: null, taskStatus: null }}
+      />,
+    );
+
+    expect(await screen.findByText("alias_candidate")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /批准/i }));
+
+    await waitFor(() => expect(api.decideKnowledgeCandidate).toHaveBeenCalled());
   });
 });

@@ -10,6 +10,7 @@ import type {
 } from "./appTypes";
 import { AppShell } from "./components/AppShell";
 import { ImportPage } from "./pages/ImportPage";
+import { KnowledgePage } from "./pages/KnowledgePage";
 import { MappingPage } from "./pages/MappingPage";
 import { PackagePage } from "./pages/PackagePage";
 import { TaskDetailPage } from "./pages/TaskDetailPage";
@@ -27,6 +28,10 @@ const VIEW_COPY: Record<ViewId, { title: string; body: string }> = {
   mapping: {
     title: "Mapping 审核",
     body: "生成候选字段，执行确定性 Mapping，并确认需人工审核的行。",
+  },
+  knowledge: {
+    title: "映射成长中心",
+    body: "从人工复核和失败案例中沉淀受控映射知识。",
   },
   detail: {
     title: "Task 详情与报告",
@@ -175,6 +180,10 @@ export default function App() {
           selection={selection}
         />
       );
+    }
+
+    if (activeView === "knowledge") {
+      return <KnowledgePage onToast={pushToast} selection={selection} />;
     }
 
     if (activeView === "detail") {

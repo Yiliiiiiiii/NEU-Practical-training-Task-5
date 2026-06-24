@@ -1,4 +1,4 @@
-import { Archive, FileInput, FileText, GitBranch, ListChecks } from "lucide-react";
+import { Archive, Brain, FileInput, FileText, GitBranch, ListChecks } from "lucide-react";
 
 import type { NavItem } from "./appTypes";
 
@@ -20,6 +20,12 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Mapping",
     description: "审核字段对齐",
     icon: GitBranch,
+  },
+  {
+    id: "knowledge",
+    label: "成长",
+    description: "沉淀映射知识",
+    icon: Brain,
   },
   {
     id: "detail",
