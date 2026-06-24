@@ -173,11 +173,32 @@ export interface DownloadResult {
   sha256: string | null;
 }
 
+export type LearningCandidateType =
+  | "alias_candidate"
+  | "regex_candidate"
+  | "enum_map_candidate"
+  | "default_candidate"
+  | "transform_candidate"
+  | "gold_mapping_candidate"
+  | "badcase_candidate";
+
+export interface RealRunItem {
+  real_run_id: string;
+  task_id: string;
+  doc_id: string;
+  schema_id: string;
+  template_id: string;
+  input_hash: string;
+  status: string;
+  summary: JsonObject;
+  report_paths: JsonObject;
+}
+
 export interface LearningCandidateItem {
   candidate_id: string;
   real_run_id: string;
   task_id: string;
-  candidate_type: string;
+  candidate_type: LearningCandidateType;
   status: "pending" | "approved" | "rejected" | "superseded";
   risk_level: "low" | "medium" | "high";
   target_field_id: string | null;

@@ -17,6 +17,7 @@ import type {
   MappingRunResponse,
   MappingTemplate,
   PackageResponse,
+  RealRunItem,
   ReportResponse,
   SchemaListResponse,
   TargetSchema,
@@ -246,7 +247,7 @@ export const api = {
     );
   },
   captureKnowledgeRun(taskId: string) {
-    return apiRequest<{ real_run_id: string }>(
+    return apiRequest<RealRunItem>(
       `/knowledge/real-runs/from-task/${taskId}`,
       { method: "POST", body: jsonBody({}) },
       "捕获真实运行",
