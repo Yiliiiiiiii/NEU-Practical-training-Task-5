@@ -595,3 +595,21 @@ def test_knowledge_api_capture_derive_approve_pack_and_metrics(knowledge_api_con
     metrics_response = client.get("/api/v1/knowledge/metrics")
     assert metrics_response.status_code == 200
     assert metrics_response.json()["approved_candidates"] == 1
+
+
+def test_knowledge_api_create_pack_missing_candidate_returns_not_found(
+    knowledge_api_context,
+):
+    client, _task_id = knowledge_api_context
+
+    response = client.post(
+        "/api/v1/knowledge/packs",
+        json={
+            "name": "Missing candidate",
+            "scope": {"schema_id": "schema_k", "template_id": "template_k"},
+            "candidate_ids": ["missing_candidate"],
+            "reviewer": "tester",
+        },
+    )
+
+    assert response.status_code == 404

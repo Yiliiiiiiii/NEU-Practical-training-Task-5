@@ -78,6 +78,8 @@ def create_pack(
 ) -> KnowledgePackView:
     try:
         return service.create_knowledge_pack(request)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
     except KnowledgeValidationError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
