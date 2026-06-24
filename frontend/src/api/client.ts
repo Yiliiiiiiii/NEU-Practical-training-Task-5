@@ -1,4 +1,5 @@
 import type {
+  CandidateDecisionPayload,
   CandidateListResponse,
   ConvertResponse,
   DocumentImportResponse,
@@ -6,6 +7,12 @@ import type {
   DownloadResult,
   GenerateCandidatesResponse,
   JsonObject,
+  KnowledgeMetricsResponse,
+  KnowledgePackCreatePayload,
+  KnowledgePackItem,
+  KnowledgePackListResponse,
+  LearningCandidateItem,
+  LearningCandidateListResponse,
   MappingListResponse,
   MappingRunResponse,
   MappingTemplate,
@@ -237,6 +244,54 @@ export const api = {
       { method: "POST", body: jsonBody({ package_version: packageVersion }) },
       "生成 Package",
     );
+  },
+  captureKnowledgeRun(taskId: string) {
+    return apiRequest<{ real_run_id: string }>(
+      `/knowledge/real-runs/from-task/${taskId}`,
+      { method: "POST", body: jsonBody({}) },
+      "捕获真实运行",
+    );
+  },
+  deriveKnowledgeCandidates(realRunId: string) {
+    return apiRequest<LearningCandidateListResponse>(
+      `/knowledge/real-runs/${realRunId}/derive`,
+      { method: "POST", body: jsonBody({}) },
+      "生成学习候选",
+    );
+  },
+  listKnowledgeCandidates(status = "pending") {
+    return apiRequest<LearningCandidateListResponse>(
+      `/knowledge/candidates?status=${encodeURIComponent(status)}`,
+      {},
+      "加载学习候选",
+    );
+  },
+  decideKnowledgeCandidate(candidateId: string, payload: CandidateDecisionPayload) {
+    return apiRequest<LearningCandidateItem>(
+      `/knowledge/candidates/${candidateId}/decision`,
+      { method: "POST", body: jsonBody(payload) },
+      "审核学习候选",
+    );
+  },
+  createKnowledgePack(payload: KnowledgePackCreatePayload) {
+    return apiRequest<KnowledgePackItem>(
+      "/knowledge/packs",
+      { method: "POST", body: jsonBody(payload) },
+      "创建知识包",
+    );
+  },
+  listKnowledgePacks() {
+    return apiRequest<KnowledgePackListResponse>("/knowledge/packs", {}, "加载知识包");
+  },
+  activateKnowledgePack(packId: string) {
+    return apiRequest<KnowledgePackItem>(
+      `/knowledge/packs/${packId}/activate`,
+      { method: "POST", body: jsonBody({}) },
+      "启用知识包",
+    );
+  },
+  getKnowledgeMetrics() {
+    return apiRequest<KnowledgeMetricsResponse>("/knowledge/metrics", {}, "加载成长指标");
   },
 };
 

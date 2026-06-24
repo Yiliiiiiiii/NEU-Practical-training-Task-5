@@ -172,3 +172,59 @@ export interface DownloadResult {
   blob: Blob;
   sha256: string | null;
 }
+
+export interface LearningCandidateItem {
+  candidate_id: string;
+  real_run_id: string;
+  task_id: string;
+  candidate_type: string;
+  status: "pending" | "approved" | "rejected" | "superseded";
+  risk_level: "low" | "medium" | "high";
+  target_field_id: string | null;
+  proposed_payload: JsonObject;
+  final_payload: JsonObject;
+  evidence: JsonObject;
+  generator: string;
+  confidence: number;
+}
+
+export interface LearningCandidateListResponse {
+  items: LearningCandidateItem[];
+}
+
+export interface CandidateDecisionPayload {
+  decision: "approved" | "rejected";
+  reviewer: string;
+  final_payload?: JsonObject;
+  reason: string;
+}
+
+export interface KnowledgePackItem {
+  pack_id: string;
+  name: string;
+  scope: JsonObject;
+  status: "draft" | "active" | "superseded";
+  version: string;
+  item_count: number;
+  regression_report_path: string | null;
+  reviewer: string;
+}
+
+export interface KnowledgePackCreatePayload {
+  name: string;
+  scope: JsonObject;
+  candidate_ids: string[];
+  reviewer: string;
+}
+
+export interface KnowledgePackListResponse {
+  items: KnowledgePackItem[];
+}
+
+export interface KnowledgeMetricsResponse {
+  real_runs: number;
+  pending_candidates: number;
+  approved_candidates: number;
+  rejected_candidates: number;
+  active_packs: number;
+}
