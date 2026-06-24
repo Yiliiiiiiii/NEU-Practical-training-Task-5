@@ -271,6 +271,30 @@ describe("KnowledgePage", () => {
       generator: "review_feedback",
       confidence: 0.95,
     });
+    const captureRun = vi.spyOn(api, "captureKnowledgeRun").mockResolvedValue({
+      real_run_id: "run_1",
+      task_id: "task_1",
+      doc_id: "doc_1",
+      schema_id: "schema_1",
+      template_id: "template_1",
+      input_hash: "sha256:abc",
+      status: "captured",
+      summary: {},
+      report_paths: {},
+    });
+    const deriveCandidates = vi.spyOn(api, "deriveKnowledgeCandidates").mockResolvedValue({
+      items: [],
+    });
+    const activatePack = vi.spyOn(api, "activateKnowledgePack").mockResolvedValue({
+      pack_id: "kp_1",
+      name: "Title aliases",
+      scope: { schema_id: "schema_1" },
+      status: "active",
+      version: "1.0.0",
+      item_count: 1,
+      regression_report_path: null,
+      reviewer: "tester",
+    });
 
     render(
       <KnowledgePage
@@ -280,6 +304,9 @@ describe("KnowledgePage", () => {
     );
 
     expect(await screen.findByText("alias_candidate")).toBeInTheDocument();
+    expect(captureRun).not.toHaveBeenCalled();
+    expect(deriveCandidates).not.toHaveBeenCalled();
+    expect(activatePack).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: /批准/i }));
 
     await waitFor(() => expect(api.decideKnowledgeCandidate).toHaveBeenCalled());

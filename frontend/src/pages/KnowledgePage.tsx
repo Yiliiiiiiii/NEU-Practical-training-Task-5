@@ -1,5 +1,5 @@
 import { Brain, CheckCircle2, Power, RotateCw, XCircle } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { api } from "../api/client";
 import type {
@@ -34,8 +34,15 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
   const [candidates, setCandidates] = useState<LearningCandidateItem[]>([]);
   const [packs, setPacks] = useState<KnowledgePackItem[]>([]);
   const [isBusy, setIsBusy] = useState(false);
+  const isMountedRef = useRef(false);
+  const refreshRequestIdRef = useRef(0);
 
   const refresh = useCallback(async () => {
+    if (!isMountedRef.current) {
+      return;
+    }
+    const requestId = refreshRequestIdRef.current + 1;
+    refreshRequestIdRef.current = requestId;
     setIsBusy(true);
     try {
       const [metricsResponse, candidateResponse, packResponse] = await Promise.all([
@@ -43,22 +50,34 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
         api.listKnowledgeCandidates("pending"),
         api.listKnowledgePacks(),
       ]);
+      if (!isMountedRef.current || refreshRequestIdRef.current !== requestId) {
+        return;
+      }
       setMetrics(metricsResponse);
       setCandidates(candidateResponse.items);
       setPacks(packResponse.items);
     } catch (error) {
+      if (!isMountedRef.current || refreshRequestIdRef.current !== requestId) {
+        return;
+      }
       onToast?.({
         tone: "danger",
         title: "成长数据加载失败",
         detail: error instanceof Error ? error.message : "请稍后重试。",
       });
     } finally {
-      setIsBusy(false);
+      if (isMountedRef.current && refreshRequestIdRef.current === requestId) {
+        setIsBusy(false);
+      }
     }
   }, [onToast]);
 
   useEffect(() => {
+    isMountedRef.current = true;
     void refresh();
+    return () => {
+      isMountedRef.current = false;
+    };
   }, [refresh]);
 
   async function runAction(action: () => Promise<void>, failureTitle: string) {
@@ -66,13 +85,18 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
     try {
       await action();
     } catch (error) {
+      if (!isMountedRef.current) {
+        return;
+      }
       onToast?.({
         tone: "danger",
         title: failureTitle,
         detail: error instanceof Error ? error.message : "知识操作失败。",
       });
     } finally {
-      setIsBusy(false);
+      if (isMountedRef.current) {
+        setIsBusy(false);
+      }
     }
   }
 
@@ -86,6 +110,9 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
           reason: decision === "approved" ? "人工批准" : "人工拒绝",
         });
         await refresh();
+        if (!isMountedRef.current) {
+          return;
+        }
         onToast?.({
           tone: "success",
           title: decision === "approved" ? "候选知识已批准" : "候选知识已拒绝",
@@ -110,6 +137,9 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
       const run = await api.captureKnowledgeRun(selection.taskId);
       await api.deriveKnowledgeCandidates(run.real_run_id);
       await refresh();
+      if (!isMountedRef.current) {
+        return;
+      }
       onToast?.({
         tone: "success",
         title: "当前 Task 已沉淀",
@@ -122,6 +152,9 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
     await runAction(async () => {
       await api.activateKnowledgePack(pack.pack_id);
       await refresh();
+      if (!isMountedRef.current) {
+        return;
+      }
       onToast?.({
         tone: "success",
         title: "知识包已启用",
