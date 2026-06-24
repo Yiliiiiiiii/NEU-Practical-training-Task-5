@@ -42,7 +42,7 @@ Implemented:
 - Atomic UTF-8 JSON/text publication with same-path concurrency protection and temporary-file cleanup
 - Process-local task mutation guard for candidate generation, mapping, review, conversion, and packaging
 - Recoverable render/package I/O failures with partial-output cleanup, failure traces, and deterministic retry
-- Exact contract inventory for all 26 MVP API routes
+- Exact contract inventory for all 36 MVP API routes
 - True API-driven general and policy demo pipelines through verified ZIP download
 - Versioned badcases for missing required fields, invalid casts, ambiguous mappings, and broken provenance links
 - Package corruption tests for manifest tampering, ZIP payload changes, unsafe paths, byte counts, and SHA-256 mismatches
@@ -52,6 +52,10 @@ Implemented:
 - Auditable LLM mapping fallback with disabled, mock, and OpenAI-compatible modes
 - Deterministic task replay with `parent_task_id`
 - Expanded config snapshots with mapping lineage and model audit
+- Controlled Mapping Knowledge growth loop for reviewed aliases, rules, badcases, and evaluation assets
+- Human approval gate for all learned mapping knowledge before activation
+- Active knowledge packs merged into Mapping Templates before deterministic mapping, with applied pack IDs recorded in mapping reports
+- Knowledge review APIs and frontend review page for real-run capture, candidate approval/rejection, draft pack creation, explicit activation, and metrics
 - Frozen evaluation fixture under `examples/eval/` with 30 cases and 150 gold mappings
 - Mapping evaluation CLI and generated report under `docs/reports/`
 - Deterministic content labels, chunk labels, upstream entities, and consumer smoke CLI
@@ -203,7 +207,17 @@ POST /api/v1/tasks/{task_id}/package
 GET  /api/v1/tasks/{task_id}/package/download
 GET  /api/v1/tasks/{task_id}/reports/validation
 GET  /api/v1/tasks/{task_id}/reports/consistency
+GET  /api/v1/tasks/{task_id}/reports/package-verifier
 GET  /api/v1/tasks/{task_id}/trace
+POST /api/v1/tasks/{task_id}/replay
+POST /api/v1/knowledge/real-runs/from-task/{task_id}
+POST /api/v1/knowledge/real-runs/{real_run_id}/derive
+GET  /api/v1/knowledge/candidates
+POST /api/v1/knowledge/candidates/{candidate_id}/decision
+POST /api/v1/knowledge/packs
+POST /api/v1/knowledge/packs/{pack_id}/activate
+GET  /api/v1/knowledge/packs
+GET  /api/v1/knowledge/metrics
 ```
 
 Task creation currently records `schema_id` and `template_id` from the request without checking that Schema/Template records exist. Mapping, conversion, packaging, replay, config snapshotting, external package verification, and evaluation tooling are implemented.
@@ -227,6 +241,8 @@ cd backend
 ## Project Boundaries
 
 The project receives UIR as input. It does not parse PDF, Word, Excel, images, OCR outputs, or raw source files. It does not implement cleaning, normalization, full quality scoring, full RAG, or model training.
+
+The Mapping Knowledge growth loop only learns mapping knowledge and evaluation assets. It does not train models, parse raw documents, clean data, normalize entities, or bypass human review for uncertain mappings. Learned knowledge must pass human approval and explicit pack activation before it can influence future deterministic mapping runs.
 
 The core development line remains:
 

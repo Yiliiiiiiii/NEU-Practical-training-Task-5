@@ -144,6 +144,314 @@
         }
       }
     },
+    "/api/v1/knowledge/real-runs/from-task/{task_id}": {
+      "post": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "Capture Real Run",
+        "operationId": "capture_real_run_api_v1_knowledge_real_runs_from_task__task_id__post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealRunView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge/real-runs/{real_run_id}/derive": {
+      "post": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "Derive Candidates",
+        "operationId": "derive_candidates_api_v1_knowledge_real_runs__real_run_id__derive_post",
+        "parameters": [
+          {
+            "name": "real_run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Real Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__schemas__knowledge__CandidateListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge/candidates": {
+      "get": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "List Candidates",
+        "operationId": "list_candidates_api_v1_knowledge_candidates_get",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__schemas__knowledge__CandidateListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge/candidates/{candidate_id}/decision": {
+      "post": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "Decide Candidate",
+        "operationId": "decide_candidate_api_v1_knowledge_candidates__candidate_id__decision_post",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Candidate Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateDecisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LearningCandidateView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge/packs": {
+      "get": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "List Packs",
+        "operationId": "list_packs_api_v1_knowledge_packs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgePackListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "Create Pack",
+        "operationId": "create_pack_api_v1_knowledge_packs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KnowledgePackCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgePackView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge/packs/{pack_id}/activate": {
+      "post": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "Activate Pack",
+        "operationId": "activate_pack_api_v1_knowledge_packs__pack_id__activate_post",
+        "parameters": [
+          {
+            "name": "pack_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pack Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgePackView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/knowledge/metrics": {
+      "get": {
+        "tags": [
+          "knowledge"
+        ],
+        "summary": "Get Metrics",
+        "operationId": "get_metrics_api_v1_knowledge_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgeMetricsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/tasks/{task_id}/generate-candidates": {
       "post": {
         "tags": [
@@ -227,7 +535,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CandidateListResponse"
+                  "$ref": "#/components/schemas/app__schemas__api__CandidateListResponse"
                 }
               }
             }
@@ -1262,6 +1570,38 @@
   },
   "components": {
     "schemas": {
+      "CandidateDecisionRequest": {
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Decision"
+          },
+          "reviewer": {
+            "type": "string",
+            "title": "Reviewer",
+            "default": "human"
+          },
+          "final_payload": {
+            "type": "object",
+            "title": "Final Payload"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "decision",
+          "reason"
+        ],
+        "title": "CandidateDecisionRequest"
+      },
       "CandidateListItem": {
         "properties": {
           "candidate_id": {
@@ -1341,23 +1681,6 @@
           "evidence"
         ],
         "title": "CandidateListItem"
-      },
-      "CandidateListResponse": {
-        "properties": {
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/CandidateListItem"
-            },
-            "type": "array",
-            "title": "Items"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "items"
-        ],
-        "title": "CandidateListResponse"
       },
       "CanonicalAsset": {
         "properties": {
@@ -1795,6 +2118,245 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
+      "KnowledgeMetricsResponse": {
+        "properties": {
+          "real_runs": {
+            "type": "integer",
+            "title": "Real Runs"
+          },
+          "pending_candidates": {
+            "type": "integer",
+            "title": "Pending Candidates"
+          },
+          "approved_candidates": {
+            "type": "integer",
+            "title": "Approved Candidates"
+          },
+          "rejected_candidates": {
+            "type": "integer",
+            "title": "Rejected Candidates"
+          },
+          "active_packs": {
+            "type": "integer",
+            "title": "Active Packs"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "real_runs",
+          "pending_candidates",
+          "approved_candidates",
+          "rejected_candidates",
+          "active_packs"
+        ],
+        "title": "KnowledgeMetricsResponse"
+      },
+      "KnowledgePackCreateRequest": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "scope": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Scope"
+          },
+          "candidate_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Candidate Ids"
+          },
+          "reviewer": {
+            "type": "string",
+            "title": "Reviewer",
+            "default": "human"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "candidate_ids"
+        ],
+        "title": "KnowledgePackCreateRequest"
+      },
+      "KnowledgePackListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/KnowledgePackView"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "KnowledgePackListResponse"
+      },
+      "KnowledgePackView": {
+        "properties": {
+          "pack_id": {
+            "type": "string",
+            "title": "Pack Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "scope": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Scope"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "active",
+              "superseded"
+            ],
+            "title": "Status"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "item_count": {
+            "type": "integer",
+            "title": "Item Count"
+          },
+          "regression_report_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Regression Report Path"
+          },
+          "reviewer": {
+            "type": "string",
+            "title": "Reviewer"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "pack_id",
+          "name",
+          "status",
+          "version",
+          "item_count",
+          "reviewer"
+        ],
+        "title": "KnowledgePackView"
+      },
+      "LearningCandidateView": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "title": "Candidate Id"
+          },
+          "real_run_id": {
+            "type": "string",
+            "title": "Real Run Id"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "candidate_type": {
+            "type": "string",
+            "enum": [
+              "alias_candidate",
+              "regex_candidate",
+              "enum_map_candidate",
+              "default_candidate",
+              "transform_candidate",
+              "gold_mapping_candidate",
+              "badcase_candidate"
+            ],
+            "title": "Candidate Type"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected",
+              "superseded"
+            ],
+            "title": "Status"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Risk Level"
+          },
+          "target_field_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Field Id"
+          },
+          "proposed_payload": {
+            "type": "object",
+            "title": "Proposed Payload"
+          },
+          "final_payload": {
+            "type": "object",
+            "title": "Final Payload"
+          },
+          "evidence": {
+            "type": "object",
+            "title": "Evidence"
+          },
+          "generator": {
+            "type": "string",
+            "title": "Generator"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "real_run_id",
+          "task_id",
+          "candidate_type",
+          "status",
+          "risk_level",
+          "generator",
+          "confidence"
+        ],
+        "title": "LearningCandidateView"
+      },
       "MappingListItem": {
         "properties": {
           "mapping_id": {
@@ -2218,6 +2780,61 @@
           "issues"
         ],
         "title": "PackageVerifierReportResponse"
+      },
+      "RealRunView": {
+        "properties": {
+          "real_run_id": {
+            "type": "string",
+            "title": "Real Run Id"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "schema_id": {
+            "type": "string",
+            "title": "Schema Id"
+          },
+          "template_id": {
+            "type": "string",
+            "title": "Template Id"
+          },
+          "input_hash": {
+            "type": "string",
+            "title": "Input Hash"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "report_paths": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Report Paths"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "real_run_id",
+          "task_id",
+          "doc_id",
+          "schema_id",
+          "template_id",
+          "input_hash",
+          "status"
+        ],
+        "title": "RealRunView"
       },
       "RegexRule": {
         "properties": {
@@ -3096,6 +3713,40 @@
           "issues"
         ],
         "title": "ValidationReportResponse"
+      },
+      "app__schemas__api__CandidateListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CandidateListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "CandidateListResponse"
+      },
+      "app__schemas__knowledge__CandidateListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/LearningCandidateView"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "CandidateListResponse"
       }
     }
   }

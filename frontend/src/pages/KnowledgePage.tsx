@@ -132,9 +132,10 @@ export function KnowledgePage({ selection, onToast }: KnowledgePageProps) {
       });
       return;
     }
+    const taskId = selection.taskId;
 
     await runAction(async () => {
-      const run = await api.captureKnowledgeRun(selection.taskId);
+      const run = await api.captureKnowledgeRun(taskId);
       await api.deriveKnowledgeCandidates(run.real_run_id);
       await refresh();
       if (!isMountedRef.current) {
