@@ -17,6 +17,14 @@ MVP_ENDPOINTS = {
     ("post", "/api/v1/documents/import"),
     ("get", "/api/v1/documents"),
     ("get", "/api/v1/documents/{doc_id}"),
+    ("post", "/api/v1/knowledge/real-runs/from-task/{task_id}"),
+    ("post", "/api/v1/knowledge/real-runs/{real_run_id}/derive"),
+    ("get", "/api/v1/knowledge/candidates"),
+    ("post", "/api/v1/knowledge/candidates/{candidate_id}/decision"),
+    ("post", "/api/v1/knowledge/packs"),
+    ("post", "/api/v1/knowledge/packs/{pack_id}/activate"),
+    ("get", "/api/v1/knowledge/packs"),
+    ("get", "/api/v1/knowledge/metrics"),
     ("post", "/api/v1/schemas"),
     ("get", "/api/v1/schemas"),
     ("get", "/api/v1/schemas/{schema_id}"),
@@ -85,7 +93,7 @@ def test_openapi_exposes_exact_mvp_endpoint_inventory(contract_client):
     }
 
     assert actual == MVP_ENDPOINTS
-    assert len(actual) == 28
+    assert len(actual) == 36
 
 
 @pytest.mark.parametrize(

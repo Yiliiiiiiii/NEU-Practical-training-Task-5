@@ -4,7 +4,6 @@ from pydantic import Field
 
 from app.schemas.common import StrictBaseModel
 
-
 CandidateType = Literal[
     "alias_candidate",
     "regex_candidate",

@@ -1,10 +1,12 @@
 import json
 
 import pytest
+from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from app.api import deps
 from app.db.models import (
     Base,
     ConversionTask,
@@ -20,6 +22,7 @@ from app.db.models import (
     TargetSchemaRecord,
     TransformTraceRecord,
 )
+from app.main import create_app
 from app.schemas.knowledge import (
     CandidateDecisionRequest,
     KnowledgePackCreateRequest,
@@ -525,3 +528,70 @@ def test_active_knowledge_pack_affects_future_mapping_and_report(knowledge_conte
     assert mappings[0].method == "alias_match"
     assert mappings[0].target_field_id == "title"
     assert report.summary["knowledge_pack_ids"] == ["kp_active_title"]
+
+
+@pytest.fixture()
+def knowledge_api_context(tmp_path):
+    engine = create_engine(
+        "sqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+    Base.metadata.create_all(engine)
+    factory = sessionmaker(bind=engine)
+    storage = StorageService(tmp_path / "storage")
+    app = create_app(init_database=False)
+
+    def override_db():
+        with factory() as session:
+            yield session
+
+    app.dependency_overrides[deps.get_db] = override_db
+    app.dependency_overrides[deps.get_storage_service] = lambda: storage
+    with TestClient(app, raise_server_exceptions=False) as client:
+        with factory() as db:
+            task_id = _seed_reviewed_task(db, storage)
+        yield client, task_id
+
+
+def test_knowledge_api_capture_derive_approve_pack_and_metrics(knowledge_api_context):
+    client, task_id = knowledge_api_context
+
+    run_response = client.post(f"/api/v1/knowledge/real-runs/from-task/{task_id}")
+    assert run_response.status_code == 200
+    real_run_id = run_response.json()["real_run_id"]
+
+    derive_response = client.post(f"/api/v1/knowledge/real-runs/{real_run_id}/derive")
+    assert derive_response.status_code == 200
+    alias_candidate = next(
+        item for item in derive_response.json()["items"]
+        if item["candidate_type"] == "alias_candidate"
+    )
+
+    decision_response = client.post(
+        f"/api/v1/knowledge/candidates/{alias_candidate['candidate_id']}/decision",
+        json={
+            "decision": "approved",
+            "reviewer": "tester",
+            "final_payload": {"aliases": ["doc_title"]},
+            "reason": "reviewed",
+        },
+    )
+    assert decision_response.status_code == 200
+    assert decision_response.json()["status"] == "approved"
+
+    pack_response = client.post(
+        "/api/v1/knowledge/packs",
+        json={
+            "name": "Title aliases",
+            "scope": {"schema_id": "schema_k", "template_id": "template_k"},
+            "candidate_ids": [alias_candidate["candidate_id"]],
+            "reviewer": "tester",
+        },
+    )
+    assert pack_response.status_code == 200
+    assert pack_response.json()["status"] == "draft"
+
+    metrics_response = client.get("/api/v1/knowledge/metrics")
+    assert metrics_response.status_code == 200
+    assert metrics_response.json()["approved_candidates"] == 1

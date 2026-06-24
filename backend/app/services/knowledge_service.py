@@ -13,9 +13,11 @@ from app.db.models import (
     RealRunRecord,
     ReviewRecord,
     TransformTraceRecord,
+    utcnow,
 )
 from app.schemas.knowledge import (
     CandidateDecisionRequest,
+    KnowledgeMetricsResponse,
     KnowledgePackCreateRequest,
     KnowledgePackView,
     LearningCandidateView,
@@ -137,6 +139,48 @@ class KnowledgeService:
         self.db.commit()
         self.db.refresh(pack)
         return self._pack_view(pack)
+
+    def list_candidates(self, status: str | None = None) -> list[LearningCandidateView]:
+        query = self.db.query(LearningCandidateRecord)
+        if status:
+            query = query.filter(LearningCandidateRecord.status == status)
+        records = query.order_by(LearningCandidateRecord.created_at.desc()).all()
+        return [self._candidate_view(record) for record in records]
+
+    def list_packs(self) -> list[KnowledgePackView]:
+        records = (
+            self.db.query(KnowledgePackRecord)
+            .order_by(KnowledgePackRecord.created_at.desc())
+            .all()
+        )
+        return [self._pack_view(record) for record in records]
+
+    def activate_pack(self, pack_id: str) -> KnowledgePackView:
+        pack = self.db.get(KnowledgePackRecord, pack_id)
+        if pack is None:
+            raise LookupError("knowledge pack not found")
+        pack.status = "active"
+        pack.activated_at = utcnow()
+        self.db.commit()
+        self.db.refresh(pack)
+        return self._pack_view(pack)
+
+    def metrics(self) -> KnowledgeMetricsResponse:
+        return KnowledgeMetricsResponse(
+            real_runs=self.db.query(RealRunRecord).count(),
+            pending_candidates=self.db.query(LearningCandidateRecord)
+            .filter(LearningCandidateRecord.status == "pending")
+            .count(),
+            approved_candidates=self.db.query(LearningCandidateRecord)
+            .filter(LearningCandidateRecord.status == "approved")
+            .count(),
+            rejected_candidates=self.db.query(LearningCandidateRecord)
+            .filter(LearningCandidateRecord.status == "rejected")
+            .count(),
+            active_packs=self.db.query(KnowledgePackRecord)
+            .filter(KnowledgePackRecord.status == "active")
+            .count(),
+        )
 
     def _review_alias_candidates(self, run: RealRunRecord) -> list[LearningCandidateRecord]:
         candidates: list[LearningCandidateRecord] = []
