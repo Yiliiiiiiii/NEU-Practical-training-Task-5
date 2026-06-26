@@ -1,0 +1,27 @@
+{
+  "required_files": [
+    "content.json",
+    "content.md",
+    "chunks.jsonl",
+    "mapping_report.json",
+    "validation_report.json",
+    "manifest.json",
+    "standard_package.zip"
+  ],
+  "manifest_required_keys": [
+    "manifest_version",
+    "package_id",
+    "package_version",
+    "task_id",
+    "doc_id",
+    "created_at",
+    "files",
+    "generator"
+  ],
+  "checksum_required": true,
+  "mapping_report_required": true,
+  "validation_report_required": true,
+  "chunks_required": true,
+  "markdown_required": true,
+  "structured_json_required": true
+}

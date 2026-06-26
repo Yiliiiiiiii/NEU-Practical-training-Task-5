@@ -1,0 +1,7 @@
+coverage/
+dist/
+node_modules/
+*.log
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js

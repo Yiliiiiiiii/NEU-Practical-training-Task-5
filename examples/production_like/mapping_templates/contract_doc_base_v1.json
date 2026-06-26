@@ -1,0 +1,36 @@
+{
+  "template_id": "contract_doc_base_v1",
+  "schema_id": "contract_doc",
+  "name": "合同文档基础映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "contract_title": ["contract_title", "合同标题", "合同名称"],
+    "party_a": ["party_a", "甲方", "委托方"],
+    "party_b": ["party_b", "乙方", "受托方"],
+    "sign_date": ["sign_date", "签署日期", "签订日期"],
+    "amount": ["amount", "合同金额", "总金额"],
+    "currency": ["currency", "币种", "货币"],
+    "status": ["status", "状态", "合同状态"],
+    "content": ["content", "正文", "合同正文"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "amount",
+      "pattern": "(合同金额|总金额)[:：\\s]*([0-9,]+(?:\\.\\d+)?)元",
+      "group": 2
+    }
+  ],
+  "transform_rules": [
+    {
+      "rule_id": "contract_status_enum",
+      "operation": "enum_map",
+      "source_field": "metadata.状态",
+      "target_field_id": "status",
+      "params": {"map": {"有效": "active", "生效": "active", "已签署": "signed", "作废": "void", "终止": "terminated"}}
+    }
+  ],
+  "defaults": {"currency": "CNY"},
+  "enum_maps": {
+    "status": {"有效": "active", "生效": "active", "已签署": "signed", "作废": "void", "终止": "terminated"}
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "policy_004_low_confidence",
+  "source": {"source_type": "normalized_uir", "source_name": "policy_004_low_confidence", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "policy_doc",
+    "scenario": "ambiguous responsible fields",
+    "文件题名": "平台运行责任清单",
+    "责任主体": "各业务系统责任部门",
+    "管理部门": "平台运营组",
+    "发文日期": "2024-04-01",
+    "content": "责任主体和管理部门用于职责描述，不等同于政策发布机关。"
+  },
+  "blocks": [
+    {"block_id": "pol004_b001", "type": "heading", "level": 1, "text": "平台运行责任清单", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "pol004_b002", "type": "paragraph", "text": "责任主体：各业务系统责任部门。管理部门：平台运营组。", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 100]}, "attributes": {}},
+    {"block_id": "pol004_b003", "type": "paragraph", "text": "正文：责任主体和管理部门用于职责描述，不等同于政策发布机关。", "source_anchor": {"page": 1, "bbox": [0, 110, 420, 190]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "pol004_b001"}]
+}

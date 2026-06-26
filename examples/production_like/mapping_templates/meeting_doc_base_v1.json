@@ -1,0 +1,26 @@
+{
+  "template_id": "meeting_doc_base_v1",
+  "schema_id": "meeting_doc",
+  "name": "会议纪要基础映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "meeting_title": ["meeting_title", "会议名称", "会议主题"],
+    "meeting_date": ["meeting_date", "会议日期", "召开时间"],
+    "organizer": ["organizer", "主持单位", "组织方"],
+    "attendees": ["attendees", "参会人员", "与会人员"],
+    "topics": ["topics", "议题", "会议议题"],
+    "decisions": ["decisions", "决议", "会议决定"],
+    "action_items": ["action_items", "行动项", "待办事项"],
+    "content": ["content", "正文", "会议内容"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "meeting_date",
+      "pattern": "(会议日期|召开时间)[:：\\s]*(\\d{4}-\\d{1,2}-\\d{1,2})",
+      "group": 2
+    }
+  ],
+  "transform_rules": [],
+  "defaults": {},
+  "enum_maps": {}
+}

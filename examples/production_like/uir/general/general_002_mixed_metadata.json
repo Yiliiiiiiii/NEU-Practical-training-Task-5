@@ -1,0 +1,22 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "general_002_mixed_metadata",
+  "source": {"source_type": "normalized_uir", "source_name": "general_002_mixed_metadata", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "general_doc",
+    "scenario": "mixed metadata before pack",
+    "expected_review_fields": ["文件题名", "资料来源", "产生时间", "主题标签"],
+    "文件题名": "数据共享申请材料清单",
+    "资料来源": "服务窗口",
+    "产生时间": "2024-06-25",
+    "主题标签": ["申请", "共享"],
+    "content": "本材料清单包含申请表、授权说明、数据项说明和安全承诺。"
+  },
+  "blocks": [
+    {"block_id": "gen002_b001", "type": "heading", "level": 1, "text": "数据共享申请材料清单", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "gen002_b002", "type": "table", "text": null, "source_anchor": {"page": 1, "bbox": [0, 50, 420, 150]}, "attributes": {"rows": [{"field": "材料", "value": "申请表"}, {"field": "材料", "value": "授权说明"}]}},
+    {"block_id": "gen002_b003", "type": "paragraph", "text": "正文：本材料清单包含申请表、授权说明、数据项说明和安全承诺。", "source_anchor": {"page": 1, "bbox": [0, 160, 420, 230]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "gen002_b001"}]
+}

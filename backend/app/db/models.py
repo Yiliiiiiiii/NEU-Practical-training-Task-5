@@ -31,9 +31,9 @@ class ConversionTask(Base):
     task_id: Mapped[str] = mapped_column(Text, primary_key=True)
     parent_task_id: Mapped[str | None] = mapped_column(Text, nullable=True)
     doc_id: Mapped[str] = mapped_column(Text, ForeignKey("documents.doc_id"))
-    schema_id: Mapped[str] = mapped_column(Text, ForeignKey("target_schemas.schema_id"))
+    schema_id: Mapped[str] = mapped_column(Text)
     schema_version: Mapped[str] = mapped_column(Text)
-    template_id: Mapped[str] = mapped_column(Text, ForeignKey("mapping_templates.template_id"))
+    template_id: Mapped[str] = mapped_column(Text)
     template_version: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(Text)
     input_hash: Mapped[str] = mapped_column(Text)
@@ -51,23 +51,33 @@ class ConversionTask(Base):
 class TargetSchemaRecord(Base):
     __tablename__ = "target_schemas"
 
-    schema_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    record_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    schema_id: Mapped[str] = mapped_column(Text)
     name: Mapped[str] = mapped_column(Text)
     version: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text, default="active")
     schema_json: Mapped[str] = mapped_column(Text)
     json_schema: Mapped[str] = mapped_column(Text)
+    content_hash: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+    archived_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
 
 class MappingTemplateRecord(Base):
     __tablename__ = "mapping_templates"
 
-    template_id: Mapped[str] = mapped_column(Text, primary_key=True)
-    schema_id: Mapped[str] = mapped_column(Text, ForeignKey("target_schemas.schema_id"))
+    record_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    template_id: Mapped[str] = mapped_column(Text)
+    schema_id: Mapped[str] = mapped_column(Text)
     name: Mapped[str] = mapped_column(Text)
     version: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text, default="active")
     template_json: Mapped[str] = mapped_column(Text)
+    content_hash: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+    archived_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
 
 class FieldCandidateRecord(Base):
@@ -185,10 +195,68 @@ class ReviewRecord(Base):
 
     review_id: Mapped[str] = mapped_column(Text, primary_key=True)
     task_id: Mapped[str] = mapped_column(Text, ForeignKey("conversion_tasks.task_id"))
-    mapping_id: Mapped[str] = mapped_column(Text, ForeignKey("field_mappings.mapping_id"))
+    doc_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    schema_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    template_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    mapping_id: Mapped[str] = mapped_column(Text)
+    candidate_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    source_field_name: Mapped[str | None] = mapped_column(Text, nullable=True)
+    source_path: Mapped[str | None] = mapped_column(Text, nullable=True)
+    target_field_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    suggested_by: Mapped[str | None] = mapped_column(Text, nullable=True)
+    confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    status: Mapped[str] = mapped_column(Text, default="pending")
     old_target_field_id: Mapped[str | None] = mapped_column(Text, nullable=True)
     new_target_field_id: Mapped[str | None] = mapped_column(Text, nullable=True)
     decision: Mapped[str] = mapped_column(Text)
     comment: Mapped[str | None] = mapped_column(Text, nullable=True)
+    review_comment: Mapped[str | None] = mapped_column(Text, nullable=True)
     reviewer: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+
+
+class KnowledgeCandidateRecord(Base):
+    __tablename__ = "knowledge_candidates"
+
+    candidate_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    review_id: Mapped[str] = mapped_column(Text, ForeignKey("review_records.review_id"))
+    schema_id: Mapped[str] = mapped_column(Text)
+    template_id: Mapped[str] = mapped_column(Text)
+    target_field_id: Mapped[str] = mapped_column(Text)
+    alias: Mapped[str] = mapped_column(Text)
+    candidate_type: Mapped[str] = mapped_column(Text, default="alias")
+    support_count: Mapped[int] = mapped_column(Integer, default=1)
+    badcase_hit: Mapped[bool] = mapped_column(Boolean, default=False)
+    status: Mapped[str] = mapped_column(Text, default="pending")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+
+
+class KnowledgePackRecord(Base):
+    __tablename__ = "knowledge_packs"
+
+    pack_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    name: Mapped[str] = mapped_column(Text)
+    schema_id: Mapped[str] = mapped_column(Text)
+    template_id: Mapped[str] = mapped_column(Text)
+    version: Mapped[str] = mapped_column(Text, default="1.0.0")
+    status: Mapped[str] = mapped_column(Text, default="draft")
+    created_by: Mapped[str] = mapped_column(Text, default="demo_user")
+    metadata_json: Mapped[str] = mapped_column(Text, default="{}")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    activated_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+
+
+class KnowledgePackItemRecord(Base):
+    __tablename__ = "knowledge_pack_items"
+
+    item_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    pack_id: Mapped[str] = mapped_column(Text, ForeignKey("knowledge_packs.pack_id"))
+    item_type: Mapped[str] = mapped_column(Text, default="alias")
+    target_field_id: Mapped[str] = mapped_column(Text)
+    value_json: Mapped[str] = mapped_column(Text)
+    candidate_id: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)

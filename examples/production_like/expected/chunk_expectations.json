@@ -1,0 +1,8 @@
+{
+  "chunk_source_block_back_reference_required": true,
+  "no_empty_chunk": true,
+  "max_chunk_length": "not_configured",
+  "title_path_required_if_available": true,
+  "summary_or_tags_required": false,
+  "chunks_jsonl_readable_by_loader": true
+}

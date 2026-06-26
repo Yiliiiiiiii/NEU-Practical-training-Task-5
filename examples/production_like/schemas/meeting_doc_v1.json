@@ -1,0 +1,94 @@
+{
+  "schema_id": "meeting_doc",
+  "name": "会议纪要标准结构",
+  "version": "1.0.0",
+  "description": "用于会议纪要、会议记录类 UIR 的标准化输出。",
+  "fields": [
+    {
+      "field_id": "meeting_title",
+      "name": "meeting_title",
+      "display_name": "会议标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["会议名称", "会议主题"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "meeting_date",
+      "name": "meeting_date",
+      "display_name": "会议日期",
+      "type": "date",
+      "required": true,
+      "aliases": ["会议日期", "召开时间"],
+      "constraints": {}
+    },
+    {
+      "field_id": "organizer",
+      "name": "organizer",
+      "display_name": "组织方",
+      "type": "string",
+      "required": false,
+      "aliases": ["主持单位", "组织方"],
+      "constraints": {}
+    },
+    {
+      "field_id": "attendees",
+      "name": "attendees",
+      "display_name": "参会人员",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["参会人员", "与会人员"],
+      "constraints": {}
+    },
+    {
+      "field_id": "topics",
+      "name": "topics",
+      "display_name": "议题",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["议题", "会议议题"],
+      "constraints": {}
+    },
+    {
+      "field_id": "decisions",
+      "name": "decisions",
+      "display_name": "决议",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["决议", "会议决定"],
+      "constraints": {}
+    },
+    {
+      "field_id": "action_items",
+      "name": "action_items",
+      "display_name": "行动项",
+      "type": "array[object]",
+      "required": false,
+      "aliases": ["行动项", "待办事项"],
+      "constraints": {}
+    },
+    {
+      "field_id": "content",
+      "name": "content",
+      "display_name": "正文",
+      "type": "text",
+      "required": true,
+      "aliases": ["正文", "会议内容", "content"],
+      "constraints": {}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": ["meeting_title", "meeting_date", "content"],
+    "properties": {
+      "meeting_title": {"type": "string"},
+      "meeting_date": {"type": "string", "format": "date"},
+      "organizer": {"type": "string"},
+      "attendees": {"type": "array", "items": {"type": "string"}},
+      "topics": {"type": "array", "items": {"type": "string"}},
+      "decisions": {"type": "array", "items": {"type": "string"}},
+      "action_items": {"type": "array", "items": {"type": "object"}},
+      "content": {"type": "string"}
+    }
+  }
+}

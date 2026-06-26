@@ -1,0 +1,21 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "policy_005_regex_case",
+  "source": {"source_type": "normalized_uir", "source_name": "policy_005_regex_case", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "policy_doc",
+    "scenario": "regex and transform candidate",
+    "文件题名": "能源数据报送工作指引",
+    "印发单位": "能源数据中心",
+    "印发日期": "2024-07-09",
+    "主题词": ["能源", "报送"],
+    "content": "发文字号：国能发〔2024〕12号。本指引用于规范能源数据月度报送。"
+  },
+  "blocks": [
+    {"block_id": "pol005_b001", "type": "heading", "level": 1, "text": "能源数据报送工作指引", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "pol005_b002", "type": "paragraph", "text": "发文字号：国能发〔2024〕12号。印发日期：2024-07-09", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 90]}, "attributes": {}},
+    {"block_id": "pol005_b003", "type": "paragraph", "text": "正文：本指引用于规范能源数据月度报送。", "source_anchor": {"page": 1, "bbox": [0, 100, 420, 170]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "pol005_b001"}]
+}

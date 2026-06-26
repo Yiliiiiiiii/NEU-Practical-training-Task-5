@@ -1,0 +1,94 @@
+{
+  "schema_id": "policy_doc",
+  "name": "政策文档标准结构",
+  "version": "1.0.0",
+  "description": "用于政策、通知、办法类 UIR 的标准化输出。",
+  "fields": [
+    {
+      "field_id": "title",
+      "name": "title",
+      "display_name": "标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["标题", "文档名称", "政策名称"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "issuer",
+      "name": "issuer",
+      "display_name": "发布主体",
+      "type": "string",
+      "required": true,
+      "aliases": ["发文机关", "发布单位", "颁布机构"],
+      "constraints": {}
+    },
+    {
+      "field_id": "publish_date",
+      "name": "publish_date",
+      "display_name": "发布日期",
+      "type": "date",
+      "required": true,
+      "aliases": ["发布日期", "发文日期", "印发日期"],
+      "constraints": {"format": "YYYY-MM-DD"}
+    },
+    {
+      "field_id": "doc_type",
+      "name": "doc_type",
+      "display_name": "文档类型",
+      "type": "enum",
+      "required": false,
+      "aliases": ["文种", "文件类型"],
+      "constraints": {"enum": ["policy", "notice", "measure"]}
+    },
+    {
+      "field_id": "effective_date",
+      "name": "effective_date",
+      "display_name": "生效日期",
+      "type": "date",
+      "required": false,
+      "aliases": ["生效日期", "实施日期"],
+      "constraints": {}
+    },
+    {
+      "field_id": "summary",
+      "name": "summary",
+      "display_name": "摘要",
+      "type": "string",
+      "required": false,
+      "aliases": ["摘要", "内容摘要"],
+      "constraints": {}
+    },
+    {
+      "field_id": "keywords",
+      "name": "keywords",
+      "display_name": "关键词",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["关键词", "主题词"],
+      "constraints": {}
+    },
+    {
+      "field_id": "content",
+      "name": "content",
+      "display_name": "正文",
+      "type": "text",
+      "required": true,
+      "aliases": ["正文", "主要内容", "content"],
+      "constraints": {}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": ["title", "issuer", "publish_date", "content"],
+    "properties": {
+      "title": {"type": "string"},
+      "issuer": {"type": "string"},
+      "publish_date": {"type": "string", "format": "date"},
+      "doc_type": {"type": "string", "enum": ["policy", "notice", "measure"]},
+      "effective_date": {"type": "string", "format": "date"},
+      "summary": {"type": "string"},
+      "keywords": {"type": "array", "items": {"type": "string"}},
+      "content": {"type": "string"}
+    }
+  }
+}

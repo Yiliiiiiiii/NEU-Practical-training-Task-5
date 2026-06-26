@@ -35,4 +35,6 @@ class FieldMapping(StrictBaseModel):
     confidence: float
     status: str
     need_review: bool = False
+    value_sample: Any | None = None
+    source_blocks: list[str] = Field(default_factory=list)
     evidence: list[str] = Field(default_factory=list)

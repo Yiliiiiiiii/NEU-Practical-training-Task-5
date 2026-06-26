@@ -1,0 +1,22 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "meeting_001_standard",
+  "source": {"source_type": "normalized_uir", "source_name": "meeting_001_standard", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "meeting_doc",
+    "scenario": "standard meeting",
+    "会议名称": "数据标准建设周例会",
+    "会议日期": "2024-05-06",
+    "主持单位": "数据标准组",
+    "参会人员": ["王一", "李二", "赵三"],
+    "议题": ["标准草案", "接口目录"],
+    "content": "会议讨论了标准草案修订和接口目录维护安排。"
+  },
+  "blocks": [
+    {"block_id": "met001_b001", "type": "heading", "level": 1, "text": "数据标准建设周例会", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "met001_b002", "type": "list", "text": null, "source_anchor": {"page": 1, "bbox": [0, 50, 420, 120]}, "attributes": {"items": ["标准草案修订", "接口目录维护"]}},
+    {"block_id": "met001_b003", "type": "paragraph", "text": "正文：会议讨论了标准草案修订和接口目录维护安排。", "source_anchor": {"page": 1, "bbox": [0, 130, 420, 210]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "met001_b001"}]
+}

@@ -1,0 +1,22 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "policy_002_alias_variants",
+  "source": {"source_type": "normalized_uir", "source_name": "policy_002_alias_variants", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "policy_doc",
+    "scenario": "aliases before knowledge pack",
+    "expected_review_fields": ["通知名称", "制定主体", "成文日期"],
+    "通知名称": "关于加强公共数据接口管理的通知",
+    "制定主体": "公共数据运行中心",
+    "成文日期": "2024-05-18",
+    "摘要": "规范公共数据接口申请、调用和审计。",
+    "content": "各单位应按照统一入口提交接口申请，接口调用记录保存不少于六个月。"
+  },
+  "blocks": [
+    {"block_id": "pol002_b001", "type": "heading", "level": 1, "text": "关于加强公共数据接口管理的通知", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "pol002_b002", "type": "table", "text": null, "source_anchor": {"page": 1, "bbox": [0, 50, 420, 150]}, "attributes": {"rows": [{"field": "通知名称", "value": "关于加强公共数据接口管理的通知"}, {"field": "制定主体", "value": "公共数据运行中心"}, {"field": "成文日期", "value": "2024-05-18"}]}},
+    {"block_id": "pol002_b003", "type": "paragraph", "text": "正文：各单位应按照统一入口提交接口申请，接口调用记录保存不少于六个月。", "source_anchor": {"page": 1, "bbox": [0, 160, 420, 230]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "pol002_b001"}]
+}

@@ -1,0 +1,23 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "policy_001_standard",
+  "source": {"source_type": "normalized_uir", "source_name": "policy_001_standard", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "policy_doc",
+    "scenario": "standard aliases",
+    "标题": "数据资源共享管理办法",
+    "发文机关": "市数据管理局",
+    "发布日期": "2024-03-12",
+    "文种": "办法",
+    "关键词": ["数据共享", "资源目录"],
+    "content": "本办法规定数据资源共享目录、申请、授权、使用与留痕要求。"
+  },
+  "blocks": [
+    {"block_id": "pol001_b001", "type": "heading", "level": 1, "text": "数据资源共享管理办法", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "pol001_b002", "type": "paragraph", "text": "发布日期：2024-03-12", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 80]}, "attributes": {}},
+    {"block_id": "pol001_b003", "type": "list", "text": null, "source_anchor": {"page": 1, "bbox": [0, 90, 420, 150]}, "attributes": {"items": ["建立目录", "按需申请", "全程留痕"]}},
+    {"block_id": "pol001_b004", "type": "paragraph", "text": "正文：本办法规定数据资源共享目录、申请、授权、使用与留痕要求。", "source_anchor": {"page": 1, "bbox": [0, 160, 420, 240]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "pol001_b001"}]
+}

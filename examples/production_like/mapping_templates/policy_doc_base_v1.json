@@ -1,0 +1,41 @@
+{
+  "template_id": "policy_doc_base_v1",
+  "schema_id": "policy_doc",
+  "name": "政策文档基础映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "title": ["title", "标题", "文档名称", "政策名称"],
+    "issuer": ["issuer", "发文机关", "发布单位", "颁布机构"],
+    "publish_date": ["publish_date", "发布日期", "发文日期", "印发日期"],
+    "doc_type": ["doc_type", "文种", "文件类型"],
+    "effective_date": ["effective_date", "生效日期", "实施日期"],
+    "summary": ["summary", "摘要", "内容摘要"],
+    "keywords": ["keywords", "关键词", "主题词"],
+    "content": ["content", "正文", "主要内容"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "publish_date",
+      "pattern": "(发布日期|发文日期|印发日期)[:：\\s]*(\\d{4}-\\d{1,2}-\\d{1,2})",
+      "group": 2
+    },
+    {
+      "target_field_id": "summary",
+      "pattern": "摘要[:：\\s]*([^\\n]+)",
+      "group": 1
+    }
+  ],
+  "transform_rules": [
+    {
+      "rule_id": "policy_doc_type_enum",
+      "operation": "enum_map",
+      "source_field": "metadata.文种",
+      "target_field_id": "doc_type",
+      "params": {"map": {"通知": "notice", "办法": "measure", "政策": "policy"}}
+    }
+  ],
+  "defaults": {},
+  "enum_maps": {
+    "doc_type": {"通知": "notice", "办法": "measure", "政策": "policy"}
+  }
+}

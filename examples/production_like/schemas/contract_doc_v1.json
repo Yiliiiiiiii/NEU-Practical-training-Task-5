@@ -1,0 +1,94 @@
+{
+  "schema_id": "contract_doc",
+  "name": "合同文档标准结构",
+  "version": "1.0.0",
+  "description": "用于合同、协议类 UIR 的标准化输出。",
+  "fields": [
+    {
+      "field_id": "contract_title",
+      "name": "contract_title",
+      "display_name": "合同标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["合同标题", "合同名称"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "party_a",
+      "name": "party_a",
+      "display_name": "甲方",
+      "type": "string",
+      "required": true,
+      "aliases": ["甲方", "委托方"],
+      "constraints": {}
+    },
+    {
+      "field_id": "party_b",
+      "name": "party_b",
+      "display_name": "乙方",
+      "type": "string",
+      "required": true,
+      "aliases": ["乙方", "受托方"],
+      "constraints": {}
+    },
+    {
+      "field_id": "sign_date",
+      "name": "sign_date",
+      "display_name": "签署日期",
+      "type": "date",
+      "required": true,
+      "aliases": ["签署日期", "签订日期"],
+      "constraints": {}
+    },
+    {
+      "field_id": "amount",
+      "name": "amount",
+      "display_name": "金额",
+      "type": "number",
+      "required": false,
+      "aliases": ["合同金额", "总金额"],
+      "constraints": {}
+    },
+    {
+      "field_id": "currency",
+      "name": "currency",
+      "display_name": "币种",
+      "type": "string",
+      "required": false,
+      "aliases": ["币种", "货币"],
+      "constraints": {}
+    },
+    {
+      "field_id": "status",
+      "name": "status",
+      "display_name": "状态",
+      "type": "enum",
+      "required": false,
+      "aliases": ["状态", "合同状态"],
+      "constraints": {"enum": ["active", "signed", "terminated", "void"]}
+    },
+    {
+      "field_id": "content",
+      "name": "content",
+      "display_name": "正文",
+      "type": "text",
+      "required": true,
+      "aliases": ["正文", "合同正文", "content"],
+      "constraints": {}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": ["contract_title", "party_a", "party_b", "sign_date", "content"],
+    "properties": {
+      "contract_title": {"type": "string"},
+      "party_a": {"type": "string"},
+      "party_b": {"type": "string"},
+      "sign_date": {"type": "string", "format": "date"},
+      "amount": {"type": "number"},
+      "currency": {"type": "string"},
+      "status": {"type": "string"},
+      "content": {"type": "string"}
+    }
+  }
+}

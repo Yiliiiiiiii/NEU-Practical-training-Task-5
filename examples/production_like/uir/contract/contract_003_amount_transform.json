@@ -1,0 +1,22 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "contract_003_amount_transform",
+  "source": {"source_type": "normalized_uir", "source_name": "contract_003_amount_transform", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "contract_doc",
+    "scenario": "amount transform candidate",
+    "合同标题": "数据接口开发协议",
+    "委托方": "甲辰信息中心",
+    "受托方": "星河软件有限公司",
+    "签署日期": "2024-03-08",
+    "金额人民币": "人民币壹拾万元整",
+    "content": "本协议约定接口开发、联调、上线支持与验收交付要求。"
+  },
+  "blocks": [
+    {"block_id": "con003_b001", "type": "heading", "level": 1, "text": "数据接口开发协议", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "con003_b002", "type": "paragraph", "text": "金额人民币：人民币壹拾万元整", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 90]}, "attributes": {}},
+    {"block_id": "con003_b003", "type": "paragraph", "text": "正文：本协议约定接口开发、联调、上线支持与验收交付要求。", "source_anchor": {"page": 1, "bbox": [0, 100, 420, 180]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "con003_b001"}]
+}

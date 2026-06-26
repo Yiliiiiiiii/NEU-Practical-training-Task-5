@@ -1,0 +1,23 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "general_001_standard",
+  "source": {"source_type": "normalized_uir", "source_name": "general_001_standard", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "general_doc",
+    "scenario": "standard general",
+    "标题": "接口目录维护说明",
+    "来源": "平台运营组",
+    "创建日期": "2024-06-20",
+    "类别": "操作说明",
+    "标签": ["接口", "目录"],
+    "content": "本文说明接口目录新增、变更、下线和复核流程。"
+  },
+  "blocks": [
+    {"block_id": "gen001_b001", "type": "heading", "level": 1, "text": "接口目录维护说明", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "gen001_b002", "type": "heading", "level": 2, "text": "维护流程", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 80]}, "attributes": {}},
+    {"block_id": "gen001_b003", "type": "list", "text": null, "source_anchor": {"page": 1, "bbox": [0, 90, 420, 150]}, "attributes": {"items": ["新增目录项", "变更责任人", "下线过期接口"]}},
+    {"block_id": "gen001_b004", "type": "paragraph", "text": "正文：本文说明接口目录新增、变更、下线和复核流程。", "source_anchor": {"page": 1, "bbox": [0, 160, 420, 230]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "gen001_b001"}]
+}

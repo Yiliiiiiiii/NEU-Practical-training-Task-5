@@ -1,0 +1,20 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "meeting_003_missing_required",
+  "source": {"source_type": "normalized_uir", "source_name": "meeting_003_missing_required", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "meeting_doc",
+    "scenario": "missing required meeting date",
+    "会议主题": "数据目录整改沟通会",
+    "时间说明": "待排期",
+    "与会人员": ["目录管理员", "业务代表"],
+    "content": "该样本用于验证必填会议日期缺失时的 validation error。"
+  },
+  "blocks": [
+    {"block_id": "met003_b001", "type": "heading", "level": 1, "text": "数据目录整改沟通会", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "met003_b002", "type": "paragraph", "text": "时间说明：待排期", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 80]}, "attributes": {}},
+    {"block_id": "met003_b003", "type": "paragraph", "text": "正文：该样本用于验证必填会议日期缺失时的 validation error。", "source_anchor": {"page": 1, "bbox": [0, 90, 420, 170]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "met003_b001"}]
+}

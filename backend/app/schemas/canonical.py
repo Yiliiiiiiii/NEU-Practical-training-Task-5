@@ -18,6 +18,7 @@ class CanonicalBlock(StrictBaseModel):
     level: int | None = None
     text: str
     source_blocks: list[str]
+    source_anchor: dict[str, Any] | None = None
     text_hash: str | None = None
 
 

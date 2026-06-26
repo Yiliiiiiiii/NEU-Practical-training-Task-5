@@ -1,0 +1,23 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "meeting_002_attendee_variants",
+  "source": {"source_type": "normalized_uir", "source_name": "meeting_002_attendee_variants", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "meeting_doc",
+    "scenario": "attendee variants before pack",
+    "expected_review_fields": ["纪要标题", "时间", "召集人", "出席人员"],
+    "纪要标题": "接口治理专题纪要",
+    "时间": "2024-05-16",
+    "召集人": "平台治理办公室",
+    "出席人员": ["接口负责人", "安全负责人"],
+    "行动项": [{"owner": "接口负责人", "task": "补充接口分级清单"}],
+    "content": "会议要求补充接口分级清单，并在下一次例会上复核。"
+  },
+  "blocks": [
+    {"block_id": "met002_b001", "type": "heading", "level": 1, "text": "接口治理专题纪要", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "met002_b002", "type": "table", "text": null, "source_anchor": {"page": 1, "bbox": [0, 50, 420, 150]}, "attributes": {"rows": [{"field": "召集人", "value": "平台治理办公室"}, {"field": "出席人员", "value": ["接口负责人", "安全负责人"]}]}},
+    {"block_id": "met002_b003", "type": "paragraph", "text": "正文：会议要求补充接口分级清单，并在下一次例会上复核。", "source_anchor": {"page": 1, "bbox": [0, 160, 420, 230]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "met002_b001"}]
+}

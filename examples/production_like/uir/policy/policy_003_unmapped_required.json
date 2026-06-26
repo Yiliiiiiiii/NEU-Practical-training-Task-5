@@ -1,0 +1,21 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "policy_003_unmapped_required",
+  "source": {"source_type": "normalized_uir", "source_name": "policy_003_unmapped_required", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "policy_doc",
+    "scenario": "missing issuer",
+    "expected_learning_fields": ["发布责任"],
+    "政策名称": "数据质量问题通报制度",
+    "发布时间": "2024-06-03",
+    "发布责任": "按职责分工执行",
+    "content": "本制度明确数据质量问题发现、通报、整改和复核的闭环要求。"
+  },
+  "blocks": [
+    {"block_id": "pol003_b001", "type": "heading", "level": 1, "text": "数据质量问题通报制度", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "pol003_b002", "type": "paragraph", "text": "发布时间：2024-06-03", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 80]}, "attributes": {}},
+    {"block_id": "pol003_b003", "type": "paragraph", "text": "正文：本制度明确数据质量问题发现、通报、整改和复核的闭环要求。", "source_anchor": {"page": 1, "bbox": [0, 90, 420, 180]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "pol003_b001"}]
+}

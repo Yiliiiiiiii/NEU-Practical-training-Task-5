@@ -1,0 +1,22 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "contract_002_party_alias",
+  "source": {"source_type": "normalized_uir", "source_name": "contract_002_party_alias", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "contract_doc",
+    "scenario": "party aliases before pack",
+    "expected_review_fields": ["采购方", "供应方"],
+    "合同标题": "平台运维服务合同",
+    "采购方": "城市运营有限公司",
+    "供应方": "云平台服务有限公司",
+    "签订日期": "2024-02-15",
+    "content": "供应方负责平台巡检、故障响应和月度服务报告。"
+  },
+  "blocks": [
+    {"block_id": "con002_b001", "type": "heading", "level": 1, "text": "平台运维服务合同", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "con002_b002", "type": "table", "text": null, "source_anchor": {"page": 1, "bbox": [0, 50, 420, 130]}, "attributes": {"rows": [{"field": "采购方", "value": "城市运营有限公司"}, {"field": "供应方", "value": "云平台服务有限公司"}]}},
+    {"block_id": "con002_b003", "type": "paragraph", "text": "正文：供应方负责平台巡检、故障响应和月度服务报告。", "source_anchor": {"page": 1, "bbox": [0, 140, 420, 210]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "con002_b001"}]
+}

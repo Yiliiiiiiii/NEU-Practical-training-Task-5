@@ -1,0 +1,23 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "contract_001_standard",
+  "source": {"source_type": "normalized_uir", "source_name": "contract_001_standard", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "contract_doc",
+    "scenario": "standard aliases",
+    "合同名称": "数据服务采购合同",
+    "甲方": "甲方科技有限公司",
+    "乙方": "乙方数据服务有限公司",
+    "签署日期": "2024-01-20",
+    "合同金额": 100000,
+    "状态": "有效",
+    "content": "本合同约定数据服务范围、交付周期、验收标准与付款条件。"
+  },
+  "blocks": [
+    {"block_id": "con001_b001", "type": "heading", "level": 1, "text": "数据服务采购合同", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "con001_b002", "type": "paragraph", "text": "合同金额：100,000.00元", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 80]}, "attributes": {}},
+    {"block_id": "con001_b003", "type": "paragraph", "text": "正文：本合同约定数据服务范围、交付周期、验收标准与付款条件。", "source_anchor": {"page": 1, "bbox": [0, 90, 420, 170]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "con001_b001"}]
+}

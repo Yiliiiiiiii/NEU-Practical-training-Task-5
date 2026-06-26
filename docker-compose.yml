@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      APP_NAME: SchemaPack Agent
+      APP_ENV: production
+      STORAGE_ROOT: /data/storage
+      DATABASE_URL: sqlite:////data/db/schemapack.db
+      LLM_MODE: disabled
+      LLM_FALLBACK_ENABLED: "false"
+      OFFLINE_MODE: "true"
+      MAX_UPLOAD_BYTES: "10485760"
+    volumes:
+      - schemapack_storage:/data/storage
+      - schemapack_db:/data/db
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  schemapack_storage:
+  schemapack_db:

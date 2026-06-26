@@ -1,0 +1,22 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "general_003_table_like_blocks",
+  "source": {"source_type": "normalized_uir", "source_name": "general_003_table_like_blocks", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "general_doc",
+    "scenario": "table-like blocks and title variant",
+    "题名": "共享接口变更记录",
+    "出处": "接口管理台",
+    "形成日期": "2024-07-01",
+    "分类": "变更记录",
+    "content": "该记录包含接口名称、变更类型、责任人和计划完成时间。"
+  },
+  "blocks": [
+    {"block_id": "gen003_b001", "type": "heading", "level": 1, "text": "共享接口变更记录", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "gen003_b002", "type": "heading", "level": 2, "text": "本周变更", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 80]}, "attributes": {}},
+    {"block_id": "gen003_b003", "type": "table", "text": null, "source_anchor": {"page": 1, "bbox": [0, 90, 420, 170]}, "attributes": {"rows": [{"field": "接口", "value": "用户查询"}, {"field": "变更类型", "value": "字段新增"}]}},
+    {"block_id": "gen003_b004", "type": "paragraph", "text": "正文：该记录包含接口名称、变更类型、责任人和计划完成时间。", "source_anchor": {"page": 1, "bbox": [0, 180, 420, 250]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "gen003_b001"}]
+}

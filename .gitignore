@@ -5,6 +5,7 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .coverage
+coverage.json
 htmlcov/
 
 # Virtual environments
@@ -15,10 +16,16 @@ backend/.venv/
 node_modules/
 dist/
 frontend/dist/
+frontend/coverage/
+*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+*.log
 
 # Runtime storage and databases
 storage/
 backend/storage/
+reports/
 *.db
 *.sqlite
 *.sqlite3

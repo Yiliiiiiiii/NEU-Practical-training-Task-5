@@ -1,0 +1,60 @@
+"""Export SchemaPack package chunks as downstream training-corpus JSONL."""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Any
+
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from package_consumption import (  # noqa: E402
+    PackageReadError,
+    read_validated_package,
+    training_metadata,
+)
+
+
+def export_training_corpus(package_path: Path, output_path: Path) -> dict[str, Any]:
+    try:
+        manifest, chunks = read_validated_package(package_path)
+    except PackageReadError as exc:
+        raise SystemExit(str(exc)) from exc
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    rows = [
+        {
+            "id": chunk.get("chunk_id") or f"chunk_{index:04d}",
+            "text": chunk.get("text", ""),
+            "metadata": training_metadata(manifest, chunk),
+        }
+        for index, chunk in enumerate(chunks)
+    ]
+    output_path.write_text(
+        "\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows) + "\n",
+        encoding="utf-8",
+    )
+    return {
+        "package": str(package_path),
+        "output": str(output_path),
+        "row_count": len(rows),
+        "schema_id": manifest.get("generator", {}).get("schema_id"),
+        "template_id": manifest.get("generator", {}).get("template_id"),
+    }
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--package", required=True, type=Path, help="Package zip or directory.")
+    parser.add_argument("--out", required=True, type=Path, help="Output JSONL path.")
+    args = parser.parse_args()
+
+    result = export_training_corpus(args.package, args.out)
+    print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

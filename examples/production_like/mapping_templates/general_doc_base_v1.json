@@ -1,0 +1,24 @@
+{
+  "template_id": "general_doc_base_v1",
+  "schema_id": "general_doc",
+  "name": "通用文档基础映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "title": ["title", "标题", "文档标题"],
+    "source": ["source", "来源", "出处"],
+    "created_date": ["created_date", "创建日期", "形成日期"],
+    "category": ["category", "类别", "分类"],
+    "content": ["content", "正文", "内容"],
+    "tags": ["tags", "标签", "关键词"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "created_date",
+      "pattern": "(创建日期|形成日期)[:：\\s]*(\\d{4}-\\d{1,2}-\\d{1,2})",
+      "group": 2
+    }
+  ],
+  "transform_rules": [],
+  "defaults": {},
+  "enum_maps": {}
+}

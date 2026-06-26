@@ -1,0 +1,23 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "contract_004_enum_status",
+  "source": {"source_type": "normalized_uir", "source_name": "contract_004_enum_status", "upstream_agents": ["uir_builder"]},
+  "metadata": {
+    "domain": "contract_doc",
+    "scenario": "enum status and badcase field",
+    "合同名称": "数据治理咨询合同",
+    "甲方": "辰光集团",
+    "乙方": "明远咨询有限公司",
+    "签署日期": "2024-04-22",
+    "合同状态": "已签署",
+    "责任方": "按条款分别承担责任",
+    "content": "合同状态用于枚举映射，责任方不得默认映射为任一签约主体。"
+  },
+  "blocks": [
+    {"block_id": "con004_b001", "type": "heading", "level": 1, "text": "数据治理咨询合同", "source_anchor": {"page": 1, "bbox": [0, 0, 420, 40]}, "attributes": {}},
+    {"block_id": "con004_b002", "type": "paragraph", "text": "合同状态：已签署。责任方：按条款分别承担责任。", "source_anchor": {"page": 1, "bbox": [0, 50, 420, 90]}, "attributes": {}},
+    {"block_id": "con004_b003", "type": "paragraph", "text": "正文：合同状态用于枚举映射，责任方不得默认映射为任一签约主体。", "source_anchor": {"page": 1, "bbox": [0, 100, 420, 180]}, "attributes": {"field_name": "正文"}}
+  ],
+  "assets": [],
+  "normalization_records": [{"normalized": true, "source_block_id": "con004_b001"}]
+}
