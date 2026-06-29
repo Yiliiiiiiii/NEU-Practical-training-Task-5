@@ -12,6 +12,11 @@ import {
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import { api } from "./api";
+import { ChunkEvidencePanel } from "./components/ChunkEvidencePanel";
+import { KnowledgeComparisonPanel } from "./components/KnowledgeComparisonPanel";
+import { MappingEvidencePanel } from "./components/MappingEvidencePanel";
+import { PackageManifestPanel } from "./components/PackageManifestPanel";
+import { ValidationIssuePanel } from "./components/ValidationIssuePanel";
 import { sampleUirText } from "./sampleUir";
 import type {
   AuditLog,
@@ -19,15 +24,18 @@ import type {
   ContentOrganizationOptions,
   ContentOrganizationReport,
   KnowledgeCandidate,
+  KnowledgeLoopApiResponse,
   KnowledgeMetrics,
   KnowledgePack,
   MappingReport,
   MappingTemplate,
+  PackageManifest,
   PackageMetadata,
   ReviewRecord,
   TargetSchema,
   TaskDetailResponse,
-  ValidationReport
+  ValidationReport,
+  VerifierReport
 } from "./types";
 
 type RunState = "idle" | "loading" | "ready" | "working" | "error";
@@ -61,6 +69,9 @@ function App() {
   const [contentOrg, setContentOrg] = useState<ContentOrganizationReport | null>(null);
   const [chunks, setChunks] = useState<ChunksReport | null>(null);
   const [pkg, setPkg] = useState<PackageMetadata | null>(null);
+  const [manifest, setManifest] = useState<PackageManifest | null>(null);
+  const [verifier, setVerifier] = useState<VerifierReport | null>(null);
+  const [knowledgeLoop, setKnowledgeLoop] = useState<KnowledgeLoopApiResponse | null>(null);
   const [reviews, setReviews] = useState<ReviewRecord[]>([]);
   const [knowledgeCandidates, setKnowledgeCandidates] = useState<KnowledgeCandidate[]>([]);
   const [knowledgePacks, setKnowledgePacks] = useState<KnowledgePack[]>([]);
@@ -122,6 +133,9 @@ function App() {
       setContentOrg(null);
       setChunks(null);
       setPkg(null);
+      setManifest(null);
+      setVerifier(null);
+      setKnowledgeLoop(null);
       setAuditLogs([]);
       clearReviewKnowledge();
       setRunState("ready");
@@ -160,6 +174,9 @@ function App() {
       setContentOrg(null);
       setChunks(null);
       setPkg(null);
+      setManifest(null);
+      setVerifier(null);
+      setKnowledgeLoop(null);
       setAuditLogs([]);
       clearReviewKnowledge();
       setRunState("ready");
@@ -196,14 +213,20 @@ function App() {
       validationReport,
       contentOrganizationReport,
       chunksReport,
-      packageMetadata
+      packageMetadata,
+      manifestReport,
+      verifierReport,
+      knowledgeLoopReport
     ] = await Promise.all([
       api.getTask(id),
       api.getMappingReport(id),
       api.getValidationReport(id),
       api.getContentOrganizationReport(id),
       api.getChunksReport(id),
-      api.getPackage(id)
+      api.getPackage(id),
+      api.getManifestReport(id),
+      api.getVerifierReport(id),
+      api.getKnowledgeLoopReport()
     ]);
     setTask(detail);
     setMapping(mappingReport);
@@ -211,6 +234,9 @@ function App() {
     setContentOrg(contentOrganizationReport);
     setChunks(chunksReport);
     setPkg(packageMetadata);
+    setManifest(manifestReport);
+    setVerifier(verifierReport);
+    setKnowledgeLoop(knowledgeLoopReport);
     await refreshReviewKnowledge();
     await refreshAuditLogs(id);
   }
@@ -500,6 +526,26 @@ function App() {
         </section>
 
         <section className="report-grid">
+          <ReportPanel title="Mapping Evidence" icon={<ClipboardList size={18} />}>
+            <MappingEvidencePanel report={mapping} />
+          </ReportPanel>
+
+          <ReportPanel title="Validation Issues" icon={<CheckCircle2 size={18} />}>
+            <ValidationIssuePanel report={validation} />
+          </ReportPanel>
+
+          <ReportPanel title="Chunk Evidence" icon={<FileJson size={18} />}>
+            <ChunkEvidencePanel report={chunks} />
+          </ReportPanel>
+
+          <ReportPanel title="Package Manifest" icon={<Package size={18} />}>
+            <PackageManifestPanel manifest={manifest} verifier={verifier} />
+          </ReportPanel>
+
+          <ReportPanel title="Knowledge Comparison" icon={<Tags size={18} />}>
+            <KnowledgeComparisonPanel result={knowledgeLoop} />
+          </ReportPanel>
+
           <ReportPanel title="Mapping" icon={<ClipboardList size={18} />}>
             {mapping ? (
               <div className="mapping-list">

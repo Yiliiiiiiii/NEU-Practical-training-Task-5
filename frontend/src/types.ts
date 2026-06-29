@@ -105,6 +105,12 @@ export type ValidationReport = {
   issues: Array<Record<string, any>>;
 };
 
+export type ValidationIssue = Record<string, any> & {
+  level?: string;
+  severity?: string;
+  message?: string;
+};
+
 export type ContentOrganizationReport = {
   task_id: string;
   doc_id: string;
@@ -160,6 +166,62 @@ export type PackageMetadata = {
   sha256: string | null;
   created_at: string;
 };
+
+export type ManifestFile = {
+  path: string;
+  size_bytes: number;
+  sha256: string;
+  role?: string | null;
+};
+
+export type PackageManifest = {
+  manifest_version: string;
+  package_id: string;
+  package_version: string;
+  task_id: string;
+  doc_id: string;
+  created_at: string;
+  files: ManifestFile[];
+  generator: Record<string, string>;
+};
+
+export type VerifierReport = {
+  passed: boolean;
+  checks?: Array<Record<string, any>>;
+  errors: string[];
+  warnings: string[];
+};
+
+export type KnowledgeLoopReport = {
+  approved_candidates: number;
+  rejected_candidates: number;
+  badcase_violation_count: number;
+  old_snapshot_unchanged: boolean;
+  before: {
+    auto_mapped_fields: number;
+    review_required_count: number;
+    missing_required_count: number;
+  };
+  after: {
+    auto_mapped_fields: number;
+    review_required_count: number;
+    missing_required_count: number;
+  };
+  activated_aliases: Record<string, string[]>;
+  decision_evidence: Array<Record<string, any>>;
+};
+
+export type KnowledgeLoopApiResponse =
+  | {
+      status: "available";
+      report: KnowledgeLoopReport;
+      recommended_command?: string | null;
+    }
+  | {
+      status: "unavailable";
+      report?: null;
+      recommended_command: string;
+    };
 
 export type ReviewRecord = {
   review_id: string;

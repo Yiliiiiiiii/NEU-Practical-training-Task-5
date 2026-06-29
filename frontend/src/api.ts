@@ -5,17 +5,20 @@ import type {
   ContentOrganizationReport,
   DocumentImportResponse,
   KnowledgeCandidateListResponse,
+  KnowledgeLoopApiResponse,
   KnowledgeMetrics,
   KnowledgePackListResponse,
   MappingReport,
   MappingTemplate,
   PackageMetadata,
+  PackageManifest,
   ReviewListResponse,
   TargetSchema,
   TaskCreateResponse,
   TaskDetailResponse,
   TaskExecuteResponse,
-  ValidationReport
+  ValidationReport,
+  VerifierReport
 } from "./types";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
@@ -79,8 +82,16 @@ export const api = {
     ),
   getChunksReport: (taskId: string) =>
     request<ChunksReport>(`/api/v1/tasks/${taskId}/reports/chunks`),
+  getManifestReport: (taskId: string) =>
+    request<PackageManifest>(`/api/v1/tasks/${taskId}/reports/manifest`),
+  getVerifierReport: (taskId: string) =>
+    request<VerifierReport>(`/api/v1/tasks/${taskId}/reports/verifier`),
   getPackage: (taskId: string) =>
     request<PackageMetadata>(`/api/v1/tasks/${taskId}/package`),
+  getKnowledgeLoopReport: () =>
+    request<KnowledgeLoopApiResponse>(
+      "/api/v1/evaluation-reports/real-world-knowledge-loop"
+    ),
   listReviews: (status = "pending") =>
     request<ReviewListResponse>(`/api/v1/reviews?status=${encodeURIComponent(status)}`),
   approveReview: (reviewId: string, createKnowledgeCandidate = true) =>
