@@ -618,7 +618,7 @@ Then commit the script, tests, fixture, and both reports.
 ### Task 6: Add Read-Only Manifest and Evaluation Report APIs
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 5
 **Parallelizable:** No (frontend types and panels depend on these payloads)
@@ -633,7 +633,7 @@ Then commit the script, tests, fixture, and both reports.
 - Create: `backend/tests/test_evaluation_reports_api.py`
 - Modify: `docs/openapi.json`
 
-- [ ] **Step 1: Write failing manifest report test**
+- [x] **Step 1: Write failing manifest report test**
 
 ```python
 def test_task_manifest_report_lists_verified_files(client):
@@ -648,11 +648,11 @@ def test_task_manifest_report_lists_verified_files(client):
     assert all("sha256" in item for item in response.json()["files"])
 ```
 
-- [ ] **Step 2: Run and verify RED**
+- [x] **Step 2: Run and verify RED**
 
 Expected: 404 `report not found`.
 
-- [ ] **Step 3: Carry the manifest through package creation**
+- [x] **Step 3: Carry the manifest through package creation**
 
 Extend:
 
@@ -682,11 +682,11 @@ REPORT_KEYS = {
 }
 ```
 
-- [ ] **Step 4: Verify manifest GREEN**
+- [x] **Step 4: Verify manifest GREEN**
 
 Run the focused task API test and package verifier tests.
 
-- [ ] **Step 5: Write failing evaluation-report API tests**
+- [x] **Step 5: Write failing evaluation-report API tests**
 
 ```python
 def test_knowledge_loop_report_returns_unavailable_when_missing(client, tmp_path):
@@ -700,7 +700,7 @@ def test_unknown_evaluation_report_is_rejected(client):
     assert response.status_code == 404
 ```
 
-- [ ] **Step 6: Implement allowlisted read-only report route**
+- [x] **Step 6: Implement allowlisted read-only report route**
 
 Use a fixed mapping:
 
@@ -714,7 +714,7 @@ Resolve against the repository root, never accept a caller-supplied filesystem
 path, return `{"status": "unavailable", "recommended_command": ...}` when
 missing, and otherwise return `{"status": "available", "report": payload}`.
 
-- [ ] **Step 7: Export OpenAPI, verify, and commit**
+- [x] **Step 7: Export OpenAPI, verify, and commit**
 
 Run focused tests, full backend checks, and
 `scripts/export_openapi.py`; commit the additive API and snapshot.
