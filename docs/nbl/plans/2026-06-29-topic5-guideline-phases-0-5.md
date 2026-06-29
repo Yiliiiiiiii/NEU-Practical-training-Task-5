@@ -528,7 +528,7 @@ git commit -m "feat: evaluate real-world knowledge review loop"
 ### Task 5: Phase 3 Chunk Retrieval Evaluation
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 4
 **Parallelizable:** No (strict guideline phase order; frontend consumes its chunk evidence model)
@@ -540,13 +540,13 @@ git commit -m "feat: evaluate real-world knowledge review loop"
 - Generate: `reports/chunk_retrieval_eval_report.json`
 - Generate: `reports/chunk_retrieval_eval_report.md`
 
-- [ ] **Step 1: Add traceable query fixtures**
+- [x] **Step 1: Add traceable query fixtures**
 
 Each line has `query_id`, `doc_id`, `query`, `expected_terms`,
 `expected_block_ids`, and `answer_field`. Cover procurement amount, policy
 scope, meeting date/topic, and at least one table answer.
 
-- [ ] **Step 2: Write failing metric tests**
+- [x] **Step 2: Write failing metric tests**
 
 ```python
 def test_recall_mrr_and_ndcg():
@@ -565,11 +565,11 @@ def test_empty_queries_and_chunks_write_reports(tmp_path):
     assert paths["markdown"].is_file()
 ```
 
-- [ ] **Step 3: Run tests and verify RED**
+- [x] **Step 3: Run tests and verify RED**
 
 Expected: missing script/module.
 
-- [ ] **Step 4: Implement deterministic scoring**
+- [x] **Step 4: Implement deterministic scoring**
 
 ```python
 def score_chunk(query: dict[str, Any], chunk: dict[str, Any]) -> float:
@@ -593,19 +593,19 @@ def is_relevant(query: dict[str, Any], chunk: dict[str, Any]) -> bool:
 Tokenization uses Latin words and Chinese 2–4 character n-grams. Stable ties
 sort by `chunk_id`.
 
-- [ ] **Step 5: Generate chunks through production services**
+- [x] **Step 5: Generate chunks through production services**
 
 Build canonical inputs from each UIR and call `ChunkOrganizerService` once per
 strategy with identical target/min/max/overlap values. Do not create a vector
 database or call an LLM.
 
-- [ ] **Step 6: Compute strategy metrics**
+- [x] **Step 6: Compute strategy metrics**
 
 Implement Recall@1/3/5, MRR, nDCG@5, source-link coverage, table integrity,
 average token estimate, and chunk count. Include per-query ranks and actual
 failure analysis when the success criteria are not met.
 
-- [ ] **Step 7: Verify, generate reports, and commit**
+- [x] **Step 7: Verify, generate reports, and commit**
 
 Run focused tests, full pytest/Ruff, and:
 
