@@ -20,7 +20,7 @@ REPORTS = {
     },
     "llm-fallback": {
         "path": ROOT / "reports" / "llm_fallback_eval_report.json",
-        "recommended_command": "python scripts/eval_llm_fallback.py",
+        "recommended_command": "python scripts/eval_llm_fallback_modes.py",
     },
 }
 
