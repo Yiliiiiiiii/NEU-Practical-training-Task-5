@@ -834,7 +834,7 @@ Commit the helper, tests, components, App/API/types/styles, and no generated
 ### Task 8: Phase 5 LLM Fallback Evaluation
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 7
 **Parallelizable:** No (strict guideline order and acceptance report aggregation)
@@ -845,7 +845,7 @@ Commit the helper, tests, components, App/API/types/styles, and no generated
 - Generate: `reports/llm_fallback_eval_report.json`
 - Generate: `reports/llm_fallback_eval_report.md`
 
-- [ ] **Step 1: Write failing disabled/stub evaluation tests**
+- [x] **Step 1: Write failing disabled/stub evaluation tests**
 
 ```python
 def test_disabled_mode_never_calls_provider(tmp_path):
@@ -865,11 +865,11 @@ def test_stub_suggestions_require_review_and_redact_secrets(tmp_path):
 
 Add strict/non-strict provider-error and badcase-block tests.
 
-- [ ] **Step 2: Run tests and verify RED**
+- [x] **Step 2: Run tests and verify RED**
 
 Expected: missing script/module.
 
-- [ ] **Step 3: Implement mode configuration**
+- [x] **Step 3: Implement mode configuration**
 
 ```python
 def settings_for_mode(mode: str) -> Settings:
@@ -885,14 +885,14 @@ def settings_for_mode(mode: str) -> Settings:
 Reject `openai-compatible` unless `--allow-network` is present. Never require a
 real key for disabled/stub tests.
 
-- [ ] **Step 4: Measure safety and failure behavior**
+- [x] **Step 4: Measure safety and failure behavior**
 
 Run deterministic cases through `LLMFallbackService` and `MappingService`.
 Count suggestions, review-required, auto-accepted, badcase-blocked, provider
 errors, timeouts, and latency. Serialize only safe configuration snapshots and
 hash metadata.
 
-- [ ] **Step 5: Generate JSON and Markdown**
+- [x] **Step 5: Generate JSON and Markdown**
 
 The report includes all guideline metrics. Assert before writing:
 
@@ -903,7 +903,7 @@ if not metrics["secret_redaction_passed"]:
     raise AssertionError("secret redaction failed")
 ```
 
-- [ ] **Step 6: Verify and commit**
+- [x] **Step 6: Verify and commit**
 
 Run focused tests, disabled CLI, stub CLI, full pytest/Ruff, then commit the
 script, tests, and two reports. Do not run network mode unless credentials are
