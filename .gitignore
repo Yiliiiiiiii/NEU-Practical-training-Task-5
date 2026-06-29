@@ -30,6 +30,14 @@ reports/
 reports/*
 !reports/real_world_eval_report.json
 !reports/real_world_eval_report.md
+!reports/acceptance_report.json
+!reports/acceptance_report.md
+!reports/real_world_knowledge_loop_report.json
+!reports/real_world_knowledge_loop_report.md
+!reports/chunk_retrieval_eval_report.json
+!reports/chunk_retrieval_eval_report.md
+!reports/llm_fallback_eval_report.json
+!reports/llm_fallback_eval_report.md
 *.db
 *.sqlite
 *.sqlite3

@@ -1,0 +1,251 @@
+{
+  "boundaries": {
+    "input": "UIR is the governed input to the core conversion pipeline.",
+    "llm_fallback": "LLM fallback is optional, disabled by default, and every suggestion is review-required; it cannot autonomously activate production rules.",
+    "model_training": "No model training is implemented.",
+    "ocr": "No OCR or scanned-document recognition is implemented.",
+    "rag": "No full RAG or vector-database implementation is included."
+  },
+  "checks": {
+    "downstream_smoke": {
+      "reason": "downstream smoke summary is not available",
+      "recommended_command": "python scripts/eval_production_like.py",
+      "report_path": "reports/production_like_eval_report.json",
+      "status": "missing",
+      "summary": {}
+    },
+    "frontend_build": {
+      "reason": "the report generator does not execute the frontend build",
+      "recommended_command": "cd frontend; npm run build",
+      "report_path": "docs/final_handoff_status.md",
+      "status": "not_run",
+      "summary": {
+        "documented_command": true
+      }
+    },
+    "package_verification": {
+      "reason": "real-world report records package verification for every case",
+      "recommended_command": "python scripts/eval_production_like.py",
+      "report_path": "reports/real_world_eval_report.json",
+      "status": "passed",
+      "summary": {
+        "dataset_size": 16,
+        "package_verify_pass_count": 16
+      }
+    },
+    "production_like_eval": {
+      "reason": "report file not found",
+      "recommended_command": "python scripts/eval_production_like.py",
+      "report_path": "reports/production_like_eval_report.json",
+      "status": "missing",
+      "summary": {}
+    },
+    "pytest": {
+      "reason": "the report generator does not execute the backend test suite",
+      "recommended_command": "cd backend; python -m pytest -q",
+      "report_path": "docs/final_handoff_status.md",
+      "status": "not_run",
+      "summary": {
+        "documented_command": true
+      }
+    },
+    "real_world_eval": {
+      "reason": "real-world report contains incomplete or failed recorded stages",
+      "recommended_command": "python scripts/eval_real_world_uir.py",
+      "report_path": "reports/real_world_eval_report.json",
+      "status": "partial",
+      "summary": {
+        "by_doc_type": {
+          "general_doc": 3,
+          "meeting_doc": 3,
+          "policy_doc": 5,
+          "procurement_doc": 5
+        },
+        "dataset_size": 16,
+        "high_risk_mapping_count": 0,
+        "import_pass_count": 16,
+        "mapping_review_required_count": 69,
+        "package_verify_pass_count": 16,
+        "task_execute_pass_count": 16,
+        "typical_failure_cases": [
+          {
+            "doc_id": "real_general_001_notary_service_guide",
+            "doc_type": "general_doc",
+            "error": "",
+            "stage": "validation"
+          },
+          {
+            "doc_id": "real_general_002_biomed_project_guide",
+            "doc_type": "general_doc",
+            "error": "",
+            "stage": "validation"
+          },
+          {
+            "doc_id": "real_general_003_textile_application_flow",
+            "doc_type": "general_doc",
+            "error": "",
+            "stage": "validation"
+          }
+        ],
+        "typical_success_cases": [
+          "real_procurement_001_broadcast_security_supervision",
+          "real_procurement_002_special_equipment_bid",
+          "real_procurement_003_radiation_monitoring_award"
+        ],
+        "validation_failed_cases": [
+          "real_general_001_notary_service_guide",
+          "real_general_002_biomed_project_guide",
+          "real_general_003_textile_application_flow",
+          "real_meeting_001_changning_executive_minutes",
+          "real_meeting_002_shaxian_executive_minutes",
+          "real_meeting_003_miluo_executive_minutes",
+          "real_policy_001_training_platform_rules",
+          "real_policy_002_equipment_renewal",
+          "real_policy_003_science_education_guide",
+          "real_policy_004_student_loan_relief",
+          "real_policy_005_ai_industry_guide"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "documents": {
+      "final_handoff_status": {
+        "reason": "document loaded",
+        "report_path": "docs/final_handoff_status.md",
+        "status": "present",
+        "summary": {
+          "line_count": 261,
+          "title": "SchemaPack Agent Final Handoff Status"
+        }
+      },
+      "package_spec": {
+        "reason": "document loaded",
+        "report_path": "docs/package_spec.md",
+        "status": "present",
+        "summary": {
+          "line_count": 62,
+          "title": "SchemaPack Package Spec"
+        }
+      },
+      "requirement_mapping": {
+        "reason": "document loaded",
+        "report_path": "docs/requirement_mapping.md",
+        "status": "present",
+        "summary": {
+          "line_count": 36,
+          "title": "Topic 5 Requirement Mapping"
+        }
+      }
+    },
+    "production_like_eval": {
+      "reason": "report file not found",
+      "recommended_command": "python scripts/eval_production_like.py",
+      "report_path": "reports/production_like_eval_report.json",
+      "status": "missing",
+      "summary": {}
+    },
+    "real_world_eval": {
+      "reason": "real-world report contains incomplete or failed recorded stages",
+      "recommended_command": "python scripts/eval_real_world_uir.py",
+      "report_path": "reports/real_world_eval_report.json",
+      "status": "partial",
+      "summary": {
+        "by_doc_type": {
+          "general_doc": 3,
+          "meeting_doc": 3,
+          "policy_doc": 5,
+          "procurement_doc": 5
+        },
+        "dataset_size": 16,
+        "high_risk_mapping_count": 0,
+        "import_pass_count": 16,
+        "mapping_review_required_count": 69,
+        "package_verify_pass_count": 16,
+        "task_execute_pass_count": 16,
+        "typical_failure_cases": [
+          {
+            "doc_id": "real_general_001_notary_service_guide",
+            "doc_type": "general_doc",
+            "error": "",
+            "stage": "validation"
+          },
+          {
+            "doc_id": "real_general_002_biomed_project_guide",
+            "doc_type": "general_doc",
+            "error": "",
+            "stage": "validation"
+          },
+          {
+            "doc_id": "real_general_003_textile_application_flow",
+            "doc_type": "general_doc",
+            "error": "",
+            "stage": "validation"
+          }
+        ],
+        "typical_success_cases": [
+          "real_procurement_001_broadcast_security_supervision",
+          "real_procurement_002_special_equipment_bid",
+          "real_procurement_003_radiation_monitoring_award"
+        ],
+        "validation_failed_cases": [
+          "real_general_001_notary_service_guide",
+          "real_general_002_biomed_project_guide",
+          "real_general_003_textile_application_flow",
+          "real_meeting_001_changning_executive_minutes",
+          "real_meeting_002_shaxian_executive_minutes",
+          "real_meeting_003_miluo_executive_minutes",
+          "real_policy_001_training_platform_rules",
+          "real_policy_002_equipment_renewal",
+          "real_policy_003_science_education_guide",
+          "real_policy_004_student_loan_relief",
+          "real_policy_005_ai_industry_guide"
+        ]
+      }
+    },
+    "real_world_extraction": {
+      "reason": "report loaded",
+      "recommended_command": "python scripts/build_real_world_uir.py",
+      "report_path": "examples/real_world/reports/extraction_report.json",
+      "status": "present",
+      "summary": {
+        "by_format": {
+          "html": 13,
+          "pdf": 3
+        },
+        "collection_totals": {
+          "downloaded": 16,
+          "failed": 0,
+          "skipped": 0
+        },
+        "totals": {
+          "extracted": 16,
+          "rejected": 0,
+          "skipped": 0,
+          "sources": 16
+        }
+      }
+    },
+    "real_world_validation": {
+      "reason": "report loaded",
+      "recommended_command": "python scripts/validate_real_world_uir.py",
+      "report_path": "examples/real_world/reports/validation_report.json",
+      "status": "present",
+      "summary": {
+        "totals": {
+          "empty_or_mojibake": 0,
+          "failed": 0,
+          "missing_fields": 0,
+          "mojibake": 0,
+          "passed": 16,
+          "sensitive": 0,
+          "total": 16
+        }
+      }
+    }
+  },
+  "generated_at": "2026-06-29T14:31:44.714926+00:00",
+  "pipeline": "UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP",
+  "project": "SchemaPack Agent",
+  "topic": "课题 5：文档内容智能化转换与组织"
+}
