@@ -154,7 +154,7 @@ git commit -m "fix: make clean checkout verification reproducible"
 ### Task 2: Phase 0 Acceptance Report
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 1
 **Parallelizable:** No (the acceptance aggregator becomes the final evidence sink)
@@ -167,7 +167,7 @@ git commit -m "fix: make clean checkout verification reproducible"
 - Generate: `reports/acceptance_report.md`
 - Generate: `docs/acceptance_report.md`
 
-- [ ] **Step 1: Write failing report tests**
+- [x] **Step 1: Write failing report tests**
 
 Cover missing inputs, a minimal mock input, required JSON keys, and required
 Markdown text:
@@ -196,11 +196,11 @@ def test_write_reports_emits_json_markdown_and_docs_copy(tmp_path):
     assert paths["docs"].is_file()
 ```
 
-- [ ] **Step 2: Run tests and verify RED**
+- [x] **Step 2: Run tests and verify RED**
 
 Expected: import/file-not-found failure for `scripts/build_acceptance_report.py`.
 
-- [ ] **Step 3: Implement deterministic aggregation**
+- [x] **Step 3: Implement deterministic aggregation**
 
 Create these public functions:
 
@@ -255,7 +255,7 @@ Implement `render_markdown(report)` with the fourteen required headings and
 `write_reports(root, report)` with UTF-8, stable key ordering, and parent
 directory creation.
 
-- [ ] **Step 4: Verify focused tests and generate reports**
+- [x] **Step 4: Verify focused tests and generate reports**
 
 Run:
 
@@ -268,12 +268,12 @@ F:\p2\backend\.venv\Scripts\python.exe scripts/build_acceptance_report.py
 
 Expected: tests pass and all three report/document paths exist.
 
-- [ ] **Step 5: Allowlist generated Phase reports**
+- [x] **Step 5: Allowlist generated Phase reports**
 
 Keep `reports/*` ignored, then add explicit negated entries for acceptance,
 knowledge-loop, retrieval, and LLM JSON/Markdown reports.
 
-- [ ] **Step 6: Run Phase 0 regression checks and commit**
+- [x] **Step 6: Run Phase 0 regression checks and commit**
 
 Run backend pytest and Ruff, then:
 
