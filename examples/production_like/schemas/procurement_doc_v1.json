@@ -1,0 +1,234 @@
+{
+  "schema_id": "procurement_doc",
+  "name": "采购文档标准结构",
+  "version": "1.0.0",
+  "description": "用于采购公告、招标公告、中标公告和结果公告类 UIR 的标准化输出。",
+  "fields": [
+    {
+      "field_id": "document_title",
+      "name": "document_title",
+      "display_name": "文档标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["文档标题", "公告标题", "标题"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "notice_type",
+      "name": "notice_type",
+      "display_name": "公告类型",
+      "type": "enum",
+      "required": true,
+      "aliases": ["公告类型", "公告类别"],
+      "constraints": {
+        "enum": [
+          "procurement_notice",
+          "tender_notice",
+          "award_notice",
+          "correction_notice",
+          "result_notice"
+        ]
+      }
+    },
+    {
+      "field_id": "project_name",
+      "name": "project_name",
+      "display_name": "项目名称",
+      "type": "string",
+      "required": true,
+      "aliases": ["项目名称", "采购项目名称", "工程名称", "标项名称"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "project_id",
+      "name": "project_id",
+      "display_name": "项目编号",
+      "type": "string",
+      "required": false,
+      "aliases": ["项目编号", "采购项目编号", "招标编号"],
+      "constraints": {}
+    },
+    {
+      "field_id": "buyer_name",
+      "name": "buyer_name",
+      "display_name": "采购人",
+      "type": "string",
+      "required": false,
+      "aliases": ["采购人", "采购单位", "招标人", "建设单位"],
+      "constraints": {}
+    },
+    {
+      "field_id": "agency_name",
+      "name": "agency_name",
+      "display_name": "采购代理机构",
+      "type": "string",
+      "required": false,
+      "aliases": ["采购代理机构", "代理机构", "招标代理机构"],
+      "constraints": {}
+    },
+    {
+      "field_id": "supplier_name",
+      "name": "supplier_name",
+      "display_name": "供应商",
+      "type": "string",
+      "required": false,
+      "aliases": ["中标供应商", "成交供应商", "供应商名称", "中标人", "成交人"],
+      "constraints": {}
+    },
+    {
+      "field_id": "budget_amount",
+      "name": "budget_amount",
+      "display_name": "预算金额",
+      "type": "number",
+      "required": false,
+      "aliases": ["预算金额", "项目预算", "采购预算", "最高限价", "预算价"],
+      "constraints": {}
+    },
+    {
+      "field_id": "winning_amount",
+      "name": "winning_amount",
+      "display_name": "中标金额",
+      "type": "number",
+      "required": false,
+      "aliases": ["中标金额", "成交金额", "成交价", "中标价", "合同金额"],
+      "constraints": {}
+    },
+    {
+      "field_id": "currency",
+      "name": "currency",
+      "display_name": "币种",
+      "type": "string",
+      "required": false,
+      "aliases": ["币种", "货币"],
+      "constraints": {}
+    },
+    {
+      "field_id": "procurement_method",
+      "name": "procurement_method",
+      "display_name": "采购方式",
+      "type": "enum",
+      "required": false,
+      "aliases": ["采购方式", "招标方式"],
+      "constraints": {
+        "enum": [
+          "open_tender",
+          "competitive_consultation",
+          "competitive_negotiation",
+          "inquiry",
+          "single_source"
+        ]
+      }
+    },
+    {
+      "field_id": "notice_date",
+      "name": "notice_date",
+      "display_name": "公告日期",
+      "type": "date",
+      "required": false,
+      "aliases": ["公告日期", "发布日期", "发布时间"],
+      "constraints": {}
+    },
+    {
+      "field_id": "deadline",
+      "name": "deadline",
+      "display_name": "截止时间",
+      "type": "datetime",
+      "required": false,
+      "aliases": ["截止时间", "投标截止时间", "响应文件提交截止时间"],
+      "constraints": {}
+    },
+    {
+      "field_id": "contact_person",
+      "name": "contact_person",
+      "display_name": "联系人",
+      "type": "string",
+      "required": false,
+      "aliases": ["联系人", "项目联系人"],
+      "constraints": {}
+    },
+    {
+      "field_id": "contact_phone",
+      "name": "contact_phone",
+      "display_name": "联系电话",
+      "type": "string",
+      "required": false,
+      "aliases": ["联系电话", "联系方式", "电话"],
+      "constraints": {}
+    },
+    {
+      "field_id": "contact_address",
+      "name": "contact_address",
+      "display_name": "联系地址",
+      "type": "string",
+      "required": false,
+      "aliases": ["联系地址", "地址"],
+      "constraints": {}
+    },
+    {
+      "field_id": "source_url",
+      "name": "source_url",
+      "display_name": "来源链接",
+      "type": "string",
+      "required": true,
+      "aliases": ["来源链接", "原文链接", "source_url"],
+      "constraints": {}
+    },
+    {
+      "field_id": "source_site",
+      "name": "source_site",
+      "display_name": "来源网站",
+      "type": "string",
+      "required": true,
+      "aliases": ["来源网站", "来源站点", "source_site"],
+      "constraints": {}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": [
+      "document_title",
+      "notice_type",
+      "project_name",
+      "source_url",
+      "source_site"
+    ],
+    "properties": {
+      "document_title": {"type": "string"},
+      "notice_type": {
+        "type": "string",
+        "enum": [
+          "procurement_notice",
+          "tender_notice",
+          "award_notice",
+          "correction_notice",
+          "result_notice"
+        ]
+      },
+      "project_name": {"type": "string"},
+      "project_id": {"type": "string"},
+      "buyer_name": {"type": "string"},
+      "agency_name": {"type": "string"},
+      "supplier_name": {"type": "string"},
+      "budget_amount": {"type": "number"},
+      "winning_amount": {"type": "number"},
+      "currency": {"type": "string"},
+      "procurement_method": {
+        "type": "string",
+        "enum": [
+          "open_tender",
+          "competitive_consultation",
+          "competitive_negotiation",
+          "inquiry",
+          "single_source"
+        ]
+      },
+      "notice_date": {"type": "string", "format": "date"},
+      "deadline": {"type": "string", "format": "date-time"},
+      "contact_person": {"type": "string"},
+      "contact_phone": {"type": "string"},
+      "contact_address": {"type": "string"},
+      "source_url": {"type": "string"},
+      "source_site": {"type": "string"}
+    }
+  }
+}

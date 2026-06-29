@@ -1,0 +1,106 @@
+{
+  "template_id": "procurement_doc_base_v1",
+  "schema_id": "procurement_doc",
+  "name": "采购文档基础映射模板",
+  "version": "1.0.0",
+  "aliases": {
+    "document_title": ["document_title", "文档标题", "公告标题", "标题"],
+    "notice_type": ["notice_type", "公告类型", "公告类别"],
+    "project_name": ["project_name", "项目名称", "采购项目名称", "工程名称", "标项名称"],
+    "project_id": ["project_id", "项目编号", "采购项目编号", "招标编号"],
+    "buyer_name": ["buyer_name", "采购人", "采购单位", "招标人", "建设单位"],
+    "agency_name": ["agency_name", "采购代理机构", "代理机构", "招标代理机构"],
+    "supplier_name": ["supplier_name", "中标供应商", "成交供应商", "供应商名称", "中标人", "成交人"],
+    "budget_amount": ["budget_amount", "预算金额", "项目预算", "采购预算", "最高限价", "预算价"],
+    "winning_amount": ["winning_amount", "中标金额", "成交金额", "成交价", "中标价", "合同金额"],
+    "currency": ["currency", "币种", "货币"],
+    "procurement_method": ["procurement_method", "采购方式", "招标方式"],
+    "notice_date": ["notice_date", "公告日期", "发布日期", "发布时间"],
+    "deadline": ["deadline", "截止时间", "投标截止时间", "响应文件提交截止时间"],
+    "contact_person": ["contact_person", "联系人", "项目联系人"],
+    "contact_phone": ["contact_phone", "联系电话", "联系方式", "电话"],
+    "contact_address": ["contact_address", "联系地址", "地址"],
+    "source_url": ["source_url", "来源链接", "原文链接"],
+    "source_site": ["source_site", "来源网站", "来源站点"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "project_id",
+      "pattern": "(项目编号|采购项目编号|招标编号)[:：\\s]*([A-Za-z0-9][A-Za-z0-9_./\\-]*)",
+      "group": 2
+    },
+    {
+      "target_field_id": "budget_amount",
+      "pattern": "(预算金额|项目预算|采购预算|最高限价|预算价)[:：\\s]*(?:人民币)?[￥¥]?\\s*([0-9,]+(?:\\.\\d+)?)\\s*(?:元|万元)?",
+      "group": 2
+    },
+    {
+      "target_field_id": "winning_amount",
+      "pattern": "(中标金额|成交金额|成交价|中标价|合同金额)[:：\\s]*(?:人民币)?[￥¥]?\\s*([0-9,]+(?:\\.\\d+)?)\\s*(?:元|万元)?",
+      "group": 2
+    },
+    {
+      "target_field_id": "notice_date",
+      "pattern": "(公告日期|发布日期|发布时间)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?)",
+      "group": 2
+    },
+    {
+      "target_field_id": "deadline",
+      "pattern": "(截止时间|投标截止时间|响应文件提交截止时间)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?(?:\\s+\\d{1,2}:\\d{2}(?::\\d{2})?)?)",
+      "group": 2
+    }
+  ],
+  "transform_rules": [
+    {
+      "rule_id": "procurement_notice_type_enum",
+      "operation": "enum_map",
+      "source_field": "metadata.公告类型",
+      "target_field_id": "notice_type",
+      "params": {
+        "map": {
+          "采购公告": "procurement_notice",
+          "招标公告": "tender_notice",
+          "中标公告": "award_notice",
+          "成交公告": "award_notice",
+          "更正公告": "correction_notice",
+          "结果公告": "result_notice"
+        }
+      }
+    },
+    {
+      "rule_id": "procurement_method_enum",
+      "operation": "enum_map",
+      "source_field": "metadata.采购方式",
+      "target_field_id": "procurement_method",
+      "params": {
+        "map": {
+          "公开招标": "open_tender",
+          "竞争性磋商": "competitive_consultation",
+          "竞争性谈判": "competitive_negotiation",
+          "询价": "inquiry",
+          "单一来源": "single_source"
+        }
+      }
+    }
+  ],
+  "defaults": {
+    "currency": "CNY"
+  },
+  "enum_maps": {
+    "notice_type": {
+      "采购公告": "procurement_notice",
+      "招标公告": "tender_notice",
+      "中标公告": "award_notice",
+      "成交公告": "award_notice",
+      "更正公告": "correction_notice",
+      "结果公告": "result_notice"
+    },
+    "procurement_method": {
+      "公开招标": "open_tender",
+      "竞争性磋商": "competitive_consultation",
+      "竞争性谈判": "competitive_negotiation",
+      "询价": "inquiry",
+      "单一来源": "single_source"
+    }
+  }
+}

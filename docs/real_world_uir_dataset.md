@@ -104,6 +104,19 @@ packages passed the package verifier. Eleven downstream schema validations still
 missing or ambiguous target fields; these are retained as real-world mapping badcases and
 review evidence rather than silently filled.
 
+## Evaluation catalog routing
+
+Each supported document type uses an explicit versioned entry in
+`scripts/eval_real_world_uir.py`'s `DOCUMENT_CATALOG`. Procurement samples use
+`procurement_doc` schema `1.0.0` with `procurement_doc_base_v1` template `1.0.0`; they
+never route through `general_doc`.
+
+The evaluator checks that the configured local schema and template fixtures exist before
+importing a sample. A missing entry is reported as `catalog_status=missing_configuration`,
+and a missing schema or template file is reported as `catalog_status=missing_fixture`.
+Either condition fails that sample with a visible error. There is no silent catalog
+fallback.
+
 ## Reproduction
 
 Install backend dependencies:
@@ -148,9 +161,6 @@ Outputs:
 - The collector is intentionally small-scale and sequential.
 - No LLM is required for deterministic generation. If an assisted candidate is added
   manually, evidence, confidence, reason, and review state remain mandatory.
-- Procurement samples currently use the existing `general_doc` schema/template during API
-  evaluation because the catalog has no dedicated procurement schema.
 
-Future work may add reviewed domain-specific aliases, a dedicated procurement catalog,
-more contract samples, and additional deterministic table normalization. OCR remains
-outside the main scope.
+Future work may add reviewed domain-specific aliases, more contract samples, and
+additional deterministic table normalization. OCR remains outside the main scope.

@@ -20,6 +20,7 @@ def test_schema_service_loads_production_like_schemas():
         "contract_doc",
         "meeting_doc",
         "general_doc",
+        "procurement_doc",
     }
 
     policy_schema = service.load_schema("policy_doc", version="1.0.0")
@@ -84,6 +85,7 @@ def test_template_service_loads_production_like_templates():
         "contract_doc_base_v1",
         "meeting_doc_base_v1",
         "general_doc_base_v1",
+        "procurement_doc_base_v1",
     }
 
     template = template_service.load_template("policy_doc_base_v1", version="1.0.0")

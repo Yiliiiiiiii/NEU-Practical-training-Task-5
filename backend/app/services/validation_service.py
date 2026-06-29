@@ -88,6 +88,22 @@ class ValidationService:
                     code="date_format_invalid",
                 )
             )
+        elif field.type == "datetime" and (
+            not isinstance(value, str)
+            or not re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}"
+                r"(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})?",
+                value,
+            )
+        ):
+            issues.append(
+                ReportIssue(
+                    level="error",
+                    message="Datetime field must use ISO 8601 date-time format.",
+                    field_id=field.field_id,
+                    code="datetime_format_invalid",
+                )
+            )
         elif field.type.startswith("array") and not isinstance(value, list):
             issues.append(self._type_issue(field, "array"))
         elif field.type == "object" and not isinstance(value, dict):
