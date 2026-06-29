@@ -4,9 +4,9 @@
 - Import success: 16 (100.0%)
 - Task execution success: 16 (100.0%)
 - Package verification success: 16 (100.0%)
-- Mapping review required: 69
+- Mapping review required: 89
 - High-risk mappings: 0
-- Validation failures: 11
+- Validation failures: 16
 
 ## By document type
 
@@ -15,7 +15,7 @@
 | general_doc | 3 | 3 | 3 | 3 | 0 |
 | meeting_doc | 3 | 3 | 3 | 3 | 0 |
 | policy_doc | 5 | 5 | 5 | 5 | 0 |
-| procurement_doc | 5 | 5 | 5 | 5 | 5 |
+| procurement_doc | 5 | 5 | 5 | 5 | 0 |
 
 ## Cases
 
@@ -40,9 +40,6 @@
 
 ## Typical successes
 
-- real_procurement_001_broadcast_security_supervision
-- real_procurement_002_special_equipment_bid
-- real_procurement_003_radiation_monitoring_award
 
 ## Typical failures
 

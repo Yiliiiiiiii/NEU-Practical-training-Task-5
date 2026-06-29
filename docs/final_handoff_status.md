@@ -2,6 +2,12 @@
 
 Topic 5 follow-up Phases 23 through 28 are implemented in this checkout.
 
+2026-06-29 guideline follow-up Phases 0 through 5 are also implemented in the
+`codex/guideline-2026-06-29` worktree. New evidence includes dedicated
+procurement schema/template routing, real-world knowledge-loop metrics, chunk
+retrieval metrics, frontend evidence panels, manifest/evaluation report APIs,
+and LLM fallback safety-mode evaluation.
+
 ## Current Implemented Capabilities
 
 - Core UIR-to-schema conversion service layer:
@@ -94,6 +100,10 @@ Topic 5 follow-up Phases 23 through 28 are implemented in this checkout.
 - `docs/api_usage_examples.md`
 - `docs/service_migration_plan.md`
 - `docs/package_spec.md`
+- `docs/acceptance_report.md`
+- `reports/real_world_knowledge_loop_report.{json,md}`
+- `reports/chunk_retrieval_eval_report.{json,md}`
+- `reports/llm_fallback_eval_report.{json,md}`
 - Engineering maintenance:
   - `scripts/verify_all.py`
   - `.github/workflows/ci.yml`
@@ -137,6 +147,14 @@ Expected current summary:
 ```text
 production-like eval complete: 15 cases, gold=1.0, badcase=1.0
 ```
+
+Additional current summaries:
+
+- Knowledge loop: `approved_candidates=1`, `rejected_candidates=1`,
+  `badcase_violation_count=0`, `old_snapshot_unchanged=true`
+- Chunk retrieval: `query_count=4`, Recall@5 is at least `0.75` for every
+  recorded strategy
+- LLM fallback: `auto_accepted_count=0`, `secret_redaction_passed=true`
 
 Evaluator outputs:
 
@@ -258,4 +276,20 @@ activation.
   controls when moving beyond the current API-key deployment profile.
 - Add generated client publication if downstream consumers require it.
 - Expand regression datasets while preserving gold and badcase checks.
+
+## Final Verification On 2026-06-29
+
+The Topic 5 follow-up branch was verified from a clean temporary backend runtime
+and the current frontend workspace.
+
+- `F:\p2\backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
+  passed: backend pytest reported `160 passed`, ruff reported `All checks passed!`,
+  the frontend build passed, and OpenAPI exported 32 paths.
+- `npm test -- --run` in `frontend` passed: 1 Vitest file and 3 tests passed;
+  frontend tests passed.
+- Temporary live backend evaluation passed:
+  `python scripts\eval_real_world_uir.py --base-url http://127.0.0.1:8770 --timeout 60`
+  reported 16 imports, 16 task executions, and 16 package verifications.
+- Phase 5 LLM fallback safety passed: the report records zero auto-accepted
+  suggestions and successful secret redaction.
 

@@ -164,3 +164,16 @@ Outputs:
 
 Future work may add reviewed domain-specific aliases, more contract samples, and
 additional deterministic table normalization. OCR remains outside the main scope.
+
+## Follow-up evaluation artifacts
+
+The 2026-06-29 follow-up adds deterministic real-world evaluation artifacts:
+
+- `examples/real_world/review_fixtures/procurement_review_decisions.jsonl`
+- `examples/real_world/retrieval_queries.jsonl`
+- `reports/real_world_knowledge_loop_report.{json,md}`
+- `reports/chunk_retrieval_eval_report.{json,md}`
+
+The knowledge-loop report keeps old snapshots immutable and records
+`badcase_violation_count=0`. The retrieval report uses production chunk
+organization services and no vector database or LLM.

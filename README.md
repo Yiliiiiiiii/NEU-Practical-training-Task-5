@@ -75,6 +75,23 @@ Remaining production hardening not implemented yet:
 - Hosted credential provisioning, model evaluation, and enterprise LLM
   monitoring
 
+## Topic 5 Follow-up Evidence (2026-06-29)
+
+The guideline follow-up phases are recorded in deterministic reports:
+
+- `reports/acceptance_report.{json,md}` and `docs/acceptance_report.md`
+- `reports/real_world_knowledge_loop_report.{json,md}`:
+  `old_snapshot_unchanged=true`, `badcase_violation_count=0`
+- `reports/chunk_retrieval_eval_report.{json,md}`: four real-world retrieval
+  queries across procurement, policy, and meeting samples
+- `reports/llm_fallback_eval_report.{json,md}`:
+  `auto_accepted_count=0`, `secret_redaction_passed=true`
+
+Network LLM evaluation is intentionally skipped unless an operator explicitly
+passes the network flag and credentials for that invocation. The production
+boundary remains UIR input; raw PDF/Word/Excel/OCR parsing is outside this core
+pipeline.
+
 ## Backend
 
 ```powershell

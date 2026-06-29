@@ -9,7 +9,7 @@
       "strategy": "source_block_aware"
     }
   ],
-  "generated_at": "2026-06-29T15:18:34.380669+00:00",
+  "generated_at": "2026-06-29T15:39:01.407928+00:00",
   "per_query": [
     {
       "doc_id": "real_procurement_001_broadcast_security_supervision",

@@ -912,7 +912,7 @@ explicitly supplied for that invocation.
 ### Task 9: Final Documentation, Acceptance Regeneration, and Full Verification
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 8
 **Parallelizable:** No (final evidence must reflect every prior phase)
@@ -927,25 +927,25 @@ explicitly supplied for that invocation.
 - Modify: `reports/acceptance_report.json`
 - Modify: `reports/acceptance_report.md`
 
-- [ ] **Step 1: Add a delivery checklist test**
+- [x] **Step 1: Add a delivery checklist test**
 
 Extend `test_acceptance_report_script.py` to assert every required guideline
 artifact exists and every generated report has matching JSON/Markdown files.
 Run it before documentation changes; expected failure if any artifact is still
 missing.
 
-- [ ] **Step 2: Close any artifact gap**
+- [x] **Step 2: Close any artifact gap**
 
 Create no new capabilities here. If the checklist fails, return to the owning
 task, add its missing test/implementation/report, and rerun that phase.
 
-- [ ] **Step 3: Update handoff documentation**
+- [x] **Step 3: Update handoff documentation**
 
 Document exact commands, real metric summaries, retained ambiguous cases,
 boundaries, report paths, frontend panels, and the fact that network LLM
 evaluation is optional and skipped unless explicitly run.
 
-- [ ] **Step 4: Regenerate all deterministic reports**
+- [x] **Step 4: Regenerate all deterministic reports**
 
 Run:
 
@@ -957,7 +957,7 @@ F:\p2\backend\.venv\Scripts\python.exe scripts/eval_llm_fallback_modes.py --mode
 F:\p2\backend\.venv\Scripts\python.exe scripts/build_acceptance_report.py
 ```
 
-- [ ] **Step 5: Run the complete verification gate**
+- [x] **Step 5: Run the complete verification gate**
 
 ```powershell
 cd backend
@@ -974,7 +974,7 @@ Start a temporary backend and run `eval_real_world_uir.py` against it. Confirm
 procurement uses `procurement_doc`, every generated package verifies, and the
 process is stopped cleanly.
 
-- [ ] **Step 6: Audit acceptance criteria**
+- [x] **Step 6: Audit acceptance criteria**
 
 Read the guideline checklist line by line and record the actual state in
 `docs/acceptance_report.md`. Required assertions:
@@ -987,7 +987,7 @@ old_snapshot_unchanged = true
 production boundary = UIR
 ```
 
-- [ ] **Step 7: Commit final evidence**
+- [x] **Step 7: Commit final evidence**
 
 ```powershell
 git add README.md docs reports

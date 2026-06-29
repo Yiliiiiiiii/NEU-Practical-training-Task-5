@@ -142,3 +142,34 @@ def test_json_report_path_cannot_escape_repository_root(tmp_path: Path) -> None:
     assert evidence["status"] == "error"
     assert evidence["reason"] == "report path escapes repository root"
     assert evidence["summary"] == {}
+
+
+def test_guideline_delivery_artifacts_exist_with_json_and_markdown_pairs() -> None:
+    required_files = [
+        "examples/production_like/schemas/procurement_doc_v1.json",
+        "examples/production_like/mapping_templates/procurement_doc_base_v1.json",
+        "examples/production_like/expected/procurement_mapping_gold_cases.jsonl",
+        "examples/real_world/review_fixtures/procurement_review_decisions.jsonl",
+        "examples/real_world/retrieval_queries.jsonl",
+        "scripts/eval_real_world_knowledge_loop.py",
+        "scripts/eval_chunk_retrieval.py",
+        "scripts/eval_llm_fallback_modes.py",
+        "frontend/src/evidence.ts",
+        "frontend/src/components/MappingEvidencePanel.tsx",
+        "frontend/src/components/ValidationIssuePanel.tsx",
+        "frontend/src/components/ChunkEvidencePanel.tsx",
+        "frontend/src/components/PackageManifestPanel.tsx",
+        "frontend/src/components/KnowledgeComparisonPanel.tsx",
+    ]
+    report_pairs = [
+        "reports/acceptance_report",
+        "reports/real_world_knowledge_loop_report",
+        "reports/chunk_retrieval_eval_report",
+        "reports/llm_fallback_eval_report",
+    ]
+
+    missing = [path for path in required_files if not (ROOT / path).is_file()]
+    assert missing == []
+    for stem in report_pairs:
+        assert (ROOT / f"{stem}.json").is_file()
+        assert (ROOT / f"{stem}.md").is_file()

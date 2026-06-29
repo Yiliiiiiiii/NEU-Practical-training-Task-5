@@ -78,6 +78,23 @@ npm test
 npm run build
 ```
 
+## Topic 5 Follow-up Report Regeneration
+
+From the repository root:
+
+```powershell
+F:\p2\backend\.venv\Scripts\python.exe scripts\eval_production_like.py
+F:\p2\backend\.venv\Scripts\python.exe scripts\eval_real_world_knowledge_loop.py
+F:\p2\backend\.venv\Scripts\python.exe scripts\eval_chunk_retrieval.py
+F:\p2\backend\.venv\Scripts\python.exe scripts\eval_llm_fallback_modes.py
+F:\p2\backend\.venv\Scripts\python.exe scripts\build_acceptance_report.py
+```
+
+The LLM fallback evaluator runs disabled/stub/provider-error safety modes
+without network by default. Do not run `openai-compatible` mode unless the
+operator explicitly supplies credentials and the network flag for that single
+run.
+
 Backend test clients create isolated SQLite databases under pytest-managed
 temporary directories, initialize their metadata, and override `get_db`.
 Running the suite does not depend on an initialized `backend/schemapack.db`.

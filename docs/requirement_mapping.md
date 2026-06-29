@@ -26,6 +26,11 @@ implementation.
 | Evaluation | Production-like evaluator checks gold cases, badcases, package validation, and downstream smoke. | `scripts/eval_production_like.py` |
 | Frontend demo | Workbench supports import, task execution, reports, review, knowledge, and ZIP download. | `frontend/src` |
 | Deployment | Docker Compose profile packages backend, frontend, storage, and SQLite volumes. | `docker-compose.yml`, `docs/deployment.md` |
+| Dedicated procurement mapping | Procurement real-world samples route to `procurement_doc` and `procurement_doc_base_v1`, never silently to `general_doc`. | `examples/production_like/schemas/procurement_doc_v1.json`, `scripts/eval_real_world_uir.py` |
+| Real-world knowledge loop | Approved aliases activate only through review-derived knowledge packs; rejected/badcase candidates remain blocked. | `reports/real_world_knowledge_loop_report.json` |
+| Retrieval evidence | Chunk retrieval reports Recall@1/3/5, MRR, nDCG@5, source-link coverage, table integrity, average tokens, and chunk count. | `reports/chunk_retrieval_eval_report.json` |
+| Frontend evidence panels | Mapping, validation, chunk, manifest, and knowledge-loop evidence render through focused React panels. | `frontend/src/components/*EvidencePanel.tsx` |
+| LLM safety evaluation | Disabled/stub/provider-error modes verify review-only suggestions, badcase blocking, and secret redaction without network. | `reports/llm_fallback_eval_report.json` |
 
 ## Explicit Non-Goals
 
