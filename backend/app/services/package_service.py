@@ -6,7 +6,7 @@ from pathlib import Path
 from app.schemas.canonical import CanonicalModel
 from app.schemas.content_organization import ContentOrganizationReport
 from app.schemas.mapping_template import MappingTemplate
-from app.schemas.package import OutputPackageMetadata
+from app.schemas.package import Manifest, OutputPackageMetadata
 from app.schemas.reports import ConsistencyReport, MappingReport, ValidationReport
 from app.schemas.target_schema import TargetSchema
 from app.services.manifest_service import ManifestService
@@ -18,6 +18,7 @@ from app.services.render_service import RenderedArtifacts
 class PackageResult:
     metadata: OutputPackageMetadata
     verifier_report: ConsistencyReport
+    manifest: Manifest
 
 
 class PackageService:
@@ -131,4 +132,8 @@ class PackageService:
             sha256=ManifestService.sha256_file(zip_path),
             created_at=manifest.created_at,
         )
-        return PackageResult(metadata=metadata, verifier_report=verifier_report)
+        return PackageResult(
+            metadata=metadata,
+            verifier_report=verifier_report,
+            manifest=manifest,
+        )
