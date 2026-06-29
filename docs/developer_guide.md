@@ -73,8 +73,16 @@ cd backend
 .\.venv\Scripts\python -m pytest -q
 .\.venv\Scripts\python -m ruff check .
 cd ..\frontend
+npm ci
+npm test
 npm run build
 ```
+
+Backend test clients create isolated SQLite databases under pytest-managed
+temporary directories, initialize their metadata, and override `get_db`.
+Running the suite does not depend on an initialized `backend/schemapack.db`.
+Frontend verification uses the committed lockfile, so prefer `npm ci` over
+`npm install` after checkout.
 
 Unified command:
 
@@ -95,6 +103,5 @@ The production-like evaluator remains optional for local fast loops:
   adapter.
 - Configure LLM credentials only through environment variables; task options
   are intentionally redacted and cannot supply credentials.
-- Use `npm install` rather than `npm ci`; this checkout does not include a
-  frontend package lock file.
+- Re-run `npm ci` when `frontend/package-lock.json` changes.
 - Treat `storage/`, `reports/`, and `.codegraph/` as local runtime artifacts.

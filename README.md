@@ -152,6 +152,10 @@ python -m venv .venv
 .\.venv\Scripts\python -m pytest -q
 ```
 
+Backend tests initialize isolated SQLite databases in pytest temporary
+directories and override the application database dependency. They do not
+require a pre-existing `backend/schemapack.db`.
+
 Lint:
 
 ```powershell
@@ -169,9 +173,14 @@ Unified verification from the repository root:
 
 ```powershell
 cd frontend
-npm run dev
+npm ci
+npm test
 npm run build
+npm run dev
 ```
+
+Use `npm ci` for a reproducible install from the committed
+`frontend/package-lock.json`.
 
 The Vite dev server proxies `/api` to `http://127.0.0.1:8000`. Start the
 backend first, then open:
