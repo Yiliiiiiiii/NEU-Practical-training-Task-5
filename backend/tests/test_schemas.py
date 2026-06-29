@@ -202,7 +202,9 @@ def test_mapping_and_canonical_models_round_trip():
         assets=[],
     )
 
-    assert mapping.status == "confirmed"
+    assert mapping.status == "accepted"
+    assert mapping.evidence[0].message == "source_name equals target field name"
+    assert mapping.evidence_text == ["source_name equals target field name"]
     assert canonical.fields["title"].source_candidates == ["cand_001"]
 
 

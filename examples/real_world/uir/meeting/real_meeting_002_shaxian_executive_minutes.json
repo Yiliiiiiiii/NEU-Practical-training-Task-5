@@ -1,0 +1,107 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议指出，《2026年三明市沙县区政府工作报告（送审稿）》以习近平新时代中国特色社会主义思想为指导，客观总结了2025年和“十四五”以来全区经济社会发展、政府自身建设等各方面取得的成就，科学谋划了“十五五”期间及新一年区政府的主要工作目标，对统一全区思想、凝聚各方力量、推动沙县区全方位高质量发展具有重要作用，原则同意区政府办意见。区政府办负责，根据会议讨论意见进一步修改完善后，提请区委常委会会议审议《2026年沙县区政府工作报告（送审稿）》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议指出，《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》系统总结沙县区2025年度国民经济和社会发展计划的执行情况，并提出2026年度的发展目标和主要任务，有利于指导全区经济和社会发展，原则同意区发改局意见。区发改局负责，根据会议讨论意见进一步修改完善后，提请区委常委会会议审议《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议指出，“十五五”时期是基本实现社会主义现代化夯实基础、全面发力的关键时期，高质量编制好《沙县区国民经济和社会发展第十五个五年规划纲要》，有利于引领沙县区经济社会高质量发展，谱写现代化建设新篇章，原则同意区发改局意见。区发改局负责，根据会议讨论意见进一步修改完善后，提请区委常委会会议审议《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议指出，为民办实事是坚持以人民为中心的发展思想具体行动，是政府履行法定职责、践行服务宗旨的核心体现。各项目主办单位与协办单位要切实负起主体责任，细化实施方案，确保各项目2026年内取得明确进展、形成实质成效，原则同意区政府办意见。区政府办负责，根据会议讨论意见进一步修改完善后，提请区委常委会会议审议《2026年三明市沙县区为民办实事项目建议征集表（送审稿）》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议指出，2026年是实施“十五五”规划的开局之年，预算编制工作事关发展大局、民生福祉和社会风险防控，原则同意区财政局意见。区财政局负责，根据会议讨论意见进一步修改完善后，提请区委常委会会议审议《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_002_shaxian_executive_minutes_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议还研究了其他事项。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_002_shaxian_executive_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 7,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-29T01:39:08.919308+00:00",
+    "source_format": "html",
+    "source_sha256": "6496afba93c33641e33632e245ff580c69fff34b5863cc26833261997cb9150e",
+    "source_site": "www.fjsx.gov.cn",
+    "source_url": "https://www.fjsx.gov.cn/zwgk/qzfhy/qzfcwh/202601/t20260114_2183728.htm",
+    "title": "2025年12月19日区政府第78次常务会议 _ 政府常务会议 _ 沙县区人民政府门户网站",
+    "标题": "2025年12月19日区政府第78次常务会议 _ 政府常务会议 _ 沙县区人民政府门户网站"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "6496afba93c33641e33632e245ff580c69fff34b5863cc26833261997cb9150e"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_002_shaxian_executive_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

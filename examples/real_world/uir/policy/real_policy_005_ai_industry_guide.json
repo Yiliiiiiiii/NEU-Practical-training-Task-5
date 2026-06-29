@@ -1,0 +1,4815 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b001",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 1
+      },
+      "text": "1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b002",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          77.9179458618164,
+          133.97500610351562,
+          99.37069702148438
+        ],
+        "page": 1
+      },
+      "text": "附件1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 18.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b003",
+      "level": 1,
+      "source_anchor": {
+        "bbox": [
+          106.44000244140625,
+          131.70700073242188,
+          488.8800048828125,
+          155.9169921875
+        ],
+        "page": 1
+      },
+      "text": "2025 年人工智能产业及赋能新型工业化创新任务",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 18.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b004",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          225.60000610351562,
+          162.13400268554688,
+          369.6000061035156,
+          183.57199096679688
+        ],
+        "page": 1
+      },
+      "text": "揭榜挂帅申报指南",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b005",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          220.70794677734375,
+          249.9493865966797,
+          236.89720153808594
+        ],
+        "page": 1
+      },
+      "text": "一、产业发展底座",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b006",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          248.78421020507812,
+          202.18849182128906,
+          264.7342224121094
+        ],
+        "page": 1
+      },
+      "text": "（一）算力",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b007",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          273.6227722167969,
+          251.9878692626953,
+          295.6656494140625
+        ],
+        "page": 1
+      },
+      "text": "1. 大模型训练芯片",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b008",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          304.7032165527344,
+          513.22998046875,
+          320.6532287597656
+        ],
+        "page": 1
+      },
+      "text": "揭榜任务：面向大模型训练需求，研制大模型训练芯片，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b009",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          332.7842102050781,
+          505.1864929199219,
+          348.7342224121094
+        ],
+        "page": 1
+      },
+      "text": "突破芯片内核架构设计、生产工艺适配、先进封装适配等关",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b010",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          360.7442321777344,
+          513.22998046875,
+          376.6942443847656
+        ],
+        "page": 1
+      },
+      "text": "键技术，提升芯片算力和性能功耗比，支持低精度浮点格式，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b011",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          388.7032165527344,
+          505.18853759765625,
+          404.6532287597656
+        ],
+        "page": 1
+      },
+      "text": "提高存储带宽和容量，实现训练芯片设计、制造、封装全链",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b012",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          416.7842102050781,
+          153.948486328125,
+          432.7342224121094
+        ],
+        "page": 1
+      },
+      "text": "条突破。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b013",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          441.8779602050781,
+          505.3043212890625,
+          463.3307189941406
+        ],
+        "page": 1
+      },
+      "text": "预期目标：到2027 年，大模型训练芯片覆盖主流模型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b014",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          469.8369445800781,
+          505.30755615234375,
+          491.2897033691406
+        ],
+        "page": 1
+      },
+      "text": "框架，适配90%以上大模型，支持混合精度计算、低精度训",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b015",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          500.7842102050781,
+          505.19000244140625,
+          516.7341918945312
+        ],
+        "page": 1
+      },
+      "text": "练等技术，半精度浮点数算力性能达到国际先进训练芯片",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b016",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          525.8779907226562,
+          167.2690887451172,
+          547.3306884765625
+        ],
+        "page": 1
+      },
+      "text": "90%以上。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b017",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          553.5817260742188,
+          284.02972412109375,
+          575.6246337890625
+        ],
+        "page": 1
+      },
+      "text": "2. 大模型高效推理集群",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b018",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          584.7842407226562,
+          505.42913818359375,
+          600.7341918945312
+        ],
+        "page": 1
+      },
+      "text": "揭榜任务：面向高并发、高吞吐、低延迟场景，构建大",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b019",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          612.7442626953125,
+          505.1894226074219,
+          628.6942138671875
+        ],
+        "page": 1
+      },
+      "text": "模型高效推理集群，突破混合精度计算、分布式推理、多模",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b020",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          640.7032470703125,
+          505.18853759765625,
+          656.6531982421875
+        ],
+        "page": 1
+      },
+      "text": "态模型优化等关键技术，开展系统全栈工程优化，提升资源",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b021",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          668.7842407226562,
+          505.30621337890625,
+          684.7341918945312
+        ],
+        "page": 1
+      },
+      "text": "利用率、计算效率、并发处理能力等，满足系统大规模服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b022",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          696.7442626953125,
+          169.9078826904297,
+          712.6942138671875
+        ],
+        "page": 1
+      },
+      "text": "应用需求。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b023",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          721.8369750976562,
+          505.30865478515625,
+          743.2896728515625
+        ],
+        "page": 1
+      },
+      "text": "预期目标：到2027 年，大模型高效推理集群覆盖主流",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b024",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 2
+      },
+      "text": "2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b025",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          77.9179458618164,
+          505.4267883300781,
+          99.37069702148438
+        ],
+        "page": 2
+      },
+      "text": "模型架构，支持千亿以上参数模型，GPU 计算资源核心利用",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b026",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          105.87794494628906,
+          505.42767333984375,
+          127.33069610595703
+        ],
+        "page": 2
+      },
+      "text": "率可达到80%，首Token 时延不超过200ms，推理服务稳定",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b027",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          133.83694458007812,
+          215.27000427246094,
+          155.28970336914062
+        ],
+        "page": 2
+      },
+      "text": "性不低于99.9%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b028",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          161.66275024414062,
+          332.26611328125,
+          183.70565795898438
+        ],
+        "page": 2
+      },
+      "text": "3. 智算中心综合能效管理系统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b029",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          192.7442169189453,
+          505.1811828613281,
+          208.6942138671875
+        ],
+        "page": 2
+      },
+      "text": "揭榜任务：研发基于液冷系统和数字化能碳管理技术的",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b030",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70321655273438,
+          505.9090270996094,
+          236.65321350097656
+        ],
+        "page": 2
+      },
+      "text": "综合能效管理系统，推动人工智能技术在智算中心的应用，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b031",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.78421020507812,
+          513.22998046875,
+          264.7342224121094
+        ],
+        "page": 2
+      },
+      "text": "实现智算中心信息设备、冷却系统、供配电系统的状态感知、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b032",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          276.7442321777344,
+          473.9787292480469,
+          292.6942443847656
+        ],
+        "page": 2
+      },
+      "text": "高效联动、智能调优升级等，提升信息设备利用效率。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b033",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          301.8369445800781,
+          505.3043212890625,
+          323.2897033691406
+        ],
+        "page": 2
+      },
+      "text": "预期目标：到2027 年，智算中心综合能效管理系统提",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b034",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          329.9179382324219,
+          508.6700134277344,
+          351.3706970214844
+        ],
+        "page": 2
+      },
+      "text": "升信息设备利用率不低于20%、年综合节能率不低于10%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b035",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          360.7442321777344,
+          505.30914306640625,
+          376.6942443847656
+        ],
+        "page": 2
+      },
+      "text": "其中，液冷系统支持混合部署不同算力类别、品牌、型号的",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b036",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          385.8369445800781,
+          505.30914306640625,
+          407.2897033691406
+        ],
+        "page": 2
+      },
+      "text": "液冷服务器，平均无故障工作时间不低于5 万小时，可提供",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b037",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          411.38421630859375,
+          505.30926513671875,
+          435.3706970214844
+        ],
+        "page": 2
+      },
+      "text": "不少于200W/cm2 的散热能力，余热回收量达信息设备总发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b038",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          441.8779602050781,
+          203.2690887451172,
+          463.3307189941406
+        ],
+        "page": 2
+      },
+      "text": "热量10%以上。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b039",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          469.5817565917969,
+          268.06756591796875,
+          491.6246337890625
+        ],
+        "page": 2
+      },
+      "text": "4. 算力互联调度平台",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b040",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          500.7842102050781,
+          505.3094177246094,
+          516.7341918945312
+        ],
+        "page": 2
+      },
+      "text": "揭榜任务：面向全域算力感知、汇聚、调度需求，构建",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b041",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          528.7442626953125,
+          505.9090270996094,
+          544.6942138671875
+        ],
+        "page": 2
+      },
+      "text": "算力互联调度平台，突破算力智能感知、算力调度等技术，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b042",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          556.7032470703125,
+          505.30902099609375,
+          572.6531982421875
+        ],
+        "page": 2
+      },
+      "text": "支撑任务数据高效流通，推动多领域、多场景实践应用，实",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b043",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          584.7842407226562,
+          393.9410705566406,
+          600.7341918945312
+        ],
+        "page": 2
+      },
+      "text": "现算力资源跨主体、跨架构、跨地域协同。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b044",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          609.8779907226562,
+          505.3043212890625,
+          631.3306884765625
+        ],
+        "page": 2
+      },
+      "text": "预期目标：到2027 年，算力互联调度平台汇聚公共算",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b045",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          637.8369750976562,
+          505.30902099609375,
+          659.2896728515625
+        ],
+        "page": 2
+      },
+      "text": "力资源不少于10000P，支持多样化编排调度策略，支持至少",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b046",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          665.91796875,
+          505.30902099609375,
+          687.3706665039062
+        ],
+        "page": 2
+      },
+      "text": "2 个运营主体、3 种系统架构、5 个算力中心的智能调度，支",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b047",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          693.8779907226562,
+          505.18707275390625,
+          715.3306884765625
+        ],
+        "page": 2
+      },
+      "text": "持至少10 种算力产品服务，开展不少于20 个典型场景试验",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b048",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          724.7032470703125,
+          137.9890899658203,
+          740.6531982421875
+        ],
+        "page": 2
+      },
+      "text": "应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b049",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 3
+      },
+      "text": "3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b050",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          77.66275024414062,
+          316.30670166015625,
+          99.70565032958984
+        ],
+        "page": 3
+      },
+      "text": "5. 异构智算集群云操作系统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b051",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          108.74421691894531,
+          505.1811828613281,
+          124.69422149658203
+        ],
+        "page": 3
+      },
+      "text": "揭榜任务：面向大模型在超大规模异构算力集群的混训",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b052",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70321655273438,
+          505.9090270996094,
+          152.65321350097656
+        ],
+        "page": 3
+      },
+      "text": "需求，研发可支持十万卡规模的异构智算集群云操作系统，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b053",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          164.7842254638672,
+          505.1894226074219,
+          180.73422241210938
+        ],
+        "page": 3
+      },
+      "text": "突破训练任务精细化拆分及精准匹配、故障实时感知、秒级",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b054",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          192.7442169189453,
+          505.18267822265625,
+          208.6942138671875
+        ],
+        "page": 3
+      },
+      "text": "自愈恢复等关键技术，提升超大规模异构智算集群的训练效",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b055",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70321655273438,
+          217.9063720703125,
+          236.65321350097656
+        ],
+        "page": 3
+      },
+      "text": "率，降低故障率。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b056",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          245.91793823242188,
+          505.3043212890625,
+          267.3706970214844
+        ],
+        "page": 3
+      },
+      "text": "预期目标：到2027 年，异构智算集群云操作系统适配",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b057",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          273.8779602050781,
+          505.19000244140625,
+          295.3307189941406
+        ],
+        "page": 3
+      },
+      "text": "不少于5 款芯片，支持万亿参数以上规模的大模型训练，集",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b058",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          301.8369445800781,
+          505.30914306640625,
+          323.2897033691406
+        ],
+        "page": 3
+      },
+      "text": "群资源平均利用率超过95%，可实现秒级故障恢复，周训练",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b059",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          329.9179382324219,
+          235.30909729003906,
+          351.3706970214844
+        ],
+        "page": 3
+      },
+      "text": "有效率达99%以上。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b060",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          360.7442321777344,
+          202.18849182128906,
+          376.6942443847656
+        ],
+        "page": 3
+      },
+      "text": "（二）数据",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b061",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          385.5817565917969,
+          268.06756591796875,
+          407.6246337890625
+        ],
+        "page": 3
+      },
+      "text": "6. 工业高质量数据集",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b062",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          416.7842102050781,
+          513.3499755859375,
+          432.7342224121094
+        ],
+        "page": 3
+      },
+      "text": "揭榜任务：面向重点方向领域，建设工业高质量数据集，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b063",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          444.7442321777344,
+          505.30755615234375,
+          460.6942443847656
+        ],
+        "page": 3
+      },
+      "text": "涵盖研发设计、中试验证、生产制造、营销服务、运营管理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b064",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          472.7032165527344,
+          505.30328369140625,
+          488.6532287597656
+        ],
+        "page": 3
+      },
+      "text": "关键环节中的基础数据，赋能通用大模型或工业垂类模型的",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b065",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          500.7842102050781,
+          249.94546508789062,
+          516.7341918945312
+        ],
+        "page": 3
+      },
+      "text": "高效训练与基准评测。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b066",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          525.8779907226562,
+          513.3499755859375,
+          547.3306884765625
+        ],
+        "page": 3
+      },
+      "text": "预期目标：到2027 年，工业高质量数据集满足规范性、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b067",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          553.8369750976562,
+          505.3064270019531,
+          575.2896728515625
+        ],
+        "page": 3
+      },
+      "text": "完整性、准确性、一致性等至少12 个质量评估维度要求，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b068",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          581.91796875,
+          521.2689819335938,
+          603.3706665039062
+        ],
+        "page": 3
+      },
+      "text": "文本数据集规模总量达到100TB 以上，至少覆盖1 万亿token，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b069",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          609.8779907226562,
+          505.3050537109375,
+          631.3306884765625
+        ],
+        "page": 3
+      },
+      "text": "图文数据集规模总量达到1000 万对以上，音视频数据集规",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b070",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          637.8369750976562,
+          505.1885986328125,
+          659.2896728515625
+        ],
+        "page": 3
+      },
+      "text": "模总量达到1000TB 以上，赋能至少5 个通用大模型或工业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b071",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          668.7842407226562,
+          297.9440002441406,
+          684.7341918945312
+        ],
+        "page": 3
+      },
+      "text": "垂类模型的训练与基准评测。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b072",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          693.6227416992188,
+          332.26611328125,
+          715.6656494140625
+        ],
+        "page": 3
+      },
+      "text": "7. 工业人工智能数据工程平台",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b073",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          724.7032470703125,
+          505.30755615234375,
+          740.6531982421875
+        ],
+        "page": 3
+      },
+      "text": "揭榜任务：研发工业人工智能数据工程平台，突破工业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b074",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 4
+      },
+      "text": "4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b075",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          80.78421783447266,
+          505.30914306640625,
+          96.73422241210938
+        ],
+        "page": 4
+      },
+      "text": "数据多源异构融合、智能化数据标注、多模态标注、高质量",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b076",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          108.74421691894531,
+          505.30902099609375,
+          124.69422149658203
+        ],
+        "page": 4
+      },
+      "text": "数据合成等关键技术，实现智能化数据加工、数据合成、数",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b077",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70321655273438,
+          521.1405639648438,
+          152.65321350097656
+        ],
+        "page": 4
+      },
+      "text": "据融合等功能，促进工业领域人工智能数据集的高质量供给。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b078",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          161.91795349121094,
+          505.3043212890625,
+          183.37071228027344
+        ],
+        "page": 4
+      },
+      "text": "预期目标：到2027 年，平台支持文本、图片、视频等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b079",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          189.87794494628906,
+          505.6681823730469,
+          211.33070373535156
+        ],
+        "page": 4
+      },
+      "text": "至少3 种不同模态数据加工及合成，支持ERP、CRM、MES",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b080",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          217.83694458007812,
+          505.18865966796875,
+          239.28970336914062
+        ],
+        "page": 4
+      },
+      "text": "等至少6 类工业系统的数据融合，在不少于10 家工业企业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b081",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.78421020507812,
+          201.9469757080078,
+          264.7342224121094
+        ],
+        "page": 4
+      },
+      "text": "开展示范应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b082",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          273.6227722167969,
+          251.86968994140625,
+          295.6656494140625
+        ],
+        "page": 4
+      },
+      "text": "8. “模数共振”空间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b083",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          304.7032165527344,
+          506.3900146484375,
+          320.6532287597656
+        ],
+        "page": 4
+      },
+      "text": "揭榜任务：建设集“数据协同、模型训练、应用开发、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b084",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          332.7842102050781,
+          505.30621337890625,
+          348.7342224121094
+        ],
+        "page": 4
+      },
+      "text": "安全保障”于一体的软硬件系统平台，加快推动行业通识和",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b085",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          360.7442321777344,
+          505.1894226074219,
+          376.6942443847656
+        ],
+        "page": 4
+      },
+      "text": "专识数据贯通共享，赋能跨企业、跨行业的模型训练、测试",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b086",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          388.7032165527344,
+          297.9440002441406,
+          404.6532287597656
+        ],
+        "page": 4
+      },
+      "text": "和优化迭代，智能体开发等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b087",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          413.9179382324219,
+          505.3076171875,
+          435.3706970214844
+        ],
+        "page": 4
+      },
+      "text": "预期目标：到2027 年，空间支持跨3 个及以上主体间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b088",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          444.7442321777344,
+          505.30902099609375,
+          460.6942443847656
+        ],
+        "page": 4
+      },
+      "text": "的数据贯通和模型协同训练，支撑研发设计、中试验证、生",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b089",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          472.7032165527344,
+          505.18206787109375,
+          488.6532287597656
+        ],
+        "page": 4
+      },
+      "text": "产制造、营销服务、运营管理等关键环节的人工智能应用开",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b090",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          497.9179382324219,
+          385.9090270996094,
+          519.3706665039062
+        ],
+        "page": 4
+      },
+      "text": "发，形成不少于10 个人工智能应用产品。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b091",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          528.7442626953125,
+          202.18849182128906,
+          544.6942138671875
+        ],
+        "page": 4
+      },
+      "text": "（三）算法",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b092",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          553.5817260742188,
+          251.9878692626953,
+          575.6246337890625
+        ],
+        "page": 4
+      },
+      "text": "9. 复杂推理大模型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b093",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          584.7842407226562,
+          505.3094177246094,
+          600.7341918945312
+        ],
+        "page": 4
+      },
+      "text": "揭榜任务：构建具备多级推理验证机制的大模型，突破",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b094",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          612.7442626953125,
+          505.30902099609375,
+          628.6942138671875
+        ],
+        "page": 4
+      },
+      "text": "思维链增强、知识图谱融合、因果推断建模等关键技术，推",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b095",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          640.7032470703125,
+          505.30767822265625,
+          656.6531982421875
+        ],
+        "page": 4
+      },
+      "text": "进模型架构创新以及与底层硬件的深度协同，实现从训练范",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b096",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          668.7842407226562,
+          281.9845886230469,
+          684.7341918945312
+        ],
+        "page": 4
+      },
+      "text": "式到部署方案的全栈优化。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b097",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          693.8779907226562,
+          505.1891174316406,
+          715.3306884765625
+        ],
+        "page": 4
+      },
+      "text": "预期目标：到2027 年，研制复杂推理大模型，实现至",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b098",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          724.7032470703125,
+          505.1879577636719,
+          740.6531982421875
+        ],
+        "page": 4
+      },
+      "text": "少一种关键技术创新，在数学证明、科学问题、逻辑推理等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b099",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 5
+      },
+      "text": "5",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b100",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          80.78421783447266,
+          505.1850280761719,
+          96.73422241210938
+        ],
+        "page": 5
+      },
+      "text": "复杂推理任务上达到专家级水平，在专业评测集上的准确率",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b101",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          108.74421691894531,
+          505.19000244140625,
+          124.69422149658203
+        ],
+        "page": 5
+      },
+      "text": "达到全球前列，在低精度量化下的推理准确率损失不高于",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b102",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          133.83694458007812,
+          127.18999481201172,
+          155.28970336914062
+        ],
+        "page": 5
+      },
+      "text": "2%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b103",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          161.66275024414062,
+          281.3876037597656,
+          183.70565795898438
+        ],
+        "page": 5
+      },
+      "text": "10. 具身智能基础模型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b104",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          192.7442169189453,
+          505.4267883300781,
+          208.6942138671875
+        ],
+        "page": 5
+      },
+      "text": "揭榜任务：研发具身智能基础模型，突破多模异构数据",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b105",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70321655273438,
+          505.30914306640625,
+          236.65321350097656
+        ],
+        "page": 5
+      },
+      "text": "对齐融合、环境交互和多样化运动策略学习等技术，提高具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b106",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.78421020507812,
+          505.1850280761719,
+          264.7342224121094
+        ],
+        "page": 5
+      },
+      "text": "身智能动态环境理解、感知预测、认知推理和复杂任务执行",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b107",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          276.7442321777344,
+          489.9381408691406,
+          292.6942443847656
+        ],
+        "page": 5
+      },
+      "text": "能力，增强对不同本体、多阶段任务的适应性和泛化性。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b108",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          301.8369445800781,
+          505.375,
+          323.2897033691406
+        ],
+        "page": 5
+      },
+      "text": "预期目标：到2027 年，具身智能基础模型支持不少于3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b109",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          332.7842102050781,
+          505.1879577636719,
+          348.7342224121094
+        ],
+        "page": 5
+      },
+      "text": "种本体适配，实现对复杂动态环境的精确理解，支持完成至",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b110",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          357.8779602050781,
+          505.4267883300781,
+          379.3307189941406
+        ],
+        "page": 5
+      },
+      "text": "少200 种未训任务，成功率不低于95%，多阶段任务分解和",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b111",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          388.7032165527344,
+          329.8654479980469,
+          404.6532287597656
+        ],
+        "page": 5
+      },
+      "text": "执行的灵活性、泛化性明显提升。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b112",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          413.6627502441406,
+          281.3876037597656,
+          435.70562744140625
+        ],
+        "page": 5
+      },
+      "text": "11. 智能终端端侧模型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b113",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          444.7442321777344,
+          505.30767822265625,
+          460.6942443847656
+        ],
+        "page": 5
+      },
+      "text": "揭榜任务：研发智能终端端侧模型，推动端侧推理引擎",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b114",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          472.7032165527344,
+          505.18707275390625,
+          488.6532287597656
+        ],
+        "page": 5
+      },
+      "text": "及模型剪枝、量化、蒸馏等关键技术突破，实现云端训练到",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b115",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          500.7842102050781,
+          505.18853759765625,
+          516.7341918945312
+        ],
+        "page": 5
+      },
+      "text": "端侧部署的全流程优化，性能接近云端基准模型，支持终端",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b116",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          528.7442626953125,
+          345.9425354003906,
+          544.6942138671875
+        ],
+        "page": 5
+      },
+      "text": "多场景实时推理，开展规模化应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b117",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          553.8369750976562,
+          505.30902099609375,
+          575.2896728515625
+        ],
+        "page": 5
+      },
+      "text": "预期目标：到2027 年，端侧模型能够适配不少于3 款",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b118",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          581.91796875,
+          505.30621337890625,
+          603.3706665039062
+        ],
+        "page": 5
+      },
+      "text": "终端芯片、支持不少于3 类终端设备，模型轻量化后精度损",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b119",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          609.8779907226562,
+          505.30609130859375,
+          631.3306884765625
+        ],
+        "page": 5
+      },
+      "text": "失不超过3%，端侧推理延迟不超过50ms，支持终端创新应",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b120",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          637.8369750976562,
+          433.905029296875,
+          659.2896728515625
+        ],
+        "page": 5
+      },
+      "text": "用不少于10 个，实现在不少于百万台终端部署。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b121",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          668.7842407226562,
+          234.34970092773438,
+          684.7341918945312
+        ],
+        "page": 5
+      },
+      "text": "（四）开发工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b122",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          693.6227416992188,
+          281.3876037597656,
+          715.6656494140625
+        ],
+        "page": 5
+      },
+      "text": "12. 模型迁移适配工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b123",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          724.7032470703125,
+          505.1811828613281,
+          740.6531982421875
+        ],
+        "page": 5
+      },
+      "text": "揭榜任务：面向算法模型在不同软硬件系统的迁移适配",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b124",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 6
+      },
+      "text": "6",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b125",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          80.78421783447266,
+          505.1894226074219,
+          96.73422241210938
+        ],
+        "page": 6
+      },
+      "text": "需求，开发模型迁移适配工具，突破跨框架模型转换、异构",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b126",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          108.74421691894531,
+          505.1835632324219,
+          124.69422149658203
+        ],
+        "page": 6
+      },
+      "text": "硬件自动优化等核心技术，支持模型在软硬件系统的高效适",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b127",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70321655273438,
+          313.9034118652344,
+          152.65321350097656
+        ],
+        "page": 6
+      },
+      "text": "配与部署，降低模型迁移门槛。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b128",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          161.91795349121094,
+          505.375,
+          183.37071228027344
+        ],
+        "page": 6
+      },
+      "text": "预期目标：到2027 年，模型迁移适配工具适配不少于5",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b129",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          192.7442169189453,
+          505.19000244140625,
+          208.6942138671875
+        ],
+        "page": 6
+      },
+      "text": "款芯片，实现模型在不同软硬件系统迁移后精度损失不高于",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b130",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          217.83694458007812,
+          320.6300048828125,
+          239.28970336914062
+        ],
+        "page": 6
+      },
+      "text": "1%，迁移适配成功率超过99%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b131",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          245.66273498535156,
+          265.3078918457031,
+          267.70562744140625
+        ],
+        "page": 6
+      },
+      "text": "13. 智能体通信工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b132",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          276.7442321777344,
+          513.3499755859375,
+          292.6942443847656
+        ],
+        "page": 6
+      },
+      "text": "揭榜任务：研发智能体通信工具，突破智能体通信协议、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b133",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          304.7032165527344,
+          505.1894226074219,
+          320.6532287597656
+        ],
+        "page": 6
+      },
+      "text": "模型通信协议等关键技术，具备请求发送、接收响应、流式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b134",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          332.7842102050781,
+          505.1894226074219,
+          348.7342224121094
+        ],
+        "page": 6
+      },
+      "text": "传输、异步操作等功能，支持不同开发平台智能体间、智能",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b135",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          360.7442321777344,
+          505.9090270996094,
+          376.6942443847656
+        ],
+        "page": 6
+      },
+      "text": "体与外部工具间的互操作性，提升智能体开发与应用效率。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b136",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          385.8369445800781,
+          505.3052062988281,
+          407.2897033691406
+        ],
+        "page": 6
+      },
+      "text": "预期目标：到2027 年，智能体通信工具支持主流通信",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b137",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          413.9179382324219,
+          502.0150146484375,
+          435.3706970214844
+        ],
+        "page": 6
+      },
+      "text": "协议，具备跨平台兼容性、跨协议版本兼容性，提供至少3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b138",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          441.8779602050781,
+          505.30609130859375,
+          463.3307189941406
+        ],
+        "page": 6
+      },
+      "text": "种语言的SDK 实现，通信延迟小于100ms，实现智能体场景",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b139",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          469.8369445800781,
+          505.19000244140625,
+          491.2897033691406
+        ],
+        "page": 6
+      },
+      "text": "应用示范不少于50 个，适配支持超过50 个主流智能体（通",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b140",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          497.9179382324219,
+          273.9481201171875,
+          519.3706665039062
+        ],
+        "page": 6
+      },
+      "text": "用智能体不少于10 个）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b141",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          525.6227416992188,
+          313.5470275878906,
+          547.6656494140625
+        ],
+        "page": 6
+      },
+      "text": "14. 大模型服务及管理平台",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b142",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          556.7032470703125,
+          505.30755615234375,
+          572.6531982421875
+        ],
+        "page": 6
+      },
+      "text": "揭榜任务：研发大模型服务及管理平台，支持基于基座",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b143",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          584.7842407226562,
+          505.30914306640625,
+          600.7341918945312
+        ],
+        "page": 6
+      },
+      "text": "大模型进行微调，具备大模型量化压缩、推理加速、云边端",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b144",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          612.7442626953125,
+          505.9090270996094,
+          628.6942138671875
+        ],
+        "page": 6
+      },
+      "text": "部署与协同管理能力，实现大模型及其服务的全流程管理，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b145",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          640.7032470703125,
+          441.95001220703125,
+          656.6531982421875
+        ],
+        "page": 6
+      },
+      "text": "降低大模型使用门槛，推动大模型赋能千行百业。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b146",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          665.91796875,
+          513.3499755859375,
+          687.3706665039062
+        ],
+        "page": 6
+      },
+      "text": "预期目标：到2027 年，平台具备健全的服务水平协议，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b147",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          693.8779907226562,
+          505.3094177246094,
+          715.3306884765625
+        ],
+        "page": 6
+      },
+      "text": "平均调用成功率不低于99.99%，响应时延不高于1 秒，支持",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b148",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          721.8369750976562,
+          505.182373046875,
+          743.2896728515625
+        ],
+        "page": 6
+      },
+      "text": "对至少10 类系列大模型进行微调、重训、量化压缩和推理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b149",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 7
+      },
+      "text": "7",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b150",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          77.9179458618164,
+          505.30767822265625,
+          99.37069702148438
+        ],
+        "page": 7
+      },
+      "text": "加速。公有云模式下企业客户不少于500 家，或私有化部署",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b151",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          105.87794494628906,
+          257.868408203125,
+          127.33069610595703
+        ],
+        "page": 7
+      },
+      "text": "的项目数不少于50 个。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b152",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          133.5817413330078,
+          313.5470275878906,
+          155.62464904785156
+        ],
+        "page": 7
+      },
+      "text": "15. 智能体开发与应用平台",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b153",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          164.7842254638672,
+          505.30767822265625,
+          180.73422241210938
+        ],
+        "page": 7
+      },
+      "text": "揭榜任务：研发智能体开发与应用平台，具备智能体开",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b154",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          192.7442169189453,
+          505.1894226074219,
+          208.6942138671875
+        ],
+        "page": 7
+      },
+      "text": "发部署、组件工具集成、智能体应用管理等功能，支持数据",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b155",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70321655273438,
+          505.18853759765625,
+          236.65321350097656
+        ],
+        "page": 7
+      },
+      "text": "处理分析、工具和软件系统接入、算法模型内置、多智能体",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b156",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.78421020507812,
+          393.9481506347656,
+          264.7342224121094
+        ],
+        "page": 7
+      },
+      "text": "集成应用等，提升智能体开发及应用效率。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b157",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          273.8779602050781,
+          505.30902099609375,
+          295.3307189941406
+        ],
+        "page": 7
+      },
+      "text": "预期目标：到2027 年，智能体开发与应用平台API 响",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b158",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          301.8369445800781,
+          505.30914306640625,
+          323.2897033691406
+        ],
+        "page": 7
+      },
+      "text": "应速度不高于500ms，服务请求成功率不低于95%，集成不",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b159",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          329.9179382324219,
+          513.22998046875,
+          351.3706970214844
+        ],
+        "page": 7
+      },
+      "text": "少于80 种组件工具，能够同时管理100 个以上智能体协同，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b160",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          357.8779602050781,
+          481.906494140625,
+          379.3307189941406
+        ],
+        "page": 7
+      },
+      "text": "智能化应用不少于500 个，在至少50 家企业落地应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b161",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          385.8369445800781,
+          273.1058654785156,
+          407.2897033691406
+        ],
+        "page": 7
+      },
+      "text": "二、“人工智能+制造”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b162",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          416.7842102050781,
+          218.2681884765625,
+          432.7342224121094
+        ],
+        "page": 7
+      },
+      "text": "（一）原材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b163",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          441.6227722167969,
+          265.3078918457031,
+          463.6656494140625
+        ],
+        "page": 7
+      },
+      "text": "16. 钢铁制造大模型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b164",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          472.7032165527344,
+          505.3094177246094,
+          488.6532287597656
+        ],
+        "page": 7
+      },
+      "text": "揭榜任务：面向钢铁制造流程高效有序运行需求，深度",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b165",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          500.7842102050781,
+          505.18853759765625,
+          516.7341918945312
+        ],
+        "page": 7
+      },
+      "text": "融合钢铁行业知识、数据，研发钢铁制造大模型，构建大模",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b166",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          528.7442626953125,
+          505.30902099609375,
+          544.6942138671875
+        ],
+        "page": 7
+      },
+      "text": "型、小模型、机理模型协同融合的钢铁制造智能体平台，实",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b167",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          556.7032470703125,
+          505.1894226074219,
+          572.6531982421875
+        ],
+        "page": 7
+      },
+      "text": "现对钢铁制造数据的实时采集、全面感知和智能分析，支持",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b168",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          584.7842407226562,
+          505.30914306640625,
+          600.7341918945312
+        ],
+        "page": 7
+      },
+      "text": "对制造关键指标的精准预测和制造过程的精确控制，提高制",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b169",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          612.7442626953125,
+          345.9425354003906,
+          628.6942138671875
+        ],
+        "page": 7
+      },
+      "text": "造流程连续化程度，提升产品质量。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b170",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          637.8369750976562,
+          505.3043212890625,
+          659.2896728515625
+        ],
+        "page": 7
+      },
+      "text": "预期目标：到2027 年，钢铁制造大模型行业知识问答",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b171",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          665.91796875,
+          505.30682373046875,
+          687.3706665039062
+        ],
+        "page": 7
+      },
+      "text": "准确率不低于85%，支持不少于20 个钢铁生产流程典型场",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b172",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          693.8779907226562,
+          505.30621337890625,
+          715.3306884765625
+        ],
+        "page": 7
+      },
+      "text": "景，流程连续化程度提升不低于10%，产品性能指标波动降",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b173",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          721.8369750976562,
+          379.30767822265625,
+          743.2896728515625
+        ],
+        "page": 7
+      },
+      "text": "低不低于20%，在不少于3 家企业应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b174",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 8
+      },
+      "text": "8",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b175",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          77.66275024414062,
+          297.4673156738281,
+          99.70565032958984
+        ],
+        "page": 8
+      },
+      "text": "17. 化工研发设计大模型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b176",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          108.74421691894531,
+          513.3499755859375,
+          124.69422149658203
+        ],
+        "page": 8
+      },
+      "text": "揭榜任务：基于化工行业知识抽取、多模态理解等技术，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b177",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70321655273438,
+          505.30474853515625,
+          152.65321350097656
+        ],
+        "page": 8
+      },
+      "text": "研制化工研发设计大模型，突破面向化工反应网络简化任务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b178",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          164.7842254638672,
+          505.19000244140625,
+          180.73422241210938
+        ],
+        "page": 8
+      },
+      "text": "的大模型微调技术，提升反应网络构建和简化的精确性，支",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b179",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          189.87794494628906,
+          513.5900268554688,
+          211.33070373535156
+        ],
+        "page": 8
+      },
+      "text": "持多源工艺流程图（PFD）/工艺管道和仪表流程图（P&ID）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b180",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70321655273438,
+          505.9090270996094,
+          236.65321350097656
+        ],
+        "page": 8
+      },
+      "text": "的智能识别和解析、化工工艺流程图的自动设计与优化等，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b181",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.78421020507812,
+          265.9048767089844,
+          264.7342224121094
+        ],
+        "page": 8
+      },
+      "text": "提升化工研发设计效率。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b182",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          273.8779602050781,
+          505.3043212890625,
+          295.3307189941406
+        ],
+        "page": 8
+      },
+      "text": "预期目标：到2027 年，化工研发设计大模型行业知识",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b183",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          301.8369445800781,
+          507.3500061035156,
+          323.2897033691406
+        ],
+        "page": 8
+      },
+      "text": "问答准确率不低于85%，反应网络中各反应方程的反应物、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b184",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          329.9179382324219,
+          505.5500183105469,
+          351.3706970214844
+        ],
+        "page": 8
+      },
+      "text": "条件、产物的确定准确率不低于85%，对多源PFD/P&ID 中",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b185",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          357.8779602050781,
+          505.4300231933594,
+          379.3307189941406
+        ],
+        "page": 8
+      },
+      "text": "设备、仪表、阀门、管线信息的识别准确率不低于95%，自",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b186",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          385.8369445800781,
+          505.30902099609375,
+          407.2897033691406
+        ],
+        "page": 8
+      },
+      "text": "动设计的化工工艺流程图可用度不低于70%，在不少于3 家",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b187",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          416.7842102050781,
+          169.9078826904297,
+          432.7342224121094
+        ],
+        "page": 8
+      },
+      "text": "企业应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b188",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          441.6227722167969,
+          297.4673156738281,
+          463.6656494140625
+        ],
+        "page": 8
+      },
+      "text": "18. 新材料研发智能工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b189",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          472.7032165527344,
+          505.30767822265625,
+          488.6532287597656
+        ],
+        "page": 8
+      },
+      "text": "揭榜任务：面向金属材料、高分子材料、复合材料等新",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b190",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          500.7842102050781,
+          505.1811828613281,
+          516.7341918945312
+        ],
+        "page": 8
+      },
+      "text": "材料研发，研制基于人工智能和高通量计算技术的智能软件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b191",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          528.7442626953125,
+          505.18560791015625,
+          544.6942138671875
+        ],
+        "page": 8
+      },
+      "text": "工具，实现新材料性质预测与筛选，揭示新材料设计与性能",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b192",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          556.7032470703125,
+          505.30902099609375,
+          572.6531982421875
+        ],
+        "page": 8
+      },
+      "text": "之间的深层次规律，支持材料的智能设计、合成及表征，推",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b193",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          584.7842407226562,
+          505.30914306640625,
+          600.7341918945312
+        ],
+        "page": 8
+      },
+      "text": "动材料研发制造的自动化和智能化，提高研发效率，降低研",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b194",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          612.7442626953125,
+          153.948486328125,
+          628.6942138671875
+        ],
+        "page": 8
+      },
+      "text": "发成本。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b195",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          637.8369750976562,
+          505.3043212890625,
+          659.2896728515625
+        ],
+        "page": 8
+      },
+      "text": "预期目标：到2027 年，新材料研发智能工具支持材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b196",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          665.91796875,
+          505.1894226074219,
+          687.3706665039062
+        ],
+        "page": 8
+      },
+      "text": "性质预测与筛选、合成路径设计、逆向设计等不少于3 个场",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b197",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          693.8779907226562,
+          505.4267883300781,
+          715.3306884765625
+        ],
+        "page": 8
+      },
+      "text": "景功能，新材料研发效率提升超过30%，在新材料研发流程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b198",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          724.7032470703125,
+          249.94546508789062,
+          740.6531982421875
+        ],
+        "page": 8
+      },
+      "text": "中实现规模示范应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b199",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          300.8399963378906,
+          790.56201171875
+        ],
+        "page": 9
+      },
+      "text": "9",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b200",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          77.66275024414062,
+          361.66705322265625,
+          99.70565032958984
+        ],
+        "page": 9
+      },
+      "text": "19. 原材料生产工艺智能优化系统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b201",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          108.74421691894531,
+          505.30621337890625,
+          124.69422149658203
+        ],
+        "page": 9
+      },
+      "text": "揭榜任务：面向石化化工、有色、建材等某一个原材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b202",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70321655273438,
+          505.9090270996094,
+          152.65321350097656
+        ],
+        "page": 9
+      },
+      "text": "行业的生产优化控制需求，基于材料性能数据、机理模型、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b203",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          164.7842254638672,
+          505.1850280761719,
+          180.73422241210938
+        ],
+        "page": 9
+      },
+      "text": "工艺流程知识等多模态数据，研发原材料生产工艺智能优化",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b204",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          192.7442169189453,
+          505.30621337890625,
+          208.6942138671875
+        ],
+        "page": 9
+      },
+      "text": "系统，突破生产工艺优化大模型技术，分场景部署垂直细分",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b205",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70321655273438,
+          505.1864929199219,
+          236.65321350097656
+        ],
+        "page": 9
+      },
+      "text": "模型或智能体，实现工艺参数动态优化、关键指标精准预测",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b206",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.78421020507812,
+          297.9440002441406,
+          264.7342224121094
+        ],
+        "page": 9
+      },
+      "text": "和调控，提高精益生产水平。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b207",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          273.8779602050781,
+          505.3043212890625,
+          295.3307189941406
+        ],
+        "page": 9
+      },
+      "text": "预期目标：到2027 年，原材料生产工艺智能优化系统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b208",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          304.7032165527344,
+          505.1864929199219,
+          320.6532287597656
+        ],
+        "page": 9
+      },
+      "text": "具备完善的工艺智能控制与优化模型库，对关键工艺参数预",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b209",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          329.9179382324219,
+          505.3094177246094,
+          351.3706970214844
+        ],
+        "page": 9
+      },
+      "text": "测准确性达到90%以上，生产制造周期缩短10%以上，在不",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b210",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          357.8779602050781,
+          482.0247497558594,
+          379.3307189941406
+        ],
+        "page": 9
+      },
+      "text": "少于3 家企业应用，形成20 个以上典型场景应用案例。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b211",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          388.7032165527344,
+          234.34788513183594,
+          404.6532287597656
+        ],
+        "page": 9
+      },
+      "text": "（二）电子信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b212",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          413.6627502441406,
+          281.3876037597656,
+          435.70562744140625
+        ],
+        "page": 9
+      },
+      "text": "20. 芯片研发智能工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b213",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          444.7442321777344,
+          505.30621337890625,
+          460.6942443847656
+        ],
+        "page": 9
+      },
+      "text": "揭榜任务：面向高可靠、高质量、高效率的芯片研发设",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b214",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          472.7032165527344,
+          505.19000244140625,
+          488.6532287597656
+        ],
+        "page": 9
+      },
+      "text": "计需求，研发基于人工智能的芯片设计或仿真验证工具，实",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b215",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          500.7842102050781,
+          505.18707275390625,
+          516.7341918945312
+        ],
+        "page": 9
+      },
+      "text": "现芯片智能化设计分析、仿真优化等功能，通过智能算法提",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b216",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          528.7442626953125,
+          505.9090270996094,
+          544.6942138671875
+        ],
+        "page": 9
+      },
+      "text": "升芯片性能、优化布局布线、加速电路仿真和功能验证等，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b217",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          556.7032470703125,
+          233.98606872558594,
+          572.6531982421875
+        ],
+        "page": 9
+      },
+      "text": "提高芯片研发效率。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b218",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          581.91796875,
+          505.30865478515625,
+          603.3706665039062
+        ],
+        "page": 9
+      },
+      "text": "预期目标：到2027 年，智能工具在不少于2 款芯片设",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b219",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          609.8779907226562,
+          505.30755615234375,
+          631.3306884765625
+        ],
+        "page": 9
+      },
+      "text": "计中开展应用，芯片性能、功耗等提升超过20%，前仿真和",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b220",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          637.8369750976562,
+          331.19000244140625,
+          659.2896728515625
+        ],
+        "page": 9
+      },
+      "text": "后仿真验证效率提升不低于50%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b221",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          665.6627197265625,
+          350.3870544433594,
+          687.7056274414062
+        ],
+        "page": 9
+      },
+      "text": "21. CPU 多指令集转化智能工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b222",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          693.8779907226562,
+          505.4286804199219,
+          715.3306884765625
+        ],
+        "page": 9
+      },
+      "text": "揭榜任务：基于ARM、LoongARCH、x86 等芯片指令",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b223",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          721.8369750976562,
+          505.30621337890625,
+          743.2896728515625
+        ],
+        "page": 9
+      },
+      "text": "集，研发支持主流操作系统平台的CPU 多指令集转化智能工",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b224",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          306.7196960449219,
+          790.56201171875
+        ],
+        "page": 10
+      },
+      "text": "10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b225",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          80.78421783447266,
+          505.9090270996094,
+          96.73422241210938
+        ],
+        "page": 10
+      },
+      "text": "具，构建多指令集转码映射开源训练数据集，面向数学库、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b226",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          108.74421691894531,
+          505.18560791015625,
+          124.69422149658203
+        ],
+        "page": 10
+      },
+      "text": "图像与信号处理库、求解器等场景，开发支持指令转码与计",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b227",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70321655273438,
+          521.2626953125,
+          152.65321350097656
+        ],
+        "page": 10
+      },
+      "text": "算优化的人工智能模型，降低不同指令集之间算力转码损耗。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b228",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          161.91795349121094,
+          505.30609130859375,
+          183.37071228027344
+        ],
+        "page": 10
+      },
+      "text": "预期目标：到2027 年，研制形成CPU 多指令集转化智",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b229",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          192.7442169189453,
+          505.1864929199219,
+          208.6942138671875
+        ],
+        "page": 10
+      },
+      "text": "能工具，具备指令转码与计算优化功能，支持相关人工智能",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b230",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          217.83694458007812,
+          505.30902099609375,
+          239.28970336914062
+        ],
+        "page": 10
+      },
+      "text": "模型轻量化并与系统级芯片（SoC）集成，x86 与ARM、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b231",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          245.91793823242188,
+          505.30902099609375,
+          267.3706970214844
+        ],
+        "page": 10
+      },
+      "text": "LoongARCH 等二进制指令编码、互转效率损失缩小不超过",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b232",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          273.8779602050781,
+          415.18109130859375,
+          295.3307189941406
+        ],
+        "page": 10
+      },
+      "text": "5%，基础硬件平台兼容性和扩展性得到提升。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b233",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          304.7032165527344,
+          218.2690887451172,
+          320.6532287597656
+        ],
+        "page": 10
+      },
+      "text": "（三）消费品",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b234",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          329.6627502441406,
+          313.5470275878906,
+          351.70562744140625
+        ],
+        "page": 10
+      },
+      "text": "22. 生物医药研发智能工具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b235",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          360.7442321777344,
+          513.3499755859375,
+          376.6942443847656
+        ],
+        "page": 10
+      },
+      "text": "揭榜任务：面向化学药、生物制品等生物医药研发流程，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b236",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          388.7032165527344,
+          505.1811828613281,
+          404.6532287597656
+        ],
+        "page": 10
+      },
+      "text": "基于机器学习、高通量技术等开展生物医药虚拟筛选和实验",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b237",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          416.7842102050781,
+          505.19000244140625,
+          432.7342224121094
+        ],
+        "page": 10
+      },
+      "text": "优化研究，研发药物靶点预测与药物筛选的智能化工具，实",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b238",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          444.7442321777344,
+          521.2617797851562,
+          460.6942443847656
+        ],
+        "page": 10
+      },
+      "text": "现从药物实验设计、数据分析到临床前验证的全流程智能化，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b239",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          472.7032165527344,
+          345.9425354003906,
+          488.6532287597656
+        ],
+        "page": 10
+      },
+      "text": "大幅提升研发效率、降低研发成本。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b240",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          497.9179382324219,
+          505.3043212890625,
+          519.3706665039062
+        ],
+        "page": 10
+      },
+      "text": "预期目标：到2027 年，生物医药研发智能工具支持靶",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b241",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          525.8779907226562,
+          502.0150146484375,
+          547.3306884765625
+        ],
+        "page": 10
+      },
+      "text": "点发现、药物筛选、合成路径优化等核心场景功能不少于3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b242",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          556.7032470703125,
+          505.18707275390625,
+          572.6531982421875
+        ],
+        "page": 10
+      },
+      "text": "个，在药物研发流程中实现规模示范应用，使药物研发效率",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b243",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          581.91796875,
+          412.5500183105469,
+          603.3706665039062
+        ],
+        "page": 10
+      },
+      "text": "提升不低于40%，研发成本降低不低于20%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b244",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          609.6227416992188,
+          297.4673156738281,
+          631.6656494140625
+        ],
+        "page": 10
+      },
+      "text": "23. 服装智能化定制系统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b245",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          640.7032470703125,
+          505.3079528808594,
+          656.6531982421875
+        ],
+        "page": 10
+      },
+      "text": "揭榜任务：面向服装行业用户定制化设计、快速打样制",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b246",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          668.7842407226562,
+          505.30914306640625,
+          684.7341918945312
+        ],
+        "page": 10
+      },
+      "text": "造等设计生产协同需要，研发服装智能化定制系统，支持基",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b247",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          696.7442626953125,
+          513.22998046875,
+          712.6942138671875
+        ],
+        "page": 10
+      },
+      "text": "于大模型的草绘生成设计、图片生成设计、自然交互式修改、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b248",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          724.7032470703125,
+          521.14208984375,
+          740.6531982421875
+        ],
+        "page": 10
+      },
+      "text": "虚拟试衣展示等功能，突破成衣设计到制造工艺的自动编排，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b249",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          294.8399963378906,
+          774.4219970703125,
+          306.35955810546875,
+          790.56201171875
+        ],
+        "page": 11
+      },
+      "text": "11",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_policy_005_ai_industry_guide_b250",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          80.78421783447266,
+          505.1894226074219,
+          96.73422241210938
+        ],
+        "page": 11
+      },
+      "text": "实现根据现有生产设备和物料状态生成制造生产方案，有效",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_005_ai_industry_guide",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 605,
+    "extraction_method": "pymupdf_text",
+    "extraction_truncated": true,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "page_count": 25,
+    "page_text_lengths": [
+      418,
+      579,
+      540,
+      549,
+      541,
+      594,
+      562,
+      561,
+      566,
+      596,
+      596,
+      581,
+      530,
+      593,
+      575,
+      563,
+      570,
+      560,
+      584,
+      578,
+      620,
+      549,
+      552,
+      571,
+      130
+    ],
+    "retrieved_at": "2026-06-29T01:38:03.029258+00:00",
+    "source_format": "pdf",
+    "source_sha256": "8e007a319846523c3d8c09e5165a52fbd7bca7f6e68289164b76001992f2237a",
+    "source_site": "www.gov.cn",
+    "source_url": "https://www.gov.cn/zhengce/zhengceku/202511/P020251106333013261545.pdf",
+    "title": "2025 年人工智能产业及赋能新型工业化创新任务",
+    "标题": "2025 年人工智能产业及赋能新型工业化创新任务"
+  },
+  "normalization_records": [
+    {
+      "method": "pymupdf_text",
+      "normalized": true,
+      "source_sha256": "8e007a319846523c3d8c09e5165a52fbd7bca7f6e68289164b76001992f2237a"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_005_ai_industry_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

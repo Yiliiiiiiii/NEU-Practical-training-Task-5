@@ -52,7 +52,12 @@ def import_policy_document(client: TestClient, filename: str) -> str:
     return response.json()["doc_id"]
 
 
-def create_policy_task(client: TestClient, doc_id: str, schema_id: str = "policy_doc") -> str:
+def create_policy_task(
+    client: TestClient,
+    doc_id: str,
+    schema_id: str = "policy_doc",
+    options: dict | None = None,
+) -> str:
     response = client.post(
         "/api/v1/tasks",
         json={
@@ -61,7 +66,7 @@ def create_policy_task(client: TestClient, doc_id: str, schema_id: str = "policy
             "template_id": "policy_doc_base_v1",
             "schema_version": "1.0.0",
             "template_version": "1.0.0",
-            "options": {"enable_llm_fallback": False},
+            "options": {"enable_llm_fallback": False, **(options or {})},
         },
     )
     assert response.status_code == 200
@@ -127,6 +132,68 @@ def test_execute_task_marks_review_required_for_alias_variants(execution_client)
     assert executed["status"] == "review_required"
     assert executed["review_required_count"] > 0
     assert Path(executed["package_zip_path"]).is_file()
+
+
+def test_execution_snapshot_records_only_safe_llm_config(execution_client):
+    client, storage_root = execution_client
+    secret = "phase28-snapshot-secret"
+    doc_id = import_policy_document(client, "policy_001_standard.json")
+    task_id = create_policy_task(
+        client,
+        doc_id,
+        options={"llm_api_key": secret, "strict_llm": False},
+    )
+
+    response = client.post(f"/api/v1/tasks/{task_id}/execute")
+    snapshot = json.loads(
+        (storage_root / "tasks" / task_id / "execution_snapshot.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert response.status_code == 200
+    assert snapshot["llm"]["task_requested"] is False
+    assert snapshot["llm"]["strict_failure"] is False
+    assert snapshot["llm"]["max_suggestions_per_task"] == 20
+    assert "api_key" not in snapshot["llm"]
+    assert secret not in json.dumps(snapshot, ensure_ascii=False)
+
+
+def test_task_execute_with_content_organization_options(execution_client):
+    client, _storage_root = execution_client
+    doc_id = import_policy_document(client, "policy_001_standard.json")
+    task_id = create_policy_task(
+        client,
+        doc_id,
+        options={
+            "content_organization": {
+                "chunk_strategy": "parent_child",
+                "target_tokens": 64,
+                "min_tokens": 1,
+                "max_tokens": 128,
+                "overlap_tokens": 0,
+                "protect_tables": True,
+                "protect_lists": True,
+                "protect_code_blocks": True,
+                "enable_parent_child": True,
+            }
+        },
+    )
+
+    response = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert response.status_code == 200
+    content_org = client.get(f"/api/v1/tasks/{task_id}/reports/content-organization").json()
+    chunks = client.get(f"/api/v1/tasks/{task_id}/reports/chunks").json()["items"]
+    assert content_org["summary"]["strategy"] == "parent_child"
+    assert content_org["summary"]["parent_chunk_count"] > 0
+    assert content_org["summary"]["child_chunk_count"] > 0
+    assert any(chunk.get("granularity") == "parent" for chunk in chunks)
+    assert any(
+        chunk.get("parent_chunk_id")
+        for chunk in chunks
+        if chunk.get("granularity") == "child"
+    )
 
 
 def test_execute_task_returns_404_and_marks_failed_for_missing_schema(execution_client):

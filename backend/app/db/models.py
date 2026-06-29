@@ -260,3 +260,24 @@ class KnowledgePackItemRecord(Base):
     value_json: Mapped[str] = mapped_column(Text)
     candidate_id: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+
+class AuditLogRecord(Base):
+    __tablename__ = "audit_logs"
+
+    audit_id: Mapped[str] = mapped_column(Text, primary_key=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    action: Mapped[str] = mapped_column(Text)
+    entity_type: Mapped[str | None] = mapped_column(Text, nullable=True)
+    entity_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    actor_type: Mapped[str] = mapped_column(Text, default="api_key")
+    actor_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    api_key_hash_prefix: Mapped[str | None] = mapped_column(Text, nullable=True)
+    request_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    trace_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    method: Mapped[str | None] = mapped_column(Text, nullable=True)
+    path: Mapped[str | None] = mapped_column(Text, nullable=True)
+    status_code: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    success: Mapped[bool] = mapped_column(Boolean, default=True)
+    error_code: Mapped[str | None] = mapped_column(Text, nullable=True)
+    metadata_json: Mapped[str] = mapped_column(Text, default="{}")

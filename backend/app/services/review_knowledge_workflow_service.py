@@ -60,7 +60,7 @@ class ReviewKnowledgeWorkflowService:
                 target_field_id=self._optional_str(item.get("target_field_id")),
                 suggested_by=self._optional_str(item.get("method")),
                 confidence=float(item["confidence"]) if "confidence" in item else None,
-                reason="; ".join(str(value) for value in item.get("evidence", [])),
+                reason=self._review_reason(item),
                 status="pending",
                 old_target_field_id=None,
                 new_target_field_id=self._optional_str(item.get("target_field_id")),
@@ -373,6 +373,22 @@ class ReviewKnowledgeWorkflowService:
     @staticmethod
     def _optional_str(value: Any) -> str | None:
         return value if isinstance(value, str) else None
+
+    @staticmethod
+    def _review_reason(item: dict[str, Any]) -> str:
+        parts: list[str] = []
+        reason = item.get("review_required_reason")
+        if isinstance(reason, str) and reason:
+            parts.append(reason)
+        risk_flags = item.get("risk_flags", [])
+        if isinstance(risk_flags, list) and risk_flags:
+            parts.append("risk_flags=" + ",".join(str(flag) for flag in risk_flags))
+        evidence_text = item.get("evidence_text", [])
+        if isinstance(evidence_text, list):
+            parts.extend(str(value) for value in evidence_text[:3])
+        if not parts:
+            parts.extend(str(value) for value in item.get("evidence", []))
+        return "; ".join(parts)
 
     @staticmethod
     def _now() -> datetime:

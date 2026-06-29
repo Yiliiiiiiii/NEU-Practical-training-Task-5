@@ -3,7 +3,7 @@ from collections import Counter
 from difflib import SequenceMatcher
 from typing import Any
 
-from app.schemas.mapping import FieldCandidate, FieldMapping
+from app.schemas.mapping import FieldCandidate, FieldMapping, MappingEvidence
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
 from app.schemas.target_schema import TargetField, TargetSchema
@@ -28,8 +28,13 @@ class MappingService:
         options: dict[str, Any] | None = None,
     ) -> MappingReport:
         options = options or {}
+        badcases = options.get("badcases", [])
+        badcases = badcases if isinstance(badcases, list) else []
         mappings: list[dict[str, Any]] = []
         review_required: list[dict[str, Any]] = []
+        llm_warnings: list[dict[str, str]] = []
+        llm_suggestion_count = 0
+        llm_suggestion_limit = self.llm_fallback_service.settings.llm_max_suggestions_per_task
         used_source_paths: set[str] = set()
         strategy_counts: Counter[str] = Counter(
             {"exact": 0, "alias": 0, "regex": 0, "type": 0, "fuzzy": 0, "llm_fallback": 0}
@@ -45,25 +50,52 @@ class MappingService:
                 mapping = self._find_type(task_id, field, candidates, used_source_paths)
 
             if mapping is not None:
-                mappings.append(mapping.model_dump(mode="json"))
-                used_source_paths.add(mapping.source_field.source_path)
+                mapping = self._with_decision_context(mapping, badcases)
+                if mapping.need_review:
+                    review_required.append(mapping.model_dump(mode="json"))
+                else:
+                    mappings.append(mapping.model_dump(mode="json"))
+                    used_source_paths.add(mapping.source_field.source_path)
                 strategy_counts[mapping.method] += 1
                 continue
 
             review_item = self._find_fuzzy(task_id, field, candidates, used_source_paths)
-            if review_item is None and options.get("enable_llm_fallback"):
+            if (
+                review_item is None
+                and options.get("enable_llm_fallback")
+                and llm_suggestion_count < llm_suggestion_limit
+            ):
                 review_item = self.llm_fallback_service.suggest_mapping(
                     task_id=task_id,
                     field=field,
                     candidates=candidates,
                     used_source_paths=used_source_paths,
                     badcases=options.get("badcases", []),
+                    strict_failure=bool(
+                        options.get(
+                            "strict_llm",
+                            self.llm_fallback_service.settings.llm_strict_failure,
+                        )
+                    ),
                 )
 
             if review_item is not None:
+                review_item = self._with_decision_context(review_item, badcases)
                 review_data = review_item.model_dump(mode="json")
                 review_required.append(review_data)
                 strategy_counts[review_item.method] += 1
+                if review_item.method == "llm_fallback":
+                    llm_suggestion_count += 1
+                    llm_metadata = review_item.llm_metadata or {}
+                    if llm_metadata.get("error_code") and not llm_warnings:
+                        llm_warnings.append(
+                            {
+                                "code": "llm_request_failed",
+                                "message": (
+                                    "LLM fallback request failed; human review is required."
+                                ),
+                            }
+                        )
 
         mapped_targets = {mapping["target_field_id"] for mapping in mappings}
         unmapped = [
@@ -72,11 +104,37 @@ class MappingService:
                 "target_field_name": field.name,
                 "required": field.required,
                 "reason": "required field was not confirmed by deterministic mapping",
+                "status": "failed",
+                "confidence": 0.0,
+                "confidence_tier": "low",
+                "risk_flags": ["required_field_unmapped"],
+                "review_required_reason": "Required target field is unmapped.",
+                "evidence": [
+                    MappingEvidence(
+                        type="required_field_unmapped",
+                        message=f"Required field '{field.field_id}' was not mapped.",
+                        weight=0.0,
+                    ).model_dump(mode="json")
+                ],
+                "evidence_text": [f"Required field '{field.field_id}' was not mapped."],
+                "badcase_filter": {"checked": False, "blocked": False, "reason": None},
             }
             for field in schema.fields
             if field.required and field.field_id not in mapped_targets
         ]
-        confidences = [mapping["confidence"] for mapping in mappings]
+        confidences = [
+            item["confidence"]
+            for item in [*mappings, *review_required]
+            if isinstance(item.get("confidence"), int | float)
+        ]
+        risk_flag_counts = Counter(
+            flag
+            for item in [*mappings, *review_required, *unmapped]
+            for flag in item.get("risk_flags", [])
+        )
+        accepted_count = len(mappings)
+        failed_count = len(unmapped)
+        avg_confidence = round(sum(confidences) / len(confidences), 4) if confidences else 0.0
 
         return MappingReport(
             task_id=task_id,
@@ -84,14 +142,23 @@ class MappingService:
             summary={
                 "template_id": template.template_id,
                 "total_candidates": len(candidates),
+                "total_target_fields": len(schema.fields),
+                "mapped_count": len(mappings),
+                "accepted_count": accepted_count,
+                "review_required_count": len(review_required),
+                "failed_count": failed_count,
+                "required_unmapped_count": len(unmapped),
+                "avg_confidence": avg_confidence,
                 "target_fields": len(schema.fields),
                 "mapped_fields": len(mappings),
                 "review_required": len(review_required),
                 "unmapped_required_fields": len(unmapped),
-                "average_confidence": round(sum(confidences) / len(confidences), 4)
-                if confidences
-                else 0.0,
+                "average_confidence": avg_confidence,
                 "strategy_counts": dict(strategy_counts),
+                "risk_flag_counts": dict(sorted(risk_flag_counts.items())),
+                "badcase_blocked_count": risk_flag_counts.get("badcase_blocked", 0),
+                "llm_suggestion_count": risk_flag_counts.get("llm_suggestion", 0),
+                "warnings": llm_warnings,
                 "methods": {key: value for key, value in strategy_counts.items() if value},
             },
             mappings=mappings,
@@ -259,9 +326,24 @@ class MappingService:
         method: str,
         confidence: float,
         need_review: bool,
-        evidence: list[str] | None = None,
+        evidence: list[Any] | None = None,
     ) -> FieldMapping:
-        status = "review_required" if need_review else "confirmed"
+        evidence_items, evidence_text = self._normalize_evidence(
+            evidence or [f"{method} mapping to {field.field_id}"],
+            default_type=f"{method}_match",
+        )
+        risk_flags = self.risk_flags_for_mapping(
+            strategy=method,
+            confidence=confidence,
+            need_review=need_review,
+            value_sample=candidate.value_sample,
+        )
+        status = "review_required" if need_review else "accepted"
+        review_required_reason = self.review_reason_for_mapping(
+            risk_flags=risk_flags,
+            confidence=confidence,
+            strategy=method,
+        )
         return FieldMapping(
             mapping_id=f"map_{task_id}_{field.field_id}_{method}",
             task_id=task_id,
@@ -270,16 +352,181 @@ class MappingService:
                 "source_path": candidate.source_path,
                 "source_name": candidate.source_name,
             },
+            source_path=candidate.source_path,
+            source_field_name=candidate.source_name,
             target_field_id=field.field_id,
             target_field_name=field.name,
             method=method,
+            strategy=method,
             confidence=confidence,
+            confidence_tier=self.confidence_tier(confidence),
             status=status,
             need_review=need_review,
             value_sample=candidate.value_sample,
             source_blocks=candidate.source_blocks,
-            evidence=evidence or [f"{method} mapping to {field.field_id}"],
+            evidence=evidence_items,
+            evidence_text=evidence_text,
+            risk_flags=risk_flags,
+            badcase_filter={"checked": False, "blocked": False, "reason": None},
+            review_required_reason=review_required_reason,
         )
+
+    def _with_decision_context(
+        self,
+        mapping: FieldMapping,
+        badcases: list[dict[str, Any]],
+    ) -> FieldMapping:
+        badcase_filter = self._badcase_filter(
+            mapping.source_field.source_name,
+            mapping.target_field_id,
+            badcases,
+        )
+        risk_flags = set(mapping.risk_flags)
+        if badcase_filter["blocked"]:
+            risk_flags.add("badcase_blocked")
+        if mapping.method == "llm_fallback":
+            risk_flags.add("llm_suggestion")
+        need_review = (
+            mapping.need_review
+            or badcase_filter["blocked"]
+            or mapping.method == "llm_fallback"
+        )
+        review_reason = self.review_reason_for_mapping(
+            risk_flags=sorted(risk_flags),
+            confidence=mapping.confidence,
+            strategy=mapping.method,
+        )
+        evidence = list(mapping.evidence)
+        evidence_text = list(mapping.evidence_text)
+        if badcase_filter["blocked"]:
+            message = str(badcase_filter["reason"])
+            evidence.append(
+                MappingEvidence(
+                    type="badcase_filter",
+                    message=message,
+                    weight=1.0,
+                    source="badcase",
+                )
+            )
+            evidence_text.append(message)
+        return mapping.model_copy(
+            update={
+                "status": "review_required" if need_review else "accepted",
+                "need_review": need_review,
+                "risk_flags": sorted(risk_flags),
+                "badcase_filter": badcase_filter,
+                "review_required_reason": review_reason,
+                "evidence": evidence,
+                "evidence_text": evidence_text,
+            }
+        )
+
+    @staticmethod
+    def confidence_tier(confidence: float | None) -> str:
+        if confidence is None:
+            return "low"
+        if confidence >= 0.9:
+            return "high"
+        if confidence >= 0.7:
+            return "medium"
+        return "low"
+
+    @classmethod
+    def risk_flags_for_mapping(
+        cls,
+        *,
+        strategy: str,
+        confidence: float,
+        need_review: bool,
+        value_sample: Any | None,
+    ) -> list[str]:
+        flags: set[str] = set()
+        if confidence < 0.7:
+            flags.add("low_confidence")
+        if strategy == "fuzzy":
+            flags.add("fuzzy_match")
+        if strategy == "llm_fallback":
+            flags.add("llm_suggestion")
+        if need_review and not flags:
+            flags.add("review_required")
+        if value_sample is None:
+            flags.add("missing_value_sample")
+        return sorted(flags)
+
+    @classmethod
+    def review_reason_for_mapping(
+        cls,
+        *,
+        risk_flags: list[str],
+        confidence: float,
+        strategy: str,
+    ) -> str | None:
+        if "badcase_blocked" in risk_flags:
+            return "Known badcase blocks automatic acceptance."
+        if "llm_suggestion" in risk_flags:
+            return "LLM suggestions always require human review."
+        if "fuzzy_match" in risk_flags:
+            return "Fuzzy mapping requires human review."
+        if "required_field_unmapped" in risk_flags:
+            return "Required target field is unmapped."
+        if confidence < 0.7:
+            return f"{strategy} confidence is below the review threshold."
+        return None
+
+    @staticmethod
+    def _normalize_evidence(
+        evidence: list[Any],
+        *,
+        default_type: str,
+    ) -> tuple[list[MappingEvidence], list[str]]:
+        items: list[MappingEvidence] = []
+        text: list[str] = []
+        for entry in evidence:
+            if isinstance(entry, MappingEvidence):
+                items.append(entry)
+                text.append(entry.message)
+            elif isinstance(entry, dict):
+                item = MappingEvidence.model_validate(
+                    {
+                        "type": entry.get("type") or default_type,
+                        "message": entry.get("message") or str(entry),
+                        "weight": entry.get("weight"),
+                        "source": entry.get("source"),
+                        "metadata": entry.get("metadata") or {},
+                    }
+                )
+                items.append(item)
+                text.append(item.message)
+            else:
+                message = str(entry)
+                items.append(MappingEvidence(type=default_type, message=message))
+                text.append(message)
+        return items, text
+
+    @staticmethod
+    def _badcase_filter(
+        source_name: str,
+        target_field_id: str,
+        badcases: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        if not badcases:
+            return {"checked": False, "blocked": False, "reason": None}
+        for badcase in badcases:
+            if not isinstance(badcase, dict):
+                continue
+            if badcase.get("source_field") != source_name:
+                continue
+            forbidden = badcase.get("forbidden_target_fields", [])
+            if isinstance(forbidden, list) and target_field_id in forbidden:
+                return {
+                    "checked": True,
+                    "blocked": True,
+                    "reason": (
+                        f"Source field '{source_name}' is forbidden for "
+                        f"target '{target_field_id}'."
+                    ),
+                }
+        return {"checked": True, "blocked": False, "reason": None}
 
     @staticmethod
     def normalize_name(value: str) -> str:

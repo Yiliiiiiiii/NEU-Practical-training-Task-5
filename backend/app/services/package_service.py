@@ -48,6 +48,27 @@ class PackageService:
             "validation_report.json": validation_report.model_dump(mode="json"),
             "content_organization_report.json": content_organization_report.model_dump(mode="json"),
             "canonical.json": canonical.model_dump(mode="json"),
+            "metadata.json": {
+                "package_id": package_id,
+                "package_version": "1.0.0",
+                "task_id": task_id,
+                "doc_id": doc_id,
+                "schema_id": schema.schema_id,
+                "schema_version": schema.version,
+                "template_id": template.template_id,
+                "template_version": template.version,
+                "artifact_roles": {
+                    "content.json": "structured_json",
+                    "content.md": "markdown",
+                    "chunks.jsonl": "chunks",
+                    "mapping_report.json": "mapping_report",
+                    "transform_report.json": "transform_report",
+                    "validation_report.json": "validation_report",
+                    "content_organization_report.json": "content_organization_report",
+                    "canonical.json": "canonical",
+                    "metadata.json": "package_metadata",
+                },
+            },
         }
         written_files: list[Path] = []
         for name, payload in files.items():

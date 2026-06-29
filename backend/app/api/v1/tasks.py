@@ -1,10 +1,11 @@
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Query
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, Request
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_db, get_storage_service
+from app.api.deps import get_db, get_settings, get_storage_service
+from app.config import Settings
 from app.schemas.api import (
     TaskCreateRequest,
     TaskCreateResponse,
@@ -13,6 +14,7 @@ from app.schemas.api import (
     TaskListItem,
     TaskListResponse,
 )
+from app.services.audit_log_service import AuditLogService
 from app.services.storage_service import StorageService
 from app.services.task_execution_service import TaskExecutionService
 from app.services.task_service import TaskService
@@ -30,8 +32,9 @@ def get_task_service(
 def get_task_execution_service(
     db: Annotated[Session, Depends(get_db)],
     storage: Annotated[StorageService, Depends(get_storage_service)],
+    settings: Annotated[Settings, Depends(get_settings)],
 ) -> TaskExecutionService:
-    return TaskExecutionService(db=db, storage=storage)
+    return TaskExecutionService(db=db, storage=storage, settings=settings)
 
 
 @router.post("", response_model=TaskCreateResponse)
@@ -71,6 +74,9 @@ def list_tasks(
 @router.post("/{task_id}/execute", response_model=TaskExecuteResponse)
 def execute_task(
     task_id: str,
+    request: Request,
+    db: Annotated[Session, Depends(get_db)],
+    settings: Annotated[Settings, Depends(get_settings)],
     service: Annotated[TaskExecutionService, Depends(get_task_execution_service)],
 ) -> TaskExecuteResponse:
     try:
@@ -79,6 +85,18 @@ def execute_task(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if settings.audit_log_enabled:
+        AuditLogService(db).record(
+            action="task.execute",
+            entity_type="task",
+            entity_id=task_id,
+            method=request.method,
+            path=request.url.path,
+            status_code=200,
+            success=True,
+            api_key=request.headers.get("X-API-Key"),
+            metadata={"status": result.status},
+        )
     return TaskExecuteResponse(
         task_id=result.task_id,
         status=result.status,
@@ -119,6 +137,9 @@ def get_task_package(
 @router.get("/{task_id}/package/download")
 def download_task_package(
     task_id: str,
+    request: Request,
+    db: Annotated[Session, Depends(get_db)],
+    settings: Annotated[Settings, Depends(get_settings)],
     service: Annotated[TaskExecutionService, Depends(get_task_execution_service)],
 ) -> FileResponse:
     try:
@@ -127,6 +148,18 @@ def download_task_package(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if settings.audit_log_enabled:
+        AuditLogService(db).record(
+            action="package.download",
+            entity_type="task",
+            entity_id=task_id,
+            method=request.method,
+            path=request.url.path,
+            status_code=200,
+            success=True,
+            api_key=request.headers.get("X-API-Key"),
+            metadata={"filename": path.name},
+        )
     return FileResponse(path, media_type="application/zip", filename=path.name)
 
 

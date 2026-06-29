@@ -26,6 +26,10 @@ frontend/vite.config.d.ts
 storage/
 backend/storage/
 reports/
+!reports/
+reports/*
+!reports/real_world_eval_report.json
+!reports/real_world_eval_report.md
 *.db
 *.sqlite
 *.sqlite3
@@ -38,6 +42,11 @@ reports/
 Thumbs.db
 .idea/
 .vscode/
+.codegraph/
+
+# Real-world dataset downloads are reproducible local cache only
+examples/real_world/raw_cache/*
+!examples/real_world/raw_cache/.gitkeep
 
 # Local reference material outside this project
 课程大纲-软件工程班-哲航科技-90人.xlsx

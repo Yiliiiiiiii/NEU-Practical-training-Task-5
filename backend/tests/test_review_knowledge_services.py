@@ -75,7 +75,7 @@ def test_review_records_generate_active_knowledge_pack_for_effective_template():
     assert any(
         mapping["source_field"]["source_name"] == "通知名称"
         and mapping["target_field_id"] == "title"
-        and mapping["status"] == "confirmed"
+        and mapping["status"] == "accepted"
         for mapping in remapped.mappings
     )
 

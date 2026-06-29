@@ -158,7 +158,7 @@ def test_review_approve_candidate_pack_activation_affects_new_task(review_client
     assert any(
         item["source_field"]["source_name"] == "通知名称"
         and item["target_field_id"] == "title"
-        and item["status"] == "confirmed"
+        and item["status"] == "accepted"
         for item in mapping["mappings"]
     )
 

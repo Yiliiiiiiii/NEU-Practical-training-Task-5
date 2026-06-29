@@ -1,0 +1,695 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：400-810-1996 | 服务投诉：010-63819289",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政采法规",
+          "购买服务",
+          "监督检查",
+          "信息公告",
+          "国际专栏"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "当前位置： 首页 » 政采公告 » 中央公告 » 中标公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h2"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b005",
+      "level": 2,
+      "source_anchor": null,
+      "text": "中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目中标公告",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年05月23日 20:13 来源： 【 打印 】",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h5"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b007",
+      "level": 5,
+      "source_anchor": null,
+      "text": "公告概要：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "公告信息：",
+            "value": ""
+          },
+          {
+            "field": "采购项目名称",
+            "value": "中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目"
+          },
+          {
+            "field": "品目",
+            "value": "服务/信息技术服务/运行维护服务/安全运维服务,服务/信息技术服务/运行维护服务/软件运维服务,服务/信息技术服务/运行维护服务/硬件运维服务,服务/信息技术服务/运行维护服务/基础环境运维服务"
+          },
+          {
+            "field": "采购单位",
+            "value": "中国动物疫病预防控制中心"
+          },
+          {
+            "field": "行政区域",
+            "value": "北京市 | 公告时间 | 2025年05月23日 20:13"
+          },
+          {
+            "field": "评审专家名单",
+            "value": "1.2.3包：靳敬纯、吴建芳、刘斌梅、张彤、杨龙波 4.5包：靳敬纯、吴建芳、刘斌梅、张彤、马冲"
+          },
+          {
+            "field": "总中标金额",
+            "value": "￥480.700000 万元（人民币）"
+          },
+          {
+            "field": "联系人及联系方式：",
+            "value": ""
+          },
+          {
+            "field": "项目联系人",
+            "value": "夏祎"
+          },
+          {
+            "field": "项目联系电话",
+            "value": "010-81166155"
+          },
+          {
+            "field": "采购单位",
+            "value": "中国动物疫病预防控制中心"
+          },
+          {
+            "field": "采购单位地址",
+            "value": "北京市朝阳区麦子店街20号"
+          },
+          {
+            "field": "采购单位联系方式",
+            "value": "赖老师，010-59198850"
+          },
+          {
+            "field": "代理机构名称",
+            "value": "中国仪器进出口集团有限公司"
+          },
+          {
+            "field": "代理机构地址",
+            "value": "北京市丰台区西营街1号院通用时代中心1区1号楼B座16层1608"
+          },
+          {
+            "field": "代理机构联系方式",
+            "value": "夏祎/张瑞，010-81166155"
+          },
+          {
+            "field": "附件：",
+            "value": ""
+          },
+          {
+            "field": "附件1",
+            "value": "5包-企业类型声明函.jpg"
+          },
+          {
+            "field": "附件2",
+            "value": "2包-企业类型声明函.jpg"
+          },
+          {
+            "field": "附件3",
+            "value": "3包-企业类型声明函.jpg"
+          },
+          {
+            "field": "附件4",
+            "value": "4包-企业类型声明函.jpg"
+          },
+          {
+            "field": "附件5",
+            "value": "25CNIC-024852-49招标文件（更正发售稿）.pdf"
+          }
+        ]
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、项目编号：25CNIC-024852-49 （招标文件编号：25CNIC-024852-49）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、项目名称：中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、中标（成交）信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称：1包-北京安信天行科技有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址：北京市海淀区北四环西路68号10层1001号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额：123.6000000（万元）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称：2包-闪联（河北）农业科技有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址：河北省石家庄市桥西区胜利南街118号塔坛国际商贸城1号楼05单元1413",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额：118.8000000（万元）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称：3包-北京信诺软通信息技术有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址：北京市石景山区实兴大街30号院3号楼2层A-3194房间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额：107.5000000（万元）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称：4包-闪联（河北）农业科技有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额：68.8000000（万元）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称：5包-武汉至为科技有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址：武汉东湖新技术开发区光谷大道41号现代·国际设计城三期7号研发楼栋11层04号（自贸区武汉片区）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额：62.0000000（万元）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、主要标的信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "序号",
+            "value": "供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准"
+          },
+          {
+            "field": "1",
+            "value": "1包-北京安信天行科技有限公司 | 基础运维和安全运维 | 基础运维和安全运维，详见招标文件要求。 | 基础运维和安全运维，详见招标文件要求。 | 2025年6月1日至2026年5月31日 | 详见招标文件要求。"
+          },
+          {
+            "field": "序号",
+            "value": "供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准"
+          },
+          {
+            "field": "2",
+            "value": "2包-闪联（河北）农业科技有限公司 | 办公软件、追溯、兽医网和大数据模块运维 | 办公软件、追溯、兽医网和大数据模块运维，详见招标文件要求。 | 详见招标文件要求。 | 2025年6月1日至2026年5月31日 | 详见招标文件要求。"
+          },
+          {
+            "field": "序号",
+            "value": "供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准"
+          },
+          {
+            "field": "3",
+            "value": "3包-北京信诺软通信息技术有限公司 | 执业兽医考试和兽医队伍模块运维 | 执业兽医考试和兽医队伍模块运维，详见招标文件要求。 | 详见招标文件要求。 | 2025年6月1日至2026年5月31日 | 详见招标文件要求。"
+          },
+          {
+            "field": "序号",
+            "value": "供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准"
+          },
+          {
+            "field": "4",
+            "value": "4包-闪联（河北）农业科技有限公司 | 疫病监测、实验室管理、免疫净化等模块运维 | 疫病监测、实验室管理、免疫净化等模块运维，详见招标文件要求。 | 详见招标文件要求。 | 2025年6月1日至2026年5月31日 | 详见招标文件要求。"
+          },
+          {
+            "field": "序号",
+            "value": "供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准"
+          },
+          {
+            "field": "5",
+            "value": "5包-武汉至为科技有限公司 | 官方兽医、畜禽屠宰等模块运维 | 官方兽医、畜禽屠宰等模块运维，详见招标文件要求。 | 详见招标文件要求。 | 2025年6月1日至2026年5月31日 | 详见招标文件要求。"
+          }
+        ]
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、评审专家（单一来源采购人员）名单：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.2.3包：靳敬纯、吴建芳、刘斌梅、张彤、杨龙波4.5包：靳敬纯、吴建芳、刘斌梅、张彤、马冲",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、代理服务收费标准及金额：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "本项目代理费收费标准：以包为单位，按照国家发展计划委员会（计价格[2002]1980号）《招标代理服务收费管理暂行办法》的收费标准收取。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "本项目代理费总金额：6.861200 万元（人民币）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、公告期限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "自本公告发布之日起1个工作日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "八、其它补充事宜",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.请中标人于本公告发布之日起30日内与采购人签订合同。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.综合评审得分：1包-87.02分；2包-80.07分；3包-96.60分；4包-92.40分；5包-88.68分。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.本项目中标服务费：1包-人民币16888.00元；2包-人民币16504.00元；3包-人民币15600.00元；4包-人民币10320.00元；5包-人民币9300.00元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "九、凡对本次公告内容提出询问，请按以下方式联系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.采购人信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "名 称：中国动物疫病预防控制中心",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "地址：北京市朝阳区麦子店街20号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "联系方式：赖老师，010-59198850",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.采购代理机构信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "名 称：中国仪器进出口集团有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "地 址：北京市丰台区西营街1号院通用时代中心1区1号楼B座16层1608",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "联系方式：夏祎/张瑞，010-81166155",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.项目联系方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目联系人：夏祎",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "电 话： 010-81166155",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "相关公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_004_veterinary_platform_award_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "主办单位：中华人民共和国财政部国库司 网站标识码： bm14000002 | 京 ICP 备 19054529 号 -1 | 京公网安备 11010602060068 号 © 1999- 中华人民共和国财政部 版权所有 | 联系我们 | 意见反馈",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_procurement_004_veterinary_platform_award",
+  "metadata": {
+    "doc_type": "procurement_doc",
+    "domain": "procurement_doc",
+    "extracted_block_count": 52,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-29T01:38:03.962018+00:00",
+    "source_format": "html",
+    "source_sha256": "93ad8752c64240f2c3d4c70b62346bdb73c2382beaf61c7ec695c1a1153a4b7b",
+    "source_site": "www.ccgp.gov.cn",
+    "source_url": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250523_24654307.htm",
+    "title": "中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目中标公告",
+    "标题": "中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目中标公告"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "93ad8752c64240f2c3d4c70b62346bdb73c2382beaf61c7ec695c1a1153a4b7b"
+    }
+  ],
+  "source": {
+    "source_name": "real_procurement_004_veterinary_platform_award",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

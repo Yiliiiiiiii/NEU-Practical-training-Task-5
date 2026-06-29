@@ -1,0 +1,669 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 9.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b001",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          295.20001220703125,
+          780.751953125,
+          300.1750183105469,
+          794.1347045898438
+        ],
+        "page": 1
+      },
+      "text": "1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b002",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          79.70794677734375,
+          121.90939331054688,
+          95.8971939086914
+        ],
+        "page": 1
+      },
+      "text": "附件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 18.0
+      },
+      "block_id": "real_general_003_textile_application_flow_b003",
+      "level": 1,
+      "source_anchor": {
+        "bbox": [
+          178.44000244140625,
+          139.36399841308594,
+          416.8800048828125,
+          160.44200134277344
+        ],
+        "page": 1
+      },
+      "text": "2025 年度十大类纺织创新精品",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 18.0
+      },
+      "block_id": "real_general_003_textile_application_flow_b004",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          171.60000610351562,
+          170.56399536132812,
+          423.6000061035156,
+          191.64199829101562
+        ],
+        "page": 1
+      },
+      "text": "建设推广工作网上申报流程说明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b005",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          235.70794677734375,
+          225.9493865966797,
+          251.89720153808594
+        ],
+        "page": 1
+      },
+      "text": "一、登录/注册",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b006",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          264.0369567871094,
+          505.3089599609375,
+          285.4897155761719
+        ],
+        "page": 1
+      },
+      "text": "进入2025 年度十大类纺织创新精品建设推广申报系统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b007",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          295.2369384765625,
+          513.22998046875,
+          316.689697265625
+        ],
+        "page": 1
+      },
+      "text": "（http://topten.ctic.org.cn）后，通过“申报入口”进行注册登录。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b008",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          329.3079528808594,
+          266.0260925292969,
+          345.4971923828125
+        ],
+        "page": 1
+      },
+      "text": "二、企业及产品信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b009",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          357.636962890625,
+          513.22998046875,
+          379.0897216796875
+        ],
+        "page": 1
+      },
+      "text": "点击左侧导航栏的“申报指南”按钮，点击“去申报项目”，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b010",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          388.8369445800781,
+          505.3097229003906,
+          410.2897033691406
+        ],
+        "page": 1
+      },
+      "text": "填写申报企业和产品基本信息，在“申报产品基本信息”中选",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b011",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          420.0369567871094,
+          505.18585205078125,
+          441.4897155761719
+        ],
+        "page": 1
+      },
+      "text": "择“十大品类”，每个品类限报两件产品，例如“时尚流行产品”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b012",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          454.10321044921875,
+          505.18853759765625,
+          470.05322265625
+        ],
+        "page": 1
+      },
+      "text": "品类每家企业限报两件产品，若还有产品待申报，请改选其",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b013",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          485.30322265625,
+          153.948486328125,
+          501.25323486328125
+        ],
+        "page": 1
+      },
+      "text": "他品类。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b014",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          516.5032348632812,
+          505.19000244140625,
+          532.4531860351562
+        ],
+        "page": 1
+      },
+      "text": "下一步，上传申报企业和产品相关附件；完成后点击“提",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b015",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          547.7032470703125,
+          505.18853759765625,
+          563.6531982421875
+        ],
+        "page": 1
+      },
+      "text": "交”按钮。如需申报多件产品，请重复以上操作。在左侧导",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b016",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          576.0369873046875,
+          505.3035888671875,
+          597.4896850585938
+        ],
+        "page": 1
+      },
+      "text": "航栏的“申报管理”中，可查看已申报产品的审核状态和流程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b017",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          610.103271484375,
+          137.9890899658203,
+          626.05322265625
+        ],
+        "page": 1
+      },
+      "text": "进度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b018",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          641.3079223632812,
+          218.02908325195312,
+          657.4971923828125
+        ],
+        "page": 1
+      },
+      "text": "三、样品寄送",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b019",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          672.5032348632812,
+          505.1835632324219,
+          688.4531860351562
+        ],
+        "page": 1
+      },
+      "text": "申报产品通过初审后，系统将自动给企业联系人发送关",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b020",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          700.8369750976562,
+          505.19000244140625,
+          722.2896728515625
+        ],
+        "page": 1
+      },
+      "text": "于寄送样品的短信。请接到通知的企业登录申报系统，在“申",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b021",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          732.0369873046875,
+          511.19000244140625,
+          753.4896850585938
+        ],
+        "page": 1
+      },
+      "text": "报管理”中查看申报进度，并下载系统自动生成的“申报书”，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 9.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b022",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          295.20001220703125,
+          780.751953125,
+          300.1750183105469,
+          794.1347045898438
+        ],
+        "page": 2
+      },
+      "text": "2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b023",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          79.70321655273438,
+          505.1811828613281,
+          95.6532211303711
+        ],
+        "page": 2
+      },
+      "text": "打印后在首页、真实性承诺页及骑缝处加盖企业公章后回传",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b024",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          108.03694915771484,
+          505.19000244140625,
+          129.4897003173828
+        ],
+        "page": 2
+      },
+      "text": "系统，并将实物样品（至少1 套，以最小销售单元为准；若",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b025",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          142.1032257080078,
+          505.1850280761719,
+          158.05322265625
+        ],
+        "page": 2
+      },
+      "text": "为服装产品，建议整套搭配寄送）及加盖企业公章的纸质版",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b026",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          173.30322265625,
+          281.9845886230469,
+          189.2532196044922
+        ],
+        "page": 2
+      },
+      "text": "申报材料寄送至如下地址。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b027",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          201.63694763183594,
+          505.19000244140625,
+          223.08970642089844
+        ],
+        "page": 2
+      },
+      "text": "寄送地址：北京市朝阳区霞光里15 号霄云中心211 室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b028",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          232.83694458007812,
+          449.86102294921875,
+          254.28970336914062
+        ],
+        "page": 2
+      },
+      "text": "（100026），十大类纺织创新产品工作办公室（收）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b029",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          266.907958984375,
+          218.02908325195312,
+          283.0971984863281
+        ],
+        "page": 2
+      },
+      "text": "四、样品退回",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b030",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          298.10321044921875,
+          505.18414306640625,
+          314.05322265625
+        ],
+        "page": 2
+      },
+      "text": "寄送样品默认不予退回，若产品过于贵重或其他原因需",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b031",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          326.43695068359375,
+          505.1843566894531,
+          347.88970947265625
+        ],
+        "page": 2
+      },
+      "text": "要退回，请在“产品申请退回”页面进行登记，并填写申请退",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b032",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          360.50323486328125,
+          505.1894226074219,
+          376.4532470703125
+        ],
+        "page": 2
+      },
+      "text": "回原因；由于该项工作不收取任何费用，申请退回的样品默",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_003_textile_application_flow_b033",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          391.7032165527344,
+          185.98757934570312,
+          407.6532287597656
+        ],
+        "page": 2
+      },
+      "text": "认顺丰到付。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_003_textile_application_flow",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 33,
+    "extraction_method": "pymupdf_text",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "page_count": 2,
+    "page_text_lengths": [
+      418,
+      245
+    ],
+    "retrieved_at": "2026-06-29T01:35:10.787310+00:00",
+    "source_format": "pdf",
+    "source_sha256": "9e7f02d7db81feac75a0dc2002e610204e10167ad527e206633ff290321b7078",
+    "source_site": "www.miit.gov.cn",
+    "source_url": "https://www.miit.gov.cn/cms_files/filemanager/1226211233/attach/20255/74e5a08865314012a4497aaeddc71c55.pdf",
+    "title": "2025 年度十大类纺织创新精品",
+    "标题": "2025 年度十大类纺织创新精品"
+  },
+  "normalization_records": [
+    {
+      "method": "pymupdf_text",
+      "normalized": true,
+      "source_sha256": "9e7f02d7db81feac75a0dc2002e610204e10167ad527e206633ff290321b7078"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_003_textile_application_flow",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

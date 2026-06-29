@@ -1,4 +1,5 @@
 import type {
+  AuditLogListResponse,
   CatalogResponse,
   ChunksReport,
   ContentOrganizationReport,
@@ -117,5 +118,9 @@ export const api = {
   activateKnowledgePack: (packId: string) =>
     request(`/api/v1/knowledge/packs/${packId}/activate`, { method: "POST" }),
   getKnowledgeMetrics: () => request<KnowledgeMetrics>("/api/v1/knowledge/metrics"),
+  listAuditLogs: (entityId?: string) =>
+    request<AuditLogListResponse>(
+      `/api/v1/audit-logs${entityId ? `?entity_id=${encodeURIComponent(entityId)}` : ""}`
+    ),
   packageDownloadUrl: (taskId: string) => `${API_BASE}/api/v1/tasks/${taskId}/package/download`
 };

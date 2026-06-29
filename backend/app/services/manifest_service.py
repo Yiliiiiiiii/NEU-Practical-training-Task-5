@@ -73,4 +73,7 @@ class ManifestService:
             "transform_report.json": "transform_report",
             "validation_report.json": "validation_report",
             "content_organization_report.json": "content_organization_report",
+            "metadata.json": "package_metadata",
+            "canonical.json": "canonical",
+            "verifier_report.json": "verifier_report",
         }.get(file_name, "supporting")

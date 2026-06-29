@@ -1,5 +1,7 @@
 # SchemaPack Agent Final Handoff Status
 
+Topic 5 follow-up Phases 23 through 28 are implemented in this checkout.
+
 ## Current Implemented Capabilities
 
 - Core UIR-to-schema conversion service layer:
@@ -8,15 +10,18 @@
   - seeded fixture versions with draft/active/archived status
   - referenced-version protection and immutable task snapshots
   - field candidate extraction
-  - deterministic mapping
+  - deterministic mapping with confidence tiers, structured evidence, risk
+    flags, badcase filters, and review-required reasons
   - transform
   - canonical model build
   - render to structured JSON, Markdown, and chunks
-  - deterministic chunk organization with summaries, keywords, tags, entity-tag
-    placeholders, and source links
+  - configurable deterministic chunk organization with summaries, keywords,
+    tags, entity-tag placeholders, source links, protected table/list/code
+    blocks, and optional parent-child chunks
   - validation
   - manifest generation
-  - package ZIP creation and package verification
+  - package ZIP creation, `metadata.json`, package spec roles, and strict
+    package verification
 - Task APIs:
   - document import/list/detail
   - schema/template catalog reads, creation, activation, and archival
@@ -33,8 +38,8 @@
 - Downstream package consumption:
   - manifest checksum validation for package directories and ZIP files
   - `chunks.jsonl` ingestion smoke test with simple keyword matching
-  - training-corpus JSONL export with tags, source links, schema, and template
-    metadata
+  - training-corpus JSONL export with granularity filters, tags, source links,
+    schema, and template metadata
 - Human-gated mapping knowledge growth loop:
   - review-derived alias candidates
   - draft knowledge packs
@@ -48,14 +53,21 @@
   - OpenAI-compatible adapter mode for configured deployments
   - always review-required
   - records model, latency, prompt hash, response hash, confidence, and reason
+  - bounded timeout and retries
+  - per-task suggestion cap
+  - non-strict provider failures recorded as mapping warnings
+  - explicit task-level `strict_llm` override
+  - non-sensitive execution snapshot and recursive secret redaction
   - badcase filtering
 - Minimal React/Vite frontend workbench:
   - sample UIR import
   - task creation
   - task execution
   - mapping and validation report inspection
+  - mapping evidence, confidence, and risk flag inspection
   - content organization report inspection
-  - chunk preview
+  - content organization strategy controls
+  - enriched chunk preview with quality flags and parent-child metadata
   - collapsible raw JSON report inspection
   - review approve/reject controls
   - knowledge candidate acceptance and pack activation controls
@@ -65,20 +77,32 @@
   - frontend Dockerfile with Nginx static serving and API proxying
   - Docker Compose profile with persistent storage/database volumes
   - production environment example with LLM fallback disabled
+- Lightweight governance:
+  - optional API key authentication for `/api/v1/*`
+  - audit logs for task execution and package downloads
+  - audit log query API and frontend panel
+  - safe retention cleanup script with dry-run default
 - Documentation:
   - `docs/openapi.json`
+  - `docs/openapi_workflow.md`
+  - `docs/developer_guide.md`
   - `docs/demo_workflow.md`
   - `docs/deployment.md`
   - `docs/final_demo_script.md`
   - `docs/requirement_mapping.md`
   - `docs/badcase_analysis.md`
-  - `docs/api_usage_examples.md`
-  - `docs/service_migration_plan.md`
+- `docs/api_usage_examples.md`
+- `docs/service_migration_plan.md`
+- `docs/package_spec.md`
+- Engineering maintenance:
+  - `scripts/verify_all.py`
+  - `.github/workflows/ci.yml`
 
 ## Current Not Implemented Capabilities
 
-- Authentication, authorization, tenancy, audit logging, and operator controls.
-- Hosted model credentials, model evaluation, and production LLM operations.
+- Authorization, tenancy, SSO/TLS integration, and advanced operator controls.
+- Hosted credential provisioning, model evaluation, and enterprise LLM
+  monitoring.
 - Raw source parsing for PDF, Word, Excel, images, OCR outputs, or scanned files.
 
 ## How To Run Tests
@@ -192,6 +216,7 @@ Expected package files include:
 - `content.json`
 - `content.md`
 - `chunks.jsonl`
+- `metadata.json`
 - `content_organization_report.json`
 - `mapping_report.json`
 - `transform_report.json`
@@ -227,10 +252,10 @@ activation.
 ## Productionization Directions
 
 - Add authenticated operator review screens.
-- Add hosted model credentials, model evaluation, and production LLM operational
-  safeguards if enabling the optional OpenAI-compatible adapter.
-- Add artifact retention policies, audit logs, and package download access
-  controls.
-- Add OpenAPI publication or generated client workflows.
+- Add hosted credential provisioning, provider/model evaluation, and enterprise
+  monitoring if enabling the optional OpenAI-compatible adapter.
+- Add SSO, tenant-aware authorization, TLS termination, and advanced operator
+  controls when moving beyond the current API-key deployment profile.
+- Add generated client publication if downstream consumers require it.
 - Expand regression datasets while preserving gold and badcase checks.
 

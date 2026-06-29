@@ -6,6 +6,7 @@ from app.db.models import ConversionTask, Document
 from app.schemas.api import TaskCreateRequest
 from app.services.storage_service import StorageService
 from app.utils.ids import new_id
+from app.utils.redaction import redact_sensitive_values
 
 
 class TaskService:
@@ -27,7 +28,11 @@ class TaskService:
             template_version=request.template_version,
             status="created",
             input_hash=f"sha256:{self.storage.sha256(document.storage_path)}",
-            options_json=json.dumps(request.options, ensure_ascii=False, sort_keys=True),
+            options_json=json.dumps(
+                redact_sensitive_values(request.options),
+                ensure_ascii=False,
+                sort_keys=True,
+            ),
         )
         self.db.add(task)
         self.db.commit()
@@ -53,4 +58,4 @@ class TaskService:
         parsed = json.loads(task.options_json or "{}")
         if not isinstance(parsed, dict):
             return {}
-        return parsed
+        return redact_sensitive_values(parsed)

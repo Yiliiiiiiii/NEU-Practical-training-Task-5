@@ -16,6 +16,17 @@ class Settings(BaseSettings):
     llm_base_url: str = ""
     llm_api_key: str = ""
     llm_model: str = "gpt-4o-mini"
-    llm_timeout_seconds: float = Field(default=8.0, ge=0.1)
+    llm_timeout_seconds: float = Field(default=20.0, ge=0.1)
+    llm_max_retries: int = Field(default=0, ge=0, le=5)
+    llm_max_suggestions_per_task: int = Field(default=20, ge=0)
+    llm_strict_failure: bool = False
     offline_mode: bool = False
     max_upload_bytes: int = Field(default=10 * 1024 * 1024, ge=1)
+    api_key_auth_enabled: bool = False
+    api_keys: str = ""
+    audit_log_enabled: bool = True
+    audit_log_body_max_chars: int = Field(default=2000, ge=0)
+    artifact_retention_enabled: bool = False
+    artifact_retention_days: int = Field(default=30, ge=1)
+    artifact_retention_dry_run: bool = True
+    package_download_requires_auth: bool = True

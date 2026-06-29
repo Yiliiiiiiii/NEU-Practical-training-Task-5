@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-06-29T09:15:03.169264+00:00",
+  "items": [
+    {
+      "findings": [],
+      "path": "general/real_general_001_notary_service_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_002_biomed_project_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_003_textile_application_flow.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_001_changning_executive_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_002_shaxian_executive_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_003_miluo_executive_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_001_training_platform_rules.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_002_equipment_renewal.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_003_science_education_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_004_student_loan_relief.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_005_ai_industry_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_001_broadcast_security_supervision.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_002_special_equipment_bid.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_003_radiation_monitoring_award.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_004_veterinary_platform_award.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_005_rehabilitation_equipment_award.json",
+      "status": "passed"
+    }
+  ],
+  "totals": {
+    "empty_or_mojibake": 0,
+    "failed": 0,
+    "missing_fields": 0,
+    "mojibake": 0,
+    "passed": 16,
+    "sensitive": 0,
+    "total": 16
+  }
+}

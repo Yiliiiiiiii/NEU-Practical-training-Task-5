@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCTION_LIKE_DIR = ROOT / "examples" / "production_like"
 SCHEMAS_DIR = PRODUCTION_LIKE_DIR / "schemas"
@@ -89,8 +91,23 @@ def test_mapping_service_maps_exact_and_alias_methods():
 
     by_target = {mapping["target_field_id"]: mapping for mapping in report.mappings}
     assert by_target["title"]["method"] == "alias"
+    assert by_target["title"]["strategy"] == "alias"
+    assert by_target["title"]["status"] == "accepted"
+    assert by_target["title"]["confidence_tier"] == "high"
+    assert by_target["title"]["risk_flags"] == []
+    assert by_target["title"]["review_required_reason"] is None
+    assert any(item["type"] == "alias_match" for item in by_target["title"]["evidence"])
     assert by_target["content"]["method"] == "exact"
+    assert any(item["type"] == "exact_match" for item in by_target["content"]["evidence"])
     assert by_target["doc_type"]["method"] == "alias"
+    assert report.summary["total_target_fields"] == len(schema.fields)
+    assert report.summary["mapped_count"] == len(report.mappings)
+    assert report.summary["accepted_count"] == len(report.mappings)
+    assert report.summary["review_required_count"] == len(report.review_required_items)
+    assert report.summary["failed_count"] == len(report.unmapped)
+    assert "risk_flag_counts" in report.summary
+    assert "badcase_blocked_count" in report.summary
+    assert "llm_suggestion_count" in report.summary
     assert report.summary["strategy_counts"]["alias"] >= 3
     assert report.summary["total_candidates"] == len(candidates)
 
@@ -207,6 +224,12 @@ def test_mapping_service_marks_fuzzy_low_confidence_as_review_required():
     assert ("通知名称", "title") in review_pairs
     assert ("制定主体", "issuer") in review_pairs
     assert ("成文日期", "publish_date") in review_pairs
+    first_review = report.review_required_items[0]
+    assert first_review["status"] == "review_required"
+    assert first_review["confidence_tier"] == "low"
+    assert "fuzzy_match" in first_review["risk_flags"]
+    assert first_review["review_required_reason"]
+    assert any(item["type"] == "fuzzy_match" for item in first_review["evidence"])
     assert report.summary["strategy_counts"]["fuzzy"] >= 3
 
 
@@ -227,8 +250,12 @@ def test_mapping_service_records_unmapped_required_fields():
         candidates=candidates,
     )
 
-    assert any(item["target_field_id"] == "meeting_date" for item in report.unmapped)
+    unmapped = next(item for item in report.unmapped if item["target_field_id"] == "meeting_date")
+    assert "required_field_unmapped" in unmapped["risk_flags"]
+    assert unmapped["status"] == "failed"
+    assert unmapped["review_required_reason"]
     assert report.summary["unmapped_required_fields"] >= 1
+    assert report.summary["required_unmapped_count"] >= 1
 
 
 def test_mapping_service_does_not_high_confidence_accept_badcase_source():
@@ -246,6 +273,14 @@ def test_mapping_service_does_not_high_confidence_accept_badcase_source():
         schema=schema,
         template=template,
         candidates=candidates,
+        options={
+            "badcases": [
+                {
+                    "source_field": "责任主体",
+                    "forbidden_target_fields": ["issuer"],
+                }
+            ]
+        },
     )
 
     high_confidence_badcase = [
@@ -260,6 +295,13 @@ def test_mapping_service_does_not_high_confidence_accept_badcase_source():
         item["source_field"]["source_name"] == "责任主体"
         for item in report.review_required_items
     )
+    badcase_review = next(
+        item
+        for item in report.review_required_items
+        if item["source_field"]["source_name"] == "责任主体"
+    )
+    assert "badcase_blocked" in badcase_review["risk_flags"]
+    assert badcase_review["badcase_filter"]["blocked"] is True
 
 
 def test_mapping_service_llm_fallback_stub_stays_review_required():
@@ -298,11 +340,17 @@ def test_mapping_service_llm_fallback_stub_stays_review_required():
     )
 
     assert report.summary["strategy_counts"]["llm_fallback"] >= 1
+    assert report.summary["llm_suggestion_count"] >= 1
     assert all(item["need_review"] for item in report.review_required_items)
+    llm_items = [
+        item for item in report.review_required_items if item["method"] == "llm_fallback"
+    ]
+    assert llm_items
+    assert all("llm_suggestion" in item["risk_flags"] for item in llm_items)
     assert any(
         "prompt_hash=" in evidence
-        for item in report.review_required_items
-        for evidence in item["evidence"]
+        for item in llm_items
+        for evidence in item["evidence_text"]
     )
 
 
@@ -421,8 +469,8 @@ def test_openai_compatible_llm_missing_config_degrades_to_review_required():
     assert suggestion is not None
     assert suggestion.status == "review_required"
     assert suggestion.need_review is True
-    assert any("error_code=missing_credentials" in item for item in suggestion.evidence)
-    assert "super-secret" not in " ".join(suggestion.evidence)
+    assert any("error_code=missing_credentials" in item for item in suggestion.evidence_text)
+    assert "super-secret" not in " ".join(suggestion.evidence_text)
 
 
 def test_llm_fallback_badcase_filter_prevents_adapter_call():
@@ -527,5 +575,285 @@ def test_openai_compatible_llm_request_failure_degrades_to_review_required(monke
 
     assert suggestion is not None
     assert suggestion.status == "review_required"
-    assert any("error_code=request_failed" in item for item in suggestion.evidence)
-    assert "super-secret" not in " ".join(suggestion.evidence)
+    assert any("error_code=request_failed" in item for item in suggestion.evidence_text)
+    assert "super-secret" not in " ".join(suggestion.evidence_text)
+
+
+def test_llm_disabled_is_default():
+    from app.config import Settings
+    from app.services.llm_fallback_service import LLMFallbackService
+
+    settings = Settings(_env_file=None)
+    service = LLMFallbackService(settings)
+
+    assert settings.llm_fallback_enabled is False
+    assert service.adapter.enabled is False
+    assert service.safe_config_snapshot()["enabled"] is False
+
+
+def test_llm_stub_suggestion_is_review_required():
+    from app.config import Settings
+    from app.schemas.mapping import FieldCandidate
+    from app.schemas.target_schema import TargetField
+    from app.services.llm_fallback_service import LLMFallbackService
+
+    candidate = FieldCandidate(
+        candidate_id="cand_phase28_stub",
+        task_id="task_phase28_stub",
+        doc_id="doc_phase28",
+        source_path="$.metadata.phase28_source",
+        source_name="phase28_source",
+        value_sample="review me",
+        inferred_type="string",
+        confidence=0.5,
+    )
+    field = TargetField(
+        field_id="phase28_target",
+        name="phase28_target",
+        display_name="Phase 28 Target",
+        type="string",
+    )
+    service = LLMFallbackService(
+        Settings(llm_fallback_enabled=True, llm_mode="mock", _env_file=None)
+    )
+
+    suggestion = service.suggest_mapping(
+        task_id="task_phase28_stub",
+        field=field,
+        candidates=[candidate],
+        used_source_paths=set(),
+    )
+
+    assert suggestion is not None
+    assert suggestion.status == "review_required"
+    assert suggestion.need_review is True
+
+
+def test_llm_openai_compatible_timeout_records_warning_not_task_failure(monkeypatch):
+    from app.config import Settings
+    from app.schemas.mapping import FieldCandidate
+    from app.services.llm_fallback_service import LLMFallbackService
+    from app.services.mapping_service import MappingService
+
+    calls = 0
+
+    def timeout_urlopen(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        raise TimeoutError("request timed out")
+
+    monkeypatch.setattr("urllib.request.urlopen", timeout_urlopen)
+    schema = load_schema("general_doc")
+    template = load_template("general_doc_base_v1")
+    uir = load_uir("general/general_001_standard.json")
+    candidate = FieldCandidate(
+        candidate_id="cand_phase28_timeout",
+        task_id="task_phase28_timeout",
+        doc_id=uir.doc_id,
+        source_path="$.metadata.phase28_timeout_source",
+        source_name="phase28_timeout_source",
+        value_sample="review me",
+        inferred_type="string",
+        confidence=0.5,
+    )
+    llm_service = LLMFallbackService(
+        Settings(
+            llm_fallback_enabled=True,
+            llm_mode="openai_compatible",
+            llm_api_key="super-secret",
+            llm_base_url="https://llm.example/v1",
+            llm_timeout_seconds=0.1,
+            llm_max_retries=1,
+            llm_max_suggestions_per_task=1,
+            _env_file=None,
+        )
+    )
+
+    report = MappingService(llm_fallback_service=llm_service).map_fields(
+        task_id="task_phase28_timeout",
+        uir=uir,
+        schema=schema,
+        template=template,
+        candidates=[candidate],
+        options={"enable_llm_fallback": True},
+    )
+
+    assert calls == 2
+    assert report.summary["llm_suggestion_count"] == 1
+    assert report.summary["warnings"] == [
+        {
+            "code": "llm_request_failed",
+            "message": "LLM fallback request failed; human review is required.",
+        }
+    ]
+
+
+def test_llm_suggestion_count_is_capped():
+    from app.config import Settings
+    from app.schemas.mapping import FieldCandidate
+    from app.services.llm_fallback_service import LLMFallbackService
+    from app.services.mapping_service import MappingService
+
+    schema = load_schema("general_doc")
+    template = load_template("general_doc_base_v1")
+    uir = load_uir("general/general_001_standard.json")
+    candidate = FieldCandidate(
+        candidate_id="cand_phase28_cap",
+        task_id="task_phase28_cap",
+        doc_id=uir.doc_id,
+        source_path="$.metadata.phase28_cap_source",
+        source_name="phase28_cap_source",
+        value_sample="review me",
+        inferred_type="string",
+        confidence=0.5,
+    )
+    llm_service = LLMFallbackService(
+        Settings(
+            llm_fallback_enabled=True,
+            llm_mode="mock",
+            llm_max_suggestions_per_task=1,
+            _env_file=None,
+        )
+    )
+
+    report = MappingService(llm_fallback_service=llm_service).map_fields(
+        task_id="task_phase28_cap",
+        uir=uir,
+        schema=schema,
+        template=template,
+        candidates=[candidate],
+        options={"enable_llm_fallback": True},
+    )
+
+    assert report.summary["llm_suggestion_count"] == 1
+
+
+def test_llm_suggestion_has_mapping_evidence():
+    from app.config import Settings
+    from app.schemas.mapping import FieldCandidate
+    from app.schemas.target_schema import TargetField
+    from app.services.llm_fallback_service import LLMFallbackService
+
+    candidate = FieldCandidate(
+        candidate_id="cand_phase28_evidence",
+        task_id="task_phase28_evidence",
+        doc_id="doc_phase28",
+        source_path="$.metadata.phase28_evidence_source",
+        source_name="phase28_evidence_source",
+        value_sample="review me",
+        inferred_type="string",
+        confidence=0.5,
+    )
+    field = TargetField(
+        field_id="phase28_evidence_target",
+        name="phase28_evidence_target",
+        display_name="Phase 28 Evidence Target",
+        type="string",
+    )
+    service = LLMFallbackService(
+        Settings(llm_fallback_enabled=True, llm_mode="mock", _env_file=None)
+    )
+
+    suggestion = service.suggest_mapping(
+        task_id="task_phase28_evidence",
+        field=field,
+        candidates=[candidate],
+        used_source_paths=set(),
+    )
+
+    assert suggestion is not None
+    assert any(item.type == "llm_suggestion" for item in suggestion.evidence)
+    assert suggestion.llm_metadata is not None
+    assert suggestion.llm_metadata["prompt_hash"]
+    assert suggestion.llm_metadata["response_hash"]
+
+
+def test_llm_strict_failure_raises(monkeypatch):
+    from app.config import Settings
+    from app.schemas.mapping import FieldCandidate
+    from app.schemas.target_schema import TargetField
+    from app.services.llm_fallback_service import LLMFallbackService
+
+    monkeypatch.setattr(
+        "urllib.request.urlopen",
+        lambda *args, **kwargs: (_ for _ in ()).throw(TimeoutError("timed out")),
+    )
+    candidate = FieldCandidate(
+        candidate_id="cand_phase28_strict",
+        task_id="task_phase28_strict",
+        doc_id="doc_phase28",
+        source_path="$.metadata.phase28_strict_source",
+        source_name="phase28_strict_source",
+        value_sample="review me",
+        inferred_type="string",
+        confidence=0.5,
+    )
+    field = TargetField(
+        field_id="phase28_strict_target",
+        name="phase28_strict_target",
+        display_name="Phase 28 Strict Target",
+        type="string",
+    )
+    service = LLMFallbackService(
+        Settings(
+            llm_fallback_enabled=True,
+            llm_mode="openai_compatible",
+            llm_api_key="super-secret",
+            llm_base_url="https://llm.example/v1",
+            llm_strict_failure=True,
+            _env_file=None,
+        )
+    )
+
+    with pytest.raises(RuntimeError, match="LLM fallback request failed"):
+        service.suggest_mapping(
+            task_id="task_phase28_strict",
+            field=field,
+            candidates=[candidate],
+            used_source_paths=set(),
+        )
+
+
+def test_task_strict_llm_option_overrides_default(monkeypatch):
+    from app.config import Settings
+    from app.schemas.mapping import FieldCandidate
+    from app.services.llm_fallback_service import LLMFallbackService
+    from app.services.mapping_service import MappingService
+
+    monkeypatch.setattr(
+        "urllib.request.urlopen",
+        lambda *args, **kwargs: (_ for _ in ()).throw(TimeoutError("timed out")),
+    )
+    schema = load_schema("general_doc")
+    template = load_template("general_doc_base_v1")
+    uir = load_uir("general/general_001_standard.json")
+    candidate = FieldCandidate(
+        candidate_id="cand_phase28_task_strict",
+        task_id="task_phase28_task_strict",
+        doc_id=uir.doc_id,
+        source_path="$.metadata.phase28_task_strict_source",
+        source_name="phase28_task_strict_source",
+        value_sample="review me",
+        inferred_type="string",
+        confidence=0.5,
+    )
+    service = LLMFallbackService(
+        Settings(
+            llm_fallback_enabled=True,
+            llm_mode="openai_compatible",
+            llm_api_key="super-secret",
+            llm_base_url="https://llm.example/v1",
+            llm_strict_failure=False,
+            _env_file=None,
+        )
+    )
+
+    with pytest.raises(RuntimeError, match="LLM fallback request failed"):
+        MappingService(llm_fallback_service=service).map_fields(
+            task_id="task_phase28_task_strict",
+            uir=uir,
+            schema=schema,
+            template=template,
+            candidates=[candidate],
+            options={"enable_llm_fallback": True, "strict_llm": True},
+        )

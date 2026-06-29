@@ -68,6 +68,26 @@ export type TaskDetailResponse = {
   package_zip_path: string | null;
 };
 
+export type ContentOrganizationOptions = {
+  chunk_strategy:
+    | "fixed_window"
+    | "heading_aware"
+    | "source_block_aware"
+    | "table_protect"
+    | "parent_child";
+  target_tokens: number;
+  min_tokens: number;
+  max_tokens: number;
+  overlap_tokens: number;
+  protect_tables: boolean;
+  protect_lists: boolean;
+  protect_code_blocks: boolean;
+  enable_parent_child: boolean;
+  enable_light_semantic_boundary: boolean;
+  summary_mode: "none" | "deterministic";
+  keyword_mode: "none" | "deterministic";
+};
+
 export type MappingReport = {
   task_id: string;
   schema_id: string;
@@ -100,9 +120,20 @@ export type ContentOrganizationReport = {
 
 export type ChunkPreview = {
   chunk_id: string;
+  parent_chunk_id?: string | null;
+  strategy?: string | null;
+  granularity?: "parent" | "child" | null;
+  title?: string | null;
+  title_path?: string[];
+  token_estimate?: number;
+  char_count?: number;
   text: string;
   summary?: string;
   keywords?: string[];
+  content_tags?: string[];
+  management_tags?: string[];
+  quality_tags?: string[];
+  quality_flags?: string[];
   tags?: {
     content?: string[];
     management?: string[];
@@ -205,4 +236,22 @@ export type KnowledgeMetrics = {
   draft_packs: number;
   active_packs: number;
   archived_packs: number;
+};
+
+export type AuditLog = {
+  audit_id: string;
+  created_at: string;
+  action: string;
+  entity_type: string | null;
+  entity_id: string | null;
+  method: string | null;
+  path: string | null;
+  status_code: number | null;
+  success: boolean;
+  metadata: Record<string, unknown>;
+};
+
+export type AuditLogListResponse = {
+  items: AuditLog[];
+  total: number;
 };

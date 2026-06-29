@@ -18,6 +18,14 @@ def clear_settings_env(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
         "LLM_TIMEOUT_SECONDS",
         "OFFLINE_MODE",
         "MAX_UPLOAD_BYTES",
+        "API_KEY_AUTH_ENABLED",
+        "API_KEYS",
+        "AUDIT_LOG_ENABLED",
+        "AUDIT_LOG_BODY_MAX_CHARS",
+        "ARTIFACT_RETENTION_ENABLED",
+        "ARTIFACT_RETENTION_DAYS",
+        "ARTIFACT_RETENTION_DRY_RUN",
+        "PACKAGE_DOWNLOAD_REQUIRES_AUTH",
     ]
     for key in keys:
         monkeypatch.delenv(key, raising=False)

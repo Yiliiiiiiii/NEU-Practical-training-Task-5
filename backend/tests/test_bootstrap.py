@@ -24,7 +24,10 @@ def test_settings_defaults_are_safe():
     assert settings.llm_base_url == ""
     assert settings.llm_api_key == ""
     assert settings.llm_model == "gpt-4o-mini"
-    assert settings.llm_timeout_seconds == 8.0
+    assert settings.llm_timeout_seconds == 20.0
+    assert settings.llm_max_retries == 0
+    assert settings.llm_max_suggestions_per_task == 20
+    assert settings.llm_strict_failure is False
     assert settings.offline_mode is False
     assert settings.max_upload_bytes == 10 * 1024 * 1024
 

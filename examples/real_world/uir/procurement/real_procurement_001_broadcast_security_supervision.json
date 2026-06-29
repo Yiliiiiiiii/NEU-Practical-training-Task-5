@@ -1,0 +1,677 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：400-810-1996 | 服务投诉：010-63819289",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政采法规",
+          "购买服务",
+          "监督检查",
+          "信息公告",
+          "国际专栏"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "当前位置： 首页 » 政采公告 » 中央公告 » 公开招标公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h2"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b005",
+      "level": 2,
+      "source_anchor": null,
+      "text": "国家广播电视总局监管中心广播电视行业网络安全保护管理系统工程监理采购项目公开招标公告",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年06月04日 16:42 来源： 【 打印 】",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h5"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b007",
+      "level": 5,
+      "source_anchor": null,
+      "text": "公告概要：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "公告信息：",
+            "value": ""
+          },
+          {
+            "field": "采购项目名称",
+            "value": "广播电视行业网络安全保护管理系统工程监理采购项目"
+          },
+          {
+            "field": "品目",
+            "value": "服务/信息技术服务/信息化工程监理服务"
+          },
+          {
+            "field": "采购单位",
+            "value": "国家广播电视总局监管中心"
+          },
+          {
+            "field": "行政区域",
+            "value": "北京市 | 公告时间 | 2025年06月04日 16:42"
+          },
+          {
+            "field": "获取招标文件时间",
+            "value": "2025年06月04日至2025年06月11日 每日上午:9:00 至 12:00 下午:12:00 至 17:00（北京时间，法定节假日除外）"
+          },
+          {
+            "field": "招标文件售价",
+            "value": "￥500"
+          },
+          {
+            "field": "获取招标文件的地点",
+            "value": "中招联合招标采购平台（http://www.365trade.com.cn）"
+          },
+          {
+            "field": "开标时间",
+            "value": "2025年06月25日 09:00"
+          },
+          {
+            "field": "开标地点",
+            "value": "中招联合招标采购平台（http://www.365trade.com.cn）线上开标"
+          },
+          {
+            "field": "预算金额",
+            "value": "￥56.000000万元（人民币）"
+          },
+          {
+            "field": "联系人及联系方式：",
+            "value": ""
+          },
+          {
+            "field": "项目联系人",
+            "value": "王丽莉、师杉、林彧杰、秦璐璐、马翔宇、曲志鸣"
+          },
+          {
+            "field": "项目联系电话",
+            "value": "010－62108150 62108152"
+          },
+          {
+            "field": "采购单位",
+            "value": "国家广播电视总局监管中心"
+          },
+          {
+            "field": "采购单位地址",
+            "value": "北京市西城区复兴门外大街２号"
+          },
+          {
+            "field": "采购单位联系方式",
+            "value": "王宝石 010-86094895"
+          },
+          {
+            "field": "代理机构名称",
+            "value": "中招国际招标有限公司"
+          },
+          {
+            "field": "代理机构地址",
+            "value": "北京市海淀区学院南路62号中关村资本大厦6层611A室"
+          },
+          {
+            "field": "代理机构联系方式",
+            "value": "王丽莉、师杉、林彧杰、秦璐璐、马翔宇、曲志鸣 010－62108150 62108152"
+          }
+        ]
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b009",
+      "level": 3,
+      "source_anchor": null,
+      "text": "项目概况",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、项目基本情况",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目编号：TC25080AS",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目名称：广播电视行业网络安全保护管理系统工程监理采购项目",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "预算金额：56.000000 万元（人民币）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "最高限价（如有）：56.000000 万元（人民币）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "采购需求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "标的名称：广播电视行业网络安全保护管理系统工程监理采购项目",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "数量：1项",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "简要服务要求：按照本工程项目建设内容提供全过程工程监理，即对项目进行质量、成本、进度、安全、合同、文档、过程审计及相关知识产权的全面控制和监督，负责相关的合同管理和信息管理，负责整个项目全过程的监督协调，以期达到工程质量优良、造价合理、工期适当的总目标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "合同履行期限：项目服务期限：中标后与采购人签订合同，合同生效后开始至广播电视行业网络安全保护管理系统建设工程结束为止。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "本项目( 不接受 )联合体投标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、申请人的资格要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.满足《中华人民共和国政府采购法》第二十二条规定；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.落实政府采购政策需满足的资格要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "本项目落实节约能源、保护环境、促进中小企业发展、支持监狱企业发展、促进残疾人就业、扶持贫困地区发展等政府采购政策。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.本项目的特定资格要求：（1）在中华人民共和国境内注册，能够独立承担民事责任，有生产或供应能力的供应商，包括企业法人、其他组织或者自然人。（2）具备《中华人民共和国政府采购法》第二十二条关于供应商条件的规定，遵守国家、本项目采购人本级和上级财政部门政府采购的有关规定。（3）具有中华人民共和国住房和城乡建设部颁发的有效期内的通信工程监理甲级或工程监理综合资质。（4）近三年内（本项目投标截止期前）被“信用中国”网站列入失信被执行人和重大税收违法案件当事人名单的、被“中国政府采购网”网站列入政府采购严重违法失信行为记录名单（处罚期限尚未届满的），不得参与本项目的政府采购活动。（5）单位负责人为同一人或者存在直接控股、管理关系的不同供应商，不得同时参加同一项目的投标。（6）为采购项目提供整体设计、规范编制或者项目管理、监理、检测等服务的供应商，不得再参加该采购项目的其他采购活动。（7）从中招国际招标有限公司正式获得了本项目的招标文件。（8）法律、法规规定的其他条件。（9）本次招标不接受联合体。（10）本项目不允许转包、分包。（11）本项目不允许采购进口产品。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、获取招标文件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "时间：2025年06月04日 至 2025年06月11日，每天上午9:00至12:00，下午12:00至17:00。（北京时间，法定节假日除外）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "地点：中招联合招标采购平台（http://www.365trade.com.cn）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "方式：网上下载",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "售价：￥500.0 元，本公告包含的招标文件售价总和",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、提交投标文件截止时间、开标时间和地点",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "提交投标文件截止时间：2025年06月25日 09点00分（北京时间）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "开标时间：2025年06月25日 09点00分（北京时间）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "地点：中招联合招标采购平台（http://www.365trade.com.cn）线上开标",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、公告期限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "自本公告发布之日起5个工作日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、其他补充事宜",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、招标文件售价500元，招标文件售后不退。 2、招标文件的获取： 2.1招标文件获取时间：2025年6月4日至2025年6月11日(节假日除外)，每天9时00分至17时00分（北京时间，下同）。 2.2招标文件获取方式：本项目采用线上发售招标文件方式，有意购买标书的潜在投标人，请务必于招标文件获取截止时间前按以下步骤操作完成招标文件购买： （1）首次注册供应商：登录“中招联合招标采购平台（http://www.365trade.com.cn）”（以下简称“平台”），点击“供应商入口”进行免费注册。 （2）已在平台注册过的潜在投标人，登录后点击“寻找商机”，进行项目名称查询，找到项目点击“我要参与”，投标人选中需要投标的包“加入购物车”。 （3）在“购标审核”阶段上传“保密承诺”（格式附后）盖章扫描件。 （4）审核通过后在“我参与的项目”选择相应项目后的“购买招标文件”按钮，选择相应标包“去结算”并下单，招标文件每套售价500元人民币（本项目仅支持【网上支付】方式。标书款一经收取不予退还）。 （5）支付完成后，点击页面上方“我的工作台”下拉菜单中的 “我参与的项目”进行招标文件下载。 3、CA证书办理：有意参与投标的潜在投标人，应在招标文件购买完成后尽快与“中招联合招标采购平台（http://www.365trade.com.cn）”联系申请办理北京CA证书的购买事宜，以免延误投标。已办理北京CA公司签章且数字证书在有效期内的单位不需重复办理。CA证书售后不退，证书自发售之日起1年内有效。 4、如有操作疑问或CA办理咨询请按以下方式与中招联合平台技术支持联系：客服电话：010-86397110、010-62108037（客服工作时间：周一至周五上午9时00分-11时30分，下午13时30分-17时00分）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "广播电视行业网络安全保护管理系统工程监理采购项目 保密承诺",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家广播电视总局监管中心： 关于广播电视行业网络安全保护管理系统工程监理采购项目（项目编号：TC25080AS），我方承诺如下： 我方将对招标文件文件内容保密，不向无关人员透露，不复制招标文件，招标文件不转让第三方。 我方承诺遵守保密承诺。如有违反将承担相应法律责任。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "投标人名称： （盖章） 日 期：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、对本次招标提出询问，请按以下方式联系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.采购人信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "名 称：国家广播电视总局监管中心",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "地址：北京市西城区复兴门外大街２号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "联系方式：王宝石 010-86094895",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.采购代理机构信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "名 称：中招国际招标有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "地 址：北京市海淀区学院南路62号中关村资本大厦6层611A室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "联系方式：王丽莉、师杉、林彧杰、秦璐璐、马翔宇、曲志鸣 010－62108150 62108152",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.项目联系方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目联系人：王丽莉、师杉、林彧杰、秦璐璐、马翔宇、曲志鸣",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "电 话： 010－62108150 62108152",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "相关公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_001_broadcast_security_supervision_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "主办单位：中华人民共和国财政部国库司 网站标识码： bm14000002 | 京 ICP 备 19054529 号 -1 | 京公网安备 11010602060068 号 © 1999- 中华人民共和国财政部 版权所有 | 联系我们 | 意见反馈",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_procurement_001_broadcast_security_supervision",
+  "metadata": {
+    "doc_type": "procurement_doc",
+    "domain": "procurement_doc",
+    "extracted_block_count": 55,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-29T01:35:08.862751+00:00",
+    "source_format": "html",
+    "source_sha256": "a344b1d46e55e69bf114ebea579fc5da9c0a10b5faa202f2c4c8b5b4e26ad9fa",
+    "source_site": "www.ccgp.gov.cn",
+    "source_url": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202506/t20250604_24710007.htm",
+    "title": "国家广播电视总局监管中心广播电视行业网络安全保护管理系统工程监理采购项目公开招标公告",
+    "标题": "国家广播电视总局监管中心广播电视行业网络安全保护管理系统工程监理采购项目公开招标公告",
+    "项目编号": "TC25080AS"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "a344b1d46e55e69bf114ebea579fc5da9c0a10b5faa202f2c4c8b5b4e26ad9fa"
+    }
+  ],
+  "source": {
+    "source_name": "real_procurement_001_broadcast_security_supervision",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

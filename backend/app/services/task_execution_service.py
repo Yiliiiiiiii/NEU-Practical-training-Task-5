@@ -6,6 +6,7 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
+from app.config import Settings
 from app.db.models import ConversionTask, Document
 from app.schemas.reports import MappingReport
 from app.schemas.uir import UIRDocument
@@ -14,6 +15,7 @@ from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
 from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.effective_template_service import EffectiveTemplateService
+from app.services.llm_fallback_service import LLMFallbackService
 from app.services.mapping_service import MappingService
 from app.services.package_service import PackageService
 from app.services.render_service import RenderedArtifacts, RenderService
@@ -55,11 +57,13 @@ class TaskExecutionService:
         storage: StorageService,
         schema_service: SchemaService | None = None,
         template_service: TemplateService | None = None,
+        settings: Settings | None = None,
     ) -> None:
         self.db = db
         self.storage = storage
         self.schema_service = schema_service or SchemaService()
         self.template_service = template_service or TemplateService()
+        self.settings = settings or Settings()
 
     def execute_task(self, task_id: str) -> TaskExecutionResult:
         task = self.db.get(ConversionTask, task_id)
@@ -171,7 +175,8 @@ class TaskExecutionService:
         template = effective_result.template
 
         candidates = CandidateService().extract_candidates(task.task_id, uir)
-        mapping_report = MappingService().map_fields(
+        llm_fallback_service = LLMFallbackService(self.settings)
+        mapping_report = MappingService(llm_fallback_service=llm_fallback_service).map_fields(
             task_id=task.task_id,
             uir=uir,
             schema=schema,
@@ -203,6 +208,14 @@ class TaskExecutionService:
             "applied_knowledge_pack_ids": effective_result.applied_pack_ids,
             "input_hash": task.input_hash,
             "options": options,
+            "llm": {
+                **llm_fallback_service.safe_config_snapshot(
+                    strict_failure=bool(
+                        options.get("strict_llm", self.settings.llm_strict_failure)
+                    )
+                ),
+                "task_requested": bool(options.get("enable_llm_fallback", False)),
+            },
             "started_at": started_at,
         }
         canonical = CanonicalService().build_canonical(
@@ -234,6 +247,7 @@ class TaskExecutionService:
             schema_id=schema.schema_id,
             template_id=template.template_id,
             template_version=template.version,
+            options=options.get("content_organization"),
         )
         rendered = RenderedArtifacts(
             structured_json=rendered.structured_json,

@@ -1,0 +1,707 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 21.950000762939453
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b001",
+      "level": 1,
+      "source_anchor": {
+        "bbox": [
+          198.60000610351562,
+          76.5949478149414,
+          396.586181640625,
+          98.61079406738281
+        ],
+        "page": 1
+      },
+      "text": "区政府常务会议纪要",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.0
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b002",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          209.52000427246094,
+          111.36499786376953,
+          385.79998779296875,
+          126.99500274658203
+        ],
+        "page": 1
+      },
+      "text": "长府会议纪要〔2025〕2 号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b003",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          155.18894958496094,
+          505.2550048828125,
+          171.50579833984375
+        ],
+        "page": 1
+      },
+      "text": "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b004",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          183.14895629882812,
+          185.98757934570312,
+          199.46580505371094
+        ],
+        "page": 1
+      },
+      "text": "次常务会议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b005",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          211.1079559326172,
+          505.18804931640625,
+          227.4248046875
+        ],
+        "page": 1
+      },
+      "text": "会议听取区府办关于2025 年区“两会”期间人大代表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b006",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          239.18894958496094,
+          505.19000244140625,
+          255.50579833984375
+        ],
+        "page": 1
+      },
+      "text": "建议和政协提案有关情况的汇报。会议指出，各承办单位要",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b007",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          267.1489562988281,
+          505.18853759765625,
+          283.4658203125
+        ],
+        "page": 1
+      },
+      "text": "各司其职，进一步提高办理质量、创新办理方式、完善办理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b008",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          295.1079406738281,
+          505.9090270996094,
+          311.4248046875
+        ],
+        "page": 1
+      },
+      "text": "机制。一是要高度重视，领导带头办理。要提高思想认识，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b009",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          323.18896484375,
+          505.18707275390625,
+          339.5058288574219
+        ],
+        "page": 1
+      },
+      "text": "把建议提案办理工作作为出政策、做决策、推工作的重要抓",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b010",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          351.1489562988281,
+          513.22998046875,
+          367.4658203125
+        ],
+        "page": 1
+      },
+      "text": "手，认真办好每一件代表建议和政协提案。二是要落实责任，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b011",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          379.1079406738281,
+          513.22998046875,
+          395.4248046875
+        ],
+        "page": 1
+      },
+      "text": "形成工作合力。各部门要有大局意识，跨前一步、主动担当，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b012",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          407.18896484375,
+          513.22998046875,
+          423.5058288574219
+        ],
+        "page": 1
+      },
+      "text": "根据“谁主管、谁主办，谁牵头、谁主办，指定谁、谁主办”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b013",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          435.1489562988281,
+          505.30914306640625,
+          451.4658203125
+        ],
+        "page": 1
+      },
+      "text": "的分办原则，积极开展办理工作。三是要加强沟通，增强办",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b014",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          463.1079406738281,
+          505.30621337890625,
+          479.4248046875
+        ],
+        "page": 1
+      },
+      "text": "理实效。各承办单位要畅通沟通渠道，进一步争取代表和委",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b015",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          491.18896484375,
+          505.18853759765625,
+          507.5058288574219
+        ],
+        "page": 1
+      },
+      "text": "员的支持理解。四是要强化制度，加强跟踪检查。各承办单",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b016",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          519.14892578125,
+          505.18560791015625,
+          535.4657592773438
+        ],
+        "page": 1
+      },
+      "text": "位要及时把办理工作摆到议事日程，努力把办理工作和日常",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b017",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          547.1079711914062,
+          505.30621337890625,
+          563.4248046875
+        ],
+        "page": 1
+      },
+      "text": "业务有机结合，统筹安排、协调推进。要充分发挥年度绩效",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b018",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          575.18896484375,
+          505.30914306640625,
+          591.5057983398438
+        ],
+        "page": 1
+      },
+      "text": "考核对办理工作的激励和促进作用，抓好回访检查、督促落",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b019",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          603.14892578125,
+          425.9801940917969,
+          619.4657592773438
+        ],
+        "page": 1
+      },
+      "text": "实等工作环节，力争让代表满意、让群众满意。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b020",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          631.1079711914062,
+          505.1876220703125,
+          647.4248046875
+        ],
+        "page": 1
+      },
+      "text": "会议听取区建设管理委关于编制2025 年长宁区重大建",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b021",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          659.18896484375,
+          505.18560791015625,
+          675.5057983398438
+        ],
+        "page": 1
+      },
+      "text": "设项目清单的情况汇报。会议指出，区建设管理委要发挥好",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b022",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          687.14892578125,
+          505.1879577636719,
+          703.4657592773438
+        ],
+        "page": 1
+      },
+      "text": "牵头统筹作用，做好具体项目的协调推进工作。相关审批单",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b023",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          715.1079711914062,
+          505.30767822265625,
+          731.4248046875
+        ],
+        "page": 1
+      },
+      "text": "位要主动跨前，加快重大建设项目审批流程。相关建设单位",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b024",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          743.18896484375,
+          505.1894226074219,
+          759.5057983398438
+        ],
+        "page": 1
+      },
+      "text": "要落实主体责任，按照分工安排，围绕年度工作目标，全力",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b025",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          80.78894805908203,
+          457.8990173339844,
+          97.10579681396484
+        ],
+        "page": 2
+      },
+      "text": "推进重大建设项目，助力区域经济社会高质量发展。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b026",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          122.04000091552734,
+          108.74894714355469,
+          505.30621337890625,
+          125.0657958984375
+        ],
+        "page": 2
+      },
+      "text": "会议听取区发展改革委关于制订《长宁区聚焦提升企业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b027",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          136.70794677734375,
+          505.1824035644531,
+          153.02479553222656
+        ],
+        "page": 2
+      },
+      "text": "感受持续打造国际一流营商环境行动方案》相关情况的汇",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b028",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          164.78895568847656,
+          505.30621337890625,
+          181.10580444335938
+        ],
+        "page": 2
+      },
+      "text": "报。会议指出，要加强考核结果总结，认真对照测评结果做",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b029",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          192.7489471435547,
+          505.30914306640625,
+          209.0657958984375
+        ],
+        "page": 2
+      },
+      "text": "好问题分析，加强总结提炼，进一步明确工作举措，争取打",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b030",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          220.70794677734375,
+          513.22998046875,
+          237.02479553222656
+        ],
+        "page": 2
+      },
+      "text": "造更多特色亮点，切实提升考核成绩。要推动任务尽早落地，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b031",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          248.7889404296875,
+          505.30902099609375,
+          265.1058044433594
+        ],
+        "page": 2
+      },
+      "text": "主动向上对接，细化《方案》实施路径，加强协调合作，确",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b032",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          276.74896240234375,
+          505.30914306640625,
+          293.0658264160156
+        ],
+        "page": 2
+      },
+      "text": "保各项任务不折不扣完成。要持续提升企业感受度，紧盯企",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b033",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          304.70794677734375,
+          505.30914306640625,
+          321.0248107910156
+        ],
+        "page": 2
+      },
+      "text": "业发展的痛点、堵点、难点，持续发挥“三级三系”企业服",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b034",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          332.7889404296875,
+          505.30767822265625,
+          349.1058044433594
+        ],
+        "page": 2
+      },
+      "text": "务体系作用，有针对性地推出改革创新举措，提升企业获得",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_meeting_001_changning_executive_minutes_b035",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          90.0,
+          360.74896240234375,
+          185.98757934570312,
+          377.0658264160156
+        ],
+        "page": 2
+      },
+      "text": "感和满意度。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_001_changning_executive_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 35,
+    "extraction_method": "pymupdf_text",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "page_count": 2,
+    "page_text_lengths": [
+      601,
+      271
+    ],
+    "retrieved_at": "2026-06-29T01:35:09.455169+00:00",
+    "source_format": "pdf",
+    "source_sha256": "86883a3f582b3bc24a0f20bef891cd8ecf26f235f075bc87f6b6273cfa7950ec",
+    "source_site": "zwgk.shcn.gov.cn",
+    "source_url": "https://zwgk.shcn.gov.cn/xxgk/zfhy-zw/2025/42/76427/068df4034dad47d1a7f3ebf26270e893.pdf",
+    "title": "区政府常务会议纪要",
+    "标题": "区政府常务会议纪要"
+  },
+  "normalization_records": [
+    {
+      "method": "pymupdf_text",
+      "normalized": true,
+      "source_sha256": "86883a3f582b3bc24a0f20bef891cd8ecf26f235f075bc87f6b6273cfa7950ec"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_001_changning_executive_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

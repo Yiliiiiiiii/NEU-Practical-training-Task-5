@@ -29,12 +29,18 @@ This workflow exercises the current end-to-end demo path:
    - Create Task
    - Execute
 
+   The sidebar includes deterministic content organization controls. The default
+   `heading_aware` strategy is suitable for the demo; `parent_child` can be
+   selected to generate parent chunks plus child chunks for downstream retrieval
+   tests.
+
 5. Inspect the generated outputs:
 
    - mapping report
    - validation report
    - content organization report
-   - chunk preview
+   - enriched chunk preview with strategy, title path, token estimate, source
+     links, quality tags, and optional parent-child ids
    - collapsible raw JSON reports
    - review queue and knowledge pack controls
    - package metadata

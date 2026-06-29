@@ -28,6 +28,7 @@ body {
 
 button,
 select,
+input,
 textarea {
   font: inherit;
 }
@@ -146,6 +147,7 @@ label {
 }
 
 select,
+input,
 textarea {
   width: 100%;
   border: 1px solid var(--line);
@@ -157,6 +159,11 @@ textarea {
 select {
   min-height: 42px;
   padding: 0 12px;
+}
+
+input {
+  min-height: 38px;
+  padding: 0 10px;
 }
 
 .schema-strip {
@@ -173,6 +180,52 @@ select {
 .schema-strip span {
   font-size: 22px;
   font-weight: 900;
+}
+
+.content-options {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.62);
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.checkbox-field {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 8px;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: none;
+}
+
+.checkbox-field input {
+  width: 16px;
+  min-height: 16px;
+  padding: 0;
+  accent-color: var(--green);
+}
+
+.checkbox-field span {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .button-grid {
@@ -348,6 +401,7 @@ h2 {
 .package-block,
 .content-org-block,
 .chunk-preview-block,
+.audit-list,
 .review-list,
 .knowledge-block {
   padding: 12px;
@@ -372,16 +426,22 @@ h2 {
 
 .mapping-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(96px, 0.75fr) minmax(64px, 0.4fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(96px, 0.75fr)
+    minmax(64px, 0.4fr)
+    minmax(80px, 0.45fr);
   gap: 10px;
   align-items: center;
-  min-height: 38px;
+  min-height: 44px;
   border-bottom: 1px solid #e7e1d5;
+  padding: 8px 0;
 }
 
 .mapping-row span,
 .mapping-row strong,
 .mapping-row em,
+.mapping-row small,
 dd,
 .package-id {
   overflow-wrap: anywhere;
@@ -394,6 +454,18 @@ dd,
   font-weight: 800;
 }
 
+.mapping-row .tag-list,
+.mapping-evidence {
+  grid-column: 1 / -1;
+}
+
+.mapping-evidence summary {
+  cursor: pointer;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .review-box {
   margin-top: 12px;
   padding: 10px;
@@ -404,14 +476,36 @@ dd,
   font-size: 13px;
 }
 
+.review-candidate {
+  display: grid;
+  gap: 7px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(169, 93, 17, 0.22);
+}
+
+.review-candidate:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.evidence-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .review-list,
-.knowledge-list {
+.knowledge-list,
+.audit-list {
   display: grid;
   gap: 10px;
 }
 
 .review-item,
-.knowledge-row {
+.knowledge-row,
+.audit-row {
   border-bottom: 1px solid #e7e1d5;
   display: grid;
   gap: 8px;
@@ -428,9 +522,17 @@ dd,
 
 .review-item strong,
 .review-item span,
+.audit-row strong,
+.audit-row span,
 .knowledge-row span,
 .knowledge-row strong {
   overflow-wrap: anywhere;
+}
+
+.audit-row span {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .review-item em {
@@ -492,6 +594,30 @@ dd,
 .chunk-card strong,
 .chunk-card p {
   overflow-wrap: anywhere;
+}
+
+.chunk-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chunk-card-head span,
+.chunk-meta span {
+  border: 1px solid #c7d5cf;
+  border-radius: 999px;
+  padding: 3px 7px;
+  color: var(--cyan);
+  background: #eef8f6;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.chunk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .chunk-card p {
@@ -637,6 +763,11 @@ dd {
 
   .button-grid {
     grid-template-columns: 1fr;
+  }
+
+  .option-grid,
+  .check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .mapping-row,

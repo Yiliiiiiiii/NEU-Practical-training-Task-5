@@ -14,10 +14,11 @@ class PackageVerifierService:
         "mapping_report.json",
         "validation_report.json",
         "content_organization_report.json",
+        "metadata.json",
         "manifest.json",
     }
 
-    def verify_package(self, package_dir: str | Path) -> ConsistencyReport:
+    def verify_package(self, package_dir: str | Path, *, strict: bool = False) -> ConsistencyReport:
         package_path = Path(package_dir)
         manifest_path = package_path / "manifest.json"
         errors: list[ReportIssue] = []
@@ -54,14 +55,16 @@ class PackageVerifierService:
                     )
                 )
             if required_file not in manifest_paths:
-                warnings.append(
-                    ReportIssue(
-                        level="warning",
-                        message="Required file is not listed in manifest.",
-                        path=required_file,
-                        code="required_file_not_manifested",
-                    )
+                issue = ReportIssue(
+                    level="error" if strict else "warning",
+                    message="Required file is not listed in manifest.",
+                    path=required_file,
+                    code="required_file_not_manifested",
                 )
+                if strict:
+                    errors.append(issue)
+                else:
+                    warnings.append(issue)
 
         for file_info in manifest.files:
             path = package_path / file_info.path
@@ -84,8 +87,36 @@ class PackageVerifierService:
                         code="checksum_mismatch",
                     )
                 )
+            if strict and path.is_file() and path.stat().st_size != file_info.bytes:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="File byte size does not match manifest.",
+                        path=file_info.path,
+                        code="byte_size_mismatch",
+                    )
+                )
+            if strict and file_info.media_type != ManifestService.media_type(file_info.path):
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="File media type does not match package spec.",
+                        path=file_info.path,
+                        code="media_type_mismatch",
+                    )
+                )
+            if strict and file_info.role != ManifestService.role(file_info.path):
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="File role does not match package spec.",
+                        path=file_info.path,
+                        code="role_mismatch",
+                    )
+                )
 
         self._check_json(package_path / "content.json", "content_json_invalid", errors)
+        self._check_json(package_path / "metadata.json", "metadata_json_invalid", errors)
         self._check_json(
             package_path / "content_organization_report.json",
             "content_organization_report_invalid",

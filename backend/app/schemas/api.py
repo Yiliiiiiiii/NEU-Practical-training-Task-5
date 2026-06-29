@@ -247,3 +247,27 @@ class KnowledgeMetricsResponse(StrictBaseModel):
     draft_packs: int
     active_packs: int
     archived_packs: int
+
+
+class AuditLogResponse(StrictBaseModel):
+    audit_id: str
+    created_at: str
+    action: str
+    entity_type: str | None = None
+    entity_id: str | None = None
+    actor_type: str
+    actor_id: str | None = None
+    api_key_hash_prefix: str | None = None
+    request_id: str | None = None
+    trace_id: str | None = None
+    method: str | None = None
+    path: str | None = None
+    status_code: int | None = None
+    success: bool
+    error_code: str | None = None
+    metadata: dict[str, Any]
+
+
+class AuditLogListResponse(StrictBaseModel):
+    items: list[AuditLogResponse]
+    total: int

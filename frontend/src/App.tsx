@@ -14,7 +14,9 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { api } from "./api";
 import { sampleUirText } from "./sampleUir";
 import type {
+  AuditLog,
   ChunksReport,
+  ContentOrganizationOptions,
   ContentOrganizationReport,
   KnowledgeCandidate,
   KnowledgeMetrics,
@@ -29,6 +31,21 @@ import type {
 } from "./types";
 
 type RunState = "idle" | "loading" | "ready" | "working" | "error";
+
+const defaultContentOptions: ContentOrganizationOptions = {
+  chunk_strategy: "heading_aware",
+  target_tokens: 768,
+  min_tokens: 128,
+  max_tokens: 1024,
+  overlap_tokens: 80,
+  protect_tables: true,
+  protect_lists: true,
+  protect_code_blocks: true,
+  enable_parent_child: false,
+  enable_light_semantic_boundary: true,
+  summary_mode: "deterministic",
+  keyword_mode: "deterministic"
+};
 
 function App() {
   const [schemas, setSchemas] = useState<TargetSchema[]>([]);
@@ -48,6 +65,9 @@ function App() {
   const [knowledgeCandidates, setKnowledgeCandidates] = useState<KnowledgeCandidate[]>([]);
   const [knowledgePacks, setKnowledgePacks] = useState<KnowledgePack[]>([]);
   const [knowledgeMetrics, setKnowledgeMetrics] = useState<KnowledgeMetrics | null>(null);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
+  const [contentOptions, setContentOptions] =
+    useState<ContentOrganizationOptions>(defaultContentOptions);
   const [runState, setRunState] = useState<RunState>("idle");
   const [error, setError] = useState("");
 
@@ -102,6 +122,7 @@ function App() {
       setContentOrg(null);
       setChunks(null);
       setPkg(null);
+      setAuditLogs([]);
       clearReviewKnowledge();
       setRunState("ready");
     } catch (caught) {
@@ -121,7 +142,15 @@ function App() {
       const created = await api.createTask({
         doc_id: docId,
         schema_id: selectedSchema,
-        template_id: selectedTemplate
+        template_id: selectedTemplate,
+        options: {
+          content_organization: {
+            ...contentOptions,
+            enable_parent_child:
+              contentOptions.enable_parent_child ||
+              contentOptions.chunk_strategy === "parent_child"
+          }
+        }
       });
       setTaskId(created.task_id);
       const detail = await api.getTask(created.task_id);
@@ -131,6 +160,7 @@ function App() {
       setContentOrg(null);
       setChunks(null);
       setPkg(null);
+      setAuditLogs([]);
       clearReviewKnowledge();
       setRunState("ready");
     } catch (caught) {
@@ -182,6 +212,7 @@ function App() {
     setChunks(chunksReport);
     setPkg(packageMetadata);
     await refreshReviewKnowledge();
+    await refreshAuditLogs(id);
   }
 
   async function refreshReviewKnowledge() {
@@ -202,6 +233,15 @@ function App() {
     setKnowledgeCandidates([]);
     setKnowledgePacks([]);
     setKnowledgeMetrics(null);
+  }
+
+  async function refreshAuditLogs(id = taskId) {
+    if (!id) {
+      setAuditLogs([]);
+      return;
+    }
+    const logs = await api.listAuditLogs(id);
+    setAuditLogs(logs.items);
   }
 
   async function approveReview(reviewId: string) {
@@ -255,6 +295,13 @@ function App() {
     setSelectedSchema(schemaId);
     const firstTemplate = templates.find((template) => template.schema_id === schemaId);
     setSelectedTemplate(firstTemplate?.template_id ?? "");
+  }
+
+  function updateContentOption<K extends keyof ContentOrganizationOptions>(
+    key: K,
+    value: ContentOrganizationOptions[K]
+  ) {
+    setContentOptions((current) => ({ ...current, [key]: value }));
   }
 
   const working = runState === "loading" || runState === "working";
@@ -313,6 +360,83 @@ function App() {
             {selectedSchemaModel?.fields?.filter((field) => field.required).length ?? 0}
           </span>
           <small>required</small>
+        </div>
+
+        <div className="content-options">
+          <div className="control-group">
+            <label htmlFor="chunk-strategy">Chunk Strategy</label>
+            <select
+              id="chunk-strategy"
+              value={contentOptions.chunk_strategy}
+              onChange={(event) =>
+                updateContentOption(
+                  "chunk_strategy",
+                  event.target.value as ContentOrganizationOptions["chunk_strategy"]
+                )
+              }
+            >
+              <option value="fixed_window">fixed_window</option>
+              <option value="heading_aware">heading_aware</option>
+              <option value="source_block_aware">source_block_aware</option>
+              <option value="table_protect">table_protect</option>
+              <option value="parent_child">parent_child</option>
+            </select>
+          </div>
+          <div className="option-grid">
+            <NumberField
+              id="target-tokens"
+              label="Target"
+              value={contentOptions.target_tokens}
+              min={1}
+              onChange={(value) => updateContentOption("target_tokens", value)}
+            />
+            <NumberField
+              id="min-tokens"
+              label="Min"
+              value={contentOptions.min_tokens}
+              min={1}
+              onChange={(value) => updateContentOption("min_tokens", value)}
+            />
+            <NumberField
+              id="max-tokens"
+              label="Max"
+              value={contentOptions.max_tokens}
+              min={1}
+              onChange={(value) => updateContentOption("max_tokens", value)}
+            />
+            <NumberField
+              id="overlap-tokens"
+              label="Overlap"
+              value={contentOptions.overlap_tokens}
+              min={0}
+              onChange={(value) => updateContentOption("overlap_tokens", value)}
+            />
+          </div>
+          <div className="check-grid">
+            <CheckboxField
+              label="Tables"
+              checked={contentOptions.protect_tables}
+              onChange={(checked) => updateContentOption("protect_tables", checked)}
+            />
+            <CheckboxField
+              label="Lists"
+              checked={contentOptions.protect_lists}
+              onChange={(checked) => updateContentOption("protect_lists", checked)}
+            />
+            <CheckboxField
+              label="Code"
+              checked={contentOptions.protect_code_blocks}
+              onChange={(checked) => updateContentOption("protect_code_blocks", checked)}
+            />
+            <CheckboxField
+              label="Parent"
+              checked={
+                contentOptions.enable_parent_child ||
+                contentOptions.chunk_strategy === "parent_child"
+              }
+              onChange={(checked) => updateContentOption("enable_parent_child", checked)}
+            />
+          </div>
         </div>
 
         <div className="button-grid">
@@ -383,14 +507,28 @@ function App() {
                   <div className="mapping-row" key={String(item.mapping_id)}>
                     <span>{sourceName(item)}</span>
                     <strong>{String(item.target_field_id)}</strong>
-                    <em>{String(item.method)}</em>
+                    <em>{String(item.confidence_tier ?? item.method)}</em>
+                    <small>{String(item.status ?? "accepted")}</small>
+                    <TagList label="Risk" values={asStringList(item.risk_flags)} />
+                    <details className="mapping-evidence">
+                      <summary>{String(item.method)}</summary>
+                      <EvidenceList item={item} />
+                    </details>
                   </div>
                 ))}
                 {mapping.review_required_items.length ? (
                   <div className="review-box">
                     {mapping.review_required_items.slice(0, 6).map((item) => (
-                      <div key={String(item.mapping_id)}>
-                        {sourceName(item)} → {String(item.target_field_id)}
+                      <div className="review-candidate" key={String(item.mapping_id)}>
+                        <strong>
+                          {sourceName(item)} → {String(item.target_field_id)}
+                        </strong>
+                        <span>
+                          {String(item.confidence_tier ?? "low")} /{" "}
+                          {String(item.review_required_reason ?? "review required")}
+                        </span>
+                        <TagList label="Risk" values={asStringList(item.risk_flags)} />
+                        <EvidenceList item={item} />
                       </div>
                     ))}
                   </div>
@@ -472,10 +610,31 @@ function App() {
                 </p>
                 {chunks.items.slice(0, 4).map((chunk) => (
                   <div className="chunk-card" key={chunk.chunk_id}>
-                    <strong>{chunk.chunk_id}</strong>
+                    <div className="chunk-card-head">
+                      <strong>{chunk.chunk_id}</strong>
+                      <span>{chunk.strategy ?? "legacy"}</span>
+                    </div>
+                    <div className="chunk-meta">
+                      <span>{chunk.granularity ?? "chunk"}</span>
+                      <span>{chunk.token_estimate ?? 0} tokens</span>
+                      <span>{chunk.char_count ?? chunk.text.length} chars</span>
+                    </div>
+                    {chunk.parent_chunk_id ? (
+                      <small>Parent: {chunk.parent_chunk_id}</small>
+                    ) : null}
+                    {chunk.title_path?.length ? (
+                      <small>Title: {chunk.title_path.join(" / ")}</small>
+                    ) : null}
                     <p>{chunk.summary || chunk.text.slice(0, 180)}</p>
                     <TagList label="Keywords" values={chunk.keywords ?? []} />
-                    <TagList label="Content" values={chunk.tags?.content ?? []} />
+                    <TagList
+                      label="Content"
+                      values={chunk.content_tags ?? chunk.tags?.content ?? []}
+                    />
+                    <TagList
+                      label="Quality"
+                      values={chunk.quality_flags?.length ? chunk.quality_flags : chunk.quality_tags ?? chunk.tags?.quality ?? []}
+                    />
                     <small>
                       Sources:{" "}
                       {(chunk.source_block_ids ?? []).join(", ") ||
@@ -516,6 +675,23 @@ function App() {
             )}
           </ReportPanel>
 
+          <ReportPanel title="Audit Logs" icon={<ClipboardList size={18} />}>
+            {auditLogs.length ? (
+              <div className="audit-list">
+                {auditLogs.slice(0, 6).map((log) => (
+                  <div className="audit-row" key={log.audit_id}>
+                    <strong>{log.action}</strong>
+                    <span>{log.success ? "success" : "failed"}</span>
+                    <small>{log.path ?? "-"}</small>
+                    <JsonDetails title="Metadata" data={log.metadata} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <EmptyState text="No audit logs" />
+            )}
+          </ReportPanel>
+
           <ReportPanel title="Review Queue" icon={<ClipboardList size={18} />}>
             {reviews.length ? (
               <div className="review-list">
@@ -526,6 +702,7 @@ function App() {
                       <span>{review.target_field_id ?? "-"}</span>
                       <em>{review.confidence === null ? "-" : review.confidence.toFixed(2)}</em>
                     </div>
+                    {review.reason ? <p className="quiet">{review.reason}</p> : null}
                     <div className="inline-actions">
                       <button
                         type="button"
@@ -669,6 +846,78 @@ function EmptyState({ text }: { text: string }) {
   return <div className="empty-state">{text}</div>;
 }
 
+function NumberField({
+  id,
+  label,
+  value,
+  min,
+  onChange
+}: {
+  id: string;
+  label: string;
+  value: number;
+  min: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <div className="control-group">
+      <label htmlFor={id}>{label}</label>
+      <input
+        id={id}
+        type="number"
+        min={min}
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+      />
+    </div>
+  );
+}
+
+function CheckboxField({
+  label,
+  checked,
+  onChange
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (value: boolean) => void;
+}) {
+  return (
+    <label className="checkbox-field">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+      />
+      <span>{label}</span>
+    </label>
+  );
+}
+
+function EvidenceList({ item }: { item: Record<string, any> }) {
+  const evidence = Array.isArray(item.evidence) ? item.evidence : [];
+  const evidenceText = asStringList(item.evidence_text);
+  const messages = evidence.length
+    ? evidence
+        .map((entry) =>
+          entry && typeof entry === "object"
+            ? String(entry.message ?? entry.type ?? "")
+            : String(entry)
+        )
+        .filter(Boolean)
+    : evidenceText;
+  if (!messages.length) {
+    return null;
+  }
+  return (
+    <ul className="evidence-list">
+      {messages.slice(0, 4).map((message, index) => (
+        <li key={`${message}-${index}`}>{message}</li>
+      ))}
+    </ul>
+  );
+}
+
 function TagList({ label, values }: { label: string; values: string[] }) {
   return (
     <div className="tag-list">
@@ -678,6 +927,12 @@ function TagList({ label, values }: { label: string; values: string[] }) {
       </div>
     </div>
   );
+}
+
+function asStringList(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string" && item.length > 0)
+    : [];
 }
 
 function JsonDetails({ title, data }: { title: string; data: unknown }) {

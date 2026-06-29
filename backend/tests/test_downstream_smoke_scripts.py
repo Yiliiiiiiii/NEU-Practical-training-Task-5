@@ -94,6 +94,47 @@ def test_export_training_corpus_writes_jsonl_with_metadata(tmp_path):
     assert rows[0]["metadata"]["source_block_ids"] == ["block_001"]
 
 
+def test_export_training_corpus_supports_granularity_filter(tmp_path):
+    module = load_script(EXPORT_SCRIPT, "export_training_corpus_granularity")
+    package_dir = write_package(
+        tmp_path,
+        chunks=[
+            {
+                "chunk_id": "chunk_parent",
+                "doc_id": "doc_001",
+                "task_id": "task_001",
+                "granularity": "parent",
+                "text": "parent text",
+                "summary": "parent",
+                "keywords": [],
+                "tags": {},
+                "source_block_ids": ["block_001"],
+            },
+            {
+                "chunk_id": "chunk_child",
+                "doc_id": "doc_001",
+                "task_id": "task_001",
+                "granularity": "child",
+                "parent_chunk_id": "chunk_parent",
+                "text": "child text",
+                "summary": "child",
+                "keywords": [],
+                "tags": {},
+                "source_block_ids": ["block_001"],
+            },
+        ],
+    )
+    output = tmp_path / "corpus" / "child.jsonl"
+
+    result = module.export_training_corpus(package_dir, output, granularity="child")
+    rows = [json.loads(line) for line in output.read_text(encoding="utf-8").splitlines()]
+
+    assert result["row_count"] == 1
+    assert rows[0]["id"] == "chunk_child"
+    assert rows[0]["metadata"]["granularity"] == "child"
+    assert rows[0]["metadata"]["parent_chunk_id"] == "chunk_parent"
+
+
 def write_package(
     tmp_path: Path,
     *,

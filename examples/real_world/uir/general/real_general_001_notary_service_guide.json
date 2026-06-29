@@ -1,0 +1,1290 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "h2"
+      },
+      "block_id": "real_general_001_notary_service_guide_b001",
+      "level": 2,
+      "source_anchor": null,
+      "text": "天门市公证服务办事指南（2025年版）",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "天门市公证服务办事指南",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "（ 2025 版）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、办理事项及证明材料清单",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "委托"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_general_001_notary_service_guide_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "( 自然人申办 ) 城市房屋所有权委托"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_general_001_notary_service_guide_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 申请人身份证明；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 委托书涉及的不动产权利证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 受托人身份证明影印件或者复印件 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 涉及不动产处分的，提交婚姻状况证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 二 )( 自然人申办 ) 一般事务性委托",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 受托人身份证明影印件或者复印件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 声明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）涉及法律事实的声明（出生、死亡、婚姻状况等）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 与声明的法律事实相关的证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）商标转让声明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 受让人身份证明影印件或者复印件；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 商标权利证明；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 申请人为法人、非法人组织的，提交章程（协议），涉及法律法规及章程（协议）规定需经权力机构决议或者有关部门批准的，提交决议或者批文。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 三 ) 放弃继承权声明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 申请人身份证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 被继承人等相关人员死亡证明影印件或者复印件 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 亲属关系证明影印件或者复印件 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 财产权利证明影印件或者复印件 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "5. 有遗嘱的，需提交遗嘱",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 四 ) 涉及其他法律行为的声明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 与声明的法律行为相关的证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 申请人为法人、非法人组织的，提交章程 ( 协议 ) ，涉及法律法规及章程 ( 协议 ) 规定需经权力机构决议或者有关部门批准的，提交决议或者批文。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 遗嘱",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）处分财产的遗嘱",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 遗嘱涉及具体财产的，提交财产权利证明；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 指定遗嘱执行人的，提交身份证明影印件或者复印件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）处理事务的遗嘱",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 指定遗嘱执行人的，提交身份证明影印件或者复印件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 继承",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 所有继承人的身份证明；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 被继承人（死者）的死亡证明或者注销户口证明或墓碑照片；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 全部法定继承人（父母、配偶子女）的基本情况及与被继承人的亲属关系证明表（见附件 3 ）；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 其他继承人已经死亡的，应当提交其死亡证明和全部法定继承人的亲属关系证明；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "5. 被继承人遗产的财产证明：不动产权证书、房产证、不动产产权情况表、土地证、存（单）折、存款证明、车辆登记证、购房合同及其他财产证明等；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "6. 被继承人生前有遗嘱或遗赠扶养协议的，应当提交其全部遗嘱或遗嘱扶养协议原件；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "7. 被继承人生前与配偶有夫妻财产约定的，应当提交书面约定协议；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "8. 不能亲自到场的继承人，在其所在地的公证处办理“放弃继承权声明书”公证；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "9. 委托他人代理申办公证的，应当提交经公证的委托书；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "10. 监护人代理申办公证的，应当提交监护资格证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "5. 公司章程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 公司章程文本；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 发起人协议或者股东名册 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 享有表决权的参会人员名册及身份证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "5. 会议通知 ( 或公告 ) 及会议文件 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "6. 事前经有关部门审核批准的，提交批准文件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "6. 出生（婚生子女）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 出生证明；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 生父母的身份证明、婚姻关系证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "7. 学历",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 学历证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "8. 学位",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 学位证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "9. 资格",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）法人资格",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 法定代表人身份证明书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）非法人组织资格",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 负责人身份证明书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "10. （自然人申办）纳税状况",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 纳税证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "11. 证书 ( 执照 )",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 申请公证的证书 ( 执照、其他证明 ) 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "12. 文本相符",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 申请公证的文本原本。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "13. 合同 ( 协议）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "(-) 婚前财产约定协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "申请人身份证明 ;",
+          "协议涉及具体财产的，提交财产权利证明。"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_general_001_notary_service_guide_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 二 ) 夫妻财产约定协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 申请人婚姻状况证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 协议涉及具体财产的，提交财产权利证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 三 ) 收养协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 被收养人身份证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b078",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 收养人婚姻状况证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b079",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 送养人、收养人、被收养人符合收养条件的证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b080",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 四 ) 解除收养协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b081",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 收养关系证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b082",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 被收养人未成年的，提交身份证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b083",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 五 ) 抚养协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b084",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 被抚养人身份证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b085",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 申请人之间以及与被抚养人关系证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b086",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 六 ) 变更抚养权协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b087",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 被抚养人身份证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b088",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 原抚养权证明，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b089",
+      "level": null,
+      "source_anchor": null,
+      "text": "( 七 )( 自然人申办 ) 遗赠扶养协议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b090",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 遗赠人近亲属关系证明 ;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b091",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 协议涉及具体的财产的，提交财产权利证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b092",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、办理条件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b093",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）当事人条件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b094",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 当事人应当具有完全民事行为能力；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b095",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 无民事行为能力人或者限制民事行为能力人应由法定代理人代理办理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b096",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）事项条件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b097",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请公证的事项必须是真实、合法的民事法律行为、有法律意义的事实和文书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "材料条件"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_general_001_notary_service_guide_b098",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b099",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请人需提供充分的证明材料，以证明申请公证事项的真实性和合法性。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b100",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、办理流程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b101",
+      "level": null,
+      "source_anchor": null,
+      "text": "办 公地址：天门市陆羽大道西 28 号（法律服务中心二楼）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b102",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、办理时限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b103",
+      "level": null,
+      "source_anchor": null,
+      "text": "对于法律关系简单、事实清楚、证明材料充分的公证事项，根据《公证办理提速清单（ 2024 年版）》要求，公证办理应在 5 个工作日或 10 个工作日以内出具公证书。但如果因不可抗力、补充证明材料或者需要核实有关情况的，所需时间不计算在期限内。（详情见附件 1 ）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b104",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、咨询电话",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b105",
+      "level": null,
+      "source_anchor": null,
+      "text": "0728-5239890",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b106",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、常见问题",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b107",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 问：办理继承权公证可否委托其他人代为办理？",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b108",
+      "level": null,
+      "source_anchor": null,
+      "text": "答：继承权公证的委托办理需要提供委托公证书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "问：身份证明有哪些？"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_general_001_notary_service_guide_b109",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b110",
+      "level": null,
+      "source_anchor": null,
+      "text": "答：自然人： 1. 境内自然人提供居民身份证、户口簿等 ;2. 香港澳门特别行政区自然人提供港澳居民来往内地通行证、港澳居民居住证、香港、澳门特别行政区居民身份证等 ;3. 台湾地区自然人提供台湾居民来往大陆通行证、台湾居民居住证等 ;4. 华侨提供中华人民共和国护照、国外长期居留身份证件等 ;5. 外籍自然人提供所在国护照、中国政府主管机关签发的居留证件等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b111",
+      "level": null,
+      "source_anchor": null,
+      "text": "组织： 1. 境内法人或非法人组织的，提供营业执照、事业单位法人证书、社会团体法人登记证、基金会法人登记证书、民办非企业登记证书等 ;2. 法定代表人或者负责人身份证明。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b112",
+      "level": null,
+      "source_anchor": null,
+      "text": "代理：本清单中公司章程、出生、学历、学位、资格、纳税状况、证书 ( 执照 ) 、文本相符公证，可以由代理人代为申办公证，代理人按以下情况提供相关证明 :1. 监护人代为申办的，需要提交监护人身份证明和代理权证明 ;2. 委托代理人代为申办的，需要提交委托代理人身份证明和授权委托书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b113",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 问：不动产权利证明有哪些？",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b114",
+      "level": null,
+      "source_anchor": null,
+      "text": "答：不动产权证书 ( 房屋所有权证、国有土地使用证等 ) 、不动产查档资料、购房合同、契税发票、生效裁判文书、公证书、拆迁安置协议等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b115",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 问：婚姻状况证明有哪些？",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b116",
+      "level": null,
+      "source_anchor": null,
+      "text": "答：结婚证、离婚证及离婚协议书、婚姻档案、夫妻关系证明书、 ( 生效 ) 离婚判决书、调解书等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "问：死亡证明有哪些？"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_general_001_notary_service_guide_b117",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b118",
+      "level": null,
+      "source_anchor": null,
+      "text": "答：公安机关出具载明死亡日期的死亡户口注销证明、死亡证明，医疗卫生机构出具的死亡医学证明，殡葬部门出具的火化证，人民法院宣告死亡的民事判决书、死亡 ( 继承 ) 公证书、人事部门档案等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b119",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、附件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b120",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 《公证办理提速清单（ 2024 年版）》；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b121",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 《亲属关系证明表》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "附件一.pdf",
+          "附件二.pdf"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_001_notary_service_guide_b122",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_001_notary_service_guide_b123",
+      "level": null,
+      "source_anchor": null,
+      "text": "扫一扫在手机上查看当前页面",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_001_notary_service_guide",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 123,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-29T01:35:10.108112+00:00",
+    "source_format": "html",
+    "source_sha256": "0e0d0c9649cd69b0a2a6f6e128f439678f9b2158607566d9448a3b123f0c1eab",
+    "source_site": "www.tianmen.gov.cn",
+    "source_url": "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/ssfj/zfxxgk/zc/qtzdgkwj/t_5842730.shtml",
+    "title": "天门市公证服务办事指南（2025年版）",
+    "标题": "天门市公证服务办事指南（2025年版）"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "0e0d0c9649cd69b0a2a6f6e128f439678f9b2158607566d9448a3b123f0c1eab"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_001_notary_service_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

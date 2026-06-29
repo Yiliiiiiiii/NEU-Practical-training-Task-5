@@ -1,14 +1,14 @@
 """Helpers for downstream consumers of SchemaPack output packages."""
 
+import hashlib
+import json
+import re
+import zipfile
 from collections.abc import Iterator
 from contextlib import contextmanager
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any
-import hashlib
-import json
-import re
-import zipfile
 
 
 class PackageReadError(ValueError):
@@ -43,6 +43,19 @@ def load_manifest(package_dir: Path) -> dict[str, Any]:
     if not isinstance(manifest, dict):
         raise PackageReadError("manifest.json must be a JSON object")
     return manifest
+
+
+def load_metadata(package_dir: Path) -> dict[str, Any]:
+    metadata_path = package_dir / "metadata.json"
+    if not metadata_path.is_file():
+        return {}
+    try:
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise PackageReadError(f"metadata.json is invalid: {exc}") from exc
+    if not isinstance(metadata, dict):
+        raise PackageReadError("metadata.json must be a JSON object")
+    return metadata
 
 
 def validate_manifest_files(package_dir: Path, manifest: dict[str, Any]) -> None:
@@ -93,8 +106,18 @@ def read_validated_package(package_path: Path) -> tuple[dict[str, Any], list[dic
     with resolved_package_dir(package_path) as package_dir:
         manifest = load_manifest(package_dir)
         validate_manifest_files(package_dir, manifest)
+        manifest["_metadata"] = load_metadata(package_dir)
         chunks = load_chunks(package_dir)
         return manifest, chunks
+
+
+def filter_chunks_by_granularity(
+    chunks: list[dict[str, Any]],
+    granularity: str,
+) -> list[dict[str, Any]]:
+    if granularity == "all":
+        return chunks
+    return [chunk for chunk in chunks if chunk.get("granularity") == granularity]
 
 
 def search_chunks(chunks: list[dict[str, Any]], query: str) -> dict[str, Any] | None:
@@ -150,13 +173,17 @@ def chunk_source_linked(chunk: dict[str, Any]) -> bool:
 
 def training_metadata(manifest: dict[str, Any], chunk: dict[str, Any]) -> dict[str, Any]:
     generator = manifest.get("generator") if isinstance(manifest.get("generator"), dict) else {}
+    metadata = manifest.get("_metadata") if isinstance(manifest.get("_metadata"), dict) else {}
     return {
         "doc_id": chunk.get("doc_id") or manifest.get("doc_id"),
         "task_id": chunk.get("task_id") or manifest.get("task_id"),
         "package_id": manifest.get("package_id"),
-        "schema_id": generator.get("schema_id"),
-        "schema_version": generator.get("schema_version"),
-        "template_id": generator.get("template_id"),
+        "schema_id": metadata.get("schema_id") or generator.get("schema_id"),
+        "schema_version": metadata.get("schema_version") or generator.get("schema_version"),
+        "template_id": metadata.get("template_id") or generator.get("template_id"),
+        "template_version": metadata.get("template_version") or generator.get("template_version"),
+        "granularity": chunk.get("granularity"),
+        "parent_chunk_id": chunk.get("parent_chunk_id"),
         "tags": chunk.get("tags", {}),
         "keywords": chunk.get("keywords", []),
         "summary": chunk.get("summary", ""),

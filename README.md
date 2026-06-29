@@ -22,12 +22,15 @@ Implemented:
   CRUD-style version creation, draft/active/archived status transitions,
   referenced-version protections, and immutable task version snapshots
 - Field candidate extraction service for UIR metadata, table rows, and block hints
-- Deterministic Mapping service for exact, alias, regex, type, fuzzy, and optional LLM review suggestions
+- Deterministic Mapping service for exact, alias, regex, type, fuzzy, and
+  optional LLM review suggestions, with confidence tiers, structured evidence,
+  risk flags, badcase filters, and review-required reasons
 - Transform service for mapped field projection, date/number normalization, enum maps, and defaults
 - Canonical model builder preserving schema-aligned data and UIR source blocks
 - Render service for structured JSON, Markdown, and source-linked chunks
-- Chunk organization service for deterministic summaries, keywords, content tags,
-  management tags, quality tags, entity-tag placeholders, and source links
+- Configurable chunk organization service for deterministic summaries, keywords,
+  content tags, management tags, quality tags, entity-tag placeholders, source
+  links, protected table/list/code blocks, and optional parent-child chunks
 - Validation service for schema fields and rendered artifact consistency
 - Manifest, package ZIP, and package verifier services
 - UIR document import, list, and detail APIs
@@ -44,18 +47,22 @@ Implemented:
   template reads, and metrics
 - Optional LLM fallback adapter layer with disabled, deterministic stub, and
   OpenAI-compatible modes; default disabled, always review-required, with
-  latency/hash metadata and badcase filtering
+  bounded retries, per-task suggestion caps, timeout warnings, latency/hash
+  metadata, safe configuration snapshots, and badcase filtering
 - Schema/template catalog governance APIs and task report/package retrieval APIs
   for the UI
 - Minimal React/Vite frontend workbench for import, task creation, execution,
-  mapping review, validation, content organization, review approval, knowledge
-  pack activation, chunk preview, collapsible raw JSON reports, and package
-  download
+  mapping review with evidence/risk flags, validation, content organization,
+  review approval, knowledge pack activation, content organization options,
+  enriched chunk preview, collapsible raw JSON reports, and package download
 - Containerized deployment profile with backend/frontend Dockerfiles, Nginx
   proxying, Docker Compose volumes, and production environment defaults
+- Optional API key auth, task/package audit logs, audit log API, and safe
+  retention cleanup script
 - Downstream package smoke scripts for ZIP/directory ingestion checks and
   training-corpus JSONL export
 - OpenAPI export script and `docs/openapi.json`
+- Unified local verification script and GitHub Actions CI workflow
 - Demo workflow guide in `docs/demo_workflow.md`
 - Final demo script, requirement mapping, badcase analysis, and API examples
   under `docs/`
@@ -64,8 +71,9 @@ Implemented:
 
 Remaining production hardening not implemented yet:
 
-- Authentication, authorization, tenancy, audit logging, and operator controls
-- Hosted model credentials, model evaluation, and production LLM operations
+- Authorization, tenancy, SSO/TLS integration, and advanced operator controls
+- Hosted credential provisioning, model evaluation, and enterprise LLM
+  monitoring
 
 ## Backend
 
@@ -123,6 +131,7 @@ POST /api/v1/tasks/{task_id}/execute
 GET  /api/v1/tasks/{task_id}/reports/{report_name}
 GET  /api/v1/tasks/{task_id}/package
 GET  /api/v1/tasks/{task_id}/package/download
+GET  /api/v1/audit-logs
 ```
 
 Supported task report names include `mapping`, `validation`, `transform`,
@@ -148,6 +157,12 @@ Lint:
 ```powershell
 cd backend
 .\.venv\Scripts\python -m ruff check .
+```
+
+Unified verification from the repository root:
+
+```powershell
+.\backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
 ## Frontend
@@ -192,10 +207,15 @@ SQLite tables on backend startup, and keeps `LLM_MODE=disabled` by default. See
 
 Final delivery support documents:
 
+- `docs/developer_guide.md`
+- `docs/openapi_workflow.md`
 - `docs/final_demo_script.md`
+- `docs/demo_workflow.md`
+- `docs/deployment.md`
 - `docs/requirement_mapping.md`
 - `docs/badcase_analysis.md`
 - `docs/api_usage_examples.md`
+- `docs/package_spec.md`
 
 ## Optional LLM Fallback
 
@@ -208,10 +228,18 @@ LLM_MODE=openai_compatible
 LLM_BASE_URL=https://your-compatible-endpoint/v1
 LLM_API_KEY=...
 LLM_MODEL=...
+LLM_TIMEOUT_SECONDS=20
+LLM_MAX_RETRIES=0
+LLM_MAX_SUGGESTIONS_PER_TASK=20
+LLM_STRICT_FAILURE=false
 ```
 
 Suggestions remain `review_required`, include model/latency/hash metadata, and
-are filtered by badcase protections. API keys are not written into reports.
+are filtered by badcase protections. Request failures become mapping warnings
+and human-review items by default. Set task option `strict_llm=true` only when
+an LLM failure must fail the whole task. API keys are read from the environment,
+never from task options, and are redacted from snapshots, reports, and audit
+metadata.
 
 ## Production-like Evaluation
 
@@ -242,7 +270,7 @@ directory:
 
 ```powershell
 .\backend\.venv\Scripts\python.exe scripts\smoke_rag_ingest.py --package reports\packages\phase_b\packages\pkg_eval_policy_001_standard\standard_package.zip --query "鍒跺害 绠＄悊"
-.\backend\.venv\Scripts\python.exe scripts\export_training_corpus.py --package reports\packages\phase_b\packages\pkg_eval_policy_001_standard\standard_package.zip --out reports\training_corpus.jsonl
+.\backend\.venv\Scripts\python.exe scripts\export_training_corpus.py --package reports\packages\phase_b\packages\pkg_eval_policy_001_standard\standard_package.zip --out reports\training_corpus.jsonl --granularity all
 ```
 
 This checkout now contains the core production conversion services, including
@@ -253,9 +281,40 @@ Effective Template services to derive draft packs, persist review records and
 knowledge candidates, activate packs, and resolve effective templates while
 preserving badcase protections.
 
+## Content Organization Options
+
+Task creation accepts optional deterministic content organization settings under
+`options.content_organization`. Supported strategies are `fixed_window`,
+`heading_aware`, `source_block_aware`, `table_protect`, and `parent_child`.
+When omitted, the legacy render-to-chunk behavior remains compatible. When
+provided, generated chunks include strategy, token estimate, character count,
+quality flags, title path, source links, and optional parent-child identifiers.
+
+## Real-world UIR Dataset
+
+The independent `examples/real_world/` toolchain builds traceable UIR evaluation
+inputs from official public HTML pages, text-layer PDFs, and optional DOCX files:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\collect_real_world_sources.py
+backend\.venv\Scripts\python.exe scripts\build_real_world_uir.py
+backend\.venv\Scripts\python.exe scripts\validate_real_world_uir.py
+backend\.venv\Scripts\python.exe scripts\eval_real_world_uir.py
+```
+
+Raw downloads remain in the ignored local cache. Generated UIR files retain the
+source URL, retrieval timestamp, source SHA-256, format, and extraction method.
+Scanned PDFs are identified and skipped; the toolchain does not perform OCR.
+See [the dataset guide](docs/real_world_uir_dataset.md) for source policy,
+privacy checks, reproduction steps, and limitations.
+
 ## Project Boundaries
 
-The project receives UIR as input. It does not parse PDF, Word, Excel, images, OCR outputs, or raw source files. It does not implement cleaning, normalization, full quality scoring, full RAG, or model training.
+The production system receives UIR as input. It does not parse PDF, Word, Excel,
+images, OCR outputs, or raw source files. The separate real-world dataset
+toolchain performs offline example construction only; it does not expand the
+production API boundary. The project does not implement full quality scoring,
+full RAG, or model training.
 
 The core development line remains:
 

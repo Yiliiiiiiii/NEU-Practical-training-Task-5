@@ -1,0 +1,837 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "沪科指南〔2025〕3号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "为深入实施创新驱动发展战略，加快建设具有全球影响力的科技创新中心，根据《上海市建设具有全球影响力的科技创新中心“十四五”规划》，上海市科学技术委员会特发布2025年度科技产业高质量发展计划“生物医药创新发展”项目申报指南。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、 征集范围",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题一、生物、化学新药研发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "新药临床研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：完成创新药物（药品注册分类1类）I、II或III期临床试验（其中细胞与基因治疗1类新药需完成早期临床试验或确证性临床试验）并取得临床试验总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：根据国家药品监督管理局许可的创新药物临床试验方案，开展I、II或III期临床试验（早期临床试验或确证性临床试验）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "执行期限：2025年5月1日至2028年4月30日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市企业。申报时须扫描上传临床试验批准通知书、伦理批件及其他相关证明文件。申报Ⅱ、III期以及确证性临床试验的项目还须扫描上传前一期临床试验总结报告摘要、相关结论意见等重要内容。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题二、中药创新与传承",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1、中药创新药临床研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：完成中药新药I、II或III期临床试验并获得临床试验总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：根据国家药品监督管理局许可的中药新药临床试验方案，开展Ⅰ、Ⅱ或Ⅲ期临床试验。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，Ⅰ期临床试验每项不超过100万元，Ⅱ期临床试验每项不超过150万元，Ⅲ期临床试验每项不超过300万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市企业。申报时须扫描上传临床试验批准通知书、伦理批件及其他相关证明文件。申报Ⅱ、III期临床试验的项目还须扫描上传前一期临床试验总结报告摘要、相关结论意见等重要内容。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2、古代经典名方中药复方制剂研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：完成古代经典名方品种（指国家中医药管理局发布的《古代经典名方目录（第一批）》《古代经典名方目录（第二批儿科部分）》和《古代经典名方目录（第二批）》收载品种）的药学及非临床安全性研究，提交产品上市注册申请并获得受理号。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：按照《药品注册管理办法》《中药注册管理专门规定》《古代经典名方关键信息考证原则》《古代经典名方中药复方制剂简化注册审批管理规定》《古代经典名方关键信息表》等相关规定，完成申报古代经典名方中药复方制剂所要求的关键信息考证及研究、药学研究、安全性评价等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，每项资助额度不超过150万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市药品生产企业。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题三、医疗器械与装备开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1、第二、三类医疗器械工程化样机/样品研制",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：完成第二、三类医疗器械工程化样机/样品研制，取得国家认可的第三方检测机构出具的型检报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：针对医学影像诊疗设备、微创植介入器械、体外诊断设备等第二、三类医疗器械实验室样机/样品，进一步优化产品的关键技术参数，明确并验证相关生产工艺，形成产品技术要求，研制出工程化样机/样品。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，每项资助额度不超过100万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市医疗器械生产企业。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2、第二、三类医疗器械的注册临床评价",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：完成产品的注册临床评价，并获得国家药品监督管理部门颁发的产品注册申请受理号。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：针对已获国家认可的第三方检测机构型检报告的第二、三类医疗器械，开展以产品注册申报为导向的临床试验研究，验证其临床的安全性与有效性，并完成临床评价。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：持有型检报告的本市企业。申报单位应当扫描上传国家认可的第三方检测机构出具的型检报告（包括首页、结论页、签章页等主要内容）。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题四、生物医药产业技术开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1、新型药物制剂开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发具有自主知识产权的药物新剂型，获得相关发明专利申请号，在具有GLP资质的机构完成新剂型药物的有效性和安全性等关键技术指标评价，进行药物临床试验申报并取得受理号。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：以提高药物安全性、有效性、稳定性、用药依从性等为导向，围绕药物制剂新剂型、新技术的开发与应用，开展药物修饰、微环境调控或药物载体等新型药物制剂的研究（包括但不限于微球、胶束、3D打印制剂、蛋白/多肽载体、复杂注射剂等），将研究成果应用于药物开发。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市企业。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2、药物技术平台开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：建设具有核心竞争力的前沿药物技术平台，应用该技术平台开发相关药物，完成其临床前研究及药物临床试验申报，并取得受理号。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：瞄准全球生物医药产业发展前沿方向，在双抗/多抗药物、核酸药物等生物医药新赛道、新领域建设具有核心竞争力的技术平台，应用该平台形成的技术能力，在具有GLP资质的机构完成具有自主知识产权产品的临床前研究，并形成评价报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，每项资助额度不超过300万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题五、实验动物研发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1、实验动物资源开发、应用及保存研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：夯实科研用实验动物基础条件，拓展猪、羊等地方品种实验动物资源。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：培育遗传背景清晰、质量稳定，满足药物、医疗器械研发、安全性评价等需求的大型实验动物，拓展浦东白猪、崇明白山羊等地方品种实验动物资源，对标国家实验动物种质标准要求，完成相关种质资源的冷冻保藏和实验动物新资源登记，以及上海实验动物研究中心实验动物种质资源库入库工作，并建立50对及以上的相关实验动物种群。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，每项资助额度不超过200万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：已获本市实验动物生产许可证的企业。每个单位申报项目限报1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2、实验动物质量控制",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：解析实验动物遗传背景及表型关系，推动实验动物和人类健康与疾病比较医学发展，进一步提升实验动物质量控制。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：围绕小鼠、大鼠、猪等常用实验动物的遗传质量控制领域，开展实验动物基因表达蛋白质组学研究，结合环境、营养等质控因子，探索在生理代谢、疾病发生过程中实验动物与人类基因表达的差异，建立并验证实验动物靶基因的稳定表型，发表相关高水平论文；形成实验动物表观遗传控制检测方法与质量体系，申请相关专利，取得上海实验动物研究中心等三家以上第三方机构应用报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，每项资助额度不超过50万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市已获实验动物生产或使用许可证的单位申报，涉及病原微生物的实验需具备相应生物安全等级的动物实验室资质，每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3、动物模型研究和开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：运用新技术、新方法，构建高质量、标准化的人源化、转多基因的临床应用型高质量标准化动物模型，为健康研究、疾病干预和药物开发提供支撑。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：基于基因工程等技术，构建多靶点人源化动物模型，为神经系统、免疫系统疾病及罕见病等提供新药筛选、毒性评价提供标准实验动物，并完成相关动物模型的开发与应用，取得相关应用报告，同时完成上海实验动物研究中心实验动物种质资源评价并入库。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：我市已获实验动物生产或使用许可证的企业。每个单位申报项目不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、申报要求",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "除满足前述相应条件外，还须遵循以下要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 项目申报单位应当是注册在本市的法人或非法人组织，具有组织项目实施的相应能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 对于申请人在以往市级财政资金或其他机构（如科技部、国家自然科学基金等）资助项目基础上提出的新项目，应明确阐述二者的异同、继承与发展关系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 所有申报单位和项目参与人应遵守科研诚信管理要求，项目负责人应承诺所提交材料真实性，申报单位应当对申请人的申请资格负责，并对申请材料的真实性和完整性进行审核，不得提交有涉密内容的项目申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 申报项目若提出回避专家申请的，须在提交项目可行性方案的同时，上传由申报单位出具公函提出回避专家名单与理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "5. 所有申报单位和项目参与人应遵守科技伦理准则。拟开展的科技活动应进行科技伦理风险评估，涉及科技部《科技伦理审查办法（试行）》（国科发监〔2023〕167号）第二条所列范围科技活动的，应按要求进行科技伦理审查并提供相应的科技伦理审查批准材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "6. 所有申报单位和项目参与人应遵守人类遗传资源管理相关法规和病原微生物实验室生物安全管理相关规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "7. 已作为项目负责人承担市科委科技计划在研项目2项及以上者，不得作为项目负责人申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "8. 项目经费预算编制应当真实、合理，符合市科委科技计划项目经费管理的有关要求。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "9. 每位项目负责人申报项目不超过1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、申报方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（svc.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "【继续填写】使用“一网通办”登录后，继续该项目的填报。有关操作可参阅在线帮助。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 项目网上填报起始时间为2025年3月17日9:00，截止时间（含申报单位网上审核提交）为2025年4月3日16:30 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、评审方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "采用一轮通讯评审方式。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、立项公示",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会将按规定向社会公示拟立项项目清单，接受公众异议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、咨询电话",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b078",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：8008205114（座机）、4008205114（手机）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b079",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_002_biomed_project_guide_b080",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年3月7日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_002_biomed_project_guide",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 80,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-29T01:39:09.436065+00:00",
+    "source_format": "html",
+    "source_sha256": "2ce2a924b1561aaede0f2dae4d248ccc2efe8993f070bad18077fceb129ac61c",
+    "source_site": "stcsm.sh.gov.cn",
+    "source_url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20250307/fff38685e3a34a599574acbfe102b67e.html",
+    "title": "关于发布上海市2025年度科技产业高质量发展计划“生物医药创新发展”项目申报指南的通知_项目申报_上海市科学技术委员会",
+    "标题": "关于发布上海市2025年度科技产业高质量发展计划“生物医药创新发展”项目申报指南的通知_项目申报_上海市科学技术委员会"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "2ce2a924b1561aaede0f2dae4d248ccc2efe8993f070bad18077fceb129ac61c"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_002_biomed_project_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}
