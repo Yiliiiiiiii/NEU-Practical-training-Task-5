@@ -722,7 +722,7 @@ Run focused tests, full backend checks, and
 ### Task 7: Phase 4 Frontend Evidence Panels
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 6
 **Parallelizable:** No (integrates all preceding evidence payloads)
@@ -740,7 +740,7 @@ Run focused tests, full backend checks, and
 - Modify: `frontend/src/types.ts`
 - Modify: `frontend/src/styles.css`
 
-- [ ] **Step 1: Write failing pure helper tests**
+- [x] **Step 1: Write failing pure helper tests**
 
 ```typescript
 import { describe, expect, it } from "vitest";
@@ -767,18 +767,18 @@ describe("evidence helpers", () => {
 });
 ```
 
-- [ ] **Step 2: Run Vitest and verify RED**
+- [x] **Step 2: Run Vitest and verify RED**
 
 Run `npm test -- --run src/evidence.test.ts`. Expected: missing module
 or exported helper failure.
 
-- [ ] **Step 3: Implement pure evidence helpers**
+- [x] **Step 3: Implement pure evidence helpers**
 
 Implement typed, deterministic `filterChunks`, `suggestedAction`, mapping status
 tone, manifest verification merge, and SHA truncation. Do not invent field
 values.
 
-- [ ] **Step 4: Implement the five focused components**
+- [x] **Step 4: Implement the five focused components**
 
 Each component accepts data and filter/action props only. It must render:
 
@@ -800,19 +800,19 @@ all low-confidence/review/badcase rows; add strategy/table/quality filters;
 render parent-child IDs; show full SHA inside expanded details; show the exact
 knowledge-loop command when unavailable.
 
-- [ ] **Step 5: Integrate API types and fetches**
+- [x] **Step 5: Integrate API types and fetches**
 
 Add `api.getManifestReport(taskId)`,
 `api.getVerifierReport(taskId)`, and `api.getKnowledgeLoopReport()`. Extend
 `refreshArtifacts` without changing the import/create/execute sequence.
 
-- [ ] **Step 6: Replace inline report fragments in App**
+- [x] **Step 6: Replace inline report fragments in App**
 
 Keep workflow controls and existing raw JSON details, but delegate the five
 evidence sections to the new components. Add responsive styles without a UI
 framework.
 
-- [ ] **Step 7: Verify frontend and backend contract**
+- [x] **Step 7: Verify frontend and backend contract**
 
 Run:
 
@@ -826,7 +826,7 @@ F:\p2\backend\.venv\Scripts\python.exe -m pytest -q
 
 Expected: all tests and build pass.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 Commit the helper, tests, components, App/API/types/styles, and no generated
 `dist` files.
