@@ -424,7 +424,7 @@ git commit -m "feat: add dedicated procurement schema and mapping"
 ### Task 4: Phase 2 Real-World Knowledge Loop
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 3
 **Parallelizable:** No (uses the dedicated procurement catalog and feeds the frontend comparison)
@@ -437,7 +437,7 @@ git commit -m "feat: add dedicated procurement schema and mapping"
 - Generate: `reports/real_world_knowledge_loop_report.json`
 - Generate: `reports/real_world_knowledge_loop_report.md`
 
-- [ ] **Step 1: Add explicit approve/reject decisions**
+- [x] **Step 1: Add explicit approve/reject decisions**
 
 Include at least one safe approval and one semantic rejection:
 
@@ -446,7 +446,7 @@ Include at least one safe approval and one semantic rejection:
 {"source_field":"最高限价","target_field":"winning_amount","decision":"reject","reason":"最高限价不是中标金额"}
 ```
 
-- [ ] **Step 2: Write failing knowledge-loop tests**
+- [x] **Step 2: Write failing knowledge-loop tests**
 
 Test pure decision loading plus existing service behavior:
 
@@ -464,11 +464,11 @@ def test_activation_does_not_mutate_old_snapshot(tmp_path):
     assert result["old_snapshot_unchanged"] is True
 ```
 
-- [ ] **Step 3: Run tests and verify RED**
+- [x] **Step 3: Run tests and verify RED**
 
 Expected: missing script/module.
 
-- [ ] **Step 4: Implement an isolated evaluation context**
+- [x] **Step 4: Implement an isolated evaluation context**
 
 Create:
 
@@ -491,7 +491,7 @@ Use `TaskExecutionService`, `ReviewKnowledgeWorkflowService`, and effective
 template resolution. Persist a serialized baseline snapshot before activation,
 rerun with a new task afterward, and compare the original bytes.
 
-- [ ] **Step 5: Implement metrics and reports**
+- [x] **Step 5: Implement metrics and reports**
 
 Expose:
 
@@ -507,7 +507,7 @@ def collect_metrics(results: list[dict[str, Any]]) -> dict[str, int]:
 The top-level report must contain all twelve guideline metrics, per-decision
 evidence, remaining ambiguous cases, and a before/after Markdown table.
 
-- [ ] **Step 6: Verify focused behavior and generate both reports**
+- [x] **Step 6: Verify focused behavior and generate both reports**
 
 Run the focused test, then:
 
@@ -518,7 +518,7 @@ F:\p2\backend\.venv\Scripts\python.exe scripts/eval_real_world_knowledge_loop.py
 Expected: both reports exist, `badcase_violation_count == 0`, and
 `old_snapshot_unchanged == true`.
 
-- [ ] **Step 7: Run Phase 2 regression and commit**
+- [x] **Step 7: Run Phase 2 regression and commit**
 
 ```powershell
 git add examples/real_world/review_fixtures scripts/eval_real_world_knowledge_loop.py backend/tests/test_real_world_knowledge_loop.py docs/real_world_knowledge_loop.md reports/real_world_knowledge_loop_report.*
