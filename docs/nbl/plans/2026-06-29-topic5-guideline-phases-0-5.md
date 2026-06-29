@@ -285,7 +285,7 @@ git commit -m "feat: generate topic 5 acceptance evidence report"
 ### Task 3: Phase 1 Procurement Schema, Template, and Evaluation Routing
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** Task 2
 **Parallelizable:** No (later real-world and knowledge-loop metrics depend on this catalog)
@@ -299,7 +299,7 @@ git commit -m "feat: generate topic 5 acceptance evidence report"
 - Modify: `scripts/eval_real_world_uir.py`
 - Modify: `docs/real_world_uir_dataset.md`
 
-- [ ] **Step 1: Write failing fixture validity tests**
+- [x] **Step 1: Write failing fixture validity tests**
 
 ```python
 def test_procurement_schema_and_template_load():
@@ -317,11 +317,11 @@ def test_catalog_seed_discovers_procurement(db_session):
     assert service.load_template("procurement_doc_base_v1").schema_id == "procurement_doc"
 ```
 
-- [ ] **Step 2: Run validity tests and verify RED**
+- [x] **Step 2: Run validity tests and verify RED**
 
 Expected: lookup failure for `procurement_doc`.
 
-- [ ] **Step 3: Add the procurement schema**
+- [x] **Step 3: Add the procurement schema**
 
 Declare these exact field IDs:
 
@@ -351,7 +351,7 @@ PROCUREMENT_FIELDS = [
 Mirror required fields and types in `json_schema`, including enums for canonical
 notice and procurement-method values.
 
-- [ ] **Step 4: Add the procurement mapping template**
+- [x] **Step 4: Add the procurement mapping template**
 
 Provide explicit aliases for every field, regex rules for project ID, amounts,
 notice date, and deadline, `currency: CNY`, and these enum maps:
@@ -376,7 +376,7 @@ notice date, and deadline, `currency: CNY`, and these enum maps:
 }
 ```
 
-- [ ] **Step 5: Write failing mapping behavior tests**
+- [x] **Step 5: Write failing mapping behavior tests**
 
 Use real `CandidateService` and `MappingService` to assert:
 
@@ -388,13 +388,13 @@ assert not crossed_amount_targets(report)
 assert ambiguous_multiple_amounts(report).status == "review_required"
 ```
 
-- [ ] **Step 6: Make procurement mapping tests GREEN**
+- [x] **Step 6: Make procurement mapping tests GREEN**
 
 Adjust fixture aliases/regex confidence only. Change production mapping logic
 only if a failing test proves existing ambiguity handling is insufficient; in
 that case add the smallest badcase/risk rule and retain strategy order.
 
-- [ ] **Step 7: Route real-world procurement explicitly**
+- [x] **Step 7: Route real-world procurement explicitly**
 
 Introduce:
 
@@ -411,7 +411,7 @@ If either procurement catalog item is absent, record
 `catalog_status: "missing"` and fail that sample visibly. Do not substitute
 `general_doc`.
 
-- [ ] **Step 8: Run Phase 1 verification and commit**
+- [x] **Step 8: Run Phase 1 verification and commit**
 
 Run procurement tests, full pytest, Ruff, production-like evaluation, and the
 catalog API tests. Commit:
