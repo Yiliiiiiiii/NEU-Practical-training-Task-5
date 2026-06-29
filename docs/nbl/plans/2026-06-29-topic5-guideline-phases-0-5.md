@@ -25,7 +25,7 @@ package directories and temporary databases stay ignored.
 ### Task 1: Repair Clean-Checkout Reproducibility
 
 **状态**
-- [ ] 任务完成
+- [x] 任务完成
 
 **Dependencies:** None
 **Parallelizable:** No (establishes the trustworthy baseline for every later task)
@@ -37,7 +37,7 @@ package directories and temporary databases stay ignored.
 - Modify: `README.md`
 - Modify: `docs/developer_guide.md`
 
-- [ ] **Step 1: Make the hidden SQLite dependency fail deterministically**
+- [x] **Step 1: Make the hidden SQLite dependency fail deterministically**
 
 Add `monkeypatch.chdir(tmp_path)` and require an exact successful response:
 
@@ -52,7 +52,7 @@ def test_api_key_auth_disabled_allows_existing_requests(tmp_path, monkeypatch):
     assert response.json() == {"items": [], "total": 0}
 ```
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run:
 
@@ -63,7 +63,7 @@ F:\p2\backend\.venv\Scripts\python.exe -m pytest -q tests/test_governance_securi
 
 Expected: fail with `sqlite3.OperationalError: no such table: conversion_tasks`.
 
-- [ ] **Step 3: Isolate the authentication test database**
+- [x] **Step 3: Isolate the authentication test database**
 
 Refactor the helper to construct and initialize a temporary database and
 override the same dependency used by the route:
@@ -99,12 +99,12 @@ def make_auth_client(tmp_path, *, enabled: bool) -> TestClient:
     return TestClient(app)
 ```
 
-- [ ] **Step 4: Verify the database test is GREEN**
+- [x] **Step 4: Verify the database test is GREEN**
 
 Run the focused test and then the full backend suite. Expected: focused pass
 and `129 passed` or more in the full suite.
 
-- [ ] **Step 5: Pin valid frontend dependencies**
+- [x] **Step 5: Pin valid frontend dependencies**
 
 Replace invalid `^latest` declarations and add the test command:
 
@@ -139,12 +139,12 @@ Generate the lock file with `npm install`, remove the temporary junction before
 installing if present, then run `npm test -- --run --passWithNoTests` and
 `npm run build`. Expected: clean install and build exit 0.
 
-- [ ] **Step 6: Update setup documentation**
+- [x] **Step 6: Update setup documentation**
 
 Document `npm ci` for reproducible installs and state that tests create their
 own temporary databases.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```powershell
 git add backend/tests/test_governance_security.py frontend/package.json frontend/package-lock.json README.md docs/developer_guide.md
