@@ -2,7 +2,7 @@
 
 > 基于当前可读取证据，已通过检查：chunk_retrieval、downstream_smoke、frontend_build、knowledge_loop、llm_fallback、package_verification、production_like_eval、pytest、real_world_eval。尚未形成完整通过证据：无。本报告不会把缺失、未运行或部分通过的检查表述为已完成。
 
-- 生成时间（UTC）：`2026-06-30T06:14:03.915079+00:00`
+- 生成时间（UTC）：`2026-06-30T07:44:48.890905+00:00`
 - 核心链路：`UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP`
 
 ## 1. 项目定位
@@ -23,7 +23,7 @@ SchemaPack Agent 面向已经进入 UIR 的文档内容，提供受 Schema 和 M
 | 检查 | 状态 | 证据结论 | 建议复现命令 |
 | --- | --- | --- | --- |
 | pytest | passed | final handoff records the backend pytest, ruff, and OpenAPI verification gate as passed | `cd backend; python -m pytest -q` |
-| frontend_build | passed | final handoff records the frontend build and test gates as passed | `cd frontend; npm run build` |
+| frontend_build | passed | final handoff records the frontend production build as successful | `cd frontend; npm run build` |
 | production_like_eval | passed | gold and badcase pass rates are 1.0 | `python scripts/eval_production_like.py` |
 | real_world_eval | passed | all reported real-world cases passed import, task execution, and package verification; validation gaps are recorded separately | `python scripts/eval_real_world_uir.py` |
 | package_verification | passed | real-world report records package verification for every case | `python scripts/eval_production_like.py` |
