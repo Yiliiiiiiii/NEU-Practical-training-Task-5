@@ -1,0 +1,4920 @@
+{
+  "by_doc_type": {
+    "general_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 3,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.25,
+      "package_valid_count": 3,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 3,
+      "review_required_count": 35,
+      "strict_pass_count": 0,
+      "strict_pass_rate": 0.0
+    },
+    "meeting_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 3,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.0,
+      "package_valid_count": 3,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 9,
+      "review_required_count": 35,
+      "strict_pass_count": 0,
+      "strict_pass_rate": 0.0
+    },
+    "policy_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 5,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.3704761904761905,
+      "package_valid_count": 5,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 13,
+      "review_required_count": 25,
+      "strict_pass_count": 0,
+      "strict_pass_rate": 0.0
+    }
+  },
+  "catalogs": {
+    "general_doc": {
+      "schema_id": "general_doc",
+      "template_id": "general_doc_base_v1"
+    },
+    "meeting_doc": {
+      "schema_id": "meeting_doc",
+      "template_id": "meeting_doc_base_v1"
+    },
+    "policy_doc": {
+      "schema_id": "policy_doc",
+      "template_id": "policy_doc_base_v1"
+    }
+  },
+  "documents": [
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "category",
+        "content",
+        "created_date",
+        "document_subtype",
+        "process_steps",
+        "published_at",
+        "service_object",
+        "source",
+        "tags",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 1,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_001_notary_service_guide",
+        "gold_mapping_count": 3,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.25,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/ssfj/zfxxgk/zc/qtzdgkwj/t_5842730.shtml"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.64 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.64 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_created_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "created_date",
+          "target_field_name": "created_date",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "2026-06-29T01:35:10.108112+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_category_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_extraction_truncated_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_truncated",
+            "source_path": "$.metadata.extraction_truncated"
+          },
+          "source_field_name": "extraction_truncated",
+          "source_path": "$.metadata.extraction_truncated",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": false
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_tags_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "tags",
+          "target_field_name": "tags",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.64 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.64 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_document_subtype_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "document_subtype",
+          "target_field_name": "document_subtype",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.45 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.45 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_published_at_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "published_at",
+          "target_field_name": "published_at",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "2026-06-29T01:35:10.108112+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_source_format_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_service_object_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_format",
+            "source_path": "$.metadata.source_format"
+          },
+          "source_field_name": "source_format",
+          "source_path": "$.metadata.source_format",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "service_object",
+          "target_field_name": "service_object",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "html"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.47 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.47 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_application_conditions_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.49 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.49 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_application_materials_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "application_materials",
+          "target_field_name": "application_materials",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f41c5415dcd0_source_site_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.55 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.55 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f41c5415dcd0_process_steps_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_site",
+            "source_path": "$.metadata.source_site"
+          },
+          "source_field_name": "source_site",
+          "source_path": "$.metadata.source_site",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "process_steps",
+          "target_field_name": "process_steps",
+          "task_id": "task_f41c5415dcd0",
+          "value_sample": "www.tianmen.gov.cn"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "task_id": "task_f41c5415dcd0",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "category",
+        "content",
+        "created_date",
+        "document_subtype",
+        "process_steps",
+        "published_at",
+        "service_object",
+        "source",
+        "tags",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 1,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_002_biomed_project_guide",
+        "gold_mapping_count": 3,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.25,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20250307/fff38685e3a34a599574acbfe102b67e.html"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.64 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.64 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_created_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "created_date",
+          "target_field_name": "created_date",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "2026-06-29T01:39:09.436065+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_category_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_extraction_truncated_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_truncated",
+            "source_path": "$.metadata.extraction_truncated"
+          },
+          "source_field_name": "extraction_truncated",
+          "source_path": "$.metadata.extraction_truncated",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": false
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_tags_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "tags",
+          "target_field_name": "tags",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.64 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.64 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_document_subtype_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "document_subtype",
+          "target_field_name": "document_subtype",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.45 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.45 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_published_at_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "published_at",
+          "target_field_name": "published_at",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "2026-06-29T01:39:09.436065+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_source_format_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_service_object_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_format",
+            "source_path": "$.metadata.source_format"
+          },
+          "source_field_name": "source_format",
+          "source_path": "$.metadata.source_format",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "service_object",
+          "target_field_name": "service_object",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "html"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.47 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.47 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_application_conditions_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.49 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.49 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_application_materials_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "application_materials",
+          "target_field_name": "application_materials",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2c349cc5dcd8_source_site_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.55 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.55 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2c349cc5dcd8_process_steps_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_site",
+            "source_path": "$.metadata.source_site"
+          },
+          "source_field_name": "source_site",
+          "source_path": "$.metadata.source_site",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "process_steps",
+          "target_field_name": "process_steps",
+          "task_id": "task_2c349cc5dcd8",
+          "value_sample": "stcsm.sh.gov.cn"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "task_id": "task_2c349cc5dcd8",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "attachments",
+        "category",
+        "contact",
+        "content",
+        "created_date",
+        "document_subtype",
+        "process_steps",
+        "published_at",
+        "service_object",
+        "source",
+        "tags",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 1,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_003_textile_application_flow",
+        "gold_mapping_count": 3,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.25,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "https://www.miit.gov.cn/cms_files/filemanager/1226211233/attach/20255/74e5a08865314012a4497aaeddc71c55.pdf"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.64 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.64 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_created_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "created_date",
+          "target_field_name": "created_date",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "2026-06-29T01:35:10.787310+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_category_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_page_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_count",
+            "source_path": "$.metadata.page_count"
+          },
+          "source_field_name": "page_count",
+          "source_path": "$.metadata.page_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": 2
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_tags_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "tags",
+          "target_field_name": "tags",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.64 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.64 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_document_subtype_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "document_subtype",
+          "target_field_name": "document_subtype",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "general_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.45 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.45 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_published_at_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "published_at",
+          "target_field_name": "published_at",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "2026-06-29T01:35:10.787310+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_source_format_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_service_object_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_format",
+            "source_path": "$.metadata.source_format"
+          },
+          "source_field_name": "source_format",
+          "source_path": "$.metadata.source_format",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "service_object",
+          "target_field_name": "service_object",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "pdf"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.47 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.47 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_application_conditions_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.49 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.49 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_application_materials_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "application_materials",
+          "target_field_name": "application_materials",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_source_site_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.55 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.55 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_process_steps_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_site",
+            "source_path": "$.metadata.source_site"
+          },
+          "source_field_name": "source_site",
+          "source_path": "$.metadata.source_site",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "process_steps",
+          "target_field_name": "process_steps",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": "www.miit.gov.cn"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_page_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_contact_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_count",
+            "source_path": "$.metadata.page_count"
+          },
+          "source_field_name": "page_count",
+          "source_path": "$.metadata.page_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "contact",
+          "target_field_name": "contact",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": 2
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2f110ed56c6f_page_text_lengths_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.54 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.54 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2f110ed56c6f_attachments_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_text_lengths",
+            "source_path": "$.metadata.page_text_lengths"
+          },
+          "source_field_name": "page_text_lengths",
+          "source_path": "$.metadata.page_text_lengths",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "attachments",
+          "target_field_name": "attachments",
+          "task_id": "task_2f110ed56c6f",
+          "value_sample": [
+            418,
+            245
+          ]
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "task_id": "task_2f110ed56c6f",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "agenda_items",
+        "attendees",
+        "content",
+        "deadlines",
+        "decision_items",
+        "decisions",
+        "departments",
+        "meeting_date",
+        "meeting_location",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_001_changning_executive_minutes",
+        "gold_mapping_count": 4,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 4,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "meeting_title",
+        "meeting_date",
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_标题_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.70 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.70 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_meeting_title_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "标题",
+            "source_path": "$.metadata.标题"
+          },
+          "source_field_name": "标题",
+          "source_path": "$.metadata.标题",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_title",
+          "target_field_name": "meeting_title",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "区政府常务会议纪要"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.55 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.55 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_meeting_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_date",
+          "target_field_name": "meeting_date",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "2026-06-29T01:35:09.455169+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_attendees_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "meeting_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_标题_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_topics_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "标题",
+            "source_path": "$.metadata.标题"
+          },
+          "source_field_name": "标题",
+          "source_path": "$.metadata.标题",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "topics",
+          "target_field_name": "topics",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "区政府常务会议纪要"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.54 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.54 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_decisions_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "decisions",
+          "target_field_name": "decisions",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.57 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.57 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_action_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "action_items",
+          "target_field_name": "action_items",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_page_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_count",
+            "source_path": "$.metadata.page_count"
+          },
+          "source_field_name": "page_count",
+          "source_path": "$.metadata.page_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": 2
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_extraction_method_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.45 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.45 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_meeting_location_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_method",
+            "source_path": "$.metadata.extraction_method"
+          },
+          "source_field_name": "extraction_method",
+          "source_path": "$.metadata.extraction_method",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_location",
+          "target_field_name": "meeting_location",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "pymupdf_text"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_page_text_lengths_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.54 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.54 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_departments_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_text_lengths",
+            "source_path": "$.metadata.page_text_lengths"
+          },
+          "source_field_name": "page_text_lengths",
+          "source_path": "$.metadata.page_text_lengths",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "departments",
+          "target_field_name": "departments",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": [
+            601,
+            271
+          ]
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_page_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_agenda_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_count",
+            "source_path": "$.metadata.page_count"
+          },
+          "source_field_name": "page_count",
+          "source_path": "$.metadata.page_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "agenda_items",
+          "target_field_name": "agenda_items",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": 2
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.47 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.47 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_decision_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "decision_items",
+          "target_field_name": "decision_items",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_deadlines_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "deadlines",
+          "target_field_name": "deadlines",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f77d9b886a32_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f77d9b886a32_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_f77d9b886a32",
+          "value_sample": "https://zwgk.shcn.gov.cn/xxgk/zfhy-zw/2025/42/76427/068df4034dad47d1a7f3ebf26270e893.pdf"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_f77d9b886a32",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "attendees",
+        "content",
+        "deadlines",
+        "decision_items",
+        "decisions",
+        "meeting_date",
+        "meeting_location",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_002_shaxian_executive_minutes",
+        "gold_mapping_count": 4,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 4,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "meeting_title",
+        "meeting_date",
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_标题_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.70 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.70 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_meeting_title_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "标题",
+            "source_path": "$.metadata.标题"
+          },
+          "source_field_name": "标题",
+          "source_path": "$.metadata.标题",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_title",
+          "target_field_name": "meeting_title",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "2025年12月19日区政府第78次常务会议 _ 政府常务会议 _ 沙县区人民政府门户网站"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.55 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.55 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_meeting_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_date",
+          "target_field_name": "meeting_date",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "2026-06-29T01:39:08.919308+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_attendees_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "meeting_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_标题_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_topics_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "标题",
+            "source_path": "$.metadata.标题"
+          },
+          "source_field_name": "标题",
+          "source_path": "$.metadata.标题",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "topics",
+          "target_field_name": "topics",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "2025年12月19日区政府第78次常务会议 _ 政府常务会议 _ 沙县区人民政府门户网站"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.54 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.54 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_decisions_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "decisions",
+          "target_field_name": "decisions",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.57 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.57 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_action_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "action_items",
+          "target_field_name": "action_items",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_extraction_truncated_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_truncated",
+            "source_path": "$.metadata.extraction_truncated"
+          },
+          "source_field_name": "extraction_truncated",
+          "source_path": "$.metadata.extraction_truncated",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": false
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_extraction_method_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.45 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.45 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_meeting_location_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_method",
+            "source_path": "$.metadata.extraction_method"
+          },
+          "source_field_name": "extraction_method",
+          "source_path": "$.metadata.extraction_method",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_location",
+          "target_field_name": "meeting_location",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "beautifulsoup_lxml"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.47 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.47 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_decision_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "decision_items",
+          "target_field_name": "decision_items",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_deadlines_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "deadlines",
+          "target_field_name": "deadlines",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1941d9d131bc_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1941d9d131bc_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_1941d9d131bc",
+          "value_sample": "https://www.fjsx.gov.cn/zwgk/qzfhy/qzfcwh/202601/t20260114_2183728.htm"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_1941d9d131bc",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "attendees",
+        "content",
+        "deadlines",
+        "decision_items",
+        "decisions",
+        "meeting_date",
+        "meeting_location",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_003_miluo_executive_minutes",
+        "gold_mapping_count": 4,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 4,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "meeting_title",
+        "meeting_date",
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_标题_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.70 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.70 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_meeting_title_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "标题",
+            "source_path": "$.metadata.标题"
+          },
+          "source_field_name": "标题",
+          "source_path": "$.metadata.标题",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_title",
+          "target_field_name": "meeting_title",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "2025年第47次常务会议纪要-汨罗市人民政府"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.55 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.55 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_meeting_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_date",
+          "target_field_name": "meeting_date",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "2026-06-29T01:38:05.237504+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_doc_type_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_attendees_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "doc_type",
+            "source_path": "$.metadata.doc_type"
+          },
+          "source_field_name": "doc_type",
+          "source_path": "$.metadata.doc_type",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "meeting_doc"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_标题_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_topics_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "标题",
+            "source_path": "$.metadata.标题"
+          },
+          "source_field_name": "标题",
+          "source_path": "$.metadata.标题",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "topics",
+          "target_field_name": "topics",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "2025年第47次常务会议纪要-汨罗市人民政府"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.54 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.54 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_decisions_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "decisions",
+          "target_field_name": "decisions",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.57 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.57 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_action_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "action_items",
+          "target_field_name": "action_items",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_extraction_truncated_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_truncated",
+            "source_path": "$.metadata.extraction_truncated"
+          },
+          "source_field_name": "extraction_truncated",
+          "source_path": "$.metadata.extraction_truncated",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": false
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_extraction_method_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.45 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.45 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_meeting_location_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_method",
+            "source_path": "$.metadata.extraction_method"
+          },
+          "source_field_name": "extraction_method",
+          "source_path": "$.metadata.extraction_method",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "meeting_location",
+          "target_field_name": "meeting_location",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "beautifulsoup_lxml"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.47 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.47 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_decision_items_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "decision_items",
+          "target_field_name": "decision_items",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_extraction_version_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_deadlines_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_version",
+            "source_path": "$.metadata.extraction_version"
+          },
+          "source_field_name": "extraction_version",
+          "source_path": "$.metadata.extraction_version",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "deadlines",
+          "target_field_name": "deadlines",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "0.1.0"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8427c4e42ccb_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8427c4e42ccb_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_8427c4e42ccb",
+          "value_sample": "https://www.miluo.gov.cn/25221/25235/71992/content_2323268.html"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_8427c4e42ccb",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "keywords",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 2,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_001_training_platform_rules",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 2,
+        "mapping_recall": 0.2857142857142857,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1b5965197929_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1b5965197929_effective_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_1b5965197929",
+          "value_sample": "2026-06-29T01:35:08.215112+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1b5965197929_extracted_block_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1b5965197929_keywords_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extracted_block_count",
+            "source_path": "$.metadata.extracted_block_count"
+          },
+          "source_field_name": "extracted_block_count",
+          "source_path": "$.metadata.extracted_block_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "keywords",
+          "target_field_name": "keywords",
+          "task_id": "task_1b5965197929",
+          "value_sample": 48
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1b5965197929_发文字号_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.89 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.89 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1b5965197929_document_number_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [
+            "real_policy_001_training_platform_rules_b003"
+          ],
+          "source_field": {
+            "source_name": "发文字号：",
+            "source_path": "$.blocks.real_policy_001_training_platform_rules_b003.rows.2"
+          },
+          "source_field_name": "发文字号：",
+          "source_path": "$.blocks.real_policy_001_training_platform_rules_b003.rows.2",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "document_number",
+          "target_field_name": "document_number",
+          "task_id": "task_1b5965197929",
+          "value_sample": "教监管〔2025〕1号 | 信息类别： | 基础教育"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1b5965197929_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1b5965197929_target_audience_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "target_audience",
+          "target_field_name": "target_audience",
+          "task_id": "task_1b5965197929",
+          "value_sample": "2026-06-29T01:35:08.215112+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1b5965197929_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1b5965197929_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_1b5965197929",
+          "value_sample": "https://www.moe.gov.cn/srcsite/A29/202503/t20250326_1184786.html"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_1b5965197929",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "effective_date",
+        "keywords",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 2,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_002_equipment_renewal",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.3333333333333333,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer",
+        "publish_date",
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_944a556aad61_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_944a556aad61_effective_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_944a556aad61",
+          "value_sample": "2026-06-29T01:37:59.591975+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_944a556aad61_extracted_block_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_944a556aad61_keywords_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extracted_block_count",
+            "source_path": "$.metadata.extracted_block_count"
+          },
+          "source_field_name": "extracted_block_count",
+          "source_path": "$.metadata.extracted_block_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "keywords",
+          "target_field_name": "keywords",
+          "task_id": "task_944a556aad61",
+          "value_sample": 75
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_944a556aad61_extraction_truncated_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_944a556aad61_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_truncated",
+            "source_path": "$.metadata.extraction_truncated"
+          },
+          "source_field_name": "extraction_truncated",
+          "source_path": "$.metadata.extraction_truncated",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_944a556aad61",
+          "value_sample": false
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_944a556aad61_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_944a556aad61_target_audience_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "target_audience",
+          "target_field_name": "target_audience",
+          "task_id": "task_944a556aad61",
+          "value_sample": "2026-06-29T01:37:59.591975+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_944a556aad61_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_944a556aad61_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_944a556aad61",
+          "value_sample": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202501/t20250108_1395564.html"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_944a556aad61",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "keywords",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 2,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_003_science_education_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.3333333333333333,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6333b1b8a5e8_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6333b1b8a5e8_effective_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_6333b1b8a5e8",
+          "value_sample": "2026-06-29T01:38:00.307633+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6333b1b8a5e8_extracted_block_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6333b1b8a5e8_keywords_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extracted_block_count",
+            "source_path": "$.metadata.extracted_block_count"
+          },
+          "source_field_name": "extracted_block_count",
+          "source_path": "$.metadata.extracted_block_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "keywords",
+          "target_field_name": "keywords",
+          "task_id": "task_6333b1b8a5e8",
+          "value_sample": 91
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6333b1b8a5e8_发文字号_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.89 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.89 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6333b1b8a5e8_document_number_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [
+            "real_policy_003_science_education_guide_b003"
+          ],
+          "source_field": {
+            "source_name": "发文字号：",
+            "source_path": "$.blocks.real_policy_003_science_education_guide_b003.rows.2"
+          },
+          "source_field_name": "发文字号：",
+          "source_path": "$.blocks.real_policy_003_science_education_guide_b003.rows.2",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "document_number",
+          "target_field_name": "document_number",
+          "task_id": "task_6333b1b8a5e8",
+          "value_sample": "教监管厅〔2025〕1号 | 信息类别： | 基础教育"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6333b1b8a5e8_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6333b1b8a5e8_target_audience_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "target_audience",
+          "target_field_name": "target_audience",
+          "task_id": "task_6333b1b8a5e8",
+          "value_sample": "2026-06-29T01:38:00.307633+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6333b1b8a5e8_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6333b1b8a5e8_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_6333b1b8a5e8",
+          "value_sample": "https://www.moe.gov.cn/srcsite/A29/202501/t20250122_1176589.html"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_6333b1b8a5e8",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "effective_date",
+        "keywords",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 2,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_004_student_loan_relief",
+        "gold_mapping_count": 4,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.4,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer",
+        "publish_date",
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_31a2f43a517d_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_31a2f43a517d_effective_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_31a2f43a517d",
+          "value_sample": "2026-06-29T01:38:02.119372+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_31a2f43a517d_extracted_block_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_31a2f43a517d_keywords_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extracted_block_count",
+            "source_path": "$.metadata.extracted_block_count"
+          },
+          "source_field_name": "extracted_block_count",
+          "source_path": "$.metadata.extracted_block_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "keywords",
+          "target_field_name": "keywords",
+          "task_id": "task_31a2f43a517d",
+          "value_sample": 10
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_31a2f43a517d_extraction_truncated_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.46 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.46 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_31a2f43a517d_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extraction_truncated",
+            "source_path": "$.metadata.extraction_truncated"
+          },
+          "source_field_name": "extraction_truncated",
+          "source_path": "$.metadata.extraction_truncated",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_31a2f43a517d",
+          "value_sample": false
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_31a2f43a517d_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_31a2f43a517d_target_audience_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "target_audience",
+          "target_field_name": "target_audience",
+          "task_id": "task_31a2f43a517d",
+          "value_sample": "2026-06-29T01:38:02.119372+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_31a2f43a517d_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_31a2f43a517d_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_31a2f43a517d",
+          "value_sample": "https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1779/202504/t20250403_1186101.html"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_31a2f43a517d",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "effective_date",
+        "keywords",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 2,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_005_ai_industry_guide",
+        "gold_mapping_count": 3,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer",
+        "publish_date",
+        "content"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f72ec7032fbe_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f72ec7032fbe_effective_date_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_f72ec7032fbe",
+          "value_sample": "2026-06-29T01:38:03.029258+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f72ec7032fbe_extracted_block_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f72ec7032fbe_keywords_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "extracted_block_count",
+            "source_path": "$.metadata.extracted_block_count"
+          },
+          "source_field_name": "extracted_block_count",
+          "source_path": "$.metadata.extracted_block_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "keywords",
+          "target_field_name": "keywords",
+          "task_id": "task_f72ec7032fbe",
+          "value_sample": 605
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f72ec7032fbe_page_count_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.50 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.50 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f72ec7032fbe_content_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "page_count",
+            "source_path": "$.metadata.page_count"
+          },
+          "source_field_name": "page_count",
+          "source_path": "$.metadata.page_count",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "content",
+          "target_field_name": "content",
+          "task_id": "task_f72ec7032fbe",
+          "value_sample": 25
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f72ec7032fbe_retrieved_at_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.48 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.48 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f72ec7032fbe_target_audience_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "retrieved_at",
+            "source_path": "$.metadata.retrieved_at"
+          },
+          "source_field_name": "retrieved_at",
+          "source_path": "$.metadata.retrieved_at",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "target_audience",
+          "target_field_name": "target_audience",
+          "task_id": "task_f72ec7032fbe",
+          "value_sample": "2026-06-29T01:38:03.029258+00:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f72ec7032fbe_source_url_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f72ec7032fbe_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_url",
+            "source_path": "$.metadata.source_url"
+          },
+          "source_field_name": "source_url",
+          "source_path": "$.metadata.source_url",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_f72ec7032fbe",
+          "value_sample": "https://www.gov.cn/zhengce/zhengceku/202511/P020251106333013261545.pdf"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_f72ec7032fbe",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    }
+  ],
+  "errors": [],
+  "failures": [
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    }
+  ],
+  "generated_at": "2026-06-30T13:07:51.687088+00:00",
+  "summary": {
+    "badcase_violation_count": 0,
+    "document_count": 11,
+    "high_risk_auto_accepted_count": 0,
+    "mapping_recall_average": 0.23658008658008658,
+    "package_valid_count": 11,
+    "package_valid_rate": 1.0,
+    "required_missing_count": 25,
+    "review_required_count": 95,
+    "strict_pass_count": 0,
+    "strict_pass_rate": 0.0
+  },
+  "thresholds": {
+    "general_doc": 2,
+    "mapping_recall": 0.65,
+    "meeting_doc": 2,
+    "policy_doc": 3
+  }
+}
