@@ -49,6 +49,7 @@ class TaskExecutionService:
         "verifier": "verifier_report",
         "content_organization": "content_organization_report",
         "content-organization": "content_organization_report",
+        "manifest": "manifest",
     }
 
     def __init__(
@@ -284,6 +285,7 @@ class TaskExecutionService:
             content_organization_report=content_organization_report.model_dump(mode="json"),
             package_metadata=package_result.metadata.model_dump(mode="json"),
             verifier_report=package_result.verifier_report.model_dump(mode="json"),
+            manifest=package_result.manifest.model_dump(mode="json"),
         )
         finished_at = self._now()
         review_required_count = len(mapping_report.review_required_items)
@@ -340,6 +342,7 @@ class TaskExecutionService:
         content_organization_report: dict[str, Any],
         package_metadata: dict[str, Any],
         verifier_report: dict[str, Any],
+        manifest: dict[str, Any],
     ) -> dict[str, str]:
         base = f"tasks/{task_id}"
         return {
@@ -375,6 +378,7 @@ class TaskExecutionService:
             "verifier_report": str(
                 self.storage.save_json(f"{base}/verifier_report.json", verifier_report)
             ),
+            "manifest": str(self.storage.save_json(f"{base}/manifest.json", manifest)),
         }
 
     @staticmethod

@@ -1,15 +1,24 @@
 import hmac
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.api.v1.router import api_router
 from app.config import Settings
+from app.database import init_db
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    init_db()
+    yield
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
     app_settings = settings or Settings()
-    app = FastAPI(title=app_settings.app_name)
+    app = FastAPI(title=app_settings.app_name, lifespan=lifespan)
     app.state.settings = app_settings
 
     @app.middleware("http")

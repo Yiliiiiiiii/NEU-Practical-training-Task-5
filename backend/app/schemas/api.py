@@ -100,6 +100,12 @@ class TaskDetailResponse(StrictBaseModel):
     package_zip_path: str | None = None
 
 
+class EvaluationReportResponse(StrictBaseModel):
+    status: str
+    report: dict[str, Any] | None = None
+    recommended_command: str | None = None
+
+
 class SchemaListResponse(StrictBaseModel):
     items: list[TargetSchema]
     total: int

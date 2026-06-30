@@ -12,28 +12,100 @@ from typing import Any
 import httpx
 from real_world_uir_common import ROOT, markdown_cell, write_json_atomic
 
-SCHEMA_TEMPLATE_MAPPING = {
+DOCUMENT_CATALOG = {
     "policy_doc": {
         "schema_id": "policy_doc",
+        "schema_version": "1.0.0",
         "template_id": "policy_doc_base_v1",
+        "template_version": "1.0.0",
+        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "policy_doc_v1.json",
+        "template_path": (
+            ROOT
+            / "examples"
+            / "production_like"
+            / "mapping_templates"
+            / "policy_doc_base_v1.json"
+        ),
     },
     "procurement_doc": {
         "schema_id": "procurement_doc",
+        "schema_version": "1.0.0",
         "template_id": "procurement_doc_base_v1",
+        "template_version": "1.0.0",
+        "schema_path": (
+            ROOT
+            / "examples"
+            / "production_like"
+            / "schemas"
+            / "procurement_doc_v1.json"
+        ),
+        "template_path": (
+            ROOT
+            / "examples"
+            / "production_like"
+            / "mapping_templates"
+            / "procurement_doc_base_v1.json"
+        ),
     },
     "contract_doc": {
         "schema_id": "contract_doc",
+        "schema_version": "1.0.0",
         "template_id": "contract_doc_base_v1",
+        "template_version": "1.0.0",
+        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "contract_doc_v1.json",
+        "template_path": (
+            ROOT
+            / "examples"
+            / "production_like"
+            / "mapping_templates"
+            / "contract_doc_base_v1.json"
+        ),
     },
     "meeting_doc": {
         "schema_id": "meeting_doc",
+        "schema_version": "1.0.0",
         "template_id": "meeting_doc_base_v1",
+        "template_version": "1.0.0",
+        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "meeting_doc_v1.json",
+        "template_path": (
+            ROOT
+            / "examples"
+            / "production_like"
+            / "mapping_templates"
+            / "meeting_doc_base_v1.json"
+        ),
     },
     "general_doc": {
         "schema_id": "general_doc",
+        "schema_version": "1.0.0",
         "template_id": "general_doc_base_v1",
+        "template_version": "1.0.0",
+        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "general_doc_v1.json",
+        "template_path": (
+            ROOT
+            / "examples"
+            / "production_like"
+            / "mapping_templates"
+            / "general_doc_base_v1.json"
+        ),
     },
 }
+
+
+def _document_catalog_entry(doc_type: str) -> dict[str, Any]:
+    mapping = DOCUMENT_CATALOG.get(doc_type)
+    if mapping is None:
+        raise LookupError(f"document catalog is not configured for {doc_type!r}")
+    missing = [
+        name
+        for name in ("schema_path", "template_path")
+        if not Path(mapping[name]).is_file()
+    ]
+    if missing:
+        raise LookupError(
+            f"document catalog fixtures are missing for {doc_type!r}: {', '.join(missing)}"
+        )
+    return mapping
 
 
 def _json_response(response: httpx.Response) -> dict[str, Any]:
@@ -172,9 +244,19 @@ def evaluate_dataset(
             "review_required_count": 0,
             "high_risk_mapping_count": 0,
             "validation_passed": False,
+            "catalog_status": "missing_configuration",
         }
         try:
-            mapping = SCHEMA_TEMPLATE_MAPPING[doc_type]
+            try:
+                mapping = _document_catalog_entry(doc_type)
+            except LookupError:
+                result["catalog_status"] = (
+                    "missing_configuration"
+                    if doc_type not in DOCUMENT_CATALOG
+                    else "missing_fixture"
+                )
+                raise
+            result["catalog_status"] = "available"
             imported = _json_response(
                 client.post("/api/v1/documents/import", json={"uir": uir})
             )
@@ -185,9 +267,9 @@ def evaluate_dataset(
                     json={
                         "doc_id": imported["doc_id"],
                         "schema_id": mapping["schema_id"],
-                        "schema_version": "1.0.0",
+                        "schema_version": mapping["schema_version"],
                         "template_id": mapping["template_id"],
-                        "template_version": "1.0.0",
+                        "template_version": mapping["template_version"],
                         "options": {
                             "enable_llm_fallback": False,
                             "content_organization": {

@@ -192,10 +192,16 @@ def test_referenced_procurement_versions_cannot_be_archived(
 
 
 def test_real_world_evaluator_uses_procurement_catalog() -> None:
-    source = EVAL_REAL_WORLD_UIR.read_text(encoding="utf-8")
+    evaluator = load_script("eval_real_world_uir")
 
-    assert '"procurement_doc": {\n        "schema_id": "procurement_doc",' in source
-    assert '"template_id": "procurement_doc_base_v1"' in source
+    assert evaluator.DOCUMENT_CATALOG["procurement_doc"] == {
+        "schema_id": "procurement_doc",
+        "schema_version": "1.0.0",
+        "template_id": "procurement_doc_base_v1",
+        "template_version": "1.0.0",
+        "schema_path": SCHEMAS_DIR / "procurement_doc_v1.json",
+        "template_path": TEMPLATES_DIR / "procurement_doc_base_v1.json",
+    }
 
 
 def test_procurement_eval_builds_catalog_delta_report() -> None:

@@ -14,7 +14,7 @@
     "package_pass_rate": 1.0,
     "raw_report": {
       "badcase_violations": [],
-      "generated_at": "2026-06-30T03:07:59.275843+00:00",
+      "generated_at": "2026-06-30T06:13:48.544751+00:00",
       "missing_or_ambiguous": [
         {
           "doc_id": "real_procurement_001_broadcast_security_supervision",
@@ -96,7 +96,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_source_url_1",
+              "candidate_id": "cand_task_fa463fedf1c0_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -112,7 +112,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_source_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -131,7 +131,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202506/t20250604_24710007.htm"
             },
             {
@@ -140,7 +140,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_获取招标文件时间_1",
+              "candidate_id": "cand_task_fa463fedf1c0_获取招标文件时间_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -156,7 +156,7 @@
                 "fuzzy score 0.65 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_created_date_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -177,7 +177,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "2025年06月04日至2025年06月11日 每日上午:9:00 至 12:00 下午:12:00 至 17:00（北京时间，法定节假日除外）"
             },
             {
@@ -186,7 +186,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_doc_type_1",
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -202,7 +202,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_category_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -221,7 +221,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "procurement_doc"
             },
             {
@@ -230,7 +230,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_doc_type_1",
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -246,7 +246,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_tags_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -265,12 +265,12 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "procurement_doc"
             }
           ],
           "schema_id": "general_doc",
-          "task_id": "task_510cb838a694",
+          "task_id": "task_fa463fedf1c0",
           "task_status": "review_required",
           "template_id": "general_doc_base_v1",
           "validation_passed": true
@@ -309,7 +309,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_source_url_1",
+              "candidate_id": "cand_task_01a71644c994_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -325,7 +325,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_source_fuzzy",
+              "mapping_id": "map_task_01a71644c994_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -344,7 +344,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202506/t20250621_24821803.htm"
             },
             {
@@ -353,7 +353,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_获取招标文件时间_1",
+              "candidate_id": "cand_task_01a71644c994_获取招标文件时间_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -369,7 +369,7 @@
                 "fuzzy score 0.65 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_created_date_fuzzy",
+              "mapping_id": "map_task_01a71644c994_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -390,7 +390,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "2025年06月21日至2025年06月30日 每日上午:09:00 至 00-12:00:00 下午:12:00 至 00-17:00:00（北京时间，法定节假日除外）"
             },
             {
@@ -399,7 +399,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_doc_type_1",
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -415,7 +415,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_category_fuzzy",
+              "mapping_id": "map_task_01a71644c994_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -434,7 +434,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "procurement_doc"
             },
             {
@@ -443,7 +443,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_doc_type_1",
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -459,7 +459,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_tags_fuzzy",
+              "mapping_id": "map_task_01a71644c994_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -478,12 +478,12 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "procurement_doc"
             }
           ],
           "schema_id": "general_doc",
-          "task_id": "task_96af0001fb6d",
+          "task_id": "task_01a71644c994",
           "task_status": "review_required",
           "template_id": "general_doc_base_v1",
           "validation_passed": true
@@ -522,7 +522,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_source_url_1",
+              "candidate_id": "cand_task_df791b54fd6c_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -538,7 +538,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_source_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -557,7 +557,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202504/t20250411_24427761.htm"
             },
             {
@@ -566,7 +566,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_retrieved_at_1",
+              "candidate_id": "cand_task_df791b54fd6c_retrieved_at_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -582,7 +582,7 @@
                 "fuzzy score 0.64 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_created_date_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -601,7 +601,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "2026-06-29T01:38:03.761500+00:00"
             },
             {
@@ -610,7 +610,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_doc_type_1",
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -626,7 +626,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_category_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -645,7 +645,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "procurement_doc"
             },
             {
@@ -654,7 +654,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_doc_type_1",
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -670,7 +670,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_tags_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -689,12 +689,12 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "procurement_doc"
             }
           ],
           "schema_id": "general_doc",
-          "task_id": "task_0b5843551082",
+          "task_id": "task_df791b54fd6c",
           "task_status": "review_required",
           "template_id": "general_doc_base_v1",
           "validation_passed": true
@@ -733,7 +733,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_source_url_1",
+              "candidate_id": "cand_task_2307cdcddb4d_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -749,7 +749,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_source_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -768,7 +768,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250523_24654307.htm"
             },
             {
@@ -777,7 +777,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_retrieved_at_1",
+              "candidate_id": "cand_task_2307cdcddb4d_retrieved_at_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -793,7 +793,7 @@
                 "fuzzy score 0.64 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_created_date_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -812,7 +812,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "2026-06-29T01:38:03.962018+00:00"
             },
             {
@@ -821,7 +821,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_doc_type_1",
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -837,7 +837,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_category_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -856,7 +856,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "procurement_doc"
             },
             {
@@ -865,7 +865,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_doc_type_1",
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -881,7 +881,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_tags_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -900,12 +900,12 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "procurement_doc"
             }
           ],
           "schema_id": "general_doc",
-          "task_id": "task_9e0de507e830",
+          "task_id": "task_2307cdcddb4d",
           "task_status": "review_required",
           "template_id": "general_doc_base_v1",
           "validation_passed": true
@@ -944,7 +944,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_source_url_1",
+              "candidate_id": "cand_task_bf1b894722ad_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -960,7 +960,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_source_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -979,7 +979,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250527_24667813.htm"
             },
             {
@@ -988,7 +988,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_retrieved_at_1",
+              "candidate_id": "cand_task_bf1b894722ad_retrieved_at_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1004,7 +1004,7 @@
                 "fuzzy score 0.64 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_created_date_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1023,7 +1023,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "2026-06-29T01:38:04.132892+00:00"
             },
             {
@@ -1032,7 +1032,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_doc_type_1",
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1048,7 +1048,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_category_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1067,7 +1067,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "procurement_doc"
             },
             {
@@ -1076,7 +1076,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_doc_type_1",
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1092,7 +1092,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_tags_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1111,12 +1111,12 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "procurement_doc"
             }
           ],
           "schema_id": "general_doc",
-          "task_id": "task_b7b876586e2f",
+          "task_id": "task_bf1b894722ad",
           "task_status": "review_required",
           "template_id": "general_doc_base_v1",
           "validation_passed": true
@@ -1156,7 +1156,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_source_url_1",
+              "candidate_id": "cand_task_fa463fedf1c0_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1172,7 +1172,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_source_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1191,7 +1191,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202506/t20250604_24710007.htm"
             },
             {
@@ -1200,7 +1200,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_获取招标文件时间_1",
+              "candidate_id": "cand_task_fa463fedf1c0_获取招标文件时间_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1216,7 +1216,7 @@
                 "fuzzy score 0.65 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_created_date_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1237,7 +1237,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "2025年06月04日至2025年06月11日 每日上午:9:00 至 12:00 下午:12:00 至 17:00（北京时间，法定节假日除外）"
             },
             {
@@ -1246,7 +1246,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_doc_type_1",
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1262,7 +1262,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_category_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1281,7 +1281,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "procurement_doc"
             },
             {
@@ -1290,7 +1290,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_510cb838a694_doc_type_1",
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1306,7 +1306,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_510cb838a694_tags_fuzzy",
+              "mapping_id": "map_task_fa463fedf1c0_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1325,7 +1325,7 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_510cb838a694",
+              "task_id": "task_fa463fedf1c0",
               "value_sample": "procurement_doc"
             }
           ]
@@ -1339,7 +1339,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_source_url_1",
+              "candidate_id": "cand_task_01a71644c994_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1355,7 +1355,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_source_fuzzy",
+              "mapping_id": "map_task_01a71644c994_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1374,7 +1374,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202506/t20250621_24821803.htm"
             },
             {
@@ -1383,7 +1383,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_获取招标文件时间_1",
+              "candidate_id": "cand_task_01a71644c994_获取招标文件时间_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1399,7 +1399,7 @@
                 "fuzzy score 0.65 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_created_date_fuzzy",
+              "mapping_id": "map_task_01a71644c994_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1420,7 +1420,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "2025年06月21日至2025年06月30日 每日上午:09:00 至 00-12:00:00 下午:12:00 至 00-17:00:00（北京时间，法定节假日除外）"
             },
             {
@@ -1429,7 +1429,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_doc_type_1",
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1445,7 +1445,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_category_fuzzy",
+              "mapping_id": "map_task_01a71644c994_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1464,7 +1464,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "procurement_doc"
             },
             {
@@ -1473,7 +1473,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_96af0001fb6d_doc_type_1",
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1489,7 +1489,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_96af0001fb6d_tags_fuzzy",
+              "mapping_id": "map_task_01a71644c994_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1508,7 +1508,7 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_96af0001fb6d",
+              "task_id": "task_01a71644c994",
               "value_sample": "procurement_doc"
             }
           ]
@@ -1522,7 +1522,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_source_url_1",
+              "candidate_id": "cand_task_df791b54fd6c_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1538,7 +1538,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_source_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1557,7 +1557,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202504/t20250411_24427761.htm"
             },
             {
@@ -1566,7 +1566,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_retrieved_at_1",
+              "candidate_id": "cand_task_df791b54fd6c_retrieved_at_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1582,7 +1582,7 @@
                 "fuzzy score 0.64 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_created_date_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1601,7 +1601,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "2026-06-29T01:38:03.761500+00:00"
             },
             {
@@ -1610,7 +1610,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_doc_type_1",
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1626,7 +1626,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_category_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1645,7 +1645,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "procurement_doc"
             },
             {
@@ -1654,7 +1654,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_0b5843551082_doc_type_1",
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1670,7 +1670,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_0b5843551082_tags_fuzzy",
+              "mapping_id": "map_task_df791b54fd6c_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1689,7 +1689,7 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_0b5843551082",
+              "task_id": "task_df791b54fd6c",
               "value_sample": "procurement_doc"
             }
           ]
@@ -1703,7 +1703,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_source_url_1",
+              "candidate_id": "cand_task_2307cdcddb4d_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1719,7 +1719,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_source_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1738,7 +1738,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250523_24654307.htm"
             },
             {
@@ -1747,7 +1747,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_retrieved_at_1",
+              "candidate_id": "cand_task_2307cdcddb4d_retrieved_at_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1763,7 +1763,7 @@
                 "fuzzy score 0.64 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_created_date_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1782,7 +1782,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "2026-06-29T01:38:03.962018+00:00"
             },
             {
@@ -1791,7 +1791,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_doc_type_1",
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1807,7 +1807,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_category_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1826,7 +1826,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "procurement_doc"
             },
             {
@@ -1835,7 +1835,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_9e0de507e830_doc_type_1",
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1851,7 +1851,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_9e0de507e830_tags_fuzzy",
+              "mapping_id": "map_task_2307cdcddb4d_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1870,7 +1870,7 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_9e0de507e830",
+              "task_id": "task_2307cdcddb4d",
               "value_sample": "procurement_doc"
             }
           ]
@@ -1884,7 +1884,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_source_url_1",
+              "candidate_id": "cand_task_bf1b894722ad_source_url_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1900,7 +1900,7 @@
                 "fuzzy score 0.80 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_source_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_source_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1919,7 +1919,7 @@
               "strategy": "fuzzy",
               "target_field_id": "source",
               "target_field_name": "source",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250527_24667813.htm"
             },
             {
@@ -1928,7 +1928,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_retrieved_at_1",
+              "candidate_id": "cand_task_bf1b894722ad_retrieved_at_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1944,7 +1944,7 @@
                 "fuzzy score 0.64 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_created_date_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_created_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1963,7 +1963,7 @@
               "strategy": "fuzzy",
               "target_field_id": "created_date",
               "target_field_name": "created_date",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "2026-06-29T01:38:04.132892+00:00"
             },
             {
@@ -1972,7 +1972,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_doc_type_1",
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -1988,7 +1988,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_category_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_category_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2007,7 +2007,7 @@
               "strategy": "fuzzy",
               "target_field_id": "category",
               "target_field_name": "category",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "procurement_doc"
             },
             {
@@ -2016,7 +2016,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_b7b876586e2f_doc_type_1",
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2032,7 +2032,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_b7b876586e2f_tags_fuzzy",
+              "mapping_id": "map_task_bf1b894722ad_tags_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2051,7 +2051,7 @@
               "strategy": "fuzzy",
               "target_field_id": "tags",
               "target_field_name": "tags",
-              "task_id": "task_b7b876586e2f",
+              "task_id": "task_bf1b894722ad",
               "value_sample": "procurement_doc"
             }
           ]
@@ -2082,7 +2082,7 @@
     "package_pass_rate": 1.0,
     "raw_report": {
       "badcase_violations": [],
-      "generated_at": "2026-06-30T03:07:59.275881+00:00",
+      "generated_at": "2026-06-30T06:13:48.544793+00:00",
       "missing_or_ambiguous": [
         {
           "doc_id": "real_procurement_001_broadcast_security_supervision",
@@ -2155,7 +2155,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_c5f9b242a88f_采购单位联系方式_1",
+              "candidate_id": "cand_task_a56389288b0e_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2171,7 +2171,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_c5f9b242a88f_procurement_type_fuzzy",
+              "mapping_id": "map_task_a56389288b0e_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2192,7 +2192,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_c5f9b242a88f",
+              "task_id": "task_a56389288b0e",
               "value_sample": "王宝石 010-86094895"
             },
             {
@@ -2201,7 +2201,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_c5f9b242a88f_source_format_1",
+              "candidate_id": "cand_task_a56389288b0e_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2217,7 +2217,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_c5f9b242a88f_announcement_date_fuzzy",
+              "mapping_id": "map_task_a56389288b0e_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2236,12 +2236,12 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_c5f9b242a88f",
+              "task_id": "task_a56389288b0e",
               "value_sample": "html"
             }
           ],
           "schema_id": "procurement_doc",
-          "task_id": "task_c5f9b242a88f",
+          "task_id": "task_a56389288b0e",
           "task_status": "review_required",
           "template_id": "procurement_doc_base_v1",
           "validation_passed": true
@@ -2286,7 +2286,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_358d734d77da_采购单位联系方式_1",
+              "candidate_id": "cand_task_3be052879904_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2302,7 +2302,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_358d734d77da_procurement_type_fuzzy",
+              "mapping_id": "map_task_3be052879904_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2323,7 +2323,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_358d734d77da",
+              "task_id": "task_3be052879904",
               "value_sample": "021-37990333"
             },
             {
@@ -2332,7 +2332,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_358d734d77da_source_format_1",
+              "candidate_id": "cand_task_3be052879904_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2348,7 +2348,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_358d734d77da_announcement_date_fuzzy",
+              "mapping_id": "map_task_3be052879904_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2367,12 +2367,12 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_358d734d77da",
+              "task_id": "task_3be052879904",
               "value_sample": "html"
             }
           ],
           "schema_id": "procurement_doc",
-          "task_id": "task_358d734d77da",
+          "task_id": "task_3be052879904",
           "task_status": "review_required",
           "template_id": "procurement_doc_base_v1",
           "validation_passed": true
@@ -2418,7 +2418,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_采购单位联系方式_1",
+              "candidate_id": "cand_task_f9888274f0dc_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2434,7 +2434,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_procurement_type_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2455,7 +2455,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "82567823"
             },
             {
@@ -2464,7 +2464,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_采购单位_2",
+              "candidate_id": "cand_task_f9888274f0dc_采购单位_2",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2480,7 +2480,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_budget_amount_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_budget_amount_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2501,7 +2501,7 @@
               "strategy": "fuzzy",
               "target_field_id": "budget_amount",
               "target_field_name": "budget_amount",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "北京市核与辐射安全中心"
             },
             {
@@ -2510,7 +2510,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_source_format_1",
+              "candidate_id": "cand_task_f9888274f0dc_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2526,7 +2526,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_announcement_date_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2545,7 +2545,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "html"
             },
             {
@@ -2554,7 +2554,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_source_site_1",
+              "candidate_id": "cand_task_f9888274f0dc_source_site_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2570,7 +2570,7 @@
                 "fuzzy score 0.48 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_opening_date_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_opening_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2589,12 +2589,12 @@
               "strategy": "fuzzy",
               "target_field_id": "opening_date",
               "target_field_name": "opening_date",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "www.ccgp.gov.cn"
             }
           ],
           "schema_id": "procurement_doc",
-          "task_id": "task_94b195d7878e",
+          "task_id": "task_f9888274f0dc",
           "task_status": "review_required",
           "template_id": "procurement_doc_base_v1",
           "validation_passed": true
@@ -2639,7 +2639,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_采购单位联系方式_1",
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2655,7 +2655,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_procurement_type_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2676,7 +2676,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "赖老师，010-59198850"
             },
             {
@@ -2685,7 +2685,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_采购单位_2",
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位_2",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2701,7 +2701,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_budget_amount_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_budget_amount_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2722,7 +2722,7 @@
               "strategy": "fuzzy",
               "target_field_id": "budget_amount",
               "target_field_name": "budget_amount",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "中国动物疫病预防控制中心"
             },
             {
@@ -2731,7 +2731,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_source_format_1",
+              "candidate_id": "cand_task_166b52c9dfc2_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2747,7 +2747,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_announcement_date_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2766,7 +2766,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "html"
             },
             {
@@ -2775,7 +2775,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_source_site_1",
+              "candidate_id": "cand_task_166b52c9dfc2_source_site_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2791,7 +2791,7 @@
                 "fuzzy score 0.48 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_opening_date_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_opening_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2810,12 +2810,12 @@
               "strategy": "fuzzy",
               "target_field_id": "opening_date",
               "target_field_name": "opening_date",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "www.ccgp.gov.cn"
             }
           ],
           "schema_id": "procurement_doc",
-          "task_id": "task_cb1e4f9f02cc",
+          "task_id": "task_166b52c9dfc2",
           "task_status": "review_required",
           "template_id": "procurement_doc_base_v1",
           "validation_passed": true
@@ -2860,7 +2860,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_采购单位联系方式_1",
+              "candidate_id": "cand_task_516ee194e157_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2876,7 +2876,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_procurement_type_fuzzy",
+              "mapping_id": "map_task_516ee194e157_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2897,7 +2897,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "010-87020528"
             },
             {
@@ -2906,7 +2906,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_采购单位_2",
+              "candidate_id": "cand_task_516ee194e157_采购单位_2",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2922,7 +2922,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_budget_amount_fuzzy",
+              "mapping_id": "map_task_516ee194e157_budget_amount_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2943,7 +2943,7 @@
               "strategy": "fuzzy",
               "target_field_id": "budget_amount",
               "target_field_name": "budget_amount",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "中国康复研究中心"
             },
             {
@@ -2952,7 +2952,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_source_format_1",
+              "candidate_id": "cand_task_516ee194e157_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -2968,7 +2968,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_announcement_date_fuzzy",
+              "mapping_id": "map_task_516ee194e157_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2987,7 +2987,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "html"
             },
             {
@@ -2996,7 +2996,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_source_site_1",
+              "candidate_id": "cand_task_516ee194e157_source_site_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3012,7 +3012,7 @@
                 "fuzzy score 0.48 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_opening_date_fuzzy",
+              "mapping_id": "map_task_516ee194e157_opening_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3031,12 +3031,12 @@
               "strategy": "fuzzy",
               "target_field_id": "opening_date",
               "target_field_name": "opening_date",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "www.ccgp.gov.cn"
             }
           ],
           "schema_id": "procurement_doc",
-          "task_id": "task_21d46a58402c",
+          "task_id": "task_516ee194e157",
           "task_status": "review_required",
           "template_id": "procurement_doc_base_v1",
           "validation_passed": true
@@ -3067,7 +3067,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_c5f9b242a88f_采购单位联系方式_1",
+              "candidate_id": "cand_task_a56389288b0e_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3083,7 +3083,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_c5f9b242a88f_procurement_type_fuzzy",
+              "mapping_id": "map_task_a56389288b0e_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3104,7 +3104,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_c5f9b242a88f",
+              "task_id": "task_a56389288b0e",
               "value_sample": "王宝石 010-86094895"
             },
             {
@@ -3113,7 +3113,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_c5f9b242a88f_source_format_1",
+              "candidate_id": "cand_task_a56389288b0e_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3129,7 +3129,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_c5f9b242a88f_announcement_date_fuzzy",
+              "mapping_id": "map_task_a56389288b0e_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3148,7 +3148,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_c5f9b242a88f",
+              "task_id": "task_a56389288b0e",
               "value_sample": "html"
             }
           ]
@@ -3162,7 +3162,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_358d734d77da_采购单位联系方式_1",
+              "candidate_id": "cand_task_3be052879904_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3178,7 +3178,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_358d734d77da_procurement_type_fuzzy",
+              "mapping_id": "map_task_3be052879904_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3199,7 +3199,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_358d734d77da",
+              "task_id": "task_3be052879904",
               "value_sample": "021-37990333"
             },
             {
@@ -3208,7 +3208,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_358d734d77da_source_format_1",
+              "candidate_id": "cand_task_3be052879904_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3224,7 +3224,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_358d734d77da_announcement_date_fuzzy",
+              "mapping_id": "map_task_3be052879904_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3243,7 +3243,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_358d734d77da",
+              "task_id": "task_3be052879904",
               "value_sample": "html"
             }
           ]
@@ -3257,7 +3257,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_采购单位联系方式_1",
+              "candidate_id": "cand_task_f9888274f0dc_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3273,7 +3273,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_procurement_type_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3294,7 +3294,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "82567823"
             },
             {
@@ -3303,7 +3303,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_采购单位_2",
+              "candidate_id": "cand_task_f9888274f0dc_采购单位_2",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3319,7 +3319,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_budget_amount_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_budget_amount_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3340,7 +3340,7 @@
               "strategy": "fuzzy",
               "target_field_id": "budget_amount",
               "target_field_name": "budget_amount",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "北京市核与辐射安全中心"
             },
             {
@@ -3349,7 +3349,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_source_format_1",
+              "candidate_id": "cand_task_f9888274f0dc_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3365,7 +3365,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_announcement_date_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3384,7 +3384,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "html"
             },
             {
@@ -3393,7 +3393,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_94b195d7878e_source_site_1",
+              "candidate_id": "cand_task_f9888274f0dc_source_site_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3409,7 +3409,7 @@
                 "fuzzy score 0.48 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_94b195d7878e_opening_date_fuzzy",
+              "mapping_id": "map_task_f9888274f0dc_opening_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3428,7 +3428,7 @@
               "strategy": "fuzzy",
               "target_field_id": "opening_date",
               "target_field_name": "opening_date",
-              "task_id": "task_94b195d7878e",
+              "task_id": "task_f9888274f0dc",
               "value_sample": "www.ccgp.gov.cn"
             }
           ]
@@ -3442,7 +3442,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_采购单位联系方式_1",
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3458,7 +3458,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_procurement_type_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3479,7 +3479,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "赖老师，010-59198850"
             },
             {
@@ -3488,7 +3488,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_采购单位_2",
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位_2",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3504,7 +3504,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_budget_amount_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_budget_amount_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3525,7 +3525,7 @@
               "strategy": "fuzzy",
               "target_field_id": "budget_amount",
               "target_field_name": "budget_amount",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "中国动物疫病预防控制中心"
             },
             {
@@ -3534,7 +3534,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_source_format_1",
+              "candidate_id": "cand_task_166b52c9dfc2_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3550,7 +3550,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_announcement_date_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3569,7 +3569,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "html"
             },
             {
@@ -3578,7 +3578,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_cb1e4f9f02cc_source_site_1",
+              "candidate_id": "cand_task_166b52c9dfc2_source_site_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3594,7 +3594,7 @@
                 "fuzzy score 0.48 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_cb1e4f9f02cc_opening_date_fuzzy",
+              "mapping_id": "map_task_166b52c9dfc2_opening_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3613,7 +3613,7 @@
               "strategy": "fuzzy",
               "target_field_id": "opening_date",
               "target_field_name": "opening_date",
-              "task_id": "task_cb1e4f9f02cc",
+              "task_id": "task_166b52c9dfc2",
               "value_sample": "www.ccgp.gov.cn"
             }
           ]
@@ -3627,7 +3627,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_采购单位联系方式_1",
+              "candidate_id": "cand_task_516ee194e157_采购单位联系方式_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3643,7 +3643,7 @@
                 "fuzzy score 0.67 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_procurement_type_fuzzy",
+              "mapping_id": "map_task_516ee194e157_procurement_type_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3664,7 +3664,7 @@
               "strategy": "fuzzy",
               "target_field_id": "procurement_type",
               "target_field_name": "procurement_type",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "010-87020528"
             },
             {
@@ -3673,7 +3673,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_采购单位_2",
+              "candidate_id": "cand_task_516ee194e157_采购单位_2",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3689,7 +3689,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_budget_amount_fuzzy",
+              "mapping_id": "map_task_516ee194e157_budget_amount_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3710,7 +3710,7 @@
               "strategy": "fuzzy",
               "target_field_id": "budget_amount",
               "target_field_name": "budget_amount",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "中国康复研究中心"
             },
             {
@@ -3719,7 +3719,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_source_format_1",
+              "candidate_id": "cand_task_516ee194e157_source_format_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3735,7 +3735,7 @@
                 "fuzzy score 0.50 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_announcement_date_fuzzy",
+              "mapping_id": "map_task_516ee194e157_announcement_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3754,7 +3754,7 @@
               "strategy": "fuzzy",
               "target_field_id": "announcement_date",
               "target_field_name": "announcement_date",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "html"
             },
             {
@@ -3763,7 +3763,7 @@
                 "checked": false,
                 "reason": null
               },
-              "candidate_id": "cand_task_21d46a58402c_source_site_1",
+              "candidate_id": "cand_task_516ee194e157_source_site_1",
               "confidence": 0.62,
               "confidence_tier": "low",
               "evidence": [
@@ -3779,7 +3779,7 @@
                 "fuzzy score 0.48 requires review"
               ],
               "llm_metadata": null,
-              "mapping_id": "map_task_21d46a58402c_opening_date_fuzzy",
+              "mapping_id": "map_task_516ee194e157_opening_date_fuzzy",
               "method": "fuzzy",
               "need_review": true,
               "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3798,7 +3798,7 @@
               "strategy": "fuzzy",
               "target_field_id": "opening_date",
               "target_field_name": "opening_date",
-              "task_id": "task_21d46a58402c",
+              "task_id": "task_516ee194e157",
               "value_sample": "www.ccgp.gov.cn"
             }
           ]

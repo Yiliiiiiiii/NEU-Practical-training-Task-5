@@ -120,6 +120,20 @@ def test_execute_task_runs_service_pipeline_and_updates_detail(execution_client)
     assert detail["report_paths"] == report_paths
 
 
+def test_task_manifest_report_lists_verified_files(execution_client):
+    client, _storage_root = execution_client
+    doc_id = import_policy_document(client, "policy_001_standard.json")
+    task_id = create_policy_task(client, doc_id)
+    assert client.post(f"/api/v1/tasks/{task_id}/execute").status_code == 200
+
+    response = client.get(f"/api/v1/tasks/{task_id}/reports/manifest")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["files"]
+    assert all("sha256" in item for item in payload["files"])
+
+
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):
     client, _storage_root = execution_client
     doc_id = import_policy_document(client, "policy_002_alias_variants.json")

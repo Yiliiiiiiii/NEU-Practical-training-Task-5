@@ -4,7 +4,7 @@
 - Import success: 16 (100.0%)
 - Task execution success: 16 (100.0%)
 - Package verification success: 16 (100.0%)
-- Mapping review required: 69
+- Mapping review required: 65
 - High-risk mappings: 0
 - Validation failures: 11
 

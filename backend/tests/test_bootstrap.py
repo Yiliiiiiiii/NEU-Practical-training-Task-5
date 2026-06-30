@@ -10,6 +10,19 @@ def test_health_returns_ok():
     assert response.json() == {"status": "ok"}
 
 
+def test_app_startup_initializes_database(monkeypatch):
+    from app import main
+
+    calls = []
+    monkeypatch.setattr(main, "init_db", lambda: calls.append("init"))
+
+    with TestClient(main.create_app()) as client:
+        response = client.get("/health")
+
+    assert response.status_code == 200
+    assert calls == ["init"]
+
+
 def test_settings_defaults_are_safe():
     from app.config import Settings
 

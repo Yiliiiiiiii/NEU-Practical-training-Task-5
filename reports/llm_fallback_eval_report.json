@@ -1,0 +1,338 @@
+{
+  "boundaries": [
+    "Disabled and stub modes do not require credentials.",
+    "OpenAI-compatible mode is rejected unless --allow-network is supplied.",
+    "LLM suggestions remain review-required and are never auto-accepted."
+  ],
+  "generated_at": "2026-06-30T06:12:30.407739+00:00",
+  "metrics": {
+    "auto_accepted_count": 0,
+    "badcase_blocked_count": 1,
+    "latency_ms": 7,
+    "provider_error_count": 2,
+    "review_required_count": 2,
+    "secret_redaction_passed": true,
+    "suggestion_count": 2,
+    "timeout_count": 0
+  },
+  "mode_results": [
+    {
+      "auto_accepted_count": 0,
+      "badcase_blocked_count": 0,
+      "latency_ms": 0,
+      "mapping": null,
+      "mode": "disabled",
+      "provider_error_count": 0,
+      "review_required_count": 0,
+      "safe_config": {
+        "enabled": false,
+        "max_retries": 0,
+        "max_suggestions_per_task": 20,
+        "mode": "disabled",
+        "model": "gpt-4o-mini",
+        "strict_failure": false,
+        "timeout_seconds": 20.0
+      },
+      "secret_redaction_passed": true,
+      "started_at": "2026-06-30T06:12:30.406131+00:00",
+      "suggestion_count": 0,
+      "timeout_count": 0
+    },
+    {
+      "auto_accepted_count": 0,
+      "badcase_blocked_count": 0,
+      "latency_ms": 0,
+      "mapping": {
+        "badcase_filter": {
+          "blocked": false,
+          "checked": false,
+          "reason": null
+        },
+        "candidate_id": "cand_buyer",
+        "confidence": 0.5,
+        "confidence_tier": "low",
+        "evidence": [
+          {
+            "message": "LLM fallback suggestion requires human review",
+            "metadata": {},
+            "source": "stub",
+            "type": "llm_suggestion",
+            "weight": 0.5
+          },
+          {
+            "message": "adapter_model=stub",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "latency_ms=0",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "attempt_count=1",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "prompt_hash=3e050cb0b32df17340193f6562e2aab87f1b4366bef6adcc35ec3ee2d0de78d1",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "response_hash=c4e4b022027253a18da9f83182b6b8c9f2822f75e5c0c7c8d3e514a3ce72fb2d",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "reason=Deterministic stub suggestion requires human review.",
+            "metadata": {},
+            "source": null,
+            "type": "llm_reason",
+            "weight": null
+          }
+        ],
+        "evidence_text": [
+          "LLM fallback suggestion requires human review",
+          "adapter_model=stub",
+          "latency_ms=0",
+          "attempt_count=1",
+          "prompt_hash=3e050cb0b32df17340193f6562e2aab87f1b4366bef6adcc35ec3ee2d0de78d1",
+          "response_hash=c4e4b022027253a18da9f83182b6b8c9f2822f75e5c0c7c8d3e514a3ce72fb2d",
+          "reason=Deterministic stub suggestion requires human review."
+        ],
+        "llm_metadata": {
+          "attempt_count": 1,
+          "error_code": null,
+          "latency_ms": 0,
+          "model": "stub",
+          "prompt_hash": "3e050cb0b32df17340193f6562e2aab87f1b4366bef6adcc35ec3ee2d0de78d1",
+          "response_hash": "c4e4b022027253a18da9f83182b6b8c9f2822f75e5c0c7c8d3e514a3ce72fb2d"
+        },
+        "mapping_id": "map_task_llm_eval_buyer_name_llm_fallback",
+        "method": "llm_fallback",
+        "need_review": true,
+        "review_required_reason": "LLM suggestions always require human review.",
+        "risk_flags": [
+          "llm_suggestion",
+          "low_confidence"
+        ],
+        "source_blocks": [
+          "b1"
+        ],
+        "source_field": {
+          "source_name": "采购方名称",
+          "source_path": "metadata.采购方名称"
+        },
+        "source_field_name": "采购方名称",
+        "source_path": "metadata.采购方名称",
+        "status": "review_required",
+        "strategy": "llm_fallback",
+        "target_field_id": "buyer_name",
+        "target_field_name": "buyer_name",
+        "task_id": "task_llm_eval",
+        "value_sample": "国家广播电视总局监管中心"
+      },
+      "mode": "stub",
+      "provider_error_count": 0,
+      "review_required_count": 1,
+      "safe_config": {
+        "enabled": true,
+        "max_retries": 0,
+        "max_suggestions_per_task": 20,
+        "mode": "mock",
+        "model": "gpt-4o-mini",
+        "strict_failure": false,
+        "timeout_seconds": 20.0
+      },
+      "secret_redaction_passed": true,
+      "started_at": "2026-06-30T06:12:30.406566+00:00",
+      "suggestion_count": 1,
+      "timeout_count": 0
+    },
+    {
+      "auto_accepted_count": 0,
+      "badcase_blocked_count": 0,
+      "latency_ms": 7,
+      "mapping": {
+        "badcase_filter": {
+          "blocked": false,
+          "checked": false,
+          "reason": null
+        },
+        "candidate_id": "cand_buyer",
+        "confidence": 0.5,
+        "confidence_tier": "low",
+        "evidence": [
+          {
+            "message": "LLM fallback suggestion requires human review",
+            "metadata": {},
+            "source": "error-test-adapter",
+            "type": "llm_suggestion",
+            "weight": 0.5
+          },
+          {
+            "message": "adapter_model=error-test-adapter",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "latency_ms=7",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "attempt_count=1",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "prompt_hash=2f4292076a600be48486527a3c9010637a9dc36785a10336ba0730ed3dc7d353",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "response_hash=c85a53ad1252eca6bfe53cabe59d240fa8a8ee9542b92307698acfc1dcb86405",
+            "metadata": {},
+            "source": null,
+            "type": "llm_metadata",
+            "weight": null
+          },
+          {
+            "message": "reason=Synthetic provider failure.",
+            "metadata": {},
+            "source": null,
+            "type": "llm_reason",
+            "weight": null
+          },
+          {
+            "message": "error_code=request_failed",
+            "metadata": {},
+            "source": null,
+            "type": "llm_error",
+            "weight": null
+          }
+        ],
+        "evidence_text": [
+          "LLM fallback suggestion requires human review",
+          "adapter_model=error-test-adapter",
+          "latency_ms=7",
+          "attempt_count=1",
+          "prompt_hash=2f4292076a600be48486527a3c9010637a9dc36785a10336ba0730ed3dc7d353",
+          "response_hash=c85a53ad1252eca6bfe53cabe59d240fa8a8ee9542b92307698acfc1dcb86405",
+          "reason=Synthetic provider failure.",
+          "error_code=request_failed"
+        ],
+        "llm_metadata": {
+          "attempt_count": 1,
+          "error_code": "request_failed",
+          "latency_ms": 7,
+          "model": "error-test-adapter",
+          "prompt_hash": "2f4292076a600be48486527a3c9010637a9dc36785a10336ba0730ed3dc7d353",
+          "response_hash": "c85a53ad1252eca6bfe53cabe59d240fa8a8ee9542b92307698acfc1dcb86405"
+        },
+        "mapping_id": "map_task_provider_error_False_buyer_name_llm_fallback",
+        "method": "llm_fallback",
+        "need_review": true,
+        "review_required_reason": "LLM suggestions always require human review.",
+        "risk_flags": [
+          "llm_suggestion",
+          "low_confidence"
+        ],
+        "source_blocks": [
+          "b1"
+        ],
+        "source_field": {
+          "source_name": "采购方名称",
+          "source_path": "metadata.采购方名称"
+        },
+        "source_field_name": "采购方名称",
+        "source_path": "metadata.采购方名称",
+        "status": "review_required",
+        "strategy": "llm_fallback",
+        "target_field_id": "buyer_name",
+        "target_field_name": "buyer_name",
+        "task_id": "task_provider_error_False",
+        "value_sample": "国家广播电视总局监管中心"
+      },
+      "mode": "provider-error-non-strict",
+      "provider_error_count": 1,
+      "raised": false,
+      "review_required_count": 1,
+      "safe_config": {
+        "enabled": true,
+        "max_retries": 0,
+        "max_suggestions_per_task": 20,
+        "mode": "mock",
+        "model": "gpt-4o-mini",
+        "strict_failure": false,
+        "timeout_seconds": 20.0
+      },
+      "secret_redaction_passed": true,
+      "started_at": "2026-06-30T06:12:30.407166+00:00",
+      "suggestion_count": 1,
+      "timeout_count": 0
+    },
+    {
+      "auto_accepted_count": 0,
+      "badcase_blocked_count": 0,
+      "latency_ms": 0,
+      "mapping": null,
+      "mode": "provider-error-strict",
+      "provider_error_count": 1,
+      "raised": true,
+      "review_required_count": 0,
+      "safe_config": {
+        "enabled": true,
+        "max_retries": 0,
+        "max_suggestions_per_task": 20,
+        "mode": "mock",
+        "model": "gpt-4o-mini",
+        "strict_failure": false,
+        "timeout_seconds": 20.0
+      },
+      "secret_redaction_passed": true,
+      "started_at": "2026-06-30T06:12:30.407480+00:00",
+      "suggestion_count": 0,
+      "timeout_count": 0
+    },
+    {
+      "auto_accepted_count": 0,
+      "badcase_blocked_count": 1,
+      "mode": "badcase-block",
+      "provider_call_count": 0,
+      "review_required_count": 0,
+      "safe_config": {
+        "enabled": true,
+        "max_retries": 0,
+        "max_suggestions_per_task": 20,
+        "mode": "mock",
+        "model": "gpt-4o-mini",
+        "strict_failure": false,
+        "timeout_seconds": 20.0
+      },
+      "secret_redaction_passed": true,
+      "suggestion_count": 0
+    }
+  ],
+  "network_mode": "not_run",
+  "status": "completed"
+}

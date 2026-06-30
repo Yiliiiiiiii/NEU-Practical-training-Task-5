@@ -690,7 +690,7 @@ def test_validation_dataset_moves_rejected_files_inside_dataset_root(tmp_path: P
     assert (reports_dir / "validation_report.json").is_file()
 
 
-def test_evaluator_maps_procurement_to_catalog_and_continues_after_failure(
+def test_evaluator_routes_procurement_to_dedicated_catalog_and_continues_after_failure(
     tmp_path: Path,
 ) -> None:
     import httpx
@@ -819,10 +819,62 @@ def test_evaluator_maps_procurement_to_catalog_and_continues_after_failure(
     assert report["typical_success_cases"] == ["real_procurement_001"]
     assert report["typical_failure_cases"][0]["doc_id"] == "real_policy_failed"
     assert task_payloads[0]["schema_id"] == "procurement_doc"
+    assert task_payloads[0]["schema_version"] == "1.0.0"
     assert task_payloads[0]["template_id"] == "procurement_doc_base_v1"
+    assert task_payloads[0]["template_version"] == "1.0.0"
+    procurement_item = next(
+        item for item in report["items"] if item["doc_type"] == "procurement_doc"
+    )
+    assert procurement_item["catalog_status"] == "available"
     assert (packages_dir / "real_procurement_001.zip").read_bytes() == b"PK-test-package"
     rendered_report = (reports_dir / "real_world_eval_report.json").read_text(
         encoding="utf-8"
     )
     assert "test-secret" not in rendered_report
     assert "invalid pilot" in rendered_report
+
+
+def test_evaluator_reports_missing_procurement_catalog_without_fallback(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    import httpx
+
+    evaluator = load_script("eval_real_world_uir")
+    uir_dir = tmp_path / "uir"
+    (uir_dir / "procurement").mkdir(parents=True)
+    uir = make_valid_uir()
+    uir["doc_id"] = "real_procurement_missing_catalog"
+    uir["metadata"]["doc_type"] = "procurement_doc"
+    uir["metadata"]["domain"] = "procurement_doc"
+    (uir_dir / "procurement" / "real_procurement_missing_catalog.json").write_text(
+        json.dumps(uir, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    missing_schema = tmp_path / "missing_procurement_schema.json"
+    monkeypatch.setitem(
+        evaluator.DOCUMENT_CATALOG["procurement_doc"],
+        "schema_path",
+        missing_schema,
+    )
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        raise AssertionError(f"catalog failure must happen before HTTP: {request.url.path}")
+
+    with httpx.Client(
+        base_url="http://testserver",
+        transport=httpx.MockTransport(handler),
+    ) as client:
+        report = evaluator.evaluate_dataset(
+            uir_dir=uir_dir,
+            reports_dir=tmp_path / "reports",
+            packages_dir=tmp_path / "packages",
+            client=client,
+        )
+
+    assert report["import_pass_count"] == 0
+    assert report["task_execute_pass_count"] == 0
+    item = report["items"][0]
+    assert item["catalog_status"] == "missing_fixture"
+    assert "procurement_doc" in item["error"]
+    assert "general_doc" not in item["error"]

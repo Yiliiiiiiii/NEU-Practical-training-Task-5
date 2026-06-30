@@ -1,5 +1,6 @@
 import re
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any
 
 from app.schemas.mapping_template import MappingTemplate
@@ -109,6 +110,8 @@ class TransformService:
             return value, None
         if field.type == "date":
             return self._normalize_date(value, field)
+        if field.type == "datetime":
+            return self._normalize_datetime(value, field)
         if field.type == "number":
             return self._normalize_number(value, field)
         if field.type.startswith("array"):
@@ -161,9 +164,45 @@ class TransformService:
         }
 
     @staticmethod
+    def _normalize_datetime(
+        value: Any,
+        field: TargetField,
+    ) -> tuple[Any, dict[str, Any] | None]:
+        if isinstance(value, str):
+            stripped = value.strip()
+            match = re.fullmatch(
+                r"(\d{4})[-/年](\d{1,2})[-/月](\d{1,2})(?:日)?"
+                r"[T\s]+(\d{1,2}):(\d{2})(?::(\d{2}))?",
+                stripped,
+            )
+            if match:
+                year, month, day, hour, minute, second = match.groups()
+                try:
+                    normalized = datetime(
+                        int(year),
+                        int(month),
+                        int(day),
+                        int(hour),
+                        int(minute),
+                        int(second or 0),
+                    )
+                except ValueError:
+                    pass
+                else:
+                    return normalized.isoformat(timespec="seconds"), None
+        return value, {
+            "field_id": field.field_id,
+            "level": "error",
+            "code": "datetime_format_error",
+            "message": "Datetime field value does not match a supported datetime format.",
+        }
+
+    @staticmethod
     def _operation_for(field: TargetField) -> str:
         if field.type == "date":
             return "date_normalize"
+        if field.type == "datetime":
+            return "datetime_normalize"
         if field.type == "number":
             return "number_normalize"
         if field.type == "enum":

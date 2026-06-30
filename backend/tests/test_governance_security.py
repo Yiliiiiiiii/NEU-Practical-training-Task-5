@@ -54,24 +54,45 @@ def governance_client(tmp_path) -> Iterator[TestClient]:
 
 
 def make_auth_client(tmp_path, *, enabled: bool) -> TestClient:
+    from app.api.deps import get_db
+
+    database_url = f"sqlite:///{tmp_path / 'auth.db'}"
+    engine = create_engine(
+        database_url,
+        connect_args={"check_same_thread": False},
+    )
+    testing_session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    Base.metadata.create_all(bind=engine)
+
     app = create_app(
         Settings(
             storage_root=str(tmp_path / "storage"),
-            database_url="sqlite:///unused.db",
+            database_url=database_url,
             api_key_auth_enabled=enabled,
             api_keys="dev-key",
             _env_file=None,
         )
     )
+
+    def override_db():
+        db = testing_session()
+        try:
+            yield db
+        finally:
+            db.close()
+
+    app.dependency_overrides[get_db] = override_db
     return TestClient(app)
 
 
-def test_api_key_auth_disabled_allows_existing_requests(tmp_path):
+def test_api_key_auth_disabled_allows_existing_requests(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
     client = make_auth_client(tmp_path, enabled=False)
 
     response = client.get("/api/v1/tasks")
 
-    assert response.status_code != 401
+    assert response.status_code == 200
+    assert response.json() == {"items": [], "total": 0}
 
 
 def test_api_key_auth_enabled_rejects_missing_key(tmp_path):

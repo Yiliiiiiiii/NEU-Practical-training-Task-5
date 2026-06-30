@@ -15,6 +15,7 @@ class SchemaService:
         "array[string]",
         "boolean",
         "date",
+        "datetime",
         "enum",
         "number",
         "object",

@@ -729,6 +729,91 @@ dd {
   font-weight: 800;
 }
 
+.evidence-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.evidence-panel-head,
+.filter-bar,
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.evidence-panel-head span,
+.pill-row span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fffaf0;
+  padding: 5px 9px;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.evidence-row,
+.evidence-issue,
+.manifest-panel table,
+.knowledge-comparison-panel table {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffdf8;
+}
+
+.evidence-row {
+  padding: 10px 12px;
+}
+
+.evidence-row summary,
+.chunk-card summary {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.tone-good {
+  border-left: 4px solid var(--green);
+}
+
+.tone-warn {
+  border-left: 4px solid var(--amber);
+}
+
+.tone-bad {
+  border-left: 4px solid var(--red);
+}
+
+.filter-bar select {
+  min-height: 34px;
+}
+
+.manifest-panel table,
+.knowledge-comparison-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.manifest-panel th,
+.manifest-panel td,
+.knowledge-comparison-panel th,
+.knowledge-comparison-panel td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.manifest-panel code,
+.knowledge-comparison-panel code {
+  white-space: normal;
+  word-break: break-all;
+}
+
 @media (max-width: 980px) {
   .app-shell {
     grid-template-columns: 1fr;
