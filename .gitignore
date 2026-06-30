@@ -43,6 +43,7 @@ Thumbs.db
 .idea/
 .vscode/
 .codegraph/
+.worktrees/
 
 # Real-world dataset downloads are reproducible local cache only
 examples/real_world/raw_cache/*
