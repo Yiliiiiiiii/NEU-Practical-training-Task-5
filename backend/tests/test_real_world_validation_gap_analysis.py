@@ -308,6 +308,50 @@ def test_summary_only_badcase_count_is_rendered_as_warning() -> None:
     assert "2 badcase violation(s) were reported without detail rows." in markdown
 
 
+def test_partial_badcase_details_preserve_summary_total_and_warn_for_missing() -> None:
+    analyzer = load_script("analyze_real_world_validation_gaps")
+    mapping = copy.deepcopy(mapping_fixture())
+    mapping["summary"]["badcase_violation_count"] = 3
+    detail = {
+        "doc_id": "policy-failed",
+        "case_id": "badcase-1",
+        "target_field": "issuer",
+    }
+    mapping["badcase_violations"] = [detail]
+
+    report = analyzer.analyze_reports(
+        evaluation_fixture(),
+        mapping,
+        package_reports=[],
+    )
+    markdown = analyzer.render_markdown(report)
+
+    assert report["summary"]["badcase_violation_count"] == 3
+    assert report["badcase_warnings"][0] == detail
+    missing_warning = report["badcase_warnings"][1]
+    assert missing_warning["missing_detail_count"] == 2
+    assert missing_warning["reported_count"] == 3
+    assert "2 badcase violation detail(s) are missing" in missing_warning["warning"]
+    assert "2 badcase violation detail(s) are missing" in markdown
+
+
+def test_badcase_details_cannot_exceed_nonzero_summary_total() -> None:
+    analyzer = load_script("analyze_real_world_validation_gaps")
+    mapping = copy.deepcopy(mapping_fixture())
+    mapping["summary"]["badcase_violation_count"] = 1
+    mapping["badcase_violations"] = [
+        {"doc_id": "general-ok", "case_id": "badcase-1"},
+        {"doc_id": "policy-failed", "case_id": "badcase-2"},
+    ]
+
+    with pytest.raises(ValueError, match="detail count 2 exceeds summary count 1"):
+        analyzer.analyze_reports(
+            evaluation_fixture(),
+            mapping,
+            package_reports=[],
+        )
+
+
 def test_cli_discovers_package_reports_and_writes_json_and_markdown(
     tmp_path: Path,
 ) -> None:

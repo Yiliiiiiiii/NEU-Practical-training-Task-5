@@ -590,13 +590,35 @@ def analyze_reports(
     summary_badcases = (
         summary.get("badcase_violation_count", 0) if isinstance(summary, dict) else 0
     )
-    badcase_count = len(badcase_violations) or int(summary_badcases or 0)
-    if badcase_count > len(badcase_violations):
+    summary_badcase_count = int(summary_badcases or 0)
+    detail_count = len(badcase_violations)
+    if summary_badcase_count and detail_count > summary_badcase_count:
+        raise ValueError(
+            "mapping_report.badcase_violations detail count "
+            f"{detail_count} exceeds summary count {summary_badcase_count}"
+        )
+    badcase_count = max(detail_count, summary_badcase_count)
+    missing_detail_count = badcase_count - detail_count
+    if missing_detail_count and detail_count:
         badcase_warnings = [
             *badcase_violations,
             {
                 "reported_count": badcase_count,
-                "details_available": bool(badcase_violations),
+                "provided_detail_count": detail_count,
+                "missing_detail_count": missing_detail_count,
+                "details_available": True,
+                "warning": (
+                    f"{missing_detail_count} badcase violation detail(s) are missing "
+                    f"({badcase_count} reported, {detail_count} provided)."
+                ),
+            },
+        ]
+    elif missing_detail_count:
+        badcase_warnings = [
+            *badcase_violations,
+            {
+                "reported_count": badcase_count,
+                "details_available": False,
                 "warning": (
                     f"{badcase_count} badcase violation(s) were reported "
                     "without detail rows."
