@@ -1,323 +1,140 @@
 # SchemaPack Agent Final Handoff Status
 
-Topic 5 follow-up Phases 23 through 28 are implemented in this checkout.
+## Integrated Repository State
 
-2026-06-29 guideline follow-up Phases 0 through 5 are also implemented in the
-`codex/guideline-2026-06-29` worktree. New evidence includes dedicated
-procurement schema/template routing, real-world knowledge-loop metrics, chunk
-retrieval metrics, frontend evidence panels, manifest/evaluation report APIs,
-and LLM fallback safety-mode evaluation.
+- Current branch: `main`.
+- Verification baseline: 2026-06-30.
+- Unified verification command: `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`.
+- Verified result: 202 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported to [`docs/openapi.json`](openapi.json).
+- Core production boundary: UIR input to schema-driven package output.
 
-## Current Implemented Capabilities
-
-- Core UIR-to-schema conversion service layer:
-  - file-backed schema/template loading
-  - database-backed schema/template catalog governance
-  - seeded fixture versions with draft/active/archived status
-  - referenced-version protection and immutable task snapshots
-  - field candidate extraction
-  - deterministic mapping with confidence tiers, structured evidence, risk
-    flags, badcase filters, and review-required reasons
-  - transform
-  - canonical model build
-  - render to structured JSON, Markdown, and chunks
-  - configurable deterministic chunk organization with summaries, keywords,
-    tags, entity-tag placeholders, source links, protected table/list/code
-    blocks, and optional parent-child chunks
-  - validation
-  - manifest generation
-  - package ZIP creation, `metadata.json`, package spec roles, and strict
-    package verification
-- Task APIs:
-  - document import/list/detail
-  - schema/template catalog reads, creation, activation, and archival
-  - task create/list/detail
-  - explicit task execution
-  - task report reads
-  - package metadata and ZIP download
-- Production-like evaluator:
-  - conversion artifacts are generated through real service layer components
-  - before/after metrics are retained
-  - badcase checks are retained
-  - package validation is retained
-  - downstream package smoke summary is retained
-- Downstream package consumption:
-  - manifest checksum validation for package directories and ZIP files
-  - `chunks.jsonl` ingestion smoke test with simple keyword matching
-  - training-corpus JSONL export with granularity filters, tags, source links,
-    schema, and template metadata
-- Human-gated mapping knowledge growth loop:
-  - review-derived alias candidates
-  - draft knowledge packs
-  - active knowledge packs
-  - effective template resolution
-  - badcase filtering
-  - database-backed review and knowledge APIs
-- Optional LLM fallback adapter:
-  - disabled by default
-  - deterministic stub mode for tests and demos
-  - OpenAI-compatible adapter mode for configured deployments
-  - always review-required
-  - records model, latency, prompt hash, response hash, confidence, and reason
-  - bounded timeout and retries
-  - per-task suggestion cap
-  - non-strict provider failures recorded as mapping warnings
-  - explicit task-level `strict_llm` override
-  - non-sensitive execution snapshot and recursive secret redaction
-  - badcase filtering
-- Minimal React/Vite frontend workbench:
-  - sample UIR import
-  - task creation
-  - task execution
-  - mapping and validation report inspection
-  - mapping evidence, confidence, and risk flag inspection
-  - content organization report inspection
-  - content organization strategy controls
-  - enriched chunk preview with quality flags and parent-child metadata
-  - collapsible raw JSON report inspection
-  - review approve/reject controls
-  - knowledge candidate acceptance and pack activation controls
-  - package ZIP download
-- Deployment packaging:
-  - backend Dockerfile with startup database initialization
-  - frontend Dockerfile with Nginx static serving and API proxying
-  - Docker Compose profile with persistent storage/database volumes
-  - production environment example with LLM fallback disabled
-- Lightweight governance:
-  - optional API key authentication for `/api/v1/*`
-  - audit logs for task execution and package downloads
-  - audit log query API and frontend panel
-  - safe retention cleanup script with dry-run default
-- Documentation:
-  - `docs/openapi.json`
-  - `docs/openapi_workflow.md`
-  - `docs/developer_guide.md`
-  - `docs/demo_workflow.md`
-  - `docs/deployment.md`
-  - `docs/final_demo_script.md`
-  - `docs/requirement_mapping.md`
-  - `docs/badcase_analysis.md`
-- `docs/api_usage_examples.md`
-- `docs/service_migration_plan.md`
-- `docs/package_spec.md`
-- `docs/acceptance_report.md`
-- `reports/real_world_knowledge_loop_report.{json,md}`
-- `reports/chunk_retrieval_eval_report.{json,md}`
-- `reports/llm_fallback_eval_report.{json,md}`
-- Engineering maintenance:
-  - `scripts/verify_all.py`
-  - `.github/workflows/ci.yml`
-
-## Topic 5 Four-Part Deepening Evidence
-
-Generated reports:
-
-- `reports/real_world_mapping_eval_report.md`
-- `reports/procurement_doc_eval_report.md`
-- `reports/content_organization_retrieval_eval.md`
-- `reports/knowledge_loop_eval_report.md`
-
-Observed metrics from the committed report set:
-
-- Real-world mapping: 16 documents, package pass rate 1.000, badcase
-  violations 0.
-- Procurement comparison: required coverage improves from 0.333 with
-  `general_doc` to 1.000 with `procurement_doc`; mapping recall improves by
-  0.528.
-- Retrieval: lightweight evaluator over 32 queries reports Recall@1 0.500,
-  Recall@3 1.000, MRR 0.750.
-- Knowledge loop: old snapshot unchanged is true, one active pack is produced,
-  and badcase violations are 0.
-
-Known limits:
-
-- Retrieval evaluator is lightweight and is not a full RAG system.
-- Procurement schema is v1 and aliases require continued real-sample review.
-- Gold labels are coursework-scale evaluation labels, not an enterprise
-  benchmark.
-
-## Current Not Implemented Capabilities
-
-- Authorization, tenancy, SSO/TLS integration, and advanced operator controls.
-- Hosted credential provisioning, model evaluation, and enterprise LLM
-  monitoring.
-- Raw source parsing for PDF, Word, Excel, images, OCR outputs, or scanned files.
-
-## How To Run Tests
-
-From the backend directory:
-
-```powershell
-cd backend
-.\.venv\Scripts\python -m pytest -q
-.\.venv\Scripts\python -m ruff check .
-```
-
-From the frontend directory:
-
-```powershell
-cd frontend
-npm run build
-```
-
-Deployment packaging smoke checks are included in the backend pytest suite.
-
-## How To Run The Evaluator
-
-From the repository root:
-
-```powershell
-python scripts\eval_production_like.py
-```
-
-Expected current summary:
+The implemented processing line is:
 
 ```text
-production-like eval complete: 15 cases, gold=1.0, badcase=1.0
+UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP
 ```
 
-Additional current summaries:
+## Implemented Capability Matrix
 
-- Knowledge loop: `approved_candidates=1`, `rejected_candidates=1`,
-  `badcase_violation_count=0`, `old_snapshot_unchanged=true`
-- Chunk retrieval: `query_count=4`, Recall@5 is at least `0.75` for every
-  recorded strategy
-- LLM fallback: `auto_accepted_count=0`, `secret_redaction_passed=true`
+| Area | Current capability | Evidence |
+| --- | --- | --- |
+| Schema/template catalogs | Catalog/governance coverage includes schemas, schema versions, mapping templates, template versions, and effective knowledge-pack selection, with status transitions, referenced-version protection, and immutable task snapshots. | [`docs/developer_guide.md`](developer_guide.md) |
+| Document and task APIs | UIR import, document list/detail, task create/list/detail, explicit execution, report retrieval, package metadata, and package download. | [`docs/openapi.json`](openapi.json) |
+| Mapping and transform | Deterministic field candidate extraction, exact/alias/regex/type/fuzzy matching, evidence, confidence tiers, risk flags, review-required reasons, badcase filtering, projection, normalization, enum maps, and defaults. | [`reports/real_world_mapping_eval_report.md`](../reports/real_world_mapping_eval_report.md) |
+| Rendering and packages | Canonical model build, JSON/Markdown/chunk rendering, deterministic content organization, validation, manifest generation, ZIP creation, and strict package verification. | [`docs/package_spec.md`](package_spec.md) |
+| Human review and knowledge | Review approval/rejection, knowledge candidates, draft/active/archived packs, effective-template resolution, metrics, snapshot preservation, and badcase protections. | [`reports/knowledge_loop_eval_report.md`](../reports/knowledge_loop_eval_report.md) |
+| Optional LLM fallback | Disabled by default, deterministic stub and OpenAI-compatible modes, review-only suggestions, bounded retries/timeouts, suggestion caps, redacted reports, provider warning handling, and strict-mode override. | [`reports/llm_fallback_eval_report.md`](../reports/llm_fallback_eval_report.md) |
+| Frontend workbench | Import, task creation, execution, mapping evidence, validation, content organization controls, chunk preview, raw reports, review/knowledge actions, audit panel, and package download. | [`docs/demo_workflow.md`](demo_workflow.md) |
+| Deployment | Backend/frontend Dockerfiles, Nginx proxying, Docker Compose volumes, startup database initialization, API-key auth option, audit logs, and retention cleanup. | [`docs/deployment.md`](deployment.md) |
+| Downstream consumption | Package ZIP/directory smoke ingest and training-corpus JSONL export. | [`docs/package_spec.md`](package_spec.md) |
 
-Evaluator outputs:
+## API And Frontend Surface
 
-- `reports/production_like_eval_report.json`
-- `reports/production_like_eval_report.md`
-- `reports/packages/`
+- The OpenAPI snapshot exports 32 paths in [`docs/openapi.json`](openapi.json). Use that file and [`docs/openapi_workflow.md`](openapi_workflow.md) as the API inventory instead of duplicating endpoint lists here.
+- The frontend is a React/Vite workbench for the full demo path: sample UIR import, task creation, execution, report inspection, review decisions, knowledge activation, content organization settings, enriched chunk preview, and package download.
+- The local frontend development server proxies `/api` to `http://127.0.0.1:8000`.
+- The container profile serves the frontend through Nginx and proxies backend API calls under the same local origin.
 
-## How To Start The Demo
+## Catalogs, Data, And Packages
 
-Container profile:
+- Catalog/governance types are implemented for schemas, schema versions, mapping templates, template versions, and effective knowledge-pack selection.
+- Seeded document families are `contract_doc`, `general_doc`, `meeting_doc`, `policy_doc`, and `procurement_doc`.
+- The catalog baseline contains 5 schemas and 5 mapping templates.
+- The real-world UIR dataset contains 16 JSON files:
+  - 3 `general_doc`
+  - 3 `meeting_doc`
+  - 5 `policy_doc`
+  - 5 `procurement_doc`
+- Real-world execution evidence records 16/16 imports, 16/16 executions, and 16/16 verifier-passing packages in [`reports/real_world_eval_report.md`](../reports/real_world_eval_report.md).
+- Real-world package outputs are stored under `reports/real_world_packages/`; production-like evaluator package outputs are stored under `reports/packages/`.
+- Generated packages include structured content, Markdown content, chunks, metadata, mapping/transform/validation/canonical/content-organization/verifier reports, manifest, and checksums as described in [`docs/package_spec.md`](package_spec.md).
+
+## Evaluation Evidence
+
+- Unified verification: 202 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported by `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`.
+- Real-world pipeline: 16/16 documents import, execute, and produce verifier-passing packages. See [`reports/real_world_eval_report.md`](../reports/real_world_eval_report.md).
+- Honest strict-validation split: all five `procurement_doc` samples pass strict validation; the other 11 real-world samples remain review-required and are not claimed as field-valid (`general_doc` 0/3, `meeting_doc` 0/3, `policy_doc` 0/5 strict passes).
+- Real-world mapping: mapping recall is `0.42592592592592593`, package pass rate is 1.000, and badcase violations are 0. See [`reports/real_world_mapping_eval_report.md`](../reports/real_world_mapping_eval_report.md).
+- Procurement comparison: required coverage is 1.000 for `procurement_doc` versus 0.333 for the generic `general_doc` schema, with zero badcase violations. See [`reports/procurement_doc_eval_report.md`](../reports/procurement_doc_eval_report.md).
+- Content retrieval: the 32-query report records `Recall@3 = 1.000`. See [`reports/content_organization_retrieval_eval.md`](../reports/content_organization_retrieval_eval.md).
+- Knowledge-loop reports: both [`reports/knowledge_loop_eval_report.md`](../reports/knowledge_loop_eval_report.md) and [`reports/real_world_knowledge_loop_report.md`](../reports/real_world_knowledge_loop_report.md) preserve old snapshots and record zero badcase violations.
+- LLM fallback: [`reports/llm_fallback_eval_report.md`](../reports/llm_fallback_eval_report.md) records `auto_accepted_count = 0`, `secret_redaction_passed = true`, and two review-required suggestions.
+- Acceptance and auxiliary evidence are recorded in [`reports/acceptance_report.md`](../reports/acceptance_report.md), [`reports/chunk_retrieval_eval_report.md`](../reports/chunk_retrieval_eval_report.md), and [`docs/requirement_mapping.md`](requirement_mapping.md).
+
+## Reproduction Commands
+
+Run the repository-wide baseline from the repository root:
 
 ```powershell
-docker compose up --build
+git branch --show-current
+backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-Open:
-
-```text
-http://127.0.0.1:8080/
-```
-
-Local development profile:
-
-Start the backend:
+Run the backend locally for API-backed evaluations:
 
 ```powershell
 cd backend
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Start the frontend in another terminal:
+From another repository-root terminal, regenerate the real-world and evaluation reports:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_real_world_uir.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_real_world_mapping.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_procurement_doc.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_knowledge_loop_real_world.py --base-url http://127.0.0.1:8000 --timeout 60
+```
+
+Run the offline report generators from the repository root:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_content_organization_retrieval.py
+backend\.venv\Scripts\python.exe scripts\eval_real_world_knowledge_loop.py
+backend\.venv\Scripts\python.exe scripts\eval_chunk_retrieval.py
+backend\.venv\Scripts\python.exe scripts\eval_llm_fallback_modes.py
+```
+
+Run the container demo:
+
+```powershell
+docker compose up --build
+```
+
+Run the frontend development server:
 
 ```powershell
 cd frontend
+npm ci
 npm run dev
 ```
 
-Open:
+## Known Boundaries
 
-```text
-http://127.0.0.1:5173/
-```
-
-Demo path:
-
-```text
-Sample UIR -> Import -> Create Task -> Execute -> Reports -> ZIP download
-```
-
-## How To Verify Package ZIP
-
-Option 1: Use the evaluator report.
-
-- Run `python scripts\eval_production_like.py`.
-- Open `reports/production_like_eval_report.json`.
-- Confirm `package_validation.phase_a` and `package_validation.phase_b` entries have `passed: true`.
-
-Option 2: Inspect a generated package manually.
-
-```powershell
-@'
-import json
-import zipfile
-from pathlib import Path
-
-report = json.loads(Path("reports/production_like_eval_report.json").read_text(encoding="utf-8"))
-first = report["package_validation"]["phase_b"][0]
-zip_path = Path(first["zip_path"])
-print(zip_path, zip_path.is_file())
-with zipfile.ZipFile(zip_path) as archive:
-    print(sorted(archive.namelist()))
-'@ | python -
-```
-
-Expected package files include:
-
-- `content.json`
-- `content.md`
-- `chunks.jsonl`
-- `metadata.json`
-- `content_organization_report.json`
-- `mapping_report.json`
-- `transform_report.json`
-- `validation_report.json`
-- `canonical.json`
-- `manifest.json`
-- `verifier_report.json`
-
-## How To Smoke Test Downstream Consumption
-
-From the repository root, after running the evaluator:
-
-```powershell
-.\backend\.venv\Scripts\python.exe scripts\smoke_rag_ingest.py --package reports\packages\phase_b\packages\pkg_eval_policy_001_standard\standard_package.zip --query "鍒跺害 绠＄悊"
-.\backend\.venv\Scripts\python.exe scripts\export_training_corpus.py --package reports\packages\phase_b\packages\pkg_eval_policy_001_standard\standard_package.zip --out reports\training_corpus.jsonl
-```
-
-## Topic 5 Boundaries
-
-SchemaPack Agent starts from UIR input. It does not parse or OCR raw PDF, Word,
-Excel, image, scan, or other source files.
-
-The implemented scope is:
-
-```text
-UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP
-```
-
-The project does not include cleaning, normalization, entity linking, full
-quality scoring, full RAG, model training, or autonomous production rule
-activation.
+- Production input is UIR. Raw PDF, Word, Excel, image, scanned document, and OCR parsing are not production runtime features.
+- The real-world source collection and UIR-building scripts are offline dataset tooling, not API-bound ingestion services.
+- The 11 non-procurement real-world samples produce verifier-passing packages but remain review-required for strict field validity.
+- Retrieval evaluation is deterministic chunk-ranking evidence, not a full RAG service.
+- Optional LLM fallback is a review-only suggestion path; it does not activate mappings without human/governed review.
+- The project does not implement SSO, tenant-aware authorization, TLS termination, hosted credential provisioning, enterprise model monitoring, full quality scoring, model training, or autonomous production rule activation.
 
 ## Productionization Directions
 
-- Add authenticated operator review screens.
-- Add hosted credential provisioning, provider/model evaluation, and enterprise
-  monitoring if enabling the optional OpenAI-compatible adapter.
-- Add SSO, tenant-aware authorization, TLS termination, and advanced operator
-  controls when moving beyond the current API-key deployment profile.
-- Add generated client publication if downstream consumers require it.
-- Expand regression datasets while preserving gold and badcase checks.
+- Add authenticated operator review screens, role-aware workflows, and tenant-aware authorization before multi-tenant use.
+- Add SSO/TLS integration, hosted credential management, model/provider evaluation, and monitoring before enabling network LLM fallback in production.
+- Extend regression datasets through the existing gold-label, badcase, review, and snapshot-preservation checks.
+- Publish generated API clients if downstream consumers require strongly typed integrations.
+- Keep procurement specialization and future domain catalogs honest by separating verifier-passing packages from strict field-valid claims.
 
-## Final Verification On 2026-06-29
+## Final Verification On 2026-06-30
 
-The Topic 5 follow-up branch was verified from a clean temporary backend runtime
-and the current frontend workspace.
+The current `main` baseline is:
 
-- `F:\p2\backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
-  passed: backend pytest reported `160 passed`, ruff reported `All checks passed!`,
-  the frontend build passed, and OpenAPI exported 32 paths.
-- `npm test -- --run` in `frontend` passed: 1 Vitest file and 3 tests passed;
-  frontend tests passed.
-- Temporary live backend evaluation passed:
-  `python scripts\eval_real_world_uir.py --base-url http://127.0.0.1:8770 --timeout 60`
-  reported 16 imports, 16 task executions, and 16 package verifications.
-- Phase 5 LLM fallback safety passed: the report records zero auto-accepted
-  suggestions and successful secret redaction.
-
+- `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
+- Backend pytest: 202 passed.
+- Ruff: clean.
+- Frontend production build: successful.
+- OpenAPI export: 32 paths written to [`docs/openapi.json`](openapi.json).
+- Real-world UIR pipeline: 16 imports, 16 task executions, and 16 package verifications.
+- Strict validation: `procurement_doc` 5/5 passes; `general_doc` 0/3, `meeting_doc` 0/3, and `policy_doc` 0/5 remain review-required.
+- Knowledge-loop safety: snapshot preservation true and badcase violations 0 in both knowledge-loop reports.
