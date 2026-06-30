@@ -254,9 +254,15 @@ def test_procurement_eval_required_coverage_uses_procurement_required_fields() -
             "doc_id": "real_procurement_001",
             "mapped_or_review_targets": ["title"],
             "required_missing": [],
+        },
+        {
+            "doc_id": "real_procurement_002",
+            "mapped_or_review_targets": [],
+            "required_missing": [],
         }
     ]
 
     evaluator.apply_procurement_required_coverage(items)
 
     assert items[0]["required_missing"] == ["project_name", "purchaser"]
+    assert items[1]["required_missing"] == ["project_name", "purchaser", "title"]

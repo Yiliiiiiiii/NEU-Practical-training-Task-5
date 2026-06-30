@@ -10,13 +10,12 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-
 from eval_support import (
     EvaluationHttpClient,
     aggregate_mapping_metrics,
     load_jsonl,
-    score_mapping_report,
     safe_ratio,
+    score_mapping_report,
     write_json,
     write_markdown,
 )
@@ -86,12 +85,10 @@ def mapped_or_review_targets(mapping_report: dict[str, Any]) -> set[str]:
 def _is_fatal_http_error(exc: Exception) -> bool:
     if isinstance(
         exc,
-        (
-            httpx.ConnectError,
-            httpx.ConnectTimeout,
-            httpx.PoolTimeout,
-            httpx.ReadTimeout,
-        ),
+        httpx.InvalidURL
+        | httpx.TransportError
+        | httpx.TimeoutException
+        | httpx.UnsupportedProtocol,
     ):
         return True
     if isinstance(exc, httpx.HTTPStatusError):

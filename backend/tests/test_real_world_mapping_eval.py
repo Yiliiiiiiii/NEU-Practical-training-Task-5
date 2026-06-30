@@ -417,6 +417,16 @@ def test_mapping_eval_resolves_gold_source_path_against_custom_uir_dir(
     )
 
 
+def test_mapping_eval_treats_malformed_base_url_as_fatal() -> None:
+    import httpx
+
+    evaluator = load_script("eval_real_world_mapping")
+
+    assert evaluator._is_fatal_http_error(
+        httpx.UnsupportedProtocol("missing scheme")
+    )
+
+
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [

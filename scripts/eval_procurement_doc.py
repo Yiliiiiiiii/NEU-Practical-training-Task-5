@@ -44,8 +44,7 @@ def apply_procurement_required_coverage(items: list[dict[str, Any]]) -> None:
             for target in item.get("mapped_or_review_targets", [])
             if isinstance(target, str)
         }
-        if targets:
-            item["required_missing"] = sorted(REQUIRED_FIELDS - targets)
+        item["required_missing"] = sorted(REQUIRED_FIELDS - targets)
 
 
 def build_report(
