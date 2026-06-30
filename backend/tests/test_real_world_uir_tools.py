@@ -690,7 +690,7 @@ def test_validation_dataset_moves_rejected_files_inside_dataset_root(tmp_path: P
     assert (reports_dir / "validation_report.json").is_file()
 
 
-def test_evaluator_maps_procurement_to_general_and_continues_after_failure(
+def test_evaluator_maps_procurement_to_catalog_and_continues_after_failure(
     tmp_path: Path,
 ) -> None:
     import httpx
@@ -749,7 +749,7 @@ def test_evaluator_maps_procurement_to_general_and_continues_after_failure(
                 200,
                 json={
                     "task_id": "task-1",
-                    "schema_id": "general_doc",
+                    "schema_id": "procurement_doc",
                     "summary": {},
                     "mappings": [{"risk_level": "high"}],
                     "unmapped": [],
@@ -761,7 +761,7 @@ def test_evaluator_maps_procurement_to_general_and_continues_after_failure(
                 200,
                 json={
                     "task_id": "task-1",
-                    "schema_id": "general_doc",
+                    "schema_id": "procurement_doc",
                     "passed": True,
                     "summary": {},
                     "issues": [],
@@ -818,8 +818,8 @@ def test_evaluator_maps_procurement_to_general_and_continues_after_failure(
     }
     assert report["typical_success_cases"] == ["real_procurement_001"]
     assert report["typical_failure_cases"][0]["doc_id"] == "real_policy_failed"
-    assert task_payloads[0]["schema_id"] == "general_doc"
-    assert task_payloads[0]["template_id"] == "general_doc_base_v1"
+    assert task_payloads[0]["schema_id"] == "procurement_doc"
+    assert task_payloads[0]["template_id"] == "procurement_doc_base_v1"
     assert (packages_dir / "real_procurement_001.zip").read_bytes() == b"PK-test-package"
     rendered_report = (reports_dir / "real_world_eval_report.json").read_text(
         encoding="utf-8"

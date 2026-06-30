@@ -1,0 +1,215 @@
+{
+  "schema_id": "procurement_doc",
+  "name": "Procurement Document Standard Structure",
+  "version": "1.0.0",
+  "description": "Normalized output schema for procurement notices, bid announcements, and award notices.",
+  "fields": [
+    {
+      "field_id": "title",
+      "name": "title",
+      "display_name": "Title",
+      "type": "string",
+      "required": true,
+      "aliases": ["title", "标题", "公告标题", "采购公告标题", "中标公告标题"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "project_name",
+      "name": "project_name",
+      "display_name": "Project Name",
+      "type": "string",
+      "required": true,
+      "aliases": ["project_name", "项目名称", "采购项目名称", "招标项目名称"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "procurement_id",
+      "name": "procurement_id",
+      "display_name": "Procurement ID",
+      "type": "string",
+      "required": false,
+      "aliases": ["procurement_id", "项目编号", "采购编号", "招标编号", "采购项目编号"],
+      "constraints": {}
+    },
+    {
+      "field_id": "procurement_type",
+      "name": "procurement_type",
+      "display_name": "Procurement Type",
+      "type": "enum",
+      "required": false,
+      "aliases": ["procurement_type", "采购方式", "公告类型", "公告栏目", "采购类型"],
+      "constraints": {
+        "enum": [
+          "public_tender",
+          "competitive_negotiation",
+          "competitive_consultation",
+          "inquiry",
+          "single_source",
+          "award",
+          "other"
+        ]
+      }
+    },
+    {
+      "field_id": "purchaser",
+      "name": "purchaser",
+      "display_name": "Purchaser",
+      "type": "string",
+      "required": true,
+      "aliases": ["purchaser", "采购人", "采购单位", "采购人名称", "采购单位名称"],
+      "constraints": {"min_length": 1}
+    },
+    {
+      "field_id": "agency",
+      "name": "agency",
+      "display_name": "Agency",
+      "type": "string",
+      "required": false,
+      "aliases": ["agency", "代理机构", "采购代理机构", "代理机构名称", "招标代理机构"],
+      "constraints": {}
+    },
+    {
+      "field_id": "budget_amount",
+      "name": "budget_amount",
+      "display_name": "Budget Amount",
+      "type": "number",
+      "required": false,
+      "aliases": ["budget_amount", "预算金额", "预算金额（元）", "项目预算", "采购预算"],
+      "constraints": {}
+    },
+    {
+      "field_id": "award_supplier",
+      "name": "award_supplier",
+      "display_name": "Award Supplier",
+      "type": "string",
+      "required": false,
+      "aliases": ["award_supplier", "中标供应商", "成交供应商", "供应商名称", "中标成交供应商名称"],
+      "constraints": {}
+    },
+    {
+      "field_id": "award_amount",
+      "name": "award_amount",
+      "display_name": "Award Amount",
+      "type": "number",
+      "required": false,
+      "aliases": ["award_amount", "中标金额", "成交金额", "中标（成交）金额", "总中标金额"],
+      "constraints": {}
+    },
+    {
+      "field_id": "announcement_date",
+      "name": "announcement_date",
+      "display_name": "Announcement Date",
+      "type": "date",
+      "required": false,
+      "aliases": ["announcement_date", "公告日期", "公告时间", "发布时间", "发布日期"],
+      "constraints": {"format": "YYYY-MM-DD"}
+    },
+    {
+      "field_id": "bid_deadline",
+      "name": "bid_deadline",
+      "display_name": "Bid Deadline",
+      "type": "date",
+      "required": false,
+      "aliases": ["bid_deadline", "投标截止时间", "提交投标文件截止时间", "响应文件提交截止时间"],
+      "constraints": {"format": "YYYY-MM-DD"}
+    },
+    {
+      "field_id": "opening_date",
+      "name": "opening_date",
+      "display_name": "Opening Date",
+      "type": "date",
+      "required": false,
+      "aliases": ["opening_date", "开标时间", "开启时间", "开标日期"],
+      "constraints": {"format": "YYYY-MM-DD"}
+    },
+    {
+      "field_id": "contact_person",
+      "name": "contact_person",
+      "display_name": "Contact Person",
+      "type": "string",
+      "required": false,
+      "aliases": ["contact_person", "项目联系人", "联系人", "采购人联系方式", "代理机构联系方式"],
+      "constraints": {}
+    },
+    {
+      "field_id": "contact_phone",
+      "name": "contact_phone",
+      "display_name": "Contact Phone",
+      "type": "string",
+      "required": false,
+      "aliases": ["contact_phone", "联系电话", "联系方式", "项目联系电话", "电话"],
+      "constraints": {}
+    },
+    {
+      "field_id": "source_url",
+      "name": "source_url",
+      "display_name": "Source URL",
+      "type": "string",
+      "required": false,
+      "aliases": ["source_url", "来源链接", "原文链接", "网页地址", "url"],
+      "constraints": {}
+    },
+    {
+      "field_id": "source_site",
+      "name": "source_site",
+      "display_name": "Source Site",
+      "type": "string",
+      "required": false,
+      "aliases": ["source_site", "来源网站", "发布网站", "信息来源"],
+      "constraints": {}
+    },
+    {
+      "field_id": "summary",
+      "name": "summary",
+      "display_name": "Summary",
+      "type": "string",
+      "required": false,
+      "aliases": ["summary", "摘要", "内容摘要", "项目概况"],
+      "constraints": {}
+    },
+    {
+      "field_id": "content",
+      "name": "content",
+      "display_name": "Content",
+      "type": "text",
+      "required": false,
+      "aliases": ["content", "正文", "主要内容", "公告正文"],
+      "constraints": {}
+    }
+  ],
+  "json_schema": {
+    "type": "object",
+    "required": ["title", "project_name", "purchaser"],
+    "properties": {
+      "title": {"type": "string"},
+      "project_name": {"type": "string"},
+      "procurement_id": {"type": "string"},
+      "procurement_type": {
+        "type": "string",
+        "enum": [
+          "public_tender",
+          "competitive_negotiation",
+          "competitive_consultation",
+          "inquiry",
+          "single_source",
+          "award",
+          "other"
+        ]
+      },
+      "purchaser": {"type": "string"},
+      "agency": {"type": "string"},
+      "budget_amount": {"type": "number"},
+      "award_supplier": {"type": "string"},
+      "award_amount": {"type": "number"},
+      "announcement_date": {"type": "string", "format": "date"},
+      "bid_deadline": {"type": "string", "format": "date"},
+      "opening_date": {"type": "string", "format": "date"},
+      "contact_person": {"type": "string"},
+      "contact_phone": {"type": "string"},
+      "source_url": {"type": "string"},
+      "source_site": {"type": "string"},
+      "summary": {"type": "string"},
+      "content": {"type": "string"}
+    }
+  }
+}

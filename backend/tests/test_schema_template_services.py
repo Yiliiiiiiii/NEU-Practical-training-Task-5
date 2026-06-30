@@ -17,6 +17,7 @@ def test_schema_service_loads_production_like_schemas():
     schemas = service.list_schemas()
     assert {schema.schema_id for schema in schemas} == {
         "policy_doc",
+        "procurement_doc",
         "contract_doc",
         "meeting_doc",
         "general_doc",
@@ -81,6 +82,7 @@ def test_template_service_loads_production_like_templates():
     templates = template_service.list_templates()
     assert {template.template_id for template in templates} == {
         "policy_doc_base_v1",
+        "procurement_doc_base_v1",
         "contract_doc_base_v1",
         "meeting_doc_base_v1",
         "general_doc_base_v1",

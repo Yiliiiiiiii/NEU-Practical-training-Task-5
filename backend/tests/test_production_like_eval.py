@@ -33,7 +33,13 @@ def read_jsonl(path: Path) -> list[dict]:
 
 
 def test_production_like_fixtures_exist_and_parse():
-    domains = {"policy_doc", "contract_doc", "meeting_doc", "general_doc"}
+    domains = {
+        "policy_doc",
+        "procurement_doc",
+        "contract_doc",
+        "meeting_doc",
+        "general_doc",
+    }
     schemas = {
         path.stem: TargetSchema.model_validate(read_json(path))
         for path in sorted((PRODUCTION_LIKE_DIR / "schemas").glob("*.json"))
@@ -47,12 +53,14 @@ def test_production_like_fixtures_exist_and_parse():
 
     assert set(schemas) == {
         "policy_doc_v1",
+        "procurement_doc_v1",
         "contract_doc_v1",
         "meeting_doc_v1",
         "general_doc_v1",
     }
     assert set(templates) == {
         "policy_doc_base_v1",
+        "procurement_doc_base_v1",
         "contract_doc_base_v1",
         "meeting_doc_base_v1",
         "general_doc_base_v1",

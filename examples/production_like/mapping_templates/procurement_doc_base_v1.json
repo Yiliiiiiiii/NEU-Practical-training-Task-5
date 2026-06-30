@@ -1,0 +1,89 @@
+{
+  "template_id": "procurement_doc_base_v1",
+  "schema_id": "procurement_doc",
+  "name": "Procurement Document Base Mapping Template",
+  "version": "1.0.0",
+  "aliases": {
+    "title": ["title", "标题", "公告标题", "采购公告标题", "中标公告标题"],
+    "project_name": ["project_name", "项目名称", "采购项目名称", "招标项目名称"],
+    "procurement_id": ["procurement_id", "项目编号", "采购编号", "招标编号", "采购项目编号"],
+    "procurement_type": ["procurement_type", "采购方式", "公告类型", "公告栏目", "采购类型"],
+    "purchaser": ["purchaser", "采购人", "采购单位", "采购人名称", "采购单位名称"],
+    "agency": ["agency", "代理机构", "采购代理机构", "代理机构名称", "招标代理机构"],
+    "budget_amount": ["budget_amount", "预算金额", "预算金额（元）", "项目预算", "采购预算"],
+    "award_supplier": ["award_supplier", "中标供应商", "成交供应商", "供应商名称", "中标成交供应商名称"],
+    "award_amount": ["award_amount", "中标金额", "成交金额", "中标（成交）金额", "总中标金额"],
+    "announcement_date": ["announcement_date", "公告日期", "公告时间", "发布时间", "发布日期"],
+    "bid_deadline": ["bid_deadline", "投标截止时间", "提交投标文件截止时间", "响应文件提交截止时间"],
+    "opening_date": ["opening_date", "开标时间", "开启时间", "开标日期"],
+    "contact_person": ["contact_person", "项目联系人", "联系人", "采购人联系方式", "代理机构联系方式"],
+    "contact_phone": ["contact_phone", "联系电话", "联系方式", "项目联系电话", "电话"],
+    "source_url": ["source_url", "来源链接", "原文链接", "网页地址", "url"],
+    "source_site": ["source_site", "来源网站", "发布网站", "信息来源"],
+    "summary": ["summary", "摘要", "内容摘要", "项目概况"],
+    "content": ["content", "正文", "主要内容", "公告正文"]
+  },
+  "regex_rules": [
+    {
+      "target_field_id": "procurement_id",
+      "pattern": "(项目编号|采购编号|招标编号|采购项目编号)[:：\\s]*([A-Za-z0-9._\\-/（）()]+)",
+      "group": 2
+    },
+    {
+      "target_field_id": "budget_amount",
+      "pattern": "(预算金额|项目预算|采购预算)[:：\\s]*([0-9,.]+)\\s*(万元|元)?",
+      "group": 2
+    },
+    {
+      "target_field_id": "award_amount",
+      "pattern": "(中标金额|成交金额|中标（成交）金额|总中标金额)[:：\\s]*([0-9,.]+)\\s*(万元|元)?",
+      "group": 2
+    },
+    {
+      "target_field_id": "announcement_date",
+      "pattern": "(公告日期|公告时间|发布时间|发布日期)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}日?)",
+      "group": 2
+    },
+    {
+      "target_field_id": "bid_deadline",
+      "pattern": "(投标截止时间|提交投标文件截止时间|响应文件提交截止时间)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}日?)",
+      "group": 2
+    },
+    {
+      "target_field_id": "opening_date",
+      "pattern": "(开标时间|开启时间|开标日期)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}日?)",
+      "group": 2
+    }
+  ],
+  "transform_rules": [
+    {
+      "rule_id": "procurement_type_enum",
+      "operation": "enum_map",
+      "source_field": "metadata.采购方式",
+      "target_field_id": "procurement_type",
+      "params": {
+        "map": {
+          "公开招标": "public_tender",
+          "竞争性谈判": "competitive_negotiation",
+          "竞争性磋商": "competitive_consultation",
+          "询价": "inquiry",
+          "单一来源": "single_source",
+          "中标公告": "award",
+          "成交公告": "award"
+        }
+      }
+    }
+  ],
+  "defaults": {},
+  "enum_maps": {
+    "procurement_type": {
+      "公开招标": "public_tender",
+      "竞争性谈判": "competitive_negotiation",
+      "竞争性磋商": "competitive_consultation",
+      "询价": "inquiry",
+      "单一来源": "single_source",
+      "中标公告": "award",
+      "成交公告": "award"
+    }
+  }
+}

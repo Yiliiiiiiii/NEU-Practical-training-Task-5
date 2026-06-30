@@ -18,8 +18,8 @@ SCHEMA_TEMPLATE_MAPPING = {
         "template_id": "policy_doc_base_v1",
     },
     "procurement_doc": {
-        "schema_id": "general_doc",
-        "template_id": "general_doc_base_v1",
+        "schema_id": "procurement_doc",
+        "template_id": "procurement_doc_base_v1",
     },
     "contract_doc": {
         "schema_id": "contract_doc",
