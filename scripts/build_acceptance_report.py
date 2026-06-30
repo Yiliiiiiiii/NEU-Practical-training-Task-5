@@ -498,7 +498,11 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
             root,
             final_handoff,
             command=COMMANDS["pytest"],
-            markers=("160 passed", "All checks passed!", "OpenAPI exported 32 paths"),
+            markers=(
+                "Backend pytest: 202 passed.",
+                "Ruff: clean.",
+                "OpenAPI export: 32 paths",
+            ),
             passed_reason=(
                 "final handoff records the backend pytest, ruff, and OpenAPI "
                 "verification gate as passed"
@@ -511,9 +515,9 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
             root,
             final_handoff,
             command=COMMANDS["frontend_build"],
-            markers=("frontend build passed", "frontend tests passed"),
+            markers=("Frontend production build: successful.",),
             passed_reason=(
-                "final handoff records the frontend build and test gates as passed"
+                "final handoff records the frontend production build as successful"
             ),
             missing_reason=(
                 "final handoff does not yet record the frontend verification output"

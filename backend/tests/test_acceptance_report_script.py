@@ -128,6 +128,29 @@ def test_source_evidence_is_reduced_to_core_summaries(tmp_path: Path) -> None:
     assert report["evidence"]["real_world_eval"]["summary"]["dataset_size"] == 1
 
 
+def test_current_handoff_verification_markers_are_recognized(tmp_path: Path) -> None:
+    report_module = load_report_module()
+    handoff_path = tmp_path / "docs" / "final_handoff_status.md"
+    handoff_path.parent.mkdir(parents=True)
+    handoff_path.write_text(
+        "\n".join(
+            [
+                "# SchemaPack Agent Final Handoff Status",
+                "- Backend pytest: 202 passed.",
+                "- Ruff: clean.",
+                "- Frontend production build: successful.",
+                "- OpenAPI export: 32 paths written to `docs/openapi.json`.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    report = report_module.build_acceptance_report(tmp_path)
+
+    assert report["checks"]["pytest"]["status"] == "passed"
+    assert report["checks"]["frontend_build"]["status"] == "passed"
+
+
 def test_json_report_path_cannot_escape_repository_root(tmp_path: Path) -> None:
     report_module = load_report_module()
     outside_path = tmp_path.parent / "outside-acceptance-evidence.json"
