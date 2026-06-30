@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 from collections import Counter
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -47,6 +46,8 @@ def _load_json(path: Path, *, required: bool) -> dict[str, Any] | None:
         raise ValueError(
             f"Invalid JSON in {path}: line {exc.lineno}, column {exc.colno}: {exc.msg}"
         ) from exc
+    except (OSError, UnicodeError) as exc:
+        raise ValueError(f"Unable to read JSON from {path}: {exc}") from exc
     if not isinstance(value, dict):
         raise ValueError(f"Report must contain a JSON object: {path}")
     return value
@@ -134,6 +135,153 @@ def _counted(counter: Counter[str], *, limit: int = 5, label: str) -> list[dict[
     ]
 
 
+def _required_object_array(
+    value: object,
+    *,
+    label: str,
+) -> list[dict[str, Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"{label} must be an array")
+    result: list[dict[str, Any]] = []
+    for index, item in enumerate(value):
+        if not isinstance(item, dict):
+            raise ValueError(f"{label}[{index}] must be an object")
+        result.append(item)
+    return result
+
+
+def _validate_doc_type(item: dict[str, Any], *, label: str, required: bool = True) -> None:
+    doc_type = _first_string(item, "doc_type", "schema_id")
+    if doc_type is None:
+        if required:
+            raise ValueError(f"{label}.doc_type must be a non-empty string")
+        return
+    if doc_type not in DOC_TYPES:
+        raise ValueError(f"{label} has unsupported doc_type: {doc_type}")
+
+
+def _validate_doc_id(item: dict[str, Any], *, label: str) -> None:
+    if not _first_string(item, "doc_id", "_doc_id"):
+        raise ValueError(f"{label}.doc_id must be a non-empty string")
+
+
+def _validate_validation_state(
+    item: dict[str, Any],
+    *,
+    label: str,
+    required: bool,
+) -> None:
+    for key in ("validation_passed", "strict_pass", "passed", "valid"):
+        if key not in item:
+            continue
+        if not isinstance(item[key], bool):
+            raise ValueError(f"{label}.{key} must be boolean")
+        return
+    if required:
+        raise ValueError(f"{label}.validation state must be boolean")
+
+
+def _validate_optional_array(
+    item: dict[str, Any],
+    key: str,
+    *,
+    label: str,
+    item_type: type[object],
+) -> None:
+    if key not in item:
+        return
+    value = item[key]
+    if not isinstance(value, list):
+        raise ValueError(f"{label}.{key} must be an array")
+    for index, entry in enumerate(value):
+        if not isinstance(entry, item_type):
+            expected = "object" if item_type is dict else "string"
+            raise ValueError(f"{label}.{key}[{index}] must be a {expected}")
+
+
+def _validate_required_report_shapes(
+    evaluation_report: dict[str, Any],
+    mapping_report: dict[str, Any],
+    package_reports: list[dict[str, Any]],
+) -> None:
+    evaluation_items = _required_object_array(
+        evaluation_report.get("items"),
+        label="evaluation_report.items",
+    )
+    for index, item in enumerate(evaluation_items):
+        label = f"evaluation_report.items[{index}]"
+        _validate_doc_id(item, label=label)
+        _validate_doc_type(item, label=label)
+        _validate_validation_state(item, label=label, required=True)
+
+    if "validation_failed_cases" in evaluation_report:
+        failed_cases = evaluation_report["validation_failed_cases"]
+        if not isinstance(failed_cases, list):
+            raise ValueError(
+                "evaluation_report.validation_failed_cases must be an array"
+            )
+        for index, item in enumerate(failed_cases):
+            label = f"evaluation_report.validation_failed_cases[{index}]"
+            if isinstance(item, str) and item:
+                continue
+            if not isinstance(item, dict):
+                raise ValueError(
+                    f"{label} must be an object or non-empty document ID"
+                )
+            _validate_doc_id(item, label=label)
+            _validate_doc_type(item, label=label, required=False)
+
+    mapping_key = "per_document" if "per_document" in mapping_report else "items"
+    mapping_items = _required_object_array(
+        mapping_report.get(mapping_key),
+        label=f"mapping_report.{mapping_key}",
+    )
+    for index, item in enumerate(mapping_items):
+        label = f"mapping_report.{mapping_key}[{index}]"
+        _validate_doc_id(item, label=label)
+        _validate_doc_type(item, label=label)
+        _validate_validation_state(item, label=label, required=True)
+        for key in ("required_missing", "missing_required_fields"):
+            _validate_optional_array(item, key, label=label, item_type=str)
+        for key in ("review_evidence", "review_required_items"):
+            _validate_optional_array(item, key, label=label, item_type=dict)
+
+    summary = mapping_report.get("summary")
+    if summary is not None and not isinstance(summary, dict):
+        raise ValueError("mapping_report.summary must be an object")
+    if isinstance(summary, dict) and "badcase_violation_count" in summary:
+        count = summary["badcase_violation_count"]
+        if not isinstance(count, int) or isinstance(count, bool) or count < 0:
+            raise ValueError(
+                "mapping_report.summary.badcase_violation_count "
+                "must be a non-negative integer"
+            )
+    if "badcase_violations" in mapping_report:
+        _required_object_array(
+            mapping_report["badcase_violations"],
+            label="mapping_report.badcase_violations",
+        )
+
+    if not isinstance(package_reports, list):
+        raise ValueError("package_reports must be an array")
+    for index, item in enumerate(package_reports):
+        label = f"package_reports[{index}]"
+        if not isinstance(item, dict):
+            raise ValueError(f"{label} must be an object")
+        _validate_doc_id(item, label=label)
+        _validate_doc_type(item, label=label, required=False)
+        kind = item.get("_report_kind")
+        if kind not in {"mapping", "validation"}:
+            raise ValueError(f"{label}._report_kind must be mapping or validation")
+        if kind == "validation":
+            _validate_validation_state(item, label=label, required=True)
+            for key in ("required_missing", "missing_required_fields"):
+                _validate_optional_array(item, key, label=label, item_type=str)
+        else:
+            for key in ("review_evidence", "review_required_items"):
+                _validate_optional_array(item, key, label=label, item_type=dict)
+
+
 def _failure_case_by_doc(evaluation_report: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {
         str(item["doc_id"]): item
@@ -169,9 +317,8 @@ def _document_rows(
         row["doc_type"] = _first_string(item, "doc_type", "schema_id")
         row["validation_passed"] = _validation_passed(item)
 
-    mapping_documents = _objects(mapping_report.get("per_document"))
-    if not mapping_documents:
-        mapping_documents = _objects(mapping_report.get("items"))
+    mapping_key = "per_document" if "per_document" in mapping_report else "items"
+    mapping_documents = _objects(mapping_report.get(mapping_key))
     for item in mapping_documents:
         doc_id = _first_string(item, "doc_id")
         if not doc_id:
@@ -277,7 +424,19 @@ def analyze_reports(
     package_reports: list[dict[str, Any]],
 ) -> dict[str, Any]:
     """Normalize existing report shapes and aggregate strict validation gaps."""
+    _validate_required_report_shapes(
+        evaluation_report,
+        mapping_report,
+        package_reports,
+    )
     rows = _document_rows(evaluation_report, mapping_report, package_reports)
+    for index, row in enumerate(rows):
+        _validate_doc_type(row, label=f"normalized_documents[{index}]")
+        _validate_validation_state(
+            row,
+            label=f"normalized_documents[{index}]",
+            required=True,
+        )
     failed_cases = _failure_case_by_doc(evaluation_report)
     by_type: dict[str, dict[str, Any]] = {}
     field_failures: list[dict[str, Any]] = []
@@ -432,8 +591,21 @@ def analyze_reports(
         summary.get("badcase_violation_count", 0) if isinstance(summary, dict) else 0
     )
     badcase_count = len(badcase_violations) or int(summary_badcases or 0)
+    if badcase_count > len(badcase_violations):
+        badcase_warnings = [
+            *badcase_violations,
+            {
+                "reported_count": badcase_count,
+                "details_available": bool(badcase_violations),
+                "warning": (
+                    f"{badcase_count} badcase violation(s) were reported "
+                    "without detail rows."
+                ),
+            },
+        ]
+    else:
+        badcase_warnings = badcase_violations
     return {
-        "generated_at": datetime.now(UTC).isoformat(),
         "summary": {
             "total_docs": len(rows),
             "strict_pass_count": strict_pass_count,
@@ -450,7 +622,7 @@ def analyze_reports(
             ),
         ),
         "fields_that_must_stay_review_required": list(must_stay_review.values()),
-        "badcase_warnings": badcase_violations,
+        "badcase_warnings": badcase_warnings,
         "fields_not_recommended_for_modification": list(not_recommended.values()),
     }
 
@@ -497,6 +669,16 @@ def render_markdown(report: dict[str, Any]) -> str:
         ) or "None"
         lines.append(f"- {doc_type}: failed={missing}; review-required={reviews}")
 
+    lines.extend(["", "## Field Failure Details", ""])
+    if report["field_failures"]:
+        for item in report["field_failures"]:
+            lines.append(
+                f"- {item['doc_id']} / {item['target_field']} "
+                f"({item['stage']}): {_markdown_cell(item['reason'])}"
+            )
+    else:
+        lines.append("- None.")
+
     lines.extend(["", "## Recommended Aliases and Regexes", ""])
     recommendations = [
         (doc_type, recommendation)
@@ -526,10 +708,13 @@ def render_markdown(report: dict[str, Any]) -> str:
     lines.extend(["", "## Badcase Warnings", ""])
     if report["badcase_warnings"]:
         for item in report["badcase_warnings"]:
-            lines.append(
-                f"- {item.get('doc_id', 'unknown')}: "
-                f"{item.get('case_id', item.get('reason', 'badcase violation'))}"
-            )
+            if item.get("warning"):
+                lines.append(f"- {_markdown_cell(item['warning'])}")
+            else:
+                lines.append(
+                    f"- {item.get('doc_id', 'unknown')}: "
+                    f"{item.get('case_id', item.get('reason', 'badcase violation'))}"
+                )
     else:
         lines.append("- No violations detected; retain the existing badcase guards.")
 

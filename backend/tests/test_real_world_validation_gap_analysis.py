@@ -1,3 +1,4 @@
+import copy
 import importlib.util
 import json
 import subprocess
@@ -5,6 +6,8 @@ import sys
 from pathlib import Path
 from types import ModuleType
 from typing import Any
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS_DIR = ROOT / "scripts"
@@ -188,6 +191,123 @@ def test_repeated_review_source_is_not_recommended_for_a_nonmissing_target() -> 
     assert report["by_doc_type"]["policy_doc"]["recommended_template_changes"] == []
 
 
+def test_analysis_is_deterministic_for_identical_inputs() -> None:
+    analyzer = load_script("analyze_real_world_validation_gaps")
+
+    first = analyzer.analyze_reports(
+        evaluation_fixture(),
+        mapping_fixture(),
+        package_reports=[],
+    )
+    second = analyzer.analyze_reports(
+        evaluation_fixture(),
+        mapping_fixture(),
+        package_reports=[],
+    )
+
+    assert first == second
+    assert "generated_at" not in first
+
+
+@pytest.mark.parametrize(
+    ("evaluation", "mapping", "message"),
+    [
+        (
+            {"items": "not-an-array"},
+            mapping_fixture(),
+            "evaluation_report.items must be an array",
+        ),
+        (
+            {"items": ["not-an-object"]},
+            mapping_fixture(),
+            r"evaluation_report.items\[0\] must be an object",
+        ),
+        (
+            {
+                "items": [
+                    {
+                        "doc_id": "bad-type",
+                        "doc_type": "invoice",
+                        "validation_passed": False,
+                    }
+                ]
+            },
+            {"per_document": []},
+            "unsupported doc_type",
+        ),
+        (
+            {
+                "items": [
+                    {
+                        "doc_id": "bad-state",
+                        "doc_type": "policy_doc",
+                        "validation_passed": "failed",
+                    }
+                ]
+            },
+            {"per_document": []},
+            "validation_passed must be boolean",
+        ),
+        (
+            evaluation_fixture(),
+            {"per_document": "not-an-array"},
+            "mapping_report.per_document must be an array",
+        ),
+        (
+            evaluation_fixture(),
+            {"per_document": [{}]},
+            r"mapping_report.per_document\[0\].doc_id",
+        ),
+    ],
+)
+def test_analysis_rejects_malformed_required_report_shapes(
+    evaluation: dict[str, Any],
+    mapping: dict[str, Any],
+    message: str,
+) -> None:
+    analyzer = load_script("analyze_real_world_validation_gaps")
+
+    with pytest.raises(ValueError, match=message):
+        analyzer.analyze_reports(evaluation, mapping, package_reports=[])
+
+
+def test_analysis_accepts_failed_case_document_id_entries() -> None:
+    analyzer = load_script("analyze_real_world_validation_gaps")
+    evaluation = evaluation_fixture()
+    evaluation["validation_failed_cases"] = ["policy-failed"]
+
+    report = analyzer.analyze_reports(
+        evaluation,
+        mapping_fixture(),
+        package_reports=[],
+    )
+
+    assert report["summary"]["strict_failed_count"] == 1
+
+
+def test_summary_only_badcase_count_is_rendered_as_warning() -> None:
+    analyzer = load_script("analyze_real_world_validation_gaps")
+    mapping = copy.deepcopy(mapping_fixture())
+    mapping["summary"]["badcase_violation_count"] = 2
+
+    report = analyzer.analyze_reports(
+        evaluation_fixture(),
+        mapping,
+        package_reports=[],
+    )
+    markdown = analyzer.render_markdown(report)
+
+    assert report["summary"]["badcase_violation_count"] == 2
+    assert report["badcase_warnings"] == [
+        {
+            "reported_count": 2,
+            "details_available": False,
+            "warning": "2 badcase violation(s) were reported without detail rows.",
+        }
+    ]
+    assert "2 badcase violation(s) were reported without detail rows." in markdown
+
+
 def test_cli_discovers_package_reports_and_writes_json_and_markdown(
     tmp_path: Path,
 ) -> None:
@@ -220,6 +340,30 @@ def test_cli_discovers_package_reports_and_writes_json_and_markdown(
             ],
         },
     )
+    package_only_dir = reports_dir / "real_world_packages" / "nested" / "package-only"
+    write_json(
+        package_only_dir / "validation_report.json",
+        {
+            "doc_id": "package-only",
+            "doc_type": "meeting_doc",
+            "validation_passed": False,
+            "missing_required_fields": ["meeting_title"],
+        },
+    )
+    write_json(
+        package_only_dir / "mapping_report.json",
+        {
+            "doc_id": "package-only",
+            "review_required_items": [
+                {
+                    "target_field_id": "meeting_date",
+                    "source_field_name": "会议日期",
+                    "confidence": 0.55,
+                    "review_required_reason": "Ambiguous date.",
+                }
+            ],
+        },
+    )
     output_json = tmp_path / "gap.json"
     output_md = tmp_path / "gap.md"
 
@@ -242,8 +386,23 @@ def test_cli_discovers_package_reports_and_writes_json_and_markdown(
 
     assert result.returncode == 0, result.stderr
     payload = json.loads(output_json.read_text(encoding="utf-8"))
-    assert payload["summary"]["strict_failed_count"] == 1
+    assert payload["summary"]["strict_failed_count"] == 2
+    assert payload["by_doc_type"]["meeting_doc"]["doc_count"] == 1
+    assert any(
+        item["doc_id"] == "package-only"
+        and item["target_field"] == "meeting_title"
+        for item in payload["field_failures"]
+    )
+    package_review = next(
+        item
+        for item in payload["field_failures"]
+        if item["doc_id"] == "package-only"
+        and item["target_field"] == "meeting_date"
+    )
+    assert package_review["stage"] == "mapping_review"
+    assert package_review["source_candidates"] == ["会议日期"]
     markdown = output_md.read_text(encoding="utf-8")
+    assert "package-only" in markdown
     for heading in (
         "## Overview",
         "## Strict Pass/Fail by Document Type",
@@ -280,4 +439,57 @@ def test_cli_fails_clearly_for_malformed_required_json(tmp_path: Path) -> None:
 
     assert result.returncode != 0
     assert "Invalid JSON" in result.stderr
+    assert "real_world_eval_report.json" in result.stderr
+
+
+def test_cli_fails_clearly_for_malformed_required_shape(tmp_path: Path) -> None:
+    reports_dir = tmp_path / "reports"
+    reports_dir.mkdir()
+    write_json(reports_dir / "real_world_eval_report.json", {"items": "bad"})
+    write_json(
+        reports_dir / "real_world_mapping_eval_report.json",
+        mapping_fixture(),
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPTS_DIR / "analyze_real_world_validation_gaps.py"),
+            "--reports-dir",
+            str(reports_dir),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "evaluation_report.items must be an array" in result.stderr
+
+
+def test_cli_fails_clearly_for_invalid_utf8_required_json(tmp_path: Path) -> None:
+    reports_dir = tmp_path / "reports"
+    reports_dir.mkdir()
+    (reports_dir / "real_world_eval_report.json").write_bytes(b"\xff\xfe")
+    write_json(
+        reports_dir / "real_world_mapping_eval_report.json",
+        mapping_fixture(),
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPTS_DIR / "analyze_real_world_validation_gaps.py"),
+            "--reports-dir",
+            str(reports_dir),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "Unable to read JSON" in result.stderr
     assert "real_world_eval_report.json" in result.stderr

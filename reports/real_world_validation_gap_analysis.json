@@ -1338,7 +1338,6 @@
       "target_field": "opening_date"
     }
   ],
-  "generated_at": "2026-06-30T12:01:48.496944+00:00",
   "summary": {
     "badcase_violation_count": 0,
     "strict_failed_count": 11,
