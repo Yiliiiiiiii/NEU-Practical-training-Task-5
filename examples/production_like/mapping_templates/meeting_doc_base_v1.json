@@ -4,20 +4,29 @@
   "name": "会议纪要基础映射模板",
   "version": "1.0.0",
   "aliases": {
-    "meeting_title": ["meeting_title", "会议名称", "会议主题"],
-    "meeting_date": ["meeting_date", "会议日期", "召开时间"],
-    "organizer": ["organizer", "主持单位", "组织方"],
-    "attendees": ["attendees", "参会人员", "与会人员"],
+    "meeting_title": ["meeting_title", "会议名称", "会议主题", "会议标题"],
+    "meeting_date": ["meeting_date", "会议日期", "会议时间", "召开日期", "召开时间"],
+    "organizer": ["organizer", "主持单位", "组织方", "组织单位"],
+    "attendees": ["attendees", "参会人员", "与会人员", "出席人员"],
     "topics": ["topics", "议题", "会议议题"],
     "decisions": ["decisions", "决议", "会议决定"],
     "action_items": ["action_items", "行动项", "待办事项"],
-    "content": ["content", "正文", "会议内容"]
+    "content": ["content", "正文", "会议内容"],
+    "meeting_number": ["meeting_number", "会议编号", "会议期号"],
+    "meeting_location": ["meeting_location", "会议地点", "召开地点", "地点"],
+    "chairperson": ["chairperson", "主持人"],
+    "departments": ["departments", "参与部门", "参会部门", "相关部门"],
+    "agenda_items": ["agenda_items", "审议事项", "会议事项"],
+    "decision_items": ["decision_items", "议定事项", "决定事项", "形成意见"],
+    "responsible_units": ["responsible_units", "责任单位", "牵头单位", "负责单位"],
+    "deadlines": ["deadlines", "完成时限", "办理期限", "时间节点"],
+    "source": ["source", "来源", "记录来源"]
   },
   "regex_rules": [
     {
       "target_field_id": "meeting_date",
-      "pattern": "(会议日期|召开时间)[:：\\s]*(\\d{4}-\\d{1,2}-\\d{1,2})",
-      "group": 2
+      "pattern": "(?:^|\\n)(?:会议日期|会议时间|召开日期|召开时间)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?)",
+      "group": 1
     }
   ],
   "transform_rules": [],

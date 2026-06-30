@@ -57,6 +57,115 @@
       "required": false,
       "aliases": ["标签", "关键词"],
       "constraints": {}
+    },
+    {
+      "field_id": "document_subtype",
+      "name": "document_subtype",
+      "display_name": "文档类型",
+      "type": "enum",
+      "required": false,
+      "aliases": ["文档类型", "文件类型", "文档子类"],
+      "constraints": {
+        "enum": [
+          "service_guide",
+          "project_guide",
+          "application_flow",
+          "notice",
+          "announcement",
+          "manual",
+          "other"
+        ]
+      }
+    },
+    {
+      "field_id": "issuer",
+      "name": "issuer",
+      "display_name": "发布主体",
+      "type": "string",
+      "required": false,
+      "aliases": ["发布主体", "发布单位", "发文单位", "主管部门"],
+      "constraints": {}
+    },
+    {
+      "field_id": "published_at",
+      "name": "published_at",
+      "display_name": "发布日期",
+      "type": "date",
+      "required": false,
+      "aliases": ["发布日期", "公开日期"],
+      "constraints": {}
+    },
+    {
+      "field_id": "summary",
+      "name": "summary",
+      "display_name": "摘要",
+      "type": "string",
+      "required": false,
+      "aliases": ["摘要", "内容摘要", "简介"],
+      "constraints": {}
+    },
+    {
+      "field_id": "service_object",
+      "name": "service_object",
+      "display_name": "服务对象",
+      "type": "string",
+      "required": false,
+      "aliases": ["服务对象", "适用对象", "受理对象"],
+      "constraints": {}
+    },
+    {
+      "field_id": "application_conditions",
+      "name": "application_conditions",
+      "display_name": "申请条件",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["申请条件", "申报条件", "办理条件"],
+      "constraints": {}
+    },
+    {
+      "field_id": "application_materials",
+      "name": "application_materials",
+      "display_name": "申请材料",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["申请材料", "申报材料", "办理材料"],
+      "constraints": {}
+    },
+    {
+      "field_id": "process_steps",
+      "name": "process_steps",
+      "display_name": "办理流程",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["办理流程", "申报流程", "办理步骤", "流程步骤"],
+      "constraints": {}
+    },
+    {
+      "field_id": "deadline",
+      "name": "deadline",
+      "display_name": "截止时间",
+      "type": "date",
+      "required": false,
+      "aliases": ["截止时间", "截止日期", "申报截止日期"],
+      "constraints": {}
+    },
+    {
+      "field_id": "contact",
+      "name": "contact",
+      "display_name": "联系方式",
+      "type": "string",
+      "required": false,
+      "aliases": ["联系方式", "联系电话", "咨询电话", "联系人"],
+      "constraints": {}
+    },
+    {
+      "field_id": "attachments",
+      "name": "attachments",
+      "display_name": "附件",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["附件", "附件清单", "下载材料"],
+      "constraints": {}
     }
   ],
   "json_schema": {
@@ -68,7 +177,29 @@
       "created_date": {"type": "string", "format": "date"},
       "category": {"type": "string"},
       "content": {"type": "string"},
-      "tags": {"type": "array", "items": {"type": "string"}}
+      "tags": {"type": "array", "items": {"type": "string"}},
+      "document_subtype": {
+        "type": "string",
+        "enum": [
+          "service_guide",
+          "project_guide",
+          "application_flow",
+          "notice",
+          "announcement",
+          "manual",
+          "other"
+        ]
+      },
+      "issuer": {"type": "string"},
+      "published_at": {"type": "string", "format": "date"},
+      "summary": {"type": "string"},
+      "service_object": {"type": "string"},
+      "application_conditions": {"type": "array", "items": {"type": "string"}},
+      "application_materials": {"type": "array", "items": {"type": "string"}},
+      "process_steps": {"type": "array", "items": {"type": "string"}},
+      "deadline": {"type": "string", "format": "date"},
+      "contact": {"type": "string"},
+      "attachments": {"type": "array", "items": {"type": "string"}}
     }
   }
 }

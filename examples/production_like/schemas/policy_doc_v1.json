@@ -19,7 +19,7 @@
       "display_name": "发布主体",
       "type": "string",
       "required": true,
-      "aliases": ["发文机关", "发布单位", "颁布机构"],
+      "aliases": ["发文机关", "发布单位", "颁布机构", "制定机关", "印发机关"],
       "constraints": {}
     },
     {
@@ -28,7 +28,7 @@
       "display_name": "发布日期",
       "type": "date",
       "required": true,
-      "aliases": ["发布日期", "发文日期", "印发日期"],
+      "aliases": ["发布日期", "发文日期", "印发日期", "成文日期"],
       "constraints": {"format": "YYYY-MM-DD"}
     },
     {
@@ -75,6 +75,78 @@
       "required": true,
       "aliases": ["正文", "主要内容", "content"],
       "constraints": {}
+    },
+    {
+      "field_id": "document_number",
+      "name": "document_number",
+      "display_name": "文号",
+      "type": "string",
+      "required": false,
+      "aliases": ["文号", "文件编号", "发文字号"],
+      "constraints": {}
+    },
+    {
+      "field_id": "policy_level",
+      "name": "policy_level",
+      "display_name": "政策层级",
+      "type": "string",
+      "required": false,
+      "aliases": ["政策层级", "文件级别", "效力层级"],
+      "constraints": {}
+    },
+    {
+      "field_id": "applicable_region",
+      "name": "applicable_region",
+      "display_name": "适用地区",
+      "type": "string",
+      "required": false,
+      "aliases": ["适用地区", "适用区域", "实施区域"],
+      "constraints": {}
+    },
+    {
+      "field_id": "target_audience",
+      "name": "target_audience",
+      "display_name": "适用对象",
+      "type": "string",
+      "required": false,
+      "aliases": ["适用对象", "服务对象", "扶持对象", "目标群体"],
+      "constraints": {}
+    },
+    {
+      "field_id": "policy_measures",
+      "name": "policy_measures",
+      "display_name": "政策措施",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["政策措施", "支持措施", "主要措施"],
+      "constraints": {}
+    },
+    {
+      "field_id": "responsible_departments",
+      "name": "responsible_departments",
+      "display_name": "责任部门",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["责任部门", "牵头部门", "负责部门"],
+      "constraints": {}
+    },
+    {
+      "field_id": "valid_until",
+      "name": "valid_until",
+      "display_name": "有效期至",
+      "type": "date",
+      "required": false,
+      "aliases": ["有效期至", "有效截止日期", "失效日期"],
+      "constraints": {}
+    },
+    {
+      "field_id": "source",
+      "name": "source",
+      "display_name": "来源",
+      "type": "string",
+      "required": false,
+      "aliases": ["来源", "公开来源", "发布渠道"],
+      "constraints": {}
     }
   ],
   "json_schema": {
@@ -88,7 +160,15 @@
       "effective_date": {"type": "string", "format": "date"},
       "summary": {"type": "string"},
       "keywords": {"type": "array", "items": {"type": "string"}},
-      "content": {"type": "string"}
+      "content": {"type": "string"},
+      "document_number": {"type": "string"},
+      "policy_level": {"type": "string"},
+      "applicable_region": {"type": "string"},
+      "target_audience": {"type": "string"},
+      "policy_measures": {"type": "array", "items": {"type": "string"}},
+      "responsible_departments": {"type": "array", "items": {"type": "string"}},
+      "valid_until": {"type": "string", "format": "date"},
+      "source": {"type": "string"}
     }
   }
 }

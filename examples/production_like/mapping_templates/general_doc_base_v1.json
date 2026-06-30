@@ -9,16 +9,47 @@
     "created_date": ["created_date", "创建日期", "形成日期"],
     "category": ["category", "类别", "分类"],
     "content": ["content", "正文", "内容"],
-    "tags": ["tags", "标签", "关键词"]
+    "tags": ["tags", "标签", "关键词"],
+    "document_subtype": ["document_subtype", "文档类型", "文件类型", "文档子类"],
+    "issuer": ["issuer", "发布主体", "发布单位", "发文单位", "主管部门"],
+    "published_at": ["published_at", "发布日期", "公开日期"],
+    "summary": ["summary", "摘要", "内容摘要", "简介"],
+    "service_object": ["service_object", "服务对象", "适用对象", "受理对象"],
+    "application_conditions": ["application_conditions", "申请条件", "申报条件", "办理条件"],
+    "application_materials": ["application_materials", "申请材料", "申报材料", "办理材料"],
+    "process_steps": ["process_steps", "办理流程", "申报流程", "办理步骤", "流程步骤"],
+    "deadline": ["deadline", "截止时间", "截止日期", "申报截止日期"],
+    "contact": ["contact", "联系方式", "联系电话", "咨询电话", "联系人"],
+    "attachments": ["attachments", "附件", "附件清单", "下载材料"]
   },
   "regex_rules": [
     {
       "target_field_id": "created_date",
-      "pattern": "(创建日期|形成日期)[:：\\s]*(\\d{4}-\\d{1,2}-\\d{1,2})",
-      "group": 2
+      "pattern": "(?:^|\\n)(?:创建日期|形成日期)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?)",
+      "group": 1
+    },
+    {
+      "target_field_id": "published_at",
+      "pattern": "(?:^|\\n)(?:发布日期|公开日期)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?)",
+      "group": 1
+    },
+    {
+      "target_field_id": "contact",
+      "pattern": "(?:^|\\n)(?:联系电话|联系方式|咨询电话)[:：\\s]*([0-9+\\-()（）\\s]{7,})",
+      "group": 1
     }
   ],
   "transform_rules": [],
   "defaults": {},
-  "enum_maps": {}
+  "enum_maps": {
+    "document_subtype": {
+      "办事指南": "service_guide",
+      "项目指南": "project_guide",
+      "申报流程": "application_flow",
+      "通知": "notice",
+      "公告": "announcement",
+      "手册": "manual",
+      "其他": "other"
+    }
+  }
 }

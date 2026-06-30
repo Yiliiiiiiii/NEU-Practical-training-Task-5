@@ -10,7 +10,7 @@
       "display_name": "会议标题",
       "type": "string",
       "required": true,
-      "aliases": ["会议名称", "会议主题"],
+      "aliases": ["会议名称", "会议主题", "会议标题"],
       "constraints": {"min_length": 1}
     },
     {
@@ -19,7 +19,7 @@
       "display_name": "会议日期",
       "type": "date",
       "required": true,
-      "aliases": ["会议日期", "召开时间"],
+      "aliases": ["会议日期", "会议时间", "召开日期", "召开时间"],
       "constraints": {}
     },
     {
@@ -28,7 +28,7 @@
       "display_name": "组织方",
       "type": "string",
       "required": false,
-      "aliases": ["主持单位", "组织方"],
+      "aliases": ["主持单位", "组织方", "组织单位"],
       "constraints": {}
     },
     {
@@ -37,7 +37,7 @@
       "display_name": "参会人员",
       "type": "array[string]",
       "required": false,
-      "aliases": ["参会人员", "与会人员"],
+      "aliases": ["参会人员", "与会人员", "出席人员"],
       "constraints": {}
     },
     {
@@ -75,6 +75,87 @@
       "required": true,
       "aliases": ["正文", "会议内容", "content"],
       "constraints": {}
+    },
+    {
+      "field_id": "meeting_number",
+      "name": "meeting_number",
+      "display_name": "会议编号",
+      "type": "string",
+      "required": false,
+      "aliases": ["会议编号", "会议期号"],
+      "constraints": {}
+    },
+    {
+      "field_id": "meeting_location",
+      "name": "meeting_location",
+      "display_name": "会议地点",
+      "type": "string",
+      "required": false,
+      "aliases": ["会议地点", "召开地点", "地点"],
+      "constraints": {}
+    },
+    {
+      "field_id": "chairperson",
+      "name": "chairperson",
+      "display_name": "主持人",
+      "type": "string",
+      "required": false,
+      "aliases": ["主持人"],
+      "constraints": {}
+    },
+    {
+      "field_id": "departments",
+      "name": "departments",
+      "display_name": "参与部门",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["参与部门", "参会部门", "相关部门"],
+      "constraints": {}
+    },
+    {
+      "field_id": "agenda_items",
+      "name": "agenda_items",
+      "display_name": "审议事项",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["审议事项", "会议事项"],
+      "constraints": {}
+    },
+    {
+      "field_id": "decision_items",
+      "name": "decision_items",
+      "display_name": "议定事项",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["议定事项", "决定事项", "形成意见"],
+      "constraints": {}
+    },
+    {
+      "field_id": "responsible_units",
+      "name": "responsible_units",
+      "display_name": "责任单位",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["责任单位", "牵头单位", "负责单位"],
+      "constraints": {}
+    },
+    {
+      "field_id": "deadlines",
+      "name": "deadlines",
+      "display_name": "完成时限",
+      "type": "array[string]",
+      "required": false,
+      "aliases": ["完成时限", "办理期限", "时间节点"],
+      "constraints": {}
+    },
+    {
+      "field_id": "source",
+      "name": "source",
+      "display_name": "来源",
+      "type": "string",
+      "required": false,
+      "aliases": ["来源", "记录来源"],
+      "constraints": {}
     }
   ],
   "json_schema": {
@@ -88,7 +169,16 @@
       "topics": {"type": "array", "items": {"type": "string"}},
       "decisions": {"type": "array", "items": {"type": "string"}},
       "action_items": {"type": "array", "items": {"type": "object"}},
-      "content": {"type": "string"}
+      "content": {"type": "string"},
+      "meeting_number": {"type": "string"},
+      "meeting_location": {"type": "string"},
+      "chairperson": {"type": "string"},
+      "departments": {"type": "array", "items": {"type": "string"}},
+      "agenda_items": {"type": "array", "items": {"type": "string"}},
+      "decision_items": {"type": "array", "items": {"type": "string"}},
+      "responsible_units": {"type": "array", "items": {"type": "string"}},
+      "deadlines": {"type": "array", "items": {"type": "string"}},
+      "source": {"type": "string"}
     }
   }
 }
