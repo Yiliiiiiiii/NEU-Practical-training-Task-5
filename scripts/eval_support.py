@@ -67,7 +67,10 @@ def _target_field(item: dict[str, Any]) -> str | None:
     return None
 
 
-def _source_key(item: dict[str, Any], target_field: str | None = None) -> tuple[str, str, str] | None:
+def _source_key(
+    item: dict[str, Any],
+    target_field: str | None = None,
+) -> tuple[str, str, str] | None:
     target = target_field or _target_field(item)
     if not target:
         return None
@@ -101,7 +104,9 @@ def _accepted_mappings(mapping_report: dict[str, Any]) -> list[dict[str, Any]]:
 
 def _review_required_items(mapping_report: dict[str, Any]) -> list[dict[str, Any]]:
     items = mapping_report.get("review_required_items", [])
-    return [item for item in items if isinstance(item, dict)] if isinstance(items, list) else []
+    if not isinstance(items, list):
+        return []
+    return [item for item in items if isinstance(item, dict)]
 
 
 def _key_matches(expected: dict[str, Any], actual: dict[str, Any], target: str) -> bool:
@@ -111,7 +116,12 @@ def _key_matches(expected: dict[str, Any], actual: dict[str, Any], target: str) 
         return expected_name == actual_name and _target_field(actual) == target
     expected_path = _source_path(expected)
     actual_path = _source_path(actual)
-    return bool(expected_path and actual_path and expected_path == actual_path and _target_field(actual) == target)
+    return bool(
+        expected_path
+        and actual_path
+        and expected_path == actual_path
+        and _target_field(actual) == target
+    )
 
 
 def _matches_review(expected: dict[str, Any], actual: dict[str, Any]) -> bool:
