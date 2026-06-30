@@ -401,6 +401,22 @@ def test_mapping_eval_generates_required_json_and_markdown_sections() -> None:
     assert "## Package Verification Summary" in markdown
 
 
+def test_mapping_eval_resolves_gold_source_path_against_custom_uir_dir(
+    tmp_path: Path,
+) -> None:
+    evaluator = load_script("eval_real_world_mapping")
+    gold = {
+        "source_path": (
+            "examples/real_world/uir/procurement/"
+            "real_procurement_001_broadcast_security_supervision.json"
+        )
+    }
+
+    assert evaluator.resolve_uir_path(gold, tmp_path) == (
+        tmp_path / "procurement" / "real_procurement_001_broadcast_security_supervision.json"
+    )
+
+
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [

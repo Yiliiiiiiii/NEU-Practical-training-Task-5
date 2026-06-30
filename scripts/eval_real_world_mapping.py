@@ -9,6 +9,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+import httpx
+
 from eval_support import (
     EvaluationHttpClient,
     aggregate_mapping_metrics,
@@ -24,6 +26,7 @@ DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "mapping_gold.jsonl"
 DEFAULT_UIR_DIR = ROOT / "examples" / "real_world" / "uir"
 DEFAULT_JSON = ROOT / "reports" / "real_world_mapping_eval_report.json"
 DEFAULT_MD = ROOT / "reports" / "real_world_mapping_eval_report.md"
+DEFAULT_UIR_SOURCE_PREFIX = "examples/real_world/uir/"
 
 
 def markdown_cell(value: object) -> str:
@@ -50,14 +53,61 @@ def _mapping_options() -> dict[str, Any]:
     }
 
 
+def resolve_uir_path(gold: dict[str, Any], uir_dir: Path) -> Path:
+    source_path = str(gold["source_path"])
+    if source_path.startswith(DEFAULT_UIR_SOURCE_PREFIX):
+        return uir_dir / source_path.removeprefix(DEFAULT_UIR_SOURCE_PREFIX)
+    path = Path(source_path)
+    if path.is_absolute():
+        return path
+    return ROOT / path
+
+
+def mapped_or_review_targets(mapping_report: dict[str, Any]) -> set[str]:
+    targets: set[str] = set()
+    for key in ("mappings", "review_required_items"):
+        items = mapping_report.get(key, [])
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            target = item.get("target_field_id") or item.get("target_field")
+            if isinstance(target, str) and target:
+                targets.add(target)
+            candidates = item.get("target_field_candidates")
+            if isinstance(candidates, list):
+                targets.update(
+                    candidate for candidate in candidates if isinstance(candidate, str)
+                )
+    return targets
+
+
+def _is_fatal_http_error(exc: Exception) -> bool:
+    if isinstance(
+        exc,
+        (
+            httpx.ConnectError,
+            httpx.ConnectTimeout,
+            httpx.PoolTimeout,
+            httpx.ReadTimeout,
+        ),
+    ):
+        return True
+    if isinstance(exc, httpx.HTTPStatusError):
+        return exc.response.status_code in {401, 403}
+    return False
+
+
 def execute_gold_row(
     gold: dict[str, Any],
     *,
     client: EvaluationHttpClient,
+    uir_dir: Path = DEFAULT_UIR_DIR,
     schema_id: str | None = None,
     template_id: str | None = None,
 ) -> dict[str, Any]:
-    uir_path = ROOT / str(gold["source_path"])
+    uir_path = resolve_uir_path(gold, uir_dir)
     uir = json.loads(uir_path.read_text(encoding="utf-8"))
     item: dict[str, Any] = {
         "doc_id": gold["doc_id"],
@@ -93,16 +143,21 @@ def execute_gold_row(
         item["metrics"] = score_mapping_report(gold, mapping_report)
         item["validation_passed"] = bool(validation_report.get("passed"))
         item["package_passed"] = bool(verifier_report.get("passed"))
+        item["mapped_or_review_targets"] = sorted(mapped_or_review_targets(mapping_report))
         review_items = mapping_report.get("review_required_items", [])
         item["review_evidence"] = review_items if isinstance(review_items, list) else []
         unmapped = mapping_report.get("unmapped", [])
         if isinstance(unmapped, list):
             item["required_missing"] = [
-                field.get("field_id")
+                field.get("target_field_id") or field.get("field_id")
                 for field in unmapped
-                if isinstance(field, dict) and field.get("required")
+                if isinstance(field, dict)
+                and field.get("required")
+                and (field.get("target_field_id") or field.get("field_id"))
             ]
     except Exception as exc:
+        if _is_fatal_http_error(exc):
+            raise
         item["error"] = f"{type(exc).__name__}: {exc}"[:500]
         item["metrics"] = score_mapping_report(gold, {})
     return item
@@ -112,11 +167,18 @@ def evaluate_rows(
     rows: list[dict[str, Any]],
     *,
     client: EvaluationHttpClient,
+    uir_dir: Path = DEFAULT_UIR_DIR,
     schema_id: str | None = None,
     template_id: str | None = None,
 ) -> list[dict[str, Any]]:
     return [
-        execute_gold_row(row, client=client, schema_id=schema_id, template_id=template_id)
+        execute_gold_row(
+            row,
+            client=client,
+            uir_dir=uir_dir,
+            schema_id=schema_id,
+            template_id=template_id,
+        )
         for row in rows
     ]
 
@@ -283,7 +345,7 @@ def main() -> None:
         api_key=args.api_key,
         timeout=args.timeout,
     )
-    report = build_report(evaluate_rows(rows, client=client))
+    report = build_report(evaluate_rows(rows, client=client, uir_dir=args.uir_dir))
     write_json(args.out_json, report)
     write_markdown(args.out_md, render_markdown(report).splitlines())
 

@@ -245,3 +245,18 @@ def test_procurement_eval_builds_catalog_delta_report() -> None:
     assert "## Required Coverage" in markdown
     assert "## Gold Recall Delta" in markdown
     assert "## Badcase Comparison" in markdown
+
+
+def test_procurement_eval_required_coverage_uses_procurement_required_fields() -> None:
+    evaluator = load_script("eval_procurement_doc")
+    items = [
+        {
+            "doc_id": "real_procurement_001",
+            "mapped_or_review_targets": ["title"],
+            "required_missing": [],
+        }
+    ]
+
+    evaluator.apply_procurement_required_coverage(items)
+
+    assert items[0]["required_missing"] == ["project_name", "purchaser"]

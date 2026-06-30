@@ -13,6 +13,7 @@ from eval_support import EvaluationHttpClient, load_jsonl, safe_ratio, write_jso
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "mapping_gold.jsonl"
+DEFAULT_UIR_DIR = ROOT / "examples" / "real_world" / "uir"
 DEFAULT_JSON = ROOT / "reports" / "procurement_doc_eval_report.json"
 DEFAULT_MD = ROOT / "reports" / "procurement_doc_eval_report.md"
 GENERAL = ("general_doc", "general_doc_base_v1")
@@ -34,6 +35,17 @@ def _side_summary(items: list[dict[str, Any]]) -> dict[str, Any]:
         "package_pass_rate": summary["package_pass_rate"],
         "raw_report": report,
     }
+
+
+def apply_procurement_required_coverage(items: list[dict[str, Any]]) -> None:
+    for item in items:
+        targets = {
+            target
+            for target in item.get("mapped_or_review_targets", [])
+            if isinstance(target, str)
+        }
+        if targets:
+            item["required_missing"] = sorted(REQUIRED_FIELDS - targets)
 
 
 def build_report(
@@ -130,6 +142,7 @@ def main() -> None:
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--api-key")
     parser.add_argument("--gold", type=Path, default=DEFAULT_GOLD)
+    parser.add_argument("--uir-dir", type=Path, default=DEFAULT_UIR_DIR)
     parser.add_argument("--out-json", type=Path, default=DEFAULT_JSON)
     parser.add_argument("--out-md", type=Path, default=DEFAULT_MD)
     parser.add_argument("--timeout", type=float, default=60.0)
@@ -144,15 +157,19 @@ def main() -> None:
     general_items = evaluate_rows(
         rows,
         client=client,
+        uir_dir=args.uir_dir,
         schema_id=GENERAL[0],
         template_id=GENERAL[1],
     )
     procurement_items = evaluate_rows(
         rows,
         client=client,
+        uir_dir=args.uir_dir,
         schema_id=PROCUREMENT[0],
         template_id=PROCUREMENT[1],
     )
+    apply_procurement_required_coverage(general_items)
+    apply_procurement_required_coverage(procurement_items)
     report = build_report(
         general_items=general_items,
         procurement_items=procurement_items,
