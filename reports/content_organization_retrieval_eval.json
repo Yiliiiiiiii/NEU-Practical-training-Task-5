@@ -1,0 +1,2787 @@
+{
+  "chunk_quality_statistics": {
+    "avg_chunk_count": 66.125
+  },
+  "generated_at": "2026-06-30T03:07:59.644996+00:00",
+  "items": [
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_001_notary_service_guide_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_002_biomed_project_guide_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_003_textile_application_flow_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_001_training_platform_rules_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_001_training_platform_rules_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_002_equipment_renewal_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_002_equipment_renewal_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_003_science_education_guide_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_003_science_education_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_004_student_loan_relief_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_004_student_loan_relief_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q01",
+      "strategy": "flat_blocks",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_001_notary_service_guide_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_002_biomed_project_guide_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_003_textile_application_flow_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_001_training_platform_rules_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_001_training_platform_rules_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_002_equipment_renewal_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_002_equipment_renewal_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_003_science_education_guide_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_003_science_education_guide_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_004_student_loan_relief_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_004_student_loan_relief_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q01",
+      "strategy": "heading_aware",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_001_notary_service_guide_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_002_biomed_project_guide_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_003_textile_application_flow_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_001_training_platform_rules_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_001_training_platform_rules_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_002_equipment_renewal_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_002_equipment_renewal_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_003_science_education_guide_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_003_science_education_guide_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_004_student_loan_relief_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_004_student_loan_relief_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q01",
+      "strategy": "keyword_enriched",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q02",
+      "strategy": "keyword_enriched",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_001_notary_service_guide_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_002_biomed_project_guide_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_003_textile_application_flow_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_001_training_platform_rules_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_001_training_platform_rules_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_002_equipment_renewal_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_002_equipment_renewal_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_003_science_education_guide_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_003_science_education_guide_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_004_student_loan_relief_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_004_student_loan_relief_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q01",
+      "strategy": "table_protected",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q02",
+      "strategy": "table_protected",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_001_notary_service_guide_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_002_biomed_project_guide_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_general_003_textile_application_flow_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_001_training_platform_rules_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_001_training_platform_rules_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_002_equipment_renewal_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_002_equipment_renewal_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_003_science_education_guide_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_003_science_education_guide_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_004_student_loan_relief_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_004_student_loan_relief_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 1.0,
+        "Recall@1": 1.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 1.0
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q01",
+      "strategy": "hybrid",
+      "top_relevant": true
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q02",
+      "strategy": "hybrid",
+      "top_relevant": false
+    }
+  ],
+  "per_document_type": {
+    "general_doc": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "meeting_doc": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "policy_doc": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "procurement_doc": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    }
+  },
+  "per_query_failure_cases": [
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 7,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_002_shaxian_executive_minutes_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_003_miluo_executive_minutes_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 48,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_001_training_platform_rules_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 75,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_002_equipment_renewal_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 91,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_003_science_education_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 10,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_004_student_loan_relief_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 250,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_policy_005_ai_industry_guide_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 55,
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_001_broadcast_security_supervision_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 59,
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_002_special_equipment_bid_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 44,
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_003_radiation_monitoring_award_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 52,
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_004_veterinary_platform_award_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 63,
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_procurement_005_rehabilitation_equipment_award_q02",
+      "strategy": "flat_blocks",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 123,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_001_notary_service_guide_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 80,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_002_biomed_project_guide_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 33,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_general_003_textile_application_flow_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    },
+    {
+      "chunk_count": 35,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "metrics": {
+        "MRR": 0.5,
+        "Recall@1": 0.0,
+        "Recall@3": 1.0,
+        "Recall@5": 1.0,
+        "nDCG@5": 0.6309297535714575
+      },
+      "query_id": "real_meeting_001_changning_executive_minutes_q02",
+      "strategy": "heading_aware",
+      "top_relevant": false
+    }
+  ],
+  "recommendation": "Use the highest-recall strategy as the default, then inspect failure cases for missing title/table context.",
+  "strategy_comparison": {
+    "flat_blocks": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "heading_aware": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "hybrid": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "keyword_enriched": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    },
+    "table_protected": {
+      "MRR": 0.75,
+      "Recall@1": 0.5,
+      "Recall@3": 1.0,
+      "Recall@5": 1.0,
+      "nDCG@5": 0.8154648767857288
+    }
+  },
+  "summary": {
+    "MRR": 0.75,
+    "Recall@1": 0.5,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "nDCG@5": 0.8154648767857287,
+    "query_count": 32,
+    "result_count": 160
+  }
+}
