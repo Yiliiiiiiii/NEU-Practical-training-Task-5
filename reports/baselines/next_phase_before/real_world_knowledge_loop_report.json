@@ -1,0 +1,87 @@
+{
+  "activated_aliases": {
+    "purchaser": [
+      "采购方名称"
+    ]
+  },
+  "after": {
+    "auto_mapped_fields": 7,
+    "missing_required_count": 0,
+    "review_required_count": 4
+  },
+  "approved_candidates": 1,
+  "badcase_violation_count": 0,
+  "before": {
+    "auto_mapped_fields": 6,
+    "missing_required_count": 1,
+    "review_required_count": 5
+  },
+  "boundaries": [
+    "Evaluation uses an isolated temporary database and storage root.",
+    "Only reviewed, non-badcase aliases are activated.",
+    "No production catalog snapshot is mutated."
+  ],
+  "decision_evidence": [
+    {
+      "activated": true,
+      "badcase_hit": false,
+      "candidate_id": "kc_procurement_review_approve_001",
+      "candidate_status": "accepted",
+      "decision": "approve",
+      "decision_id": "procurement_review_approve_001",
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "evidence": [
+        "公开采购公告中该字段指向采购主体，而非代理机构或供应商。"
+      ],
+      "reason": "采购方名称与采购人语义一致，可作为采购文档 purchaser 的安全别名。",
+      "review_status": "approved",
+      "schema_id": "procurement_doc",
+      "source_field": "采购方名称",
+      "target_field": "purchaser",
+      "template_id": "procurement_doc_base_v1"
+    },
+    {
+      "activated": false,
+      "badcase_hit": false,
+      "candidate_id": null,
+      "candidate_status": null,
+      "decision": "reject",
+      "decision_id": "procurement_review_reject_001",
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "evidence": [
+        "最高限价发生在采购公告阶段，中标金额只应来自成交或中标公告。"
+      ],
+      "forbidden_target_fields": [
+        "award_amount"
+      ],
+      "reason": "最高限价是预算/控制价，不是中标金额，不能激活到 award_amount。",
+      "review_status": "rejected",
+      "schema_id": "procurement_doc",
+      "source_field": "最高限价",
+      "target_field": "award_amount",
+      "template_id": "procurement_doc_base_v1"
+    }
+  ],
+  "generated_at": "2026-06-30T06:12:26.236599+00:00",
+  "metrics": {
+    "activated_alias_count": 1,
+    "activated_candidate_count": 1,
+    "after_auto_mapped_fields": 7,
+    "after_missing_required_count": 0,
+    "after_review_required_count": 4,
+    "approved_candidates": 1,
+    "badcase_violation_count": 0,
+    "before_auto_mapped_fields": 6,
+    "before_missing_required_count": 1,
+    "before_review_required_count": 5,
+    "old_snapshot_unchanged": 1,
+    "rejected_candidates": 1
+  },
+  "old_snapshot_unchanged": true,
+  "rejected_candidates": 1,
+  "remaining_ambiguous_cases": [
+    "最高限价"
+  ],
+  "schema_id": "procurement_doc",
+  "template_id": "procurement_doc_base_v1"
+}

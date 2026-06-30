@@ -38,6 +38,17 @@ reports/*
 !reports/chunk_retrieval_eval_report.md
 !reports/llm_fallback_eval_report.json
 !reports/llm_fallback_eval_report.md
+!reports/real_world_validation_gap_analysis.json
+!reports/real_world_validation_gap_analysis.md
+!reports/baselines/
+reports/baselines/*
+!reports/baselines/next_phase_before/
+reports/baselines/next_phase_before/*
+!reports/baselines/next_phase_before/real_world_eval_report.json
+!reports/baselines/next_phase_before/real_world_mapping_eval_report.json
+!reports/baselines/next_phase_before/procurement_doc_eval_report.json
+!reports/baselines/next_phase_before/content_organization_retrieval_eval.json
+!reports/baselines/next_phase_before/real_world_knowledge_loop_report.json
 *.db
 *.sqlite
 *.sqlite3

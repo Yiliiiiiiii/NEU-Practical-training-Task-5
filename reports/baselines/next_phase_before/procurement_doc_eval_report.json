@@ -1,0 +1,3824 @@
+{
+  "delta": {
+    "badcase_violation_count": 0,
+    "label": "procurement_doc - general_doc",
+    "mapping_recall": 0.5283018867924528,
+    "package_pass_rate": 0.0,
+    "required_coverage": 0.6666666666666667
+  },
+  "general_doc": {
+    "badcase_violation_count": 0,
+    "document_count": 5,
+    "gold_recall": 0.09433962264150944,
+    "missing_required_count": 10,
+    "package_pass_rate": 1.0,
+    "raw_report": {
+      "badcase_violations": [],
+      "generated_at": "2026-06-30T06:13:48.544751+00:00",
+      "missing_or_ambiguous": [
+        {
+          "doc_id": "real_procurement_001_broadcast_security_supervision",
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence_count": 4
+        },
+        {
+          "doc_id": "real_procurement_002_special_equipment_bid",
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence_count": 4
+        },
+        {
+          "doc_id": "real_procurement_003_radiation_monitoring_award",
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence_count": 4
+        },
+        {
+          "doc_id": "real_procurement_004_veterinary_platform_award",
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence_count": 4
+        },
+        {
+          "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence_count": 4
+        }
+      ],
+      "package_summary": {
+        "failed": 0,
+        "passed": 5
+      },
+      "per_document": [
+        {
+          "doc_id": "real_procurement_001_broadcast_security_supervision",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "category",
+            "content",
+            "created_date",
+            "source",
+            "tags",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 1,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_001_broadcast_security_supervision",
+            "gold_mapping_count": 9,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.1,
+            "missing_gold_mappings": 8,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202506/t20250604_24710007.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_获取招标文件时间_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.65 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.65 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_001_broadcast_security_supervision_b008"
+              ],
+              "source_field": {
+                "source_name": "获取招标文件时间",
+                "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.5"
+              },
+              "source_field_name": "获取招标文件时间",
+              "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.5",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "2025年06月04日至2025年06月11日 每日上午:9:00 至 12:00 下午:12:00 至 17:00（北京时间，法定节假日除外）"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "procurement_doc"
+            }
+          ],
+          "schema_id": "general_doc",
+          "task_id": "task_fa463fedf1c0",
+          "task_status": "review_required",
+          "template_id": "general_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_002_special_equipment_bid",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "category",
+            "content",
+            "created_date",
+            "source",
+            "tags",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 1,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_002_special_equipment_bid",
+            "gold_mapping_count": 11,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.08333333333333333,
+            "missing_gold_mappings": 10,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_01a71644c994",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202506/t20250621_24821803.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_获取招标文件时间_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.65 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.65 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_002_special_equipment_bid_b008"
+              ],
+              "source_field": {
+                "source_name": "获取招标文件时间",
+                "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.5"
+              },
+              "source_field_name": "获取招标文件时间",
+              "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.5",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_01a71644c994",
+              "value_sample": "2025年06月21日至2025年06月30日 每日上午:09:00 至 00-12:00:00 下午:12:00 至 00-17:00:00（北京时间，法定节假日除外）"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_01a71644c994",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_01a71644c994",
+              "value_sample": "procurement_doc"
+            }
+          ],
+          "schema_id": "general_doc",
+          "task_id": "task_01a71644c994",
+          "task_status": "review_required",
+          "template_id": "general_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_003_radiation_monitoring_award",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "category",
+            "content",
+            "created_date",
+            "source",
+            "tags",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 1,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_003_radiation_monitoring_award",
+            "gold_mapping_count": 10,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.09090909090909091,
+            "missing_gold_mappings": 9,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202504/t20250411_24427761.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_retrieved_at_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.64 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.64 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "retrieved_at",
+                "source_path": "$.metadata.retrieved_at"
+              },
+              "source_field_name": "retrieved_at",
+              "source_path": "$.metadata.retrieved_at",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "2026-06-29T01:38:03.761500+00:00"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "procurement_doc"
+            }
+          ],
+          "schema_id": "general_doc",
+          "task_id": "task_df791b54fd6c",
+          "task_status": "review_required",
+          "template_id": "general_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_004_veterinary_platform_award",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "category",
+            "content",
+            "created_date",
+            "source",
+            "tags",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 1,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_004_veterinary_platform_award",
+            "gold_mapping_count": 9,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.1,
+            "missing_gold_mappings": 8,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250523_24654307.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_retrieved_at_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.64 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.64 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "retrieved_at",
+                "source_path": "$.metadata.retrieved_at"
+              },
+              "source_field_name": "retrieved_at",
+              "source_path": "$.metadata.retrieved_at",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "2026-06-29T01:38:03.962018+00:00"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "procurement_doc"
+            }
+          ],
+          "schema_id": "general_doc",
+          "task_id": "task_2307cdcddb4d",
+          "task_status": "review_required",
+          "template_id": "general_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "category",
+            "content",
+            "created_date",
+            "source",
+            "tags",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 1,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+            "gold_mapping_count": 9,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.1,
+            "missing_gold_mappings": 8,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [
+            "project_name",
+            "purchaser"
+          ],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250527_24667813.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_retrieved_at_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.64 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.64 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "retrieved_at",
+                "source_path": "$.metadata.retrieved_at"
+              },
+              "source_field_name": "retrieved_at",
+              "source_path": "$.metadata.retrieved_at",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "2026-06-29T01:38:04.132892+00:00"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "procurement_doc"
+            }
+          ],
+          "schema_id": "general_doc",
+          "task_id": "task_bf1b894722ad",
+          "task_status": "review_required",
+          "template_id": "general_doc_base_v1",
+          "validation_passed": true
+        }
+      ],
+      "per_document_type": {
+        "procurement_doc": {
+          "auto_accepted_correct": 5,
+          "badcase_pass_rate": 1.0,
+          "badcase_violation_count": 0,
+          "document_count": 5,
+          "gold_mapping_count": 48,
+          "gold_review_required_count": 5,
+          "mapping_recall": 0.09433962264150944,
+          "missing_gold_mappings": 43,
+          "package_pass_rate": 1.0,
+          "review_required_correct": 0
+        }
+      },
+      "per_field": {
+        "project_name": {
+          "badcase_violation_count": 0,
+          "missing_gold_mappings": 5
+        },
+        "purchaser": {
+          "badcase_violation_count": 0,
+          "missing_gold_mappings": 5
+        }
+      },
+      "review_evidence": [
+        {
+          "doc_id": "real_procurement_001_broadcast_security_supervision",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202506/t20250604_24710007.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_获取招标文件时间_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.65 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.65 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_001_broadcast_security_supervision_b008"
+              ],
+              "source_field": {
+                "source_name": "获取招标文件时间",
+                "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.5"
+              },
+              "source_field_name": "获取招标文件时间",
+              "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.5",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "2025年06月04日至2025年06月11日 每日上午:9:00 至 12:00 下午:12:00 至 17:00（北京时间，法定节假日除外）"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_fa463fedf1c0_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_fa463fedf1c0_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_fa463fedf1c0",
+              "value_sample": "procurement_doc"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_002_special_equipment_bid",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_01a71644c994",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202506/t20250621_24821803.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_获取招标文件时间_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.65 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.65 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_002_special_equipment_bid_b008"
+              ],
+              "source_field": {
+                "source_name": "获取招标文件时间",
+                "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.5"
+              },
+              "source_field_name": "获取招标文件时间",
+              "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.5",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_01a71644c994",
+              "value_sample": "2025年06月21日至2025年06月30日 每日上午:09:00 至 00-12:00:00 下午:12:00 至 00-17:00:00（北京时间，法定节假日除外）"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_01a71644c994",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_01a71644c994_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_01a71644c994_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_01a71644c994",
+              "value_sample": "procurement_doc"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_003_radiation_monitoring_award",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202504/t20250411_24427761.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_retrieved_at_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.64 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.64 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "retrieved_at",
+                "source_path": "$.metadata.retrieved_at"
+              },
+              "source_field_name": "retrieved_at",
+              "source_path": "$.metadata.retrieved_at",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "2026-06-29T01:38:03.761500+00:00"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_df791b54fd6c_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_df791b54fd6c_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_df791b54fd6c",
+              "value_sample": "procurement_doc"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_004_veterinary_platform_award",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250523_24654307.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_retrieved_at_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.64 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.64 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "retrieved_at",
+                "source_path": "$.metadata.retrieved_at"
+              },
+              "source_field_name": "retrieved_at",
+              "source_path": "$.metadata.retrieved_at",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "2026-06-29T01:38:03.962018+00:00"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_2307cdcddb4d_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_2307cdcddb4d_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_2307cdcddb4d",
+              "value_sample": "procurement_doc"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_source_url_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.80 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.80 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_source_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_url",
+                "source_path": "$.metadata.source_url"
+              },
+              "source_field_name": "source_url",
+              "source_path": "$.metadata.source_url",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "source",
+              "target_field_name": "source",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202505/t20250527_24667813.htm"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_retrieved_at_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.64 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.64 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_created_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "retrieved_at",
+                "source_path": "$.metadata.retrieved_at"
+              },
+              "source_field_name": "retrieved_at",
+              "source_path": "$.metadata.retrieved_at",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "created_date",
+              "target_field_name": "created_date",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "2026-06-29T01:38:04.132892+00:00"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_category_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "category",
+              "target_field_name": "category",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "procurement_doc"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_bf1b894722ad_doc_type_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_bf1b894722ad_tags_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "doc_type",
+                "source_path": "$.metadata.doc_type"
+              },
+              "source_field_name": "doc_type",
+              "source_path": "$.metadata.doc_type",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "tags",
+              "target_field_name": "tags",
+              "task_id": "task_bf1b894722ad",
+              "value_sample": "procurement_doc"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "auto_accepted_correct": 5,
+        "badcase_pass_rate": 1.0,
+        "badcase_violation_count": 0,
+        "document_count": 5,
+        "gold_mapping_count": 48,
+        "gold_review_required_count": 5,
+        "mapping_recall": 0.09433962264150944,
+        "missing_gold_mappings": 43,
+        "package_pass_count": 5,
+        "package_pass_rate": 1.0,
+        "review_required_correct": 0,
+        "validation_pass_count": 5
+      }
+    },
+    "required_coverage": 0.3333333333333333
+  },
+  "procurement_doc": {
+    "badcase_violation_count": 0,
+    "document_count": 5,
+    "gold_recall": 0.6226415094339622,
+    "missing_required_count": 0,
+    "package_pass_rate": 1.0,
+    "raw_report": {
+      "badcase_violations": [],
+      "generated_at": "2026-06-30T06:13:48.544793+00:00",
+      "missing_or_ambiguous": [
+        {
+          "doc_id": "real_procurement_001_broadcast_security_supervision",
+          "required_missing": [],
+          "review_evidence_count": 2
+        },
+        {
+          "doc_id": "real_procurement_002_special_equipment_bid",
+          "required_missing": [],
+          "review_evidence_count": 2
+        },
+        {
+          "doc_id": "real_procurement_003_radiation_monitoring_award",
+          "required_missing": [],
+          "review_evidence_count": 4
+        },
+        {
+          "doc_id": "real_procurement_004_veterinary_platform_award",
+          "required_missing": [],
+          "review_evidence_count": 4
+        },
+        {
+          "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+          "required_missing": [],
+          "review_evidence_count": 4
+        }
+      ],
+      "package_summary": {
+        "failed": 0,
+        "passed": 5
+      },
+      "per_document": [
+        {
+          "doc_id": "real_procurement_001_broadcast_security_supervision",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "agency",
+            "announcement_date",
+            "bid_deadline",
+            "budget_amount",
+            "contact_person",
+            "contact_phone",
+            "content",
+            "opening_date",
+            "procurement_id",
+            "procurement_type",
+            "project_name",
+            "purchaser",
+            "source_site",
+            "source_url",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 7,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_001_broadcast_security_supervision",
+            "gold_mapping_count": 9,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.7,
+            "missing_gold_mappings": 2,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_a56389288b0e_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_a56389288b0e_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_001_broadcast_security_supervision_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.16"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.16",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_a56389288b0e",
+              "value_sample": "王宝石 010-86094895"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_a56389288b0e_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_a56389288b0e_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_a56389288b0e",
+              "value_sample": "html"
+            }
+          ],
+          "schema_id": "procurement_doc",
+          "task_id": "task_a56389288b0e",
+          "task_status": "review_required",
+          "template_id": "procurement_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_002_special_equipment_bid",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "agency",
+            "announcement_date",
+            "bid_deadline",
+            "budget_amount",
+            "contact_person",
+            "contact_phone",
+            "content",
+            "opening_date",
+            "procurement_id",
+            "procurement_type",
+            "project_name",
+            "purchaser",
+            "source_site",
+            "source_url",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 8,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_002_special_equipment_bid",
+            "gold_mapping_count": 11,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.6666666666666666,
+            "missing_gold_mappings": 3,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_3be052879904_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_3be052879904_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_002_special_equipment_bid_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.16"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.16",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_3be052879904",
+              "value_sample": "021-37990333"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_3be052879904_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_3be052879904_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_3be052879904",
+              "value_sample": "html"
+            }
+          ],
+          "schema_id": "procurement_doc",
+          "task_id": "task_3be052879904",
+          "task_status": "review_required",
+          "template_id": "procurement_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_003_radiation_monitoring_award",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "agency",
+            "announcement_date",
+            "award_amount",
+            "award_supplier",
+            "budget_amount",
+            "contact_person",
+            "contact_phone",
+            "content",
+            "opening_date",
+            "procurement_id",
+            "procurement_type",
+            "project_name",
+            "purchaser",
+            "source_site",
+            "source_url",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 6,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_003_radiation_monitoring_award",
+            "gold_mapping_count": 10,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.5454545454545454,
+            "missing_gold_mappings": 4,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_003_radiation_monitoring_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.12"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.12",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "82567823"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_采购单位_2",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_budget_amount_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_003_radiation_monitoring_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位",
+                "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.10"
+              },
+              "source_field_name": "采购单位",
+              "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.10",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "budget_amount",
+              "target_field_name": "budget_amount",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "北京市核与辐射安全中心"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "html"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_source_site_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.48 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.48 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_opening_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_site",
+                "source_path": "$.metadata.source_site"
+              },
+              "source_field_name": "source_site",
+              "source_path": "$.metadata.source_site",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "opening_date",
+              "target_field_name": "opening_date",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "www.ccgp.gov.cn"
+            }
+          ],
+          "schema_id": "procurement_doc",
+          "task_id": "task_f9888274f0dc",
+          "task_status": "review_required",
+          "template_id": "procurement_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_004_veterinary_platform_award",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "agency",
+            "announcement_date",
+            "award_amount",
+            "budget_amount",
+            "contact_person",
+            "contact_phone",
+            "content",
+            "opening_date",
+            "procurement_id",
+            "procurement_type",
+            "project_name",
+            "purchaser",
+            "source_site",
+            "source_url",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 6,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_004_veterinary_platform_award",
+            "gold_mapping_count": 9,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.6,
+            "missing_gold_mappings": 3,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_004_veterinary_platform_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.12"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.12",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "赖老师，010-59198850"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位_2",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_budget_amount_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_004_veterinary_platform_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位",
+                "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.10"
+              },
+              "source_field_name": "采购单位",
+              "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.10",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "budget_amount",
+              "target_field_name": "budget_amount",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "中国动物疫病预防控制中心"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "html"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_source_site_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.48 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.48 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_opening_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_site",
+                "source_path": "$.metadata.source_site"
+              },
+              "source_field_name": "source_site",
+              "source_path": "$.metadata.source_site",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "opening_date",
+              "target_field_name": "opening_date",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "www.ccgp.gov.cn"
+            }
+          ],
+          "schema_id": "procurement_doc",
+          "task_id": "task_166b52c9dfc2",
+          "task_status": "review_required",
+          "template_id": "procurement_doc_base_v1",
+          "validation_passed": true
+        },
+        {
+          "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+          "doc_type": "procurement_doc",
+          "mapped_or_review_targets": [
+            "agency",
+            "announcement_date",
+            "award_amount",
+            "budget_amount",
+            "contact_person",
+            "contact_phone",
+            "content",
+            "opening_date",
+            "procurement_id",
+            "procurement_type",
+            "project_name",
+            "purchaser",
+            "source_site",
+            "source_url",
+            "title"
+          ],
+          "metrics": {
+            "auto_accepted_correct": 6,
+            "badcase_violation_count": 0,
+            "badcase_violations": [],
+            "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+            "gold_mapping_count": 9,
+            "gold_review_required_count": 1,
+            "mapping_recall": 0.6,
+            "missing_gold_mappings": 3,
+            "review_required_correct": 0
+          },
+          "package_passed": true,
+          "required_missing": [],
+          "review_evidence": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_005_rehabilitation_equipment_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.12"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.12",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_516ee194e157",
+              "value_sample": "010-87020528"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_采购单位_2",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_budget_amount_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_005_rehabilitation_equipment_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位",
+                "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.10"
+              },
+              "source_field_name": "采购单位",
+              "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.10",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "budget_amount",
+              "target_field_name": "budget_amount",
+              "task_id": "task_516ee194e157",
+              "value_sample": "中国康复研究中心"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_516ee194e157",
+              "value_sample": "html"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_source_site_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.48 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.48 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_opening_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_site",
+                "source_path": "$.metadata.source_site"
+              },
+              "source_field_name": "source_site",
+              "source_path": "$.metadata.source_site",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "opening_date",
+              "target_field_name": "opening_date",
+              "task_id": "task_516ee194e157",
+              "value_sample": "www.ccgp.gov.cn"
+            }
+          ],
+          "schema_id": "procurement_doc",
+          "task_id": "task_516ee194e157",
+          "task_status": "review_required",
+          "template_id": "procurement_doc_base_v1",
+          "validation_passed": true
+        }
+      ],
+      "per_document_type": {
+        "procurement_doc": {
+          "auto_accepted_correct": 33,
+          "badcase_pass_rate": 1.0,
+          "badcase_violation_count": 0,
+          "document_count": 5,
+          "gold_mapping_count": 48,
+          "gold_review_required_count": 5,
+          "mapping_recall": 0.6226415094339622,
+          "missing_gold_mappings": 15,
+          "package_pass_rate": 1.0,
+          "review_required_correct": 0
+        }
+      },
+      "per_field": {},
+      "review_evidence": [
+        {
+          "doc_id": "real_procurement_001_broadcast_security_supervision",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_a56389288b0e_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_a56389288b0e_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_001_broadcast_security_supervision_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.16"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_001_broadcast_security_supervision_b008.rows.16",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_a56389288b0e",
+              "value_sample": "王宝石 010-86094895"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_a56389288b0e_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_a56389288b0e_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_a56389288b0e",
+              "value_sample": "html"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_002_special_equipment_bid",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_3be052879904_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_3be052879904_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_002_special_equipment_bid_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.16"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_002_special_equipment_bid_b008.rows.16",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_3be052879904",
+              "value_sample": "021-37990333"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_3be052879904_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_3be052879904_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_3be052879904",
+              "value_sample": "html"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_003_radiation_monitoring_award",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_003_radiation_monitoring_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.12"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.12",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "82567823"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_采购单位_2",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_budget_amount_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_003_radiation_monitoring_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位",
+                "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.10"
+              },
+              "source_field_name": "采购单位",
+              "source_path": "$.blocks.real_procurement_003_radiation_monitoring_award_b008.rows.10",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "budget_amount",
+              "target_field_name": "budget_amount",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "北京市核与辐射安全中心"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "html"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_f9888274f0dc_source_site_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.48 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.48 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_f9888274f0dc_opening_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_site",
+                "source_path": "$.metadata.source_site"
+              },
+              "source_field_name": "source_site",
+              "source_path": "$.metadata.source_site",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "opening_date",
+              "target_field_name": "opening_date",
+              "task_id": "task_f9888274f0dc",
+              "value_sample": "www.ccgp.gov.cn"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_004_veterinary_platform_award",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_004_veterinary_platform_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.12"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.12",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "赖老师，010-59198850"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_采购单位_2",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_budget_amount_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_004_veterinary_platform_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位",
+                "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.10"
+              },
+              "source_field_name": "采购单位",
+              "source_path": "$.blocks.real_procurement_004_veterinary_platform_award_b008.rows.10",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "budget_amount",
+              "target_field_name": "budget_amount",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "中国动物疫病预防控制中心"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "html"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_166b52c9dfc2_source_site_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.48 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.48 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_166b52c9dfc2_opening_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_site",
+                "source_path": "$.metadata.source_site"
+              },
+              "source_field_name": "source_site",
+              "source_path": "$.metadata.source_site",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "opening_date",
+              "target_field_name": "opening_date",
+              "task_id": "task_166b52c9dfc2",
+              "value_sample": "www.ccgp.gov.cn"
+            }
+          ]
+        },
+        {
+          "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+          "items": [
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_采购单位联系方式_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.67 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.67 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_procurement_type_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_005_rehabilitation_equipment_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位联系方式",
+                "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.12"
+              },
+              "source_field_name": "采购单位联系方式",
+              "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.12",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "procurement_type",
+              "target_field_name": "procurement_type",
+              "task_id": "task_516ee194e157",
+              "value_sample": "010-87020528"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_采购单位_2",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_budget_amount_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [
+                "real_procurement_005_rehabilitation_equipment_award_b008"
+              ],
+              "source_field": {
+                "source_name": "采购单位",
+                "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.10"
+              },
+              "source_field_name": "采购单位",
+              "source_path": "$.blocks.real_procurement_005_rehabilitation_equipment_award_b008.rows.10",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "budget_amount",
+              "target_field_name": "budget_amount",
+              "task_id": "task_516ee194e157",
+              "value_sample": "中国康复研究中心"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_source_format_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.50 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.50 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_announcement_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_format",
+                "source_path": "$.metadata.source_format"
+              },
+              "source_field_name": "source_format",
+              "source_path": "$.metadata.source_format",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "announcement_date",
+              "target_field_name": "announcement_date",
+              "task_id": "task_516ee194e157",
+              "value_sample": "html"
+            },
+            {
+              "badcase_filter": {
+                "blocked": false,
+                "checked": false,
+                "reason": null
+              },
+              "candidate_id": "cand_task_516ee194e157_source_site_1",
+              "confidence": 0.62,
+              "confidence_tier": "low",
+              "evidence": [
+                {
+                  "message": "fuzzy score 0.48 requires review",
+                  "metadata": {},
+                  "source": null,
+                  "type": "fuzzy_match",
+                  "weight": null
+                }
+              ],
+              "evidence_text": [
+                "fuzzy score 0.48 requires review"
+              ],
+              "llm_metadata": null,
+              "mapping_id": "map_task_516ee194e157_opening_date_fuzzy",
+              "method": "fuzzy",
+              "need_review": true,
+              "review_required_reason": "Fuzzy mapping requires human review.",
+              "risk_flags": [
+                "fuzzy_match",
+                "low_confidence"
+              ],
+              "source_blocks": [],
+              "source_field": {
+                "source_name": "source_site",
+                "source_path": "$.metadata.source_site"
+              },
+              "source_field_name": "source_site",
+              "source_path": "$.metadata.source_site",
+              "status": "review_required",
+              "strategy": "fuzzy",
+              "target_field_id": "opening_date",
+              "target_field_name": "opening_date",
+              "task_id": "task_516ee194e157",
+              "value_sample": "www.ccgp.gov.cn"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "auto_accepted_correct": 33,
+        "badcase_pass_rate": 1.0,
+        "badcase_violation_count": 0,
+        "document_count": 5,
+        "gold_mapping_count": 48,
+        "gold_review_required_count": 5,
+        "mapping_recall": 0.6226415094339622,
+        "missing_gold_mappings": 15,
+        "package_pass_count": 5,
+        "package_pass_rate": 1.0,
+        "review_required_correct": 0,
+        "validation_pass_count": 5
+      }
+    },
+    "required_coverage": 1.0
+  }
+}
