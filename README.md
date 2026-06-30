@@ -69,6 +69,22 @@ Implemented:
 - Pytest baseline for bootstrap, schemas, examples, production-like evaluation,
   storage, documents, tasks, and task execution
 
+Topic 5 four-part deepening evidence is now included:
+
+- Real-world mapping evaluation:
+  `reports/real_world_mapping_eval_report.md`
+- Procurement catalog comparison:
+  `reports/procurement_doc_eval_report.md`
+- Content organization retrieval evaluation:
+  `reports/content_organization_retrieval_eval.md`
+- Human-review knowledge-loop evaluation:
+  `reports/knowledge_loop_eval_report.md`
+
+Current reproduced highlights: 16/16 real-world packages pass verification,
+procurement required coverage improves from 0.333 to 1.000 versus the generic
+schema, retrieval Recall@1 is 0.500 on the lightweight evaluator, and the
+knowledge-loop report preserves old task snapshots while activating one pack.
+
 Remaining production hardening not implemented yet:
 
 - Authorization, tenancy, SSO/TLS integration, and advanced operator controls

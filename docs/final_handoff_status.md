@@ -98,6 +98,34 @@ Topic 5 follow-up Phases 23 through 28 are implemented in this checkout.
   - `scripts/verify_all.py`
   - `.github/workflows/ci.yml`
 
+## Topic 5 Four-Part Deepening Evidence
+
+Generated reports:
+
+- `reports/real_world_mapping_eval_report.md`
+- `reports/procurement_doc_eval_report.md`
+- `reports/content_organization_retrieval_eval.md`
+- `reports/knowledge_loop_eval_report.md`
+
+Observed metrics from the committed report set:
+
+- Real-world mapping: 16 documents, package pass rate 1.000, badcase
+  violations 0.
+- Procurement comparison: required coverage improves from 0.333 with
+  `general_doc` to 1.000 with `procurement_doc`; mapping recall improves by
+  0.528.
+- Retrieval: lightweight evaluator over 32 queries reports Recall@1 0.500,
+  Recall@3 1.000, MRR 0.750.
+- Knowledge loop: old snapshot unchanged is true, one active pack is produced,
+  and badcase violations are 0.
+
+Known limits:
+
+- Retrieval evaluator is lightweight and is not a full RAG system.
+- Procurement schema is v1 and aliases require continued real-sample review.
+- Gold labels are coursework-scale evaluation labels, not an enterprise
+  benchmark.
+
 ## Current Not Implemented Capabilities
 
 - Authorization, tenancy, SSO/TLS integration, and advanced operator controls.

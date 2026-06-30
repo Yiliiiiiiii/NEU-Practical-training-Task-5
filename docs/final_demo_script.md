@@ -95,7 +95,27 @@ Export training-corpus JSONL:
 .\backend\.venv\Scripts\python.exe scripts\export_training_corpus.py --package reports\packages\phase_b\packages\pkg_eval_policy_001_standard\standard_package.zip --out reports\training_corpus.jsonl
 ```
 
-## 5. Explain Boundaries
+## 5. Run Topic 5 Four-Part Deepening Evaluations
+
+With the backend running:
+
+```powershell
+.\backend\.venv\Scripts\python.exe scripts\eval_real_world_mapping.py --base-url http://127.0.0.1:8000
+.\backend\.venv\Scripts\python.exe scripts\eval_procurement_doc.py --base-url http://127.0.0.1:8000
+.\backend\.venv\Scripts\python.exe scripts\eval_content_organization_retrieval.py
+.\backend\.venv\Scripts\python.exe scripts\eval_knowledge_loop_real_world.py --base-url http://127.0.0.1:8000
+```
+
+Open:
+
+```text
+reports/real_world_mapping_eval_report.md
+reports/procurement_doc_eval_report.md
+reports/content_organization_retrieval_eval.md
+reports/knowledge_loop_eval_report.md
+```
+
+## 6. Explain Boundaries
 
 During defense, state clearly:
 
@@ -103,4 +123,7 @@ During defense, state clearly:
 - LLM fallback is optional, disabled by default, and never auto-accepts.
 - Review and knowledge activation are human-gated.
 - Output packages are reproducible and verified by manifest checksums.
+- Retrieval evaluator is lightweight and is not a full RAG system.
+- Procurement schema is v1 and aliases require continued real-sample review.
+- Gold labels are coursework-scale evaluation labels, not an enterprise benchmark.
 

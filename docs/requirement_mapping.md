@@ -24,6 +24,10 @@ implementation.
 | Package verification | Verifier checks required files, checksums, JSON, JSONL, Markdown, chunk fields, and strict package-spec roles/media types when enabled. | `PackageVerifierService`, `verifier_report.json` |
 | Downstream usability | Smoke scripts validate package ingestion and export training-corpus JSONL. | `scripts/smoke_rag_ingest.py`, `scripts/export_training_corpus.py` |
 | Evaluation | Production-like evaluator checks gold cases, badcases, package validation, and downstream smoke. | `scripts/eval_production_like.py` |
+| Real-world mapping evidence | 16 real UIR files are scored against source-backed mapping gold, review-required expectations, badcases, and package verification. | `reports/real_world_mapping_eval_report.md` |
+| Procurement specialization | Dedicated procurement schema/template is compared against generic mapping for required coverage, gold recall, badcases, and package pass rate. | `reports/procurement_doc_eval_report.md` |
+| Content retrieval evidence | 32 query labels evaluate lightweight chunk ranking across strategies and document types. | `reports/content_organization_retrieval_eval.md` |
+| Knowledge-loop evidence | Review approval, candidate acceptance, draft/active pack behavior, snapshot invariants, and badcase counts are evaluated. | `reports/knowledge_loop_eval_report.md` |
 | Frontend demo | Workbench supports import, task execution, reports, review, knowledge, and ZIP download. | `frontend/src` |
 | Deployment | Docker Compose profile packages backend, frontend, storage, and SQLite volumes. | `docker-compose.yml`, `docs/deployment.md` |
 
@@ -34,3 +38,9 @@ implementation.
 - Full entity linking or universal data cleaning.
 - Autonomous production rule activation by LLM output.
 - Authentication, tenancy, audit logging, and production access control.
+
+## Topic 5 Deepening Caveats
+
+- Retrieval evaluator is lightweight and is not a full RAG system.
+- Procurement schema is v1 and aliases require continued real-sample review.
+- Gold labels are coursework-scale evaluation labels, not an enterprise benchmark.

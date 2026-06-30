@@ -148,9 +148,31 @@ Outputs:
 - The collector is intentionally small-scale and sequential.
 - No LLM is required for deterministic generation. If an assisted candidate is added
   manually, evidence, confidence, reason, and review state remain mandatory.
-- Procurement samples currently use the existing `general_doc` schema/template during API
-  evaluation because the catalog has no dedicated procurement schema.
+- Procurement samples now use the dedicated `procurement_doc` schema and
+  `procurement_doc_base_v1` template in the real-world mapping evaluator.
 
 Future work may add reviewed domain-specific aliases, a dedicated procurement catalog,
 more contract samples, and additional deterministic table normalization. OCR remains
 outside the main scope.
+
+## Topic 5 deepening gold and reports
+
+Additional evaluation labels live under `examples/real_world/gold/`:
+
+- `mapping_gold.jsonl` contains 16 source-backed mapping rows with top-level
+  UIR `source_path`, expected mappings, review-required items, and embedded
+  badcases.
+- `real_world_badcases.jsonl` is the deterministic flattened badcase view.
+- `retrieval_queries.jsonl` contains 32 retrieval queries, two per real UIR,
+  with relevant source block IDs.
+
+Reproduced report evidence:
+
+- `reports/real_world_mapping_eval_report.md`
+- `reports/procurement_doc_eval_report.md`
+- `reports/content_organization_retrieval_eval.md`
+- `reports/knowledge_loop_eval_report.md`
+
+Limits: the retrieval evaluator is lightweight and is not a full RAG system;
+the procurement schema is v1 and aliases require continued real-sample review;
+gold labels are coursework-scale evaluation labels, not an enterprise benchmark.

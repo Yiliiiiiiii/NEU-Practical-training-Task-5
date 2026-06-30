@@ -427,6 +427,27 @@ def test_mapping_eval_treats_malformed_base_url_as_fatal() -> None:
     )
 
 
+def test_handoff_docs_reference_all_four_reports() -> None:
+    required = {
+        "reports/real_world_mapping_eval_report.md",
+        "reports/procurement_doc_eval_report.md",
+        "reports/content_organization_retrieval_eval.md",
+        "reports/knowledge_loop_eval_report.md",
+    }
+    text = "\n".join(
+        (ROOT / path).read_text(encoding="utf-8")
+        for path in (
+            "README.md",
+            "docs/real_world_uir_dataset.md",
+            "docs/requirement_mapping.md",
+            "docs/final_demo_script.md",
+            "docs/final_handoff_status.md",
+        )
+    )
+
+    assert required <= {item for item in required if item in text}
+
+
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [
