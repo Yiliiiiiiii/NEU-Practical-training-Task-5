@@ -95,9 +95,14 @@ def execute_task(client: TestClient, task_id: str) -> dict:
     return response.json()
 
 
-def approve_title_review(client: TestClient) -> dict:
+def approve_title_review(client: TestClient, task_id: str | None = None) -> dict:
     reviews = client.get("/api/v1/reviews", params={"status": "pending"}).json()["items"]
-    title_review = next(item for item in reviews if item["target_field_id"] == "title")
+    title_review = next(
+        item
+        for item in reviews
+        if item["target_field_id"] == "title"
+        and (task_id is None or item["task_id"] == task_id)
+    )
     response = client.post(
         f"/api/v1/reviews/{title_review['review_id']}/approve",
         json={
@@ -118,7 +123,7 @@ def test_draft_pack_does_not_affect_effective_template(knowledge_client: TestCli
         "/api/v1/knowledge/effective-template",
         params={"schema_id": "policy_doc", "template_id": "policy_doc_base_v1"},
     ).json()
-    approve_title_review(knowledge_client)
+    approve_title_review(knowledge_client, task_id)
     candidate = knowledge_client.get("/api/v1/knowledge/candidates").json()["items"][0]
     accepted = knowledge_client.post(
         f"/api/v1/knowledge/candidates/{candidate['candidate_id']}/accept"
@@ -169,7 +174,7 @@ def test_badcase_candidate_is_blocked(knowledge_client: TestClient) -> None:
         },
     )
     execute_task(knowledge_client, blocked_task_id)
-    approve_title_review(knowledge_client)
+    approve_title_review(knowledge_client, blocked_task_id)
     candidates = knowledge_client.get("/api/v1/knowledge/candidates").json()["items"]
     candidate = next(item for item in candidates if item["status"] == "blocked")
     assert candidate["badcase_hit"] is True
@@ -189,6 +194,8 @@ def test_knowledge_loop_report_sections() -> None:
             "accepted_candidates": [{"candidate_id": "c1"}],
             "blocked_candidates": [{"candidate_id": "blocked"}],
             "metrics": {"active_packs": 1},
+            "before_mapping": {"mappings": []},
+            "old_mapping_after_activation": {"mappings": []},
             "before_recall": 0.5,
             "after_recall": 1.0,
             "required_coverage_before": 0.5,
@@ -202,4 +209,7 @@ def test_knowledge_loop_report_sections() -> None:
     assert report["summary"]["blocked_candidate_count"] == 1
     assert "## Before/After Recall" in markdown
     assert "## Required Coverage" in markdown
+    assert "## Review Approvals" in markdown
+    assert "## Candidate Acceptance" in markdown
+    assert "## Pack Activation" in markdown
     assert "## Snapshot Invariant" in markdown
