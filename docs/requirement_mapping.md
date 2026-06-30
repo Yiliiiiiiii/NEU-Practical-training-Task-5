@@ -1,51 +1,65 @@
 # Topic 5 Requirement Mapping
 
-This document maps topic 5 requirements to the current SchemaPack Agent
-implementation.
+This document maps Topic 5 requirements to the current SchemaPack Agent
+implementation and committed evidence on `main`.
 
-| Requirement Area | Implementation | Evidence |
+| Requirement | Current implementation | Evidence |
 | --- | --- | --- |
-| UIR as governed input | Document import persists UIR JSON and metadata. | `POST /api/v1/documents/import`, `DocumentService` |
-| Schema-driven conversion | Schema catalog loads governed target schemas with versions and status. | `GET /api/v1/schemas`, `CatalogGovernanceService` |
-| Mapping template control | Template catalog validates aliases, regex, enum maps, defaults, and transforms against schema fields. | `TemplateService`, `CatalogGovernanceService` |
-| Source field extraction | Candidate extraction reads metadata, table rows, and block hints. | `CandidateService` |
-| Deterministic semantic mapping | Mapping uses exact, alias, regex, type, fuzzy, and review-required fallback strategies with confidence tiers, structured evidence, risk flags, and badcase filters. | `MappingService`, mapping report |
-| Human review loop | Review records can be approved/rejected and include mapping evidence, risk flags, confidence, and review-required reasons before becoming knowledge candidates. | `ReviewService`, Review API |
-| Knowledge growth | Accepted candidates can become draft/active knowledge packs; only active packs affect new tasks. | `KnowledgeService`, `EffectiveTemplateService` |
-| Safe LLM posture | LLM fallback has disabled, stub, and OpenAI-compatible adapters; it is disabled by default, always review-required, timeout-bounded, retry-bounded, capped per task, warning-based on non-strict failure, and secret-redacted. | `LLMFallbackService`, `MappingService`, `redact_sensitive_values` |
-| Field transformation | Transform rules normalize dates, numbers, enums, defaults, and projected fields. | `TransformService`, transform report |
-| Canonical output | Converted data is persisted with schema/task/source metadata. | `CanonicalService`, `canonical.json` |
-| Human-readable output | Markdown rendering is included in every package. | `content.md` |
-| Machine-readable output | Structured JSON and JSONL chunks are included in every package. | `content.json`, `chunks.jsonl` |
-| Content organization | Chunks include configurable strategies, parent-child metadata, summaries, keywords, tags, source links, quality flags, and organization traces. | `ChunkOrganizerService`, `content_organization_report.json` |
-| Validation | Required fields and artifact consistency are validated. | `ValidationService`, `validation_report.json` |
-| Packaging | Output ZIP includes manifest, metadata, reports, chunks, Markdown, and JSON. | `PackageService`, `docs/package_spec.md` |
-| Reproducibility | Manifest entries include byte size, SHA-256, media type, and role. | `ManifestService`, `manifest.json` |
-| Package verification | Verifier checks required files, checksums, JSON, JSONL, Markdown, chunk fields, and strict package-spec roles/media types when enabled. | `PackageVerifierService`, `verifier_report.json` |
-| Downstream usability | Smoke scripts validate package ingestion and export training-corpus JSONL. | `scripts/smoke_rag_ingest.py`, `scripts/export_training_corpus.py` |
-| Evaluation | Production-like evaluator checks gold cases, badcases, package validation, and downstream smoke. | `scripts/eval_production_like.py` |
-| Real-world mapping evidence | 16 real UIR files are scored against source-backed mapping gold, review-required expectations, badcases, and package verification. | `reports/real_world_mapping_eval_report.md` |
-| Procurement specialization | Dedicated procurement schema/template is compared against generic mapping for required coverage, gold recall, badcases, and package pass rate. | `reports/procurement_doc_eval_report.md` |
-| Content retrieval evidence | 32 query labels evaluate lightweight chunk ranking across strategies and document types. | `reports/content_organization_retrieval_eval.md` |
-| Knowledge-loop evidence | Review approval, candidate acceptance, draft/active pack behavior, snapshot invariants, and badcase counts are evaluated. | `reports/knowledge_loop_eval_report.md` |
-| Frontend demo | Workbench supports import, task execution, reports, review, knowledge, and ZIP download. | `frontend/src` |
-| Deployment | Docker Compose profile packages backend, frontend, storage, and SQLite volumes. | `docker-compose.yml`, `docs/deployment.md` |
-| Dedicated procurement mapping | Procurement real-world samples route to `procurement_doc` and `procurement_doc_base_v1`, never silently to `general_doc`. | `examples/production_like/schemas/procurement_doc_v1.json`, `scripts/eval_real_world_uir.py` |
-| Real-world knowledge loop | Approved aliases activate only through review-derived knowledge packs; rejected/badcase candidates remain blocked. | `reports/real_world_knowledge_loop_report.json` |
-| Retrieval evidence | Chunk retrieval reports Recall@1/3/5, MRR, nDCG@5, source-link coverage, table integrity, average tokens, and chunk count. | `reports/chunk_retrieval_eval_report.json` |
-| Frontend evidence panels | Mapping, validation, chunk, manifest, and knowledge-loop evidence render through focused React panels. | `frontend/src/components/*EvidencePanel.tsx` |
-| LLM safety evaluation | Disabled/stub/provider-error modes verify review-only suggestions, badcase blocking, and secret redaction without network. | `reports/llm_fallback_eval_report.json` |
+| Standardization | UIR import, schema/template snapshots, deterministic mapping, transform, canonical model, structured JSON, Markdown, and package output. | `mapping_report.json`, `transform_report.json`, `canonical.json`, `content.json`, `content.md`, [`docs/package_spec.md`](package_spec.md) |
+| Intelligent organization | Deterministic chunk strategies, summaries, keywords, content/management/quality tags, protected table/list/code chunks, parent-child metadata, and source links. | `content_organization_report.json`, `chunks.jsonl`, [`reports/content_organization_retrieval_eval.md`](../reports/content_organization_retrieval_eval.md) |
+| Specialized conversion | Five seeded document catalogs/families, including dedicated `procurement_doc` schema and `procurement_doc_base_v1` template for procurement samples. | [`reports/procurement_doc_eval_report.md`](../reports/procurement_doc_eval_report.md), [`docs/real_world_uir_dataset.md`](real_world_uir_dataset.md) |
+| Evaluation | Production-like evaluator plus 16-document real-world import, execution, package, mapping, procurement, retrieval, and knowledge-loop runs. | [`reports/production_like_eval_report.md`](../reports/production_like_eval_report.md), [`reports/real_world_eval_report.md`](../reports/real_world_eval_report.md), committed JSON/Markdown report pairs under `reports/` |
+| Continuous improvement | Review records, review-derived knowledge candidates, accepted/rejected candidate states, draft/active/archived knowledge packs, and effective-template resolution. | [`reports/knowledge_loop_eval_report.md`](../reports/knowledge_loop_eval_report.md), [`reports/real_world_knowledge_loop_report.md`](../reports/real_world_knowledge_loop_report.md), Review and Knowledge APIs |
+| Safety and traceability | Mapping evidence, confidence tiers, review-required reasons, badcase filters, immutable task snapshots, manifest hashes, package verifier output, optional API-key auth, audit logs, and LLM secret redaction. | [`docs/api_usage_examples.md`](api_usage_examples.md), [`docs/final_handoff_status.md`](final_handoff_status.md), `manifest.json`, `verifier_report.json`, [`reports/llm_fallback_eval_report.md`](../reports/llm_fallback_eval_report.md) |
+
+## Current Evidence Summary
+
+- Unified verification: `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
+  records 202 backend tests, Ruff clean, frontend production build success, and
+  32 exported OpenAPI paths.
+- Real-world pipeline: 16/16 imports, 16/16 executions, and 16/16
+  verifier-passing packages.
+- Strict validation: `procurement_doc` passes 5/5; `general_doc` 0/3,
+  `meeting_doc` 0/3, and `policy_doc` 0/5 remain review-required.
+- Procurement specialization: required coverage is 1.000 for
+  `procurement_doc` versus 0.333 for the generic schema.
+- Retrieval: 32-query content retrieval report records `Recall@3 = 1.000`.
+- Knowledge loop: both knowledge-loop reports preserve snapshots and record
+  zero badcase violations.
+- LLM safety: fallback suggestions remain review-required, `auto_accepted_count`
+  is 0, and secret redaction passes.
+
+## Implemented Boundary
+
+The implemented runtime line is:
+
+```text
+UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
+-> Transform -> Canonical Model -> Render -> Content Organization
+-> Validation -> Manifest -> ZIP -> Package Verification
+```
+
+The project implements optional API-key authentication, task/package audit logs,
+review governance, knowledge-pack activation, and local/container deployment
+profiles. These are lightweight project controls, not enterprise identity or
+tenant platforms.
 
 ## Explicit Non-Goals
 
-- Raw source parsing for PDF, Word, Excel, images, OCR, or scanned files.
-- Full RAG/vector database implementation.
-- Full entity linking or universal data cleaning.
-- Autonomous production rule activation by LLM output.
-- Authentication, tenancy, audit logging, and production access control.
+- OCR, scanned document recognition, and raw PDF/Word/Excel/image parsing in
+  the production runtime.
+- Full RAG/vector search service or online retrieval backend.
+- Model training, fine-tuning, or autonomous production rule activation from LLM
+  output.
+- Enterprise SSO, tenant-aware authorization, TLS termination, managed secret
+  storage, hosted credential provisioning, or model/provider monitoring.
 
-## Topic 5 Deepening Caveats
+## Caveats For Reviewers
 
-- Retrieval evaluator is lightweight and is not a full RAG system.
-- Procurement schema is v1 and aliases require continued real-sample review.
-- Gold labels are coursework-scale evaluation labels, not an enterprise benchmark.
+- Package verification proves package structure, hashes, required artifacts,
+  parseability, and traceability. It does not claim every target field passed
+  strict semantic validation.
+- The retrieval evaluator is deterministic and lightweight. It supports
+  evidence for chunk organization, not a production RAG system.
+- Gold labels and badcases are coursework-scale evaluation assets, not an
+  enterprise benchmark.

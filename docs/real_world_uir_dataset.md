@@ -2,117 +2,46 @@
 
 ## Purpose
 
-This dataset tests SchemaPack Agent against traceable, publicly accessible documents rather
-than synthetic inputs alone. It does not change the product boundary: the production
-conversion pipeline still begins with UIR.
+The real-world UIR dataset tests SchemaPack Agent against traceable public
+documents rather than synthetic inputs alone. It does not expand the production
+runtime boundary: the product still starts from UIR input.
 
-## Source scope
+## Distribution
 
-Sources must be official public webpages or official attachments that:
-
-- are accessible without login, payment, CAPTCHA, or anti-bot bypass;
-- contain policy, procurement, meeting, contract, or public service information;
-- do not primarily contain personal information;
-- can be cited with a stable source URL and source site;
-- permit coursework evaluation use as public official material.
-
-News-media long-form articles, social posts, private records, paid material, and copied
-third-party mirrors are excluded.
-
-## Supported formats
-
-- HTML pages, extracted with BeautifulSoup and lxml.
-- PDFs with a usable text layer, extracted with PyMuPDF.
-- DOCX files, extracted with python-docx.
-- UTF-8 TXT files as a small compatibility format.
-
-Scanned PDFs, images, encrypted documents, and pages requiring authentication are not
-supported. Image-only PDFs are marked `unsupported_scanned_pdf`; OCR is intentionally
-outside this toolchain.
-
-## UIR generation
-
-The source manifest drives four deterministic stages:
+Current committed distribution:
 
 ```text
-official URL
-  -> bounded local download and SHA-256
-  -> format-specific text/table extraction
-  -> current-schema UIR assembly
-  -> structural/privacy validation
-  -> existing SchemaPack HTTP API and package verifier
+general_doc: 3
+meeting_doc: 3
+policy_doc: 5
+procurement_doc: 5
+total: 16
 ```
 
-The existing strict `UIRDocument` model uses `doc_id` rather than a new `uir_id`. Source
-traceability is stored under `metadata`:
+The dataset includes official public HTML pages and text-layer PDFs. Scanned
+documents and OCR workflows remain outside the toolchain.
 
-- `source_url`
-- `source_site`
-- `retrieved_at`
-- `source_format`
-- `source_sha256`
-- `extraction_method`
-- `doc_type` and `domain`
+## Source Manifest And Cached Sources
 
-Each UIR also sets `source.source_type` to `real_world_public_document`. Heading, paragraph,
-list, and table blocks use the existing `UIRBlock` shape. PDF page numbers are retained in
-`source_anchor`; HTML and DOCX structure details stay in `attributes`. To avoid embedding
-an entire long publication, generated UIR files retain at most 250 blocks and record
-`extracted_block_count` plus `extraction_truncated` in metadata.
+The source manifest is:
 
-## Quality and privacy validation
-
-`scripts/validate_real_world_uir.py` verifies:
-
-- valid JSON accepted by the existing Pydantic UIR schema;
-- matching filename and `doc_id`;
-- a supported document type and valid HTTP(S) source URL;
-- required traceability metadata and a lowercase 64-character SHA-256;
-- at least three blocks, unique block IDs, non-empty text blocks, and parseable table rows;
-- absence of common mojibake markers;
-- absence of likely mobile numbers, identity-card numbers, personal email addresses, and
-  bank-card numbers;
-- evidence on assisted field candidates;
-- `review_required=true` for low-confidence candidates.
-
-Rejected files are moved only within `examples/real_world/uir/_rejected/`, and every
-finding is written to JSON and Markdown reports.
-
-## Dataset scale and distribution
-
-The minimum release contains 16 validated UIR files:
-
-| Document type | Minimum |
-| --- | ---: |
-| `policy_doc` | 5 |
-| `procurement_doc` | 5 |
-| `meeting_doc` | 3 |
-| `general_doc` | 3 |
-
-The first gate is five pilot documents: three HTML pages and two text-layer PDFs. Expansion
-to 16 happens only after all pilots import and execute and at least four pilot packages pass
-verification.
-
-Natural badcases are selected to cover ambiguous dates, multiple amounts, similar
-organizations/roles, irregular heading hierarchy, and complex tables. These remain
-evaluation inputs, not automatically accepted gold truth.
-
-The current dataset contains 16 validated sources: 5 policy, 5 procurement, 3 meeting,
-and 3 general documents. Thirteen sources are HTML pages and three are text-layer PDFs.
-The latest live HTTP evaluation imported and executed all 16 samples, and all 16 generated
-packages passed the package verifier. Eleven downstream schema validations still report
-missing or ambiguous target fields; these are retained as real-world mapping badcases and
-review evidence rather than silently filled.
-
-## Reproduction
-
-Install backend dependencies:
-
-```powershell
-backend\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+```text
+examples/real_world/sources/source_manifest.json
 ```
 
-Collect and build the cache-driven dataset:
+The collector downloads bounded public sources into an ignored local cache and
+records source URL, source site, retrieval timestamp, source format, SHA-256,
+and extraction method. Remove the cache at any time and rebuild it from the
+manifest.
+
+Sources must be public official material that is accessible without login,
+payment, CAPTCHA, or anti-bot bypass. Private records, copied mirrors,
+news/social posts, paid material, and personal-information-heavy sources are
+excluded.
+
+## Deterministic Extraction And Validation
+
+From `F:\p2`, run:
 
 ```powershell
 backend\.venv\Scripts\python.exe scripts\collect_real_world_sources.py
@@ -120,71 +49,97 @@ backend\.venv\Scripts\python.exe scripts\build_real_world_uir.py
 backend\.venv\Scripts\python.exe scripts\validate_real_world_uir.py
 ```
 
-The raw cache is ignored by Git. Remove it at any time and rerun collection from
-`examples/real_world/sources/source_manifest.json`.
-
-Run the backend and evaluate through the real API:
-
-```powershell
-backend\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend
-backend\.venv\Scripts\python.exe scripts\eval_real_world_uir.py --base-url http://127.0.0.1:8000
-```
-
-If API-key authentication is enabled, pass `--api-key` at runtime. The key is sent in the
-request header and is never included in reports.
-
-Outputs:
+Outputs include:
 
 - `examples/real_world/reports/extraction_report.{json,md}`
 - `examples/real_world/reports/validation_report.{json,md}`
-- `reports/real_world_eval_report.{json,md}`
-- ignored local packages under `reports/real_world_packages/`
+- generated UIR JSON files under `examples/real_world/uir/`
 
-## Current limitations
+Validation checks the strict `UIRDocument` model, filename/doc_id alignment,
+document type, HTTP(S) source URL, traceability metadata, SHA-256 shape, block
+minimums, unique block IDs, non-empty text blocks, parseable tables, mojibake
+markers, privacy patterns, assisted-candidate evidence, and review-required
+flags for low-confidence candidates.
 
-- HTML layout heuristics cannot perfectly isolate every government content template.
-- PDF heading detection is conservative and depends on available font metadata.
-- Complex merged-cell tables are flattened into field/value rows.
-- The collector is intentionally small-scale and sequential.
-- No LLM is required for deterministic generation. If an assisted candidate is added
-  manually, evidence, confidence, reason, and review state remain mandatory.
-- Procurement samples now use the dedicated `procurement_doc` schema and
-  `procurement_doc_base_v1` template in the real-world mapping evaluator.
-
-Future work may add more reviewed domain-specific aliases, more contract samples, and
-additional deterministic table normalization. OCR remains outside the main scope.
-
-## Topic 5 deepening gold and reports
+## Gold Labels, Badcases, And Retrieval Queries
 
 Additional evaluation labels live under `examples/real_world/gold/`:
 
-- `mapping_gold.jsonl` contains 16 source-backed mapping rows with top-level
-  UIR `source_path`, expected mappings, review-required items, and embedded
-  badcases.
-- `real_world_badcases.jsonl` is the deterministic flattened badcase view.
-- `retrieval_queries.jsonl` contains 32 retrieval queries, two per real UIR,
-  with relevant source block IDs.
+- `mapping_gold.jsonl`: 16 source-backed mapping rows with source paths,
+  expected mappings, review-required items, and embedded badcases.
+- `real_world_badcases.jsonl`: deterministic flattened badcase view.
+- `retrieval_queries.jsonl`: 32 retrieval queries, two per real UIR, with
+  relevant source block IDs.
 
-Reproduced report evidence:
+The retrieval evaluator is deterministic and lightweight. It measures chunk
+ranking evidence, not a full RAG/vector-search service.
 
-- `reports/real_world_mapping_eval_report.md`
-- `reports/procurement_doc_eval_report.md`
-- `reports/content_organization_retrieval_eval.md`
-- `reports/knowledge_loop_eval_report.md`
+## API-Backed Evaluation
 
-Limits: the retrieval evaluator is lightweight and is not a full RAG system;
-the procurement schema is v1 and aliases require continued real-sample review;
-gold labels are coursework-scale evaluation labels, not an enterprise benchmark.
+Start the backend from `F:\p2`:
 
-## Follow-up evaluation artifacts
+```powershell
+backend\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
+```
 
-The 2026-06-29 follow-up also adds deterministic evaluation artifacts:
+Run the real-world evaluators from another `F:\p2` terminal:
 
-- `examples/real_world/review_fixtures/procurement_review_decisions.jsonl`
-- `examples/real_world/retrieval_queries.jsonl`
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_real_world_uir.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_real_world_mapping.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_procurement_doc.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_knowledge_loop_real_world.py --base-url http://127.0.0.1:8000 --timeout 60
+```
+
+Offline report commands:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_content_organization_retrieval.py
+backend\.venv\Scripts\python.exe scripts\eval_real_world_knowledge_loop.py
+```
+
+If API-key authentication is enabled, pass the API key at runtime where the
+script supports it. Keys are sent as headers and must not appear in reports.
+
+## Current Evaluation Results
+
+Current committed real-world evidence records:
+
+- dataset size: 16;
+- imports: 16/16;
+- task executions: 16/16;
+- package verification: 16/16;
+- real-world mapping badcase violations: 0;
+- real-world mapping recall: `0.42592592592592593`;
+- procurement required coverage: 1.000;
+- generic required coverage in the procurement comparison: 0.333;
+- content retrieval query count: 32;
+- content retrieval `Recall@3`: 1.000.
+
+Strict validation currently passes for the five `procurement_doc` samples. The
+other 11 samples (`general_doc` 0/3, `meeting_doc` 0/3, `policy_doc` 0/5)
+remain review-required due to unmapped or ambiguous fields and are not claimed
+as field-valid.
+
+Primary reports:
+
+- `reports/real_world_eval_report.{json,md}`
+- `reports/real_world_mapping_eval_report.{json,md}`
+- `reports/procurement_doc_eval_report.{json,md}`
+- `reports/content_organization_retrieval_eval.{json,md}`
+- `reports/knowledge_loop_eval_report.{json,md}`
 - `reports/real_world_knowledge_loop_report.{json,md}`
-- `reports/chunk_retrieval_eval_report.{json,md}`
 
-The knowledge-loop report keeps old snapshots immutable and records
-`badcase_violation_count=0`. The retrieval report uses production chunk
-organization services and no vector database or LLM.
+## Limitations
+
+- HTML layout heuristics cannot perfectly isolate every government content
+  template.
+- PDF heading detection is conservative and depends on available font metadata.
+- Complex merged-cell tables are flattened into field/value rows.
+- The collector is intentionally small-scale and sequential.
+- No LLM is required for deterministic generation.
+- Procurement schema aliases require continued real-sample review.
+- Gold labels are coursework-scale evaluation labels, not an enterprise
+  benchmark.
+- OCR, scanned PDFs, image parsing, full RAG/vector search, and model training
+  remain outside the implemented dataset/evaluator boundary.
