@@ -114,6 +114,31 @@ def source_path_exists(document: dict[str, Any], source_path: str) -> bool:
     return bool(nodes)
 
 
+def source_path_values(document: dict[str, Any], source_path: str) -> list[Any]:
+    nodes: list[Any] = [document]
+    for segment in source_path.split("."):
+        match = SOURCE_PATH_SEGMENT.fullmatch(segment)
+        assert match is not None, f"invalid source_path syntax: {source_path}"
+        name = match.group("name")
+        index = match.group("index")
+        next_nodes: list[Any] = []
+        for node in nodes:
+            assert isinstance(node, dict) and name in node, (
+                f"source_path does not exist: {source_path}"
+            )
+            value = node[name]
+            if index is None:
+                next_nodes.append(value)
+            elif index == "*":
+                assert isinstance(value, list)
+                next_nodes.extend(value)
+            else:
+                assert isinstance(value, list)
+                next_nodes.append(value[int(index)])
+        nodes = next_nodes
+    return nodes
+
+
 def assert_nonempty_string(value: Any, message: str) -> None:
     assert isinstance(value, str) and value.strip(), message
 
@@ -458,7 +483,7 @@ def test_handoff_docs_reference_all_four_reports() -> None:
             "distinct target",
         ),
         (
-            lambda row: row["expected_mappings"].pop(),
+            lambda row: row["expected_mappings"].clear(),
             "expected_mappings",
         ),
         (
@@ -595,9 +620,10 @@ def test_real_world_mapping_gold_is_valid_jsonl() -> None:
         uir = json.loads(path.read_text(encoding="utf-8"))
         uir_by_doc_id[uir["doc_id"]] = uir
 
-    assert len(rows) == 16
+    assert len(rows) == len(uir_by_doc_id)
+    assert len(rows) >= 30
     doc_ids = [row.get("doc_id") for row in rows]
-    assert len(set(doc_ids)) == 16
+    assert len(set(doc_ids)) == len(rows)
     assert set(doc_ids) == set(uir_by_doc_id)
     assert {row.get("doc_type") for row in rows} == EXPECTED_DOC_TYPES
 
@@ -646,3 +672,75 @@ def test_real_world_mapping_gold_is_valid_jsonl() -> None:
     assert standalone_badcases == embedded_badcases, (
         "standalone badcases must exactly match deterministic embedded flattening"
     )
+
+
+def test_expanded_mapping_sources_are_nonempty_and_auditable() -> None:
+    rows = load_jsonl(MAPPING_GOLD_PATH)
+    uir_by_doc_id = {
+        uir["doc_id"]: uir
+        for path in UIR_DIR.rglob("*.json")
+        if path.parent.name != "_rejected"
+        for uir in [json.loads(path.read_text(encoding="utf-8"))]
+    }
+    generic_targets = {"title", "meeting_title", "content", "source", "source_url"}
+
+    expanded_rows = [
+        row
+        for row in rows
+        if any(
+            "_inventory_" in badcase.get("case_id", "")
+            for badcase in row["known_badcases"]
+        )
+    ]
+    assert len(expanded_rows) == 14
+    for row in expanded_rows:
+        document = uir_by_doc_id[row["doc_id"]]
+        type_specific_mappings = [
+            mapping
+            for mapping in row["expected_mappings"]
+            if mapping["target_field"] not in generic_targets
+        ]
+        assert len(type_specific_mappings) >= 2, (
+            f"{row['doc_id']}: requires at least two type-specific mappings"
+        )
+        for mapping in row["expected_mappings"]:
+            if mapping["source_path"] == "blocks[*].text":
+                continue
+            values = source_path_values(document, mapping["source_path"])
+            assert any(
+                isinstance(value, str) and value.strip() for value in values
+            ), (
+                f"{row['doc_id']}: {mapping['target_field']} resolves to empty "
+                f"content at {mapping['source_path']}"
+            )
+        for mapping in type_specific_mappings:
+            values = source_path_values(document, mapping["source_path"])
+            evidence = " | ".join(str(value) for value in values)
+            assert mapping["source_name"] in evidence, (
+                f"{row['doc_id']}: source_name {mapping['source_name']!r} is not "
+                f"auditable from {mapping['source_path']}: {evidence!r}"
+            )
+
+
+def test_expanded_badcases_include_high_risk_case_per_doc_type() -> None:
+    rows = load_jsonl(MAPPING_GOLD_PATH)
+    expanded_rows = [
+        row
+        for row in rows
+        if any(
+            "_inventory_" in badcase.get("case_id", "")
+            for badcase in row["known_badcases"]
+        )
+    ]
+
+    for doc_type in EXPECTED_DOC_TYPES:
+        badcases = [
+            badcase
+            for row in expanded_rows
+            if row["doc_type"] == doc_type
+            for badcase in row["known_badcases"]
+        ]
+        assert badcases, f"{doc_type}: missing expanded badcases"
+        assert any(badcase["severity"] == "high" for badcase in badcases), (
+            f"{doc_type}: expanded badcases require at least one high-risk case"
+        )
