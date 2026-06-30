@@ -137,6 +137,7 @@ def validate_mapping_row(
     assert isinstance(expected_reviews, list), (
         f"{doc_id}: expected_review_required must be a list"
     )
+    assert expected_reviews, f"{doc_id}: expected_review_required must not be empty"
     for review in expected_reviews:
         assert isinstance(review, dict), f"{doc_id}: review must be an object"
         assert_nonempty_string(review.get("reason"), f"{doc_id}: review reason is required")
@@ -228,6 +229,26 @@ def run_contract_with_temp_data(
     test_real_world_mapping_gold_is_valid_jsonl()
 
 
+def assert_row_source_path_matches_uir(
+    row: dict[str, Any],
+    expected_uir: dict[str, Any],
+) -> None:
+    doc_id = row["doc_id"]
+    source_path = row.get("source_path")
+    assert_nonempty_string(source_path, f"{doc_id}: row source_path is required")
+    resolved_path = ROOT / source_path
+    assert resolved_path.is_file(), (
+        f"{doc_id}: row source_path does not exist: {source_path}"
+    )
+    source_uir = json.loads(resolved_path.read_text(encoding="utf-8"))
+    assert source_uir.get("doc_id") == doc_id, (
+        f"{doc_id}: row source_path doc_id must match"
+    )
+    assert source_uir == expected_uir, (
+        f"{doc_id}: row source_path must point to the matching UIR document"
+    )
+
+
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [
@@ -254,6 +275,10 @@ def run_contract_with_temp_data(
         (
             lambda row: row["expected_review_required"][0].pop("target_field"),
             "review.*target",
+        ),
+        (
+            lambda row: row.update(expected_review_required=[]),
+            "expected_review_required",
         ),
         (
             lambda row: row["expected_review_required"][0].update(
@@ -286,6 +311,25 @@ def run_contract_with_temp_data(
         (
             lambda row: row["known_badcases"][0].pop("expected_behavior"),
             "expected_behavior",
+        ),
+        (
+            lambda row: row.pop("source_path"),
+            "row source_path",
+        ),
+        (
+            lambda row: row.update(
+                source_path="examples/real_world/uir/general/missing.json"
+            ),
+            "row source_path",
+        ),
+        (
+            lambda row: row.update(
+                source_path=(
+                    "examples/real_world/uir/general/"
+                    "real_general_002_biomed_project_guide.json"
+                )
+            ),
+            "row source_path doc_id",
         ),
     ],
 )
@@ -371,6 +415,7 @@ def test_real_world_mapping_gold_is_valid_jsonl() -> None:
         assert doc_type == uir_by_doc_id[doc_id]["metadata"]["doc_type"]
         assert row.get("schema_id")
         assert row.get("template_id")
+        assert_row_source_path_matches_uir(row, uir_by_doc_id[doc_id])
 
         if doc_type == "procurement_doc":
             assert row["schema_id"] == "procurement_doc"
