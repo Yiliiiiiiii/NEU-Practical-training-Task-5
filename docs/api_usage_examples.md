@@ -1,8 +1,11 @@
 # API Usage Examples
 
 These examples assume the backend is running at `http://127.0.0.1:8000`.
+They intentionally show representative workflows from the current 32-path
+OpenAPI surface instead of duplicating every operation in
+[`docs/openapi.json`](openapi.json).
 
-If API key auth is enabled, add:
+If API-key authentication is enabled, add:
 
 ```powershell
 $headers = @{ "X-API-Key" = "your-dev-key" }
@@ -10,52 +13,81 @@ $headers = @{ "X-API-Key" = "your-dev-key" }
 
 and pass `-Headers $headers` to `/api/v1/*` calls. `/health` remains anonymous.
 
-## Health
+## 1. Health
 
 ```powershell
 Invoke-RestMethod http://127.0.0.1:8000/health
 ```
 
-## Catalog
+## 2. Schema And Template Catalogs
 
-List schema versions:
+Read catalog summaries:
 
 ```powershell
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/schemas
+$schemas = Invoke-RestMethod http://127.0.0.1:8000/api/v1/schemas
+$templates = Invoke-RestMethod http://127.0.0.1:8000/api/v1/templates
 ```
 
-List template versions:
+Read one schema and one template:
 
 ```powershell
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/templates
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/schemas/procurement_doc
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/templates/procurement_doc_base_v1
 ```
 
-Activate a schema version:
+Activation examples:
 
 ```powershell
-Invoke-RestMethod -Method Post http://127.0.0.1:8000/api/v1/schemas/policy_doc/versions/1.0.0/activate
+Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/schemas/procurement_doc/versions/1.0.0/activate
+
+Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/templates/procurement_doc_base_v1/versions/1.0.0/activate
 ```
 
-## Import UIR
+Archive examples are lifecycle operations for versions that should no longer be
+used by new tasks. Do not run them against the schema or template version used
+later in this walkthrough:
 
 ```powershell
-$uir = Get-Content examples\production_like\uir\policy\policy_001_standard.json -Raw | ConvertFrom-Json
+Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/schemas/example_schema/versions/0.9.0/archive
+
+Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/templates/example_template/versions/0.9.0/archive
+```
+
+Archived or referenced versions may be rejected by governance protections.
+
+## 3. Import A UIR Document
+
+```powershell
+$uir = Get-Content examples\real_world\uir\procurement\real_procurement_001_broadcast_security_supervision.json -Raw | ConvertFrom-Json
 $body = @{ uir = $uir } | ConvertTo-Json -Depth 100
+
 $document = Invoke-RestMethod -Method Post `
   -Uri http://127.0.0.1:8000/api/v1/documents/import `
   -ContentType "application/json" `
   -Body $body
-$document
+
+$document.doc_id
 ```
 
-## Create And Execute Task
+List and read imported documents:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/documents
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/documents/$($document.doc_id)"
+```
+
+## 4. Create And Execute A Task
 
 ```powershell
 $taskBody = @{
   doc_id = $document.doc_id
-  schema_id = "policy_doc"
+  schema_id = "procurement_doc"
   schema_version = "1.0.0"
-  template_id = "policy_doc_base_v1"
+  template_id = "procurement_doc_base_v1"
   template_version = "1.0.0"
   options = @{
     content_organization = @{
@@ -73,7 +105,7 @@ $taskBody = @{
       keyword_mode = "deterministic"
     }
   }
-} | ConvertTo-Json -Depth 20
+} | ConvertTo-Json -Depth 30
 
 $task = Invoke-RestMethod -Method Post `
   -Uri http://127.0.0.1:8000/api/v1/tasks `
@@ -83,10 +115,36 @@ $task = Invoke-RestMethod -Method Post `
 $result = Invoke-RestMethod -Method Post `
   -Uri "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/execute"
 
-$result
+$result.status
 ```
 
-## Read Reports
+Task lookup:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/tasks
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)"
+```
+
+To request safe LLM fallback suggestions, keep them review-required:
+
+```powershell
+$taskBody = @{
+  doc_id = $document.doc_id
+  schema_id = "procurement_doc"
+  template_id = "procurement_doc_base_v1"
+  options = @{
+    enable_llm_fallback = $true
+    strict_llm = $false
+  }
+} | ConvertTo-Json -Depth 10
+```
+
+Do not send `llm_api_key` in task options. Credentials are deployment
+configuration and secret-looking values are redacted before persistence.
+
+## 5. Reports And Package Retrieval
+
+Representative task reports:
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/mapping"
@@ -95,77 +153,111 @@ Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/c
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/chunks"
 ```
 
-`mapping` rows include `strategy`, `confidence`, `confidence_tier`, `status`,
-`evidence`, `evidence_text`, `risk_flags`, `badcase_filter`, and
-`review_required_reason`. LLM fallback rows, when explicitly enabled, remain
-`review_required` and include `llm_suggestion` in `risk_flags`. The mapping
-summary includes a `warnings` list when the optional provider times out or
-fails.
-
-To request LLM fallback without changing its safe failure behavior:
-
-```powershell
-$taskBody = @{
-  doc_id = $document.doc_id
-  schema_id = "policy_doc"
-  template_id = "policy_doc_base_v1"
-  options = @{
-    enable_llm_fallback = $true
-    strict_llm = $false
-  }
-} | ConvertTo-Json -Depth 5
-```
-
-Set `strict_llm=true` only when a provider error should fail the task. Do not
-send `llm_api_key` in `options`; credentials are deployment configuration and
-secret-looking option values are redacted before persistence.
-
-`chunks` rows include enriched deterministic metadata such as `strategy`,
-`granularity`, `parent_chunk_id`, `title_path`, `token_estimate`,
-`source_block_ids`, `source_links`, `content_tags`, `management_tags`,
-`quality_tags`, `quality_flags`, `summary`, and `keywords`.
-
-## Review And Knowledge
-
-```powershell
-Invoke-RestMethod "http://127.0.0.1:8000/api/v1/reviews?status=pending"
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/knowledge/candidates
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/knowledge/packs
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/knowledge/metrics
-```
-
-## Package
-
-Package metadata:
+Package metadata and download:
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/package"
-```
 
-Download ZIP:
-
-```powershell
 Invoke-WebRequest `
   -Uri "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/package/download" `
   -OutFile "standard_package.zip"
 ```
 
 The ZIP contains `metadata.json`, `manifest.json`, `content.json`,
-`content.md`, `chunks.jsonl`, reports, and verifier output. See
-`docs/package_spec.md` for required roles, media types, and strict verification
-rules.
+`content.md`, `chunks.jsonl`, task reports, and verifier output. See
+[`docs/package_spec.md`](package_spec.md) for required roles, media types, and
+strict verification rules.
 
-Downstream exports can filter parent-child chunks:
+## 6. Review Approval And Rejection
 
 ```powershell
-.\backend\.venv\Scripts\python.exe scripts\export_training_corpus.py `
-  --package standard_package.zip `
-  --out reports\training_corpus.jsonl `
-  --granularity child
+$pending = Invoke-RestMethod "http://127.0.0.1:8000/api/v1/reviews?status=pending"
+$reviewToApprove = $pending.items[0].review_id
+
+Invoke-RestMethod -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/reviews/$reviewToApprove/approve"
+
+$reviewToReject = "another-review-id"
+Invoke-RestMethod -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/reviews/$reviewToReject/reject"
 ```
 
-## Audit Logs
+Use approve or reject according to the actual operator decision.
+
+## 7. Knowledge Candidates And Pack Activation
+
+```powershell
+$candidates = Invoke-RestMethod http://127.0.0.1:8000/api/v1/knowledge/candidates
+$candidateId = $candidates.items[0].candidate_id
+
+Invoke-RestMethod -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/knowledge/candidates/$candidateId/accept"
+
+$packBody = @{
+  schema_id = "procurement_doc"
+  template_id = "procurement_doc_base_v1"
+  name = "procurement aliases from review"
+  created_by = "demo_user"
+} | ConvertTo-Json -Depth 5
+
+$pack = Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/knowledge/packs `
+  -ContentType "application/json" `
+  -Body $packBody
+
+$packId = $pack.pack_id
+
+Invoke-RestMethod -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/knowledge/packs/$packId/activate"
+
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/knowledge/effective-template?schema_id=procurement_doc&template_id=procurement_doc_base_v1"
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/knowledge/metrics
+```
+
+Candidate rejection and pack archival are separate lifecycle examples for
+records that should not become active knowledge:
+
+```powershell
+$candidateToReject = "another-candidate-id"
+Invoke-RestMethod -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/knowledge/candidates/$candidateToReject/reject"
+
+$packToArchive = "another-pack-id"
+Invoke-RestMethod -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/knowledge/packs/$packToArchive/archive"
+```
+
+## 8. Evaluation Report Reads
+
+Evaluation reports are read by report id:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/evaluation-reports/real-world-knowledge-loop
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/evaluation-reports/chunk-retrieval
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/evaluation-reports/llm-fallback
+```
+
+## 9. Audit Log Reads
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/audit-logs?entity_id=$($task.task_id)"
+```
+
+Audit entries are intentionally small. They should identify operations and
+artifact references without logging API keys, LLM keys, full UIR payloads, or
+package contents.
+
+## Downstream Package Smoke Commands
+
+After downloading or generating a package ZIP:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\smoke_rag_ingest.py `
+  --package standard_package.zip `
+  --query "procurement supplier amount"
+
+backend\.venv\Scripts\python.exe scripts\export_training_corpus.py `
+  --package standard_package.zip `
+  --out reports\training_corpus.jsonl `
+  --granularity child
 ```

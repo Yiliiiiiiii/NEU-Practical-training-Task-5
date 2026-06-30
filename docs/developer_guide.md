@@ -2,123 +2,173 @@
 
 ## Project Structure
 
-- `backend/app/api/v1/`: FastAPI routes.
-- `backend/app/schemas/`: Pydantic contracts.
-- `backend/app/services/`: deterministic conversion services.
-- `backend/app/db/models.py`: SQLAlchemy tables created at startup/test setup.
-- `frontend/src/`: React/Vite workbench.
-- `examples/production_like/`: schemas, templates, UIR fixtures, and expectations.
-- `scripts/`: evaluator, package consumers, OpenAPI export, and verification.
-- `docs/`: project workflow and handoff documents.
+- `backend/app/api/v1/`: FastAPI routes for documents, catalogs, tasks, reviews,
+  knowledge, evaluation reports, and audit logs.
+- `backend/app/schemas/`: Pydantic contracts for UIR, catalog records, task
+  execution, reports, package metadata, reviews, and knowledge packs.
+- `backend/app/services/`: deterministic conversion, catalog, review,
+  knowledge, package, audit, and retention services.
+- `backend/app/services/task_execution_service.py`: orchestration for the full
+  UIR-to-package pipeline.
+- `backend/app/db/models.py`: SQLAlchemy tables initialized for tests and local
+  runtime databases.
+- `frontend/src/`: React/Vite operator workbench.
+- `examples/production_like/` and `examples/real_world/`: reproducible
+  evaluation fixtures and UIR datasets.
+- `scripts/`: verification, OpenAPI export, evaluators, report builders, and
+  downstream package consumers.
+- `docs/` and `reports/`: current operating guides and generated evidence.
 
-## Main Pipeline
+## Main Pipeline And Ownership Boundaries
 
-The core line is:
+The current execution pipeline is:
 
 ```text
-UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP
+UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
+-> Transform -> Canonical Model -> Render -> Content Organization
+-> Validation -> Manifest -> ZIP -> Package Verification
 ```
 
-`TaskExecutionService` owns orchestration. Keep new capabilities optional and
-backward-compatible with existing reports and package names.
+`backend/app/services/task_execution_service.py` owns pipeline orchestration. It
+loads the imported UIR, resolves the requested schema/template through the
+catalog, captures immutable task snapshots, runs mapping and transformation,
+builds canonical and rendered artifacts, organizes chunks, validates outputs,
+generates the manifest, writes the ZIP package, and verifies package contents.
+
+Keep new runtime behavior inside the relevant service boundary rather than in
+the API route layer. API routes should validate requests, call services, and
+return structured responses; conversion decisions should remain inside services
+and reports so tasks stay reproducible.
+
+## Catalog Governance And Snapshots
+
+Schemas and mapping templates are catalog-managed. Version activation and
+archival must preserve historical reproducibility:
+
+- new task executions resolve active schema/template versions unless the caller
+  explicitly requests a version;
+- each task stores the resolved schema/template snapshot before execution;
+- referenced versions are protected from destructive lifecycle transitions;
+- archived versions should not be used for new task executions.
+
+When adding or changing catalog fixtures, keep schema fields, aliases, regex
+rules, enum maps, defaults, and transform targets consistent. Re-run the
+OpenAPI export and the unified verification gate after route or schema changes.
+
+## Mapping, Review, And Knowledge Growth
+
+`MappingService` should keep deterministic strategy order and explain every
+decision with confidence, confidence tier, evidence, risk flags,
+`badcase_filter`, and `review_required_reason` where applicable. Optional LLM
+fallback suggestions must remain review-required; they are not allowed to
+auto-accept mappings.
+
+Review-derived knowledge candidates flow into draft knowledge packs. Active
+packs are selected through the effective-template path so future tasks can use
+approved aliases while preserving old task snapshots and badcase protections.
+When changing this loop, verify both snapshot preservation and badcase
+violation counts in the knowledge-loop reports.
 
 ## Frontend Workbench
 
 The React/Vite workbench in `frontend/src/App.tsx` is a local operator console
-for sample UIR import, task creation/execution, report inspection, review
-actions, knowledge-pack activation, audit log reads, and package download. Keep
-new controls close to the workflow they affect and preserve the existing
-`/api` proxy contract.
+for UIR import, task creation/execution, report inspection, mapping evidence,
+review actions, candidate decisions, knowledge-pack activation, audit log reads,
+content organization controls, chunk previews, and package download.
 
-## Adding Schema Or Template Versions
+Keep controls close to the workflow they affect and preserve the development
+proxy contract: frontend `/api` requests are proxied to the local backend.
 
-Use the catalog APIs or add fixtures under `examples/production_like/`. Templates
-must validate aliases, regex rules, enum maps, defaults, and transform targets
-against the target schema.
+## Package And Chunk Changes
 
-## Adding Mapping Rules
+When changing package roles, required files, media types, or checksum rules,
+update these together:
 
-Extend `MappingService` in strategy order. New decisions must include
-confidence, `confidence_tier`, structured `evidence`, `risk_flags`,
-`badcase_filter`, and `review_required_reason` when needed. LLM suggestions must
-remain review-required. Keep retry and cap handling in `LLMFallbackService` and
-`MappingService`; provider errors should remain warnings unless
-`strict_llm=true` is explicitly requested.
+- `docs/package_spec.md`
+- `ManifestService`
+- `PackageService`
+- `PackageVerifierService`
+- downstream smoke/export scripts where package shape changes affect consumers
 
-## Adding Chunk Strategies
+Content organization changes should preserve compatibility when task options
+omit `content_organization`. Chunks should keep source links, title paths,
+quality tags, stable report summary keys, and parent-child metadata when that
+strategy is enabled.
 
-Extend `ContentOrganizationOptions` and `ChunkOrganizerService`. Preserve old
-behavior when task options omit `content_organization`. Chunks should keep
-source links, title paths, quality tags, and stable report summary keys.
+## Default Local Gate
 
-## Updating Package Spec
+From the repository root, the default local verification gate is:
 
-Update `docs/package_spec.md`, `ManifestService.role`, `PackageService`, and
-`PackageVerifierService` together. Run strict verifier tests after changing
-required files, roles, media types, or checksum rules.
+```powershell
+backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
+```
 
-## Governance
+The current verified baseline is 202 backend tests, Ruff clean, frontend
+production build successful, and 32 exported OpenAPI paths.
 
-API key auth is optional and disabled by default. Audit logs should record ids,
-hash prefixes, paths, status, and small metadata only. Do not log API keys, LLM
-keys, full UIR payloads, or package contents. Use
-`redact_sensitive_values` for any new persisted options or audit metadata.
-
-## Verification
-
-Common commands:
+For smaller loops, run the pieces directly:
 
 ```powershell
 cd backend
-.\.venv\Scripts\python -m pytest -q
-.\.venv\Scripts\python -m ruff check .
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m ruff check .
+
 cd ..\frontend
 npm ci
-npm test
 npm run build
 ```
 
-## Topic 5 Follow-up Report Regeneration
+## Report Regeneration
 
-From the repository root:
-
-```powershell
-F:\p2\backend\.venv\Scripts\python.exe scripts\eval_production_like.py
-F:\p2\backend\.venv\Scripts\python.exe scripts\eval_real_world_knowledge_loop.py
-F:\p2\backend\.venv\Scripts\python.exe scripts\eval_chunk_retrieval.py
-F:\p2\backend\.venv\Scripts\python.exe scripts\eval_llm_fallback_modes.py
-F:\p2\backend\.venv\Scripts\python.exe scripts\build_acceptance_report.py
-```
-
-The LLM fallback evaluator runs disabled/stub/provider-error safety modes
-without network by default. Do not run `openai-compatible` mode unless the
-operator explicitly supplies credentials and the network flag for that single
-run.
-
-Backend test clients create isolated SQLite databases under pytest-managed
-temporary directories, initialize their metadata, and override `get_db`.
-Running the suite does not depend on an initialized `backend/schemapack.db`.
-Frontend verification uses the committed lockfile, so prefer `npm ci` over
-`npm install` after checkout.
-
-Unified command:
+Start the backend before API-backed evaluators:
 
 ```powershell
-python scripts\verify_all.py --check-openapi
+cd backend
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-The production-like evaluator remains optional for local fast loops:
+From another repository-root terminal, regenerate production-like and real-world
+evidence:
 
 ```powershell
-.\backend\.venv\Scripts\python.exe scripts\eval_production_like.py
+backend\.venv\Scripts\python.exe scripts\eval_production_like.py
+backend\.venv\Scripts\python.exe scripts\eval_real_world_uir.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_real_world_mapping.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_procurement_doc.py --base-url http://127.0.0.1:8000 --timeout 60
+backend\.venv\Scripts\python.exe scripts\eval_knowledge_loop_real_world.py --base-url http://127.0.0.1:8000 --timeout 60
 ```
+
+Regenerate offline retrieval, knowledge-loop, LLM fallback, and acceptance
+evidence:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_content_organization_retrieval.py
+backend\.venv\Scripts\python.exe scripts\eval_real_world_knowledge_loop.py
+backend\.venv\Scripts\python.exe scripts\eval_chunk_retrieval.py
+backend\.venv\Scripts\python.exe scripts\eval_llm_fallback_modes.py
+backend\.venv\Scripts\python.exe scripts\build_acceptance_report.py
+```
+
+The LLM fallback evaluator covers disabled, deterministic stub, and provider
+failure safety modes without network by default. Do not run an
+OpenAI-compatible network mode unless an operator supplies credentials and
+explicitly requests that invocation.
 
 ## Common Issues
 
-- Re-run `scripts/export_openapi.py` after route or schema changes.
-- Keep `LLM_FALLBACK_ENABLED=false` unless explicitly testing the optional
-  adapter.
-- Configure LLM credentials only through environment variables; task options
-  are intentionally redacted and cannot supply credentials.
-- Re-run `npm ci` when `frontend/package-lock.json` changes.
-- Treat `storage/`, `reports/`, and `.codegraph/` as local runtime artifacts.
+- `.env`: use `.env.example` for local development and
+  `.env.production.example` for the container profile. Keep
+  `LLM_FALLBACK_ENABLED=false` unless explicitly testing fallback behavior.
+- SQLite state: backend tests create isolated pytest databases. Local runs may
+  use `backend/schemapack.db` or the configured `DATABASE_URL`; remove or reset
+  that database when catalog state is intentionally being rebuilt.
+- Frontend dependencies: use `npm ci` after checkout or whenever
+  `frontend/package-lock.json` changes. Avoid mixing `npm install` lockfile
+  updates into documentation-only changes.
+- Occupied API ports: local backend and Compose both use port `8000`; stop the
+  existing process/container or choose another port before starting Uvicorn.
+- OpenAPI drift: run `scripts/export_openapi.py` or the unified gate after API
+  route or schema changes.
+- Secrets: configure LLM and API keys only through environment variables. Task
+  options, execution snapshots, reports, and audit metadata must remain
+  redacted.

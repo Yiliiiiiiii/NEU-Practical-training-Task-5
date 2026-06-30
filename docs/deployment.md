@@ -1,8 +1,45 @@
 # SchemaPack Agent Deployment
 
-This project includes a minimal containerized deployment profile for local or
-single-host demos. It packages the FastAPI backend and the React/Vite frontend
-behind Nginx.
+This project includes two supported local profiles:
+
+- local development: FastAPI backend on `127.0.0.1:8000` and Vite frontend on
+  `127.0.0.1:5173`;
+- Docker Compose demo: backend plus Nginx-served frontend on
+  `127.0.0.1:8080`, with the backend also exposed on `127.0.0.1:8000`.
+
+The production runtime boundary remains UIR input to schema-governed package
+output. Raw PDF/Word/Excel/image/OCR parsing is outside this deployment profile.
+
+## Local Backend And Frontend
+
+From the repository root, verify the baseline:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
+```
+
+Start the backend:
+
+```powershell
+cd backend
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Start the frontend in another terminal:
+
+```powershell
+cd frontend
+npm ci
+npm run dev
+```
+
+Open:
+
+```text
+http://127.0.0.1:5173/
+```
+
+The Vite development server proxies `/api` to `http://127.0.0.1:8000`.
 
 ## Docker Compose
 
@@ -18,41 +55,62 @@ Open:
 http://127.0.0.1:8080/
 ```
 
-The backend is also exposed directly for API/debug checks:
+The backend health endpoint remains available for API/debug checks:
 
 ```text
 http://127.0.0.1:8000/health
 ```
 
+Stop the profile:
+
+```powershell
+docker compose down
+```
+
+Reset container runtime data:
+
+```powershell
+docker compose down -v
+```
+
 ## Services
 
 - `backend` builds from `backend/Dockerfile`, initializes SQLite tables at
-  startup, serves FastAPI on port `8000`, and reads production-like schema and
-  template fixtures from the image.
+  startup, serves FastAPI on port `8000`, and reads schema/template fixtures
+  from the image.
 - `frontend` builds from `frontend/Dockerfile`, serves the static Vite build
   through Nginx on port `8080`, and proxies `/api/*` and `/health` to the
   backend service.
 - Root-level `Dockerfile.backend` and `Dockerfile.frontend` mirror the service
   Dockerfiles for delivery checklists that expect those names.
 
-## Runtime Data
+## SQLite And Storage Locations
 
-Compose creates two named volumes:
+Local Python development uses the configured `DATABASE_URL` and storage root
+from `.env` or defaults. In the repository profile, that commonly means:
+
+```text
+backend/schemapack.db
+storage/
+```
+
+Docker Compose creates two named volumes:
 
 - `schemapack_storage` mounted at `/data/storage` for imported UIR files,
   generated reports, and packages.
 - `schemapack_db` mounted at `/data/db` for the SQLite database file.
 
-To reset local runtime data:
+The container database URL in `.env.production.example` points to:
 
-```powershell
-docker compose down -v
+```text
+sqlite:////data/db/schemapack.db
 ```
 
 ## Environment Profiles
 
 Use `.env.example` for local Python development. Use
-`.env.production.example` as the container profile reference:
+`.env.production.example` as the Docker Compose reference. The production
+example includes:
 
 ```text
 APP_ENV=production
@@ -72,35 +130,78 @@ ARTIFACT_RETENTION_ENABLED=false
 ARTIFACT_RETENTION_DRY_RUN=true
 ```
 
-The production profile keeps LLM fallback disabled by default. To enable a
-configured OpenAI-compatible endpoint, set `LLM_FALLBACK_ENABLED=true`,
-`LLM_MODE=openai_compatible`, `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL`.
-`LLM_TIMEOUT_SECONDS` bounds each request, `LLM_MAX_RETRIES` bounds immediate
-retries, and `LLM_MAX_SUGGESTIONS_PER_TASK` caps review suggestions generated
-by one task. Keep `LLM_STRICT_FAILURE=false` so provider failures become
-mapping warnings instead of failing the conversion pipeline.
+Keep secrets in environment variables or the deployment secret manager around
+this project. Do not put API keys or LLM keys in task options, reports, fixtures,
+or committed `.env` files.
 
-Task option `strict_llm=true` may override the global non-strict default for a
-single execution. LLM credentials must be supplied only through deployment
-environment variables. Secret-looking task options and audit metadata are
-recursively replaced with `[REDACTED]`; execution snapshots retain only mode,
-model, timeout, retry, cap, strictness, and whether the task requested fallback.
+## Optional API-Key Authentication
 
-Optional API key auth can be enabled with:
+API-key authentication is disabled by default:
+
+```text
+API_KEY_AUTH_ENABLED=false
+API_KEYS=
+```
+
+Enable it for `/api/v1/*` with:
 
 ```text
 API_KEY_AUTH_ENABLED=true
 API_KEYS=dev-key-1,dev-key-2
 ```
 
-When enabled, `/api/v1/*` requires `X-API-Key`; `/health` remains anonymous.
-Audit logging is enabled by default for task execution and package download.
-Artifact retention cleanup is disabled by default and should be run explicitly:
+When enabled, callers must send `X-API-Key`. `/health` remains anonymous.
 
-```powershell
-python scripts\retention_cleanup.py --storage-root storage --days 30 --dry-run --json
-python scripts\retention_cleanup.py --storage-root storage --days 30 --delete
+## Optional LLM Modes
+
+LLM fallback is default-disabled:
+
+```text
+LLM_MODE=disabled
+LLM_FALLBACK_ENABLED=false
 ```
 
-TLS termination, SSO, RBAC, and multi-tenant controls are not part of this
-deployment profile.
+Supported modes are:
+
+- `disabled`: no provider calls; deterministic mapping still runs.
+- `stub`: deterministic local suggestion behavior for tests and demos.
+- `openai_compatible`: configured network endpoint for review-only suggestions.
+
+To enable an OpenAI-compatible endpoint, configure:
+
+```text
+LLM_FALLBACK_ENABLED=true
+LLM_MODE=openai_compatible
+LLM_BASE_URL=https://your-compatible-endpoint/v1
+LLM_API_KEY=...
+LLM_MODEL=...
+LLM_TIMEOUT_SECONDS=20
+LLM_MAX_RETRIES=0
+LLM_MAX_SUGGESTIONS_PER_TASK=20
+LLM_STRICT_FAILURE=false
+```
+
+Fallback suggestions remain review-required. Provider errors become mapping
+warnings unless global `LLM_STRICT_FAILURE=true` or task option
+`strict_llm=true` explicitly requests failure.
+
+## Audit Logs And Retention
+
+Audit logging is enabled by default for task execution and package downloads.
+Audit entries should contain identifiers, paths, status, and small metadata; do
+not log API keys, LLM keys, full UIR payloads, or package contents.
+
+Artifact retention cleanup is disabled by default and has a dry-run mode:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\retention_cleanup.py --storage-root storage --days 30 --dry-run --json
+backend\.venv\Scripts\python.exe scripts\retention_cleanup.py --storage-root storage --days 30 --delete
+```
+
+## Boundaries Not Provided By This Profile
+
+This repository does not provide built-in TLS termination, SSO, tenant-aware
+authorization, RBAC, managed secret storage, hosted credential provisioning, or
+enterprise model/provider monitoring. Add those through the target deployment
+platform before using the service outside a trusted local or single-host demo
+environment.
