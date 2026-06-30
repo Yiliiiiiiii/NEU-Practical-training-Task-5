@@ -12,7 +12,7 @@ backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 
 Expected current baseline:
 
-- backend pytest: 202 passed;
+- backend pytest: 203 passed;
 - Ruff: clean;
 - frontend production build: successful;
 - OpenAPI export: 32 paths written to `docs\openapi.json`.

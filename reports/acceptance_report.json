@@ -977,7 +977,7 @@
       }
     }
   },
-  "generated_at": "2026-06-30T07:44:48.890905+00:00",
+  "generated_at": "2026-06-30T07:53:20.254376+00:00",
   "pipeline": "UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP",
   "project": "SchemaPack Agent",
   "topic": "课题 5：文档内容智能化转换与组织"

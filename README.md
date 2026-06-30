@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Current verified baseline (2026-06-30): `main`, 202 backend tests, Ruff clean, frontend production build successful, and 32 exported OpenAPI paths.
+Current verified baseline (2026-06-30): `main`, 203 backend tests, Ruff clean, frontend production build successful, and 32 exported OpenAPI paths.
 
 SchemaPack Agent is a UIR-first system for turning normalized document structure into schema-governed, verifier-checked output packages. The verified production boundary starts at UIR input and ends at package ZIP output.
 
@@ -26,7 +26,7 @@ UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Mani
 
 ## Verified Evidence
 
-- Unified verification is recorded for `main`: `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` produced 202 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported to [`docs/openapi.json`](docs/openapi.json). Use [`docs/openapi_workflow.md`](docs/openapi_workflow.md) and [`docs/openapi.json`](docs/openapi.json) for the API inventory instead of copying the 32-path list here.
+- Unified verification is recorded for `main`: `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` produced 203 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported to [`docs/openapi.json`](docs/openapi.json). Use [`docs/openapi_workflow.md`](docs/openapi_workflow.md) and [`docs/openapi.json`](docs/openapi.json) for the API inventory instead of copying the 32-path list here.
 - The real-world pipeline records 16/16 documents importing, 16/16 task executions completing, and 16/16 packages passing verification. See [`reports/real_world_eval_report.md`](reports/real_world_eval_report.md) and [`reports/real_world_eval_report.json`](reports/real_world_eval_report.json).
 - Strict validation passes for the five `procurement_doc` samples. The other 11 real-world samples remain review-required and are not claimed as field-valid: `general_doc` 0/3, `meeting_doc` 0/3, and `policy_doc` 0/5 strict passes.
 - The real-world mapping report records package pass rate 1.000, mapping recall `0.42592592592592593`, and zero badcase violations. See [`reports/real_world_mapping_eval_report.md`](reports/real_world_mapping_eval_report.md) and [`reports/real_world_mapping_eval_report.json`](reports/real_world_mapping_eval_report.json).
@@ -86,7 +86,7 @@ backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 
 Expected verified baseline for 2026-06-30:
 
-- Backend pytest: 202 passed.
+- Backend pytest: 203 passed.
 - Ruff: clean.
 - Frontend production build: successful.
 - OpenAPI export: 32 paths written to [`docs/openapi.json`](docs/openapi.json).

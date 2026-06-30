@@ -499,7 +499,7 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
             final_handoff,
             command=COMMANDS["pytest"],
             markers=(
-                "Backend pytest: 202 passed.",
+                "Backend pytest: 203 passed.",
                 "Ruff: clean.",
                 "OpenAPI export: 32 paths",
             ),

@@ -5,7 +5,7 @@
 - Current branch: `main`.
 - Verification baseline: 2026-06-30.
 - Unified verification command: `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`.
-- Verified result: 202 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported to [`docs/openapi.json`](openapi.json).
+- Verified result: 203 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported to [`docs/openapi.json`](openapi.json).
 - Core production boundary: UIR input to schema-driven package output.
 
 The implemented processing line is:
@@ -51,7 +51,7 @@ UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Mani
 
 ## Evaluation Evidence
 
-- Unified verification: 202 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported by `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`.
+- Unified verification: 203 backend tests passed, Ruff clean, frontend production build successful, and 32 OpenAPI paths exported by `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`.
 - Real-world pipeline: 16/16 documents import, execute, and produce verifier-passing packages. See [`reports/real_world_eval_report.md`](../reports/real_world_eval_report.md).
 - Honest strict-validation split: all five `procurement_doc` samples pass strict validation; the other 11 real-world samples remain review-required and are not claimed as field-valid (`general_doc` 0/3, `meeting_doc` 0/3, `policy_doc` 0/5 strict passes).
 - Real-world mapping: mapping recall is `0.42592592592592593`, package pass rate is 1.000, and badcase violations are 0. See [`reports/real_world_mapping_eval_report.md`](../reports/real_world_mapping_eval_report.md).
@@ -131,7 +131,7 @@ npm run dev
 The current `main` baseline is:
 
 - `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
-- Backend pytest: 202 passed.
+- Backend pytest: 203 passed.
 - Ruff: clean.
 - Frontend production build: successful.
 - OpenAPI export: 32 paths written to [`docs/openapi.json`](openapi.json).

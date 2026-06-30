@@ -103,7 +103,7 @@ From the repository root, the default local verification gate is:
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-The current verified baseline is 202 backend tests, Ruff clean, frontend
+The current verified baseline is 203 backend tests, Ruff clean, frontend
 production build successful, and 32 exported OpenAPI paths.
 
 For smaller loops, run the pieces directly:

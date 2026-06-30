@@ -2,7 +2,7 @@
 
 > 基于当前可读取证据，已通过检查：chunk_retrieval、downstream_smoke、frontend_build、knowledge_loop、llm_fallback、package_verification、production_like_eval、pytest、real_world_eval。尚未形成完整通过证据：无。本报告不会把缺失、未运行或部分通过的检查表述为已完成。
 
-- 生成时间（UTC）：`2026-06-30T07:44:48.890905+00:00`
+- 生成时间（UTC）：`2026-06-30T07:53:20.254376+00:00`
 - 核心链路：`UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP`
 
 ## 1. 项目定位

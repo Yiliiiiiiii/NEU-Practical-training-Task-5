@@ -136,7 +136,7 @@ def test_current_handoff_verification_markers_are_recognized(tmp_path: Path) -> 
         "\n".join(
             [
                 "# SchemaPack Agent Final Handoff Status",
-                "- Backend pytest: 202 passed.",
+                "- Backend pytest: 203 passed.",
                 "- Ruff: clean.",
                 "- Frontend production build: successful.",
                 "- OpenAPI export: 32 paths written to `docs/openapi.json`.",
