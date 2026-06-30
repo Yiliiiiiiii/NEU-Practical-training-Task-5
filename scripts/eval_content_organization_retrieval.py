@@ -22,8 +22,8 @@ STRATEGIES = {
     "flat_blocks": {"use_title": False, "use_keywords": False},
     "heading_aware": {"use_title": True, "use_keywords": False},
     "keyword_enriched": {"use_title": True, "use_keywords": True},
-    "table_protected": {"use_title": True, "use_keywords": True},
-    "hybrid": {"use_title": True, "use_keywords": True},
+    "table_protected": {"use_title": True, "use_keywords": False, "boost_tables": True},
+    "hybrid": {"use_title": True, "use_keywords": True, "boost_tables": True},
 }
 
 
@@ -62,6 +62,24 @@ def rank_chunks(query: str, chunks: list[dict[str, Any]]) -> list[dict[str, Any]
         key=lambda chunk: score_chunk(query, chunk),
         reverse=True,
     )
+
+
+def strategy_chunks(
+    chunks: list[dict[str, Any]],
+    strategy: str,
+) -> list[dict[str, Any]]:
+    config = STRATEGIES[strategy]
+    prepared: list[dict[str, Any]] = []
+    for chunk in chunks:
+        copy = dict(chunk)
+        if not config.get("use_title"):
+            copy["title_path"] = []
+        if not config.get("use_keywords"):
+            copy["keywords"] = []
+        if config.get("boost_tables") and copy.get("block_type") in {"table", "list"}:
+            copy["text"] = f"{copy.get('text', '')} table list structured rows"
+        prepared.append(copy)
+    return prepared
 
 
 def is_relevant(chunk: dict[str, Any], gold: dict[str, Any]) -> bool:
@@ -121,7 +139,8 @@ def chunks_from_uir(uir: dict[str, Any]) -> list[dict[str, Any]]:
                 "source_block_ids": [block_id],
                 "text": text if isinstance(text, str) else "",
                 "title_path": [title] if title else [],
-                "keywords": [uir.get("doc_id", ""), uir.get("metadata", {}).get("doc_type", "")],
+                "keywords": sorted(_tokens(f"{title} {text if isinstance(text, str) else ''}"))[:8],
+                "block_type": block.get("type"),
             }
         )
     return chunks
@@ -136,7 +155,7 @@ def evaluate_strategy(
     results: list[dict[str, Any]] = []
     for query in queries:
         chunks = chunks_by_doc_id.get(str(query["doc_id"]), [])
-        ranked = rank_chunks(str(query["query"]), chunks)
+        ranked = rank_chunks(str(query["query"]), strategy_chunks(chunks, strategy))
         relevance = [is_relevant(chunk, query) for chunk in ranked]
         results.append(
             {

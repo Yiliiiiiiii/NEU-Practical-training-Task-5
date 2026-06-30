@@ -91,6 +91,27 @@ def test_score_chunk_ignores_source_block_id() -> None:
     assert evaluator.score_chunk(query, chunk_a) == evaluator.score_chunk(query, chunk_b)
 
 
+def test_strategy_chunks_apply_title_and_keyword_options() -> None:
+    evaluator = load_script("eval_content_organization_retrieval")
+    chunks = [
+        {
+            "chunk_id": "c1",
+            "source_block_ids": ["b1"],
+            "text": "body",
+            "title_path": ["Useful title"],
+            "keywords": ["useful"],
+        }
+    ]
+
+    flat = evaluator.strategy_chunks(chunks, "flat_blocks")
+    enriched = evaluator.strategy_chunks(chunks, "keyword_enriched")
+
+    assert flat[0]["title_path"] == []
+    assert flat[0]["keywords"] == []
+    assert enriched[0]["title_path"] == ["Useful title"]
+    assert enriched[0]["keywords"] == ["useful"]
+
+
 def test_retrieval_eval_builds_report_sections() -> None:
     evaluator = load_script("eval_content_organization_retrieval")
 
