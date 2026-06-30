@@ -1,6 +1,9 @@
+import importlib.util
 import json
+import sys
 from collections.abc import Iterator
 from pathlib import Path
+from types import ModuleType
 
 import pytest
 from fastapi.testclient import TestClient
@@ -12,11 +15,25 @@ from app.db.models import Base
 from app.main import create_app
 
 ROOT = Path(__file__).resolve().parents[2]
+SCRIPTS_DIR = ROOT / "scripts"
 PRODUCTION_LIKE_DIR = ROOT / "examples" / "production_like"
 SCHEMAS_DIR = PRODUCTION_LIKE_DIR / "schemas"
 TEMPLATES_DIR = PRODUCTION_LIKE_DIR / "mapping_templates"
 REAL_WORLD_PROCUREMENT = ROOT / "examples" / "real_world" / "uir" / "procurement"
 EVAL_REAL_WORLD_UIR = ROOT / "scripts" / "eval_real_world_uir.py"
+
+
+def load_script(name: str) -> ModuleType:
+    path = SCRIPTS_DIR / f"{name}.py"
+    if str(SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPTS_DIR))
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load script: {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 @pytest.fixture
@@ -179,3 +196,52 @@ def test_real_world_evaluator_uses_procurement_catalog() -> None:
 
     assert '"procurement_doc": {\n        "schema_id": "procurement_doc",' in source
     assert '"template_id": "procurement_doc_base_v1"' in source
+
+
+def test_procurement_eval_builds_catalog_delta_report() -> None:
+    evaluator = load_script("eval_procurement_doc")
+
+    report = evaluator.build_report(
+        general_items=[
+            {
+                "doc_id": "real_procurement_001",
+                "metrics": {
+                    "gold_mapping_count": 4,
+                    "gold_review_required_count": 1,
+                    "auto_accepted_correct": 1,
+                    "review_required_correct": 1,
+                    "missing_gold_mappings": 3,
+                    "badcase_violation_count": 1,
+                },
+                "package_passed": True,
+                "required_missing": ["project_name", "purchaser"],
+            }
+        ],
+        procurement_items=[
+            {
+                "doc_id": "real_procurement_001",
+                "metrics": {
+                    "gold_mapping_count": 4,
+                    "gold_review_required_count": 1,
+                    "auto_accepted_correct": 3,
+                    "review_required_correct": 1,
+                    "missing_gold_mappings": 1,
+                    "badcase_violation_count": 0,
+                },
+                "package_passed": True,
+                "required_missing": [],
+            }
+        ],
+    )
+    markdown = evaluator.render_markdown(report)
+
+    assert report["delta"]["label"] == "procurement_doc - general_doc"
+    assert report["delta"]["mapping_recall"] > 0
+    assert report["procurement_doc"]["required_coverage"] == 1.0
+    assert report["procurement_doc"]["gold_recall"] == 0.8
+    assert report["general_doc"]["missing_required_count"] == 2
+    assert report["procurement_doc"]["badcase_violation_count"] == 0
+    assert report["procurement_doc"]["package_pass_rate"] == 1.0
+    assert "## Required Coverage" in markdown
+    assert "## Gold Recall Delta" in markdown
+    assert "## Badcase Comparison" in markdown

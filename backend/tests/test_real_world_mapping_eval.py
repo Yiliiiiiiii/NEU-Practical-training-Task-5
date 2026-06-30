@@ -368,6 +368,39 @@ def test_mapping_metrics_count_badcase_violation_for_forbidden_acceptance() -> N
     assert metrics["badcase_violation_count"] == 1
 
 
+def test_mapping_eval_generates_required_json_and_markdown_sections() -> None:
+    evaluator = load_script("eval_real_world_mapping")
+
+    report = evaluator.build_report(
+        [
+            {
+                "doc_id": "doc_1",
+                "doc_type": "policy_doc",
+                "metrics": {
+                    "gold_mapping_count": 2,
+                    "gold_review_required_count": 1,
+                    "auto_accepted_correct": 2,
+                    "review_required_correct": 1,
+                    "missing_gold_mappings": 0,
+                    "badcase_violation_count": 0,
+                    "badcase_violations": [],
+                    "mapping_recall": 1.0,
+                },
+                "package_passed": True,
+                "review_evidence": [{"target_field": "publish_date"}],
+            }
+        ]
+    )
+    markdown = evaluator.render_markdown(report)
+
+    assert report["summary"]["document_count"] == 1
+    assert report["summary"]["package_pass_rate"] == 1.0
+    assert report["summary"]["badcase_violation_count"] == 0
+    assert "## Per Document Type" in markdown
+    assert "## Badcase Violations" in markdown
+    assert "## Package Verification Summary" in markdown
+
+
 @pytest.mark.parametrize(
     ("mutate", "message"),
     [
