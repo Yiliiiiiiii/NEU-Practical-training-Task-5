@@ -287,3 +287,59 @@ class EvaluationHttpClient:
 
     def package(self, task_id: str) -> dict[str, Any]:
         return self._json_response(self.client.get(f"/api/v1/tasks/{task_id}/package"))
+
+    def list_reviews(self, status: str) -> list[dict[str, Any]]:
+        data = self._json_response(self.client.get("/api/v1/reviews", params={"status": status}))
+        items = data.get("items", [])
+        return items if isinstance(items, list) else []
+
+    def approve_review(self, review_id: str) -> dict[str, Any]:
+        return self._json_response(
+            self.client.post(
+                f"/api/v1/reviews/{review_id}/approve",
+                json={
+                    "reviewer": "topic5_eval",
+                    "comment": "Approved for topic 5 knowledge-loop evaluation.",
+                    "create_knowledge_candidate": True,
+                },
+            )
+        )
+
+    def list_candidates(self) -> list[dict[str, Any]]:
+        data = self._json_response(self.client.get("/api/v1/knowledge/candidates"))
+        items = data.get("items", [])
+        return items if isinstance(items, list) else []
+
+    def accept_candidate(self, candidate_id: str) -> dict[str, Any]:
+        return self._json_response(
+            self.client.post(f"/api/v1/knowledge/candidates/{candidate_id}/accept")
+        )
+
+    def create_pack(self, schema_id: str, template_id: str) -> dict[str, Any]:
+        return self._json_response(
+            self.client.post(
+                "/api/v1/knowledge/packs",
+                json={
+                    "schema_id": schema_id,
+                    "template_id": template_id,
+                    "name": f"{schema_id} {template_id} topic 5 eval pack",
+                    "created_by": "topic5_eval",
+                },
+            )
+        )
+
+    def activate_pack(self, pack_id: str) -> dict[str, Any]:
+        return self._json_response(
+            self.client.post(f"/api/v1/knowledge/packs/{pack_id}/activate")
+        )
+
+    def effective_template(self, schema_id: str, template_id: str) -> dict[str, Any]:
+        return self._json_response(
+            self.client.get(
+                "/api/v1/knowledge/effective-template",
+                params={"schema_id": schema_id, "template_id": template_id},
+            )
+        )
+
+    def knowledge_metrics(self) -> dict[str, Any]:
+        return self._json_response(self.client.get("/api/v1/knowledge/metrics"))
