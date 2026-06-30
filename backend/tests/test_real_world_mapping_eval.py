@@ -1,13 +1,16 @@
 import copy
+import importlib.util
 import json
 import re
 import sys
 from pathlib import Path
+from types import ModuleType
 from typing import Any
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
+SCRIPTS_DIR = ROOT / "scripts"
 REAL_WORLD_DIR = ROOT / "examples" / "real_world"
 UIR_DIR = REAL_WORLD_DIR / "uir"
 MAPPING_GOLD_PATH = REAL_WORLD_DIR / "gold" / "mapping_gold.jsonl"
@@ -50,6 +53,19 @@ PROCUREMENT_TARGET_FIELDS = {
 }
 VALID_BADCASE_SEVERITIES = {"low", "medium", "high", "critical"}
 SOURCE_PATH_SEGMENT = re.compile(r"^(?P<name>[^\[\]]+)(?:\[(?P<index>\*|\d+)\])?$")
+
+
+def load_script(name: str) -> ModuleType:
+    path = SCRIPTS_DIR / f"{name}.py"
+    if str(SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPTS_DIR))
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load script: {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -247,6 +263,109 @@ def assert_row_source_path_matches_uir(
     assert source_uir == expected_uir, (
         f"{doc_id}: row source_path must point to the matching UIR document"
     )
+
+
+def test_mapping_metrics_count_accepted_review_missing_and_badcases() -> None:
+    eval_support = load_script("eval_support")
+    gold = {
+        "doc_id": "real_procurement_001",
+        "expected_mappings": [
+            {
+                "source_name": "项目名称",
+                "source_path": "blocks[0].text",
+                "target_field": "project_name",
+                "required": True,
+            },
+            {
+                "source_name": "采购人",
+                "source_path": "blocks[1].text",
+                "target_field": "purchaser",
+                "required": True,
+            },
+        ],
+        "expected_review_required": [
+            {
+                "source_name": "预算金额",
+                "source_path": "blocks[2].text",
+                "target_field_candidates": ["budget_amount", "award_amount"],
+                "reason": "budget and award amounts are ambiguous",
+            }
+        ],
+        "known_badcases": [
+            {
+                "case_id": "badcase-budget-not-award",
+                "forbidden_auto_mapping": {
+                    "source_name": "预算金额",
+                    "target_field": "award_amount",
+                },
+            },
+            {
+                "case_id": "badcase-purchaser-not-agency",
+                "source_name": "采购人",
+                "forbidden_target_field": "agency",
+            },
+        ],
+    }
+    report = {
+        "mappings": [
+            {
+                "source_field": {
+                    "source_name": "项目名称",
+                    "source_path": "blocks[0].text",
+                },
+                "target_field_id": "project_name",
+                "status": "accepted",
+            }
+        ],
+        "review_required_items": [
+            {
+                "source_name": "预算金额",
+                "source_path": "blocks[2].text",
+                "target_field_candidates": ["budget_amount", "award_amount"],
+            }
+        ],
+        "unmapped_required_fields": ["purchaser"],
+    }
+
+    metrics = eval_support.score_mapping_report(gold, report)
+
+    assert metrics["auto_accepted_correct"] == 1
+    assert metrics["review_required_correct"] == 1
+    assert metrics["missing_gold_mappings"] == 1
+    assert metrics["badcase_violation_count"] == 0
+    assert metrics["mapping_recall"] == pytest.approx(2 / 3)
+
+
+def test_mapping_metrics_count_badcase_violation_for_forbidden_acceptance() -> None:
+    eval_support = load_script("eval_support")
+    gold = {
+        "doc_id": "real_procurement_001",
+        "expected_mappings": [],
+        "expected_review_required": [],
+        "known_badcases": [
+            {
+                "case_id": "badcase-budget-not-award",
+                "forbidden_auto_mapping": {
+                    "source_name": "预算金额",
+                    "target_field": "award_amount",
+                },
+            }
+        ],
+    }
+    report = {
+        "mappings": [
+            {
+                "source_name": "预算金额",
+                "target_field": "award_amount",
+                "status": "accepted",
+            }
+        ],
+        "review_required_items": [],
+    }
+
+    metrics = eval_support.score_mapping_report(gold, report)
+
+    assert metrics["badcase_violation_count"] == 1
 
 
 @pytest.mark.parametrize(
