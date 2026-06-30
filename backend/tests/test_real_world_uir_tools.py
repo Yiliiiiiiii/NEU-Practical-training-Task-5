@@ -325,6 +325,25 @@ def write_manifest(path: Path, items: list[dict[str, object]]) -> None:
     )
 
 
+def test_real_world_dataset_has_at_least_thirty_official_sources() -> None:
+    manifest_path = ROOT / "examples" / "real_world" / "sources" / "source_manifest.json"
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    items = manifest["items"]
+
+    assert len(items) >= 30
+    source_ids = [item["source_id"] for item in items]
+    source_urls = [item["source_url"] for item in items]
+    uir_paths = [item["uir_path"] for item in items]
+    assert len(source_ids) == len(set(source_ids))
+    assert len(source_urls) == len(set(source_urls))
+    assert len(uir_paths) == len(set(uir_paths))
+    for item in items:
+        assert item["source_url"].startswith("https://"), item["source_id"]
+        assert item["license_note"], item["source_id"]
+        assert item["source_site"], item["source_id"]
+
+
 def test_collector_caches_content_and_updates_manifest(tmp_path: Path) -> None:
     collector = load_script("collect_real_world_sources")
     manifest_path = tmp_path / "sources" / "source_manifest.json"
@@ -649,6 +668,20 @@ def test_sensitive_scanner_ignores_numeric_pdf_coordinates() -> None:
     findings = validator.scan_sensitive_information(uir)
 
     assert findings == []
+
+
+def test_sensitive_scanner_detects_email_adjacent_to_cjk_text() -> None:
+    validator = load_script("validate_real_world_uir")
+    uir = make_valid_uir()
+    uir["blocks"][2]["text"] += " 反馈至jiayue@miitec.cn"
+
+    findings = validator.scan_sensitive_information(uir)
+
+    assert any(
+        finding["code"] == "possible_personal_sensitive_information"
+        and finding["message"] == "matched personal_email"
+        for finding in findings
+    )
 
 
 def test_validator_rejects_bad_hash_empty_block_and_mojibake() -> None:

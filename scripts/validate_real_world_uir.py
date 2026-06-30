@@ -44,7 +44,8 @@ SENSITIVE_PATTERNS = {
     "mobile_phone": re.compile(r"(?<!\d)1[3-9]\d{9}(?!\d)"),
     "identity_card": re.compile(r"(?<!\d)\d{17}[\dXx](?!\d)"),
     "personal_email": re.compile(
-        r"(?<![\w.-])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?![\w.-])"
+        r"(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+        r"(?![A-Za-z0-9.-])"
     ),
     "bank_card": re.compile(r"(?<!\d)\d{16,19}(?!\d)"),
 }

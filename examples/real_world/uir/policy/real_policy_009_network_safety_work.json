@@ -1,0 +1,360 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文机关： 工业和信息化部办公厅",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "标 题： 工业和信息化部办公厅关于做好2025年信息通信业安全生产和网络运行安全工作的通知",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文字号： 工信厅通信函〔2025〕82号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "成文日期： 2025-03-10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布日期： 2025-03-14",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布机构： 信息通信发展司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "分 类： 通信发展,信息通信管理,安全生产",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_policy_009_network_safety_work_b008",
+      "level": 1,
+      "source_anchor": null,
+      "text": "工业和信息化部办公厅关于做好2025年信息通信业安全生产和网络运行安全工作的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "工信厅通信函〔2025〕82号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "各省、自治区、直辖市通信管理局，中国电信集团有限公司、中国移动通信集团有限公司、中国联合网络通信集团有限公司、中国卫星网络集团有限公司、中国广播电视网络集团有限公司、中国铁塔股份有限公司、中国卫通集团股份有限公司，中国通信企业协会，相关互联网企业，相关通信工程参建单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "为做好2025年信息通信业安全生产和网络运行安全工作，现就有关事项通知如下：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、总体要求",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻落实党的二十大和二十届二中、三中全会精神，认真贯彻落实习近平总书记关于安全生产和应急管理的重要指示批示精神，坚持人民至上、生命至上，统筹高质量发展和高水平安全，按照“三管三必须”要求，进一步树牢安全发展理念，着力提升行业本质安全水平，坚决防范遏制重特大事故发生。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "——预防为主、综合治理。 进一步推动安全生产治理模式向事前预防转型，提升安全生产监管效能、强化责任落实、夯实安全基础，积极防范化解通信工程建设、网络运行等环节风险隐患。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "——完善制度、压实责任。 持续完善安全制度体系，创新监管手段，督促相关企业落实监管要求，抓细抓实安全生产和网络运行安全工作，切实保障行业安全生产形势持续稳定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "——筑牢基础、提升能力。 进一步完善行业安全管理制度，加强人员培训，提升技术保障能力，持续完善事故应急处置预案。从管理、人员、技术保障、应急等方面不断夯实安全生产基础。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、主要任务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）加强思想政治引领。 及时传达学习贯彻习近平总书记关于安全生产的重要指示批示精神，坚决扛牢通信建设安全和网络运行安全责任，以高度的责任感切实落实全国安全生产电视电话会议、国务院安委会全体会议等重要会议精神以及部安全生产委员会工作要求，提高统筹发展和安全的能力，毫不放松抓好通信建设领域安全生产和网络运行安全各项工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）抓好通信建设安全生产制度落实。 各单位要组织做好《安全生产法》等法律法规学习，重点突出《通信建设工程安全生产管理规定》等文件和有关标准宣贯落实，严格基本建设流程管理，组织开展通信建设领域安全生产三年行动。各企业要完善内部管理制度，进一步强化现场施工人员管理，严格落实建设工程安全生产操作规程，严格落实有限空间、动火作业审批和高风险作业场景下的旁站制度，严格按照规范要求使用施工现场安全防护设施设备、放置施工作业标识。鼓励企业运用数字化手段开展施工现场人员和操作行为管理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）强化信息通信网络运行安全管理。 持续开展信息通信网络运行安全管理年活动，组织开展信息通信网络运行安全三年行动，深化云服务安全运行全链条治理。组织开展网络运行安全技能竞赛和专项演练，开展云服务业务连续性应急实战演练。制定信息通信网络重大风险隐患判定标准，建立风险隐患信息共享平台。各单位要组织做好电信网络运行、通信网络供电系统运行安全、通信机楼消防安全监督管理等有关政策标准的宣贯。各地通信管理局要持续推进本地区网络运行安全标准化管理体系建设，加强对云服务系统稳定性的评测。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）进一步压实企业安全生产主体责任。 各地通信管理局要督促区域内相关企业建立健全全员安全生产责任制，完善从规划、设计、建设到运行维护的全链条网络运行安全责任体系。基础电信企业要加强对劳务分包、代维等相关方安全生产情况的管理，建立关键岗位人员报备核验机制，严禁转包、违法分包以及以包代管、包而不管等可能导致安全生产责任落空的行为。云服务运营企业要进一步完善云服务运行安全保障体系，开展稳定运行测试验证和模拟演练，确保云服务安全。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）加强事故隐患排查治理。 各地通信管理局要结合行业特点加强对安全风险的分析研判，指导企业建立健全重大事故隐患自查自改常态化机制、事故隐患内部报告奖励机制，督促企业加大风险排查力度，推动重大事故隐患动态清零，严防重特大事故发生。各通信工程参建企业要对照《信息通信建设工程生产安全重大事故隐患判定标准》，强化建设工程生产安全重大隐患的排查治理，切实保障施工人员人身安全。各企业要严格落实极端事故场景、关键网络设备、高危操作岗位等三项网络运行安全风险清单管理要求，加大对关键网元设备、新型网元设备风险排查力度，提前化解重大风险；要坚持关口前移、重心下移，聚焦重点领域和薄弱环节制定隐患排查计划，构建多场景、高仿真测试环境，提升网络运行安全测试验证能力，及时发现可能影响网络稳定运行的因素，维护网络运行安全。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "（六）突出重点领域安全管理。 各参建企业要重点针对动火作业、有限空间作业、高处施工作业、带电作业等场景，加强施工现场安全管理，强化安全管理人员现场履职。基础电信企业要严格落实网络架构保护、重要设施防护等要求，加强网络容灾和业务应急逃生能力建设，提高通信网络应对自然灾害的韧性，提升对海缆中断等极端场景的业务保护能力；要加强网络变更操作事前事中管理，对高危操作进行精细化管控，严格管控要求，降低潜在风险，确保网络变更安全；要强化环境安全管理，加强通信机房、数据中心、配电室等重点场所防火防爆、用电安全、个体保护等巡查，加强对数据中心及储能设施的安全隐患排查，及时发现和消除安全隐患。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "（七）提高应急处置能力。 各地通信管理局要督促本地区企业动态更新、分级管理应急预案，实现应急预案全覆盖，要指导施工企业组织开展通信建设事故救援演练。各基础电信企业要完善跨企业网间应急演练机制，定期对跨企业的网间互联链路、节点等重要设施进行联合测试，提升企业间协作配合和应急处置能力。灾害、事故发生后，各相关企业要立即启动应急处置预案，及时上报通信管理部门，做好分析研判，妥善应对处理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、保障措施",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）加强组织领导。 各地通信管理局要认真落实工业和信息化部安全生产工作部署，结合本地区实际，协调落实本地区信息通信业安全生产工作。各基础电信企业要加强企业安全生产组织领导，完善工作机制，加强对各级子（分）公司安全生产工作指导和检查，确保安全生产各项任务和要求落实到位。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）优化监督检查。 各地通信管理局要结合本地区实际，优化安全生产和网络运行安全工作检查，及时督促隐患整改，对落实安全生产和网络运行安全主体责任不到位的企业依法予以约谈或行政处罚。各相关企业要高度重视安全生产和网络运行安全问题整改，对检查指出的生产安全和网络运行安全事故隐患，深刻剖析问题根源，举一反三，全面治理。通信工程质量监督机构要发挥好专业技术支撑作用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）强化人员培训。 各企业要将安全生产教育培训工作列入年度工作计划，加强新技术、新设备、新业务培训，提升关键岗位人员安全技能。要推进安全生产教育培训全覆盖，将外包人员纳入统一安全管理。要结合自然灾害防治应对、施工安全保护等具体要求，加强对设计人员的培训，防止因设计不合理导致网络容灾能力不足、施工安全保护措施不足等情况发生。基础电信企业要持续推进网络运行安全知识图谱构建，系统开展核心网、云资源、承载网、传送网、供电、暖通等专业技术宣贯，全方位提升运维人员专业能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）突出正向引导。 各单位要强化安全生产和网络运行安全正向激励，通过优秀成果、典型案例积极发挥示范引领作用。相关行业协会和企业要在全国安全生产月、全国消防日等时点，利用短视频、短信息、微信公众号、宣传页（册）等，面向员工和社会公众广泛开展安全生产宣传。鼓励科研机构、行业协会支撑企业开展现场操作培训、演练、比武等各类活动，共同推动形成有利于安全生产的良好氛围。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "请各地通信管理局、各基础电信企业集团于2025年12月15日前将本地区、本企业2025年信息通信业安全生产和网络运行安全工作总结报工业和信息化部，按要求做好每月生产安全事故信息报送，工作中的重要情况和重大问题及时报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "工业和信息化部办公厅",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_009_network_safety_work_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年3月10日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_009_network_safety_work",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 32,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-30T13:20:07.328545+00:00",
+    "source_format": "html",
+    "source_sha256": "d7cfd32398fb7bd0f382dbf99ac8c25e278d594afd014f22db639b3d1bdb8308",
+    "source_site": "www.miit.gov.cn",
+    "source_url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_7c2bbce8116a48aab7bc2bda327d1be3.html",
+    "title": "工业和信息化部办公厅关于做好2025年信息通信业安全生产和网络运行安全工作的通知",
+    "发布日期": "2025-03-14",
+    "发布机构": "信息通信发展司",
+    "发文机关": "工业和信息化部办公厅",
+    "标题": "工业和信息化部办公厅关于做好2025年信息通信业安全生产和网络运行安全工作的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "d7cfd32398fb7bd0f382dbf99ac8c25e278d594afd014f22db639b3d1bdb8308"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_009_network_safety_work",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

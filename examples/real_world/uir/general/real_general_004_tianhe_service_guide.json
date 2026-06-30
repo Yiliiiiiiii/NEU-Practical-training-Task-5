@@ -1,0 +1,4685 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b001",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          486.6000061035156,
+          762.821044921875,
+          521.5840454101562,
+          776.9132080078125
+        ],
+        "page": 1
+      },
+      "text": "- 1 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 21.950000762939453
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b002",
+      "level": 1,
+      "source_anchor": {
+        "bbox": [
+          80.4000015258789,
+          107.45109558105469,
+          520.300537109375,
+          133.5935516357422
+        ],
+        "page": 1
+      },
+      "text": "天河区高端专业服务业政策兑现事项办事指南",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 21.950000762939453
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b003",
+      "level": 2,
+      "source_anchor": {
+        "bbox": [
+          102.4800033569336,
+          135.41009521484375,
+          498.3500061035156,
+          161.55255126953125
+        ],
+        "page": 1
+      },
+      "text": "事项名称：人力资源服务做大做强支持、",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 21.950000762939453
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b004",
+      "level": 2,
+      "source_anchor": {
+        "bbox": [
+          168.47999572753906,
+          163.4910888671875,
+          432.4646911621094,
+          189.633544921875
+        ],
+        "page": 1
+      },
+      "text": "人力资源服务发展壮大支持",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b005",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          268.44000244140625,
+          197.6689453125,
+          364.4300231933594,
+          214.28884887695312
+        ],
+        "page": 1
+      },
+      "text": "（免申即享）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b006",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          253.58895874023438,
+          207.34658813476562,
+          269.7781982421875
+        ],
+        "page": 1
+      },
+      "text": "一、基本信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b007",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          279.32427978515625,
+          331.3064270019531,
+          300.2507019042969
+        ],
+        "page": 1
+      },
+      "text": "1.申报对象：人力资源服务企业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b008",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          307.2843017578125,
+          251.3890838623047,
+          328.210693359375
+        ],
+        "page": 1
+      },
+      "text": "2.支付方式：后支持",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b009",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          335.24432373046875,
+          235.30938720703125,
+          356.17071533203125
+        ],
+        "page": 1
+      },
+      "text": "3.扶持形式：奖补",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b010",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          363.32427978515625,
+          521.5075073242188,
+          384.2507019042969
+        ],
+        "page": 1
+      },
+      "text": "4.资金额度：每家企业每季度最高支持150 万元，每年累计",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b011",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          391.2843017578125,
+          239.2683868408203,
+          412.210693359375
+        ],
+        "page": 1
+      },
+      "text": "兑现金额最高500 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b012",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          419.24432373046875,
+          435.3485412597656,
+          440.17071533203125
+        ],
+        "page": 1
+      },
+      "text": "5.承诺办结时限：信息确认截止后12 个工作日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b013",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          447.32330322265625,
+          459.3500061035156,
+          468.24969482421875
+        ],
+        "page": 1
+      },
+      "text": "6.主管部门：广州市天河区人力资源和社会保障局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b014",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          475.2843017578125,
+          296.6933898925781,
+          496.210693359375
+        ],
+        "page": 1
+      },
+      "text": "7.联系方式：020-87554128",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b015",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          503.2442626953125,
+          521.5076293945312,
+          524.170654296875
+        ],
+        "page": 1
+      },
+      "text": "8.项目描述：【人力资源服务做大做强支持】对上一年度营",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b016",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          531.3242797851562,
+          521.5079345703125,
+          552.2506713867188
+        ],
+        "page": 1
+      },
+      "text": "业收入5 亿元以上的人力资源服务企业，申报当年，季度累计营",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b017",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          559.2843017578125,
+          487.3016662597656,
+          580.210693359375
+        ],
+        "page": 1
+      },
+      "text": "业收入同比增加5000 万元以上的，按季度给予以下支持：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b018",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          587.2442626953125,
+          521.5090942382812,
+          608.170654296875
+        ],
+        "page": 1
+      },
+      "text": "（一）季度累计营业收入同比增加5000 万元—1 亿元的，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b019",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          615.3242797851562,
+          359.2669677734375,
+          636.2506713867188
+        ],
+        "page": 1
+      },
+      "text": "每同比增加1000 万元给予2 万元支持。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b020",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          643.2843017578125,
+          521.5075073242188,
+          664.210693359375
+        ],
+        "page": 1
+      },
+      "text": "（二）季度累计营业收入同比增加1 亿元以上的，每同比增",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b021",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          671.2442626953125,
+          295.30792236328125,
+          692.170654296875
+        ],
+        "page": 1
+      },
+      "text": "加1000 万元给予5 万元支持。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b022",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          701.6642456054688,
+          521.5045166015625,
+          717.6141967773438
+        ],
+        "page": 1
+      },
+      "text": "当季度支持金额按剔除当年基于本条已获得的支持金额后",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b023",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          762.821044921875,
+          114.42500305175781,
+          776.9132080078125
+        ],
+        "page": 2
+      },
+      "text": "- 2 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b024",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          111.32430267333984,
+          521.5061645507812,
+          132.25070190429688
+        ],
+        "page": 2
+      },
+      "text": "兑现，每家企业每季度最高支持150 万元，每年累计兑现金额最",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b025",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          139.2843017578125,
+          175.30909729003906,
+          160.21070861816406
+        ],
+        "page": 2
+      },
+      "text": "高500 万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b026",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          167.24429321289062,
+          521.5093994140625,
+          188.1707000732422
+        ],
+        "page": 2
+      },
+      "text": "【人力资源服务发展壮大支持】对上一年度营业收入1 亿元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b027",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          195.3242950439453,
+          521.5079345703125,
+          216.25070190429688
+        ],
+        "page": 2
+      },
+      "text": "—5 亿元的人力资源服务企业，申报当年，季度累计营业收入同",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b028",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          223.2843017578125,
+          423.3470764160156,
+          244.21070861816406
+        ],
+        "page": 2
+      },
+      "text": "比增加1000 万元以上的，按季度给予以下支持：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b029",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          251.2443084716797,
+          529.5499877929688,
+          272.17071533203125
+        ],
+        "page": 2
+      },
+      "text": "（一）季度累计营业收入同比增加1000 万元—5000 万元的，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b030",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          279.32427978515625,
+          359.2669677734375,
+          300.2507019042969
+        ],
+        "page": 2
+      },
+      "text": "每同比增加1000 万元给予1 万元支持。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b031",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          307.2843017578125,
+          521.50830078125,
+          328.210693359375
+        ],
+        "page": 2
+      },
+      "text": "（二）季度累计营业收入同比增加5000 万元以上的，每同",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b032",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          335.24432373046875,
+          327.22796630859375,
+          356.17071533203125
+        ],
+        "page": 2
+      },
+      "text": "比增加1000 万元给予3 万元支持。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b034",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          391.2843017578125,
+          375.34814453125,
+          412.210693359375
+        ],
+        "page": 2
+      },
+      "text": "兑现，每家企业每季度最高支持50 万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b035",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          421.5889587402344,
+          239.2683868408203,
+          437.7781982421875
+        ],
+        "page": 2
+      },
+      "text": "二、信息确认时间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b036",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          447.32330322265625,
+          308.6300048828125,
+          468.24969482421875
+        ],
+        "page": 2
+      },
+      "text": "2026 年1 月20 日-1 月26 日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b037",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          477.6289367675781,
+          207.34658813476562,
+          493.81817626953125
+        ],
+        "page": 2
+      },
+      "text": "三、申报条件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b038",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          505.58892822265625,
+          521.5050048828125,
+          522.2088012695312
+        ],
+        "page": 2
+      },
+      "text": "（一）申请专项资金支持的单位，原则上必须满足以下基本",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b039",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          533.6689453125,
+          127.30909729003906,
+          550.288818359375
+        ],
+        "page": 2
+      },
+      "text": "条件：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b040",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          559.2843017578125,
+          521.5061645507812,
+          580.210693359375
+        ],
+        "page": 2
+      },
+      "text": "1.在天河区依法登记注册、依法纳税、纳入天河区属地统计",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b041",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          589.584228515625,
+          239.38607788085938,
+          605.5341796875
+        ],
+        "page": 2
+      },
+      "text": "的人力资源服务企业。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b042",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          615.3242797851562,
+          521.5093994140625,
+          636.2506713867188
+        ],
+        "page": 2
+      },
+      "text": "2.上一年度营业收入5 亿元以上的人力资源服务企业，申报",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b043",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          643.2843017578125,
+          521.3888549804688,
+          664.210693359375
+        ],
+        "page": 2
+      },
+      "text": "当年季度累计营业收入同比增加5000 万元以上；或上一年度营",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b044",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          671.2442626953125,
+          521.5093994140625,
+          692.170654296875
+        ],
+        "page": 2
+      },
+      "text": "业收入1 亿元—5 亿元的人力资源服务企业，申报当年季度累计",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b045",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          699.3242797851562,
+          327.3500061035156,
+          720.2506713867188
+        ],
+        "page": 2
+      },
+      "text": "营业收入同比增加1000 万元以上。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b046",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          486.6000061035156,
+          762.821044921875,
+          521.5840454101562,
+          776.9132080078125
+        ],
+        "page": 3
+      },
+      "text": "- 3 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b047",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          113.66422271728516,
+          447.3406982421875,
+          130.28884887695312
+        ],
+        "page": 3
+      },
+      "text": "（二）有下列情况之一的，本项资金不予资助：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b048",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          139.2843017578125,
+          459.3500061035156,
+          160.21070861816406
+        ],
+        "page": 3
+      },
+      "text": "1.企业在获扶持前存在被列入严重失信主体名单。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b049",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          167.24429321289062,
+          507.2220764160156,
+          188.1707000732422
+        ],
+        "page": 3
+      },
+      "text": "2.企业在获扶持前被公安机关查处或政策兑现时仍处于立",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b050",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          197.66421508789062,
+          159.34999084472656,
+          213.6142120361328
+        ],
+        "page": 3
+      },
+      "text": "案阶段的。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b051",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          223.2843017578125,
+          347.27001953125,
+          244.21070861816406
+        ],
+        "page": 3
+      },
+      "text": "3.企业申报或佐证材料弄虚作假。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b052",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          253.58895874023438,
+          207.34658813476562,
+          269.7781982421875
+        ],
+        "page": 3
+      },
+      "text": "四、办理流程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b053",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          281.6642150878906,
+          521.5045776367188,
+          297.6142272949219
+        ],
+        "page": 3
+      },
+      "text": "（一）拟支持企业名单筛选。天河区人力资源和社会保障局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b054",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          309.62420654296875,
+          511.3016662597656,
+          325.57421875
+        ],
+        "page": 3
+      },
+      "text": "根据政策条款要求，会同有关部门筛选符合条件的企业名单。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b055",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          337.584228515625,
+          521.5060424804688,
+          353.53424072265625
+        ],
+        "page": 3
+      },
+      "text": "（二）公示。天河区人力资源和社会保障局将符合条件的企",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b056",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          363.32427978515625,
+          521.5090942382812,
+          384.2507019042969
+        ],
+        "page": 3
+      },
+      "text": "业名单对外公示3 个工作日，公示无异议后确定为拟支持企业名",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b057",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          393.62420654296875,
+          111.2293930053711,
+          409.57421875
+        ],
+        "page": 3
+      },
+      "text": "单。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b058",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          421.584228515625,
+          521.5079345703125,
+          437.53424072265625
+        ],
+        "page": 3
+      },
+      "text": "（三）通知确认。天河区人力资源和社会保障局会同广州市",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b059",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          449.6632080078125,
+          521.5093994140625,
+          465.61322021484375
+        ],
+        "page": 3
+      },
+      "text": "天河区政务服务和数据管理局及所属街道通知拟支持企业，企业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b060",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          475.2843017578125,
+          521.38720703125,
+          496.210693359375
+        ],
+        "page": 3
+      },
+      "text": "登录“天河区政策兑现服务平台”进行确认，并提交相关确认信",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b061",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          505.5841979980469,
+          351.3500061035156,
+          521.5341796875
+        ],
+        "page": 3
+      },
+      "text": "息，逾期未确认的视为放弃支持资金。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b062",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          533.6642456054688,
+          521.5093994140625,
+          549.6141967773438
+        ],
+        "page": 3
+      },
+      "text": "（四）审核。天河区人力资源和社会保障局在信息确认时间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b063",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          559.2843017578125,
+          521.5038452148438,
+          580.210693359375
+        ],
+        "page": 3
+      },
+      "text": "截止后12 个工作日内作出是否成功确认决定。材料不全或不符",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b064",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          589.584228515625,
+          521.5031127929688,
+          605.5341796875
+        ],
+        "page": 3
+      },
+      "text": "合法定形式的，办理机关应一次性告知申领人需补正的全部内",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b065",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          617.6642456054688,
+          521.3900146484375,
+          633.6141967773438
+        ],
+        "page": 3
+      },
+      "text": "容。需要补正佐证材料的，审核人将申领材料退回申领人后，申",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b066",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          645.624267578125,
+          319.3031005859375,
+          661.57421875
+        ],
+        "page": 3
+      },
+      "text": "领人补正材料后，可以再次提交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b067",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          673.584228515625,
+          521.5064697265625,
+          689.5341796875
+        ],
+        "page": 3
+      },
+      "text": "（五）兑现。对成功确认的企业，天河区人力资源和社会保",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b068",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          701.6642456054688,
+          521.5071411132812,
+          717.6141967773438
+        ],
+        "page": 3
+      },
+      "text": "障局在完成内部审核后按相关流程办理完成奖励资金兑现拨付",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b069",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          762.821044921875,
+          114.42500305175781,
+          776.9132080078125
+        ],
+        "page": 4
+      },
+      "text": "- 4 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b070",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          113.66422271728516,
+          127.30899810791016,
+          129.61422729492188
+        ],
+        "page": 4
+      },
+      "text": "申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b071",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          141.6242218017578,
+          521.5064697265625,
+          157.57421875
+        ],
+        "page": 4
+      },
+      "text": "备注：本事项采用免申即享类办理流程，同时支持符合条件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b072",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          169.58421325683594,
+          207.34999084472656,
+          185.53421020507812
+        ],
+        "page": 4
+      },
+      "text": "的企业主动申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b073",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          197.6689453125,
+          207.34658813476562,
+          213.8582000732422
+        ],
+        "page": 4
+      },
+      "text": "五、申报材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b074",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          83.63999938964844,
+          229.42105102539062,
+          111.72985076904297,
+          243.6818084716797
+        ],
+        "page": 4
+      },
+      "text": "序号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b075",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          179.52000427246094,
+          229.42105102539062,
+          235.56927490234375,
+          243.6818084716797
+        ],
+        "page": 4
+      },
+      "text": "材料名称",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b076",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          343.0799865722656,
+          229.42105102539062,
+          399.1292419433594,
+          243.6818084716797
+        ],
+        "page": 4
+      },
+      "text": "材料描述",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b077",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          458.0400085449219,
+          229.42105102539062,
+          514.0892944335938,
+          243.6818084716797
+        ],
+        "page": 4
+      },
+      "text": "是否必备",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b078",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          94.08000183105469,
+          281.9556884765625,
+          101.1050033569336,
+          300.3892822265625
+        ],
+        "page": 4
+      },
+      "text": "1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b079",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          186.47999572753906,
+          284.02105712890625,
+          228.48941040039062,
+          298.1131896972656
+        ],
+        "page": 4
+      },
+      "text": "申请书",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b080",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          301.0799865722656,
+          259.0610656738281,
+          441.1277770996094,
+          273.1531982421875
+        ],
+        "page": 4
+      },
+      "text": "企业法定代表人签字并",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b081",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          301.0799865722656,
+          284.02105712890625,
+          441.1277770996094,
+          298.1131896972656
+        ],
+        "page": 4
+      },
+      "text": "加盖公章，彩色扫描上",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b082",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          364.0799865722656,
+          308.9810485839844,
+          378.1299743652344,
+          323.07318115234375
+        ],
+        "page": 4
+      },
+      "text": "传",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b083",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          479.0400085449219,
+          284.02105712890625,
+          493.0899963378906,
+          298.28179931640625
+        ],
+        "page": 4
+      },
+      "text": "是",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b084",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          94.08000183105469,
+          336.4346923828125,
+          101.1050033569336,
+          354.8682861328125
+        ],
+        "page": 4
+      },
+      "text": "2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b085",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          179.52000427246094,
+          338.6210632324219,
+          235.56927490234375,
+          352.71319580078125
+        ],
+        "page": 4
+      },
+      "text": "营业执照",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b086",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          329.0400085449219,
+          338.6210632324219,
+          413.04925537109375,
+          352.71319580078125
+        ],
+        "page": 4
+      },
+      "text": "彩色扫描上传",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b087",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          479.0400085449219,
+          338.6210632324219,
+          493.0899963378906,
+          352.8818054199219
+        ],
+        "page": 4
+      },
+      "text": "是",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b088",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          94.08000183105469,
+          391.0346984863281,
+          101.1050033569336,
+          409.4682922363281
+        ],
+        "page": 4
+      },
+      "text": "3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b089",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          128.63999938964844,
+          366.07470703125,
+          286.4488525390625,
+          384.50830078125
+        ],
+        "page": 4
+      },
+      "text": "2024 年度11 月F203 统计",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b090",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          126.72000122070312,
+          391.0346984863281,
+          288.30499267578125,
+          409.4682922363281
+        ],
+        "page": 4
+      },
+      "text": "报表及2025 年度8 月F203",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b091",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          179.52000427246094,
+          418.1810607910156,
+          235.56927490234375,
+          432.273193359375
+        ],
+        "page": 4
+      },
+      "text": "统计报表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b092",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          299.0400085449219,
+          366.07470703125,
+          443.04998779296875,
+          384.50830078125
+        ],
+        "page": 4
+      },
+      "text": "“统计联网直报平台（广",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b093",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          299.0400085449219,
+          391.0346984863281,
+          443.0494079589844,
+          409.4682922363281
+        ],
+        "page": 4
+      },
+      "text": "东）”网站下载，加盖企",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b094",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          301.0799865722656,
+          418.1810607910156,
+          441.1292419433594,
+          432.273193359375
+        ],
+        "page": 4
+      },
+      "text": "业公章并彩色扫描上传",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b095",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          479.0400085449219,
+          393.2210693359375,
+          493.0899963378906,
+          407.4818115234375
+        ],
+        "page": 4
+      },
+      "text": "是",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b096",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          444.3889465332031,
+          207.34658813476562,
+          460.57818603515625
+        ],
+        "page": 4
+      },
+      "text": "六、办事窗口",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b097",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          472.4632263183594,
+          521.5090942382812,
+          488.4132385253906
+        ],
+        "page": 4
+      },
+      "text": "此次申报支持全流程网上办理，无需提交纸质材料。如需线",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b098",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          498.08428955078125,
+          521.574951171875,
+          519.0106811523438
+        ],
+        "page": 4
+      },
+      "text": "下办理，可前往天河区政务服务中心政策兑现服务窗口（5 楼525",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b099",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          528.38427734375,
+          271.3045654296875,
+          544.334228515625
+        ],
+        "page": 4
+      },
+      "text": "窗），提交相关申报材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b100",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          556.4679565429688,
+          207.34658813476562,
+          572.6572265625
+        ],
+        "page": 4
+      },
+      "text": "七、政策依据",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b101",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          584.4242553710938,
+          521.506103515625,
+          600.3742065429688
+        ],
+        "page": 4
+      },
+      "text": "《广州市天河区发展和改革局广州市天河区人力资源和社",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b102",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          612.38427734375,
+          521.507568359375,
+          628.334228515625
+        ],
+        "page": 4
+      },
+      "text": "会保障局广州市天河区市场监督管理局广州市天河区司法局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b103",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          640.4632568359375,
+          521.5068359375,
+          656.4132080078125
+        ],
+        "page": 4
+      },
+      "text": "广州市天河区科技工业和信息化局广州市天河区文化广电旅游",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b104",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          668.4242553710938,
+          521.5031127929688,
+          684.3742065429688
+        ],
+        "page": 4
+      },
+      "text": "体育局关于印发广州市天河区加快推动高端专业服务业高质量",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b105",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          694.0443115234375,
+          521.3900146484375,
+          714.970703125
+        ],
+        "page": 4
+      },
+      "text": "发展的若干政策措施的通知》（穗天发改规字〔2025〕1 号）第",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b106",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          486.6000061035156,
+          762.821044921875,
+          521.5840454101562,
+          776.9132080078125
+        ],
+        "page": 5
+      },
+      "text": "- 5 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b107",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          113.66422271728516,
+          521.5046997070312,
+          129.61422729492188
+        ],
+        "page": 5
+      },
+      "text": "四条【人力资源服务做大做强支持】培育一批示范带动作用强的",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b108",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          139.2843017578125,
+          521.5060424804688,
+          160.21070861816406
+        ],
+        "page": 5
+      },
+      "text": "优质人力资源服务企业，对上一年度营业收入5 亿元以上的人力",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b109",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          167.24429321289062,
+          521.3900146484375,
+          188.1707000732422
+        ],
+        "page": 5
+      },
+      "text": "资源服务企业，申报当年，季度累计营业收入同比增加5000 万",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b110",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          197.66421508789062,
+          521.5045776367188,
+          213.6142120361328
+        ],
+        "page": 5
+      },
+      "text": "元以上的，按季度给予以下支持：（一）季度累计营业收入同比",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b111",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          223.2843017578125,
+          521.5090942382812,
+          244.21070861816406
+        ],
+        "page": 5
+      },
+      "text": "增加5000 万元—1 亿元的，每同比增加1000 万元给予2 万元支",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b112",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          251.2443084716797,
+          521.5075073242188,
+          272.17071533203125
+        ],
+        "page": 5
+      },
+      "text": "持。（二）季度累计营业收入同比增加1 亿元以上的，每同比增",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b113",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          279.32427978515625,
+          521.5050659179688,
+          300.2507019042969
+        ],
+        "page": 5
+      },
+      "text": "加1000 万元给予5 万元支持。当季度支持金额按剔除当年基于",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b114",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          307.2843017578125,
+          521.5089721679688,
+          328.210693359375
+        ],
+        "page": 5
+      },
+      "text": "本条已获得的支持金额后兑现，每家企业每季度最高支持150 万",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b115",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          335.24432373046875,
+          521.5060424804688,
+          356.17071533203125
+        ],
+        "page": 5
+      },
+      "text": "元，每年累计兑现金额最高500 万元。第五条【人力资源服务发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b116",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          365.6642150878906,
+          521.5093994140625,
+          381.6142272949219
+        ],
+        "page": 5
+      },
+      "text": "展壮大支持】培育一批成长性好的人力资源服务中小企业，对上",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b117",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          391.2843017578125,
+          529.5499877929688,
+          412.210693359375
+        ],
+        "page": 5
+      },
+      "text": "一年度营业收入1 亿元—5 亿元的人力资源服务企业，申报当年，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b118",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          419.24432373046875,
+          521.38916015625,
+          440.17071533203125
+        ],
+        "page": 5
+      },
+      "text": "季度累计营业收入同比增加1000 万元以上的，按季度给予以下",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b119",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          447.32330322265625,
+          521.5093994140625,
+          468.24969482421875
+        ],
+        "page": 5
+      },
+      "text": "支持：（一）季度累计营业收入同比增加1000 万元—5000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b120",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          475.2843017578125,
+          521.3888549804688,
+          496.210693359375
+        ],
+        "page": 5
+      },
+      "text": "的，每同比增加1000 万元给予1 万元支持。（二）季度累计营",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b121",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          503.2442626953125,
+          521.574951171875,
+          524.170654296875
+        ],
+        "page": 5
+      },
+      "text": "业收入同比增加5000 万元以上的，每同比增加1000 万元给予3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b122",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          533.6642456054688,
+          521.4990844726562,
+          549.6141967773438
+        ],
+        "page": 5
+      },
+      "text": "万元支持。当季度支持金额按剔除当年基于本条已获得的支持金",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b123",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          559.2843017578125,
+          407.3891296386719,
+          580.210693359375
+        ],
+        "page": 5
+      },
+      "text": "额后兑现，每家企业每季度最高支持50 万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b124",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          589.5889282226562,
+          239.3875732421875,
+          605.7781982421875
+        ],
+        "page": 5
+      },
+      "text": "八、常见问题说明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b125",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          617.6642456054688,
+          521.5090942382812,
+          633.6141967773438
+        ],
+        "page": 5
+      },
+      "text": "申报企业应是天河区高端专业服务业重点发展领域（详见附",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b126",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          645.624267578125,
+          511.30206298828125,
+          661.57421875
+        ],
+        "page": 5
+      },
+      "text": "件）中的人力资源服务企业，并在对应的行业类别纳入统计。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b127",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          673.584228515625,
+          521.5089721679688,
+          689.5341796875
+        ],
+        "page": 5
+      },
+      "text": "申请本项目的企业应保证其申报材料的完整性、真实性、准",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b128",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          701.6642456054688,
+          521.5089721679688,
+          717.6141967773438
+        ],
+        "page": 5
+      },
+      "text": "确性及合法性，并承担所提交项目申报材料的相关法律责任，如",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b129",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          762.821044921875,
+          114.42500305175781,
+          776.9132080078125
+        ],
+        "page": 6
+      },
+      "text": "- 6 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b130",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          113.66422271728516,
+          521.5045776367188,
+          129.61422729492188
+        ],
+        "page": 6
+      },
+      "text": "有虚假或侵权等行为，该项目申请无效，如事后发现存在以上行",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b131",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          141.6242218017578,
+          479.25811767578125,
+          157.57421875
+        ],
+        "page": 6
+      },
+      "text": "为，本资金主管部门将保留依法追究其法律责任的权利。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b132",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          111.35900115966797,
+          197.66421508789062,
+          463.2986145019531,
+          213.6142120361328
+        ],
+        "page": 6
+      },
+      "text": "附件：天河区高端专业服务业重点发展领域分类表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b133",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          486.6000061035156,
+          762.821044921875,
+          521.5840454101562,
+          776.9132080078125
+        ],
+        "page": 7
+      },
+      "text": "- 7 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b134",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          113.66895294189453,
+          111.2293930053711,
+          129.8582000732422
+        ],
+        "page": 7
+      },
+      "text": "附件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949999809265137
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b135",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          148.44000244140625,
+          140.8220977783203,
+          452.3811340332031,
+          159.81854248046875
+        ],
+        "page": 7
+      },
+      "text": "天河区高端专业服务业重点发展领域分类表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b136",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          81.72000122070312,
+          163.14199829101562,
+          93.72000122070312,
+          175.17799377441406
+        ],
+        "page": 7
+      },
+      "text": "序",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b137",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          81.72000122070312,
+          178.74200439453125,
+          93.72000122070312,
+          190.7779998779297
+        ],
+        "page": 7
+      },
+      "text": "号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b138",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.04000091552734,
+          170.94200134277344,
+          158.1595458984375,
+          182.97799682617188
+        ],
+        "page": 7
+      },
+      "text": "行业门类",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b139",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          186.83999633789062,
+          170.94200134277344,
+          234.9595489501953,
+          182.97799682617188
+        ],
+        "page": 7
+      },
+      "text": "细分行业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b140",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          268.20001220703125,
+          163.14199829101562,
+          364.5586242675781,
+          175.17799377441406
+        ],
+        "page": 7
+      },
+      "text": "对应国民经济行业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": true,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b141",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          266.7590026855469,
+          176.75,
+          365.9995422363281,
+          192.7220001220703
+        ],
+        "page": 7
+      },
+      "text": "代码（2017 年版）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b142",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          428.0400085449219,
+          170.94200134277344,
+          476.1595458984375,
+          182.97799682617188
+        ],
+        "page": 7
+      },
+      "text": "类别名称",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b143",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          207.697998046875,
+          90.72000122070312,
+          223.44200134277344
+        ],
+        "page": 7
+      },
+      "text": "1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b144",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.04000091552734,
+          439.1419982910156,
+          158.04000854492188,
+          451.1780090332031
+        ],
+        "page": 7
+      },
+      "text": "租赁和商",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b145",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.04000091552734,
+          454.7419738769531,
+          158.04000854492188,
+          466.7779846191406
+        ],
+        "page": 7
+      },
+      "text": "务服务业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b146",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          192.95899963378906,
+          209.46200561523438,
+          228.95899963378906,
+          221.4980010986328
+        ],
+        "page": 7
+      },
+      "text": "租赁业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b147",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          207.697998046875,
+          338.6400146484375,
+          223.44200134277344
+        ],
+        "page": 7
+      },
+      "text": "711、712、713",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b148",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          201.66200256347656,
+          521.280029296875,
+          213.697998046875
+        ],
+        "page": 7
+      },
+      "text": "机械设备经营租赁、文体设",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b149",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          217.2620086669922,
+          521.280029296875,
+          229.29800415039062
+        ],
+        "page": 7
+      },
+      "text": "备和用品出租、日用品出租",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b150",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          254.9779815673828,
+          90.72000122070312,
+          270.72198486328125
+        ],
+        "page": 7
+      },
+      "text": "2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b151",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          186.95899963378906,
+          256.7419738769531,
+          234.95899963378906,
+          268.7779846191406
+        ],
+        "page": 7
+      },
+      "text": "法律服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b152",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          254.9779815673828,
+          356.6400146484375,
+          270.72198486328125
+        ],
+        "page": 7
+      },
+      "text": "7231、7232、7239",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b153",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          248.94200134277344,
+          521.280029296875,
+          260.9779968261719
+        ],
+        "page": 7
+      },
+      "text": "律师及相关法律服务、公证",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b154",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          264.5419921875,
+          491.0400085449219,
+          276.5780029296875
+        ],
+        "page": 7
+      },
+      "text": "服务、其他法律服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b155",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          307.2980041503906,
+          90.72000122070312,
+          323.0419921875
+        ],
+        "page": 7
+      },
+      "text": "3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b156",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          180.95899963378906,
+          309.0619812011719,
+          240.95899963378906,
+          321.0979919433594
+        ],
+        "page": 7
+      },
+      "text": "咨询与调查",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b157",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          292.5370178222656,
+          368.6400146484375,
+          308.281005859375
+        ],
+        "page": 7
+      },
+      "text": "7241、7242、7243、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b158",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          308.13702392578125,
+          368.6400146484375,
+          323.8810119628906
+        ],
+        "page": 7
+      },
+      "text": "7244、7245、7246、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b159",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          322.77801513671875,
+          284.6400146484375,
+          338.5220031738281
+        ],
+        "page": 7
+      },
+      "text": "7249",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b160",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          293.46197509765625,
+          521.280029296875,
+          305.49798583984375
+        ],
+        "page": 7
+      },
+      "text": "主要包括社会经济咨询、会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b161",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          309.0619812011719,
+          521.280029296875,
+          321.0979919433594
+        ],
+        "page": 7
+      },
+      "text": "计、审计及税务服务、健康",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b162",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          324.5419921875,
+          419.0400085449219,
+          336.5780029296875
+        ],
+        "page": 7
+      },
+      "text": "咨询等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b163",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          367.1780090332031,
+          90.72000122070312,
+          382.9219970703125
+        ],
+        "page": 7
+      },
+      "text": "4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b164",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          192.95899963378906,
+          368.9419860839844,
+          228.95899963378906,
+          380.9779968261719
+        ],
+        "page": 7
+      },
+      "text": "广告业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b165",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          367.1780090332031,
+          320.6400146484375,
+          382.9219970703125
+        ],
+        "page": 7
+      },
+      "text": "7251、7259",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b166",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          361.260986328125,
+          521.280029296875,
+          373.2969970703125
+        ],
+        "page": 7
+      },
+      "text": "互联网广告服务、其他广告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b167",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          376.7419738769531,
+          407.0400085449219,
+          388.7779846191406
+        ],
+        "page": 7
+      },
+      "text": "服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b168",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          425.3780212402344,
+          90.72000122070312,
+          441.12200927734375
+        ],
+        "page": 7
+      },
+      "text": "5",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b169",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.95899963378906,
+          427.1419982910156,
+          244.9176788330078,
+          439.1780090332031
+        ],
+        "page": 7
+      },
+      "text": "人力资源服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b170",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          417.5780029296875,
+          368.6400146484375,
+          433.3219909667969
+        ],
+        "page": 7
+      },
+      "text": "7261、7262、7263、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b171",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          433.1780090332031,
+          320.6400146484375,
+          448.9219970703125
+        ],
+        "page": 7
+      },
+      "text": "7264、7269",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b172",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          411.6609802246094,
+          521.280029296875,
+          423.6969909667969
+        ],
+        "page": 7
+      },
+      "text": "主要包括职业中介服务、劳",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b173",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          427.1419982910156,
+          521.280029296875,
+          439.1780090332031
+        ],
+        "page": 7
+      },
+      "text": "务派遣服务、创业指导服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b174",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          442.7419738769531,
+          395.0400085449219,
+          454.7779846191406
+        ],
+        "page": 7
+      },
+      "text": "等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b175",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          489.697998046875,
+          90.72000122070312,
+          505.4419860839844
+        ],
+        "page": 7
+      },
+      "text": "6",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b176",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          180.95899963378906,
+          483.6609802246094,
+          240.95899963378906,
+          495.6969909667969
+        ],
+        "page": 7
+      },
+      "text": "会议展览及",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b177",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          186.95899963378906,
+          499.260986328125,
+          234.95899963378906,
+          511.2969970703125
+        ],
+        "page": 7
+      },
+      "text": "相关服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b178",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          481.8970031738281,
+          368.6400146484375,
+          497.6409912109375
+        ],
+        "page": 7
+      },
+      "text": "7281、7282、7283、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b179",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          497.3780212402344,
+          320.6400146484375,
+          513.1220092773438
+        ],
+        "page": 7
+      },
+      "text": "7284、7289",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b180",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          475.8609924316406,
+          521.280029296875,
+          487.8970031738281
+        ],
+        "page": 7
+      },
+      "text": "主要包括科技会展服务、旅",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b181",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          491.46197509765625,
+          521.2791748046875,
+          503.49798583984375
+        ],
+        "page": 7
+      },
+      "text": "游会展服务、体育会展服",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b182",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          506.9419860839844,
+          491.0400085449219,
+          518.97802734375
+        ],
+        "page": 7
+      },
+      "text": "务、文化会展服务等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b183",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          569.7369995117188,
+          90.72000122070312,
+          585.4810180664062
+        ],
+        "page": 7
+      },
+      "text": "7",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b184",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          174.60000610351562,
+          563.7009887695312,
+          248.99850463867188,
+          575.7369995117188
+        ],
+        "page": 7
+      },
+      "text": "组织管理服务及",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b185",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          179.75900268554688,
+          579.301025390625,
+          243.7176513671875,
+          591.3370361328125
+        ],
+        "page": 7
+      },
+      "text": "综合管理服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b186",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          569.7369995117188,
+          308.6400146484375,
+          585.4810180664062
+        ],
+        "page": 7
+      },
+      "text": "721、722",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b187",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          556.0220336914062,
+          521.280029296875,
+          568.0580444335938
+        ],
+        "page": 7
+      },
+      "text": "主要包括企业总部管理、投",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b188",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          571.5010375976562,
+          521.280029296875,
+          583.5370483398438
+        ],
+        "page": 7
+      },
+      "text": "资与资产管理、园区管理服",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b189",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          587.1010131835938,
+          521.280029296875,
+          599.1370239257812
+        ],
+        "page": 7
+      },
+      "text": "务、商业综合体管理服务等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b190",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          658.41796875,
+          90.72000122070312,
+          674.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "8",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b191",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          174.60000610351562,
+          660.1820068359375,
+          248.99850463867188,
+          672.218017578125
+        ],
+        "page": 7
+      },
+      "text": "其他商务服务业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b192",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          642.8179931640625,
+          368.6400146484375,
+          658.56201171875
+        ],
+        "page": 7
+      },
+      "text": "7291、7292、7293、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b193",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          658.41796875,
+          368.6400146484375,
+          674.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "7294、7295、7296、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b194",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          674.0180053710938,
+          356.6400146484375,
+          689.7620239257812
+        ],
+        "page": 7
+      },
+      "text": "7297、7298、7299",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b195",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          636.9010009765625,
+          521.2791748046875,
+          648.93701171875
+        ],
+        "page": 7
+      },
+      "text": "主要包括旅行社及相关服",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b196",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          652.3820190429688,
+          521.280029296875,
+          664.4180297851562
+        ],
+        "page": 7
+      },
+      "text": "务、信用服务、非融资担保",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b197",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          667.9819946289062,
+          521.280029296875,
+          680.0180053710938
+        ],
+        "page": 7
+      },
+      "text": "服务、其他未列明商务服务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b198",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          683.58203125,
+          407.0400085449219,
+          695.6180419921875
+        ],
+        "page": 7
+      },
+      "text": "业等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.050000190734863
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b199",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.31999969482422,
+          762.821044921875,
+          114.42500305175781,
+          776.9132080078125
+        ],
+        "page": 8
+      },
+      "text": "- 8 -",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b200",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          81.72000122070312,
+          109.5009994506836,
+          93.72000122070312,
+          121.53699493408203
+        ],
+        "page": 8
+      },
+      "text": "序",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b201",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          81.72000122070312,
+          125.10099792480469,
+          93.72000122070312,
+          137.13699340820312
+        ],
+        "page": 8
+      },
+      "text": "号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b207",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          84.72000122070312,
+          196.29798889160156,
+          90.72000122070312,
+          212.0419921875
+        ],
+        "page": 8
+      },
+      "text": "9",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b208",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.04000091552734,
+          322.5009765625,
+          158.04000854492188,
+          334.5369873046875
+        ],
+        "page": 8
+      },
+      "text": "科学研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b209",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          116.04000091552734,
+          337.98199462890625,
+          152.04000854492188,
+          350.01800537109375
+        ],
+        "page": 8
+      },
+      "text": "和技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b210",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          116.04000091552734,
+          353.5820007324219,
+          152.04000854492188,
+          365.6180114746094
+        ],
+        "page": 8
+      },
+      "text": "服务业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b211",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          174.60000610351562,
+          198.06199645996094,
+          248.99850463867188,
+          210.09799194335938
+        ],
+        "page": 8
+      },
+      "text": "研究和试验发展",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b212",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          188.37799072265625,
+          368.6400146484375,
+          204.1219940185547
+        ],
+        "page": 8
+      },
+      "text": "7310、7320、7330、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b213",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          203.97799682617188,
+          320.6400146484375,
+          219.7220001220703
+        ],
+        "page": 8
+      },
+      "text": "7340、7350",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b214",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          141.8179931640625,
+          521.280029296875,
+          157.56199645996094
+        ],
+        "page": 8
+      },
+      "text": "本措施所指“研发设计”包",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b215",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          157.29798889160156,
+          521.2762451171875,
+          173.0419921875
+        ],
+        "page": 8
+      },
+      "text": "含731 自然科学研究和试",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b216",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          172.8979949951172,
+          521.280029296875,
+          188.64199829101562
+        ],
+        "page": 8
+      },
+      "text": "验发展、732 工程和技术研",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b217",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          188.37799072265625,
+          521.280029296875,
+          204.1219940185547
+        ],
+        "page": 8
+      },
+      "text": "究和试验发展、733 农业科",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b218",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          203.97799682617188,
+          521.280029296875,
+          219.7220001220703
+        ],
+        "page": 8
+      },
+      "text": "学研究和试验发展、734 医",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b219",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          219.57798767089844,
+          521.280029296875,
+          235.32199096679688
+        ],
+        "page": 8
+      },
+      "text": "学研究和试验发展、735 社",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b220",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          236.94200134277344,
+          521.2791748046875,
+          248.97799682617188
+        ],
+        "page": 8
+      },
+      "text": "会人文科学研究等五个行",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b221",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          252.54200744628906,
+          419.0400085449219,
+          264.5780029296875
+        ],
+        "page": 8
+      },
+      "text": "业中类",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b222",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          81.72000122070312,
+          346.8970031738281,
+          93.72000122070312,
+          362.6409912109375
+        ],
+        "page": 8
+      },
+      "text": "10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b223",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          174.60000610351562,
+          348.6609802246094,
+          248.99850463867188,
+          360.6969909667969
+        ],
+        "page": 8
+      },
+      "text": "专业技术服务业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b224",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          269.9779968261719,
+          372.239990234375,
+          285.72198486328125
+        ],
+        "page": 8
+      },
+      "text": "7410、7420、7431、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b225",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          285.4580078125,
+          372.239990234375,
+          301.2019958496094
+        ],
+        "page": 8
+      },
+      "text": "7432、7439、7441、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b226",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          301.0580139160156,
+          372.239990234375,
+          316.802001953125
+        ],
+        "page": 8
+      },
+      "text": "7449、7451、7452、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b227",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          316.5370178222656,
+          372.239990234375,
+          332.281005859375
+        ],
+        "page": 8
+      },
+      "text": "7453、7454、7455、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b228",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          332.13702392578125,
+          372.239990234375,
+          347.8810119628906
+        ],
+        "page": 8
+      },
+      "text": "7459、7461、7462、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b229",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          347.73699951171875,
+          372.239990234375,
+          363.4809875488281
+        ],
+        "page": 8
+      },
+      "text": "7463、7471、7472、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b230",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          363.218017578125,
+          372.239990234375,
+          378.9620056152344
+        ],
+        "page": 8
+      },
+      "text": "7473、7474、7475、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b231",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          378.8180236816406,
+          372.239990234375,
+          394.56201171875
+        ],
+        "page": 8
+      },
+      "text": "7481、7482、7483、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b232",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          394.4179992675781,
+          372.239990234375,
+          410.1619873046875
+        ],
+        "page": 8
+      },
+      "text": "7484、7485、7486、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b233",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          410.01800537109375,
+          368.6400146484375,
+          425.7619934082031
+        ],
+        "page": 8
+      },
+      "text": "7491、7492、7493、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b234",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          424.65802001953125,
+          284.6400146484375,
+          440.4020080566406
+        ],
+        "page": 8
+      },
+      "text": "7499",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b235",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          294.1819763183594,
+          521.280029296875,
+          306.2179870605469
+        ],
+        "page": 8
+      },
+      "text": "主要包括工程设计活动、工",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b236",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          309.781982421875,
+          521.2791748046875,
+          321.8179931640625
+        ],
+        "page": 8
+      },
+      "text": "程管理活动、工程监理服",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b237",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          325.3819885253906,
+          491.0400085449219,
+          337.4179992675781
+        ],
+        "page": 8
+      },
+      "text": "务、规划设计管理等",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b238",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          339.0970153808594,
+          521.3159790039062,
+          354.84100341796875
+        ],
+        "page": 8
+      },
+      "text": "（本措施所指“检验检测”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b239",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          354.697998046875,
+          521.2777099609375,
+          370.4419860839844
+        ],
+        "page": 8
+      },
+      "text": "包含745 质检技术服务、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b240",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          370.1780090332031,
+          521.2767944335938,
+          385.9219970703125
+        ],
+        "page": 8
+      },
+      "text": "746 环境与生态监测检测",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b241",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          385.77801513671875,
+          521.280029296875,
+          401.5220031738281
+        ],
+        "page": 8
+      },
+      "text": "服务、747 地质勘查等三个",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b242",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          403.1419982910156,
+          443.0400085449219,
+          415.1780090332031
+        ],
+        "page": 8
+      },
+      "text": "行业中类）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b243",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          81.72000122070312,
+          486.93701171875,
+          93.72000122070312,
+          502.6809997558594
+        ],
+        "page": 8
+      },
+      "text": "11",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b244",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          180.95899963378906,
+          480.9010009765625,
+          240.95899963378906,
+          492.93701171875
+        ],
+        "page": 8
+      },
+      "text": "科技推广和",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b245",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          180.95899963378906,
+          496.3819885253906,
+          240.95899963378906,
+          508.4179992675781
+        ],
+        "page": 8
+      },
+      "text": "应用服务业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b246",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          463.5370178222656,
+          368.6400146484375,
+          479.281005859375
+        ],
+        "page": 8
+      },
+      "text": "7511、7512、7513、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b247",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          479.01800537109375,
+          368.6400146484375,
+          494.7619934082031
+        ],
+        "page": 8
+      },
+      "text": "7514、7515、7516、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b248",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          494.6180114746094,
+          368.6400146484375,
+          510.36199951171875
+        ],
+        "page": 8
+      },
+      "text": "7517、7519、7520、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b249",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          260.6400146484375,
+          510.2179870605469,
+          356.6400146484375,
+          525.9619750976562
+        ],
+        "page": 8
+      },
+      "text": "7530、7540、7590",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 12.0
+      },
+      "block_id": "real_general_004_tianhe_service_guide_b250",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          383.0400085449219,
+          480.9010009765625,
+          521.280029296875,
+          492.93701171875
+        ],
+        "page": 8
+      },
+      "text": "主要包括知识产权服务、新",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_004_tianhe_service_guide",
+  "metadata": {
+    "dedupe_note": "Repeated multi-character PDF table/header text blocks were removed after extraction; source anchors remain on retained first occurrences.",
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 244,
+    "extraction_method": "pymupdf_text",
+    "extraction_truncated": true,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "page_count": 8,
+    "page_text_lengths": [
+      431,
+      497,
+      511,
+      426,
+      648,
+      83,
+      573,
+      571
+    ],
+    "retrieved_at": "2026-06-30T13:20:10.792819+00:00",
+    "source_format": "pdf",
+    "source_sha256": "c0e65b958b3fc0dc2947d702e58dceb7573b470fd4b22e3e626768ae312d97b0",
+    "source_site": "www.gz.gov.cn",
+    "source_url": "https://www.gz.gov.cn/interf/storage/material/2026/01/20/0ebc48ad0dfd3b325bf2cf024e72a42b.pdf",
+    "title": "天河区高端专业服务业政策兑现事项办事指南",
+    "标题": "天河区高端专业服务业政策兑现事项办事指南"
+  },
+  "normalization_records": [
+    {
+      "method": "pymupdf_text",
+      "normalized": true,
+      "source_sha256": "c0e65b958b3fc0dc2947d702e58dceb7573b470fd4b22e3e626768ae312d97b0"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_004_tianhe_service_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

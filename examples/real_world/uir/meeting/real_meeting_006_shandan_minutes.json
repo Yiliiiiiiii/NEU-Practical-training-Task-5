@@ -1,0 +1,4209 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b001",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          475.3119201660156,
+          768.7599487304688,
+          522.2416381835938,
+          782.8096313476562
+        ],
+        "page": 1
+      },
+      "text": "— \u0000 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 42.563533782958984
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b002",
+      "level": 1,
+      "source_anchor": {
+        "bbox": [
+          93.59860229492188,
+          203.8849639892578,
+          507.1379089355469,
+          269.3295593261719
+        ],
+        "page": 1
+      },
+      "text": "山丹县人民政府常务会议\u0000纪要\u0001",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b003",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          223.07591247558594,
+          325.99688720703125,
+          377.50323486328125,
+          343.6532287597656
+        ],
+        "page": 1
+      },
+      "text": "十九届县政府第97 次",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b004",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          202.67645263671875,
+          355.7726745605469,
+          397.91619873046875,
+          371.722412109375
+        ],
+        "page": 1
+      },
+      "text": "（二〇二五年十一月三日）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b005",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07781219482422,
+          452.3542785644531,
+          518.8922119140625,
+          470.0106201171875
+        ],
+        "page": 1
+      },
+      "text": "11 月3 日，县委副书记、县长黄国杰主持召开十九届县政",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b006",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          482.35369873046875,
+          519.3414916992188,
+          500.0100402832031
+        ],
+        "page": 1
+      },
+      "text": "府第97 次常务会议，传达学习习近平总书记重要讲话精神，组",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b007",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          512.8497924804688,
+          519.3478393554688,
+          528.7994995117188
+        ],
+        "page": 1
+      },
+      "text": "织学习中央和省市有关会议文件精神，专题研究经济运行、为民",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b008",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          542.8494873046875,
+          519.2633056640625,
+          558.7991943359375
+        ],
+        "page": 1
+      },
+      "text": "实事办理、安全生产、根治欠薪、公平竞争审查、文物保护、民",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b009",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          572.8489379882812,
+          519.4384155273438,
+          588.7986450195312
+        ],
+        "page": 1
+      },
+      "text": "生保障、国企监管、交通项目建设等方面工作。县政府在家领导",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b010",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          602.8483276367188,
+          519.4232788085938,
+          618.7980346679688
+        ],
+        "page": 1
+      },
+      "text": "出席会议，各乡镇、县直有关部门、企事业及省市驻丹有关单位",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b011",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          632.8480224609375,
+          519.2561645507812,
+          648.7977294921875
+        ],
+        "page": 1
+      },
+      "text": "负责同志列席会议，县人大常委会副主任车明国、县政协副主席",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b012",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          662.8474731445312,
+          456.62725830078125,
+          678.7971801757812
+        ],
+        "page": 1
+      },
+      "text": "唐谦应邀参加会议。现将会议研究确定事项纪要如下：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b013",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          692.8468627929688,
+          519.3531494140625,
+          708.7965698242188
+        ],
+        "page": 1
+      },
+      "text": "一、会议传达学习了习近平主席在全球妇女峰会开幕式上的",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b014",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          722.8466186523438,
+          519.3414916992188,
+          738.7963256835938
+        ],
+        "page": 1
+      },
+      "text": "重要讲话精神，并研究了贯彻落实工作。会议强调，县妇联、各",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b015",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          769.7203369140625,
+          126.36731719970703,
+          783.77001953125
+        ],
+        "page": 2
+      },
+      "text": "— \u0001 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b016",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          108.09699249267578,
+          519.3414916992188,
+          124.04672241210938
+        ],
+        "page": 2
+      },
+      "text": "乡镇及县直相关部门要将学习贯彻习近平主席在全球妇女峰会开",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b017",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          137.49659729003906,
+          519.5068969726562,
+          153.44631958007812
+        ],
+        "page": 2
+      },
+      "text": "幕式上的重要讲话精神作为重要政治任务，进一步深化学习，统",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b018",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          166.7757110595703,
+          519.3414916992188,
+          182.72543334960938
+        ],
+        "page": 2
+      },
+      "text": "筹谋划新时期妇女工作，营造促进妇女全面发展的良好环境，搭",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b019",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          196.1753692626953,
+          519.2633056640625,
+          212.12509155273438
+        ],
+        "page": 2
+      },
+      "text": "建赋能妇女投身高质量发展的广阔平台，共同构建保障妇女权益",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b020",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          225.45448303222656,
+          519.5068969726562,
+          241.40420532226562
+        ],
+        "page": 2
+      },
+      "text": "的治理格局，支持妇女在科技创新、乡村振兴、基层治理、经济",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b021",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          254.85414123535156,
+          519.3544311523438,
+          270.8038635253906
+        ],
+        "page": 2
+      },
+      "text": "发展等各领域施展才华、建功立业，以务实之举引领全县妇女事",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b022",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          284.13409423828125,
+          142.42730712890625,
+          300.0838317871094
+        ],
+        "page": 2
+      },
+      "text": "业发展。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b023",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.87792205810547,
+          313.0370788574219,
+          519.3784790039062,
+          330.69342041015625
+        ],
+        "page": 2
+      },
+      "text": "二、会议传达学习了10 月17 日、10 月31 日国务院常务会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b024",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          342.4364318847656,
+          519.0772094726562,
+          360.0927734375
+        ],
+        "page": 2
+      },
+      "text": "议，十四届省政府第101 次常务会议，五届市政府第101—102",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b025",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          372.2122497558594,
+          519.361572265625,
+          388.1619873046875
+        ],
+        "page": 2
+      },
+      "text": "次常务会议精神，并研究了贯彻落实工作。会议强调，近期召开",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b026",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          401.6118469238281,
+          519.4384155273438,
+          417.56158447265625
+        ],
+        "page": 2
+      },
+      "text": "的国务院和省、市政府常务会议，系统部署了加快构建现代物流",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b027",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          430.891845703125,
+          519.526611328125,
+          446.8415832519531
+        ],
+        "page": 2
+      },
+      "text": "体系、营造绿色贸易发展良好环境、抓好粮食生产、强化强科技",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b028",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          459.7948303222656,
+          519.3478393554688,
+          477.451171875
+        ],
+        "page": 2
+      },
+      "text": "行动、全面推动黄河流域生态保护和高质量发展、城镇住宅“登记",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b029",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          489.19415283203125,
+          519.3478393554688,
+          506.8504943847656
+        ],
+        "page": 2
+      },
+      "text": "难”问题化解、现代种业畜牧业产品精深加工产业集群发展、中央",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b030",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          518.9702758789062,
+          519.3478393554688,
+          534.9199829101562
+        ],
+        "page": 2
+      },
+      "text": "生态环保督察反馈问题整改等重点任务，县政府班子成员和各乡",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b031",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          548.3695678710938,
+          519.5552978515625,
+          564.3192749023438
+        ],
+        "page": 2
+      },
+      "text": "镇、各部门要结合山丹实际、立足工作职责，将会议精神融入具",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b032",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          577.6487426757812,
+          519.5552978515625,
+          593.5984497070312
+        ],
+        "page": 2
+      },
+      "text": "体工作实践，积极研究贯彻落实意见，做好政策结合文章，确保",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b033",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          607.0484008789062,
+          283.8822021484375,
+          622.9981079101562
+        ],
+        "page": 2
+      },
+      "text": "各项工作不折不扣落地见效。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b034",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.87792205810547,
+          636.328369140625,
+          522.0870971679688,
+          652.278076171875
+        ],
+        "page": 2
+      },
+      "text": "三、会议传达学习了全省经济运行调度会议精神，并研究了",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b035",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          665.7279663085938,
+          521.9171752929688,
+          681.6776733398438
+        ],
+        "page": 2
+      },
+      "text": "贯彻落实工作。会议强调，各乡镇、各部门要聚焦全年经济社会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b036",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          695.1273193359375,
+          529.660888671875,
+          711.0770263671875
+        ],
+        "page": 2
+      },
+      "text": "发展目标，坚定信心，精准施策，着力稳就业、稳企业、稳市场、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b037",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          723.9100952148438,
+          529.660888671875,
+          741.56640625
+        ],
+        "page": 2
+      },
+      "text": "稳预期，促进一二三产同步发力、均衡发展，做到工业“多拉快跑”、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b038",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          475.3119201660156,
+          768.7599487304688,
+          522.2416381835938,
+          782.8096313476562
+        ],
+        "page": 3
+      },
+      "text": "— \u0002 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b039",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          108.09699249267578,
+          522.0227661132812,
+          124.04672241210938
+        ],
+        "page": 3
+      },
+      "text": "农业增产增收、消费提质增效，为推动县域经济高质量发展蓄势",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b040",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          137.49659729003906,
+          522.0153198242188,
+          153.44631958007812
+        ],
+        "page": 3
+      },
+      "text": "赋能。县委常委、常务副县长郭强牵头，发展改革、统计等部门",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b041",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          166.7757110595703,
+          521.7623901367188,
+          182.72543334960938
+        ],
+        "page": 3
+      },
+      "text": "要强化经济运行监测调度，持续巩固优势指标，着力提升短板指",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b042",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          196.1753692626953,
+          503.8288269042969,
+          212.12509155273438
+        ],
+        "page": 3
+      },
+      "text": "标，力促县域经济社会发展稳中有进、进中提质、质量齐升。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b043",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          225.45448303222656,
+          519.23583984375,
+          241.40420532226562
+        ],
+        "page": 3
+      },
+      "text": "四、会议传达学习了《张掖市公平竞争审查工作制度》（张",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b044",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          254.35751342773438,
+          527.1415405273438,
+          272.01385498046875
+        ],
+        "page": 3
+      },
+      "text": "政办发〔2025〕68 号）精神，并研究了贯彻落实工作。会议强调，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b045",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          284.13409423828125,
+          519.5068969726562,
+          300.0838317871094
+        ],
+        "page": 3
+      },
+      "text": "各级各部门要牢固树立公平竞争理念，将公平竞争审查作为制定",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b046",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          313.533447265625,
+          519.5552978515625,
+          329.4831848144531
+        ],
+        "page": 3
+      },
+      "text": "涉及市场主体经济活动的必经程序，从源头上规范政府行为，防",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b047",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          342.9330749511719,
+          519.5552978515625,
+          358.8828125
+        ],
+        "page": 3
+      },
+      "text": "止出台排除、限制竞争的政策措施，为各类市场主体营造公平透",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b048",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          372.2122497558594,
+          519.3414916992188,
+          388.1619873046875
+        ],
+        "page": 3
+      },
+      "text": "明、普惠包容的发展环境。副县长张克孟牵头，市场监管部门要",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b049",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          401.6118469238281,
+          527.1415405273438,
+          417.56158447265625
+        ],
+        "page": 3
+      },
+      "text": "加强统筹协调、督促指导、政策宣传、跟踪评估，明确审查标准、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b050",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          430.891845703125,
+          519.3478393554688,
+          446.8415832519531
+        ],
+        "page": 3
+      },
+      "text": "范围和要求，健全工作机制，鼓励社会各界参与监督，保障公平",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b051",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          460.2914733886719,
+          519.471923828125,
+          476.2412109375
+        ],
+        "page": 3
+      },
+      "text": "竞争审查制度长效运行，营造崇尚、保护、促进公平竞争的良好",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b052",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          489.6908264160156,
+          158.18234252929688,
+          505.64056396484375
+        ],
+        "page": 3
+      },
+      "text": "社会氛围。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b053",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.87792205810547,
+          518.9702758789062,
+          519.2633056640625,
+          534.9199829101562
+        ],
+        "page": 3
+      },
+      "text": "五、会议听取了为民实事办理工作情况汇报，并安排部署了",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b054",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          548.3695678710938,
+          519.4447021484375,
+          564.3192749023438
+        ],
+        "page": 3
+      },
+      "text": "相关工作。会议要求，为民实事包抓县级领导和责任单位主要负",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b055",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          577.6487426757812,
+          519.4232788085938,
+          593.5984497070312
+        ],
+        "page": 3
+      },
+      "text": "责同志要亲自调度、靠前指挥，把好质量关口，加快项目进度，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b056",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          607.0484008789062,
+          519.2633056640625,
+          622.9981079101562
+        ],
+        "page": 3
+      },
+      "text": "确保所有省、市、县为民实事项目全面按时完成。县委常委、常",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b057",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          636.328369140625,
+          519.3544311523438,
+          652.278076171875
+        ],
+        "page": 3
+      },
+      "text": "务副县长郭强牵头，县政府办公室要加强统筹协调，严格督查督",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b058",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          665.7279663085938,
+          519.4097900390625,
+          681.6776733398438
+        ],
+        "page": 3
+      },
+      "text": "办，督促责任单位以更加有力的措施抓好为民实事办理，及时打",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b059",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          695.1273193359375,
+          440.8398742675781,
+          711.0770263671875
+        ],
+        "page": 3
+      },
+      "text": "通滞后项目堵点难点，真正把好事办好、实事办实。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b060",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          114.23806762695312,
+          724.40673828125,
+          519.2002563476562,
+          740.3564453125
+        ],
+        "page": 3
+      },
+      "text": "六、会议听取了全县安全生产工作情况汇报，并安排部署",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b061",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          769.7203369140625,
+          126.36731719970703,
+          783.77001953125
+        ],
+        "page": 4
+      },
+      "text": "— \u0003 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b062",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          108.09699249267578,
+          519.3116455078125,
+          124.04672241210938
+        ],
+        "page": 4
+      },
+      "text": "了相关工作。会议要求，各级各部门要深刻认识安全生产的重要",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b063",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          136.99990844726562,
+          519.361572265625,
+          154.65626525878906
+        ],
+        "page": 4
+      },
+      "text": "性，增强“万无一失、一失万无”的底线思维，严格落实“三管三必",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b064",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          166.27908325195312,
+          518.77978515625,
+          183.93544006347656
+        ],
+        "page": 4
+      },
+      "text": "须”要求，全面拧紧安全生产责任链条，毫不松懈抓好安全生产",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b065",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          196.1753692626953,
+          519.3963623046875,
+          212.12509155273438
+        ],
+        "page": 4
+      },
+      "text": "各项工作。县委常委、常务副县长郭强牵头，县应急局等部门要",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b066",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          225.45448303222656,
+          519.3478393554688,
+          241.40420532226562
+        ],
+        "page": 4
+      },
+      "text": "切实做好道路交通、冬季取暖、森林草原防火、地震防范等方面",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b067",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          254.35751342773438,
+          518.8139038085938,
+          272.01385498046875
+        ],
+        "page": 4
+      },
+      "text": "的安全风险防控和隐患排查治理，着力破解“屡查屡犯、边改边",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b068",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          283.6374816894531,
+          519.3414916992188,
+          301.2938232421875
+        ],
+        "page": 4
+      },
+      "text": "犯”难题，有效防控风险，牢牢守住安全红线底线。要严格落实“一",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b069",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          313.0370788574219,
+          519.3739013671875,
+          330.69342041015625
+        ],
+        "page": 4
+      },
+      "text": "矿一策”方案，持续优化“领导包保、部门包抓、驻矿盯守、举报",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b070",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          342.4364318847656,
+          519.3414916992188,
+          360.0927734375
+        ],
+        "page": 4
+      },
+      "text": "奖励、专家指导”工作机制，深入开展煤矿安全隐患排查整治，坚",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b071",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          372.2122497558594,
+          236.62588500976562,
+          388.1619873046875
+        ],
+        "page": 4
+      },
+      "text": "决杜绝安全事故发生。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b072",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.87792205810547,
+          401.6118469238281,
+          519.341796875,
+          417.56158447265625
+        ],
+        "page": 4
+      },
+      "text": "七、会议听取了全县根治拖欠农民工工资工作情况汇报，并",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b073",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          430.891845703125,
+          519.3414916992188,
+          446.8415832519531
+        ],
+        "page": 4
+      },
+      "text": "安排部署了相关工作。会议确定：副县长石晶牵头，县人社局负",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b074",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          460.2914733886719,
+          519.3414916992188,
+          476.2412109375
+        ],
+        "page": 4
+      },
+      "text": "责，摸排梳理并动态更新全县欠薪隐患问题清单，及时推送至各",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b075",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          489.6908264160156,
+          519.2633056640625,
+          505.64056396484375
+        ],
+        "page": 4
+      },
+      "text": "乡镇、各部门进行研究化解。会议要求，各乡镇、各行业主管部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b076",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          518.9702758789062,
+          527.1415405273438,
+          534.9199829101562
+        ],
+        "page": 4
+      },
+      "text": "门要充分运用欠薪线索平台信息，紧盯重点领域，提前研判形势，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b077",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          548.3695678710938,
+          519.5552978515625,
+          564.3192749023438
+        ],
+        "page": 4
+      },
+      "text": "实地下沉查访，争取将矛盾风险解决在萌芽状态。住建、交通、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b078",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          577.6487426757812,
+          519.5552978515625,
+          593.5984497070312
+        ],
+        "page": 4
+      },
+      "text": "农业等建设项目行业主管部门，要认真履行监管职责，严格落实",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b079",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          607.0484008789062,
+          519.5552978515625,
+          622.9981079101562
+        ],
+        "page": 4
+      },
+      "text": "农民工实名制管理、工资保证金、工程款支付担保等制度，动态",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b080",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          636.328369140625,
+          519.5552978515625,
+          652.278076171875
+        ],
+        "page": 4
+      },
+      "text": "采集用工、工资数据，及时预警处置，做好源头防控。人社、公",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b081",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          665.7279663085938,
+          519.5552978515625,
+          681.6776733398438
+        ],
+        "page": 4
+      },
+      "text": "安、司法等部门要加强协同联动，通过行政处罚、信用惩戒等手",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b082",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          695.1273193359375,
+          519.5552978515625,
+          711.0770263671875
+        ],
+        "page": 4
+      },
+      "text": "段，加大欠薪案件曝光和惩处力度，坚决整治欠薪问题，全力化",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b083",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          724.40673828125,
+          346.6763000488281,
+          740.3564453125
+        ],
+        "page": 4
+      },
+      "text": "解欠薪存量，切实维护社会大局稳定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b084",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          475.3119201660156,
+          768.7599487304688,
+          522.2416381835938,
+          782.8096313476562
+        ],
+        "page": 5
+      },
+      "text": "— \u0004 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b085",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.87792205810547,
+          108.09699249267578,
+          518.1597290039062,
+          124.04672241210938
+        ],
+        "page": 5
+      },
+      "text": "八、会议听取了全县文物保护工作情况汇报，并安排部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b086",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          137.49659729003906,
+          519.3544311523438,
+          153.44631958007812
+        ],
+        "page": 5
+      },
+      "text": "署了相关工作。会议要求，各乡镇要扛牢压实属地责任，认真落",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b087",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          166.7757110595703,
+          519.5552978515625,
+          182.72543334960938
+        ],
+        "page": 5
+      },
+      "text": "实月检和日常巡查制度，重点加强不可移动文物巡护、文物与农",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b088",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          196.1753692626953,
+          519.5552978515625,
+          212.12509155273438
+        ],
+        "page": 5
+      },
+      "text": "田交叉地带监管、警示标志维护，做到问题早发现、早报告、早",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b089",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          225.45448303222656,
+          519.4384155273438,
+          241.40420532226562
+        ],
+        "page": 5
+      },
+      "text": "处置。副县长张克孟牵头，文物、自然资源等相关职能部门要严",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b090",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          254.85414123535156,
+          519.4581909179688,
+          270.8038635253906
+        ],
+        "page": 5
+      },
+      "text": "格执行“先考古、后出让”制度，将文物保护和考古许可作为项",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b091",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          284.13409423828125,
+          519.5552978515625,
+          300.0838317871094
+        ],
+        "page": 5
+      },
+      "text": "目审批前置环节，对涉及文保区划的重大项目提前介入、严格勘",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b092",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          313.533447265625,
+          487.8651428222656,
+          329.4831848144531
+        ],
+        "page": 5
+      },
+      "text": "查，从源头防范建设性破坏，切实提高文物保护工作质效。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b093",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          110.87792205810547,
+          342.9330749511719,
+          518.1597290039062,
+          358.8828125
+        ],
+        "page": 5
+      },
+      "text": "九、会议听取了民生保障工作情况汇报，并安排部署了",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b094",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          372.2122497558594,
+          518.7540283203125,
+          388.1619873046875
+        ],
+        "page": 5
+      },
+      "text": "相关工作。会议要求，各乡镇要切实履行好属地管理责任，不折",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b095",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          401.6118469238281,
+          519.300048828125,
+          417.56158447265625
+        ],
+        "page": 5
+      },
+      "text": "不扣执行各项社会救助标准和政策，对因病、因残、因突发因",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b096",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          430.891845703125,
+          519.2561645507812,
+          446.8415832519531
+        ],
+        "page": 5
+      },
+      "text": "素造成生活困难群体进行全面筛查、动态排查，确保底数清、情",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b097",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          460.2914733886719,
+          519.532958984375,
+          476.2412109375
+        ],
+        "page": 5
+      },
+      "text": "况明。副县长张克孟牵头，民政、教育、人社、住建、医保、农",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b098",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          489.6908264160156,
+          519.5552978515625,
+          505.64056396484375
+        ],
+        "page": 5
+      },
+      "text": "业农村、残联等部门要加强数据共享与信息比对，健全完善主动",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b099",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          518.9702758789062,
+          519.5552978515625,
+          534.9199829101562
+        ],
+        "page": 5
+      },
+      "text": "发现机制，畅通困难群众申请渠道，动态监测、精准识别低保对",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b100",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          548.3695678710938,
+          519.2633056640625,
+          564.3192749023438
+        ],
+        "page": 5
+      },
+      "text": "象、特困人员、低收入人口、支出型困难家庭等各类困难群体，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b101",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          577.6487426757812,
+          456.64959716796875,
+          593.5984497070312
+        ],
+        "page": 5
+      },
+      "text": "确保应保尽保、应救尽救，以务实举措兜牢民生底线。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b102",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          114.23806762695312,
+          607.0484008789062,
+          517.6066284179688,
+          622.9981079101562
+        ],
+        "page": 5
+      },
+      "text": "十、会议讨论并原则同意县财政局《关于审定山丹县",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b103",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          636.328369140625,
+          527.1415405273438,
+          652.278076171875
+        ],
+        "page": 5
+      },
+      "text": "县属监管企业负责人经营业绩考核办法的请示》。会议确定：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b104",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          665.7279663085938,
+          519.4232788085938,
+          681.6776733398438
+        ],
+        "page": 5
+      },
+      "text": "县财政局负责，根据会议讨论意见，对该《考核办法》再行修改",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b105",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          695.1273193359375,
+          519.5552978515625,
+          711.0770263671875
+        ],
+        "page": 5
+      },
+      "text": "完善，经县委常委、常务副县长郭强审核把关后，县政府办公室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b106",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          724.40673828125,
+          519.4384155273438,
+          740.3564453125
+        ],
+        "page": 5
+      },
+      "text": "印发实施。会议要求，县财政局、县国资事务中心要建立动态监",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b107",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          769.7203369140625,
+          126.36731719970703,
+          783.77001953125
+        ],
+        "page": 6
+      },
+      "text": "— \u0005 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b108",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          108.09699249267578,
+          519.5552978515625,
+          124.04672241210938
+        ],
+        "page": 6
+      },
+      "text": "测和预警机制，加强日常跟踪和半年度评估，及时发现苗头性、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b109",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          137.49659729003906,
+          519.3478393554688,
+          153.44631958007812
+        ],
+        "page": 6
+      },
+      "text": "倾向性问题，并提醒、督导、帮助企业纠偏扶正、防微杜渐。各",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b110",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          166.7757110595703,
+          518.6644897460938,
+          182.72543334960938
+        ],
+        "page": 6
+      },
+      "text": "相关部门要强化刚性约束，严格按照《考核办法》和经营业绩",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b111",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          196.1753692626953,
+          518.8106689453125,
+          212.12509155273438
+        ],
+        "page": 6
+      },
+      "text": "兑现奖惩，激励企业提升国有资本运营效率，助推国有资本保",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b112",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          225.45448303222656,
+          144.22727966308594,
+          241.40420532226562
+        ],
+        "page": 6
+      },
+      "text": "值增值。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b113",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          254.85414123535156,
+          519.31591796875,
+          270.8038635253906
+        ],
+        "page": 6
+      },
+      "text": "十一、会议讨论并原则同意县交通运输局《关于实施山丹",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b114",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          284.13409423828125,
+          519.3351440429688,
+          300.0838317871094
+        ],
+        "page": 6
+      },
+      "text": "北高铁站综合客运枢纽建设项目的请示》。会议确定：县交通运",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b115",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          313.533447265625,
+          527.1415405273438,
+          329.4831848144531
+        ],
+        "page": 6
+      },
+      "text": "输局负责，发展改革、财政、审计部门配合，根据会议讨论意见，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b116",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          342.9330749511719,
+          519.5552978515625,
+          358.8828125
+        ],
+        "page": 6
+      },
+      "text": "对山丹北高铁站综合客运枢纽建设项目建设规模、资金来源等再",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b117",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          372.2122497558594,
+          527.1415405273438,
+          388.1619873046875
+        ],
+        "page": 6
+      },
+      "text": "行核实，经县委常委、常务副县长郭强，副县长李辉审核把关后，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b118",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          401.6118469238281,
+          519.3414916992188,
+          417.56158447265625
+        ],
+        "page": 6
+      },
+      "text": "由县城乡融合发展投资集团公司作为项目建设主体组织实施，县",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b119",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          430.891845703125,
+          519.3478393554688,
+          446.8415832519531
+        ],
+        "page": 6
+      },
+      "text": "交通运输局做好项目监管工作。会议要求，县交通运输局要严格",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b120",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          460.2914733886719,
+          519.4447021484375,
+          476.2412109375
+        ],
+        "page": 6
+      },
+      "text": "按照高铁建设进度和设计要求，统筹考虑现有客运设施布局和客",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b121",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          489.6908264160156,
+          527.1415405273438,
+          505.64056396484375
+        ],
+        "page": 6
+      },
+      "text": "流量等因素，进一步优化设计方案，科学规划枢纽内部功能分区，",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b122",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          518.9702758789062,
+          519.3544311523438,
+          534.9199829101562
+        ],
+        "page": 6
+      },
+      "text": "抓紧完成项目设计等前期工作，加快推动项目落地实施。交通、",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b123",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          548.3695678710938,
+          519.4097900390625,
+          564.3192749023438
+        ],
+        "page": 6
+      },
+      "text": "财政等部门要深入研究项目资金解决方案，为项目建设提供合理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b124",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          577.6487426757812,
+          519.4097900390625,
+          593.5984497070312
+        ],
+        "page": 6
+      },
+      "text": "合规的资金来源支撑。清泉镇和发展改革、财政、自然资源、林",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b125",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          607.0484008789062,
+          519.5552978515625,
+          622.9981079101562
+        ],
+        "page": 6
+      },
+      "text": "草等部门要加强沟通协作，为推动项目建设提供有力保障，确保",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b126",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43852996826172,
+          636.328369140625,
+          409.58197021484375,
+          652.278076171875
+        ],
+        "page": 6
+      },
+      "text": "各环节有效衔接，项目建设各项工作有序推进。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b127",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          695.1273193359375,
+          128.02781677246094,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "出",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b128",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          144.71737670898438,
+          695.1273193359375,
+          225.85179138183594,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "席：黄国杰",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b129",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.51560974121094,
+          695.1273193359375,
+          258.46533203125,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "郭",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b130",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          275.0352478027344,
+          695.1273193359375,
+          290.9849853515625,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "强",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b131",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.674560546875,
+          695.1273193359375,
+          356.289306640625,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "杨从军",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b132",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          372.83380126953125,
+          695.1273193359375,
+          388.7835388183594,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "李",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b133",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          405.47308349609375,
+          695.1273193359375,
+          421.4228210449219,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "辉",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b134",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.1123962402344,
+          695.1273193359375,
+          454.0621337890625,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "石",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b135",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          470.6323547363281,
+          695.1273193359375,
+          486.58209228515625,
+          711.0770263671875
+        ],
+        "page": 6
+      },
+      "text": "晶",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b136",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          724.40673828125,
+          128.02781677246094,
+          740.3564453125
+        ],
+        "page": 6
+      },
+      "text": "请",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b137",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          144.71737670898438,
+          724.40673828125,
+          383.9837341308594,
+          740.3564453125
+        ],
+        "page": 6
+      },
+      "text": "假：高积鑫（赴上海参加进博会）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b138",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          475.3119201660156,
+          768.7599487304688,
+          522.2416381835938,
+          782.8096313476562
+        ],
+        "page": 7
+      },
+      "text": "— \u0006 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b139",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          108.09699249267578,
+          371.98370361328125,
+          124.04672241210938
+        ],
+        "page": 7
+      },
+      "text": "张剑波（赴兰州参加会议）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b140",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          137.49659729003906,
+          431.98284912109375,
+          153.44631958007812
+        ],
+        "page": 7
+      },
+      "text": "张克孟（赴文化和旅游部对接工作）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b141",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          166.7757110595703,
+          128.02781677246094,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "列",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b142",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          144.71737670898438,
+          166.7757110595703,
+          225.85179138183594,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "席：车明国",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b143",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.51560974121094,
+          166.7757110595703,
+          258.46533203125,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "唐",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b144",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          275.0352478027344,
+          166.7757110595703,
+          290.9849853515625,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "谦",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b145",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.674560546875,
+          166.7757110595703,
+          356.289306640625,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "李新春",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b146",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          372.83380126953125,
+          166.7757110595703,
+          421.4485778808594,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "周建年",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b147",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.1123962402344,
+          166.7757110595703,
+          486.7271423339844,
+          182.72543334960938
+        ],
+        "page": 7
+      },
+      "text": "钱大伟",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b148",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          196.1753692626953,
+          193.42657470703125,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "何",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b149",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          210.1161346435547,
+          196.1753692626953,
+          226.06585693359375,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "跃",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b150",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          196.1753692626953,
+          258.58551025390625,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "何",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b151",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          275.27508544921875,
+          196.1753692626953,
+          291.2248229980469,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "润",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b152",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          196.1753692626953,
+          323.8643798828125,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "王",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b153",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          340.4342956542969,
+          196.1753692626953,
+          356.384033203125,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "凯",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b154",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          196.1753692626953,
+          421.6883544921875,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "秦玉兰",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b155",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          196.1753692626953,
+          454.1825866699219,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "葛",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b156",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          470.87213134765625,
+          196.1753692626953,
+          486.8218688964844,
+          212.12509155273438
+        ],
+        "page": 7
+      },
+      "text": "勤",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b157",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          225.45448303222656,
+          226.09161376953125,
+          241.40420532226562
+        ],
+        "page": 7
+      },
+      "text": "朱永泰",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b158",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          225.45448303222656,
+          291.25054931640625,
+          241.40420532226562
+        ],
+        "page": 7
+      },
+      "text": "陈天明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b159",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          225.45448303222656,
+          323.8643798828125,
+          241.40420532226562
+        ],
+        "page": 7
+      },
+      "text": "陈",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b160",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          340.4342956542969,
+          225.45448303222656,
+          356.384033203125,
+          241.40420532226562
+        ],
+        "page": 7
+      },
+      "text": "江",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b161",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          225.45448303222656,
+          421.6883544921875,
+          241.40420532226562
+        ],
+        "page": 7
+      },
+      "text": "唐泽科",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b162",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          225.45448303222656,
+          486.8476257324219,
+          241.40420532226562
+        ],
+        "page": 7
+      },
+      "text": "赵建勋",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b163",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          254.85414123535156,
+          226.09161376953125,
+          270.8038635253906
+        ],
+        "page": 7
+      },
+      "text": "李鹏璐",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b164",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          254.85414123535156,
+          291.25054931640625,
+          270.8038635253906
+        ],
+        "page": 7
+      },
+      "text": "王延亮",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b165",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          254.85414123535156,
+          323.8643798828125,
+          270.8038635253906
+        ],
+        "page": 7
+      },
+      "text": "丁",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b166",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          340.4342956542969,
+          254.85414123535156,
+          356.384033203125,
+          270.8038635253906
+        ],
+        "page": 7
+      },
+      "text": "鹏",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b167",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          254.85414123535156,
+          421.6883544921875,
+          270.8038635253906
+        ],
+        "page": 7
+      },
+      "text": "刘维禄",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b168",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          254.85414123535156,
+          454.1825866699219,
+          270.8038635253906
+        ],
+        "page": 7
+      },
+      "text": "姚",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b169",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          470.871826171875,
+          254.80380249023438,
+          486.8215637207031,
+          272.36444091796875
+        ],
+        "page": 7
+      },
+      "text": "垚",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b170",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          284.13409423828125,
+          226.09161376953125,
+          300.0838317871094
+        ],
+        "page": 7
+      },
+      "text": "马楠楠",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b171",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          284.13409423828125,
+          291.25054931640625,
+          300.0838317871094
+        ],
+        "page": 7
+      },
+      "text": "祝进业",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b172",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          284.13409423828125,
+          323.8643798828125,
+          300.0838317871094
+        ],
+        "page": 7
+      },
+      "text": "王",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b173",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          340.4342956542969,
+          284.13409423828125,
+          356.384033203125,
+          300.0838317871094
+        ],
+        "page": 7
+      },
+      "text": "涛",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b174",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          284.13409423828125,
+          421.6883544921875,
+          300.0838317871094
+        ],
+        "page": 7
+      },
+      "text": "李为涛",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b175",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          284.13409423828125,
+          486.8476257324219,
+          300.0838317871094
+        ],
+        "page": 7
+      },
+      "text": "周毅年",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b176",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          313.533447265625,
+          226.09161376953125,
+          329.4831848144531
+        ],
+        "page": 7
+      },
+      "text": "刘积国",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b177",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          313.533447265625,
+          291.25054931640625,
+          329.4831848144531
+        ],
+        "page": 7
+      },
+      "text": "胡增华",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b178",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          313.533447265625,
+          356.5294189453125,
+          329.4831848144531
+        ],
+        "page": 7
+      },
+      "text": "陈文荣",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b179",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          313.533447265625,
+          421.6883544921875,
+          329.4831848144531
+        ],
+        "page": 7
+      },
+      "text": "罗永才",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b180",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          313.533447265625,
+          486.8476257324219,
+          329.4831848144531
+        ],
+        "page": 7
+      },
+      "text": "张春雷",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b181",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          342.9330749511719,
+          226.09161376953125,
+          358.8828125
+        ],
+        "page": 7
+      },
+      "text": "褚鸿云",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b182",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          342.9330749511719,
+          291.25054931640625,
+          358.8828125
+        ],
+        "page": 7
+      },
+      "text": "艾晓鹏",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b183",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          342.9330749511719,
+          356.5294189453125,
+          358.8828125
+        ],
+        "page": 7
+      },
+      "text": "陈玉斌",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b184",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          342.9330749511719,
+          421.6883544921875,
+          358.8828125
+        ],
+        "page": 7
+      },
+      "text": "苏宏才",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b185",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          342.9330749511719,
+          486.8476257324219,
+          358.8828125
+        ],
+        "page": 7
+      },
+      "text": "王晓军",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b186",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          372.2122497558594,
+          193.42657470703125,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "杲",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b187",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          210.1161346435547,
+          372.2122497558594,
+          226.06585693359375,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "杰",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b188",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          372.2122497558594,
+          291.25054931640625,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "张雪梅",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b189",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          372.2122497558594,
+          356.5294189453125,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "周玉萍",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b190",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          372.2122497558594,
+          421.6883544921875,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "王家强",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b191",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          372.2122497558594,
+          454.1825866699219,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "张",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b192",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          470.87213134765625,
+          372.2122497558594,
+          486.8218688964844,
+          388.1619873046875
+        ],
+        "page": 7
+      },
+      "text": "磊",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b193",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          401.6118469238281,
+          226.09161376953125,
+          417.56158447265625
+        ],
+        "page": 7
+      },
+      "text": "何振明",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b194",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          401.6118469238281,
+          291.25054931640625,
+          417.56158447265625
+        ],
+        "page": 7
+      },
+      "text": "杨樱娜",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b195",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          401.6118469238281,
+          323.8643798828125,
+          417.56158447265625
+        ],
+        "page": 7
+      },
+      "text": "刘",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b196",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          340.4342956542969,
+          401.6118469238281,
+          356.384033203125,
+          417.56158447265625
+        ],
+        "page": 7
+      },
+      "text": "斌",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b197",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          401.6118469238281,
+          421.6883544921875,
+          417.56158447265625
+        ],
+        "page": 7
+      },
+      "text": "王廷丰",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b198",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          401.6118469238281,
+          486.8476257324219,
+          417.56158447265625
+        ],
+        "page": 7
+      },
+      "text": "石文鉴",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b199",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          430.891845703125,
+          193.42657470703125,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "姜",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b200",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          210.1161346435547,
+          430.891845703125,
+          226.06585693359375,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "海",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b201",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          430.891845703125,
+          258.58551025390625,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "李",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b202",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          275.27508544921875,
+          430.891845703125,
+          291.2248229980469,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "斌",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b203",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          430.891845703125,
+          356.5294189453125,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "周晓华",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b204",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          373.0736083984375,
+          430.891845703125,
+          389.0233459472656,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "彭",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b205",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          405.712890625,
+          430.891845703125,
+          421.6626281738281,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "勇",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b206",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          438.23284912109375,
+          430.891845703125,
+          486.8476257324219,
+          446.8415832519531
+        ],
+        "page": 7
+      },
+      "text": "高继文",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b207",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          177.4768524169922,
+          460.2914733886719,
+          193.42657470703125,
+          476.2412109375
+        ],
+        "page": 7
+      },
+      "text": "李",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b208",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          210.1161346435547,
+          460.2914733886719,
+          226.06585693359375,
+          476.2412109375
+        ],
+        "page": 7
+      },
+      "text": "军",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b209",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          242.6357879638672,
+          460.2914733886719,
+          258.58551025390625,
+          476.2412109375
+        ],
+        "page": 7
+      },
+      "text": "樊",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b210",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          275.27508544921875,
+          460.2914733886719,
+          291.2248229980469,
+          476.2412109375
+        ],
+        "page": 7
+      },
+      "text": "涛",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b211",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          307.9146423339844,
+          460.2914733886719,
+          356.5294189453125,
+          476.2412109375
+        ],
+        "page": 7
+      },
+      "text": "徐多增",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b212",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          112.07809448242188,
+          489.6908264160156,
+          128.02781677246094,
+          505.64056396484375
+        ],
+        "page": 7
+      },
+      "text": "记",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b213",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          144.71737670898438,
+          489.6908264160156,
+          193.186767578125,
+          505.64056396484375
+        ],
+        "page": 7
+      },
+      "text": "录：周",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 15.949727058410645
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b214",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          209.87631225585938,
+          489.6908264160156,
+          225.82603454589844,
+          505.64056396484375
+        ],
+        "page": 7
+      },
+      "text": "军",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b215",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          79.43881225585938,
+          769.7203369140625,
+          126.36731719970703,
+          783.77001953125
+        ],
+        "page": 8
+      },
+      "text": "— \u0007 —",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b216",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          93.71810913085938,
+          682.0013427734375,
+          436.8536071777344,
+          696.051025390625
+        ],
+        "page": 8
+      },
+      "text": "发：各乡镇人民政府，县政府各部门及直属事业单位。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b217",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          93.71810913085938,
+          703.9609985351562,
+          393.8756103515625,
+          718.0106811523438
+        ],
+        "page": 8
+      },
+      "text": "送：县委、县人大常委会、县政协及相关部门。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b218",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          93.71810913085938,
+          726.52099609375,
+          236.58941650390625,
+          740.5706787109375
+        ],
+        "page": 8
+      },
+      "text": "山丹县人民政府办公室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "font_bold": false,
+        "font_size": 14.049695014953613
+      },
+      "block_id": "real_meeting_006_shandan_minutes_b219",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          379.79388427734375,
+          725.9633178710938,
+          518.1785278320312,
+          741.5162963867188
+        ],
+        "page": 8
+      },
+      "text": "2025 年11 月7 日印发",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_006_shandan_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 219,
+    "extraction_method": "pymupdf_text",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "page_count": 8,
+    "page_text_lengths": [
+      331,
+      616,
+      613,
+      619,
+      622,
+      565,
+      259,
+      79
+    ],
+    "retrieved_at": "2026-06-30T13:20:10.021805+00:00",
+    "source_format": "pdf",
+    "source_sha256": "95d459c9d4458076d597216003b4b75f1c7849d9831178535f3b60644b751e17",
+    "source_site": "www.shandan.gov.cn",
+    "source_url": "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/W020251120606165226334.pdf",
+    "title": "山丹县人民政府常务会议\u0000纪要\u0001",
+    "标题": "山丹县人民政府常务会议\u0000纪要\u0001"
+  },
+  "normalization_records": [
+    {
+      "method": "pymupdf_text",
+      "normalized": true,
+      "source_sha256": "95d459c9d4458076d597216003b4b75f1c7849d9831178535f3b60644b751e17"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_006_shandan_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

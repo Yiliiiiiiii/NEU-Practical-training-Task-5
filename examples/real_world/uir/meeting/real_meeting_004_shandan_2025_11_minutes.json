@@ -1,0 +1,607 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "党政动态",
+          "领导之窗",
+          "政务公开",
+          "政务服务",
+          "政民互动",
+          "走进山丹"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b002",
+      "level": 1,
+      "source_anchor": null,
+      "text": "十九届县政府第97次常务会议纪要",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "索引号： 6207250037/2025-00278",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "文号：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "关键词：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布机构： 政府办",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "公开形式：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "公开目录：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "生成日期： 2025-11-14 16:31:47",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "有效性：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "索引号",
+            "value": "6207250037/2025-00278 | 发文字号"
+          },
+          {
+            "field": "关键词",
+            "value": "发布机构 | 政府办"
+          },
+          {
+            "field": "公开形式",
+            "value": "公开目录"
+          },
+          {
+            "field": "生成日期",
+            "value": "2025-11-14 16:31:47 | 是否有效"
+          }
+        ]
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "十九届县政府第 97 次",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二 〇 二 五 年 十一 月 三 日）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "11 月 3 日，县委副书记、县长黄国杰主持召开十九届县政府第 97 次常务会议， 传达学习习近平总书记重要讲话精神， 组织学习中央和省市有关会议文件精神， 专题 研究 经济运行、 为民实事 办理 、安全生产、根治 欠薪 、公平竞争审查、 文物保护、民生保障、 国企监管、交通 项目 建设 等方面工作。县政府在家领导出席会议，各乡镇、县直有关部门、 企事业及省市驻丹有关单位负责同志列席会议，县 人大常委会副主任车明国 、 县 政协副主席唐谦 应邀参加会议。现将会议研究确定事项纪要如下：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、会议 传达学习 了 习近平主席在全球妇女峰会开幕式上的重要讲话精神，并研究了贯彻落实工作 。 会议强调， 县妇联、各乡镇及县直相关部门要将学习贯彻 习 近平 主席 在 全 球妇女峰会 开幕式 上的 重要 讲话精神作为重要政治任务，进一步深化学习，统筹谋划新时期妇女工作， 营造促进妇女全面发展 的 良好环境 ， 搭建赋能妇女投身高质量发展 的 广阔平台， 共同构建 保障妇女权益 的 治理格局， 支持妇女在科技创新、乡村振兴、基层治理、经济发展等各领域施展才华、建功立业 ， 以务实之举 引领 全县 妇女事业发展 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、会议 传达学习 了 10 月 17 日、 10 月 31 日国务院常务会议，十四届省政府第 101 次常务会议，五届市政府第 101—102 次常务会议精神， 并研究 了 贯彻落实工作 。 会议强调， 近期召开的国务院和省、市政府常务会议， 系统部署了加快构建现代物流体系、 营造绿色贸易发展良好环境、抓好粮食生产、强化强科技行动、全面推动黄河流域生态保护和高质量发展、城镇住宅 “ 登记难 ” 问题化解、现代种业畜牧业产品精深加工产业集群发展、中央生态环保督察反馈问题整改 等重点任务 ， 县政府班子成员 和 各乡镇、各部门要结合山丹实际、立足工作职责，将会议精神融入具体工作实践，积极研究贯彻落实意见，做好政策结合文章，确保各项工作不折不扣落地见效。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、会议 传达 学习了全省经济运行调度会议精神，并研究了贯彻落实工作。 会议 强调 ， 各乡镇、 各 部门要聚焦 全年经济社会发展目标 ，坚定信心， 精准施策 ， 着力稳就业、稳企业、稳市场、稳预期 ，促进一二三产同步发力、均衡发展，做到 工业 “ 多拉快跑 ” 、 农业增产增收 、 消费提质增效 ，为推动县域经济高质量发展蓄势赋能 。 县委常委、常务副县长郭强牵头，发展改革、统计等部门 要 强化经济运行监测调度，持续巩固优势指标，着力提升 短板指标，力促县域经济社会发展稳中有进、进中提质、质量齐升。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、会议 传达学习了《张掖市公平竞争审查工作制度》 （张政办发〔 2025 〕 68 号 ） 精神，并研究了贯彻落实工作 。 会议 强调， 各级各部门 要 牢固树立公平竞争理念，将公平竞争审查作为制定涉及市场主体经济活动的必经程序，从源头上规范政府行为，防止出台排除、限制竞争的政策措施，为各类市场主体营造公平透明、普惠包容的发展环境。 副县长张克孟牵头， 市场监管 部门 要加强统筹协调、督促指导 、政策宣传、 跟踪评估 ， 明确 审查标准 、范围 和要求，健全工作机制， 鼓励社会各界参与监督， 保障 公平竞争 审查制度长效运行 ，营造崇尚、保护、促进公平竞争的良好社会氛围。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "五 、会议 听取了为民实事 办理 工作情况汇报，并安排部署了相关工作 。 会议要求， 为民实事 包抓县级领导和责任单位主要负责同志要亲自调度、靠前指挥， 把好 质量关口，加快项目进度， 确保所有省、市、县为民实事项目 全面按时 完成。 县委常委、常务副县长郭强牵头， 县政府办公室 要加强 统 筹协调， 严格 督查督办， 督促责任单位 以更加有力的措施抓好 为民实事办理，及时打通 滞后项目堵点难点 ， 真正把好事办好、实事办实。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "六 、会议 听取了全县安全生产工作 情况 汇报，并安排部署了相关工作。 会议要求， 各 级 各 部门 要深刻认识安全生产的重要性，增强 “ 万无一失、一失万无 ” 的底线思维， 严格 落实 “ 三管三必须 ” 要求， 全面拧紧安全生产责任链条，毫不松懈抓好 安全生产 各项工作。 县委常委、常务副县长郭强牵头，县应急局等部门要 切实做好道路交通、冬季取暖、森林草原防火、地震防范等 方面 的安全风险防控和隐患排查治理 ， 着力破解 “ 屡查屡犯、边改边犯 ” 难题，有效防控风险 ，牢牢守住安全红线底线。要 严格落实 “ 一矿一策 ” 方案，持续优化 “ 领导包保、部门包抓、驻矿盯守、举报奖励、专家指导 ” 工作机制 ，深入开展煤矿安全隐患 排查 整治， 坚决杜绝安全事故发生 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、会议听取了全县根治拖欠农民工工资工作情况汇报，并安排部署了相关工作。 会议 确定： 副县长石晶牵头，县人 社局 负责，摸排梳理并动态更新 全县欠薪隐患 问题 清单， 及时推送至 各乡镇、各部门 进行研究化解。 会议要 求， 各乡镇、各行业主管部门 要 充分运用欠薪线索平台信息，紧盯重点领域， 提前研判形势 ，实地下沉查访，争取将矛盾风险解决在萌芽状态。住建、交通、农业等建设项目行业主管部门，要认真履行监管职责，严格落实农民工实名制管理、工资保证金、工程款支付担保等制度，动态采集用工、工资数据，及时预警处置，做好源头防控。人社、公安、司法等部门要加强协同联动，通过行政处罚、信用惩戒等手段，加大欠薪案件曝光和惩处力度，坚决整治欠薪问题，全力化解欠薪存量，切实维护社会大局稳定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "八 、会议 听 取了全县文物保护工作情况汇报，并安排部署了相关工作 。 会议要求， 各乡 镇要扛牢压实属地责任，认真落实月检和日常巡查制度，重点加强不可移动文物巡护、文物与农田交叉地带监管、警示标志维护，做到问题早发现、早报告、早处置。 副县长张克孟牵头， 文物、 自然资源等相关职能部门要严格执行 “先考古、后出让”制度，将文物保护和考古许可作为项目审批前置环节，对涉及文保区划的重大项目提前介入、严格勘查，从源头防范建设性破坏，切实 提高文物保护工作质效。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "九 、会议 听 取了民生保障工作情况汇报，并安排部署了相关工作 。 会议要求， 各乡镇要切实履行 好 属地 管理 责任， 不折不扣执行各项社会救助标准和政策， 对 因病、因残、因突发因素造成生活 困难群体进行全面 筛查 、动态排查， 确保 底数清、情况明 。副县长张克孟牵头，民政、教育、人社、住建、医保、农业农村、残联等部门要加强数据共享与信息比对，健全完善主动发现机制，畅通困难群众申请渠道，动态监测、精准识别低保对象、特困人员、低收入人口、支出型困难家庭等各 类困难群体，确保应保尽保、应救尽救，以务实举措兜牢民生底线。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "十、会议讨论并原则同意县财政局《关于审定山丹县县属监管企业负责人经营业绩考核办法的请示》。 会议确定： 县财政局负责 ，根据会议讨论意见， 对该《考核办法》再行修改完善，经县委常委、常务副县长郭强审核把关后，县政府办公室印发实施。 会议要求， 县财政局、县国资事务中心要建立动态监测和预警机制，加强日常跟踪和半年度评估，及时发现苗头性、倾向性问题，并提醒、督导、帮助企业纠偏 扶正、防微杜渐 。各相关部门要强化刚性约束，严格按照《考核办法》和经营业绩兑 现奖惩 ，激励企业提升国有资本运营效率，助推国有资本保值增值。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "十一、会议讨论并原则同意 县交通运输局《关于实施山丹北高铁站综合客运枢纽建设项目的请示》。 会议确定： 县交通运输局负责，发 展 改 革 、财政、审计部门配合， 根据会议讨论意见， 对山丹北高铁站综合客运枢纽建设项目建设规模、资金来源等再行核实，经 县委常委、常务副县长郭强，副县长 李辉审核把关后， 由县 城乡融合发展投资集团公司 作为 项目建设主体组织实施， 县交通运输局 做好项目监管工作 。 会议要求， 县 交通运输局要 严格按照高铁建设进度 和设计 要求， 统筹考虑现有客运设施布局和客流量等因素，进一步优化设计方案，科学规划枢纽内部功能分区， 抓紧完成项目设计等前期工作， 加快推动项目落地实施 。 交通、财政等部门要 深入研究项目资金解决方案 ，为项目建设提供合理合规的资金来源支撑 。 清泉镇 和 发 展 改 革 、财政、自然资源、林草等部门要加强沟通协作，为推动项目建设提供有力保障，确保各环节有效衔接，项目建设各项工作有序推进。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "出 席： 黄国杰 郭 强 杨从军 李 辉 石 晶",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "请 假： 高积鑫 （ 赴上海参加进博会 ）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "张剑波（ 赴兰州参加 会议 ）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "张克孟 （ 赴 文化和旅游部对接工作 ）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "列 席： 车明国 唐 谦 李新春 周建年 钱大伟",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "何 跃 何 润 王 凯 秦玉兰 葛 勤",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "朱永泰 陈天明 陈 江 唐泽科 赵建勋",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "李鹏璐 王延亮 丁 鹏 刘维禄 姚 垚",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "马楠楠 祝进业 王 涛 李为涛 周毅年",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "刘积国 胡增华 陈文荣 罗永才 张春雷",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "褚鸿云 艾晓鹏 陈玉斌 苏宏才 王晓军",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "杲 杰 张雪梅 周玉萍 王家强 张 磊",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "何振 明 杨樱娜 刘 斌 王廷丰 石文鉴",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "姜 海 李 斌 周晓华 彭 勇 高继文",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "李 军 樊 涛 徐多增",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "记 录： 周 军",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "扫一扫在手机打开当前页面",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家各网站",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "中华人民共和国中央人民政府"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "甘肃省网站",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "甘肃省政府网站"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "张掖市网站",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "张掖市政府网站"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "其他链接",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "甘肃省人力资源和社会保障厅",
+          "张掖市人力资源和社会保障局"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "主办：山丹县人民政府办公室 承办：山丹县信息化工作办公室 联系我们",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "陇ICP备12000199号-1 甘公网安备62072502000105号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_004_shandan_2025_11_minutes_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府网站标识码: 6207250003 网站地图",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 53,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-30T13:39:39.560175+00:00",
+    "source_format": "html",
+    "source_sha256": "c02af3df8d30916fdd6f7edf90401aa3de769fca99c98880ea45deaf3b6b68d1",
+    "source_site": "www.shandan.gov.cn",
+    "source_url": "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/t20251120_1478988.html",
+    "title": "十九届县政府第97次常务会议纪要",
+    "发布机构": "政府办",
+    "标题": "十九届县政府第97次常务会议纪要"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "c02af3df8d30916fdd6f7edf90401aa3de769fca99c98880ea45deaf3b6b68d1"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_004_shandan_2025_11_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

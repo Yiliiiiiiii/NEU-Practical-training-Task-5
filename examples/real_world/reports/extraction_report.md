@@ -2,19 +2,19 @@
 
 | Metric | Count |
 | --- | ---: |
-| Sources | 16 |
-| Extracted | 16 |
+| Sources | 30 |
+| Extracted | 30 |
 | Rejected | 0 |
 | Skipped | 0 |
-| Downloaded | 16 |
+| Downloaded | 30 |
 | Collection failed | 0 |
 
 ## Source formats
 
 | Format | Count |
 | --- | ---: |
-| html | 13 |
-| pdf | 3 |
+| html | 25 |
+| pdf | 5 |
 
 | Source ID | Format | Status | Reason |
 | --- | --- | --- | --- |
@@ -34,3 +34,17 @@
 | real_general_001_notary_service_guide | html | extracted |  |
 | real_general_002_biomed_project_guide | html | extracted |  |
 | real_general_003_textile_application_flow | pdf | extracted |  |
+| real_policy_006_technology_incubator_rules | html | extracted |  |
+| real_policy_007_one_thing_list | html | extracted |  |
+| real_policy_008_sme_leader_training | html | extracted |  |
+| real_policy_009_network_safety_work | html | extracted |  |
+| real_procurement_006_vaccine_tender | html | extracted |  |
+| real_procurement_007_testing_equipment_award | html | extracted |  |
+| real_procurement_008_desktop_award | html | extracted |  |
+| real_procurement_009_pollutant_monitoring_award | html | extracted |  |
+| real_procurement_010_ultrasound_award | html | extracted |  |
+| real_meeting_004_shandan_2025_11_minutes | html | extracted |  |
+| real_meeting_005_miluo_2026_minutes | html | extracted |  |
+| real_meeting_006_shandan_minutes | pdf | extracted |  |
+| real_general_004_tianhe_service_guide | pdf | extracted |  |
+| real_policy_010_auto_ota_management | html | extracted |  |

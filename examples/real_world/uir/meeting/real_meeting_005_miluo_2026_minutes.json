@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "fallback": "text_node"
+      },
+      "block_id": "real_meeting_005_miluo_2026_minutes_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "汨政办发〔2026〕8号（关于废止相关文件的通知）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "fallback": "text_node"
+      },
+      "block_id": "real_meeting_005_miluo_2026_minutes_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "来源：汨罗市人民政府办公室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "fallback": "text_node"
+      },
+      "block_id": "real_meeting_005_miluo_2026_minutes_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "日期：2026-06-16 08:28",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "fallback": "text_node"
+      },
+      "block_id": "real_meeting_005_miluo_2026_minutes_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "浏览量：",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_005_miluo_2026_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 4,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-30T13:39:40.075768+00:00",
+    "source_format": "html",
+    "source_sha256": "25c141abd92801668b704044d34a816c2e466fb0666ae71ae3b9c95635b2aad1",
+    "source_site": "www.miluo.gov.cn",
+    "source_url": "https://www.miluo.gov.cn/25221/25235/71992/content_2383980.html",
+    "title": "汨政办发〔2026〕8号（关于废止相关文件的通知）-汨罗市人民政府",
+    "标题": "汨政办发〔2026〕8号（关于废止相关文件的通知）-汨罗市人民政府"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "25c141abd92801668b704044d34a816c2e466fb0666ae71ae3b9c95635b2aad1"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_005_miluo_2026_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

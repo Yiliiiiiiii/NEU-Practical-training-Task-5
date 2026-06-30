@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T09:15:03.169264+00:00",
+  "generated_at": "2026-06-30T13:41:46.911871+00:00",
   "items": [
     {
       "findings": [],
@@ -18,6 +18,11 @@
     },
     {
       "findings": [],
+      "path": "general/real_general_004_tianhe_service_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
       "path": "meeting/real_meeting_001_changning_executive_minutes.json",
       "status": "passed"
     },
@@ -29,6 +34,21 @@
     {
       "findings": [],
       "path": "meeting/real_meeting_003_miluo_executive_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_004_shandan_2025_11_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_005_miluo_2026_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_006_shandan_minutes.json",
       "status": "passed"
     },
     {
@@ -58,6 +78,31 @@
     },
     {
       "findings": [],
+      "path": "policy/real_policy_006_technology_incubator_rules.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_007_one_thing_list.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_008_sme_leader_training.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_009_network_safety_work.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_010_auto_ota_management.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
       "path": "procurement/real_procurement_001_broadcast_security_supervision.json",
       "status": "passed"
     },
@@ -80,6 +125,31 @@
       "findings": [],
       "path": "procurement/real_procurement_005_rehabilitation_equipment_award.json",
       "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_006_vaccine_tender.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_007_testing_equipment_award.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_008_desktop_award.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_009_pollutant_monitoring_award.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "procurement/real_procurement_010_ultrasound_award.json",
+      "status": "passed"
     }
   ],
   "totals": {
@@ -87,8 +157,8 @@
     "failed": 0,
     "missing_fields": 0,
     "mojibake": 0,
-    "passed": 16,
+    "passed": 30,
     "sensitive": 0,
-    "total": 16
+    "total": 30
   }
 }

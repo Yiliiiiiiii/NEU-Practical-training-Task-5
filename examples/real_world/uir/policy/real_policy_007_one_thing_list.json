@@ -1,0 +1,127 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_policy_007_one_thing_list_b001",
+      "level": 1,
+      "source_anchor": null,
+      "text": "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "中国政府网 2025-01-16",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知 国办函〔2025〕3号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "各省、自治区、直辖市人民政府，国务院各部委、各直属机构：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "《“高效办成一件事”2025年度第一批重点事项清单》已经国务院同意，现印发给你们，请结合实际认真组织实施。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "各地区各部门要认真贯彻党中央、国务院关于优化政务服务、推动“高效办成一件事”的决策部署，在不断优化2024年度两批重点事项服务的基础上，统筹做好2025年度第一批重点事项清单实施工作，进一步促进政务服务标准化、规范化、便利化，持续提升企业和群众满意度、获得感。各地区要加强组织领导，围绕“高效办成一件事”合力攻坚，依托全国一体化政务服务平台强化有关业务系统集约整合和互联互通，不断完善线上线下服务，压茬推进重点事项落地见效。国务院有关部门要加强行业指导和数据共享支撑，推动涉及本行业本领域“一件事”标准统一、业务协同，及时解决各地区面临的难点堵点问题，在更多领域更大范围实现“高效办成一件事”。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "国务院办公厅 2025年1月13日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "（此件公开发布）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_007_one_thing_list_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "“高效办成一件事”2025年度第一批重点事项清单",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_007_one_thing_list",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 9,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-06-30T13:20:06.975986+00:00",
+    "source_format": "html",
+    "source_sha256": "26f4a18ca8d05b0d7fc891db74fd85ad3ed9521e661b6fbab47d230f39c2da0c",
+    "source_site": "app.www.gov.cn",
+    "source_url": "https://app.www.gov.cn/govdata/gov/202501/16/523725/article.html",
+    "title": "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知",
+    "标题": "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "26f4a18ca8d05b0d7fc891db74fd85ad3ed9521e661b6fbab47d230f39c2da0c"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_007_one_thing_list",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

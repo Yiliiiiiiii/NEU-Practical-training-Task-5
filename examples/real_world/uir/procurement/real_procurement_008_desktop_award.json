@@ -1,0 +1,1340 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：400-810-1996 | 服务投诉：010-63819289",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政采法规",
+          "购买服务",
+          "监督检查",
+          "信息公告",
+          "国际专栏"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_procurement_008_desktop_award_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "当前位置： 首页 » 政采公告 » 中央公告 » 中标公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h2"
+      },
+      "block_id": "real_procurement_008_desktop_award_b005",
+      "level": 2,
+      "source_anchor": null,
+      "text": "中央国家机关2025年台式计算机批量集中采购项目-6月中标公告",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年06月16日 15:50 来源： 【 打印 】",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h5"
+      },
+      "block_id": "real_procurement_008_desktop_award_b007",
+      "level": 5,
+      "source_anchor": null,
+      "text": "公告概要：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "公告信息：",
+            "value": ""
+          },
+          {
+            "field": "采购项目名称",
+            "value": "中央国家机关2025年台式计算机批量集中采购项目-6月"
+          },
+          {
+            "field": "品目",
+            "value": ""
+          },
+          {
+            "field": "采购单位",
+            "value": "中央国家机关政府采购中心"
+          },
+          {
+            "field": "行政区域",
+            "value": "市辖区 | 公告时间 | 2025年06月16日 15:50"
+          },
+          {
+            "field": "评审专家名单",
+            "value": "赵峥,张景仁,刘汉宇,周岚,郭改荣"
+          },
+          {
+            "field": "总中标金额",
+            "value": "￥860.013000 万元（人民币）"
+          },
+          {
+            "field": "联系人及联系方式：",
+            "value": ""
+          },
+          {
+            "field": "项目联系人",
+            "value": "李朝阳"
+          },
+          {
+            "field": "项目联系电话",
+            "value": "010-83084965"
+          },
+          {
+            "field": "采购单位",
+            "value": "中央国家机关政府采购中心"
+          },
+          {
+            "field": "采购单位地址",
+            "value": "北京市西城区西章胡同9号院"
+          },
+          {
+            "field": "采购单位联系方式",
+            "value": "010-63099478"
+          },
+          {
+            "field": "代理机构名称",
+            "value": "中央国家机关政府采购中心"
+          },
+          {
+            "field": "代理机构地址",
+            "value": "西章胡同9号院"
+          },
+          {
+            "field": "代理机构联系方式",
+            "value": "010-83083702"
+          },
+          {
+            "field": "附件：",
+            "value": ""
+          },
+          {
+            "field": "附件1",
+            "value": "联想开天科技有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件2",
+            "value": "中国长城科技集团股份有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件3",
+            "value": "华为终端有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件4",
+            "value": "天津光电集团信安先进技术（江苏）有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件5",
+            "value": "技术规范偏离表-1-浪潮.pdf"
+          },
+          {
+            "field": "附件6",
+            "value": "技术规范偏离表-3-联硕.pdf"
+          },
+          {
+            "field": "附件7",
+            "value": "技术规范偏离表-4-华为.pdf"
+          },
+          {
+            "field": "附件8",
+            "value": "天津光电集团信安先进技术（江苏）有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件9",
+            "value": "联想（北京）有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件10",
+            "value": "浪潮计算机科技有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件11",
+            "value": "联想（北京）有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件12",
+            "value": "中国长城科技集团股份有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件13",
+            "value": "联想开天科技有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件14",
+            "value": "联硕电脑（重庆）有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件15",
+            "value": "技术规范偏离表-6-天津光电.pdf"
+          },
+          {
+            "field": "附件16",
+            "value": "投标人得分排序表.doc"
+          },
+          {
+            "field": "附件17",
+            "value": "中标通知书.zip"
+          },
+          {
+            "field": "附件18",
+            "value": "技术规范偏离表-5-联想.pdf"
+          },
+          {
+            "field": "附件19",
+            "value": "台式机202506计划公示.xls"
+          },
+          {
+            "field": "附件20",
+            "value": "技术规范偏离表-2-长城.pdf"
+          },
+          {
+            "field": "附件21",
+            "value": "中央国家机关2025年台式计算机批量集中采购项目-6月采购文件.pdf"
+          },
+          {
+            "field": "附件22",
+            "value": "浪潮计算机科技有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件23",
+            "value": "联硕电脑（重庆）有限公司中小企业声明函.pdf"
+          },
+          {
+            "field": "附件24",
+            "value": "华为终端有限公司残疾人福利性单位声明函.pdf"
+          },
+          {
+            "field": "附件25",
+            "value": "技术规范偏离表-7-联想.pdf"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "中央国家机关2025年台式计算机批量集中采购项目-6月中标（成交）结果公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、项目基本情况",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "1．项目编号： GC-HCD250475",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "2．项目名称： 中央国家机关2025年台式计算机批量集中采购项目-6月",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "3．采购方式： 竞争性磋商",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "4．预算金额： 3784.000000万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、中标（成交）信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "初审情况：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一包（龙芯）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "全部投标人通过了初审",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二包（飞腾）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三包（兆芯）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四包（华为鲲鹏）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五包（海光）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "第六包（申威）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "第七包（Intel和AMD）：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 浪潮计算机科技有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 山东省济南市高新区新泺大街1166号奥盛大厦1号楼2324",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币94.998000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 中国长城科技集团股份有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 深圳市南山区科技园长城计算机大厦",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币261.936000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 联硕电脑（重庆）有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 重庆市九龙坡区渝州路街道科园一路30号703室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币148.490000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 华为终端有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 广东省东莞市松山湖园区新城路2号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币860.013000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 联想开天科技有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 北京市海淀区上地西路6号2幢6层601-G6-1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币625.996800 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 天津光电集团信安先进技术（江苏）有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 无锡市滨湖区蠡湖街道五湖大道11号蠡湖科创中心南楼2401室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币121.412000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商名称： 联想（北京）有限公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "供应商地址： 北京市海淀区上地信息产业基地创业路6号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "中标（成交）金额： 人民币1059.993000 万元",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "其他补充说明: 无",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、主要中标（成交）标的信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一包（龙芯）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、浪潮计算机科技有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "1",
+            "value": "浪潮计算机科技有限公司 | 台式计算机配置1 | 浪潮_浪潮英政台式计算 机CE520L-079 （显示器型号：I2460EWH） | 麒麟 | 3345.00 | 0% | 0.01% | 0.02% | 284 | 高丙超 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "3345.00"
+          },
+          {
+            "field": "中科方德",
+            "value": "3345.00"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "3345.00"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "/"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二包（飞腾）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、中国长城科技集团股份有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "2",
+            "value": "中国长城科技集团股份有限公司 | 台式计算机配置2 | 长城_世恒TD120A2/显示器：N24188 | 麒麟 | 3060 | 0% | 1% | 2% | 856 | 苏建林 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "3060"
+          },
+          {
+            "field": "中科方德",
+            "value": "3060"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "3060"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "/"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三包（兆芯）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、联硕电脑（重庆）有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "3",
+            "value": "联硕电脑（重庆）有限公司 | 台式计算机配置3 | 联硕弘道_DZ500SQ-000081 | 麒麟 | 3100 | 0% | 0.5% | 1% | 479 | 王剑秋 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "3100"
+          },
+          {
+            "field": "中科方德",
+            "value": "3100"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "3100"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "/"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四包（华为鲲鹏）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、华为终端有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "4",
+            "value": "华为终端有限公司 | 台式计算机配置4 | HUAWEI_主机：华为擎云W515x-D046； 显示器：SSN- 24BZ | 麒麟 | 4599 | 0% | 1% | 2% | 1870 | 王佳贺 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "4599"
+          },
+          {
+            "field": "中科方德",
+            "value": "4599"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "4599"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "/"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五包（海光）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、联想开天科技有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "5",
+            "value": "联想开天科技有限公司 | 台式计算机配置5 | 联想_主机：M70h G1t-D178 显示器：MT524 G2e | 麒麟 | 3952 | 0% | 0.01% | 0.02% | 1584 | 梁云军 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "3952"
+          },
+          {
+            "field": "中科方德",
+            "value": "3952"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "3952"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "/"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "第六包（申威）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、天津光电集团信安先进技术（江苏）有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "6",
+            "value": "天津光电集团信安先进技术（江苏）有限公司 | 台式计算机配置6 | XinAn GDLink_GDTS8-13A6 | 麒麟 | 4780 | 0% | 0% | 0% | 254 | 唐桦烨 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "4780"
+          },
+          {
+            "field": "中科方德",
+            "value": "4780"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "4780"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "/"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "第七包（Intel和AMD）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "1、联想（北京）有限公司主要投标标的情况表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "包号",
+            "value": "公司名称 | 配置名称 | 品牌型号 | 操作系统 | 产品单价（不包括原厂质保服务）(元) | 三年期原厂质保服务价格占响应产品价格比例 | 五年期原厂质保服务价格占响应产品价格比例 | 六年期原厂质保服务价格占响应产品价格比例 | 数量（台） | 联系人姓名 | 联系人电话"
+          },
+          {
+            "field": "7",
+            "value": "联想（北京）有限公司 | 台式计算机配置7 | 联想_启天M540-B462 显示器 T24a-20 | 麒麟 | / | 0% | 1% | 2% | 2241 | 李双慧 | [REDACTED_PHONE]"
+          },
+          {
+            "field": "统信UOS",
+            "value": "/"
+          },
+          {
+            "field": "中科方德",
+            "value": "/"
+          },
+          {
+            "field": "其他符合安全可靠测评要求的操作系统",
+            "value": "/"
+          },
+          {
+            "field": "Win10神州网信版",
+            "value": "4730"
+          }
+        ]
+      },
+      "block_id": "real_procurement_008_desktop_award_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、评审专家（单一来源采购人员）名单",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "赵峥,刘汉宇(组长),张景仁,周岚,郭改荣",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、代理服务收费标准及金额： 免费",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、公告期限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "自本公告发布之日起1个工作日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、其他补充事宜",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 采购人和中标（成交）供应商可点击本公告附件的链接，登录中央政府采购网，自行下载中标（成交）通知书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 供应商推荐情况：联想开天科技有限公司、软通计算机有限公司、浪潮计算机科技有限公司、青岛雷神科技股份有限公司、北京方正数码有限公司、中国长城科技集团股份有限公司、紫光计算机科技有限公司、北京计算机技术及应用研究所、联硕电脑（重庆）有限公司、华为终端有限公司、安领信（北京）科技有限公司、格林恒泰（北京）科技有限公司、中科可控信息产业有限公司、杭州海康威视数字技术股份有限公司、中通服供应链股份有限公司、中诚华隆计算机技术有限公司、天津光电集团信安先进技术（江苏）有限公司、融立方信息技术（南京）有限公司、联想（北京）有限公司、惠普贸易（上海）有限公司、戴尔（中国）有限公司、华硕电脑（上海）有限公司、太极计算机股份有限公司。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "八、凡对本次招标提出询问，请按以下方式联系",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b078",
+      "level": null,
+      "source_anchor": null,
+      "text": "1．采购人信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b079",
+      "level": null,
+      "source_anchor": null,
+      "text": "名 称：中央国家机关政府采购中心",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b080",
+      "level": null,
+      "source_anchor": null,
+      "text": "地 址：北京市北京市西城区北京市西城区西章胡同9号院",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b081",
+      "level": null,
+      "source_anchor": null,
+      "text": "联系方式：010-63099478",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b082",
+      "level": null,
+      "source_anchor": null,
+      "text": "2．采购执行机构信息",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b083",
+      "level": null,
+      "source_anchor": null,
+      "text": "地 址：北京市西城区西直门内大街西章胡同9号院 邮政编码：100035",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b084",
+      "level": null,
+      "source_anchor": null,
+      "text": "联系方式：详见http://www.zycg.gov.cn/home/contactus",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b085",
+      "level": null,
+      "source_anchor": null,
+      "text": "3．项目联系方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b086",
+      "level": null,
+      "source_anchor": null,
+      "text": "文件联系人及电话：经办人: 吕晓斌 010-63099478 负责人: 李云峰 010-55602390",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b087",
+      "level": null,
+      "source_anchor": null,
+      "text": "评审联系人及电话：经办人: 李朝阳 010-83084965 负责人: 李云峰 010-55602390",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b088",
+      "level": null,
+      "source_anchor": null,
+      "text": "九、附件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b089",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.得分排序表",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b090",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.中标（成交）通知书下载链接",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b091",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.采购文件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b092",
+      "level": null,
+      "source_anchor": null,
+      "text": "以上附件详见https://www.zycg.gov.cn/",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b093",
+      "level": null,
+      "source_anchor": null,
+      "text": "2025年6月16日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b094",
+      "level": null,
+      "source_anchor": null,
+      "text": "相关公告",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_procurement_008_desktop_award_b095",
+      "level": null,
+      "source_anchor": null,
+      "text": "主办单位：中华人民共和国财政部国库司 网站标识码： bm14000002 | 京 ICP 备 19054529 号 -1 | 京公网安备 11010602060068 号 © 1999- 中华人民共和国财政部 版权所有 | 联系我们 | 意见反馈",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_procurement_008_desktop_award",
+  "metadata": {
+    "doc_type": "procurement_doc",
+    "domain": "procurement_doc",
+    "extracted_block_count": 95,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "redaction_note": "Public contact email/phone values redacted for privacy validation; original official source hash remains in source_sha256.",
+    "retrieved_at": "2026-06-30T13:20:07.908959+00:00",
+    "source_format": "html",
+    "source_sha256": "cd33862fa787c8af9876a11f8c6a012bef0d9a5a91ad2fdf1542b6019b47f790",
+    "source_site": "www.ccgp.gov.cn",
+    "source_url": "https://www.ccgp.gov.cn/cggg/zygg/zbgg/202506/t20250616_24783596.htm",
+    "title": "中央国家机关2025年台式计算机批量集中采购项目-6月中标公告",
+    "标题": "中央国家机关2025年台式计算机批量集中采购项目-6月中标公告"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "cd33862fa787c8af9876a11f8c6a012bef0d9a5a91ad2fdf1542b6019b47f790"
+    }
+  ],
+  "source": {
+    "source_name": "real_procurement_008_desktop_award",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}
