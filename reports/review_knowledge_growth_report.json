@@ -1,0 +1,110 @@
+{
+  "activated_aliases": {
+    "document_number": [
+      "发文字号："
+    ]
+  },
+  "after": {
+    "auto_mapped_fields": 4,
+    "mapping_recall": 1.0,
+    "required_coverage": 0.5,
+    "review_required_count": 4,
+    "strict_pass_count": 1
+  },
+  "badcase_controls": {
+    "blocked_aliases": [
+      "extracted_block_count"
+    ],
+    "violation_count": 0
+  },
+  "before": {
+    "auto_mapped_fields": 3,
+    "mapping_recall": 0.0,
+    "required_coverage": 0.5,
+    "review_required_count": 5,
+    "strict_pass_count": 1
+  },
+  "boundaries": [
+    "A temporary SQLite database, storage root, and copied catalog are used.",
+    "Draft packs are measured before activation.",
+    "Only accepted, non-badcase candidates enter the active pack."
+  ],
+  "decision_evidence": [
+    {
+      "badcase_hit": false,
+      "candidate_status": "pending",
+      "decision": "approved",
+      "reason": "The official document-number row is an unambiguous source for document_number.",
+      "source_label": "发文字号：",
+      "target_field": "document_number"
+    },
+    {
+      "badcase_hit": false,
+      "candidate_status": null,
+      "decision": "rejected",
+      "reason": "Retrieval time is provenance metadata and must not become the policy target audience.",
+      "source_label": "retrieved_at",
+      "target_field": "target_audience"
+    },
+    {
+      "badcase_hit": true,
+      "candidate_status": "blocked",
+      "decision": "approved",
+      "reason": "Control case: extracted block count is forbidden from becoming semantic keywords.",
+      "source_label": "extracted_block_count",
+      "target_field": "keywords"
+    }
+  ],
+  "draft_pack_evidence": {
+    "affected_future_task": false,
+    "metrics_equal_to_before": true,
+    "status": "draft"
+  },
+  "fixture": {
+    "decision_count": 3,
+    "doc_id": "real_policy_001_training_platform_rules",
+    "doc_type": "policy_doc",
+    "real_uir_path": "examples/real_world/uir/policy/real_policy_001_training_platform_rules.json"
+  },
+  "old_task_invariant": {
+    "artifacts": {
+      "canonical": {
+        "bytes_unchanged": true,
+        "structure_unchanged": true
+      },
+      "execution_snapshot": {
+        "bytes_unchanged": true,
+        "structure_unchanged": true
+      },
+      "mapping_report": {
+        "bytes_unchanged": true,
+        "structure_unchanged": true
+      },
+      "metadata": {
+        "bytes_unchanged": true,
+        "structure_unchanged": true
+      }
+    },
+    "canonical_unchanged": true,
+    "execution_snapshot_unchanged": true,
+    "mapping_report_unchanged": true,
+    "metadata_unchanged": true,
+    "task_record_unchanged": true
+  },
+  "rejected_controls": [
+    {
+      "activated": false,
+      "candidate_created": false,
+      "reason": "Retrieval time is provenance metadata and must not become the policy target audience.",
+      "source_label": "retrieved_at",
+      "target_field": "target_audience"
+    }
+  ],
+  "summary": {
+    "badcase_violation_count": 0,
+    "isolated_state": true,
+    "old_snapshot_unchanged": true,
+    "passed": true,
+    "rejected_candidate_activated_count": 0
+  }
+}
