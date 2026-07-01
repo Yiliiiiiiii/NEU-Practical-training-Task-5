@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import { api } from "./api";
 import { ChunkEvidencePanel } from "./components/ChunkEvidencePanel";
+import { DownstreamReadinessPanel } from "./components/DownstreamReadinessPanel";
 import { KnowledgeComparisonPanel } from "./components/KnowledgeComparisonPanel";
 import { MappingEvidencePanel } from "./components/MappingEvidencePanel";
 import { PackageManifestPanel } from "./components/PackageManifestPanel";
@@ -540,6 +541,14 @@ function App() {
 
           <ReportPanel title="Package Manifest" icon={<Package size={18} />}>
             <PackageManifestPanel manifest={manifest} verifier={verifier} />
+          </ReportPanel>
+
+          <ReportPanel title="Downstream Readiness" icon={<Package size={18} />}>
+            <DownstreamReadinessPanel
+              manifest={manifest}
+              chunks={chunks}
+              verifier={verifier}
+            />
           </ReportPanel>
 
           <ReportPanel title="Knowledge Comparison" icon={<Tags size={18} />}>
