@@ -1,0 +1,249 @@
+{
+  "results": [
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_001_notary_service_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_002_biomed_project_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_003_textile_application_flow.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_004_tianhe_service_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_001_changning_executive_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_002_shaxian_executive_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_003_miluo_executive_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_004_shandan_2025_11_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_005_miluo_2026_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_006_shandan_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_001_training_platform_rules.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_002_equipment_renewal.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_003_science_education_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_004_student_loan_relief.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_005_ai_industry_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_006_technology_incubator_rules.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_007_one_thing_list.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_008_sme_leader_training.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_009_network_safety_work.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_010_auto_ota_management.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_001_broadcast_security_supervision.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_002_special_equipment_bid.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_003_radiation_monitoring_award.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_004_veterinary_platform_award.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_005_rehabilitation_equipment_award.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_006_vaccine_tender.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_007_testing_equipment_award.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_008_desktop_award.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_009_pollutant_monitoring_award.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_procurement_010_ultrasound_award.zip",
+      "passed": true,
+      "warnings": []
+    }
+  ],
+  "summary": {
+    "failed_count": 0,
+    "package_count": 30,
+    "passed_count": 30
+  }
+}
