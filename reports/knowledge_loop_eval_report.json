@@ -1,78 +1,78 @@
 {
   "accepted_candidates": [
     {
-      "alias": "成文日期",
-      "badcase_hit": false,
-      "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_effective_date_fuzzy",
-      "candidate_type": "alias",
-      "created_at": "2026-06-30T06:13:50.077103",
-      "review_id": "review_task_e104703b1050_map_task_e104703b1050_effective_date_fuzzy",
-      "schema_id": "policy_doc",
-      "status": "accepted",
-      "support_count": 1,
-      "target_field_id": "effective_date",
-      "template_id": "policy_doc_base_v1",
-      "updated_at": "2026-06-30T06:13:50.135341"
-    },
-    {
       "alias": "正文",
       "badcase_hit": false,
-      "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_doc_type_fuzzy",
+      "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_document_number_fuzzy",
       "candidate_type": "alias",
-      "created_at": "2026-06-30T06:13:50.051693",
-      "review_id": "review_task_e104703b1050_map_task_e104703b1050_doc_type_fuzzy",
+      "created_at": "2026-07-01T12:35:24.264649",
+      "review_id": "review_task_485f5df4764f_map_task_485f5df4764f_document_number_fuzzy",
       "schema_id": "policy_doc",
       "status": "accepted",
       "support_count": 1,
-      "target_field_id": "doc_type",
+      "target_field_id": "document_number",
       "template_id": "policy_doc_base_v1",
-      "updated_at": "2026-06-30T06:13:50.165515"
+      "updated_at": "2026-07-01T12:35:24.323365"
     },
     {
-      "alias": "content",
+      "alias": "成文日期",
       "badcase_hit": false,
-      "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_keywords_fuzzy",
+      "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_valid_until_fuzzy",
       "candidate_type": "alias",
-      "created_at": "2026-06-30T06:13:50.030512",
-      "review_id": "review_task_e104703b1050_map_task_e104703b1050_keywords_fuzzy",
+      "created_at": "2026-07-01T12:35:24.233759",
+      "review_id": "review_task_485f5df4764f_map_task_485f5df4764f_valid_until_fuzzy",
       "schema_id": "policy_doc",
       "status": "accepted",
       "support_count": 1,
-      "target_field_id": "keywords",
+      "target_field_id": "valid_until",
       "template_id": "policy_doc_base_v1",
-      "updated_at": "2026-06-30T06:13:50.197226"
+      "updated_at": "2026-07-01T12:35:24.354231"
+    },
+    {
+      "alias": "制定主体",
+      "badcase_hit": false,
+      "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_source_fuzzy",
+      "candidate_type": "alias",
+      "created_at": "2026-07-01T12:35:24.190569",
+      "review_id": "review_task_485f5df4764f_map_task_485f5df4764f_source_fuzzy",
+      "schema_id": "policy_doc",
+      "status": "accepted",
+      "support_count": 1,
+      "target_field_id": "source",
+      "template_id": "policy_doc_base_v1",
+      "updated_at": "2026-07-01T12:35:24.383993"
     }
   ],
   "active_pack": {
-    "activated_at": "2026-06-30T06:13:50.289916",
-    "created_at": "2026-06-30T06:13:50.219654",
+    "activated_at": "2026-07-01T12:35:24.477841",
+    "created_at": "2026-07-01T12:35:24.419992",
     "created_by": "topic5_eval",
     "items": [
       {
-        "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_effective_date_fuzzy",
+        "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_document_number_fuzzy",
         "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_1",
         "item_type": "alias",
-        "target_field_id": "effective_date",
-        "value": {
-          "alias": "成文日期"
-        }
-      },
-      {
-        "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_doc_type_fuzzy",
-        "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_2",
-        "item_type": "alias",
-        "target_field_id": "doc_type",
+        "target_field_id": "document_number",
         "value": {
           "alias": "正文"
         }
       },
       {
-        "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_keywords_fuzzy",
+        "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_valid_until_fuzzy",
+        "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_2",
+        "item_type": "alias",
+        "target_field_id": "valid_until",
+        "value": {
+          "alias": "成文日期"
+        }
+      },
+      {
+        "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_source_fuzzy",
         "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_3",
         "item_type": "alias",
-        "target_field_id": "keywords",
+        "target_field_id": "source",
         "value": {
-          "alias": "content"
+          "alias": "制定主体"
         }
       }
     ],
@@ -84,96 +84,96 @@
     "schema_id": "policy_doc",
     "status": "active",
     "template_id": "policy_doc_base_v1",
-    "updated_at": "2026-06-30T06:13:50.289922",
+    "updated_at": "2026-07-01T12:35:24.477848",
     "version": "1.0.0"
   },
   "approved_reviews": [
     {
       "confidence": 0.62,
-      "created_at": "2026-06-30T06:13:49.806757",
+      "created_at": "2026-07-01T12:35:23.900389",
       "doc_id": "policy_002_alias_variants",
-      "reason": "Fuzzy mapping requires human review.; risk_flags=fuzzy_match,low_confidence; fuzzy score 0.50 requires review",
+      "reason": "Fuzzy mapping requires human review.; risk_flags=fuzzy_match,low_confidence; fuzzy score 0.65 requires review",
       "review_comment": "Approved for topic 5 knowledge-loop evaluation.",
-      "review_id": "review_task_e104703b1050_map_task_e104703b1050_keywords_fuzzy",
+      "review_id": "review_task_485f5df4764f_map_task_485f5df4764f_source_fuzzy",
       "reviewer": "topic5_eval",
       "schema_id": "policy_doc",
-      "source_field_name": "content",
-      "source_path": "$.metadata.content",
+      "source_field_name": "制定主体",
+      "source_path": "$.metadata.制定主体",
       "status": "approved",
       "suggested_by": "fuzzy",
-      "target_field_id": "keywords",
-      "task_id": "task_e104703b1050",
+      "target_field_id": "source",
+      "task_id": "task_485f5df4764f",
       "template_id": "policy_doc_base_v1",
-      "updated_at": "2026-06-30T06:13:50.028287"
+      "updated_at": "2026-07-01T12:35:24.187435"
     },
     {
       "confidence": 0.62,
-      "created_at": "2026-06-30T06:13:49.806756",
+      "created_at": "2026-07-01T12:35:23.900387",
       "doc_id": "policy_002_alias_variants",
       "reason": "Fuzzy mapping requires human review.; risk_flags=fuzzy_match,low_confidence; fuzzy score 0.50 requires review",
       "review_comment": "Approved for topic 5 knowledge-loop evaluation.",
-      "review_id": "review_task_e104703b1050_map_task_e104703b1050_doc_type_fuzzy",
+      "review_id": "review_task_485f5df4764f_map_task_485f5df4764f_valid_until_fuzzy",
+      "reviewer": "topic5_eval",
+      "schema_id": "policy_doc",
+      "source_field_name": "成文日期",
+      "source_path": "$.blocks.pol002_b002.rows.2",
+      "status": "approved",
+      "suggested_by": "fuzzy",
+      "target_field_id": "valid_until",
+      "task_id": "task_485f5df4764f",
+      "template_id": "policy_doc_base_v1",
+      "updated_at": "2026-07-01T12:35:24.232856"
+    },
+    {
+      "confidence": 0.62,
+      "created_at": "2026-07-01T12:35:23.900386",
+      "doc_id": "policy_002_alias_variants",
+      "reason": "Fuzzy mapping requires human review.; risk_flags=fuzzy_match,low_confidence; fuzzy score 0.50 requires review",
+      "review_comment": "Approved for topic 5 knowledge-loop evaluation.",
+      "review_id": "review_task_485f5df4764f_map_task_485f5df4764f_document_number_fuzzy",
       "reviewer": "topic5_eval",
       "schema_id": "policy_doc",
       "source_field_name": "正文",
       "source_path": "$.blocks.pol002_b003.text",
       "status": "approved",
       "suggested_by": "fuzzy",
-      "target_field_id": "doc_type",
-      "task_id": "task_e104703b1050",
+      "target_field_id": "document_number",
+      "task_id": "task_485f5df4764f",
       "template_id": "policy_doc_base_v1",
-      "updated_at": "2026-06-30T06:13:50.051076"
-    },
-    {
-      "confidence": 0.62,
-      "created_at": "2026-06-30T06:13:49.806756",
-      "doc_id": "policy_002_alias_variants",
-      "reason": "Fuzzy mapping requires human review.; risk_flags=fuzzy_match,low_confidence; fuzzy score 0.50 requires review",
-      "review_comment": "Approved for topic 5 knowledge-loop evaluation.",
-      "review_id": "review_task_e104703b1050_map_task_e104703b1050_effective_date_fuzzy",
-      "reviewer": "topic5_eval",
-      "schema_id": "policy_doc",
-      "source_field_name": "成文日期",
-      "source_path": "$.metadata.成文日期",
-      "status": "approved",
-      "suggested_by": "fuzzy",
-      "target_field_id": "effective_date",
-      "task_id": "task_e104703b1050",
-      "template_id": "policy_doc_base_v1",
-      "updated_at": "2026-06-30T06:13:50.076251"
+      "updated_at": "2026-07-01T12:35:24.263522"
     }
   ],
   "blocked_candidates": [],
   "draft_pack": {
     "activated_at": null,
-    "created_at": "2026-06-30T06:13:50.219654",
+    "created_at": "2026-07-01T12:35:24.419992",
     "created_by": "topic5_eval",
     "items": [
       {
-        "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_effective_date_fuzzy",
+        "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_document_number_fuzzy",
         "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_1",
         "item_type": "alias",
-        "target_field_id": "effective_date",
-        "value": {
-          "alias": "成文日期"
-        }
-      },
-      {
-        "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_doc_type_fuzzy",
-        "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_2",
-        "item_type": "alias",
-        "target_field_id": "doc_type",
+        "target_field_id": "document_number",
         "value": {
           "alias": "正文"
         }
       },
       {
-        "candidate_id": "kc_review_task_e104703b1050_map_task_e104703b1050_keywords_fuzzy",
+        "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_valid_until_fuzzy",
+        "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_2",
+        "item_type": "alias",
+        "target_field_id": "valid_until",
+        "value": {
+          "alias": "成文日期"
+        }
+      },
+      {
+        "candidate_id": "kc_review_task_485f5df4764f_map_task_485f5df4764f_source_fuzzy",
         "item_id": "kp_policy_doc_policy_doc_base_v1_1_item_3",
         "item_type": "alias",
-        "target_field_id": "keywords",
+        "target_field_id": "source",
         "value": {
-          "alias": "content"
+          "alias": "制定主体"
         }
       }
     ],
@@ -185,10 +185,10 @@
     "schema_id": "policy_doc",
     "status": "draft",
     "template_id": "policy_doc_base_v1",
-    "updated_at": "2026-06-30T06:13:50.219657",
+    "updated_at": "2026-07-01T12:35:24.419995",
     "version": "1.0.0"
   },
-  "generated_at": "2026-06-30T06:13:50.632871+00:00",
+  "generated_at": "2026-07-01T12:35:25.080223+00:00",
   "metrics": {
     "accepted_candidates": 3,
     "active_packs": 1,
@@ -197,7 +197,7 @@
     "blocked_candidates": 0,
     "draft_packs": 0,
     "pending_candidates": 0,
-    "pending_reviews": 172,
+    "pending_reviews": 746,
     "rejected_candidates": 0,
     "rejected_reviews": 0
   },
@@ -205,13 +205,13 @@
     "accepted_candidate_count": 3,
     "active_packs": 1,
     "active_template_changed": true,
-    "after_recall": 0.45454545454545453,
+    "after_recall": 0.46153846153846156,
     "approved_review_count": 3,
     "badcase_violation_count": 0,
-    "before_recall": 0.18181818181818182,
+    "before_recall": 0.23076923076923078,
     "blocked_candidate_count": 0,
     "old_snapshot_unchanged": true,
-    "required_coverage_after": 0.7272727272727273,
-    "required_coverage_before": 0.7272727272727273
+    "required_coverage_after": 0.8461538461538461,
+    "required_coverage_before": 0.8461538461538461
   }
 }

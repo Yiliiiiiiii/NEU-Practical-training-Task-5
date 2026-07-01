@@ -113,8 +113,7 @@ def _missing_fields(item: dict[str, Any]) -> list[str]:
     return [
         field
         for entry in unmapped
-        if entry.get("required")
-        and (field := _target_field(entry))
+        if entry.get("required") and (field := _target_field(entry))
     ]
 
 
@@ -126,12 +125,14 @@ def _validation_passed(item: dict[str, Any]) -> bool | None:
     return None
 
 
-def _counted(counter: Counter[str], *, limit: int = 5, label: str) -> list[dict[str, Any]]:
+def _counted(
+    counter: Counter[str], *, limit: int = 5, label: str
+) -> list[dict[str, Any]]:
     return [
         {label: value, "count": count}
-        for value, count in sorted(counter.items(), key=lambda pair: (-pair[1], pair[0]))[
-            :limit
-        ]
+        for value, count in sorted(
+            counter.items(), key=lambda pair: (-pair[1], pair[0])
+        )[:limit]
     ]
 
 
@@ -150,7 +151,9 @@ def _required_object_array(
     return result
 
 
-def _validate_doc_type(item: dict[str, Any], *, label: str, required: bool = True) -> None:
+def _validate_doc_type(
+    item: dict[str, Any], *, label: str, required: bool = True
+) -> None:
     doc_type = _first_string(item, "doc_type", "schema_id")
     if doc_type is None:
         if required:
@@ -225,9 +228,7 @@ def _validate_required_report_shapes(
             if isinstance(item, str) and item:
                 continue
             if not isinstance(item, dict):
-                raise ValueError(
-                    f"{label} must be an object or non-empty document ID"
-                )
+                raise ValueError(f"{label} must be an object or non-empty document ID")
             _validate_doc_id(item, label=label)
             _validate_doc_type(item, label=label, required=False)
 
@@ -282,7 +283,9 @@ def _validate_required_report_shapes(
                 _validate_optional_array(item, key, label=label, item_type=dict)
 
 
-def _failure_case_by_doc(evaluation_report: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def _failure_case_by_doc(
+    evaluation_report: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
     return {
         str(item["doc_id"]): item
         for item in _objects(evaluation_report.get("validation_failed_cases"))
@@ -324,7 +327,9 @@ def _document_rows(
         if not doc_id:
             continue
         row = row_for(doc_id)
-        row["doc_type"] = _first_string(item, "doc_type", "schema_id") or row["doc_type"]
+        row["doc_type"] = (
+            _first_string(item, "doc_type", "schema_id") or row["doc_type"]
+        )
         passed = _validation_passed(item)
         if passed is not None:
             row["validation_passed"] = passed
@@ -336,7 +341,9 @@ def _document_rows(
         if not doc_id:
             continue
         row = row_for(doc_id)
-        row["doc_type"] = _first_string(report, "doc_type", "schema_id") or row["doc_type"]
+        row["doc_type"] = (
+            _first_string(report, "doc_type", "schema_id") or row["doc_type"]
+        )
         kind = report.get("_report_kind")
         if kind == "validation":
             passed = _validation_passed(report)
@@ -370,7 +377,8 @@ def _is_low_confidence(review: dict[str, Any]) -> bool:
     tier = review.get("confidence_tier")
     confidence = review.get("confidence")
     return tier == "low" or (
-        isinstance(confidence, int | float) and not isinstance(confidence, bool)
+        isinstance(confidence, int | float)
+        and not isinstance(confidence, bool)
         and confidence < 0.7
     )
 
@@ -463,12 +471,18 @@ def analyze_reports(
                     low_source_counter[source] += 1
                 if source and target:
                     review_pairs[(source, target)] += 1
-                    reason = _first_string(
-                        review,
-                        "review_required_reason",
-                        "reason",
-                    ) or "Low-confidence or fuzzy mapping evidence."
-                    if target in REVIEW_REQUIRED_FIELDS or "ambiguous" in reason.lower():
+                    reason = (
+                        _first_string(
+                            review,
+                            "review_required_reason",
+                            "reason",
+                        )
+                        or "Low-confidence or fuzzy mapping evidence."
+                    )
+                    if (
+                        target in REVIEW_REQUIRED_FIELDS
+                        or "ambiguous" in reason.lower()
+                    ):
                         must_stay_review[(doc_type, target)] = {
                             "doc_type": doc_type,
                             "target_field": target,
@@ -681,14 +695,20 @@ def render_markdown(report: dict[str, Any]) -> str:
 
     lines.extend(["", "## Top Failed and Review-required Fields", ""])
     for doc_type, metrics in report["by_doc_type"].items():
-        missing = ", ".join(
-            f"{item['field']} ({item['count']})"
-            for item in metrics["top_missing_required_fields"]
-        ) or "None"
-        reviews = ", ".join(
-            f"{item['field']} ({item['count']})"
-            for item in metrics["top_review_required_fields"]
-        ) or "None"
+        missing = (
+            ", ".join(
+                f"{item['field']} ({item['count']})"
+                for item in metrics["top_missing_required_fields"]
+            )
+            or "None"
+        )
+        reviews = (
+            ", ".join(
+                f"{item['field']} ({item['count']})"
+                for item in metrics["top_review_required_fields"]
+            )
+            or "None"
+        )
         lines.append(f"- {doc_type}: failed={missing}; review-required={reviews}")
 
     lines.extend(["", "## Field Failure Details", ""])
@@ -715,7 +735,9 @@ def render_markdown(report: dict[str, Any]) -> str:
                 f"`{_markdown_cell(source)}` — {_markdown_cell(item['reason'])}"
             )
     else:
-        lines.append("- None. Current evidence does not justify an automatic template change.")
+        lines.append(
+            "- None. Current evidence does not justify an automatic template change."
+        )
 
     lines.extend(["", "## Fields That Must Stay Review-required", ""])
     if report["fields_that_must_stay_review_required"]:

@@ -86,15 +86,21 @@ def load_chunks(package_dir: Path) -> list[dict[str, Any]]:
         raise PackageReadError("chunks.jsonl is missing")
 
     chunks: list[dict[str, Any]] = []
-    for line_number, line in enumerate(chunks_path.read_text(encoding="utf-8").splitlines(), 1):
+    for line_number, line in enumerate(
+        chunks_path.read_text(encoding="utf-8").splitlines(), 1
+    ):
         if not line.strip():
             continue
         try:
             chunk = json.loads(line)
         except json.JSONDecodeError as exc:
-            raise PackageReadError(f"chunks.jsonl line {line_number} is invalid: {exc}") from exc
+            raise PackageReadError(
+                f"chunks.jsonl line {line_number} is invalid: {exc}"
+            ) from exc
         if not isinstance(chunk, dict):
-            raise PackageReadError(f"chunks.jsonl line {line_number} must be a JSON object")
+            raise PackageReadError(
+                f"chunks.jsonl line {line_number} must be a JSON object"
+            )
         chunks.append(chunk)
 
     if not chunks:
@@ -102,7 +108,9 @@ def load_chunks(package_dir: Path) -> list[dict[str, Any]]:
     return chunks
 
 
-def read_validated_package(package_path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+def read_validated_package(
+    package_path: Path,
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     with resolved_package_dir(package_path) as package_dir:
         manifest = load_manifest(package_dir)
         validate_manifest_files(package_dir, manifest)
@@ -171,17 +179,25 @@ def chunk_source_linked(chunk: dict[str, Any]) -> bool:
     return bool(chunk.get("source_links")) or bool(chunk.get("source_block_ids"))
 
 
-def training_metadata(manifest: dict[str, Any], chunk: dict[str, Any]) -> dict[str, Any]:
-    generator = manifest.get("generator") if isinstance(manifest.get("generator"), dict) else {}
-    metadata = manifest.get("_metadata") if isinstance(manifest.get("_metadata"), dict) else {}
+def training_metadata(
+    manifest: dict[str, Any], chunk: dict[str, Any]
+) -> dict[str, Any]:
+    generator = (
+        manifest.get("generator") if isinstance(manifest.get("generator"), dict) else {}
+    )
+    metadata = (
+        manifest.get("_metadata") if isinstance(manifest.get("_metadata"), dict) else {}
+    )
     return {
         "doc_id": chunk.get("doc_id") or manifest.get("doc_id"),
         "task_id": chunk.get("task_id") or manifest.get("task_id"),
         "package_id": manifest.get("package_id"),
         "schema_id": metadata.get("schema_id") or generator.get("schema_id"),
-        "schema_version": metadata.get("schema_version") or generator.get("schema_version"),
+        "schema_version": metadata.get("schema_version")
+        or generator.get("schema_version"),
         "template_id": metadata.get("template_id") or generator.get("template_id"),
-        "template_version": metadata.get("template_version") or generator.get("template_version"),
+        "template_version": metadata.get("template_version")
+        or generator.get("template_version"),
         "granularity": chunk.get("granularity"),
         "parent_chunk_id": chunk.get("parent_chunk_id"),
         "tags": chunk.get("tags", {}),

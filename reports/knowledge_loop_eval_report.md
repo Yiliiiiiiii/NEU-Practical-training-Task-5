@@ -8,13 +8,13 @@
 
 ## Before/After Recall
 
-- Before recall: 0.182
-- After recall: 0.455
+- Before recall: 0.231
+- After recall: 0.462
 
 ## Required Coverage
 
-- Before: 0.727
-- After: 0.727
+- Before: 0.846
+- After: 0.846
 
 ## Review Approvals
 

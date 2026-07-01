@@ -42,9 +42,15 @@ def verify_package(package_path: Path) -> dict[str, Any]:
     rag_passed = False
     try:
         with resolved_package_dir(package_path) as package_dir:
-            missing = sorted(name for name in REQUIRED_ARTIFACTS if not (package_dir / name).is_file())
+            missing = sorted(
+                name
+                for name in REQUIRED_ARTIFACTS
+                if not (package_dir / name).is_file()
+            )
             if missing:
-                raise PackageReadError("required artifacts missing: " + ", ".join(missing))
+                raise PackageReadError(
+                    "required artifacts missing: " + ", ".join(missing)
+                )
             manifest = load_manifest(package_dir)
             validate_manifest_files(package_dir, manifest)
             metadata = load_metadata(package_dir)
@@ -131,7 +137,10 @@ def main() -> None:
     report = run_batch(args.packages_root)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        args.out.write_text(
+            json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
     if args.markdown:
         args.markdown.parent.mkdir(parents=True, exist_ok=True)
         args.markdown.write_text(render_markdown(report), encoding="utf-8")

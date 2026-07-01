@@ -11,7 +11,7 @@
     "effective_date": ["effective_date", "生效日期", "实施日期"],
     "summary": ["summary", "摘要", "内容摘要"],
     "keywords": ["keywords", "关键词", "主题词"],
-    "content": ["content", "正文", "主要内容"],
+    "content": ["content", "document text", "正文", "主要内容"],
     "document_number": ["document_number", "文号", "文件编号", "发文字号"],
     "policy_level": ["policy_level", "政策层级", "文件级别", "效力层级"],
     "applicable_region": ["applicable_region", "适用地区", "适用区域", "实施区域"],

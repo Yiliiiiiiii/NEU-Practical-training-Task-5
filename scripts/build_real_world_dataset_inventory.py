@@ -27,7 +27,9 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
     rows: list[dict[str, Any]] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for line_number, line in enumerate(
+        path.read_text(encoding="utf-8").splitlines(), 1
+    ):
         if not line.strip():
             continue
         row = json.loads(line)
@@ -200,8 +202,12 @@ def validate_source_paths(
             if isinstance(review, dict) and review.get("source_path"):
                 checks.append(("review", str(review["source_path"])))
         for badcase in row.get("known_badcases", []):
-            evidence = badcase.get("source_evidence") if isinstance(badcase, dict) else None
-            source_paths = evidence.get("source_paths", []) if isinstance(evidence, dict) else []
+            evidence = (
+                badcase.get("source_evidence") if isinstance(badcase, dict) else None
+            )
+            source_paths = (
+                evidence.get("source_paths", []) if isinstance(evidence, dict) else []
+            )
             for source_path in source_paths:
                 checks.append(("embedded_badcase", str(source_path)))
         for kind, source_path in checks:
@@ -226,7 +232,9 @@ def validate_badcase_references(
         doc_id = str(badcase.get("doc_id", ""))
         document = uirs.get(doc_id)
         evidence = badcase.get("source_evidence")
-        source_paths = evidence.get("source_paths", []) if isinstance(evidence, dict) else []
+        source_paths = (
+            evidence.get("source_paths", []) if isinstance(evidence, dict) else []
+        )
         for source_path in source_paths:
             if document is None or not source_path_exists(document, str(source_path)):
                 invalid += 1
@@ -268,9 +276,7 @@ def build_inventory(paths: dict[str, Path]) -> dict[str, Any]:
     query_doc_ids = {str(row.get("doc_id")) for row in valid_retrieval_queries}
     query_counts = Counter(str(row.get("doc_id")) for row in valid_retrieval_queries)
     insufficient_retrieval_queries = {
-        doc_id: query_counts[doc_id]
-        for doc_id in uir_ids
-        if query_counts[doc_id] < 2
+        doc_id: query_counts[doc_id] for doc_id in uir_ids if query_counts[doc_id] < 2
     }
 
     for doc_id in sorted(manifest_ids - uir_ids):
@@ -280,7 +286,9 @@ def build_inventory(paths: dict[str, Path]) -> dict[str, Any]:
     for doc_id in sorted(uir_ids - gold_doc_ids):
         issue(issues, "missing_mapping_gold", f"UIR has no mapping gold: {doc_id}")
     for doc_id in sorted(uir_ids - query_doc_ids):
-        issue(issues, "missing_retrieval_query", f"UIR has no retrieval query: {doc_id}")
+        issue(
+            issues, "missing_retrieval_query", f"UIR has no retrieval query: {doc_id}"
+        )
     for doc_id, query_count in sorted(insufficient_retrieval_queries.items()):
         issue(
             issues,
@@ -289,7 +297,11 @@ def build_inventory(paths: dict[str, Path]) -> dict[str, Any]:
             f"{'query' if query_count == 1 else 'queries'}; at least 2 required",
         )
     for doc_id in sorted(gold_doc_ids - uir_ids):
-        issue(issues, "orphan_mapping_gold", f"mapping gold references missing UIR: {doc_id}")
+        issue(
+            issues,
+            "orphan_mapping_gold",
+            f"mapping gold references missing UIR: {doc_id}",
+        )
     for doc_id in sorted(all_query_doc_ids - uir_ids):
         issue(
             issues,
@@ -325,14 +337,15 @@ def build_inventory(paths: dict[str, Path]) -> dict[str, Any]:
     )
 
     by_doc_type = Counter(
-        str(document.get("metadata", {}).get("doc_type"))
-        for document in uirs.values()
+        str(document.get("metadata", {}).get("doc_type")) for document in uirs.values()
     )
     mapping_counts_by_type: dict[str, list[int]] = defaultdict(list)
     query_counts_by_type: dict[str, list[int]] = defaultdict(list)
     for doc_id, document in uirs.items():
         doc_type = str(document.get("metadata", {}).get("doc_type"))
-        mapping_row = next((row for row in mapping_rows if row.get("doc_id") == doc_id), None)
+        mapping_row = next(
+            (row for row in mapping_rows if row.get("doc_id") == doc_id), None
+        )
         mapping_count = (
             len(mapping_row.get("expected_mappings", []))
             if isinstance(mapping_row, dict)
@@ -347,9 +360,7 @@ def build_inventory(paths: dict[str, Path]) -> dict[str, Any]:
         retrieval_counts = query_counts_by_type[doc_type]
         field_density[doc_type] = {
             "documents": by_doc_type[doc_type],
-            "avg_expected_mappings": round(
-                sum(mapping_counts) / len(mapping_counts), 2
-            )
+            "avg_expected_mappings": round(sum(mapping_counts) / len(mapping_counts), 2)
             if mapping_counts
             else 0,
             "avg_retrieval_queries": round(

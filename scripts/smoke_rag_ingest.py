@@ -29,7 +29,9 @@ def smoke_rag_ingest(
         chunks = filter_chunks_by_granularity(chunks, granularity)
         top_hit = search_chunks(chunks, query)
         query_requested = bool(query.strip())
-        passed = top_hit is not None and (not query_requested or top_hit.get("_score", 0) > 0)
+        passed = top_hit is not None and (
+            not query_requested or top_hit.get("_score", 0) > 0
+        )
         return {
             "passed": passed,
             "package": str(package_path),
@@ -67,8 +69,12 @@ def format_hit(chunk: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--package", required=True, type=Path, help="Package zip or directory.")
-    parser.add_argument("--query", default="", help="Keyword query for simple smoke retrieval.")
+    parser.add_argument(
+        "--package", required=True, type=Path, help="Package zip or directory."
+    )
+    parser.add_argument(
+        "--query", default="", help="Keyword query for simple smoke retrieval."
+    )
     parser.add_argument(
         "--granularity",
         choices=["child", "parent", "all"],

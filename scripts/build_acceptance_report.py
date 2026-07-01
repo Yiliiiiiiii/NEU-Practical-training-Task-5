@@ -112,7 +112,11 @@ def _document_evidence(root: Path, relative_path: str) -> dict[str, Any]:
             "summary": {},
         }
     first_heading = next(
-        (line.removeprefix("# ").strip() for line in text.splitlines() if line.startswith("# ")),
+        (
+            line.removeprefix("# ").strip()
+            for line in text.splitlines()
+            if line.startswith("# ")
+        ),
         "",
     )
     return {
@@ -286,7 +290,11 @@ def _package_check(
         "dataset_size": dataset_size,
         "package_verify_pass_count": passed_count,
     }
-    if isinstance(dataset_size, int) and dataset_size > 0 and passed_count == dataset_size:
+    if (
+        isinstance(dataset_size, int)
+        and dataset_size > 0
+        and passed_count == dataset_size
+    ):
         return _derived_check(
             status="passed",
             reason="real-world report records package verification for every case",
@@ -579,17 +587,23 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
 
 
 def _json_block(value: Any) -> str:
-    return "```json\n" + json.dumps(
-        value,
-        ensure_ascii=False,
-        indent=2,
-        sort_keys=True,
-    ) + "\n```"
+    return (
+        "```json\n"
+        + json.dumps(
+            value,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n```"
+    )
 
 
 def _conclusion(report: dict[str, Any]) -> str:
     checks = report["checks"]
-    passed = sorted(name for name, check in checks.items() if check["status"] == "passed")
+    passed = sorted(
+        name for name, check in checks.items() if check["status"] == "passed"
+    )
     outstanding = sorted(
         f"{name}={check['status']}"
         for name, check in checks.items()

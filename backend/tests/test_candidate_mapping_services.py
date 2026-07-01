@@ -72,6 +72,64 @@ def test_candidate_service_handles_missing_metadata_and_empty_blocks():
     assert CandidateService().extract_candidates("task_empty", uir) == []
 
 
+def test_candidate_service_adds_traceable_aggregate_content_candidate():
+    from app.schemas.uir import UIRDocument
+    from app.services.candidate_service import CandidateService
+
+    uir = UIRDocument.model_validate(
+        {
+            "uir_version": "1.0",
+            "doc_id": "doc_content",
+            "metadata": {},
+            "blocks": [
+                {"block_id": "b1", "type": "paragraph", "text": "第一段正文"},
+                {
+                    "block_id": "b2",
+                    "type": "list",
+                    "attributes": {"items": ["事项一", "事项二"]},
+                },
+            ],
+            "assets": [],
+            "normalization_records": [],
+        }
+    )
+
+    candidates = CandidateService().extract_candidates("task_content", uir)
+    content = next(item for item in candidates if item.source_name == "document text")
+
+    assert "第一段正文" in content.value_sample
+    assert "事项一" in content.value_sample
+    assert content.source_blocks == ["b1", "b2"]
+
+
+def test_candidate_service_extracts_meeting_date_from_meeting_sentence():
+    from app.schemas.uir import UIRDocument
+    from app.services.candidate_service import CandidateService
+
+    uir = UIRDocument.model_validate(
+        {
+            "uir_version": "1.0",
+            "doc_id": "meeting_date",
+            "metadata": {"domain": "meeting_doc"},
+            "blocks": [
+                {
+                    "block_id": "b1",
+                    "type": "paragraph",
+                    "text": "2025年12月19日下午，区长主持召开常务会议。",
+                }
+            ],
+            "assets": [],
+            "normalization_records": [],
+        }
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting", uir)
+    meeting_date = next(item for item in candidates if item.source_name == "meeting date")
+
+    assert meeting_date.value_sample == "2025年12月19日"
+    assert meeting_date.source_blocks == ["b1"]
+
+
 def test_mapping_service_maps_exact_and_alias_methods():
     from app.services.candidate_service import CandidateService
     from app.services.mapping_service import MappingService
@@ -223,7 +281,12 @@ def test_mapping_service_marks_fuzzy_low_confidence_as_review_required():
     }
     assert ("通知名称", "title") in review_pairs
     assert ("制定主体", "issuer") in review_pairs
-    assert ("成文日期", "publish_date") in review_pairs
+    accepted_pairs = {
+        (item["source_field"]["source_name"], item["target_field_id"], item["method"])
+        for item in report.mappings
+    }
+    assert ("成文日期", "publish_date", "alias") in accepted_pairs
+    assert ("成文日期", "effective_date") in review_pairs
     first_review = report.review_required_items[0]
     assert first_review["status"] == "review_required"
     assert first_review["confidence_tier"] == "low"

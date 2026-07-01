@@ -104,7 +104,9 @@ def is_relevant(chunk: dict[str, Any], gold: dict[str, Any]) -> bool:
 
 
 def ranking_metrics(relevance: list[bool]) -> dict[str, float]:
-    first_hit = next((index + 1 for index, value in enumerate(relevance) if value), None)
+    first_hit = next(
+        (index + 1 for index, value in enumerate(relevance) if value), None
+    )
     dcg = 0.0
     ideal_hits = sorted(relevance, reverse=True)
     ideal_dcg = 0.0
@@ -139,7 +141,9 @@ def chunks_from_uir(uir: dict[str, Any]) -> list[dict[str, Any]]:
                 "source_block_ids": [block_id],
                 "text": text if isinstance(text, str) else "",
                 "title_path": [title] if title else [],
-                "keywords": sorted(_tokens(f"{title} {text if isinstance(text, str) else ''}"))[:8],
+                "keywords": sorted(
+                    _tokens(f"{title} {text if isinstance(text, str) else ''}")
+                )[:8],
                 "block_type": block.get("type"),
             }
         )

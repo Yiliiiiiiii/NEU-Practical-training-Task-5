@@ -112,25 +112,33 @@ def validate_uir_data(data: Any) -> list[dict[str, str]]:
 
     metadata = data.get("metadata")
     if not isinstance(metadata, dict):
-        findings.append(_finding("missing_metadata", "metadata", "metadata is required"))
+        findings.append(
+            _finding("missing_metadata", "metadata", "metadata is required")
+        )
         metadata = {}
     for key in sorted(REQUIRED_METADATA):
         if not metadata.get(key):
             findings.append(
-                _finding("missing_required_metadata", f"metadata.{key}", f"{key} is required")
+                _finding(
+                    "missing_required_metadata", f"metadata.{key}", f"{key} is required"
+                )
             )
 
     doc_type = metadata.get("doc_type")
     if doc_type and doc_type not in VALID_DOC_TYPES:
         findings.append(
-            _finding("invalid_doc_type", "metadata.doc_type", f"unsupported {doc_type!r}")
+            _finding(
+                "invalid_doc_type", "metadata.doc_type", f"unsupported {doc_type!r}"
+            )
         )
     source_url = metadata.get("source_url")
     if source_url:
         parsed = urlsplit(str(source_url))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
             findings.append(
-                _finding("invalid_source_url", "metadata.source_url", "expected HTTP(S) URL")
+                _finding(
+                    "invalid_source_url", "metadata.source_url", "expected HTTP(S) URL"
+                )
             )
     source_sha256 = metadata.get("source_sha256")
     if source_sha256 and not SHA256_PATTERN.fullmatch(str(source_sha256)):
@@ -148,7 +156,9 @@ def validate_uir_data(data: Any) -> list[dict[str, str]]:
         blocks = []
     if len(blocks) < 3:
         findings.append(
-            _finding("insufficient_blocks", "blocks", "at least three blocks are required")
+            _finding(
+                "insufficient_blocks", "blocks", "at least three blocks are required"
+            )
         )
     block_ids: set[str] = set()
     for index, block in enumerate(blocks):
@@ -158,19 +168,25 @@ def validate_uir_data(data: Any) -> list[dict[str, str]]:
             continue
         block_id = str(block.get("block_id", ""))
         if block_id in block_ids:
-            findings.append(_finding("duplicate_block_id", f"{path}.block_id", block_id))
+            findings.append(
+                _finding("duplicate_block_id", f"{path}.block_id", block_id)
+            )
         block_ids.add(block_id)
-        if block.get("type") in {"heading", "paragraph"} and not str(
-            block.get("text") or ""
-        ).strip():
+        if (
+            block.get("type") in {"heading", "paragraph"}
+            and not str(block.get("text") or "").strip()
+        ):
             findings.append(_finding("empty_block", f"{path}.text", "text is empty"))
         if block.get("type") == "table":
             rows = block.get("attributes", {}).get("rows")
             if not isinstance(rows, list) or not all(
-                isinstance(row, dict) and "field" in row and "value" in row for row in rows
+                isinstance(row, dict) and "field" in row and "value" in row
+                for row in rows
             ):
                 findings.append(
-                    _finding("invalid_table_rows", f"{path}.attributes.rows", "invalid rows")
+                    _finding(
+                        "invalid_table_rows", f"{path}.attributes.rows", "invalid rows"
+                    )
                 )
 
     rendered = json.dumps(data, ensure_ascii=False)
@@ -190,7 +206,9 @@ def validate_uir_data(data: Any) -> list[dict[str, str]]:
                     "evidence_block_ids"
                 ):
                     findings.append(
-                        _finding("missing_candidate_evidence", path, "evidence is required")
+                        _finding(
+                            "missing_candidate_evidence", path, "evidence is required"
+                        )
                     )
                 confidence = candidate.get("confidence")
                 if (

@@ -62,14 +62,17 @@ def _flatten(value: Any, prefix: str = "") -> list[tuple[str, Any]]:
     return [(prefix, value)]
 
 
-def _base_metadata(manifest: dict[str, Any], metadata: dict[str, Any]) -> dict[str, Any]:
+def _base_metadata(
+    manifest: dict[str, Any], metadata: dict[str, Any]
+) -> dict[str, Any]:
     generator = manifest.get("generator", {})
     base = {
         "package_id": metadata.get("package_id") or manifest.get("package_id"),
         "task_id": metadata.get("task_id") or manifest.get("task_id"),
         "doc_id": metadata.get("doc_id") or manifest.get("doc_id"),
         "schema_id": metadata.get("schema_id") or generator.get("schema_id"),
-        "schema_version": metadata.get("schema_version") or generator.get("schema_version"),
+        "schema_version": metadata.get("schema_version")
+        or generator.get("schema_version"),
         "template_id": metadata.get("template_id") or generator.get("template_id"),
         "template_version": metadata.get("template_version")
         or generator.get("template_version"),
@@ -120,7 +123,12 @@ def export_structured_csv(
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-    return {"package": str(package_path), "output": str(output_path), "row_count": len(rows), "mode": mode}
+    return {
+        "package": str(package_path),
+        "output": str(output_path),
+        "row_count": len(rows),
+        "mode": mode,
+    }
 
 
 def _csv_value(value: Any) -> str:
@@ -140,7 +148,9 @@ def main() -> None:
     parser.add_argument("--mode", choices=["long", "wide"], default="long")
     args = parser.parse_args()
     try:
-        result = export_structured_csv(args.package or args.package_dir, args.out, mode=args.mode)
+        result = export_structured_csv(
+            args.package or args.package_dir, args.out, mode=args.mode
+        )
     except (PackageReadError, ValueError) as exc:
         parser.error(str(exc))
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))

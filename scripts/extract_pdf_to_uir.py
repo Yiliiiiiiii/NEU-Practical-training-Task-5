@@ -44,16 +44,22 @@ def extract_pdf(pdf_bytes: bytes) -> ExtractionResult:
                     continue
                 for raw_line in raw_block.get("lines", []):
                     spans = raw_line.get("spans", [])
-                    text = normalize_text("".join(str(span.get("text", "")) for span in spans))
+                    text = normalize_text(
+                        "".join(str(span.get("text", "")) for span in spans)
+                    )
                     if not text:
                         continue
                     sizes = [float(span.get("size", 0.0)) for span in spans]
-                    fonts = " ".join(str(span.get("font", "")) for span in spans).lower()
+                    fonts = " ".join(
+                        str(span.get("font", "")) for span in spans
+                    ).lower()
                     lines.append(
                         {
                             "text": text,
                             "page": page_index + 1,
-                            "bbox": [float(value) for value in raw_line.get("bbox", [])],
+                            "bbox": [
+                                float(value) for value in raw_line.get("bbox", [])
+                            ],
                             "font_size": max(sizes, default=0.0),
                             "bold": "bold" in fonts,
                         }
@@ -83,13 +89,10 @@ def extract_pdf(pdf_bytes: bytes) -> ExtractionResult:
     )
     blocks: list[dict[str, Any]] = []
     for line in lines:
-        is_heading = (
-            len(line["text"]) <= 160
-            and (
-                line is title_line
-                or line["font_size"] >= max(14.0, common_size * 1.2)
-                or (line["bold"] and line["font_size"] > common_size)
-            )
+        is_heading = len(line["text"]) <= 160 and (
+            line is title_line
+            or line["font_size"] >= max(14.0, common_size * 1.2)
+            or (line["bold"] and line["font_size"] > common_size)
         )
         block: dict[str, Any] = {
             "type": "heading" if is_heading else "paragraph",

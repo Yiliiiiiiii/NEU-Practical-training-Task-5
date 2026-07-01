@@ -147,3 +147,7 @@ The current `main` baseline is:
 - Downstream contract: 30 packages passed, 0 failed.
 - Frontend: live downstream readiness panel added and production build verified.
 - Production still begins at UIR; runtime OCR/raw office parsing, full RAG/vector DB, and model training remain out of scope.
+- Post-gap-fix non-procurement results: strict pass 4/20, required missing 18,
+  review-required 145, average recall 0.349. This is a clear improvement over
+  the expanded-dataset baseline, but the stretch target of 0.75 mapping recall
+  is not yet met and remains follow-up work rather than a claimed success.

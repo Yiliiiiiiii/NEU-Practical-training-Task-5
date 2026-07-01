@@ -21,7 +21,7 @@
     "source_url": ["source_url", "来源链接", "原文链接", "网页地址", "url"],
     "source_site": ["source_site", "来源网站", "发布网站", "信息来源"],
     "summary": ["summary", "摘要", "内容摘要", "项目概况"],
-    "content": ["content", "正文", "主要内容", "公告正文"]
+    "content": ["content", "document text", "正文", "主要内容", "公告正文"]
   },
   "regex_rules": [
     {

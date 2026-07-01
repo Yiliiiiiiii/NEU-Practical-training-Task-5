@@ -129,10 +129,9 @@ def _matches_review(expected: dict[str, Any], actual: dict[str, Any]) -> bool:
     actual_name = _source_name(actual)
     expected_path = _source_path(expected)
     actual_path = _source_path(actual)
-    source_matches = (
-        bool(expected_name and actual_name and expected_name == actual_name)
-        or bool(expected_path and actual_path and expected_path == actual_path)
-    )
+    source_matches = bool(
+        expected_name and actual_name and expected_name == actual_name
+    ) or bool(expected_path and actual_path and expected_path == actual_path)
     if not source_matches:
         return False
     expected_targets = _target_candidates(expected)
@@ -170,7 +169,9 @@ def score_mapping_report(
     matched_expected_mapping_indexes: set[int] = set()
     for index, expected in enumerate(expected_mappings):
         target = _target_field(expected)
-        if target and any(_key_matches(expected, actual, target) for actual in accepted):
+        if target and any(
+            _key_matches(expected, actual, target) for actual in accepted
+        ):
             accepted_correct += 1
             matched_expected_mapping_indexes.add(index)
 
@@ -179,7 +180,9 @@ def score_mapping_report(
         if any(_matches_review(expected, actual) for actual in review_items):
             review_correct += 1
 
-    missing_gold_mappings = len(expected_mappings) - len(matched_expected_mapping_indexes)
+    missing_gold_mappings = len(expected_mappings) - len(
+        matched_expected_mapping_indexes
+    )
     badcase_violations: list[dict[str, Any]] = []
     for badcase in gold.get("known_badcases", []):
         if not isinstance(badcase, dict):
@@ -212,7 +215,9 @@ def score_mapping_report(
         "missing_gold_mappings": missing_gold_mappings,
         "badcase_violation_count": len(badcase_violations),
         "badcase_violations": badcase_violations,
-        "mapping_recall": safe_ratio(accepted_correct + review_correct, gold_signal_count),
+        "mapping_recall": safe_ratio(
+            accepted_correct + review_correct, gold_signal_count
+        ),
     }
 
 
@@ -272,7 +277,9 @@ class EvaluationHttpClient:
         return data
 
     def import_document(self, uir: dict[str, Any]) -> dict[str, Any]:
-        return self._json_response(self.client.post("/api/v1/documents/import", json={"uir": uir}))
+        return self._json_response(
+            self.client.post("/api/v1/documents/import", json={"uir": uir})
+        )
 
     def create_task(self, payload: dict[str, Any]) -> dict[str, Any]:
         return self._json_response(self.client.post("/api/v1/tasks", json=payload))
@@ -289,7 +296,9 @@ class EvaluationHttpClient:
         return self._json_response(self.client.get(f"/api/v1/tasks/{task_id}/package"))
 
     def list_reviews(self, status: str) -> list[dict[str, Any]]:
-        data = self._json_response(self.client.get("/api/v1/reviews", params={"status": status}))
+        data = self._json_response(
+            self.client.get("/api/v1/reviews", params={"status": status})
+        )
         items = data.get("items", [])
         return items if isinstance(items, list) else []
 

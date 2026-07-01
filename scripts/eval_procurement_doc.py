@@ -9,7 +9,13 @@ from typing import Any
 from eval_real_world_mapping import build_report as build_mapping_report
 from eval_real_world_mapping import evaluate_rows
 from eval_real_world_mapping import render_markdown as render_mapping_markdown
-from eval_support import EvaluationHttpClient, load_jsonl, safe_ratio, write_json, write_markdown
+from eval_support import (
+    EvaluationHttpClient,
+    load_jsonl,
+    safe_ratio,
+    write_json,
+    write_markdown,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "mapping_gold.jsonl"
@@ -29,7 +35,9 @@ def _side_summary(items: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "document_count": summary["document_count"],
         "gold_recall": summary["mapping_recall"],
-        "required_coverage": safe_ratio(required_total - missing_required, required_total),
+        "required_coverage": safe_ratio(
+            required_total - missing_required, required_total
+        ),
         "missing_required_count": missing_required,
         "badcase_violation_count": summary["badcase_violation_count"],
         "package_pass_rate": summary["package_pass_rate"],
@@ -133,7 +141,9 @@ def render_markdown(report: dict[str, Any]) -> str:
 
 
 def _procurement_rows(gold_path: Path) -> list[dict[str, Any]]:
-    return [row for row in load_jsonl(gold_path) if row.get("doc_type") == "procurement_doc"]
+    return [
+        row for row in load_jsonl(gold_path) if row.get("doc_type") == "procurement_doc"
+    ]
 
 
 def main() -> None:

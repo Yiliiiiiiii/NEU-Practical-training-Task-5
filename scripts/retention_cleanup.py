@@ -54,12 +54,15 @@ def cleanup_artifacts(
 def _is_runtime_artifact(root: Path, path: Path) -> bool:
     relative_parts = path.relative_to(root).parts
     return bool(relative_parts) and (
-        relative_parts[0] in RUNTIME_DIR_NAMES or path.suffix.lower() in RUNTIME_SUFFIXES
+        relative_parts[0] in RUNTIME_DIR_NAMES
+        or path.suffix.lower() in RUNTIME_SUFFIXES
     )
 
 
 def _remove_empty_dirs(root: Path) -> None:
-    for path in sorted((item for item in root.rglob("*") if item.is_dir()), reverse=True):
+    for path in sorted(
+        (item for item in root.rglob("*") if item.is_dir()), reverse=True
+    ):
         if root == path.resolve() or root not in path.resolve().parents:
             continue
         try:

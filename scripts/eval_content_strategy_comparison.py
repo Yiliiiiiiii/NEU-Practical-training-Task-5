@@ -252,9 +252,7 @@ def evaluate_chunks(
         [str(block_id) for block_id in group]
         for group in gold.get("required_block_groups", [])
     ]
-    grouped_required_ids = {
-        block_id for group in required_groups for block_id in group
-    }
+    grouped_required_ids = {block_id for group in required_groups for block_id in group}
     table_ids = {str(block_id) for block_id in gold.get("table_block_ids", [])}
     required_ids = sorted(grouped_required_ids | table_ids)
     occurrences: Counter[str] = Counter(
@@ -276,9 +274,7 @@ def evaluate_chunks(
         count - 1 for count in occurrences.values() if count > 1
     )
     table_split_ids = sorted(
-        block_id
-        for block_id in table_ids
-        if occurrences[str(block_id)] != 1
+        block_id for block_id in table_ids if occurrences[str(block_id)] != 1
     )
     linked_required_blocks = _linked_required_blocks(chunks, set(required_ids))
     token_estimates = [

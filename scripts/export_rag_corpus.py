@@ -42,11 +42,15 @@ def export_rag_corpus(
     for index, chunk in enumerate(chunks, 1):
         metadata = training_metadata(manifest, chunk)
         tags = metadata.pop("tags", {})
-        metadata["content_tags"] = tags.get("content", []) if isinstance(tags, dict) else []
+        metadata["content_tags"] = (
+            tags.get("content", []) if isinstance(tags, dict) else []
+        )
         metadata["management_tags"] = (
             tags.get("management", []) if isinstance(tags, dict) else []
         )
-        metadata["quality_tags"] = tags.get("quality", []) if isinstance(tags, dict) else []
+        metadata["quality_tags"] = (
+            tags.get("quality", []) if isinstance(tags, dict) else []
+        )
         metadata["token_estimate"] = chunk.get("token_estimate")
         if not include_summary:
             metadata.pop("summary", None)
@@ -61,7 +65,9 @@ def export_rag_corpus(
         )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
-        "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows),
+        "".join(
+            json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows
+        ),
         encoding="utf-8",
     )
     return {
@@ -81,7 +87,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--package", required=True, type=Path)
     parser.add_argument("--out", required=True, type=Path)
-    parser.add_argument("--granularity", choices=["child", "parent", "all"], default="all")
+    parser.add_argument(
+        "--granularity", choices=["child", "parent", "all"], default="all"
+    )
     parser.add_argument("--include-summary", type=_bool, default=True)
     parser.add_argument("--include-keywords", type=_bool, default=True)
     parser.add_argument("--min-chars", type=int, default=0)

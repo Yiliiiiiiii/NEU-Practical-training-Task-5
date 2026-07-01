@@ -11,7 +11,9 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "content_organization_gold.jsonl"
+DEFAULT_GOLD = (
+    ROOT / "examples" / "real_world" / "gold" / "content_organization_gold.jsonl"
+)
 DEFAULT_UIR_DIR = ROOT / "examples" / "real_world" / "uir"
 DEFAULT_JSON = ROOT / "reports" / "content_tag_quality_eval_report.json"
 DEFAULT_MD = ROOT / "reports" / "content_tag_quality_eval_report.md"
@@ -33,7 +35,9 @@ RETRIEVAL = _load_retrieval_module()
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    for line_number, line in enumerate(
+        path.read_text(encoding="utf-8").splitlines(), start=1
+    ):
         if not line.strip():
             continue
         try:
@@ -70,7 +74,9 @@ def validate_gold(rows: list[dict[str, Any]], uirs: dict[str, dict[str, Any]]) -
         label = f"gold row {index} ({doc_id or 'missing doc_id'})"
         if doc_id not in uirs:
             raise ValueError(f"{label}: unknown UIR document")
-        block_ids = _string_list(row.get("source_block_ids"), label=f"{label}: source_block_ids")
+        block_ids = _string_list(
+            row.get("source_block_ids"), label=f"{label}: source_block_ids"
+        )
         actual_ids = {
             str(block.get("block_id"))
             for block in uirs[doc_id].get("blocks", [])
@@ -79,9 +85,16 @@ def validate_gold(rows: list[dict[str, Any]], uirs: dict[str, dict[str, Any]]) -
         unknown = sorted(set(block_ids) - actual_ids)
         if unknown:
             raise ValueError(f"{label}: unknown block reference {unknown[0]}")
-        _string_list(row.get("expected_content_tags"), label=f"{label}: expected_content_tags")
-        _string_list(row.get("expected_management_tags"), label=f"{label}: expected_management_tags")
-        _string_list(row.get("expected_quality_tags"), label=f"{label}: expected_quality_tags")
+        _string_list(
+            row.get("expected_content_tags"), label=f"{label}: expected_content_tags"
+        )
+        _string_list(
+            row.get("expected_management_tags"),
+            label=f"{label}: expected_management_tags",
+        )
+        _string_list(
+            row.get("expected_quality_tags"), label=f"{label}: expected_quality_tags"
+        )
     if len(rows) < 20:
         raise ValueError("content tag quality gold must contain at least 20 samples")
 
@@ -100,7 +113,8 @@ def score_tag_category(
     unknown_tags = {
         tag
         for tag in actual
-        if tag not in known and not any(tag.startswith(prefix) for prefix in known_prefixes)
+        if tag not in known
+        and not any(tag.startswith(prefix) for prefix in known_prefixes)
     }
     return {
         "precision": precision,
@@ -113,7 +127,9 @@ def score_tag_category(
     }
 
 
-def relevant_chunks(sample: dict[str, Any], chunks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def relevant_chunks(
+    sample: dict[str, Any], chunks: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
     wanted = {str(block_id) for block_id in sample.get("source_block_ids", [])}
     return [
         chunk
@@ -187,9 +203,15 @@ def _known_tags(gold_rows: list[dict[str, Any]]) -> dict[str, set[str]]:
         "quality": set(),
     }
     for row in gold_rows:
-        known["content"].update(str(tag) for tag in row.get("expected_content_tags", []))
-        known["management"].update(str(tag) for tag in row.get("expected_management_tags", []))
-        known["quality"].update(str(tag) for tag in row.get("expected_quality_tags", []))
+        known["content"].update(
+            str(tag) for tag in row.get("expected_content_tags", [])
+        )
+        known["management"].update(
+            str(tag) for tag in row.get("expected_management_tags", [])
+        )
+        known["quality"].update(
+            str(tag) for tag in row.get("expected_quality_tags", [])
+        )
     for rules in RETRIEVAL.ChunkOrganizerService.CONTENT_TAG_RULES.values():
         known["content"].update(str(tag) for tag in rules)
     known["management"].update(
@@ -249,14 +271,28 @@ def build_report(
         for sample in gold_rows
     ]
     metrics = {
-        "content_tag_precision": _mean([float(item["content"]["precision"]) for item in samples]),
-        "content_tag_recall": _mean([float(item["content"]["recall"]) for item in samples]),
+        "content_tag_precision": _mean(
+            [float(item["content"]["precision"]) for item in samples]
+        ),
+        "content_tag_recall": _mean(
+            [float(item["content"]["recall"]) for item in samples]
+        ),
         "content_tag_f1": _mean([float(item["content"]["f1"]) for item in samples]),
-        "management_tag_precision": _mean([float(item["management"]["precision"]) for item in samples]),
-        "management_tag_recall": _mean([float(item["management"]["recall"]) for item in samples]),
-        "management_tag_f1": _mean([float(item["management"]["f1"]) for item in samples]),
-        "quality_tag_precision": _mean([float(item["quality"]["precision"]) for item in samples]),
-        "quality_tag_recall": _mean([float(item["quality"]["recall"]) for item in samples]),
+        "management_tag_precision": _mean(
+            [float(item["management"]["precision"]) for item in samples]
+        ),
+        "management_tag_recall": _mean(
+            [float(item["management"]["recall"]) for item in samples]
+        ),
+        "management_tag_f1": _mean(
+            [float(item["management"]["f1"]) for item in samples]
+        ),
+        "quality_tag_precision": _mean(
+            [float(item["quality"]["precision"]) for item in samples]
+        ),
+        "quality_tag_recall": _mean(
+            [float(item["quality"]["recall"]) for item in samples]
+        ),
         "quality_tag_f1": _mean([float(item["quality"]["f1"]) for item in samples]),
         "tag_coverage": _mean([float(item["tag_coverage"]) for item in samples]),
         "unknown_tag_count": sum(int(item["unknown_tag_count"]) for item in samples),
@@ -308,10 +344,15 @@ def render_markdown(report: dict[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
-def write_reports(report: dict[str, Any], *, output_json: Path, output_md: Path) -> None:
+def write_reports(
+    report: dict[str, Any], *, output_json: Path, output_md: Path
+) -> None:
     output_json.parent.mkdir(parents=True, exist_ok=True)
     output_md.parent.mkdir(parents=True, exist_ok=True)
-    output_json.write_text(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output_json.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     output_md.write_text(render_markdown(report), encoding="utf-8")
 
 
@@ -327,8 +368,12 @@ def run_evaluation(
     uirs = load_uirs(uir_dir)
     validate_gold(gold_rows, uirs)
     selected_docs = {str(row["doc_id"]): uirs[str(row["doc_id"])] for row in gold_rows}
-    chunks_by_doc = RETRIEVAL.generate_chunks_for_strategy(selected_docs, strategy=strategy)
-    report = build_report(gold_rows=gold_rows, chunks_by_doc=chunks_by_doc, strategy=strategy)
+    chunks_by_doc = RETRIEVAL.generate_chunks_for_strategy(
+        selected_docs, strategy=strategy
+    )
+    report = build_report(
+        gold_rows=gold_rows, chunks_by_doc=chunks_by_doc, strategy=strategy
+    )
     write_reports(report, output_json=output_json, output_md=output_md)
     return report
 

@@ -97,8 +97,8 @@ def _write_markdown(path: Path, report: dict[str, Any]) -> None:
     lines.extend(
         [
             "",
-        "| Source ID | Format | Status | Reason |",
-        "| --- | --- | --- | --- |",
+            "| Source ID | Format | Status | Reason |",
+            "| --- | --- | --- | --- |",
         ]
     )
     for item in report["items"]:
@@ -154,7 +154,9 @@ def build_dataset(
             )
             if result.status != "extracted":
                 item["status"] = result.status
-                reason_key = "skip_reason" if result.status == "skipped" else "failure_reason"
+                reason_key = (
+                    "skip_reason" if result.status == "skipped" else "failure_reason"
+                )
                 item[reason_key] = result.reason
                 report_item.update({"status": result.status, "reason": result.reason})
                 rejected_path = uir_dir / "_rejected" / f"{source_id}.json"

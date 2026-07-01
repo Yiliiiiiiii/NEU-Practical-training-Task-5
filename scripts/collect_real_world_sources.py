@@ -66,12 +66,15 @@ def _looks_like_login_page(content: bytes, content_type: str) -> bool:
     return any(marker in sample for marker in markers)
 
 
-def _content_type_matches(source_format: str, content_type: str, content: bytes) -> bool:
+def _content_type_matches(
+    source_format: str, content_type: str, content: bytes
+) -> bool:
     mime_type = content_type.lower().split(";", 1)[0].strip()
     if source_format == "html":
-        return mime_type in {"text/html", "application/xhtml+xml"} or b"<html" in content[
-            :4096
-        ].lower()
+        return (
+            mime_type in {"text/html", "application/xhtml+xml"}
+            or b"<html" in content[:4096].lower()
+        )
     if source_format == "pdf":
         return mime_type == "application/pdf" or content.startswith(b"%PDF")
     if source_format == "docx":

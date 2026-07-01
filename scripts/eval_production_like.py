@@ -82,7 +82,11 @@ def write_json(path: Path, data: Any) -> None:
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line
+    ]
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -97,7 +101,9 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def load_dataset(dataset_dir: Path = DATASET_DIR) -> tuple[list[DatasetCase], dict[str, Any]]:
+def load_dataset(
+    dataset_dir: Path = DATASET_DIR,
+) -> tuple[list[DatasetCase], dict[str, Any]]:
     schemas = {
         path.stem: TargetSchema.model_validate(load_json(path))
         for path in sorted((dataset_dir / "schemas").glob("*.json"))
@@ -114,7 +120,9 @@ def load_dataset(dataset_dir: Path = DATASET_DIR) -> tuple[list[DatasetCase], di
     }
 
     schema_by_domain = {schema.schema_id: schema for schema in schemas.values()}
-    template_by_domain = {template.schema_id: template for template in templates.values()}
+    template_by_domain = {
+        template.schema_id: template for template in templates.values()
+    }
     cases: list[DatasetCase] = []
     for path in sorted((dataset_dir / "uir").glob("*/*.json")):
         uir = UIRDocument.model_validate(load_json(path))
@@ -138,7 +146,12 @@ def load_dataset(dataset_dir: Path = DATASET_DIR) -> tuple[list[DatasetCase], di
 def extract_candidates(uir: UIRDocument) -> list[SourceCandidate]:
     candidates: list[SourceCandidate] = []
     for key, value in uir.metadata.items():
-        if key in {"domain", "scenario", "expected_review_fields", "expected_learning_fields"}:
+        if key in {
+            "domain",
+            "scenario",
+            "expected_review_fields",
+            "expected_learning_fields",
+        }:
             continue
         candidates.append(
             SourceCandidate(
@@ -213,7 +226,9 @@ def run_case(
     knowledge_packs: list[KnowledgePack] | None = None,
 ) -> dict[str, Any]:
     current_task_id = task_id(case)
-    effective_result = EffectiveTemplateService().resolve(case.template, knowledge_packs)
+    effective_result = EffectiveTemplateService().resolve(
+        case.template, knowledge_packs
+    )
     effective_template = effective_result.template
     candidates = CandidateService().extract_candidates(current_task_id, case.uir)
     mapping_report = MappingService().map_fields(
@@ -249,17 +264,19 @@ def run_case(
         case.schema,
         rendered,
     )
-    organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
-        chunks=rendered.chunks,
-        canonical_model=canonical_model,
-        schema=case.schema,
-        mapping_report=mapping_report,
-        validation_report=preliminary_validation_report,
-        task_id=current_task_id,
-        doc_id=case.uir.doc_id,
-        schema_id=case.schema.schema_id,
-        template_id=effective_template.template_id,
-        template_version=effective_template.version,
+    organized_chunks, content_organization_report = (
+        ChunkOrganizerService().organize_chunks(
+            chunks=rendered.chunks,
+            canonical_model=canonical_model,
+            schema=case.schema,
+            mapping_report=mapping_report,
+            validation_report=preliminary_validation_report,
+            task_id=current_task_id,
+            doc_id=case.uir.doc_id,
+            schema_id=case.schema.schema_id,
+            template_id=effective_template.template_id,
+            template_version=effective_template.version,
+        )
     )
     rendered = RenderedArtifacts(
         structured_json=rendered.structured_json,
@@ -286,7 +303,9 @@ def run_case(
         "unmapped": unmapped,
         "mapping_report": mapping_report.model_dump(mode="json"),
         "validation_report": validation_report.model_dump(mode="json"),
-        "content_organization_report": content_organization_report.model_dump(mode="json"),
+        "content_organization_report": content_organization_report.model_dump(
+            mode="json"
+        ),
         "transform_report": transform_result.report,
         "canonical": canonical_model.model_dump(mode="json"),
         "canonical_model": canonical_model,
@@ -321,9 +340,16 @@ def find_confirmed_mapping(
             return mapping_dict(case, candidate, field, "exact", 1.0, False)
         if candidate.source_name in aliases:
             return mapping_dict(case, candidate, field, "alias", 0.96, False)
-        if enum_map and isinstance(candidate.value, str) and candidate.value in enum_map:
+        if (
+            enum_map
+            and isinstance(candidate.value, str)
+            and candidate.value in enum_map
+        ):
             return mapping_dict(case, candidate, field, "enum_map", 0.94, False)
-        if is_type_compatible(field.type, candidate.inferred_type) and field.field_id == "content":
+        if (
+            is_type_compatible(field.type, candidate.inferred_type)
+            and field.field_id == "content"
+        ):
             return mapping_dict(case, candidate, field, "type", 0.9, False)
     return None
 
@@ -353,19 +379,28 @@ def find_regex_mappings(
     found: list[dict[str, Any]] = []
     text = "\n".join(block.text or "" for block in case.uir.blocks)
     for rule in template.regex_rules:
-        if rule.target_field_id in mapped_targets or rule.target_field_id in review_targets:
+        if (
+            rule.target_field_id in mapped_targets
+            or rule.target_field_id in review_targets
+        ):
             continue
         match = re.search(rule.pattern, text)
         if not match:
             continue
-        field = next(item for item in case.schema.fields if item.field_id == rule.target_field_id)
+        field = next(
+            item for item in case.schema.fields if item.field_id == rule.target_field_id
+        )
         value = match.group(rule.group)
         candidate = SourceCandidate(
             source_path=f"blocks.regex.{rule.target_field_id}",
             source_name=rule.target_field_id,
             value=value,
             inferred_type=infer_type(value),
-            source_blocks=[block.block_id for block in case.uir.blocks if block.text and value in block.text],
+            source_blocks=[
+                block.block_id
+                for block in case.uir.blocks
+                if block.text and value in block.text
+            ],
         )
         found.append(mapping_dict(case, candidate, field, "regex", 0.92, False))
     return found
@@ -376,7 +411,10 @@ def should_review(source_name: str, field: TargetField) -> bool:
     if target in {"title", "contract_title", "meeting_title"}:
         return any(token in source_name for token in ("名称", "题名", "标题", "主题"))
     if target in {"issuer", "party_a", "party_b", "organizer", "source"}:
-        return any(token in source_name for token in ("主体", "单位", "机构", "机关", "方", "召集人"))
+        return any(
+            token in source_name
+            for token in ("主体", "单位", "机构", "机关", "方", "召集人")
+        )
     if target in {"publish_date", "sign_date", "meeting_date", "created_date"}:
         return any(token in source_name for token in ("日期", "时间", "成文"))
     if target in {"amount", "currency"}:
@@ -419,7 +457,9 @@ def mapping_dict(
         "need_review": need_review,
         "value_sample": candidate.value,
         "source_blocks": candidate.source_blocks,
-        "evidence": [f"{method} mapping from {candidate.source_name} to {field.field_id}"],
+        "evidence": [
+            f"{method} mapping from {candidate.source_name} to {field.field_id}"
+        ],
     }
 
 
@@ -433,12 +473,16 @@ def average(values: list[float]) -> float:
     return round(sum(values) / len(values), 4)
 
 
-def build_canonical(case: DatasetCase, mappings: list[dict[str, Any]]) -> dict[str, Any]:
+def build_canonical(
+    case: DatasetCase, mappings: list[dict[str, Any]]
+) -> dict[str, Any]:
     fields = {
         mapping["target_field_id"]: {
             "value": mapping.get("value_sample"),
             "type": next(
-                field.type for field in case.schema.fields if field.field_id == mapping["target_field_id"]
+                field.type
+                for field in case.schema.fields
+                if field.field_id == mapping["target_field_id"]
             ),
             "source_candidates": [mapping["candidate_id"]],
             "source_blocks": mapping.get("source_blocks", []),
@@ -472,7 +516,10 @@ def build_canonical(case: DatasetCase, mappings: list[dict[str, Any]]) -> dict[s
 def derive_active_aliases(gold_cases: list[dict[str, Any]]) -> dict[str, list[str]]:
     aliases: dict[str, list[str]] = defaultdict(list)
     for case in gold_cases:
-        if case.get("expected_behavior") != "review_required_before_pack_auto_after_pack":
+        if (
+            case.get("expected_behavior")
+            != "review_required_before_pack_auto_after_pack"
+        ):
             continue
         aliases[case["expected_target_field"]].append(case["source_field"])
     return {key: sorted(set(values)) for key, values in aliases.items()}
@@ -502,13 +549,17 @@ def build_draft_knowledge_packs(
             template_id=case.template.template_id,
             badcases=expectations["badcases"],
         )
-        candidates_by_template[(case.schema.schema_id, case.template.template_id)].extend(candidates)
+        candidates_by_template[
+            (case.schema.schema_id, case.template.template_id)
+        ].extend(candidates)
 
     for candidate in knowledge_service.derive_gold_candidates(
         expectations["gold_cases"],
         badcases=expectations["badcases"],
     ):
-        candidates_by_template[(candidate.schema_id, candidate.template_id)].append(candidate)
+        candidates_by_template[(candidate.schema_id, candidate.template_id)].append(
+            candidate
+        )
 
     return [
         knowledge_service.create_draft_pack(
@@ -516,7 +567,9 @@ def build_draft_knowledge_packs(
             schema_id=schema_id,
             template_id=template_id,
         )
-        for (schema_id, template_id), candidates in sorted(candidates_by_template.items())
+        for (schema_id, template_id), candidates in sorted(
+            candidates_by_template.items()
+        )
         if candidates
     ]
 
@@ -526,19 +579,30 @@ def expected_review_pairs_by_uir(
 ) -> dict[str, set[tuple[str, str]]]:
     pairs: dict[str, set[tuple[str, str]]] = defaultdict(set)
     for case in gold_cases:
-        if case.get("expected_behavior") != "review_required_before_pack_auto_after_pack":
+        if (
+            case.get("expected_behavior")
+            != "review_required_before_pack_auto_after_pack"
+        ):
             continue
-        pairs[case["uir_file"]].add((case["source_field"], case["expected_target_field"]))
+        pairs[case["uir_file"]].add(
+            (case["source_field"], case["expected_target_field"])
+        )
     return pairs
 
 
-def summarize_phase(results: list[dict[str, Any]], expectations: dict[str, Any]) -> dict[str, Any]:
-    total_fields = sum(result["mapping_report"]["summary"]["target_fields"] for result in results)
+def summarize_phase(
+    results: list[dict[str, Any]], expectations: dict[str, Any]
+) -> dict[str, Any]:
+    total_fields = sum(
+        result["mapping_report"]["summary"]["target_fields"] for result in results
+    )
     auto_mapped = sum(len(result["mappings"]) for result in results)
     review_required = sum(len(result["review_required"]) for result in results)
     unmapped_required = sum(len(result["unmapped"]) for result in results)
     failed = unmapped_required
-    schema_validation_passes = sum(1 for result in results if result["validation_passed"])
+    schema_validation_passes = sum(
+        1 for result in results if result["validation_passed"]
+    )
     package_successes = sum(1 for result in results if result["package_success"])
     badcase_violations = count_badcase_violations(results, expectations["badcases"])
     gold_passes = count_gold_passes(results, expectations["gold_cases"])
@@ -566,7 +630,10 @@ def summarize_phase(results: list[dict[str, Any]], expectations: dict[str, Any])
         "packs_activated": 0,
         "effective_template_pack_resolution_count": 0,
         "gold_case_pass_rate": rate(gold_passes, len(expectations["gold_cases"])),
-        "badcase_pass_rate": rate(len(expectations["badcases"]) - badcase_violations, len(expectations["badcases"])),
+        "badcase_pass_rate": rate(
+            len(expectations["badcases"]) - badcase_violations,
+            len(expectations["badcases"]),
+        ),
         "badcase_violation_count": badcase_violations,
         "confidence_bucket_accuracy": "not_available",
     }
@@ -578,7 +645,9 @@ def rate(numerator: int, denominator: int) -> float:
     return round(numerator / denominator, 4)
 
 
-def count_gold_passes(results: list[dict[str, Any]], gold_cases: list[dict[str, Any]]) -> int:
+def count_gold_passes(
+    results: list[dict[str, Any]], gold_cases: list[dict[str, Any]]
+) -> int:
     by_uir = {result["case"].uir_relative: result for result in results}
     passes = 0
     for case in gold_cases:
@@ -601,7 +670,11 @@ def has_mapping_or_review(
     target_field: str,
     require_confirmed: bool,
 ) -> bool:
-    pools = [result["mappings"]] if require_confirmed else [result["mappings"], result["review_required"]]
+    pools = (
+        [result["mappings"]]
+        if require_confirmed
+        else [result["mappings"], result["review_required"]]
+    )
     for pool in pools:
         for mapping in pool:
             if (
@@ -612,7 +685,9 @@ def has_mapping_or_review(
     return False
 
 
-def count_badcase_violations(results: list[dict[str, Any]], badcases: list[dict[str, Any]]) -> int:
+def count_badcase_violations(
+    results: list[dict[str, Any]], badcases: list[dict[str, Any]]
+) -> int:
     by_uir = {result["case"].uir_relative: result for result in results}
     violations = 0
     for case in badcases:
@@ -630,7 +705,9 @@ def count_badcase_violations(results: list[dict[str, Any]], badcases: list[dict[
     return violations
 
 
-def create_packages(results: list[dict[str, Any]], phase: str, output_dir: Path) -> list[dict[str, Any]]:
+def create_packages(
+    results: list[dict[str, Any]], phase: str, output_dir: Path
+) -> list[dict[str, Any]]:
     package_reports = []
     for result in results:
         package_result = PackageService(output_dir / "packages" / phase).create_package(
@@ -642,14 +719,18 @@ def create_packages(results: list[dict[str, Any]], phase: str, output_dir: Path)
             rendered=result["rendered"],
             mapping_report=MappingReport.model_validate(result["mapping_report"]),
             transform_report=result["transform_report"],
-            validation_report=ValidationReport.model_validate(result["validation_report"]),
+            validation_report=ValidationReport.model_validate(
+                result["validation_report"]
+            ),
             content_organization_report=ContentOrganizationReport.model_validate(
                 result["content_organization_report"]
             ),
         )
         package_dir = Path(package_result.metadata.zip_path).parent
         manifest = load_json(package_dir / "manifest.json")
-        content_organization = load_json(package_dir / "content_organization_report.json")
+        content_organization = load_json(
+            package_dir / "content_organization_report.json"
+        )
         package_reports.append(
             {
                 "doc_id": result["case"].uir.doc_id,
@@ -684,7 +765,12 @@ def role(path: str) -> str:
 
 
 def render_markdown(result: dict[str, Any]) -> str:
-    lines = [f"# {result['case'].uir.doc_id}", "", f"Domain: {result['case'].domain}", ""]
+    lines = [
+        f"# {result['case'].uir.doc_id}",
+        "",
+        f"Domain: {result['case'].domain}",
+        "",
+    ]
     for block in result["case"].uir.blocks:
         text = block.text or ""
         if not text:
@@ -705,7 +791,9 @@ def build_chunks(uir: UIRDocument) -> list[dict[str, Any]]:
     chunks = []
     title_path: list[str] = []
     for block in uir.blocks:
-        text = block.text or "\n".join(str(item) for item in block.attributes.get("items", []))
+        text = block.text or "\n".join(
+            str(item) for item in block.attributes.get("items", [])
+        )
         if not text:
             continue
         if block.type == "heading":
@@ -741,12 +829,13 @@ def build_report(
 ) -> dict[str, Any]:
     phase_a_summary = summarize_phase(phase_a, expectations)
     phase_b_summary = summarize_phase(phase_b, expectations)
-    phase_b_summary["candidates_approved"] = phase_a_summary["knowledge_candidates_generated"]
+    phase_b_summary["candidates_approved"] = phase_a_summary[
+        "knowledge_candidates_generated"
+    ]
     phase_b_summary["packs_created"] = 1
     phase_b_summary["packs_activated"] = 1
     phase_b_summary["effective_template_pack_resolution_count"] = sum(
-        len(result.get("applied_pack_ids", []))
-        for result in phase_b
+        len(result.get("applied_pack_ids", [])) for result in phase_b
     )
     phase_a_packages = create_packages(phase_a, "phase_a", output_dir)
     phase_b_packages = create_packages(phase_b, "phase_b", output_dir)
@@ -754,16 +843,22 @@ def build_report(
 
     before_after_delta = {
         "review_required_rate_delta": round(
-            phase_b_summary["review_required_rate"] - phase_a_summary["review_required_rate"], 4
+            phase_b_summary["review_required_rate"]
+            - phase_a_summary["review_required_rate"],
+            4,
         ),
         "auto_mapping_rate_delta": round(
-            phase_b_summary["auto_mapping_rate"] - phase_a_summary["auto_mapping_rate"], 4
+            phase_b_summary["auto_mapping_rate"] - phase_a_summary["auto_mapping_rate"],
+            4,
         ),
         "failed_mapping_rate_delta": round(
-            phase_b_summary["failed_mapping_rate"] - phase_a_summary["failed_mapping_rate"], 4
+            phase_b_summary["failed_mapping_rate"]
+            - phase_a_summary["failed_mapping_rate"],
+            4,
         ),
         "unmapped_required_delta": (
-            phase_b_summary["unmapped_required_fields"] - phase_a_summary["unmapped_required_fields"]
+            phase_b_summary["unmapped_required_fields"]
+            - phase_a_summary["unmapped_required_fields"]
         ),
     }
     return {
@@ -774,7 +869,10 @@ def build_report(
         "phase_b": phase_b_summary,
         "before_after_delta": before_after_delta,
         "dataset_summary": dataset_summary(phase_b, expectations),
-        "package_validation": {"phase_a": phase_a_packages, "phase_b": phase_b_packages},
+        "package_validation": {
+            "phase_a": phase_a_packages,
+            "phase_b": phase_b_packages,
+        },
         "content_organization_summary": content_organization_summary(phase_b_packages),
         "downstream_smoke_summary": downstream_smoke,
         "service_layer_mode": "production_services",
@@ -795,7 +893,9 @@ def build_report(
     }
 
 
-def dataset_summary(results: list[dict[str, Any]], expectations: dict[str, Any]) -> list[dict[str, Any]]:
+def dataset_summary(
+    results: list[dict[str, Any]], expectations: dict[str, Any]
+) -> list[dict[str, Any]]:
     by_domain: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for result in results:
         by_domain[result["case"].domain].append(result)
@@ -805,21 +905,29 @@ def dataset_summary(results: list[dict[str, Any]], expectations: dict[str, Any])
             "schema": items[0]["case"].schema.schema_id,
             "template": items[0]["case"].template.template_id,
             "uir_cases": len(items),
-            "gold_cases": sum(case["domain"] == domain for case in expectations["gold_cases"]),
-            "badcases": sum(case["domain"] == domain for case in expectations["badcases"]),
+            "gold_cases": sum(
+                case["domain"] == domain for case in expectations["gold_cases"]
+            ),
+            "badcases": sum(
+                case["domain"] == domain for case in expectations["badcases"]
+            ),
         }
         for domain, items in sorted(by_domain.items())
     ]
 
 
-def content_organization_summary(package_reports: list[dict[str, Any]]) -> dict[str, Any]:
+def content_organization_summary(
+    package_reports: list[dict[str, Any]],
+) -> dict[str, Any]:
     reports = [package["content_organization"] for package in package_reports]
     chunk_count = sum(report["chunk_count"] for report in reports)
     return {
         "package_count": len(reports),
         "chunk_count": chunk_count,
         "chunks_with_summary": sum(report["chunks_with_summary"] for report in reports),
-        "chunks_with_keywords": sum(report["chunks_with_keywords"] for report in reports),
+        "chunks_with_keywords": sum(
+            report["chunks_with_keywords"] for report in reports
+        ),
         "chunks_with_source_links": sum(
             report["chunks_with_source_links"] for report in reports
         ),
@@ -834,8 +942,7 @@ def content_organization_summary(package_reports: list[dict[str, Any]]) -> dict[
 
 def downstream_smoke_summary(package_reports: list[dict[str, Any]]) -> dict[str, Any]:
     smoke_results = [
-        smoke_rag_ingest(Path(package["zip_path"]))
-        for package in package_reports
+        smoke_rag_ingest(Path(package["zip_path"])) for package in package_reports
     ]
     return {
         "package_count": len(smoke_results),
@@ -849,7 +956,9 @@ def downstream_smoke_summary(package_reports: list[dict[str, Any]]) -> dict[str,
                     result["top_hit"]["chunk_id"] if result.get("top_hit") else None
                 ),
                 "source_linked": (
-                    result["top_hit"]["source_linked"] if result.get("top_hit") else False
+                    result["top_hit"]["source_linked"]
+                    if result.get("top_hit")
+                    else False
                 ),
                 "errors": result.get("errors", []),
             }
@@ -858,9 +967,17 @@ def downstream_smoke_summary(package_reports: list[dict[str, Any]]) -> dict[str,
     }
 
 
-def old_run_snapshot_unchanged(phase_a: list[dict[str, Any]], phase_b: list[dict[str, Any]]) -> bool:
-    before = [(item["task_id"], item["input_hash"], item["mapping_report"]) for item in phase_a]
-    after = [(item["task_id"], item["input_hash"], item["mapping_report"]) for item in phase_a]
+def old_run_snapshot_unchanged(
+    phase_a: list[dict[str, Any]], phase_b: list[dict[str, Any]]
+) -> bool:
+    before = [
+        (item["task_id"], item["input_hash"], item["mapping_report"])
+        for item in phase_a
+    ]
+    after = [
+        (item["task_id"], item["input_hash"], item["mapping_report"])
+        for item in phase_a
+    ]
     return before == after and bool(phase_b)
 
 
@@ -969,7 +1086,9 @@ def write_markdown_report(report: dict[str, Any], path: Path) -> None:
         ]
     )
     for badcase in report["badcases"]:
-        lines.append(f"| {badcase['case_id']} | {badcase['source_field']} | {badcase['passed']} |")
+        lines.append(
+            f"| {badcase['case_id']} | {badcase['source_field']} | {badcase['passed']} |"
+        )
     lines.extend(["", "## 10. Boundaries", ""])
     for boundary in report["boundaries"]:
         lines.append(f"- {boundary}")

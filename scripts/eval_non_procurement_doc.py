@@ -8,7 +8,13 @@ from pathlib import Path
 from typing import Any
 
 from eval_real_world_mapping import evaluate_rows
-from eval_support import EvaluationHttpClient, load_jsonl, safe_ratio, write_json, write_markdown
+from eval_support import (
+    EvaluationHttpClient,
+    load_jsonl,
+    safe_ratio,
+    write_json,
+    write_markdown,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "mapping_gold.jsonl"
@@ -169,7 +175,9 @@ def _document(item: dict[str, Any]) -> dict[str, Any]:
 def build_report(items: list[dict[str, Any]]) -> dict[str, Any]:
     documents = [_document(item) for item in items]
     by_doc_type = {
-        doc_type: _aggregate([item for item in documents if item.get("doc_type") == doc_type])
+        doc_type: _aggregate(
+            [item for item in documents if item.get("doc_type") == doc_type]
+        )
         for doc_type in CATALOGS
     }
     failures = [

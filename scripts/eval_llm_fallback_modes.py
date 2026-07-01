@@ -131,11 +131,12 @@ def _result_from_mapping(
 ) -> dict[str, Any]:
     suggestion_count = 1 if mapping is not None else 0
     review_required_count = 1 if mapping is not None and mapping.need_review else 0
-    auto_accepted_count = 1 if mapping is not None and mapping.status == "accepted" else 0
+    auto_accepted_count = (
+        1 if mapping is not None and mapping.status == "accepted" else 0
+    )
     provider_error_count = (
         1
-        if mapping is not None
-        and (mapping.llm_metadata or {}).get("error_code")
+        if mapping is not None and (mapping.llm_metadata or {}).get("error_code")
         else 0
     )
     result = {
@@ -147,7 +148,9 @@ def _result_from_mapping(
         "badcase_blocked_count": 0,
         "provider_error_count": provider_error_count,
         "timeout_count": 0,
-        "latency_ms": (mapping.llm_metadata or {}).get("latency_ms", 0) if mapping else 0,
+        "latency_ms": (mapping.llm_metadata or {}).get("latency_ms", 0)
+        if mapping
+        else 0,
         "secret_redaction_passed": True,
         "safe_config": LLMFallbackService(settings).safe_config_snapshot(),
         "mapping": mapping.model_dump(mode="json") if mapping else None,
@@ -243,7 +246,9 @@ def evaluate_badcase_block(*, root: Path = ROOT) -> dict[str, Any]:
 
 def aggregate(results: list[dict[str, Any]]) -> dict[str, Any]:
     metrics = {
-        "suggestion_count": sum(int(item.get("suggestion_count", 0)) for item in results),
+        "suggestion_count": sum(
+            int(item.get("suggestion_count", 0)) for item in results
+        ),
         "review_required_count": sum(
             int(item.get("review_required_count", 0)) for item in results
         ),

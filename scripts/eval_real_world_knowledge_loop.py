@@ -256,7 +256,9 @@ def collect_metrics(results: list[dict[str, Any]]) -> dict[str, int]:
     return {
         "auto_mapped_fields": sum(item["auto_mapped_fields"] for item in results),
         "review_required_count": sum(item["review_required_count"] for item in results),
-        "missing_required_count": sum(item["missing_required_count"] for item in results),
+        "missing_required_count": sum(
+            item["missing_required_count"] for item in results
+        ),
     }
 
 
@@ -321,7 +323,9 @@ def run_loop(
     baseline_snapshot = base_template.model_dump_json()
 
     with evaluation_context(ROOT) as (db, storage):
-        storage.write_text("snapshots/procurement_template_before.json", baseline_snapshot)
+        storage.write_text(
+            "snapshots/procurement_template_before.json", baseline_snapshot
+        )
         original_snapshot_bytes = storage.resolve(
             "snapshots/procurement_template_before.json"
         ).read_bytes()
@@ -350,16 +354,24 @@ def run_loop(
 
     activated_aliases: dict[str, list[str]] = {}
     for candidate in accepted:
-        activated_aliases.setdefault(candidate.target_field_id, []).append(candidate.alias)
+        activated_aliases.setdefault(candidate.target_field_id, []).append(
+            candidate.alias
+        )
 
     badcase_violation_count = sum(
         1 for item in decision_evidence if item["activated"] and item["badcase_hit"]
     )
     metrics = {
-        "approved_candidates": sum(1 for item in decision_evidence if item["activated"]),
-        "rejected_candidates": sum(1 for item in decision_evidence if item["decision"] == "reject"),
+        "approved_candidates": sum(
+            1 for item in decision_evidence if item["activated"]
+        ),
+        "rejected_candidates": sum(
+            1 for item in decision_evidence if item["decision"] == "reject"
+        ),
         "activated_candidate_count": len(accepted),
-        "activated_alias_count": sum(len(values) for values in activated_aliases.values()),
+        "activated_alias_count": sum(
+            len(values) for values in activated_aliases.values()
+        ),
         "badcase_violation_count": badcase_violation_count,
         "old_snapshot_unchanged": int(old_snapshot_unchanged),
         "before_auto_mapped_fields": before["auto_mapped_fields"],

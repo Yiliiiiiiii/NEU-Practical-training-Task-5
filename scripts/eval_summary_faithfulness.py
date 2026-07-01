@@ -13,7 +13,9 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "content_organization_gold.jsonl"
+DEFAULT_GOLD = (
+    ROOT / "examples" / "real_world" / "gold" / "content_organization_gold.jsonl"
+)
 DEFAULT_UIR_DIR = ROOT / "examples" / "real_world" / "uir"
 DEFAULT_JSON = ROOT / "reports" / "summary_faithfulness_eval_report.json"
 DEFAULT_MD = ROOT / "reports" / "summary_faithfulness_eval_report.md"
@@ -46,7 +48,9 @@ TABLE_NUMBER_RE = re.compile(
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    for line_number, line in enumerate(
+        path.read_text(encoding="utf-8").splitlines(), start=1
+    ):
         if not line.strip():
             continue
         try:
@@ -71,7 +75,9 @@ def load_uirs(uir_dir: Path) -> dict[str, dict[str, Any]]:
 
 def _string_list(value: Any, *, label: str, allow_empty: bool = False) -> list[str]:
     if not isinstance(value, list) or (not value and not allow_empty):
-        raise ValueError(f"{label} must be a {'possibly empty ' if allow_empty else ''}list")
+        raise ValueError(
+            f"{label} must be a {'possibly empty ' if allow_empty else ''}list"
+        )
     if not all(isinstance(item, str) and item.strip() for item in value):
         raise ValueError(f"{label} must contain non-empty strings")
     return value
@@ -83,7 +89,9 @@ def validate_gold(rows: list[dict[str, Any]], uirs: dict[str, dict[str, Any]]) -
         label = f"gold row {index} ({doc_id or 'missing doc_id'})"
         if doc_id not in uirs:
             raise ValueError(f"{label}: unknown UIR document")
-        block_ids = _string_list(row.get("source_block_ids"), label=f"{label}: source_block_ids")
+        block_ids = _string_list(
+            row.get("source_block_ids"), label=f"{label}: source_block_ids"
+        )
         actual_ids = {
             str(block.get("block_id"))
             for block in uirs[doc_id].get("blocks", [])
@@ -92,7 +100,9 @@ def validate_gold(rows: list[dict[str, Any]], uirs: dict[str, dict[str, Any]]) -
         unknown = sorted(set(block_ids) - actual_ids)
         if unknown:
             raise ValueError(f"{label}: unknown block reference {unknown[0]}")
-        _string_list(row.get("summary_must_include"), label=f"{label}: summary_must_include")
+        _string_list(
+            row.get("summary_must_include"), label=f"{label}: summary_must_include"
+        )
         _string_list(
             row.get("summary_must_not_include"),
             label=f"{label}: summary_must_not_include",
@@ -124,7 +134,9 @@ def source_text_for_block_ids(block_ids: set[str], uir: dict[str, Any]) -> str:
     )
 
 
-def relevant_chunks(sample: dict[str, Any], chunks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def relevant_chunks(
+    sample: dict[str, Any], chunks: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
     wanted = {str(block_id) for block_id in sample.get("source_block_ids", [])}
     return [
         chunk
@@ -137,15 +149,29 @@ def _missing_tokens(tokens: list[str], text: str) -> list[str]:
     return sorted({token for token in tokens if token and token not in text})
 
 
-def _new_pattern_values(pattern: re.Pattern[str], summary: str, source_text: str) -> list[str]:
-    return sorted({match.group(0).strip() for match in pattern.finditer(summary) if match.group(0).strip() not in source_text})
+def _new_pattern_values(
+    pattern: re.Pattern[str], summary: str, source_text: str
+) -> list[str]:
+    return sorted(
+        {
+            match.group(0).strip()
+            for match in pattern.finditer(summary)
+            if match.group(0).strip() not in source_text
+        }
+    )
 
 
 def _summary_text(chunks: list[dict[str, Any]]) -> str:
-    return "\n".join(str(chunk.get("summary", "")).strip() for chunk in chunks if chunk.get("summary")).strip()
+    return "\n".join(
+        str(chunk.get("summary", "")).strip()
+        for chunk in chunks
+        if chunk.get("summary")
+    ).strip()
 
 
-def table_rows_for_block_ids(block_ids: set[str], uir: dict[str, Any]) -> list[list[str]]:
+def table_rows_for_block_ids(
+    block_ids: set[str], uir: dict[str, Any]
+) -> list[list[str]]:
     rows: list[list[str]] = []
     for block in uir.get("blocks", []):
         if str(block.get("block_id")) not in block_ids:
@@ -189,9 +215,7 @@ def _table_contexts(
         first_row = table_rows[0]
         same_width = all(len(row) == len(first_row) for row in table_rows[1:])
         has_numeric_data = any(
-            TABLE_NUMBER_RE.search(cell)
-            for row in table_rows[1:]
-            for cell in row[1:]
+            TABLE_NUMBER_RE.search(cell) for row in table_rows[1:] for cell in row[1:]
         )
         if same_width and has_numeric_data and _table_row_label(first_row):
             header = first_row
@@ -279,7 +303,9 @@ def _table_number_violations(
             position = row_position
             anchor_length = len(label)
             if column:
-                column_position = table_summary.rfind(column, row_position, match.start())
+                column_position = table_summary.rfind(
+                    column, row_position, match.start()
+                )
                 if column_position < 0:
                     continue
                 position = max(position, column_position)
@@ -313,7 +339,9 @@ def evaluate_summary_sample(
 ) -> dict[str, Any]:
     summary = _summary_text(chunks)
     must_include = [str(item) for item in sample.get("summary_must_include", [])]
-    must_not_include = [str(item) for item in sample.get("summary_must_not_include", [])]
+    must_not_include = [
+        str(item) for item in sample.get("summary_must_not_include", [])
+    ]
     missing_include = _missing_tokens(must_include, summary)
     must_not_violations = sorted({item for item in must_not_include if item in summary})
     new_dates = _new_pattern_values(DATE_RE, summary, source_text)
@@ -341,7 +369,9 @@ def evaluate_summary_sample(
         "passed": passed,
         "summary": summary,
         "missing_must_include": missing_include,
-        "must_include_hit_rate": _ratio(len(must_include) - len(missing_include), len(must_include)),
+        "must_include_hit_rate": _ratio(
+            len(must_include) - len(missing_include), len(must_include)
+        ),
         "must_not_include_violations": must_not_violations,
         "new_date_violations": new_dates,
         "new_amount_violations": new_amounts,
@@ -396,17 +426,35 @@ def build_report(
         "passed_count": len(samples) - len(failures),
         "failed_count": len(failures),
         "faithfulness_pass_rate": _ratio(len(samples) - len(failures), len(samples)),
-        "new_date_violation": sum(bool(item["new_date_violations"]) for item in samples),
-        "new_amount_violation": sum(bool(item["new_amount_violations"]) for item in samples),
+        "new_date_violation": sum(
+            bool(item["new_date_violations"]) for item in samples
+        ),
+        "new_amount_violation": sum(
+            bool(item["new_amount_violations"]) for item in samples
+        ),
         "new_org_violation": sum(bool(item["new_org_violations"]) for item in samples),
-        "new_date_violation_count": sum(bool(item["new_date_violations"]) for item in samples),
-        "new_amount_violation_count": sum(bool(item["new_amount_violations"]) for item in samples),
-        "new_org_violation_count": sum(bool(item["new_org_violations"]) for item in samples),
-        "must_include_hit_rate": _mean([float(item["must_include_hit_rate"]) for item in samples]),
-        "must_not_include_violation_count": sum(bool(item["must_not_include_violations"]) for item in samples),
-        "overlong_summary_count": sum(bool(item["overlong_summary"]) for item in samples),
+        "new_date_violation_count": sum(
+            bool(item["new_date_violations"]) for item in samples
+        ),
+        "new_amount_violation_count": sum(
+            bool(item["new_amount_violations"]) for item in samples
+        ),
+        "new_org_violation_count": sum(
+            bool(item["new_org_violations"]) for item in samples
+        ),
+        "must_include_hit_rate": _mean(
+            [float(item["must_include_hit_rate"]) for item in samples]
+        ),
+        "must_not_include_violation_count": sum(
+            bool(item["must_not_include_violations"]) for item in samples
+        ),
+        "overlong_summary_count": sum(
+            bool(item["overlong_summary"]) for item in samples
+        ),
         "empty_summary_count": sum(bool(item["empty_summary"]) for item in samples),
-        "changed_table_number_count": sum(bool(item["table_number_violations"]) for item in samples),
+        "changed_table_number_count": sum(
+            bool(item["table_number_violations"]) for item in samples
+        ),
     }
     return {
         "status": "completed",
@@ -449,10 +497,15 @@ def render_markdown(report: dict[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
-def write_reports(report: dict[str, Any], *, output_json: Path, output_md: Path) -> None:
+def write_reports(
+    report: dict[str, Any], *, output_json: Path, output_md: Path
+) -> None:
     output_json.parent.mkdir(parents=True, exist_ok=True)
     output_md.parent.mkdir(parents=True, exist_ok=True)
-    output_json.write_text(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output_json.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     output_md.write_text(render_markdown(report), encoding="utf-8")
 
 
@@ -468,8 +521,12 @@ def run_evaluation(
     uirs = load_uirs(uir_dir)
     validate_gold(gold_rows, uirs)
     selected_docs = {str(row["doc_id"]): uirs[str(row["doc_id"])] for row in gold_rows}
-    chunks_by_doc = RETRIEVAL.generate_chunks_for_strategy(selected_docs, strategy=strategy)
-    report = build_report(gold_rows=gold_rows, uirs=uirs, chunks_by_doc=chunks_by_doc, strategy=strategy)
+    chunks_by_doc = RETRIEVAL.generate_chunks_for_strategy(
+        selected_docs, strategy=strategy
+    )
+    report = build_report(
+        gold_rows=gold_rows, uirs=uirs, chunks_by_doc=chunks_by_doc, strategy=strategy
+    )
     write_reports(report, output_json=output_json, output_md=output_md)
     return report
 

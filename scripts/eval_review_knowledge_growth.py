@@ -27,7 +27,9 @@ from app.db.models import Base, ConversionTask
 from app.schemas.api import TaskCreateRequest
 from app.schemas.uir import UIRDocument
 from app.services.document_service import DocumentService
-from app.services.review_knowledge_workflow_service import ReviewKnowledgeWorkflowService
+from app.services.review_knowledge_workflow_service import (
+    ReviewKnowledgeWorkflowService,
+)
 from app.services.schema_service import SchemaService
 from app.services.storage_service import StorageService
 from app.services.task_execution_service import TaskExecutionService
@@ -67,7 +69,9 @@ CATALOG = {
 
 def load_decisions(path: Path = DECISIONS_PATH) -> list[dict[str, Any]]:
     decisions: list[dict[str, Any]] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    for line_number, line in enumerate(
+        path.read_text(encoding="utf-8").splitlines(), start=1
+    ):
         if not line.strip():
             continue
         try:
@@ -80,7 +84,9 @@ def load_decisions(path: Path = DECISIONS_PATH) -> list[dict[str, Any]]:
         if missing:
             raise ValueError(f"line {line_number}: missing {sorted(missing)}")
         if item["decision"] not in {"approve", "reject"}:
-            raise ValueError(f"line {line_number}: unsupported decision {item['decision']!r}")
+            raise ValueError(
+                f"line {line_number}: unsupported decision {item['decision']!r}"
+            )
         expected_alias = item["expected_alias_to_activate"]
         if expected_alias is not None and not isinstance(expected_alias, str):
             raise ValueError(
@@ -91,7 +97,9 @@ def load_decisions(path: Path = DECISIONS_PATH) -> list[dict[str, Any]]:
                 f"line {line_number}: expected alias must match source_label"
             )
         if item["doc_type"] not in CATALOG:
-            raise ValueError(f"line {line_number}: unsupported doc_type {item['doc_type']!r}")
+            raise ValueError(
+                f"line {line_number}: unsupported doc_type {item['doc_type']!r}"
+            )
         decisions.append(item)
     if not decisions:
         raise ValueError("decision fixture is empty")
@@ -104,8 +112,10 @@ def load_decisions(path: Path = DECISIONS_PATH) -> list[dict[str, Any]]:
 
 
 def _uir_path(decision: dict[str, Any]) -> Path:
-    return UIR_ROOT / str(decision["doc_type"]).removesuffix("_doc") / (
-        f"{decision['doc_id']}.json"
+    return (
+        UIR_ROOT
+        / str(decision["doc_type"]).removesuffix("_doc")
+        / (f"{decision['doc_id']}.json")
     )
 
 
@@ -154,9 +164,9 @@ def validate_real_uir_references(
 
 
 @contextmanager
-def isolated_state() -> Iterator[
-    tuple[Session, StorageService, SchemaService, TemplateService]
-]:
+def isolated_state() -> (
+    Iterator[tuple[Session, StorageService, SchemaService, TemplateService]]
+):
     with tempfile.TemporaryDirectory(prefix="review-knowledge-growth-") as raw_root:
         root = Path(raw_root)
         schema_root = root / "catalog" / "schemas"
@@ -248,9 +258,7 @@ def _task_artifacts(
 
 def _task_record_snapshot(task: ConversionTask) -> dict[str, Any]:
     return {
-        column.name: (
-            value.isoformat() if hasattr(value, "isoformat") else value
-        )
+        column.name: (value.isoformat() if hasattr(value, "isoformat") else value)
         for column in task.__table__.columns
         if (value := getattr(task, column.name)) is not None
     }
@@ -290,16 +298,16 @@ def _stage_metrics(
         "review_required_count": len(mapping_report.get("review_required_items", [])),
         "auto_mapped_fields": len(accepted),
         "mapping_recall": round(recall, 4),
-        "required_coverage": round(
-            len(required_mapped) / len(required_field_ids), 4
-        )
+        "required_coverage": round(len(required_mapped) / len(required_field_ids), 4)
         if required_field_ids
         else 1.0,
         "strict_pass_count": int(execution.get("status") != "failed"),
     }
 
 
-def _matching_review(workflow: ReviewKnowledgeWorkflowService, task_id: str, item: dict[str, Any]):
+def _matching_review(
+    workflow: ReviewKnowledgeWorkflowService, task_id: str, item: dict[str, Any]
+):
     matches = [
         review
         for review in workflow.list_reviews()
@@ -323,7 +331,9 @@ def run_evaluation(
     doc_ids = {str(item["doc_id"]) for item in decisions}
     doc_types = {str(item["doc_type"]) for item in decisions}
     if len(doc_ids) != 1 or len(doc_types) != 1:
-        raise ValueError("this deterministic evaluation requires one fixed UIR document")
+        raise ValueError(
+            "this deterministic evaluation requires one fixed UIR document"
+        )
     doc_id = next(iter(doc_ids))
     doc_type = next(iter(doc_types))
     schema_id, template_id = CATALOG[doc_type]
@@ -339,8 +349,7 @@ def run_evaluation(
             "forbidden_target_fields": [item["target_field"]],
         }
         for item in decisions
-        if item["decision"] == "approve"
-        and item["expected_alias_to_activate"] is None
+        if item["decision"] == "approve" and item["expected_alias_to_activate"] is None
     ]
 
     with isolated_state() as (db, storage, schema_service, template_service):
@@ -356,7 +365,9 @@ def run_evaluation(
         )
         schema = schema_service.load_schema(schema_id, "1.0.0")
         required_field_ids = {
-            field.field_id for field in schema.fields if getattr(field, "required", False)
+            field.field_id
+            for field in schema.fields
+            if getattr(field, "required", False)
         }
         first_task, first_execution, first_mapping = _execute_new_task(
             db, storage, schema_service, template_service, request
@@ -376,7 +387,9 @@ def run_evaluation(
                     create_knowledge_candidate=True,
                 )
                 if candidate is None:
-                    raise ValueError(f"approved review {review.review_id} made no candidate")
+                    raise ValueError(
+                        f"approved review {review.review_id} made no candidate"
+                    )
                 candidates.append(candidate)
                 decision_evidence.append(
                     {
@@ -478,8 +491,7 @@ def run_evaluation(
     blocked_aliases = sorted(
         str(item["source_label"])
         for item in decisions
-        if item["decision"] == "approve"
-        and item["expected_alias_to_activate"] is None
+        if item["decision"] == "approve" and item["expected_alias_to_activate"] is None
     )
     badcase_violation_count = sum(
         alias in aliases
@@ -509,7 +521,9 @@ def run_evaluation(
             "doc_id": doc_id,
             "doc_type": doc_type,
             "decision_count": len(decisions),
-            "real_uir_path": str(_uir_path(decisions[0]).relative_to(ROOT)).replace("\\", "/"),
+            "real_uir_path": str(_uir_path(decisions[0]).relative_to(ROOT)).replace(
+                "\\", "/"
+            ),
         },
         "summary": {
             "passed": passed,

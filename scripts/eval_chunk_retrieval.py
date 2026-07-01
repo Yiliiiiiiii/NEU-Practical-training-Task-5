@@ -76,7 +76,9 @@ def is_relevant(query: dict[str, Any], chunk: dict[str, Any]) -> bool:
     return bool(expected & actual)
 
 
-def rank_chunks(query: dict[str, Any], chunks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def rank_chunks(
+    query: dict[str, Any], chunks: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
     ranked = [
         {
             **chunk,
@@ -85,7 +87,9 @@ def rank_chunks(query: dict[str, Any], chunks: list[dict[str, Any]]) -> list[dic
         }
         for chunk in chunks
     ]
-    return sorted(ranked, key=lambda item: (-float(item["score"]), str(item["chunk_id"])))
+    return sorted(
+        ranked, key=lambda item: (-float(item["score"]), str(item["chunk_id"]))
+    )
 
 
 def recall_at_k(ranked: list[dict[str, Any]], k: int) -> float:
@@ -134,7 +138,9 @@ def _block_text(block: dict[str, Any]) -> str:
     return "\n".join(flattened)
 
 
-def canonical_from_uir(uir: dict[str, Any], *, task_id: str, schema_id: str) -> CanonicalModel:
+def canonical_from_uir(
+    uir: dict[str, Any], *, task_id: str, schema_id: str
+) -> CanonicalModel:
     blocks = [
         CanonicalBlock(
             block_id=str(block["block_id"]),
@@ -288,12 +294,17 @@ def evaluate(
             reciprocal_ranks.append(rr)
             ndcgs.append(ndcg)
             relevant_rank = next(
-                (index for index, item in enumerate(ranked, start=1) if item["relevant"]),
+                (
+                    index
+                    for index, item in enumerate(ranked, start=1)
+                    if item["relevant"]
+                ),
                 None,
             )
-            if str(query.get("answer_field", "")).endswith("amount") or "table" in str(
-                query["query"]
-            ).lower():
+            if (
+                str(query.get("answer_field", "")).endswith("amount")
+                or "table" in str(query["query"]).lower()
+            ):
                 table_queries += 1
                 if any(item["relevant"] for item in top5):
                     table_hits += 1
@@ -339,8 +350,12 @@ def evaluate(
             "recall@5": _mean(recalls_5),
             "mrr": _mean(reciprocal_ranks),
             "ndcg@5": _mean(ndcgs),
-            "source_link_coverage": _mean([len(linked) / len(all_chunks)]) if all_chunks else 0.0,
-            "table_integrity": round(table_hits / table_queries, 4) if table_queries else 1.0,
+            "source_link_coverage": _mean([len(linked) / len(all_chunks)])
+            if all_chunks
+            else 0.0,
+            "table_integrity": round(table_hits / table_queries, 4)
+            if table_queries
+            else 1.0,
             "average_token_estimate": _mean(token_estimates),
             "chunk_count": len(all_chunks),
         }
@@ -421,11 +436,7 @@ def run_evaluation(
     ]
     queries = load_jsonl(query_path)
     needed_docs = {str(query["doc_id"]) for query in queries}
-    docs = {
-        doc_id: uir
-        for doc_id, uir in load_uirs().items()
-        if doc_id in needed_docs
-    }
+    docs = {doc_id: uir for doc_id, uir in load_uirs().items() if doc_id in needed_docs}
     missing_docs = sorted(needed_docs - set(docs))
     chunks_by_strategy = {
         strategy: generate_chunks_for_strategy(docs, strategy=strategy)
@@ -446,7 +457,12 @@ def main() -> None:
     parser.add_argument(
         "--strategies",
         nargs="+",
-        default=["fixed_window", "heading_aware", "source_block_aware", "table_protect"],
+        default=[
+            "fixed_window",
+            "heading_aware",
+            "source_block_aware",
+            "table_protect",
+        ],
     )
     args = parser.parse_args()
     report = run_evaluation(

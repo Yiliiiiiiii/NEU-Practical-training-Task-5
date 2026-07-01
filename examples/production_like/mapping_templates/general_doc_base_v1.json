@@ -8,7 +8,7 @@
     "source": ["source", "来源", "出处"],
     "created_date": ["created_date", "创建日期", "形成日期"],
     "category": ["category", "类别", "分类"],
-    "content": ["content", "正文", "内容"],
+    "content": ["content", "document text", "正文", "内容"],
     "tags": ["tags", "标签", "关键词"],
     "document_subtype": ["document_subtype", "文档类型", "文件类型", "文档子类"],
     "issuer": ["issuer", "发布主体", "发布单位", "发文单位", "主管部门"],

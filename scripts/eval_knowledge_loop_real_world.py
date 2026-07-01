@@ -13,24 +13,37 @@ from eval_support import EvaluationHttpClient, write_json, write_markdown
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_JSON = ROOT / "reports" / "knowledge_loop_eval_report.json"
 DEFAULT_MD = ROOT / "reports" / "knowledge_loop_eval_report.md"
-DEFAULT_UIR = ROOT / "examples" / "production_like" / "uir" / "policy" / "policy_002_alias_variants.json"
+DEFAULT_UIR = (
+    ROOT
+    / "examples"
+    / "production_like"
+    / "uir"
+    / "policy"
+    / "policy_002_alias_variants.json"
+)
 
 
-def _mapping_quality(mapping_report: dict[str, Any], execution: dict[str, Any]) -> dict[str, float]:
+def _mapping_quality(
+    mapping_report: dict[str, Any], execution: dict[str, Any]
+) -> dict[str, float]:
     mappings = mapping_report.get("mappings", [])
     review_items = mapping_report.get("review_required_items", [])
     unmapped = mapping_report.get("unmapped", [])
-    accepted = sum(
-        1
-        for item in mappings
-        if isinstance(item, dict) and item.get("status") == "accepted"
-    ) if isinstance(mappings, list) else 0
+    accepted = (
+        sum(
+            1
+            for item in mappings
+            if isinstance(item, dict) and item.get("status") == "accepted"
+        )
+        if isinstance(mappings, list)
+        else 0
+    )
     review_count = len(review_items) if isinstance(review_items, list) else 0
-    unmapped_required = sum(
-        1
-        for item in unmapped
-        if isinstance(item, dict) and item.get("required")
-    ) if isinstance(unmapped, list) else int(execution.get("unmapped_required_count", 0))
+    unmapped_required = (
+        sum(1 for item in unmapped if isinstance(item, dict) and item.get("required"))
+        if isinstance(unmapped, list)
+        else int(execution.get("unmapped_required_count", 0))
+    )
     denominator = accepted + review_count + unmapped_required
     required_total = accepted + review_count + unmapped_required
     return {
@@ -72,20 +85,28 @@ def run_loop(
     pending_reviews = [
         review
         for review in client.list_reviews("pending")
-        if review.get("schema_id") == schema_id and review.get("template_id") == template_id
+        if review.get("schema_id") == schema_id
+        and review.get("template_id") == template_id
     ][:max_reviews]
-    approved_reviews = [client.approve_review(review["review_id"]) for review in pending_reviews]
+    approved_reviews = [
+        client.approve_review(review["review_id"]) for review in pending_reviews
+    ]
     candidates = client.list_candidates()
     accepted_candidates: list[dict[str, Any]] = []
     blocked_candidates: list[dict[str, Any]] = []
     for candidate in candidates:
-        if candidate.get("schema_id") != schema_id or candidate.get("template_id") != template_id:
+        if (
+            candidate.get("schema_id") != schema_id
+            or candidate.get("template_id") != template_id
+        ):
             continue
         if candidate.get("status") == "blocked":
             blocked_candidates.append(candidate)
             continue
         if candidate.get("status") == "pending":
-            accepted_candidates.append(client.accept_candidate(candidate["candidate_id"]))
+            accepted_candidates.append(
+                client.accept_candidate(candidate["candidate_id"])
+            )
     draft_pack = client.create_pack(schema_id, template_id)
     draft_effective = client.effective_template(schema_id, template_id)
     active_pack = client.activate_pack(draft_pack["pack_id"])
@@ -240,7 +261,9 @@ def main() -> None:
     parser.add_argument("--pack-id")
     args = parser.parse_args()
 
-    client = EvaluationHttpClient(args.base_url, api_key=args.api_key, timeout=args.timeout)
+    client = EvaluationHttpClient(
+        args.base_url, api_key=args.api_key, timeout=args.timeout
+    )
     if args.operation == "list-reviews":
         write_json(args.out_json, {"items": client.list_reviews("pending")})
         return
@@ -266,7 +289,9 @@ def main() -> None:
         write_json(args.out_json, client.activate_pack(args.pack_id))
         return
     if args.operation == "effective-template":
-        write_json(args.out_json, client.effective_template(args.schema_id, args.template_id))
+        write_json(
+            args.out_json, client.effective_template(args.schema_id, args.template_id)
+        )
         return
     if args.operation == "metrics":
         write_json(args.out_json, client.knowledge_metrics())

@@ -73,7 +73,98 @@ class CandidateService:
                     )
                 )
 
+        has_content = any(
+            self.normalize_name(item.source_name) == "content" for item in candidates
+        )
+        has_named_text_block = any(item.source_path.endswith(".text") for item in candidates)
+        if not has_content and not has_named_text_block:
+            content_parts: list[str] = []
+            content_blocks: list[str] = []
+            for block in uir.blocks:
+                block_text = self._block_text(block.text, block.attributes)
+                if not block_text:
+                    continue
+                content_parts.append(block_text)
+                content_blocks.append(block.block_id)
+            if content_parts:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path="blocks[*].text",
+                        source_name="document text",
+                        value="\n".join(content_parts),
+                        source_blocks=content_blocks,
+                        source_kind="aggregate_blocks",
+                        seen_names=seen_names,
+                    )
+                )
+
+        if uir.metadata.get("domain") == "meeting_doc":
+            meeting_date = self._meeting_date_candidate(task_id, uir, seen_names)
+            if meeting_date is not None:
+                candidates.append(meeting_date)
+
         return candidates
+
+    def _meeting_date_candidate(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+    ) -> FieldCandidate | None:
+        patterns = [
+            re.compile(r"\d{4}\s*[年/-]\s*\d{1,2}\s*[月/-]\s*\d{1,2}\s*日?"),
+            re.compile(r"[二〇○零一二三四五六七八九十]{4}\s*年\s*[一二三四五六七八九十]{1,3}\s*月\s*[一二三四五六七八九十]{1,3}\s*日"),
+            re.compile(r"\d{1,2}\s*月\s*\d{1,2}\s*日"),
+        ]
+        matches: list[tuple[int, int, str, str]] = []
+        for index, block in enumerate(uir.blocks):
+            text = block.text or ""
+            if not text or "生成日期" in text:
+                continue
+            for pattern in patterns:
+                match = pattern.search(text)
+                if match is None:
+                    continue
+                score = 3 if "主持召开" in text else 2 if "日期" in text else 1
+                matches.append((score, -index, match.group(0), block.block_id))
+                break
+        if not matches:
+            return None
+        _score, _index, value, block_id = max(matches)
+        return self._candidate(
+            task_id=task_id,
+            uir=uir,
+            source_path=f"$.blocks.{block_id}.text",
+            source_name="meeting date",
+            value=value,
+            source_blocks=[block_id],
+            source_kind="derived_meeting_date",
+            seen_names=seen_names,
+        )
+
+    @staticmethod
+    def _block_text(text: str | None, attributes: dict[str, Any]) -> str:
+        if text and text.strip():
+            return text.strip()
+        rows = attributes.get("rows")
+        if isinstance(rows, list):
+            values = []
+            for row in rows:
+                if isinstance(row, dict):
+                    values.append(
+                        ": ".join(
+                            str(value).strip()
+                            for value in row.values()
+                            if value is not None and str(value).strip()
+                        )
+                    )
+            return "\n".join(value for value in values if value)
+        items = attributes.get("items")
+        if isinstance(items, list):
+            return "\n".join(str(item).strip() for item in items if str(item).strip())
+        return ""
 
     def _candidate(
         self,

@@ -140,7 +140,9 @@ def execute_gold_row(
         item["metrics"] = score_mapping_report(gold, mapping_report)
         item["validation_passed"] = bool(validation_report.get("passed"))
         item["package_passed"] = bool(verifier_report.get("passed"))
-        item["mapped_or_review_targets"] = sorted(mapped_or_review_targets(mapping_report))
+        item["mapped_or_review_targets"] = sorted(
+            mapped_or_review_targets(mapping_report)
+        )
         review_items = mapping_report.get("review_required_items", [])
         item["review_evidence"] = review_items if isinstance(review_items, list) else []
         unmapped = mapping_report.get("unmapped", [])

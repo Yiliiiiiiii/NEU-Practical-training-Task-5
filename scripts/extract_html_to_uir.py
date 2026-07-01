@@ -192,7 +192,9 @@ def extract_html(
         (block for block in blocks if block["type"] == "heading"),
         None,
     )
-    page_title = normalize_text(soup.title.get_text(" ", strip=True)) if soup.title else ""
+    page_title = (
+        normalize_text(soup.title.get_text(" ", strip=True)) if soup.title else ""
+    )
     title = str(title_block["text"]) if title_block else page_title
     if not blocks or not title:
         return ExtractionResult(

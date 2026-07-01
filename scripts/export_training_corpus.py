@@ -39,7 +39,8 @@ def export_training_corpus(
         for index, chunk in enumerate(chunks)
     ]
     output_path.write_text(
-        "\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows) + "\n",
+        "\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows)
+        + "\n",
         encoding="utf-8",
     )
     return {
@@ -54,7 +55,9 @@ def export_training_corpus(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--package", required=True, type=Path, help="Package zip or directory.")
+    parser.add_argument(
+        "--package", required=True, type=Path, help="Package zip or directory."
+    )
     parser.add_argument("--out", required=True, type=Path, help="Output JSONL path.")
     parser.add_argument(
         "--granularity",
@@ -64,7 +67,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    result = export_training_corpus(args.package, args.out, granularity=args.granularity)
+    result = export_training_corpus(
+        args.package, args.out, granularity=args.granularity
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
 
 

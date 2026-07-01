@@ -2,237 +2,270 @@
   "badcase_warnings": [],
   "by_doc_type": {
     "general_doc": {
-      "doc_count": 3,
-      "recommended_template_changes": [],
-      "strict_failed": 3,
+      "doc_count": 4,
+      "recommended_template_changes": [
+        {
+          "change_type": "alias",
+          "reason": "Observed 2 repeated review-required mappings.",
+          "source_alias": "page_count",
+          "target_field": "content"
+        }
+      ],
+      "strict_failed": 4,
       "strict_pass": 0,
       "top_low_confidence_sources": [
         {
-          "count": 6,
+          "count": 10,
           "source": "doc_type"
         },
         {
-          "count": 3,
+          "count": 8,
+          "source": "extraction_version"
+        },
+        {
+          "count": 8,
           "source": "retrieved_at"
         },
         {
-          "count": 3,
-          "source": "source_url"
-        },
-        {
-          "count": 2,
-          "source": "extraction_truncated"
-        },
-        {
-          "count": 1,
+          "count": 4,
           "source": "page_count"
+        },
+        {
+          "count": 4,
+          "source": "source_format"
         }
       ],
       "top_missing_required_fields": [
         {
-          "count": 3,
+          "count": 4,
           "field": "content"
         }
       ],
       "top_review_required_fields": [
         {
-          "count": 3,
+          "count": 4,
+          "field": "application_conditions"
+        },
+        {
+          "count": 4,
+          "field": "application_materials"
+        },
+        {
+          "count": 4,
           "field": "category"
         },
         {
-          "count": 3,
+          "count": 4,
           "field": "content"
         },
         {
-          "count": 3,
+          "count": 4,
           "field": "created_date"
-        },
-        {
-          "count": 3,
-          "field": "source"
-        },
-        {
-          "count": 3,
-          "field": "tags"
         }
       ]
     },
     "meeting_doc": {
-      "doc_count": 3,
+      "doc_count": 6,
       "recommended_template_changes": [
         {
           "change_type": "alias",
-          "reason": "Observed 3 repeated review-required mappings.",
+          "reason": "Observed 6 repeated review-required mappings.",
           "source_alias": "标题",
           "target_field": "meeting_title"
         },
         {
+          "change_type": "alias",
+          "reason": "Observed 2 repeated review-required mappings.",
+          "source_alias": "page_count",
+          "target_field": "content"
+        },
+        {
           "change_type": "regex",
-          "reason": "meeting_date is missing in 3 meeting_doc document(s); only accept a labeled, single date match.",
+          "reason": "meeting_date is missing in 6 meeting_doc document(s); only accept a labeled, single date match.",
           "source_pattern": "explicit labeled date with unambiguous YYYY-MM-DD value",
           "target_field": "meeting_date"
         }
       ],
-      "strict_failed": 3,
+      "strict_failed": 6,
       "strict_pass": 0,
       "top_low_confidence_sources": [
         {
-          "count": 6,
+          "count": 24,
           "source": "extraction_version"
         },
         {
-          "count": 6,
+          "count": 12,
           "source": "标题"
         },
         {
-          "count": 3,
+          "count": 6,
           "source": "doc_type"
         },
         {
-          "count": 3,
-          "source": "retrieved_at"
+          "count": 6,
+          "source": "extraction_method"
         },
         {
-          "count": 2,
-          "source": "extraction_truncated"
+          "count": 6,
+          "source": "source_url"
         }
       ],
       "top_missing_required_fields": [
         {
-          "count": 3,
-          "field": "content"
-        },
-        {
-          "count": 3,
+          "count": 6,
           "field": "meeting_date"
         },
         {
-          "count": 3,
+          "count": 6,
           "field": "meeting_title"
+        },
+        {
+          "count": 5,
+          "field": "content"
         }
       ],
       "top_review_required_fields": [
         {
-          "count": 3,
+          "count": 6,
           "field": "action_items"
         },
         {
-          "count": 3,
+          "count": 6,
           "field": "attendees"
         },
         {
-          "count": 3,
-          "field": "content"
+          "count": 6,
+          "field": "deadlines"
         },
         {
-          "count": 3,
+          "count": 6,
+          "field": "decision_items"
+        },
+        {
+          "count": 6,
           "field": "decisions"
-        },
-        {
-          "count": 3,
-          "field": "meeting_date"
         }
       ]
     },
     "policy_doc": {
-      "doc_count": 5,
+      "doc_count": 10,
       "recommended_template_changes": [
         {
           "change_type": "regex",
-          "reason": "publish_date is missing in 5 policy_doc document(s); only accept a labeled, single date match.",
+          "reason": "publish_date is missing in 6 policy_doc document(s); only accept a labeled, single date match.",
           "source_pattern": "explicit labeled date with unambiguous YYYY-MM-DD value",
           "target_field": "publish_date"
         }
       ],
-      "strict_failed": 5,
+      "strict_failed": 10,
       "strict_pass": 0,
       "top_low_confidence_sources": [
         {
-          "count": 5,
-          "source": "extracted_block_count"
-        },
-        {
-          "count": 5,
+          "count": 20,
           "source": "retrieved_at"
         },
         {
-          "count": 2,
+          "count": 10,
+          "source": "extracted_block_count"
+        },
+        {
+          "count": 10,
+          "source": "source_url"
+        },
+        {
+          "count": 6,
           "source": "extraction_truncated"
         },
         {
-          "count": 1,
-          "source": "page_count"
+          "count": 2,
+          "source": "发文字号："
         }
       ],
       "top_missing_required_fields": [
         {
-          "count": 5,
+          "count": 8,
+          "field": "content"
+        },
+        {
+          "count": 6,
           "field": "issuer"
         },
         {
-          "count": 5,
+          "count": 6,
           "field": "publish_date"
-        },
-        {
-          "count": 3,
-          "field": "content"
         }
       ],
       "top_review_required_fields": [
         {
-          "count": 5,
+          "count": 10,
           "field": "effective_date"
         },
         {
-          "count": 5,
+          "count": 10,
           "field": "keywords"
         },
         {
-          "count": 3,
+          "count": 10,
+          "field": "source"
+        },
+        {
+          "count": 10,
+          "field": "target_audience"
+        },
+        {
+          "count": 8,
           "field": "content"
         }
       ]
     },
     "procurement_doc": {
-      "doc_count": 5,
+      "doc_count": 10,
       "recommended_template_changes": [],
       "strict_failed": 0,
-      "strict_pass": 5,
+      "strict_pass": 10,
       "top_low_confidence_sources": [
         {
-          "count": 5,
+          "count": 10,
           "source": "source_format"
         },
         {
-          "count": 5,
+          "count": 10,
           "source": "采购单位联系方式"
         },
         {
-          "count": 3,
+          "count": 7,
           "source": "source_site"
         },
         {
-          "count": 3,
+          "count": 6,
           "source": "采购单位"
+        },
+        {
+          "count": 1,
+          "source": "品目号"
         }
       ],
       "top_missing_required_fields": [],
       "top_review_required_fields": [
         {
-          "count": 5,
+          "count": 10,
           "field": "announcement_date"
         },
         {
-          "count": 5,
+          "count": 10,
           "field": "procurement_type"
         },
         {
-          "count": 3,
+          "count": 7,
+          "field": "opening_date"
+        },
+        {
+          "count": 6,
           "field": "budget_amount"
         },
         {
-          "count": 3,
-          "field": "opening_date"
+          "count": 1,
+          "field": "bid_deadline"
         }
       ]
     }
@@ -242,6 +275,34 @@
       "doc_id": "real_general_001_notary_service_guide",
       "doc_type": "general_doc",
       "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_conditions"
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.49 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_materials"
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
         "fuzzy score 0.50 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -279,6 +340,62 @@
       "stage": "mapping_review",
       "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
       "target_field": "created_date"
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.64 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "document_subtype"
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.55 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "process_steps"
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "published_at"
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "service_object"
     },
     {
       "doc_id": "real_general_001_notary_service_guide",
@@ -312,6 +429,34 @@
       "doc_id": "real_general_002_biomed_project_guide",
       "doc_type": "general_doc",
       "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_conditions"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.49 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_materials"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "evidence": [
         "fuzzy score 0.50 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -349,6 +494,62 @@
       "stage": "mapping_review",
       "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
       "target_field": "created_date"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.64 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "document_subtype"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.55 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "process_steps"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "published_at"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "service_object"
     },
     {
       "doc_id": "real_general_002_biomed_project_guide",
@@ -382,6 +583,48 @@
       "doc_id": "real_general_003_textile_application_flow",
       "doc_type": "general_doc",
       "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_conditions"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.49 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_materials"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_text_lengths"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "attachments"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
         "fuzzy score 0.50 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -391,6 +634,20 @@
       "stage": "mapping_review",
       "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
       "target_field": "category"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "contact"
     },
     {
       "doc_id": "real_general_003_textile_application_flow",
@@ -424,6 +681,62 @@
       "doc_id": "real_general_003_textile_application_flow",
       "doc_type": "general_doc",
       "evidence": [
+        "fuzzy score 0.64 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "document_subtype"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.55 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "process_steps"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "published_at"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "service_object"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "evidence": [
         "fuzzy score 0.80 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -449,6 +762,188 @@
       "target_field": "tags"
     },
     {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_conditions"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.49 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "application_materials"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_text_lengths"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "attachments"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "dedupe_note"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "category"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "contact"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "page_count"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.64 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "created_date"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.64 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "document_subtype"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.55 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "process_steps"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "published_at"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "service_object"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "dedupe_note"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "tags"
+    },
+    {
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
@@ -461,6 +956,20 @@
       "stage": "mapping_review",
       "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
       "target_field": "action_items"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "agenda_items"
     },
     {
       "doc_id": "real_meeting_001_changning_executive_minutes",
@@ -494,6 +1003,34 @@
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "deadlines"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decision_items"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
         "fuzzy score 0.54 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -503,6 +1040,20 @@
       "stage": "mapping_review",
       "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
       "target_field": "decisions"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_text_lengths"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "departments"
     },
     {
       "doc_id": "real_meeting_001_changning_executive_minutes",
@@ -522,6 +1073,20 @@
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_method"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "meeting_location"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
         "fuzzy score 0.70 requires review"
       ],
       "reason": "Missing required field: meeting_title",
@@ -531,6 +1096,20 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "meeting_title"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
     },
     {
       "doc_id": "real_meeting_001_changning_executive_minutes",
@@ -592,6 +1171,34 @@
       "doc_id": "real_meeting_002_shaxian_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "deadlines"
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decision_items"
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
         "fuzzy score 0.54 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -620,6 +1227,20 @@
       "doc_id": "real_meeting_002_shaxian_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_method"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "meeting_location"
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
         "fuzzy score 0.70 requires review"
       ],
       "reason": "Missing required field: meeting_title",
@@ -629,6 +1250,20 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "meeting_title"
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
     },
     {
       "doc_id": "real_meeting_002_shaxian_executive_minutes",
@@ -690,6 +1325,34 @@
       "doc_id": "real_meeting_003_miluo_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "deadlines"
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decision_items"
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
         "fuzzy score 0.54 requires review"
       ],
       "reason": "Fuzzy mapping requires human review.",
@@ -718,6 +1381,20 @@
       "doc_id": "real_meeting_003_miluo_executive_minutes",
       "doc_type": "meeting_doc",
       "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_method"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "meeting_location"
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
         "fuzzy score 0.70 requires review"
       ],
       "reason": "Missing required field: meeting_title",
@@ -727,6 +1404,20 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "meeting_title"
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
     },
     {
       "doc_id": "real_meeting_003_miluo_executive_minutes",
@@ -743,6 +1434,510 @@
       "target_field": "topics"
     },
     {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.57 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "action_items"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "attendees"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "deadlines"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decision_items"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decisions"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.65 requires review"
+      ],
+      "reason": "Missing required field: meeting_date",
+      "source_candidates": [
+        "生成日期"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "meeting_date"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_method"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "meeting_location"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.70 requires review"
+      ],
+      "reason": "Missing required field: meeting_title",
+      "source_candidates": [
+        "标题"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "meeting_title"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.65 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "发布机构"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "organizer"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "标题"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "topics"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.57 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "action_items"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "attendees"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "extraction_truncated"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "deadlines"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decision_items"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decisions"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.55 requires review"
+      ],
+      "reason": "Missing required field: meeting_date",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "meeting_date"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_method"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "meeting_location"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.70 requires review"
+      ],
+      "reason": "Missing required field: meeting_title",
+      "source_candidates": [
+        "标题"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "meeting_title"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "标题"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "topics"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.57 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "action_items"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "agenda_items"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "doc_type"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "attendees"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "page_count"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "deadlines"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.47 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decision_items"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_version"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "decisions"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.54 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "page_text_lengths"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "departments"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.55 requires review"
+      ],
+      "reason": "Missing required field: meeting_date",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "meeting_date"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.45 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extraction_method"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "meeting_location"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.70 requires review"
+      ],
+      "reason": "Missing required field: meeting_title",
+      "source_candidates": [
+        "标题"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "meeting_title"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "标题"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "topics"
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.89 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "发文字号："
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "document_number"
+    },
+    {
       "doc_id": "real_policy_001_training_platform_rules",
       "doc_type": "policy_doc",
       "evidence": [
@@ -789,6 +1984,34 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "publish_date"
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
     },
     {
       "doc_id": "real_policy_002_equipment_renewal",
@@ -853,6 +2076,48 @@
       "target_field": "publish_date"
     },
     {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.89 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "发文字号："
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "document_number"
+    },
+    {
       "doc_id": "real_policy_003_science_education_guide",
       "doc_type": "policy_doc",
       "evidence": [
@@ -899,6 +2164,34 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "publish_date"
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
     },
     {
       "doc_id": "real_policy_004_student_loan_relief",
@@ -961,6 +2254,34 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "publish_date"
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
     },
     {
       "doc_id": "real_policy_005_ai_industry_guide",
@@ -1023,6 +2344,404 @@
       "stage": "validation",
       "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
       "target_field": "publish_date"
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "extraction_truncated"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "effective_date"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extracted_block_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "keywords"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "extraction_truncated"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "effective_date"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [],
+      "reason": "Missing required field: issuer",
+      "source_candidates": [],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "issuer"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extracted_block_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "keywords"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [],
+      "reason": "Missing required field: publish_date",
+      "source_candidates": [],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "publish_date"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "redaction_note"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "effective_date"
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extracted_block_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "keywords"
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "extraction_truncated"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "effective_date"
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extracted_block_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "keywords"
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.46 requires review"
+      ],
+      "reason": "Missing required field: content",
+      "source_candidates": [
+        "extraction_truncated"
+      ],
+      "stage": "validation",
+      "suggested_action": "Add a narrowly scoped alias or labeled-value extractor only after confirming repeated source evidence.",
+      "target_field": "content"
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "effective_date"
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "extracted_block_count"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "keywords"
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.80 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_url"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "source"
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "retrieved_at"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "target_audience"
     },
     {
       "doc_id": "real_procurement_001_broadcast_security_supervision",
@@ -1236,6 +2955,272 @@
     },
     {
       "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位联系方式"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "procurement_type"
+    },
+    {
+      "doc_id": "real_procurement_006_vaccine_tender",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "announcement_date"
+    },
+    {
+      "doc_id": "real_procurement_006_vaccine_tender",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.60 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "开标时间"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "bid_deadline"
+    },
+    {
+      "doc_id": "real_procurement_006_vaccine_tender",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位联系方式"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "procurement_type"
+    },
+    {
+      "doc_id": "real_procurement_007_testing_equipment_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "announcement_date"
+    },
+    {
+      "doc_id": "real_procurement_007_testing_equipment_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "budget_amount"
+    },
+    {
+      "doc_id": "real_procurement_007_testing_equipment_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "opening_date"
+    },
+    {
+      "doc_id": "real_procurement_007_testing_equipment_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位联系方式"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "procurement_type"
+    },
+    {
+      "doc_id": "real_procurement_008_desktop_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "announcement_date"
+    },
+    {
+      "doc_id": "real_procurement_008_desktop_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "opening_date"
+    },
+    {
+      "doc_id": "real_procurement_008_desktop_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位联系方式"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "procurement_type"
+    },
+    {
+      "doc_id": "real_procurement_009_pollutant_monitoring_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "announcement_date"
+    },
+    {
+      "doc_id": "real_procurement_009_pollutant_monitoring_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "budget_amount"
+    },
+    {
+      "doc_id": "real_procurement_009_pollutant_monitoring_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "opening_date"
+    },
+    {
+      "doc_id": "real_procurement_009_pollutant_monitoring_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.67 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位联系方式"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "procurement_type"
+    },
+    {
+      "doc_id": "real_procurement_010_ultrasound_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_format"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "announcement_date"
+    },
+    {
+      "doc_id": "real_procurement_010_ultrasound_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.50 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "采购单位"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "budget_amount"
+    },
+    {
+      "doc_id": "real_procurement_010_ultrasound_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.48 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "source_site"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "opening_date"
+    },
+    {
+      "doc_id": "real_procurement_010_ultrasound_award",
+      "doc_type": "procurement_doc",
+      "evidence": [
+        "fuzzy score 0.57 requires review"
+      ],
+      "reason": "Fuzzy mapping requires human review.",
+      "source_candidates": [
+        "品目号"
+      ],
+      "stage": "mapping_review",
+      "suggested_action": "Keep review-required unless repeated labeled evidence supports a narrowly scoped template rule.",
+      "target_field": "procurement_id"
+    },
+    {
+      "doc_id": "real_procurement_010_ultrasound_award",
       "doc_type": "procurement_doc",
       "evidence": [
         "fuzzy score 0.67 requires review"
@@ -1276,6 +3261,26 @@
       "target_field": "tags"
     },
     {
+      "doc_type": "general_doc",
+      "reason": "Generic metadata source 'doc_type' is not semantic evidence for this target.",
+      "target_field": "document_subtype"
+    },
+    {
+      "doc_type": "general_doc",
+      "reason": "Generic metadata source 'retrieved_at' is not semantic evidence for this target.",
+      "target_field": "published_at"
+    },
+    {
+      "doc_type": "general_doc",
+      "reason": "Generic metadata source 'source_format' is not semantic evidence for this target.",
+      "target_field": "service_object"
+    },
+    {
+      "doc_type": "general_doc",
+      "reason": "Generic metadata source 'source_site' is not semantic evidence for this target.",
+      "target_field": "process_steps"
+    },
+    {
       "doc_type": "meeting_doc",
       "reason": "Generic metadata source 'retrieved_at' is not semantic evidence for this target.",
       "target_field": "meeting_date"
@@ -1287,6 +3292,11 @@
     },
     {
       "doc_type": "meeting_doc",
+      "reason": "Generic metadata source 'source_url' is not semantic evidence for this target.",
+      "target_field": "source"
+    },
+    {
+      "doc_type": "meeting_doc",
       "reason": "Generic metadata source 'extraction_truncated' is not semantic evidence for this target.",
       "target_field": "content"
     },
@@ -1294,6 +3304,16 @@
       "doc_type": "policy_doc",
       "reason": "Generic metadata source 'retrieved_at' is not semantic evidence for this target.",
       "target_field": "effective_date"
+    },
+    {
+      "doc_type": "policy_doc",
+      "reason": "Generic metadata source 'retrieved_at' is not semantic evidence for this target.",
+      "target_field": "target_audience"
+    },
+    {
+      "doc_type": "policy_doc",
+      "reason": "Generic metadata source 'source_url' is not semantic evidence for this target.",
+      "target_field": "source"
     },
     {
       "doc_type": "policy_doc",
@@ -1336,12 +3356,17 @@
       "doc_type": "procurement_doc",
       "reason": "Fuzzy mapping requires human review.",
       "target_field": "opening_date"
+    },
+    {
+      "doc_type": "procurement_doc",
+      "reason": "Fuzzy mapping requires human review.",
+      "target_field": "bid_deadline"
     }
   ],
   "summary": {
     "badcase_violation_count": 0,
-    "strict_failed_count": 11,
-    "strict_pass_count": 5,
-    "total_docs": 16
+    "strict_failed_count": 20,
+    "strict_pass_count": 10,
+    "total_docs": 30
   }
 }

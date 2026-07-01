@@ -18,7 +18,11 @@ DOCUMENT_CATALOG = {
         "schema_version": "1.0.0",
         "template_id": "policy_doc_base_v1",
         "template_version": "1.0.0",
-        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "policy_doc_v1.json",
+        "schema_path": ROOT
+        / "examples"
+        / "production_like"
+        / "schemas"
+        / "policy_doc_v1.json",
         "template_path": (
             ROOT
             / "examples"
@@ -52,7 +56,11 @@ DOCUMENT_CATALOG = {
         "schema_version": "1.0.0",
         "template_id": "contract_doc_base_v1",
         "template_version": "1.0.0",
-        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "contract_doc_v1.json",
+        "schema_path": ROOT
+        / "examples"
+        / "production_like"
+        / "schemas"
+        / "contract_doc_v1.json",
         "template_path": (
             ROOT
             / "examples"
@@ -66,7 +74,11 @@ DOCUMENT_CATALOG = {
         "schema_version": "1.0.0",
         "template_id": "meeting_doc_base_v1",
         "template_version": "1.0.0",
-        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "meeting_doc_v1.json",
+        "schema_path": ROOT
+        / "examples"
+        / "production_like"
+        / "schemas"
+        / "meeting_doc_v1.json",
         "template_path": (
             ROOT
             / "examples"
@@ -80,7 +92,11 @@ DOCUMENT_CATALOG = {
         "schema_version": "1.0.0",
         "template_id": "general_doc_base_v1",
         "template_version": "1.0.0",
-        "schema_path": ROOT / "examples" / "production_like" / "schemas" / "general_doc_v1.json",
+        "schema_path": ROOT
+        / "examples"
+        / "production_like"
+        / "schemas"
+        / "general_doc_v1.json",
         "template_path": (
             ROOT
             / "examples"
@@ -291,9 +307,7 @@ def evaluate_dataset(
                 )
             )
             task_id = str(task["task_id"])
-            execution = _json_response(
-                client.post(f"/api/v1/tasks/{task_id}/execute")
-            )
+            execution = _json_response(client.post(f"/api/v1/tasks/{task_id}/execute"))
             result["task_id"] = task_id
             result["task_status"] = execution.get("status")
             result["task_execute_passed"] = execution.get("status") in {
@@ -389,7 +403,9 @@ def evaluate_dataset(
         "by_doc_type_metrics": by_doc_type_metrics,
         "import_pass_count": sum(item["import_passed"] for item in results),
         "task_execute_pass_count": sum(item["task_execute_passed"] for item in results),
-        "package_verify_pass_count": sum(item["package_verify_passed"] for item in results),
+        "package_verify_pass_count": sum(
+            item["package_verify_passed"] for item in results
+        ),
         "mapping_review_required_count": sum(
             item["review_required_count"] for item in results
         ),

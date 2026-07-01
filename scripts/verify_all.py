@@ -37,7 +37,11 @@ def main() -> None:
     if args.check_openapi:
         run_step("openapi export", [python, "scripts/export_openapi.py"], ROOT)
     if args.include_evaluator:
-        run_step("production-like evaluator", [python, "scripts/eval_production_like.py"], ROOT)
+        run_step(
+            "production-like evaluator",
+            [python, "scripts/eval_production_like.py"],
+            ROOT,
+        )
 
 
 if __name__ == "__main__":
