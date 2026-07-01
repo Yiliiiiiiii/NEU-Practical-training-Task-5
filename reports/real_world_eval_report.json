@@ -11,7 +11,7 @@
       "import_pass_count": 4,
       "package_verify_pass_count": 4,
       "task_execute_pass_count": 4,
-      "validation_pass_count": 0
+      "validation_pass_count": 4
     },
     "meeting_doc": {
       "dataset_size": 6,
@@ -36,7 +36,7 @@
     }
   },
   "dataset_size": 30,
-  "generated_at": "2026-07-01T12:27:44.646746+00:00",
+  "generated_at": "2026-07-01T12:47:51.197594+00:00",
   "high_risk_mapping_count": 0,
   "import_pass_count": 30,
   "improvement_recommendations": [
@@ -54,11 +54,11 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_general_001_notary_service_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_001_notary_service_guide.json",
-      "review_required_count": 11,
+      "review_required_count": 10,
       "task_execute_passed": true,
-      "task_id": "task_9b710fb2c6c6",
+      "task_id": "task_11ea9b793e2b",
       "task_status": "review_required",
-      "validation_passed": false
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -69,11 +69,11 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_general_002_biomed_project_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_002_biomed_project_guide.json",
-      "review_required_count": 11,
+      "review_required_count": 10,
       "task_execute_passed": true,
-      "task_id": "task_e99d9cd63837",
+      "task_id": "task_ae326fccaab3",
       "task_status": "review_required",
-      "validation_passed": false
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -84,11 +84,11 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_general_003_textile_application_flow.zip",
       "package_verify_passed": true,
       "path": "general/real_general_003_textile_application_flow.json",
-      "review_required_count": 13,
+      "review_required_count": 12,
       "task_execute_passed": true,
-      "task_id": "task_4e11e0ccfaf3",
+      "task_id": "task_adca38ae6f05",
       "task_status": "review_required",
-      "validation_passed": false
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -99,11 +99,11 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_general_004_tianhe_service_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_004_tianhe_service_guide.json",
-      "review_required_count": 13,
+      "review_required_count": 12,
       "task_execute_passed": true,
-      "task_id": "task_4ac0540c5b98",
+      "task_id": "task_ff9643cbb041",
       "task_status": "review_required",
-      "validation_passed": false
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -114,9 +114,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_meeting_001_changning_executive_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_001_changning_executive_minutes.json",
-      "review_required_count": 13,
+      "review_required_count": 11,
       "task_execute_passed": true,
-      "task_id": "task_0a0ec1a1f097",
+      "task_id": "task_a00720c24871",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -129,9 +129,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_meeting_002_shaxian_executive_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_002_shaxian_executive_minutes.json",
-      "review_required_count": 11,
+      "review_required_count": 9,
       "task_execute_passed": true,
-      "task_id": "task_eac01954c73f",
+      "task_id": "task_d9981bae85f8",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -144,9 +144,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_meeting_003_miluo_executive_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_003_miluo_executive_minutes.json",
-      "review_required_count": 11,
+      "review_required_count": 9,
       "task_execute_passed": true,
-      "task_id": "task_57e6573ab428",
+      "task_id": "task_d77cf630a703",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -159,9 +159,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_meeting_004_shandan_2025_11_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_004_shandan_2025_11_minutes.json",
-      "review_required_count": 11,
+      "review_required_count": 10,
       "task_execute_passed": true,
-      "task_id": "task_7fc87a428b2a",
+      "task_id": "task_fe2e1d660a6f",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -174,9 +174,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_meeting_005_miluo_2026_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_005_miluo_2026_minutes.json",
-      "review_required_count": 11,
+      "review_required_count": 9,
       "task_execute_passed": true,
-      "task_id": "task_e0214b02a134",
+      "task_id": "task_65451dc8da4d",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -189,9 +189,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_meeting_006_shandan_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_006_shandan_minutes.json",
-      "review_required_count": 13,
+      "review_required_count": 11,
       "task_execute_passed": true,
-      "task_id": "task_9f13ad8be448",
+      "task_id": "task_7d94d705f514",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -206,7 +206,7 @@
       "path": "policy/real_policy_001_training_platform_rules.json",
       "review_required_count": 5,
       "task_execute_passed": true,
-      "task_id": "task_1a5676c1b453",
+      "task_id": "task_581dacfee8ce",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -219,9 +219,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_002_equipment_renewal.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_002_equipment_renewal.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_1d6c7837723a",
+      "task_id": "task_e947cc0a6fc8",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -236,7 +236,7 @@
       "path": "policy/real_policy_003_science_education_guide.json",
       "review_required_count": 5,
       "task_execute_passed": true,
-      "task_id": "task_f59d1b935470",
+      "task_id": "task_41385cb286e6",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -249,9 +249,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_004_student_loan_relief.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_004_student_loan_relief.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_3ce95a8c1303",
+      "task_id": "task_bf107b508bec",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -264,9 +264,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_005_ai_industry_guide.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_005_ai_industry_guide.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_2a8d562f1139",
+      "task_id": "task_902b7ad1029f",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -279,9 +279,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_006_technology_incubator_rules.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_006_technology_incubator_rules.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_c806a90f3c12",
+      "task_id": "task_050339529d9c",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -294,9 +294,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_007_one_thing_list.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_007_one_thing_list.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_f377e6f5e8a4",
+      "task_id": "task_470ad0ac6290",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -309,9 +309,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_008_sme_leader_training.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_008_sme_leader_training.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_e2a45ad8174a",
+      "task_id": "task_da3d99e527b0",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -324,9 +324,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_009_network_safety_work.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_009_network_safety_work.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_41b76847f5da",
+      "task_id": "task_dfd485c563d9",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -339,9 +339,9 @@
       "package_path": "F:\\p2\\.worktrees\\topic5-five-priorities-impl\\reports\\real_world_packages\\real_policy_010_auto_ota_management.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_010_auto_ota_management.json",
-      "review_required_count": 5,
+      "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_5ad4167ea682",
+      "task_id": "task_589e40e12d6b",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -356,7 +356,7 @@
       "path": "procurement/real_procurement_001_broadcast_security_supervision.json",
       "review_required_count": 2,
       "task_execute_passed": true,
-      "task_id": "task_fb9474c3ee20",
+      "task_id": "task_b357b552f380",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -371,7 +371,7 @@
       "path": "procurement/real_procurement_002_special_equipment_bid.json",
       "review_required_count": 2,
       "task_execute_passed": true,
-      "task_id": "task_a99ca8df0fd6",
+      "task_id": "task_55aa9ad55807",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -386,7 +386,7 @@
       "path": "procurement/real_procurement_003_radiation_monitoring_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_5adfaed9ae40",
+      "task_id": "task_1e0ed45365e2",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -401,7 +401,7 @@
       "path": "procurement/real_procurement_004_veterinary_platform_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_e50ff86075c8",
+      "task_id": "task_31cc13925c2e",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -416,7 +416,7 @@
       "path": "procurement/real_procurement_005_rehabilitation_equipment_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_7009acfe50ae",
+      "task_id": "task_02fafcdb7237",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -431,7 +431,7 @@
       "path": "procurement/real_procurement_006_vaccine_tender.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_8c5ae41b5d8b",
+      "task_id": "task_85a51eacb4c3",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -446,7 +446,7 @@
       "path": "procurement/real_procurement_007_testing_equipment_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_c4a683f228b2",
+      "task_id": "task_7d398d1ca45e",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -461,7 +461,7 @@
       "path": "procurement/real_procurement_008_desktop_award.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_258633b1f6aa",
+      "task_id": "task_bec1a95ace22",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -476,7 +476,7 @@
       "path": "procurement/real_procurement_009_pollutant_monitoring_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_bcb152ce6f5f",
+      "task_id": "task_08bc255de833",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -491,46 +491,42 @@
       "path": "procurement/real_procurement_010_ultrasound_award.json",
       "review_required_count": 5,
       "task_execute_passed": true,
-      "task_id": "task_2227e1069382",
+      "task_id": "task_55df563391f5",
       "task_status": "review_required",
       "validation_passed": true
     }
   ],
-  "mapping_review_required_count": 203,
+  "mapping_review_required_count": 180,
   "notes": [],
   "package_verify_pass_count": 30,
   "skipped_cases": [],
   "task_execute_pass_count": 30,
   "typical_failure_cases": [
     {
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
       "error": "",
       "stage": "validation"
     },
     {
-      "doc_id": "real_general_002_biomed_project_guide",
-      "doc_type": "general_doc",
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
       "error": "",
       "stage": "validation"
     },
     {
-      "doc_id": "real_general_003_textile_application_flow",
-      "doc_type": "general_doc",
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
       "error": "",
       "stage": "validation"
     }
   ],
   "typical_success_cases": [
-    "real_procurement_001_broadcast_security_supervision",
-    "real_procurement_002_special_equipment_bid",
-    "real_procurement_003_radiation_monitoring_award"
-  ],
-  "validation_failed_cases": [
     "real_general_001_notary_service_guide",
     "real_general_002_biomed_project_guide",
-    "real_general_003_textile_application_flow",
-    "real_general_004_tianhe_service_guide",
+    "real_general_003_textile_application_flow"
+  ],
+  "validation_failed_cases": [
     "real_meeting_001_changning_executive_minutes",
     "real_meeting_002_shaxian_executive_minutes",
     "real_meeting_003_miluo_executive_minutes",

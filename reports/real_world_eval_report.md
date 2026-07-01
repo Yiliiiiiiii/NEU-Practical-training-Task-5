@@ -4,15 +4,15 @@
 - Import success: 30 (100.0%)
 - Task execution success: 30 (100.0%)
 - Package verification success: 30 (100.0%)
-- Mapping review required: 203
+- Mapping review required: 180
 - High-risk mappings: 0
-- Validation failures: 20
+- Validation failures: 16
 
 ## By document type
 
 | Document type | Count | Import | Execute | Package | Validation |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| general_doc | 4 | 4 | 4 | 4 | 0 |
+| general_doc | 4 | 4 | 4 | 4 | 4 |
 | meeting_doc | 6 | 6 | 6 | 6 | 0 |
 | policy_doc | 10 | 10 | 10 | 10 | 0 |
 | procurement_doc | 10 | 10 | 10 | 10 | 10 |
@@ -54,15 +54,15 @@
 
 ## Typical successes
 
-- real_procurement_001_broadcast_security_supervision
-- real_procurement_002_special_equipment_bid
-- real_procurement_003_radiation_monitoring_award
+- real_general_001_notary_service_guide
+- real_general_002_biomed_project_guide
+- real_general_003_textile_application_flow
 
 ## Typical failures
 
-- real_general_001_notary_service_guide: validation — downstream validation did not pass
-- real_general_002_biomed_project_guide: validation — downstream validation did not pass
-- real_general_003_textile_application_flow: validation — downstream validation did not pass
+- real_meeting_001_changning_executive_minutes: validation — downstream validation did not pass
+- real_meeting_002_shaxian_executive_minutes: validation — downstream validation did not pass
+- real_meeting_003_miluo_executive_minutes: validation — downstream validation did not pass
 
 ## Next steps
 
