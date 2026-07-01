@@ -113,3 +113,18 @@ Expected verified baseline for 2026-06-30:
 - Non-procurement real-world samples produce verifier-passing packages but remain review-required for strict field validity.
 - Optional LLM fallback is a suggestion source only. It never auto-accepts mappings, and provider failures become warnings/review items unless strict failure is explicitly requested.
 - Retrieval and mapping evaluations are deterministic project evidence, not a full RAG service, model-training pipeline, hosted credential service, SSO/TLS stack, tenant system, or enterprise model-monitoring platform.
+
+## Five-priority Deepening Evidence
+
+- Real-world UIR dataset: 30 public-source documents; 30/30 import, execution, and package verification.
+- Content organization: five chunk strategies plus summary-faithfulness and tag-quality reports.
+- Knowledge growth: reproducible review -> candidate -> draft -> active loop; review-required 5 -> 4, old snapshot unchanged, badcase/reject activation 0.
+- Downstream consumption: structured CSV and RAG JSONL exporters; 30/30 packages pass the consumer contract.
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_review_knowledge_growth.py
+backend\.venv\Scripts\python.exe scripts\eval_content_strategy_comparison.py
+backend\.venv\Scripts\python.exe scripts\eval_summary_faithfulness.py
+backend\.venv\Scripts\python.exe scripts\eval_content_tag_quality.py
+backend\.venv\Scripts\python.exe scripts\verify_downstream_contract.py --packages-root reports\real_world_packages --out reports\downstream_contract_eval_report.json --markdown reports\downstream_contract_eval_report.md
+```

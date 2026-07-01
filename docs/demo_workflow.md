@@ -98,3 +98,10 @@ Regenerate it with:
 .\backend\.venv\Scripts\python.exe scripts\export_openapi.py
 ```
 
+## Five-priority Evidence Run
+
+Run the review-growth evaluator, the three content-quality evaluators, and the
+downstream contract verifier. In the workbench, the **Downstream Readiness**
+panel then shows live CSV, source-linked RAG, and verifier readiness for the
+current task package.
+

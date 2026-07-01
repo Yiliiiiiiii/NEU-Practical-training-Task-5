@@ -233,3 +233,10 @@ State these boundaries explicitly:
   vector-search service;
 - enterprise SSO, tenant management, TLS termination, managed secrets, model
   monitoring, and model training are outside the implemented boundary.
+
+## 9. Show Downstream Consumption
+
+1. Open **Downstream Readiness** and show CSV, RAG, and contract status.
+2. Run `export_structured_csv.py` against either a ZIP or package directory.
+3. Run `export_rag_corpus.py --granularity child`.
+4. Show `downstream_contract_eval_report` with 30 packages and 0 failures.

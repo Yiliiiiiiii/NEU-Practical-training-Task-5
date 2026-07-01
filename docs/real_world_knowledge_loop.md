@@ -25,3 +25,12 @@ Outputs:
 The report includes before/after mapping counts, decision evidence,
 badcase-violation count, activated aliases, remaining ambiguous cases, and an
 `old_snapshot_unchanged` guard.
+
+## Review Knowledge Growth Evaluator
+
+`scripts/eval_review_knowledge_growth.py` uses an isolated SQLite database and
+catalog copy. It runs a fixed real policy UIR before and after review decisions
+and active-pack activation. The report proves that approved aliases affect only
+future tasks, rejected and badcase aliases do not activate, draft packs have no
+effect, and the original metadata/canonical/mapping/execution snapshots remain
+unchanged.

@@ -261,3 +261,14 @@ backend\.venv\Scripts\python.exe scripts\export_training_corpus.py `
   --out reports\training_corpus.jsonl `
   --granularity child
 ```
+
+## Downstream Adapters
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\export_structured_csv.py --package standard_package.zip --out reports\exports\content.csv
+backend\.venv\Scripts\python.exe scripts\export_rag_corpus.py --package standard_package.zip --out reports\exports\rag.jsonl --granularity all
+backend\.venv\Scripts\python.exe scripts\verify_downstream_contract.py --package standard_package.zip
+```
+
+These are offline consumers of the existing package contract; they do not add a
+vector database or RAG runtime API.

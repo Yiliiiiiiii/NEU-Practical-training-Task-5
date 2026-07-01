@@ -138,3 +138,12 @@ The current `main` baseline is:
 - Real-world UIR pipeline: 16 imports, 16 task executions, and 16 package verifications.
 - Strict validation: `procurement_doc` 5/5 passes; `general_doc` 0/3, `meeting_doc` 0/3, and `policy_doc` 0/5 remain review-required.
 - Knowledge-loop safety: snapshot preservation true and badcase violations 0 in both knowledge-loop reports.
+
+## Five-priority Implementation Update (2026-07-01)
+
+- Real-world dataset: 30 documents; import/execute/package verify 30/30.
+- Content organization: five strategies evaluated over 20 documents and 40 queries; summary faithfulness 0.90; tag coverage 1.00.
+- Review growth: review-required 5 -> 4, auto-mapped 3 -> 4, approved alias active, rejected/badcase activation 0, old task unchanged.
+- Downstream contract: 30 packages passed, 0 failed.
+- Frontend: live downstream readiness panel added and production build verified.
+- Production still begins at UIR; runtime OCR/raw office parsing, full RAG/vector DB, and model training remain out of scope.

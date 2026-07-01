@@ -143,3 +143,10 @@ Primary reports:
   benchmark.
 - OCR, scanned PDFs, image parsing, full RAG/vector search, and model training
   remain outside the implemented dataset/evaluator boundary.
+
+## 2026-07 Dataset Expansion
+
+The manifest now covers 30 UIR documents across general, meeting, policy, and
+procurement schemas. Mapping gold, badcases, retrieval queries, and content
+organization gold reference those UIR block IDs. The current API-backed run
+reports 30 imports, 30 executions, and 30 verifier-passing packages.

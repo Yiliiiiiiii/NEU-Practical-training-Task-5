@@ -63,3 +63,13 @@ tenant platforms.
   evidence for chunk organization, not a production RAG system.
 - Gold labels and badcases are coursework-scale evaluation assets, not an
   enterprise benchmark.
+
+## Five-priority Addendum
+
+| Requirement | Evidence |
+| --- | --- |
+| Non-procurement strict quality | gap analysis, strengthened catalogs, non-procurement evaluator |
+| Real UIR depth | 30-document manifest, inventory, mapping/badcase/retrieval gold |
+| Content organization quality | strategy, summary-faithfulness, and tag-quality reports |
+| Human-review growth | isolated review-to-active-pack evaluator with snapshot/reject/badcase guards |
+| Downstream consumption | CSV, RAG JSONL, 30-package contract report, workbench readiness panel |
