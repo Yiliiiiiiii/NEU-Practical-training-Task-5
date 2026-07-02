@@ -1,41 +1,37 @@
-# Badcase Analysis
+# Badcase 分析
 
-SchemaPack Agent keeps badcase checks as regression gates so new mapping,
-knowledge, or LLM-adjacent features do not silently degrade output quality.
+SchemaPack Agent 把 badcase checks 作为 regression gates，确保新的 mapping、knowledge 或 LLM-adjacent 功能不会静默降低输出质量。
 
-## Badcase Types
+## Badcase 类型
 
 | Type | Risk | Protection |
 | --- | --- | --- |
-| Confusing source alias | A source field resembles the wrong target field. | Mapping confidence and badcase filters keep it review-required. |
-| Over-eager fuzzy match | Similar labels map to the wrong schema field. | Low-confidence fuzzy matches enter review instead of auto-acceptance. |
-| Unsafe knowledge activation | A reviewed alias could violate known forbidden mappings. | Badcase hits are blocked before active-pack effect. |
-| LLM overreach | Model suggestions could appear plausible but wrong. | LLM fallback is disabled by default, adapter-driven, capped per task, and always review-required. |
-| LLM provider outage | Timeout or network failure could stop deterministic conversion. | Non-strict mode records a mapping warning and review item; only explicit `strict_llm=true` fails the task. |
-| LLM secret leakage | Credentials could enter task options, snapshots, reports, or audit metadata. | Credentials are environment-only; secret-looking persisted values are recursively redacted and snapshots keep only non-sensitive configuration. |
-| Archived catalog use | Old schema/template versions could be used for new tasks. | Archived versions are rejected for new executions. |
-| Snapshot drift | New knowledge packs could mutate historical results. | Task execution snapshots preserve schema/template/effective-template context. |
+| Confusing source alias | source field 看起来像错误的 target field。 | Mapping confidence 和 badcase filters 让它保持 review-required。 |
+| Over-eager fuzzy match | 相似 label 被映射到错误 schema field。 | Low-confidence fuzzy matches 进入 Review，而不是 auto-acceptance。 |
+| Unsafe knowledge activation | 已 Review alias 可能违反已知 forbidden mappings。 | Badcase hits 在 active-pack 生效前被阻断。 |
+| LLM overreach | Model suggestions 看起来合理但可能错误。 | LLM fallback 默认关闭、adapter-driven、每个 task 有 suggestion cap，且始终 review-required。 |
+| LLM provider outage | Timeout 或网络失败可能中断确定性 conversion。 | 非 strict mode 记录 mapping warning 与 review item；只有显式 `strict_llm=true` 才失败 task。 |
+| LLM secret leakage | Credentials 可能进入 task options、snapshots、reports 或 audit metadata。 | Credentials 只来自 environment；疑似 secret 的 persisted values 会递归 redacted，snapshots 只保留非敏感配置。 |
+| Archived catalog use | 旧 schema/template versions 被用于新 tasks。 | Archived versions 会拒绝新 executions。 |
+| Snapshot drift | 新 knowledge packs 可能改变历史结果。 | Task execution snapshots 保留 schema/template/effective-template context。 |
 
-Mapping reports now expose `risk_flags`, `confidence_tier`,
-`review_required_reason`, structured `evidence`, and `badcase_filter` per
-mapping decision. Known forbidden source/target pairs receive
-`badcase_blocked` and are not accepted automatically.
+Mapping reports 现在为每个 mapping decision 输出 `risk_flags`、`confidence_tier`、`review_required_reason`、structured `evidence` 和 `badcase_filter`。已知 forbidden source/target pairs 会得到 `badcase_blocked`，且不会被自动接受。
 
-## Current Regression Checks
+## 当前 Regression Checks
 
-Run:
+运行：
 
 ```powershell
 .\backend\.venv\Scripts\python.exe scripts\eval_production_like.py
 ```
 
-Expected:
+期望：
 
 ```text
 production-like eval complete: 15 cases, gold=1.0, badcase=1.0
 ```
 
-The generated report includes:
+生成报告包含：
 
 - `phase_b.badcase_violation_count`
 - `phase_b.badcase_pass_rate`
@@ -44,43 +40,32 @@ The generated report includes:
 - `package_validation`
 - `downstream_smoke_summary`
 
-## Current Result
+## 当前结果
 
-The current expected result is:
+当前期望结果：
 
 ```text
 badcase_violation_count = 0
 badcase_pass_rate = 1.0
 ```
 
-## Non-procurement Recall Badcases
+## 非采购 Recall Badcases
 
-The expanded real-world mapping gold embeds badcases and the standalone
-`examples/real_world/gold/real_world_badcases.jsonl` file is kept synchronized
-with those embedded `known_badcases` entries. The non-procurement recall work
-adds regression coverage for high-risk source/target pairs that must not be
-auto-accepted:
+Expanded real-world mapping gold 内嵌 badcases，并且 standalone `examples/real_world/gold/real_world_badcases.jsonl` 与这些 embedded `known_badcases` 保持同步。非采购 recall 工作新增了高风险 source/target pairs 的 regression coverage，确保它们不会 auto-accept：
 
 | Source label | Forbidden target | Reason |
 | --- | --- | --- |
-| `发布日期` | `effective_date` | Publication metadata is not automatically the effective date. |
-| `主持人` | `attendees` | Meeting host/chair is not the full attendee list. |
-| `联系人` | `attendees` | Contact person is not a meeting attendee list. |
-| `承办单位` | `issuer` | Organizer/undertaker is not necessarily the issuing authority. |
-| `预算金额` | `award_amount` | Budget is not an awarded amount. |
-| `控制价` | `award_amount` | Control price is not an awarded amount. |
+| `发布日期` | `effective_date` | 发布日期 metadata 不能自动等同于生效日期。 |
+| `主持人` | `attendees` | 会议主持人/主席不是完整参会人员列表。 |
+| `联系人` | `attendees` | 联系人不是会议参会人员列表。 |
+| `承办单位` | `issuer` | 承办/组织单位不一定是发文机关。 |
+| `预算金额` | `award_amount` | 预算不是中标金额。 |
+| `控制价` | `award_amount` | 控制价不是中标金额。 |
 
-These badcases protect the recall work from metric gaming: ambiguous or
-high-risk evidence should remain review-required unless there is a source-backed
-safe rule. The latest package-based non-procurement analysis and API-backed
-non-procurement evaluator both record zero badcase violations. The phase gate
-still remains open because recall and review-required targets are not yet met.
+这些 badcases 防止 recall 工作变成指标投机：ambiguous 或 high-risk evidence 应保持 review-required，除非有 source-backed safe rule。最新 package-based non-procurement analysis 和 API-backed non-procurement evaluator 均记录 zero badcase violations。Phase gate 仍未通过，因为 recall 和 review-required targets 尚未达标。
 
-## Remaining Limitations
+## 剩余限制
 
-- The regression dataset is synthetic and should be expanded with real
-  enterprise UIR cases before production rollout.
-- Badcase filters are deterministic and rule-based; they do not replace human
-  review for ambiguous mappings.
-- LLM fallback remains optional and human-gated; provider/model evaluation and
-  enterprise monitoring remain deployment responsibilities.
+- Regression dataset 仍偏 synthetic，生产 rollout 前应补充真实 enterprise UIR cases。
+- Badcase filters 是 deterministic rule-based 保护，不能替代 ambiguous mappings 的人工 Review。
+- LLM fallback 仍是 optional 且 human-gated；provider/model evaluation 与 enterprise monitoring 属于部署职责。

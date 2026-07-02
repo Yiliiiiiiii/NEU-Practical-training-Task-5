@@ -1,37 +1,29 @@
-# Topic 5 Requirement Mapping
+# 课题 5 需求映射
 
-This document maps Topic 5 requirements to the current SchemaPack Agent
-implementation and committed evidence on `main`.
+本文档把课题 5 要求映射到当前 SchemaPack Agent 的实现和已提交证据。
 
-| Requirement | Current implementation | Evidence |
+| Requirement | 当前实现 | 证据 |
 | --- | --- | --- |
-| Standardization | UIR import, schema/template snapshots, deterministic mapping, transform, canonical model, structured JSON, Markdown, and package output. | `mapping_report.json`, `transform_report.json`, `canonical.json`, `content.json`, `content.md`, [`docs/package_spec.md`](package_spec.md) |
-| Intelligent organization | Deterministic chunk strategies, summaries, keywords, content/management/quality tags, protected table/list/code chunks, parent-child metadata, and source links. | `content_organization_report.json`, `chunks.jsonl`, [`reports/content_organization_retrieval_eval.md`](../reports/content_organization_retrieval_eval.md) |
-| Specialized conversion | Five seeded document catalogs/families, including dedicated `procurement_doc` schema and `procurement_doc_base_v1` template for procurement samples. | [`reports/procurement_doc_eval_report.md`](../reports/procurement_doc_eval_report.md), [`docs/real_world_uir_dataset.md`](real_world_uir_dataset.md) |
-| Evaluation | Production-like evaluator plus 16-document real-world import, execution, package, mapping, procurement, retrieval, and knowledge-loop runs. | [`reports/production_like_eval_report.md`](../reports/production_like_eval_report.md), [`reports/real_world_eval_report.md`](../reports/real_world_eval_report.md), committed JSON/Markdown report pairs under `reports/` |
-| Continuous improvement | Review records, review-derived knowledge candidates, accepted/rejected candidate states, draft/active/archived knowledge packs, and effective-template resolution. | [`reports/knowledge_loop_eval_report.md`](../reports/knowledge_loop_eval_report.md), [`reports/real_world_knowledge_loop_report.md`](../reports/real_world_knowledge_loop_report.md), Review and Knowledge APIs |
-| Safety and traceability | Mapping evidence, confidence tiers, review-required reasons, badcase filters, immutable task snapshots, manifest hashes, package verifier output, optional API-key auth, audit logs, and LLM secret redaction. | [`docs/api_usage_examples.md`](api_usage_examples.md), [`docs/final_handoff_status.md`](final_handoff_status.md), `manifest.json`, `verifier_report.json`, [`reports/llm_fallback_eval_report.md`](../reports/llm_fallback_eval_report.md) |
+| Standardization | UIR import、schema/template snapshots、deterministic mapping、transform、canonical model、structured JSON、Markdown 和 package output。 | `mapping_report.json`、`transform_report.json`、`canonical.json`、`content.json`、`content.md`、[`docs/package_spec.md`](package_spec.md) |
+| Intelligent organization | 确定性 chunk strategies、summaries、keywords、content/management/quality tags、受保护 table/list/code chunks、parent-child metadata 和 source links。 | `content_organization_report.json`、`chunks.jsonl`、[`reports/content_organization_retrieval_eval.md`](../reports/content_organization_retrieval_eval.md) |
+| Specialized conversion | 5 个 seeded document catalog families，包括面向采购样本的 dedicated `procurement_doc` schema 和 `procurement_doc_base_v1` template。 | [`reports/procurement_doc_eval_report.md`](../reports/procurement_doc_eval_report.md)、[`docs/real_world_uir_dataset.md`](real_world_uir_dataset.md) |
+| Evaluation | Production-like evaluator，以及 16-document real-world import、execution、package、mapping、procurement、retrieval 和 knowledge-loop runs。 | [`reports/production_like_eval_report.md`](../reports/production_like_eval_report.md)、[`reports/real_world_eval_report.md`](../reports/real_world_eval_report.md)、`reports/` 下提交的 JSON/Markdown report pairs |
+| Continuous improvement | Review records、review-derived knowledge candidates、accepted/rejected candidate states、draft/active/archived knowledge packs 和 effective-template resolution。 | [`reports/knowledge_loop_eval_report.md`](../reports/knowledge_loop_eval_report.md)、[`reports/real_world_knowledge_loop_report.md`](../reports/real_world_knowledge_loop_report.md)、Review 与 Knowledge APIs |
+| Safety and traceability | Mapping evidence、confidence tiers、review-required reasons、badcase filters、immutable task snapshots、manifest hashes、package verifier output、可选 API-key auth、audit logs 和 LLM secret redaction。 | [`docs/api_usage_examples.md`](api_usage_examples.md)、[`docs/final_handoff_status.md`](final_handoff_status.md)、`manifest.json`、`verifier_report.json`、[`reports/llm_fallback_eval_report.md`](../reports/llm_fallback_eval_report.md) |
 
-## Current Evidence Summary
+## 当前证据摘要
 
-- Unified verification: `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
-  records 203 backend tests, Ruff clean, frontend production build success, and
-  32 exported OpenAPI paths.
-- Real-world pipeline: 16/16 imports, 16/16 executions, and 16/16
-  verifier-passing packages.
-- Strict validation: `procurement_doc` passes 5/5; `general_doc` 0/3,
-  `meeting_doc` 0/3, and `policy_doc` 0/5 remain review-required.
-- Procurement specialization: required coverage is 1.000 for
-  `procurement_doc` versus 0.333 for the generic schema.
-- Retrieval: 32-query content retrieval report records `Recall@3 = 1.000`.
-- Knowledge loop: both knowledge-loop reports preserve snapshots and record
-  zero badcase violations.
-- LLM safety: fallback suggestions remain review-required, `auto_accepted_count`
-  is 0, and secret redaction passes.
+- Unified verification：`backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` 记录 203 个 backend tests、Ruff clean、frontend production build success 和 32 个 OpenAPI paths。
+- Real-world pipeline：16/16 imports、16/16 executions、16/16 verifier-passing packages。
+- Strict validation：`procurement_doc` 5/5 通过；`general_doc` 0/3、`meeting_doc` 0/3、`policy_doc` 0/5 仍需 Review。
+- Procurement specialization：`procurement_doc` required coverage 为 1.000，generic schema 为 0.333。
+- Retrieval：32-query content retrieval report 记录 `Recall@3 = 1.000`。
+- Knowledge loop：两个 knowledge-loop reports 都保持 snapshots，并记录 zero badcase violations。
+- LLM safety：fallback suggestions 保持 review-required，`auto_accepted_count` 为 0，secret redaction 通过。
 
-## Implemented Boundary
+## 已实现边界
 
-The implemented runtime line is:
+当前 runtime line：
 
 ```text
 UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
@@ -39,53 +31,39 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 -> Validation -> Manifest -> ZIP -> Package Verification
 ```
 
-The project implements optional API-key authentication, task/package audit logs,
-review governance, knowledge-pack activation, and local/container deployment
-profiles. These are lightweight project controls, not enterprise identity or
-tenant platforms.
+项目实现了可选 API-key authentication、task/package audit logs、review governance、knowledge-pack activation 和 local/container deployment profiles。这些是轻量项目控制，不是 enterprise identity 或 tenant platform。
 
-## Explicit Non-Goals
+## 明确非目标
 
-- OCR, scanned document recognition, and raw PDF/Word/Excel/image parsing in
-  the production runtime.
-- Full RAG/vector search service or online retrieval backend.
-- Model training, fine-tuning, or autonomous production rule activation from LLM
-  output.
-- Enterprise SSO, tenant-aware authorization, TLS termination, managed secret
-  storage, hosted credential provisioning, or model/provider monitoring.
+- 生产 runtime 中的 OCR、扫描件识别、raw PDF/Word/Excel/image parsing。
+- 完整 RAG/vector search service 或在线 retrieval backend。
+- Model training、fine-tuning，或从 LLM output 自动激活 production rules。
+- Enterprise SSO、tenant-aware authorization、TLS termination、managed secret storage、hosted credential provisioning 或 model/provider monitoring。
 
-## Caveats For Reviewers
+## 给评审者的说明
 
-- Package verification proves package structure, hashes, required artifacts,
-  parseability, and traceability. It does not claim every target field passed
-  strict semantic validation.
-- The retrieval evaluator is deterministic and lightweight. It supports
-  evidence for chunk organization, not a production RAG system.
-- Gold labels and badcases are coursework-scale evaluation assets, not an
-  enterprise benchmark.
+- Package verification 证明 package structure、hashes、required artifacts、parseability 和 traceability；不等同于每个 target field 都通过 strict semantic validation。
+- Retrieval evaluator 是确定性轻量证据，用于说明 chunk organization，不是 production RAG system。
+- Gold labels 和 badcases 是 coursework-scale evaluation assets，不是 enterprise benchmark。
 
-## Five-priority Addendum
+## 五项深化补充
 
 | Requirement | Evidence |
 | --- | --- |
-| Non-procurement strict quality | gap analysis, strengthened catalogs, non-procurement evaluator |
-| Real UIR depth | 30-document manifest, inventory, mapping/badcase/retrieval gold |
-| Content organization quality | strategy, summary-faithfulness, and tag-quality reports |
-| Human-review growth | isolated review-to-active-pack evaluator with snapshot/reject/badcase guards |
-| Downstream consumption | CSV, RAG JSONL, 30-package contract report, workbench readiness panel |
+| Non-procurement strict quality | gap analysis、strengthened catalogs、non-procurement evaluator |
+| Real UIR depth | 30-document manifest、inventory、mapping/badcase/retrieval gold |
+| Content organization quality | strategy、summary-faithfulness 和 tag-quality reports |
+| Human-review growth | 独立 review-to-active-pack evaluator，带 snapshot/reject/badcase guards |
+| Downstream consumption | CSV、RAG JSONL、30-package contract report、workbench readiness panel |
 
-## Non-procurement Recall Acceptance Addendum
+## 非采购 Recall 验收补充
 
-| Requirement | Current evidence | Status |
+| Requirement | 当前证据 | 状态 |
 | --- | --- | --- |
-| Improve non-procurement mapping recall without unsafe shortcuts | Package-based gap analysis improves average recall from `0.3494047619047619` to `0.4211309523809524`, with badcase violations still 0. | Partially improved, not accepted |
-| Hit phase-one target recall | API-backed evaluator reports average recall `0.4211309523809524`, below the `0.50` acceptance target. | Not met |
-| Reduce review-required and required-missing counts | API-backed evaluator reports review-required 149 and required missing 12; only the required-missing target is met. | Partially met |
-| Keep badcase filters active | Added regression badcases cover unsafe mappings such as `发布日期 -> effective_date`, `主持人 -> attendees`, `联系人 -> attendees`, `承办单位 -> issuer`, `预算金额 -> award_amount`, and `控制价 -> award_amount`. | Guarded; recheck after API recovery |
-| Preserve honest evaluation evidence | Dedicated acceptance report records the API-backed evaluator as below target instead of treating partial metric gains as phase success. | Met |
+| 在不走捷径的前提下提升非采购 mapping recall | Package-based gap analysis 把 average recall 从 `0.3494047619047619` 提升到 `0.4211309523809524`，badcase violations 仍为 0。 | 部分改善，未验收 |
+| 达到 Phase 1 recall target | API-backed evaluator 记录 average recall `0.4211309523809524`，低于 `0.50` acceptance target。 | 未达标 |
+| 降低 review-required 与 required-missing counts | API-backed evaluator 记录 review-required 149、required missing 12；只有 required-missing target 达标。 | 部分达标 |
+| 保持 badcase filters 生效 | 新增 regression badcases 覆盖 `发布日期 -> effective_date`、`主持人 -> attendees`、`联系人 -> attendees`、`承办单位 -> issuer`、`预算金额 -> award_amount`、`控制价 -> award_amount` 等 unsafe mappings。 | 已保护 |
+| 保持诚实 evaluation evidence | Dedicated acceptance report 把 API-backed evaluator 记录为低于目标，而不是把部分指标提升包装成 phase success。 | 达标 |
 
-See
-[`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md)
-and
-[`docs/non_procurement_mapping_improvement_plan.md`](non_procurement_mapping_improvement_plan.md)
-for the current open acceptance gate.
+详见 [`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md) 和 [`docs/non_procurement_mapping_improvement_plan.md`](non_procurement_mapping_improvement_plan.md)。

@@ -1,31 +1,35 @@
-# SchemaPack Agent Final Demo Script
+# SchemaPack Agent 最终 Demo 脚本
 
-This script is written for reviewers running commands from `F:\p2` in
-PowerShell. It demonstrates the current verified path from real procurement UIR
-input to schema-governed, verifier-checked package output.
+本脚本面向在 `F:\p2` 中使用 PowerShell 的评审者，演示从真实采购 UIR input 到 schema-governed、verifier-checked package output 的当前已验证路径。
 
-## 1. Run The Unified Verification Gate
+## 1. 运行统一验证 Gate
 
 ```powershell
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-Expected current baseline:
+当前期望基线：
 
-- backend pytest: 203 passed;
-- Ruff: clean;
-- frontend production build: successful;
-- OpenAPI export: 32 paths written to `docs\openapi.json`.
+- backend pytest：通过；
+- Ruff：clean；
+- frontend production build：successful；
+- OpenAPI export：32 paths 写入 `docs\openapi.json`。
 
-## 2. Start Backend And Frontend
+## 2. 启动 Backend 与 Frontend
 
-Terminal A, from `F:\p2`:
+推荐方式：
+
+```powershell
+.\scripts\start_dev.ps1
+```
+
+手动方式，Terminal A：
 
 ```powershell
 backend\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
-Terminal B, from `F:\p2`:
+Terminal B：
 
 ```powershell
 Push-Location frontend
@@ -34,27 +38,27 @@ npm run dev
 Pop-Location
 ```
 
-Open:
+打开：
 
 ```text
 http://127.0.0.1:5173/
 ```
 
-The Docker Compose alternative is also runnable from `F:\p2`:
+Docker Compose 备用方式：
 
 ```powershell
 docker compose up --build
 ```
 
-Then open:
+然后打开：
 
 ```text
 http://127.0.0.1:8080/
 ```
 
-## 3. Import A Real Procurement UIR
+## 3. 导入真实采购 UIR
 
-Terminal C, from `F:\p2`:
+Terminal C：
 
 ```powershell
 $uirPath = "examples\real_world\uir\procurement\real_procurement_001_broadcast_security_supervision.json"
@@ -69,10 +73,9 @@ $document = Invoke-RestMethod -Method Post `
 $document.doc_id
 ```
 
-In the UI, the same step is: choose/import the real procurement UIR, then confirm
-the imported document appears in the workbench.
+UI 中的同等步骤：导入真实 procurement UIR，并确认 imported document 出现在工作台中。
 
-## 4. Create And Execute A Procurement Task
+## 4. 创建并执行 Procurement Task
 
 ```powershell
 $taskBody = @{
@@ -110,31 +113,30 @@ $result = Invoke-RestMethod -Method Post `
 $result.status
 ```
 
-In the UI, create a task with `procurement_doc` and
-`procurement_doc_base_v1`, then click `Execute`.
+UI 中选择 `procurement_doc` 与 `procurement_doc_base_v1`，然后点击“执行”。
 
-## 5. Inspect Evidence And Package Output
+## 5. 查看 Evidence 与 Package Output
 
-Mapping evidence:
+Mapping evidence：
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/mapping"
 ```
 
-Validation:
+Validation：
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/validation"
 ```
 
-Content organization:
+Content organization：
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/content-organization"
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/chunks"
 ```
 
-Package metadata and ZIP:
+Package metadata 与 ZIP：
 
 ```powershell
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/package"
@@ -144,21 +146,18 @@ Invoke-WebRequest `
   -OutFile "reports\demo_standard_package.zip"
 ```
 
-Explain to reviewers that package verification proves structural integrity,
-manifest hashes, required artifacts, JSON/JSONL parseability, Markdown presence,
-and traceability. It does not mean every target field passed strict semantic
-validation.
+向评审者说明：package verification 证明 structural integrity、manifest hashes、required artifacts、JSON/JSONL parseability、Markdown presence 和 traceability；它不代表每个 target field 都通过 strict semantic validation。
 
-## 6. Demonstrate Review To Knowledge-Pack Activation
+## 6. 演示 Review 到 Knowledge-Pack Activation
 
-If the task produced review-required rows, inspect pending reviews:
+如果 task 产生 review-required rows，查看 pending reviews：
 
 ```powershell
 $pending = Invoke-RestMethod "http://127.0.0.1:8000/api/v1/reviews?status=pending"
 $pending.items | Select-Object -First 3
 ```
 
-Approve one reviewed item when the evidence is acceptable:
+当 evidence 可接受时 approve 一个 review item：
 
 ```powershell
 $reviewId = $pending.items[0].review_id
@@ -166,7 +165,7 @@ Invoke-RestMethod -Method Post `
   -Uri "http://127.0.0.1:8000/api/v1/reviews/$reviewId/approve"
 ```
 
-Accept a resulting candidate and create an active pack:
+接受生成的 candidate 并创建 active pack：
 
 ```powershell
 $candidates = Invoke-RestMethod http://127.0.0.1:8000/api/v1/knowledge/candidates
@@ -193,50 +192,43 @@ Invoke-RestMethod -Method Post `
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/knowledge/effective-template?schema_id=procurement_doc&template_id=procurement_doc_base_v1"
 ```
 
-Explain that review decisions are human-gated, active packs affect future task
-resolution, and old task snapshots remain immutable.
+说明：review decisions 是 human-gated；active packs 影响 future task resolution；old task snapshots 保持 immutable。
 
-## 7. Show The Four Deepening Reports
+## 7. 展示深化报告
 
-Open the committed report evidence:
+打开已提交报告：
 
 ```powershell
 Get-Content reports\real_world_mapping_eval_report.md -Encoding UTF8
 Get-Content reports\procurement_doc_eval_report.md -Encoding UTF8
 Get-Content reports\content_organization_retrieval_eval.md -Encoding UTF8
 Get-Content reports\knowledge_loop_eval_report.md -Encoding UTF8
+Get-Content reports\non_procurement_acceptance_report.md -Encoding UTF8
 ```
 
-Useful current talking points:
+可讲解要点：
 
-- real-world mapping uses 16 source-backed UIR documents and records zero
-  badcase violations;
-- procurement required coverage is 1.000 versus 0.333 for the generic schema;
-- content retrieval uses 32 queries and records `Recall@3 = 1.000`;
-- the knowledge-loop report preserves old snapshots and records zero badcase
-  violations.
+- real-world mapping 记录 zero badcase violations；
+- procurement required coverage 优于 generic schema；
+- content retrieval 记录 `Recall@3 = 1.000`；
+- knowledge-loop report 保持 old snapshots，并记录 zero badcase violations；
+- non-procurement recall 仍未达 Phase 1，原因是 average recall 与 review-required targets 未达标。
 
-## 8. Explain Strict-Validation And Production Boundaries
+## 8. 说明 Strict-Validation 与 Production Boundaries
 
-State these boundaries explicitly:
+明确说明：
 
-- current production input is UIR; raw PDF, Word, Excel, image, scan, and OCR
-  parsing are outside the runtime boundary;
-- real-world package generation is 16/16 for import, execution, and package
-  verification;
-- strict semantic validation currently passes for the five procurement samples;
-- the other 11 real-world samples remain review-required and are not claimed as
-  field-valid;
-- optional LLM fallback is disabled by default, review-only, and never
-  auto-accepts mappings;
-- retrieval evidence is deterministic chunk-ranking evidence, not a full RAG or
-  vector-search service;
-- enterprise SSO, tenant management, TLS termination, managed secrets, model
-  monitoring, and model training are outside the implemented boundary.
+- 当前 production input 是 UIR；raw PDF、Word、Excel、image、scan 和 OCR parsing 在 runtime boundary 之外；
+- real-world package generation 已覆盖 import、execution 与 package verification；
+- strict semantic validation 与 package verification 是不同概念；
+- 非采购样本仍需持续减少 review-required 和 missing fields；
+- optional LLM fallback 默认关闭、仅 Review、不会 auto-accept mappings；
+- retrieval evidence 是 deterministic chunk-ranking evidence，不是 full RAG 或 vector-search service；
+- enterprise SSO、tenant management、TLS termination、managed secrets、model monitoring 和 model training 不在当前实现边界内。
 
-## 9. Show Downstream Consumption
+## 9. 展示 Downstream Consumption
 
-1. Open **Downstream Readiness** and show CSV, RAG, and contract status.
-2. Run `export_structured_csv.py` against either a ZIP or package directory.
-3. Run `export_rag_corpus.py --granularity child`.
-4. Show `downstream_contract_eval_report` with 30 packages and 0 failures.
+1. 打开 **下游就绪度** 面板，展示 CSV、RAG 和 contract status。
+2. 对 ZIP 或 package directory 运行 `export_structured_csv.py`。
+3. 运行 `export_rag_corpus.py --granularity child`。
+4. 展示 `downstream_contract_eval_report` 中 30 packages 和 0 failures 的结果。
