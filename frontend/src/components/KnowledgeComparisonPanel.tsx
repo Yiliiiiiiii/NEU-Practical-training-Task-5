@@ -22,7 +22,7 @@ export function KnowledgeComparisonPanel({ result }: KnowledgeComparisonPanelPro
       <div className="evidence-panel-head">
         <span>已通过 {report?.approved_candidates ?? 0}</span>
         <span>已拒绝 {report?.rejected_candidates ?? 0}</span>
-        <span>badcases {report?.badcase_violation_count ?? 0}</span>
+        <span>badcase 违规 {report?.badcase_violation_count ?? 0}</span>
       </div>
       <table>
         <thead>

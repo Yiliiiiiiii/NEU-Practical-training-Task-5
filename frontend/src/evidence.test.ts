@@ -15,7 +15,7 @@ describe("evidence helpers", () => {
 
   it("uses deterministic validation advice", () => {
     expect(suggestedAction({ severity: "error", message: "missing" }))
-      .toBe("Review the source evidence and complete or reject this field.");
+      .toBe("请核对源证据，并补全或拒绝该字段。");
   });
 
   it("preserves the full checksum outside compact display", () => {

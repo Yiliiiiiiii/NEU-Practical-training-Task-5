@@ -35,7 +35,7 @@ export function DownstreamReadinessPanel({
         <ReadinessItem
           ready={ragReady}
           label={ragReady ? "RAG 已就绪" : "RAG 待 Review"}
-          detail={`${chunks?.total ?? 0} 个带来源链接的 chunks`}
+          detail={`${chunks?.total ?? 0} 个带来源链接的 Chunk`}
         />
         <ReadinessItem
           ready={contractPassed}
@@ -44,7 +44,7 @@ export function DownstreamReadinessPanel({
         />
       </div>
       <p className="quiet">
-        Offline adapters: export_structured_csv.py · export_rag_corpus.py ·
+        离线适配脚本：export_structured_csv.py · export_rag_corpus.py ·
         verify_downstream_contract.py
       </p>
     </div>

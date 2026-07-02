@@ -37,7 +37,7 @@ export function MappingEvidencePanel({ report }: MappingEvidencePanelProps) {
           <summary>
             <span>{sourceName(item)}</span>
             <strong>{String(item.target_field_id ?? "-")}</strong>
-            <em>{String(item.confidence_tier ?? item.status ?? "review")}</em>
+            <em>{displayConfidence(String(item.confidence_tier ?? item.status ?? "review"))}</em>
           </summary>
           <p>{String(item.review_required_reason ?? item.reason ?? "已保留证据。")}</p>
           {Array.isArray(item.risk_flags) && item.risk_flags.length ? (
@@ -54,4 +54,15 @@ export function MappingEvidencePanel({ report }: MappingEvidencePanelProps) {
       ))}
     </div>
   );
+}
+
+function displayConfidence(value: string) {
+  const labels: Record<string, string> = {
+    high: "高",
+    medium: "中",
+    low: "低",
+    accepted: "已接受",
+    review: "待 Review"
+  };
+  return labels[value.toLowerCase()] ?? value;
 }

@@ -15,7 +15,7 @@ export function ValidationIssuePanel({ report }: ValidationIssuePanelProps) {
       {report.issues.length ? (
         report.issues.map((issue, index) => (
           <article className="issue-row evidence-issue" key={`${String(issue.code)}-${index}`}>
-            <span>{String(issue.level ?? issue.severity ?? "issue")}</span>
+            <span>{displayIssueLevel(String(issue.level ?? issue.severity ?? "issue"))}</span>
             <p>{String(issue.message ?? "Validation 问题")}</p>
             <small>{suggestedAction(issue)}</small>
           </article>
@@ -25,4 +25,15 @@ export function ValidationIssuePanel({ report }: ValidationIssuePanelProps) {
       )}
     </div>
   );
+}
+
+function displayIssueLevel(level: string) {
+  const labels: Record<string, string> = {
+    error: "错误",
+    warning: "警告",
+    warn: "警告",
+    info: "提示",
+    issue: "问题"
+  };
+  return labels[level.toLowerCase()] ?? level;
 }

@@ -31,12 +31,12 @@ export function suggestedAction(issue: Partial<ValidationIssue>): string {
   const severity = String(issue.severity ?? issue.level ?? "").toLowerCase();
   const message = String(issue.message ?? "").toLowerCase();
   if (severity === "error" || message.includes("missing")) {
-    return "Review the source evidence and complete or reject this field.";
+    return "请核对源证据，并补全或拒绝该字段。";
   }
   if (message.includes("format") || message.includes("type")) {
-    return "Check the transform rule and normalize the source value.";
+    return "请检查 Transform 规则，并规范化源字段值。";
   }
-  return "Keep the evidence attached and monitor in the next verification run.";
+  return "请保留证据，并在下一次验证中继续观察。";
 }
 
 export function truncateSha(value: string | null | undefined): string {
@@ -67,6 +67,6 @@ export function mergeManifestVerification(
   return (manifest?.files ?? []).map((file) => ({
     ...file,
     verified: Boolean(verifier?.passed) && !errors.has(file.path),
-    verifier_message: errors.has(file.path) ? "Verifier reported this path." : undefined
+    verifier_message: errors.has(file.path) ? "Verifier 报告了该路径的问题。" : undefined
   }));
 }

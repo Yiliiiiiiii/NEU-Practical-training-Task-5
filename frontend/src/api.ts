@@ -99,7 +99,7 @@ export const api = {
       method: "POST",
       body: JSON.stringify({
         reviewer: "demo_user",
-        comment: "Approved in workbench",
+        comment: "在工作台中通过",
         create_knowledge_candidate: createKnowledgeCandidate
       })
     }),
@@ -108,7 +108,7 @@ export const api = {
       method: "POST",
       body: JSON.stringify({
         reviewer: "demo_user",
-        comment: "Rejected in workbench"
+        comment: "在工作台中拒绝"
       })
     }),
   listKnowledgeCandidates: () =>
@@ -122,7 +122,7 @@ export const api = {
       body: JSON.stringify({
         schema_id: schemaId,
         template_id: templateId,
-        name: `${schemaId} review aliases`,
+        name: `${schemaId} Review 别名规则`,
         created_by: "demo_user"
       })
     }),

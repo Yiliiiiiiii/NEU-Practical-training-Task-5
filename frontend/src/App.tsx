@@ -359,7 +359,7 @@ function App() {
           >
             {schemas.map((schema) => (
               <option key={schema.schema_id} value={schema.schema_id}>
-                {schema.name} · {schema.version} · {schema.status ?? "active"}
+                {schema.name} · {schema.version} · {displayStatus(schema.status ?? "active")}
               </option>
             ))}
           </select>
@@ -374,7 +374,7 @@ function App() {
           >
             {templateOptions.map((template) => (
               <option key={template.template_id} value={template.template_id}>
-                {template.name} · {template.version} · {template.status ?? "active"}
+                {template.name} · {template.version} · {displayStatus(template.status ?? "active")}
               </option>
             ))}
           </select>
@@ -402,11 +402,11 @@ function App() {
                 )
               }
             >
-              <option value="fixed_window">fixed_window</option>
-              <option value="heading_aware">heading_aware</option>
-              <option value="source_block_aware">source_block_aware</option>
-              <option value="table_protect">table_protect</option>
-              <option value="parent_child">parent_child</option>
+              <option value="fixed_window">固定窗口</option>
+              <option value="heading_aware">标题感知</option>
+              <option value="source_block_aware">源块感知</option>
+              <option value="table_protect">表格保护</option>
+              <option value="parent_child">父子 Chunk</option>
             </select>
           </div>
           <div className="option-grid">
@@ -562,7 +562,7 @@ function App() {
                   <div className="mapping-row" key={String(item.mapping_id)}>
                     <span>{sourceName(item)}</span>
                     <strong>{String(item.target_field_id)}</strong>
-                    <em>{String(item.confidence_tier ?? item.method)}</em>
+                    <em>{displayConfidence(String(item.confidence_tier ?? item.method))}</em>
                     <small>{displayStatus(String(item.status ?? "accepted"))}</small>
                     <TagList label="风险" values={asStringList(item.risk_flags)} />
                     <details className="mapping-evidence">
@@ -579,7 +579,7 @@ function App() {
                           {sourceName(item)} → {String(item.target_field_id)}
                         </strong>
                         <span>
-                          {String(item.confidence_tier ?? "low")} /{" "}
+                          {displayConfidence(String(item.confidence_tier ?? "low"))} /{" "}
                           {String(item.review_required_reason ?? "需要 Review")}
                         </span>
                         <TagList label="风险" values={asStringList(item.risk_flags)} />
@@ -604,7 +604,7 @@ function App() {
                 {validation.issues.length ? (
                   validation.issues.slice(0, 8).map((issue, index) => (
                     <div className="issue-row" key={`${String(issue.code)}-${index}`}>
-                      <span>{String(issue.level)}</span>
+                      <span>{displayIssueLevel(String(issue.level))}</span>
                       <p>{String(issue.message)}</p>
                     </div>
                   ))
@@ -661,17 +661,17 @@ function App() {
             {chunks ? (
               <div className="chunk-preview-block">
                 <p className="quiet">
-                  显示前 {Math.min(chunks.items.length, 4)} 个，共 {chunks.total} 个 chunks。
+                  显示前 {Math.min(chunks.items.length, 4)} 个，共 {chunks.total} 个 Chunk。
                 </p>
                 {chunks.items.slice(0, 4).map((chunk) => (
                   <div className="chunk-card" key={chunk.chunk_id}>
                     <div className="chunk-card-head">
                       <strong>{chunk.chunk_id}</strong>
-                      <span>{chunk.strategy ?? "legacy"}</span>
+                      <span>{displayChunkStrategy(chunk.strategy)}</span>
                     </div>
                     <div className="chunk-meta">
-                      <span>{chunk.granularity ?? "chunk"}</span>
-                      <span>{chunk.token_estimate ?? 0} tokens</span>
+                      <span>{displayChunkGranularity(chunk.granularity)}</span>
+                      <span>{chunk.token_estimate ?? 0} token</span>
                       <span>{chunk.char_count ?? chunk.text.length} 字符</span>
                     </div>
                     {chunk.parent_chunk_id ? (
@@ -697,7 +697,7 @@ function App() {
                     </small>
                   </div>
                 ))}
-                <JsonDetails title="原始 Chunks JSON" data={chunks} />
+                <JsonDetails title="原始 Chunk JSON" data={chunks} />
               </div>
             ) : (
               <EmptyState text="暂无 Chunk 预览" />
@@ -738,7 +738,7 @@ function App() {
                     <strong>{log.action}</strong>
                     <span>{log.success ? "成功" : "失败"}</span>
                     <small>{log.path ?? "-"}</small>
-                    <JsonDetails title="Metadata" data={log.metadata} />
+                    <JsonDetails title="元数据" data={log.metadata} />
                   </div>
                 ))}
               </div>
@@ -1021,6 +1021,50 @@ function displayStatus(status: string) {
     success: "成功"
   };
   return labels[status] ?? status;
+}
+
+function displayIssueLevel(level: string) {
+  const labels: Record<string, string> = {
+    error: "错误",
+    warning: "警告",
+    warn: "警告",
+    info: "提示",
+    issue: "问题"
+  };
+  return labels[level.toLowerCase()] ?? level;
+}
+
+function displayConfidence(value: string) {
+  const labels: Record<string, string> = {
+    high: "高",
+    medium: "中",
+    low: "低",
+    accepted: "已接受",
+    review: "待 Review"
+  };
+  return labels[value.toLowerCase()] ?? value;
+}
+
+function displayChunkStrategy(strategy: string | null | undefined) {
+  const labels: Record<string, string> = {
+    fixed_window: "固定窗口",
+    heading_aware: "标题感知",
+    source_block_aware: "源块感知",
+    table_protect: "表格保护",
+    parent_child: "父子 Chunk",
+    legacy: "旧策略"
+  };
+  return strategy ? labels[strategy] ?? strategy : "旧策略";
+}
+
+function displayChunkGranularity(granularity: string | null | undefined) {
+  const labels: Record<string, string> = {
+    chunk: "Chunk",
+    paragraph: "段落",
+    section: "章节",
+    table: "表格"
+  };
+  return granularity ? labels[granularity] ?? granularity : "Chunk";
 }
 
 function sourceName(item: Record<string, any>) {
