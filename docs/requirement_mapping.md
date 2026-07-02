@@ -79,10 +79,10 @@ tenant platforms.
 | Requirement | Current evidence | Status |
 | --- | --- | --- |
 | Improve non-procurement mapping recall without unsafe shortcuts | Package-based gap analysis improves average recall from `0.3494047619047619` to `0.4211309523809524`, with badcase violations still 0. | Partially improved, not accepted |
-| Hit phase-one target recall | API-backed evaluator reports average recall `0.0` because all 20 imports failed with `502 Bad Gateway`. | Not met |
-| Reduce review-required and required-missing counts | Offline package analysis: review-required 139 and required missing 15. API-backed counts are invalid because imports failed. | Not met |
+| Hit phase-one target recall | API-backed evaluator reports average recall `0.4211309523809524`, below the `0.50` acceptance target. | Not met |
+| Reduce review-required and required-missing counts | API-backed evaluator reports review-required 149 and required missing 12; only the required-missing target is met. | Partially met |
 | Keep badcase filters active | Added regression badcases cover unsafe mappings such as `发布日期 -> effective_date`, `主持人 -> attendees`, `联系人 -> attendees`, `承办单位 -> issuer`, `预算金额 -> award_amount`, and `控制价 -> award_amount`. | Guarded; recheck after API recovery |
-| Preserve honest evaluation evidence | Dedicated acceptance report records the failed API-backed evaluator instead of treating zero counts as success. | Met |
+| Preserve honest evaluation evidence | Dedicated acceptance report records the API-backed evaluator as below target instead of treating partial metric gains as phase success. | Met |
 
 See
 [`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md)

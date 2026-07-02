@@ -14,20 +14,19 @@ Generated for the 20-document non-procurement subset in the expanded
 ## Acceptance Summary
 
 The phase-one acceptance target is not met in the latest committed API-backed
-evaluation. All 20 non-procurement imports failed at
-`POST /api/v1/documents/import` with `HTTPStatusError: 502 Bad Gateway`, so the
-API-backed metrics are treated as blocked/failed evidence rather than a valid
-recall improvement result.
+evaluation. The evaluator successfully processed all 20 non-procurement
+documents, but the recall and review-required thresholds are still outside the
+acceptance bounds.
 
 | Check | Target | Latest evidence | Status |
 | --- | ---: | ---: | --- |
-| Average mapping recall | `>= 0.50` | `0.0` from API-backed evaluator | Not met: evaluator failed for all 20 docs |
-| Review-required count | `<= 115` | `0` from API-backed evaluator | Not met / invalid: no mappings were evaluated because imports failed |
-| Required missing count | `<= 14` | `0` from API-backed evaluator | Not met / invalid: no mappings were evaluated because imports failed |
-| Badcase violations | `0` | `0` | Guard held in the failed run; still recheck after API recovery |
-| Package verification | `20/20` | `0/20` | Not met |
+| Average mapping recall | `>= 0.50` | `0.4211309523809524` | Not met |
+| Review-required count | `<= 115` | `149` | Not met |
+| Required missing count | `<= 14` | `12` | Met |
+| Badcase violations | `0` | `0` | Met |
+| Package verification | `20/20` | `20/20` | Met |
 | Backend regression tests | No regressions | latest full backend run before this report: `392 passed` | Passed at that checkpoint |
-| Frontend and unified verification | Build and `verify_all` pass | not rerun in this documentation task | Pending Task 10 |
+| Frontend and unified verification | Build and `verify_all` pass | frontend build passed; `verify_all --check-openapi` passed | Met |
 
 ## Useful Non-API Evidence
 
@@ -44,14 +43,14 @@ subset and is useful for diagnosis:
 | Badcase violations | 0 | 0 |
 | Package verification | 20/20 | 20 packages analyzed from complete package outputs |
 
-This indicates safe incremental improvement in package-derived diagnostics, but
-it does not satisfy the acceptance gate because the API-backed evaluator must
-recover and pass the thresholds.
+This indicates safe incremental improvement in package-derived diagnostics. The
+API-backed evaluator agrees on average recall and package verification, but it
+counts 149 review-required mappings and 12 required missing mappings. The
+required-missing gate is now within target; the recall and review-required gates
+remain open.
 
 ## Decision
 
-Phase one remains open. The next step is Task 10 full verification: rerun the
-backend tests, Ruff, frontend build, unified verification, API-backed
-real-world evaluators, non-procurement evaluator, and offline gap analyzer. If
-the 502 failure persists, diagnose the import path before claiming metric
-success.
+Phase one remains open. The next step is to reduce review-required mappings and
+raise average recall without weakening badcase filters or auto-accepting
+ambiguous evidence.

@@ -72,10 +72,9 @@ auto-accepted:
 
 These badcases protect the recall work from metric gaming: ambiguous or
 high-risk evidence should remain review-required unless there is a source-backed
-safe rule. The latest package-based non-procurement analysis records zero
-badcase violations; the latest API-backed non-procurement evaluator failed with
-`502 Bad Gateway` for all 20 imports and must be rerun before accepting the
-phase gate.
+safe rule. The latest package-based non-procurement analysis and API-backed
+non-procurement evaluator both record zero badcase violations. The phase gate
+still remains open because recall and review-required targets are not yet met.
 
 ## Remaining Limitations
 

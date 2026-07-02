@@ -175,6 +175,7 @@ Dedicated evidence:
 
 The latest package-based gap analysis records strict pass 4/20, required
 missing 15, review-required 139, average recall `0.4211309523809524`, and zero
-badcase violations. The latest API-backed non-procurement evaluator is blocked:
-all 20 imports returned `502 Bad Gateway`, so its zero recall and zero missing
-counts are not accepted as mapping-quality evidence.
+badcase violations. The latest API-backed non-procurement evaluator records
+strict pass 4/20, required missing 12, review-required 149, average recall
+`0.4211309523809524`, zero badcase violations, and package verification 20/20.
+The subset still does not meet phase-one recall and review-required targets.

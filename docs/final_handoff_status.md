@@ -165,11 +165,10 @@ The current `main` baseline is:
   strict pass 4/20, required missing 15, review-required 139, average recall
   `0.4211309523809524`, badcase violations 0.
 - The API-backed evaluator is recorded in
-  [`reports/non_procurement_mapping_eval_report.md`](../reports/non_procurement_mapping_eval_report.md),
-  but all 20 document imports failed with `HTTPStatusError: 502 Bad Gateway`.
-  Its `0.0` recall and `0/20` package verification are treated as failed or
-  blocked evidence, not as a valid mapping-quality result.
+  [`reports/non_procurement_mapping_eval_report.md`](../reports/non_procurement_mapping_eval_report.md):
+  strict pass 4/20, required missing 12, review-required 149, average recall
+  `0.4211309523809524`, badcase violations 0, and package verification 20/20.
 - Current acceptance status is documented in
   [`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md):
-  phase one remains open until the API-backed evaluator recovers and meets the
-  target thresholds.
+  phase one remains open because the average recall and review-required targets
+  are not yet met.

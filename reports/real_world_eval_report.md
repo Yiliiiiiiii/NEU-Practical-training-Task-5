@@ -4,16 +4,16 @@
 - Import success: 30 (100.0%)
 - Task execution success: 30 (100.0%)
 - Package verification success: 30 (100.0%)
-- Mapping review required: 180
+- Mapping review required: 200
 - High-risk mappings: 0
-- Validation failures: 16
+- Validation failures: 12
 
 ## By document type
 
 | Document type | Count | Import | Execute | Package | Validation |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | general_doc | 4 | 4 | 4 | 4 | 4 |
-| meeting_doc | 6 | 6 | 6 | 6 | 0 |
+| meeting_doc | 6 | 6 | 6 | 6 | 4 |
 | policy_doc | 10 | 10 | 10 | 10 | 0 |
 | procurement_doc | 10 | 10 | 10 | 10 | 10 |
 
@@ -60,9 +60,9 @@
 
 ## Typical failures
 
-- real_meeting_001_changning_executive_minutes: validation — downstream validation did not pass
-- real_meeting_002_shaxian_executive_minutes: validation — downstream validation did not pass
-- real_meeting_003_miluo_executive_minutes: validation — downstream validation did not pass
+- real_meeting_004_shandan_2025_11_minutes: validation — downstream validation did not pass
+- real_meeting_006_shandan_minutes: validation — downstream validation did not pass
+- real_policy_001_training_platform_rules: validation — downstream validation did not pass
 
 ## Next steps
 
