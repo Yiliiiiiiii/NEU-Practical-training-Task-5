@@ -109,6 +109,7 @@ backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 
 ## 文档地图
 
+- 网页工作台新手使用教程：[`docs/user_web_workbench_guide.md`](docs/user_web_workbench_guide.md)
 - 最终交接状态：[`docs/final_handoff_status.md`](docs/final_handoff_status.md)
 - Demo workflow：[`docs/demo_workflow.md`](docs/demo_workflow.md)
 - Final demo script：[`docs/final_demo_script.md`](docs/final_demo_script.md)
