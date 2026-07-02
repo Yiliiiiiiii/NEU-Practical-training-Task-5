@@ -138,6 +138,18 @@ backend\.venv\Scripts\python.exe scripts\eval_procurement_doc.py --base-url http
 backend\.venv\Scripts\python.exe scripts\eval_knowledge_loop_real_world.py --base-url http://127.0.0.1:8000 --timeout 60
 ```
 
+Regenerate the non-procurement recall evidence:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\analyze_non_procurement_gaps.py --packages-root reports\real_world_packages --gold examples\real_world\gold\mapping_gold.jsonl --badcases examples\real_world\gold\real_world_badcases.jsonl --out reports\non_procurement_gap_analysis.json --markdown reports\non_procurement_gap_analysis.md
+backend\.venv\Scripts\python.exe scripts\eval_non_procurement_mapping.py --base-url http://127.0.0.1:8000 --timeout 60 --baseline reports\non_procurement_baseline_report.json --out reports\non_procurement_mapping_eval_report.json --markdown reports\non_procurement_mapping_eval_report.md
+```
+
+If the API-backed evaluator returns import errors, keep the report as failed
+evidence and diagnose the backend/API path before claiming recall targets. Do
+not delete required gold fields, disable badcase filters, or treat zero missing
+counts from failed imports as success.
+
 Regenerate offline retrieval, knowledge-loop, LLM fallback, and acceptance
 evidence:
 

@@ -151,3 +151,25 @@ The current `main` baseline is:
   review-required 145, average recall 0.349. This is a clear improvement over
   the expanded-dataset baseline, but the stretch target of 0.75 mapping recall
   is not yet met and remains follow-up work rather than a claimed success.
+
+## Non-procurement Recall Acceptance Update (2026-07-02)
+
+- The expanded dataset includes 20 non-procurement documents:
+  10 `policy_doc`, 6 `meeting_doc`, and 4 `general_doc`.
+- The committed baseline is recorded in
+  [`reports/non_procurement_baseline_report.md`](../reports/non_procurement_baseline_report.md):
+  strict pass 4/20, required missing 18, review-required 145, average recall
+  `0.3494047619047619`, badcase violations 0, package verification 20/20.
+- The package-based gap analyzer is recorded in
+  [`reports/non_procurement_gap_analysis.md`](../reports/non_procurement_gap_analysis.md):
+  strict pass 4/20, required missing 15, review-required 139, average recall
+  `0.4211309523809524`, badcase violations 0.
+- The API-backed evaluator is recorded in
+  [`reports/non_procurement_mapping_eval_report.md`](../reports/non_procurement_mapping_eval_report.md),
+  but all 20 document imports failed with `HTTPStatusError: 502 Bad Gateway`.
+  Its `0.0` recall and `0/20` package verification are treated as failed or
+  blocked evidence, not as a valid mapping-quality result.
+- Current acceptance status is documented in
+  [`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md):
+  phase one remains open until the API-backed evaluator recovers and meets the
+  target thresholds.

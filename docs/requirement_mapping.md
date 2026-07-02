@@ -73,3 +73,19 @@ tenant platforms.
 | Content organization quality | strategy, summary-faithfulness, and tag-quality reports |
 | Human-review growth | isolated review-to-active-pack evaluator with snapshot/reject/badcase guards |
 | Downstream consumption | CSV, RAG JSONL, 30-package contract report, workbench readiness panel |
+
+## Non-procurement Recall Acceptance Addendum
+
+| Requirement | Current evidence | Status |
+| --- | --- | --- |
+| Improve non-procurement mapping recall without unsafe shortcuts | Package-based gap analysis improves average recall from `0.3494047619047619` to `0.4211309523809524`, with badcase violations still 0. | Partially improved, not accepted |
+| Hit phase-one target recall | API-backed evaluator reports average recall `0.0` because all 20 imports failed with `502 Bad Gateway`. | Not met |
+| Reduce review-required and required-missing counts | Offline package analysis: review-required 139 and required missing 15. API-backed counts are invalid because imports failed. | Not met |
+| Keep badcase filters active | Added regression badcases cover unsafe mappings such as `发布日期 -> effective_date`, `主持人 -> attendees`, `联系人 -> attendees`, `承办单位 -> issuer`, `预算金额 -> award_amount`, and `控制价 -> award_amount`. | Guarded; recheck after API recovery |
+| Preserve honest evaluation evidence | Dedicated acceptance report records the failed API-backed evaluator instead of treating zero counts as success. | Met |
+
+See
+[`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md)
+and
+[`docs/non_procurement_mapping_improvement_plan.md`](non_procurement_mapping_improvement_plan.md)
+for the current open acceptance gate.

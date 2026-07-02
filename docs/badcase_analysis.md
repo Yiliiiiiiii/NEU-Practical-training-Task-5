@@ -53,6 +53,30 @@ badcase_violation_count = 0
 badcase_pass_rate = 1.0
 ```
 
+## Non-procurement Recall Badcases
+
+The expanded real-world mapping gold embeds badcases and the standalone
+`examples/real_world/gold/real_world_badcases.jsonl` file is kept synchronized
+with those embedded `known_badcases` entries. The non-procurement recall work
+adds regression coverage for high-risk source/target pairs that must not be
+auto-accepted:
+
+| Source label | Forbidden target | Reason |
+| --- | --- | --- |
+| `发布日期` | `effective_date` | Publication metadata is not automatically the effective date. |
+| `主持人` | `attendees` | Meeting host/chair is not the full attendee list. |
+| `联系人` | `attendees` | Contact person is not a meeting attendee list. |
+| `承办单位` | `issuer` | Organizer/undertaker is not necessarily the issuing authority. |
+| `预算金额` | `award_amount` | Budget is not an awarded amount. |
+| `控制价` | `award_amount` | Control price is not an awarded amount. |
+
+These badcases protect the recall work from metric gaming: ambiguous or
+high-risk evidence should remain review-required unless there is a source-backed
+safe rule. The latest package-based non-procurement analysis records zero
+badcase violations; the latest API-backed non-procurement evaluator failed with
+`502 Bad Gateway` for all 20 imports and must be rerun before accepting the
+phase gate.
+
 ## Remaining Limitations
 
 - The regression dataset is synthetic and should be expanded with real

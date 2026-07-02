@@ -150,3 +150,31 @@ The manifest now covers 30 UIR documents across general, meeting, policy, and
 procurement schemas. Mapping gold, badcases, retrieval queries, and content
 organization gold reference those UIR block IDs. The current API-backed run
 reports 30 imports, 30 executions, and 30 verifier-passing packages.
+
+### Non-procurement Recall Subset
+
+The 2026-07 non-procurement recall subset contains 20 documents and excludes
+the 10 `procurement_doc` samples:
+
+```text
+general_doc: 4
+meeting_doc: 6
+policy_doc: 10
+total: 20
+```
+
+Dedicated evidence:
+
+- baseline: `reports/non_procurement_baseline_report.{json,md}`;
+- package gap analysis:
+  `reports/non_procurement_gap_analysis.{json,md}`;
+- API-backed evaluator:
+  `reports/non_procurement_mapping_eval_report.{json,md}`;
+- acceptance status:
+  `reports/non_procurement_acceptance_report.md`.
+
+The latest package-based gap analysis records strict pass 4/20, required
+missing 15, review-required 139, average recall `0.4211309523809524`, and zero
+badcase violations. The latest API-backed non-procurement evaluator is blocked:
+all 20 imports returned `502 Bad Gateway`, so its zero recall and zero missing
+counts are not accepted as mapping-quality evidence.

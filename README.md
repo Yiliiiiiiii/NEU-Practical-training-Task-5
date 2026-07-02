@@ -34,6 +34,7 @@ UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Mani
 - The 32-query retrieval report records `Recall@3 = 1.000`. See [`reports/content_organization_retrieval_eval.md`](reports/content_organization_retrieval_eval.md) and [`reports/content_organization_retrieval_eval.json`](reports/content_organization_retrieval_eval.json).
 - Both knowledge-loop reports preserve snapshots and record zero badcase violations. See [`reports/real_world_knowledge_loop_report.md`](reports/real_world_knowledge_loop_report.md), [`reports/real_world_knowledge_loop_report.json`](reports/real_world_knowledge_loop_report.json), [`reports/knowledge_loop_eval_report.md`](reports/knowledge_loop_eval_report.md), and [`reports/knowledge_loop_eval_report.json`](reports/knowledge_loop_eval_report.json).
 - The LLM fallback report records `auto_accepted_count = 0`, successful secret redaction, and two review-required suggestions. See [`reports/llm_fallback_eval_report.md`](reports/llm_fallback_eval_report.md) and [`reports/llm_fallback_eval_report.json`](reports/llm_fallback_eval_report.json).
+- Non-procurement recall work now has dedicated evidence under [`reports/non_procurement_baseline_report.md`](reports/non_procurement_baseline_report.md), [`reports/non_procurement_gap_analysis.md`](reports/non_procurement_gap_analysis.md), [`reports/non_procurement_mapping_eval_report.md`](reports/non_procurement_mapping_eval_report.md), and [`reports/non_procurement_acceptance_report.md`](reports/non_procurement_acceptance_report.md). The latest API-backed non-procurement evaluator is not accepted as a success result because all 20 imports failed with `502 Bad Gateway`; see the acceptance report for the current open gate.
 
 ## Quick Start
 
@@ -105,6 +106,7 @@ Expected verified baseline for 2026-06-30:
 - Package specification: [`docs/package_spec.md`](docs/package_spec.md)
 - Real-world UIR dataset guide: [`docs/real_world_uir_dataset.md`](docs/real_world_uir_dataset.md)
 - Real-world knowledge-loop guide: [`docs/real_world_knowledge_loop.md`](docs/real_world_knowledge_loop.md)
+- Non-procurement recall plan and acceptance evidence: [`docs/non_procurement_mapping_improvement_plan.md`](docs/non_procurement_mapping_improvement_plan.md), [`reports/non_procurement_acceptance_report.md`](reports/non_procurement_acceptance_report.md)
 
 ## Production Boundaries
 
