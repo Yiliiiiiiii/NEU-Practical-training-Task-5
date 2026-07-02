@@ -1,0 +1,1245 @@
+{
+  "by_doc_type": {
+    "general_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 4,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.0,
+      "package_valid_count": 0,
+      "package_valid_rate": 0.0,
+      "required_missing_count": 0,
+      "review_required_count": 0,
+      "strict_pass_count": 0,
+      "strict_pass_rate": 0.0
+    },
+    "meeting_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 6,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.0,
+      "package_valid_count": 0,
+      "package_valid_rate": 0.0,
+      "required_missing_count": 0,
+      "review_required_count": 0,
+      "strict_pass_count": 0,
+      "strict_pass_rate": 0.0
+    },
+    "policy_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 10,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.0,
+      "package_valid_count": 0,
+      "package_valid_rate": 0.0,
+      "required_missing_count": 0,
+      "review_required_count": 0,
+      "strict_pass_count": 0,
+      "strict_pass_rate": 0.0
+    }
+  },
+  "by_field": {},
+  "delta": {
+    "average_recall": -0.349,
+    "required_missing_count": -18,
+    "review_required_count": -145,
+    "strict_pass_count": -4
+  },
+  "documents": [
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_001_training_platform_rules",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 2,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 6,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_002_equipment_renewal",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 6,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_003_science_education_guide",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 6,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_004_student_loan_relief",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 6,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_005_ai_industry_guide",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 6,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_001_changning_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_002_shaxian_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_003_miluo_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_001_notary_service_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_002_biomed_project_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_003_textile_application_flow",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_006_technology_incubator_rules",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_007_one_thing_list",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_008_sme_leader_training",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_009_network_safety_work",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_005_miluo_2026_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_006_shandan_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_004_tianhe_service_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "template_id": "general_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'http://127.0.0.1:8000/api/v1/documents/import'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "high_risk_auto_accepted": [],
+      "metrics": {
+        "auto_accepted_correct": 0,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_010_auto_ota_management",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.0,
+        "missing_gold_mappings": 5,
+        "review_required_correct": 0
+      },
+      "package_passed": false,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    }
+  ],
+  "failed_cases": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-02T13:58:06.761167+00:00",
+  "remaining_gaps": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "evaluation_error",
+        "mapping_recall_below_threshold",
+        "mapped_or_review_targets_below_threshold",
+        "package_invalid"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    }
+  ],
+  "summary": {
+    "average_recall": 0.0,
+    "badcase_violation_count": 0,
+    "dataset_size": 20,
+    "package_verify_pass_count": 0,
+    "required_missing_count": 0,
+    "review_required_count": 0,
+    "strict_pass_count": 0,
+    "strict_pass_rate": 0.0
+  },
+  "typical_improvements": []
+}
