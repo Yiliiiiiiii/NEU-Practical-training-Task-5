@@ -44,14 +44,32 @@ Run the verified repository baseline from the repository root:
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-Start the backend locally:
+Start the local development environment with one command:
+
+```powershell
+.\scripts\start_dev.ps1
+```
+
+The launcher opens two PowerShell windows: one for the backend API and one for
+the frontend workbench. It also opens the workbench at
+`http://127.0.0.1:5173/`. To stop the dev environment, close the two opened
+PowerShell windows or press `Ctrl+C` in each one.
+
+Useful options:
+
+```powershell
+.\scripts\start_dev.ps1 -NoBrowser
+.\scripts\start_dev.ps1 -BackendPort 8000 -FrontendPort 5173
+```
+
+Manual fallback: start the backend locally:
 
 ```powershell
 cd backend
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Start the frontend in another terminal:
+Then start the frontend in another terminal:
 
 ```powershell
 cd frontend
