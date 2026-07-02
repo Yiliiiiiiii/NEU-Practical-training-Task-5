@@ -83,7 +83,7 @@
       "display_name": "发布主体",
       "type": "string",
       "required": false,
-      "aliases": ["发布主体", "发布单位", "发文单位", "主管部门"],
+      "aliases": ["发布主体", "发布单位", "发文单位"],
       "constraints": {}
     },
     {
@@ -155,7 +155,7 @@
       "display_name": "联系方式",
       "type": "string",
       "required": false,
-      "aliases": ["联系方式", "联系电话", "咨询电话", "联系人"],
+      "aliases": ["联系方式", "联系电话", "咨询电话"],
       "constraints": {}
     },
     {

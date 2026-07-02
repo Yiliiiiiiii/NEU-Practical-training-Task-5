@@ -4,6 +4,7 @@ from pathlib import Path
 
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.target_schema import TargetSchema
+from app.services.candidate_service import CandidateService
 
 DEFAULT_TEMPLATE_DIR = (
     Path(__file__).resolve().parents[3] / "examples" / "production_like" / "mapping_templates"
@@ -65,6 +66,25 @@ class TemplateService:
             for target_field in rule.target_fields:
                 if target_field not in target_fields:
                     raise ValueError(f"unknown transform target: {target_field}")
+
+        alias_owners: dict[str, set[str]] = {}
+        for field in schema.fields:
+            aliases = set(template.aliases.get(field.field_id, []))
+            aliases.update(field.aliases)
+            aliases.add(field.display_name)
+            for alias in aliases:
+                normalized_alias = CandidateService.normalize_name(alias)
+                alias_owners.setdefault(normalized_alias, set()).add(field.field_id)
+        collisions = {
+            alias: sorted(owners)
+            for alias, owners in alias_owners.items()
+            if len(owners) > 1
+        }
+        if collisions:
+            details = ", ".join(
+                f"{alias}: {owners}" for alias, owners in sorted(collisions.items())
+            )
+            raise ValueError(f"effective alias collision across targets: {details}")
 
         return template
 

@@ -4,19 +4,19 @@
   "name": "政策文档基础映射模板",
   "version": "1.0.0",
   "aliases": {
-    "title": ["title", "标题", "文档名称", "政策名称"],
-    "issuer": ["issuer", "发文机关", "发布单位", "颁布机构", "制定机关", "印发机关"],
-    "publish_date": ["publish_date", "发布日期", "发文日期", "印发日期", "成文日期"],
+    "title": ["title", "标题", "文档名称", "政策名称", "policy_title", "文件名称", "政策标题", "文件标题"],
+    "issuer": ["issuer", "发文机关", "发布单位", "颁布机构", "制定机关", "印发机关", "发布机构"],
+    "publish_date": ["publish_date", "发布日期", "发文日期", "印发日期", "成文日期", "发布时间", "公开日期"],
     "doc_type": ["doc_type", "文种", "文件类型"],
-    "effective_date": ["effective_date", "生效日期", "实施日期"],
+    "effective_date": ["effective_date", "生效日期", "实施日期", "施行日期", "执行日期"],
     "summary": ["summary", "摘要", "内容摘要"],
     "keywords": ["keywords", "关键词", "主题词"],
     "content": ["content", "document text", "正文", "主要内容"],
-    "document_number": ["document_number", "文号", "文件编号", "发文字号"],
+    "document_number": ["document_number", "文号", "文件编号", "发文字号", "政策编号", "通知编号"],
     "policy_level": ["policy_level", "政策层级", "文件级别", "效力层级"],
     "applicable_region": ["applicable_region", "适用地区", "适用区域", "实施区域"],
-    "target_audience": ["target_audience", "适用对象", "服务对象", "扶持对象", "目标群体"],
-    "policy_measures": ["policy_measures", "政策措施", "支持措施", "主要措施"],
+    "target_audience": ["target_audience", "适用对象", "服务对象", "扶持对象", "目标群体", "适用范围", "支持对象", "申报主体", "面向对象"],
+    "policy_measures": ["policy_measures", "政策措施", "支持措施", "主要措施", "扶持措施", "重点任务", "工作措施", "具体措施"],
     "responsible_departments": ["responsible_departments", "责任部门", "牵头部门", "负责部门"],
     "valid_until": ["valid_until", "有效期至", "有效截止日期", "失效日期"],
     "source": ["source", "来源", "公开来源", "发布渠道"]
@@ -30,6 +30,16 @@
     {
       "target_field_id": "summary",
       "pattern": "(?:^|\\n)摘要[:：\\s]*([^\\n]+)",
+      "group": 1
+    },
+    {
+      "target_field_id": "document_number",
+      "pattern": "(?:^|\\n)(?:文号|文件编号|发文字号|政策编号|通知编号)[:：\\s]*([\\u4e00-\\u9fff]+(?:〔\\d{4}〕|\\[\\d{4}\\])\\d+号)",
+      "group": 1
+    },
+    {
+      "target_field_id": "effective_date",
+      "pattern": "(?:自|从)\\s*(\\d{4}年\\d{1,2}月\\d{1,2}日)\\s*起\\s*(?:施行|实施|执行)",
       "group": 1
     }
   ],
