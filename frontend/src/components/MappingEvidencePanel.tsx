@@ -22,15 +22,15 @@ function evidenceText(item: Record<string, any>): string[] {
 
 export function MappingEvidencePanel({ report }: MappingEvidencePanelProps) {
   if (!report) {
-    return <div className="empty-state">No mapping evidence yet.</div>;
+    return <div className="empty-state">暂无 Mapping 证据。</div>;
   }
   const rows = [...report.review_required_items, ...report.mappings];
   return (
     <div className="evidence-panel mapping-evidence-panel">
       <div className="evidence-panel-head">
-        <span>{report.mappings.length} accepted</span>
-        <span>{report.review_required_items.length} review</span>
-        <span>{report.unmapped.length} unmapped</span>
+        <span>{report.mappings.length} 已接受</span>
+        <span>{report.review_required_items.length} 待 Review</span>
+        <span>{report.unmapped.length} 未映射</span>
       </div>
       {rows.map((item, index) => (
         <details className={`evidence-row tone-${mappingTone(item)}`} key={`${item.mapping_id}-${index}`}>
@@ -39,7 +39,7 @@ export function MappingEvidencePanel({ report }: MappingEvidencePanelProps) {
             <strong>{String(item.target_field_id ?? "-")}</strong>
             <em>{String(item.confidence_tier ?? item.status ?? "review")}</em>
           </summary>
-          <p>{String(item.review_required_reason ?? item.reason ?? "Evidence retained.")}</p>
+          <p>{String(item.review_required_reason ?? item.reason ?? "已保留证据。")}</p>
           {Array.isArray(item.risk_flags) && item.risk_flags.length ? (
             <div className="pill-row">
               {item.risk_flags.map((flag: string) => <span key={flag}>{flag}</span>)}

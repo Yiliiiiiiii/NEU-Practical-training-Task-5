@@ -30,8 +30,8 @@ describe("DownstreamReadinessPanel", () => {
       />
     );
 
-    expect(screen.getByText("CSV ready")).toBeTruthy();
-    expect(screen.getByText("RAG ready")).toBeTruthy();
-    expect(screen.getByText("Contract passed")).toBeTruthy();
+    expect(screen.getByText("CSV 已就绪")).toBeTruthy();
+    expect(screen.getByText("RAG 已就绪")).toBeTruthy();
+    expect(screen.getByText("契约已通过")).toBeTruthy();
   });
 });

@@ -148,7 +148,7 @@ function App() {
 
   async function createTask() {
     if (!docId || !selectedSchema || !selectedTemplate) {
-      setError("Document, schema, and template are required.");
+      setError("请先导入 Document，并选择 Schema 和 Template。");
       return;
     }
     setRunState("working");
@@ -189,7 +189,7 @@ function App() {
 
   async function executeTask() {
     if (!taskId) {
-      setError("Task is required.");
+      setError("请先创建 Task。");
       return;
     }
     setRunState("working");
@@ -291,7 +291,7 @@ function App() {
 
   async function createKnowledgePack() {
     if (!selectedSchema || !selectedTemplate) {
-      setError("Schema and template are required.");
+      setError("请先选择 Schema 和 Template。");
       return;
     }
     await runKnowledgeAction(async () => {
@@ -346,7 +346,7 @@ function App() {
           </div>
           <div>
             <h1>SchemaPack Agent</h1>
-            <p>Conversion Workbench</p>
+            <p>转换工作台</p>
           </div>
         </div>
 
@@ -382,16 +382,16 @@ function App() {
 
         <div className="schema-strip">
           <span>{selectedSchemaModel?.fields?.length ?? 0}</span>
-          <small>fields</small>
+          <small>字段</small>
           <span>
             {selectedSchemaModel?.fields?.filter((field) => field.required).length ?? 0}
           </span>
-          <small>required</small>
+          <small>必填</small>
         </div>
 
         <div className="content-options">
           <div className="control-group">
-            <label htmlFor="chunk-strategy">Chunk Strategy</label>
+            <label htmlFor="chunk-strategy">Chunk 策略</label>
             <select
               id="chunk-strategy"
               value={contentOptions.chunk_strategy}
@@ -412,28 +412,28 @@ function App() {
           <div className="option-grid">
             <NumberField
               id="target-tokens"
-              label="Target"
+              label="目标"
               value={contentOptions.target_tokens}
               min={1}
               onChange={(value) => updateContentOption("target_tokens", value)}
             />
             <NumberField
               id="min-tokens"
-              label="Min"
+              label="最小"
               value={contentOptions.min_tokens}
               min={1}
               onChange={(value) => updateContentOption("min_tokens", value)}
             />
             <NumberField
               id="max-tokens"
-              label="Max"
+              label="最大"
               value={contentOptions.max_tokens}
               min={1}
               onChange={(value) => updateContentOption("max_tokens", value)}
             />
             <NumberField
               id="overlap-tokens"
-              label="Overlap"
+              label="重叠"
               value={contentOptions.overlap_tokens}
               min={0}
               onChange={(value) => updateContentOption("overlap_tokens", value)}
@@ -441,22 +441,22 @@ function App() {
           </div>
           <div className="check-grid">
             <CheckboxField
-              label="Tables"
+              label="表格"
               checked={contentOptions.protect_tables}
               onChange={(checked) => updateContentOption("protect_tables", checked)}
             />
             <CheckboxField
-              label="Lists"
+              label="列表"
               checked={contentOptions.protect_lists}
               onChange={(checked) => updateContentOption("protect_lists", checked)}
             />
             <CheckboxField
-              label="Code"
+              label="代码"
               checked={contentOptions.protect_code_blocks}
               onChange={(checked) => updateContentOption("protect_code_blocks", checked)}
             />
             <CheckboxField
-              label="Parent"
+              label="父子"
               checked={
                 contentOptions.enable_parent_child ||
                 contentOptions.chunk_strategy === "parent_child"
@@ -469,11 +469,11 @@ function App() {
         <div className="button-grid">
           <button type="button" onClick={() => setUirText(sampleUirText)}>
             <ClipboardList size={17} />
-            Sample
+            示例
           </button>
           <button type="button" onClick={() => void loadCatalog()} disabled={working}>
             <RefreshCw size={17} />
-            Refresh
+            刷新
           </button>
         </div>
 
@@ -490,15 +490,15 @@ function App() {
         <div className="action-stack">
           <button type="button" className="primary" onClick={() => void importDocument()} disabled={working}>
             <UploadCloud size={18} />
-            Import
+            导入
           </button>
           <button type="button" onClick={() => void createTask()} disabled={working || !docId}>
             <FileJson size={18} />
-            Create Task
+            创建 Task
           </button>
           <button type="button" className="accent" onClick={() => void executeTask()} disabled={working || !taskId}>
             <Play size={18} />
-            Execute
+            执行
           </button>
         </div>
       </section>
@@ -507,7 +507,7 @@ function App() {
         <header className="topbar">
           <div>
             <p className="eyebrow">Task</p>
-            <h2>{task?.task_id ?? (taskId || "No task")}</h2>
+            <h2>{task?.task_id ?? (taskId || "暂无 Task")}</h2>
           </div>
           <StatusBadge status={task?.status ?? runState} />
         </header>
@@ -520,22 +520,22 @@ function App() {
         ) : null}
 
         <section className="metrics-row">
-          <Metric label="Document" value={docId || "-"} />
-          <Metric label="Mapped" value={String(completedMappings)} />
-          <Metric label="Review" value={String(reviewItems)} tone={reviewItems ? "amber" : "green"} />
-          <Metric label="Errors" value={String(validationErrors)} tone={validationErrors ? "red" : "green"} />
+          <Metric label="文档" value={docId || "-"} />
+          <Metric label="已映射" value={String(completedMappings)} />
+          <Metric label="待 Review" value={String(reviewItems)} tone={reviewItems ? "amber" : "green"} />
+          <Metric label="错误" value={String(validationErrors)} tone={validationErrors ? "red" : "green"} />
         </section>
 
         <section className="report-grid">
-          <ReportPanel title="Mapping Evidence" icon={<ClipboardList size={18} />}>
+          <ReportPanel title="Mapping 证据" icon={<ClipboardList size={18} />}>
             <MappingEvidencePanel report={mapping} />
           </ReportPanel>
 
-          <ReportPanel title="Validation Issues" icon={<CheckCircle2 size={18} />}>
+          <ReportPanel title="Validation 问题" icon={<CheckCircle2 size={18} />}>
             <ValidationIssuePanel report={validation} />
           </ReportPanel>
 
-          <ReportPanel title="Chunk Evidence" icon={<FileJson size={18} />}>
+          <ReportPanel title="Chunk 证据" icon={<FileJson size={18} />}>
             <ChunkEvidencePanel report={chunks} />
           </ReportPanel>
 
@@ -543,7 +543,7 @@ function App() {
             <PackageManifestPanel manifest={manifest} verifier={verifier} />
           </ReportPanel>
 
-          <ReportPanel title="Downstream Readiness" icon={<Package size={18} />}>
+          <ReportPanel title="下游就绪度" icon={<Package size={18} />}>
             <DownstreamReadinessPanel
               manifest={manifest}
               chunks={chunks}
@@ -551,7 +551,7 @@ function App() {
             />
           </ReportPanel>
 
-          <ReportPanel title="Knowledge Comparison" icon={<Tags size={18} />}>
+          <ReportPanel title="Knowledge 对比" icon={<Tags size={18} />}>
             <KnowledgeComparisonPanel result={knowledgeLoop} />
           </ReportPanel>
 
@@ -563,8 +563,8 @@ function App() {
                     <span>{sourceName(item)}</span>
                     <strong>{String(item.target_field_id)}</strong>
                     <em>{String(item.confidence_tier ?? item.method)}</em>
-                    <small>{String(item.status ?? "accepted")}</small>
-                    <TagList label="Risk" values={asStringList(item.risk_flags)} />
+                    <small>{displayStatus(String(item.status ?? "accepted"))}</small>
+                    <TagList label="风险" values={asStringList(item.risk_flags)} />
                     <details className="mapping-evidence">
                       <summary>{String(item.method)}</summary>
                       <EvidenceList item={item} />
@@ -580,18 +580,18 @@ function App() {
                         </strong>
                         <span>
                           {String(item.confidence_tier ?? "low")} /{" "}
-                          {String(item.review_required_reason ?? "review required")}
+                          {String(item.review_required_reason ?? "需要 Review")}
                         </span>
-                        <TagList label="Risk" values={asStringList(item.risk_flags)} />
+                        <TagList label="风险" values={asStringList(item.risk_flags)} />
                         <EvidenceList item={item} />
                       </div>
                     ))}
                   </div>
                 ) : null}
-                <JsonDetails title="Raw Mapping JSON" data={mapping} />
+                <JsonDetails title="原始 Mapping JSON" data={mapping} />
               </div>
             ) : (
-              <EmptyState text="No mapping report" />
+              <EmptyState text="暂无 Mapping 报告" />
             )}
           </ReportPanel>
 
@@ -599,7 +599,7 @@ function App() {
             {validation ? (
               <div className="validation-block">
                 <div className={validation.passed ? "pass-line" : "fail-line"}>
-                  {validation.passed ? "Passed" : "Needs attention"}
+                  {validation.passed ? "已通过" : "需要处理"}
                 </div>
                 {validation.issues.length ? (
                   validation.issues.slice(0, 8).map((issue, index) => (
@@ -609,59 +609,59 @@ function App() {
                     </div>
                   ))
                 ) : (
-                  <p className="quiet">No validation issues.</p>
+                  <p className="quiet">暂无 Validation 问题。</p>
                 )}
-                <JsonDetails title="Raw Validation JSON" data={validation} />
+                <JsonDetails title="原始 Validation JSON" data={validation} />
               </div>
             ) : (
-              <EmptyState text="No validation report" />
+              <EmptyState text="暂无 Validation 报告" />
             )}
           </ReportPanel>
 
-          <ReportPanel title="Content Organization" icon={<Tags size={18} />}>
+          <ReportPanel title="内容组织" icon={<Tags size={18} />}>
             {contentOrg ? (
               <div className="content-org-block">
                 <div className="content-org-summary">
                   <Metric label="Chunks" value={String(contentOrg.chunk_count)} />
                   <Metric
-                    label="Summary"
+                    label="摘要"
                     value={coverageText(contentOrg.chunks_with_summary, contentOrg.chunk_count)}
                     tone={contentOrg.chunks_with_summary ? "green" : "amber"}
                   />
                   <Metric
-                    label="Keywords"
+                    label="关键词"
                     value={coverageText(contentOrg.chunks_with_keywords, contentOrg.chunk_count)}
                     tone={contentOrg.chunks_with_keywords ? "green" : "amber"}
                   />
                   <Metric
-                    label="Links"
+                    label="链接"
                     value={coverageText(contentOrg.chunks_with_source_links, contentOrg.chunk_count)}
                     tone={contentOrg.chunks_with_source_links ? "green" : "amber"}
                   />
                 </div>
                 <TagList
-                  label="Content Tags"
+                  label="内容标签"
                   values={Object.keys(contentOrg.summary.content_tag_counts ?? {})}
                 />
                 <TagList
-                  label="Quality Tags"
+                  label="质量标签"
                   values={Object.keys(contentOrg.summary.quality_tag_counts ?? {})}
                 />
                 {contentOrg.warnings.length ? (
                   <p className="quiet">{contentOrg.warnings.join(", ")}</p>
                 ) : null}
-                <JsonDetails title="Raw Content Organization JSON" data={contentOrg} />
+                <JsonDetails title="原始内容组织 JSON" data={contentOrg} />
               </div>
             ) : (
-              <EmptyState text="No content organization report" />
+              <EmptyState text="暂无内容组织报告" />
             )}
           </ReportPanel>
 
-          <ReportPanel title="Chunk Preview" icon={<FileJson size={18} />}>
+          <ReportPanel title="Chunk 预览" icon={<FileJson size={18} />}>
             {chunks ? (
               <div className="chunk-preview-block">
                 <p className="quiet">
-                  Showing first {Math.min(chunks.items.length, 4)} of {chunks.total} chunks.
+                  显示前 {Math.min(chunks.items.length, 4)} 个，共 {chunks.total} 个 chunks。
                 </p>
                 {chunks.items.slice(0, 4).map((chunk) => (
                   <div className="chunk-card" key={chunk.chunk_id}>
@@ -672,35 +672,35 @@ function App() {
                     <div className="chunk-meta">
                       <span>{chunk.granularity ?? "chunk"}</span>
                       <span>{chunk.token_estimate ?? 0} tokens</span>
-                      <span>{chunk.char_count ?? chunk.text.length} chars</span>
+                      <span>{chunk.char_count ?? chunk.text.length} 字符</span>
                     </div>
                     {chunk.parent_chunk_id ? (
-                      <small>Parent: {chunk.parent_chunk_id}</small>
+                       <small>父 Chunk: {chunk.parent_chunk_id}</small>
                     ) : null}
                     {chunk.title_path?.length ? (
-                      <small>Title: {chunk.title_path.join(" / ")}</small>
+                       <small>标题路径: {chunk.title_path.join(" / ")}</small>
                     ) : null}
                     <p>{chunk.summary || chunk.text.slice(0, 180)}</p>
-                    <TagList label="Keywords" values={chunk.keywords ?? []} />
+                    <TagList label="关键词" values={chunk.keywords ?? []} />
                     <TagList
-                      label="Content"
+                      label="内容"
                       values={chunk.content_tags ?? chunk.tags?.content ?? []}
                     />
                     <TagList
-                      label="Quality"
+                      label="质量"
                       values={chunk.quality_flags?.length ? chunk.quality_flags : chunk.quality_tags ?? chunk.tags?.quality ?? []}
                     />
                     <small>
-                      Sources:{" "}
+                      来源:{" "}
                       {(chunk.source_block_ids ?? []).join(", ") ||
-                        `${chunk.source_links?.length ?? 0} links`}
+                        `${chunk.source_links?.length ?? 0} 个链接`}
                     </small>
                   </div>
                 ))}
-                <JsonDetails title="Raw Chunks JSON" data={chunks} />
+                <JsonDetails title="原始 Chunks JSON" data={chunks} />
               </div>
             ) : (
-              <EmptyState text="No chunks preview" />
+              <EmptyState text="暂无 Chunk 预览" />
             )}
           </ReportPanel>
 
@@ -710,8 +710,8 @@ function App() {
                 <div className="package-id">{pkg.package_id}</div>
                 <dl>
                   <div>
-                    <dt>Status</dt>
-                    <dd>{pkg.status}</dd>
+                    <dt>状态</dt>
+                    <dd>{displayStatus(pkg.status)}</dd>
                   </div>
                   <div>
                     <dt>SHA-256</dt>
@@ -721,33 +721,33 @@ function App() {
                 {taskId ? (
                   <a className="download-link" href={api.packageDownloadUrl(taskId)}>
                     <Package size={17} />
-                    Download ZIP
+                    下载 ZIP
                   </a>
                 ) : null}
               </div>
             ) : (
-              <EmptyState text="No package" />
+              <EmptyState text="暂无 Package" />
             )}
           </ReportPanel>
 
-          <ReportPanel title="Audit Logs" icon={<ClipboardList size={18} />}>
+          <ReportPanel title="Audit 日志" icon={<ClipboardList size={18} />}>
             {auditLogs.length ? (
               <div className="audit-list">
                 {auditLogs.slice(0, 6).map((log) => (
                   <div className="audit-row" key={log.audit_id}>
                     <strong>{log.action}</strong>
-                    <span>{log.success ? "success" : "failed"}</span>
+                    <span>{log.success ? "成功" : "失败"}</span>
                     <small>{log.path ?? "-"}</small>
                     <JsonDetails title="Metadata" data={log.metadata} />
                   </div>
                 ))}
               </div>
             ) : (
-              <EmptyState text="No audit logs" />
+              <EmptyState text="暂无 Audit 日志" />
             )}
           </ReportPanel>
 
-          <ReportPanel title="Review Queue" icon={<ClipboardList size={18} />}>
+          <ReportPanel title="Review 队列" icon={<ClipboardList size={18} />}>
             {reviews.length ? (
               <div className="review-list">
                 {reviews.slice(0, 6).map((review) => (
@@ -764,21 +764,21 @@ function App() {
                         onClick={() => void approveReview(review.review_id)}
                         disabled={working}
                       >
-                        Approve
+                        通过
                       </button>
                       <button
                         type="button"
                         onClick={() => void rejectReview(review.review_id)}
                         disabled={working}
                       >
-                        Reject
+                        拒绝
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <EmptyState text="No pending reviews" />
+              <EmptyState text="暂无待处理 Review" />
             )}
           </ReportPanel>
 
@@ -786,22 +786,22 @@ function App() {
             <div className="knowledge-block">
               <div className="content-org-summary">
                 <Metric
-                  label="Candidates"
+                  label="候选"
                   value={String(knowledgeMetrics?.pending_candidates ?? 0)}
                   tone={(knowledgeMetrics?.pending_candidates ?? 0) ? "amber" : "neutral"}
                 />
                 <Metric
-                  label="Accepted"
+                  label="已接受"
                   value={String(knowledgeMetrics?.accepted_candidates ?? 0)}
                   tone={(knowledgeMetrics?.accepted_candidates ?? 0) ? "green" : "neutral"}
                 />
                 <Metric
-                  label="Draft"
+                  label="草稿"
                   value={String(knowledgeMetrics?.draft_packs ?? 0)}
                   tone={(knowledgeMetrics?.draft_packs ?? 0) ? "amber" : "neutral"}
                 />
                 <Metric
-                  label="Active"
+                  label="已激活"
                   value={String(knowledgeMetrics?.active_packs ?? 0)}
                   tone={(knowledgeMetrics?.active_packs ?? 0) ? "green" : "neutral"}
                 />
@@ -820,7 +820,7 @@ function App() {
                           onClick={() => void acceptCandidate(candidate.candidate_id)}
                           disabled={working}
                         >
-                          Accept
+                          接受
                         </button>
                       </div>
                     ))}
@@ -831,21 +831,21 @@ function App() {
                 onClick={() => void createKnowledgePack()}
                 disabled={working || !knowledgeCandidates.some((candidate) => candidate.status === "accepted")}
               >
-                Create Pack
+                创建 Pack
               </button>
               {knowledgePacks.length ? (
                 <div className="knowledge-list">
                   {knowledgePacks.slice(0, 5).map((pack) => (
                     <div className="knowledge-row" key={pack.pack_id}>
                       <span>{pack.name}</span>
-                      <strong>{pack.status}</strong>
+                      <strong>{displayStatus(pack.status)}</strong>
                       {pack.status === "draft" ? (
                         <button
                           type="button"
                           onClick={() => void activateKnowledgePack(pack.pack_id)}
                           disabled={working}
                         >
-                          Activate
+                          激活
                         </button>
                       ) : null}
                     </div>
@@ -1000,7 +1000,27 @@ function JsonDetails({ title, data }: { title: string; data: unknown }) {
 }
 
 function StatusBadge({ status }: { status: string }) {
-  return <div className={`status-badge status-${status}`}>{status}</div>;
+  return <div className={`status-badge status-${status}`}>{displayStatus(status)}</div>;
+}
+
+function displayStatus(status: string) {
+  const labels: Record<string, string> = {
+    idle: "空闲",
+    loading: "加载中",
+    ready: "就绪",
+    working: "处理中",
+    error: "错误",
+    pending: "待处理",
+    accepted: "已接受",
+    rejected: "已拒绝",
+    draft: "草稿",
+    active: "已激活",
+    archived: "已归档",
+    completed: "已完成",
+    failed: "失败",
+    success: "成功"
+  };
+  return labels[status] ?? status;
 }
 
 function sourceName(item: Record<string, any>) {
@@ -1016,7 +1036,7 @@ function coverageText(count: number, total: number) {
 }
 
 function errorMessage(caught: unknown) {
-  return caught instanceof Error ? caught.message : "Unexpected error";
+  return caught instanceof Error ? caught.message : "发生未知错误";
 }
 
 export default App;

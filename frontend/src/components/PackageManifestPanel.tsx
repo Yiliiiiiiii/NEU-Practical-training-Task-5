@@ -8,17 +8,17 @@ export type PackageManifestPanelProps = {
 
 export function PackageManifestPanel({ manifest, verifier }: PackageManifestPanelProps) {
   if (!manifest) {
-    return <div className="empty-state">No package manifest yet.</div>;
+    return <div className="empty-state">暂无 Package Manifest。</div>;
   }
   const files = mergeManifestVerification(manifest, verifier);
   return (
     <div className="evidence-panel manifest-panel">
       <div className={verifier?.passed ? "pass-line" : "fail-line"}>
-        {verifier?.passed ? "Verifier passed" : "Verifier unavailable or failed"}
+        {verifier?.passed ? "Verifier 已通过" : "Verifier 不可用或未通过"}
       </div>
       <table>
         <thead>
-          <tr><th>Path</th><th>Size</th><th>SHA-256</th><th>Verified</th></tr>
+          <tr><th>路径</th><th>大小</th><th>SHA-256</th><th>验证</th></tr>
         </thead>
         <tbody>
           {files.map((file) => (
@@ -31,7 +31,7 @@ export function PackageManifestPanel({ manifest, verifier }: PackageManifestPane
                   <code>{file.sha256}</code>
                 </details>
               </td>
-              <td>{file.verified ? "yes" : "review"}</td>
+              <td>{file.verified ? "是" : "待 Review"}</td>
             </tr>
           ))}
         </tbody>

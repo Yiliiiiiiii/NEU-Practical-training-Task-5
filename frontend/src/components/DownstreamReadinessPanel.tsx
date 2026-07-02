@@ -12,7 +12,7 @@ export function DownstreamReadinessPanel({
   verifier
 }: DownstreamReadinessPanelProps) {
   if (!manifest) {
-    return <div className="empty-state">Execute a task to inspect downstream readiness.</div>;
+    return <div className="empty-state">执行 Task 后可查看下游就绪度。</div>;
   }
   const paths = new Set(manifest.files.map((file) => file.path));
   const csvReady = paths.has("content.json") || paths.has("canonical.json");
@@ -29,18 +29,18 @@ export function DownstreamReadinessPanel({
       <div className="readiness-grid">
         <ReadinessItem
           ready={csvReady}
-          label={csvReady ? "CSV ready" : "CSV blocked"}
-          detail="Structured business-system import"
+          label={csvReady ? "CSV 已就绪" : "CSV 未就绪"}
+          detail="结构化业务系统导入"
         />
         <ReadinessItem
           ready={ragReady}
-          label={ragReady ? "RAG ready" : "RAG review"}
-          detail={`${chunks?.total ?? 0} source-linked chunks`}
+          label={ragReady ? "RAG 已就绪" : "RAG 待 Review"}
+          detail={`${chunks?.total ?? 0} 个带来源链接的 chunks`}
         />
         <ReadinessItem
           ready={contractPassed}
-          label={contractPassed ? "Contract passed" : "Contract pending"}
-          detail="Manifest, hashes, and required artifacts"
+          label={contractPassed ? "契约已通过" : "契约待验证"}
+          detail="Manifest、哈希与必需产物"
         />
       </div>
       <p className="quiet">

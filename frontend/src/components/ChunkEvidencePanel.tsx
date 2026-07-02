@@ -22,32 +22,32 @@ export function ChunkEvidencePanel({ report }: ChunkEvidencePanelProps) {
   );
   const chunks = filterChunks(report?.items ?? [], { strategy, tablesOnly, flaggedOnly });
   if (!report) {
-    return <div className="empty-state">No chunk evidence yet.</div>;
+    return <div className="empty-state">暂无 Chunk 证据。</div>;
   }
   return (
     <div className="evidence-panel chunk-evidence-panel">
       <div className="filter-bar">
         <select value={strategy} onChange={(event) => setStrategy(event.target.value)}>
-          <option value="all">all strategies</option>
+          <option value="all">全部策略</option>
           {strategies.map((item) => <option key={item} value={item}>{item}</option>)}
         </select>
-        <label><input type="checkbox" checked={tablesOnly} onChange={(event) => setTablesOnly(event.target.checked)} /> tables</label>
-        <label><input type="checkbox" checked={flaggedOnly} onChange={(event) => setFlaggedOnly(event.target.checked)} /> flagged</label>
+        <label><input type="checkbox" checked={tablesOnly} onChange={(event) => setTablesOnly(event.target.checked)} /> 仅表格</label>
+        <label><input type="checkbox" checked={flaggedOnly} onChange={(event) => setFlaggedOnly(event.target.checked)} /> 仅标记项</label>
       </div>
-      <p className="quiet">Showing {chunks.length} of {report.total} chunks.</p>
+      <p className="quiet">显示 {chunks.length} 个，共 {report.total} 个 chunks。</p>
       {chunks.slice(0, 8).map((chunk) => (
         <details className="chunk-card" key={chunk.chunk_id}>
           <summary>
             <strong>{chunk.chunk_id}</strong>
             <span>{chunk.strategy ?? "legacy"} / {chunk.granularity ?? "chunk"}</span>
           </summary>
-          {chunk.parent_chunk_id ? <small>Parent: {chunk.parent_chunk_id}</small> : null}
+          {chunk.parent_chunk_id ? <small>父 Chunk: {chunk.parent_chunk_id}</small> : null}
           <p>{chunk.summary || chunk.text.slice(0, 260)}</p>
           <div className="pill-row">
             {(chunk.content_tags ?? chunk.tags?.content ?? []).map((tag) => <span key={tag}>{tag}</span>)}
             {(chunk.quality_flags?.length ? chunk.quality_flags : chunk.quality_tags ?? []).map((tag) => <span key={tag}>{tag}</span>)}
           </div>
-          <small>Sources: {(chunk.source_block_ids ?? []).join(", ") || "none"}</small>
+          <small>来源: {(chunk.source_block_ids ?? []).join(", ") || "无"}</small>
         </details>
       ))}
     </div>
