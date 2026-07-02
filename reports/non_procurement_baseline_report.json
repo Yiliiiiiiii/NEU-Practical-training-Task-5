@@ -1,0 +1,11 @@
+{
+  "dataset_size": 30,
+  "non_procurement_dataset_size": 20,
+  "strict_pass_count": 4,
+  "required_missing_count": 18,
+  "review_required_count": 145,
+  "average_recall": 0.3494047619047619,
+  "badcase_violation_count": 0,
+  "package_verify_pass_count": 20,
+  "source_report": "reports/non_procurement_doc_eval_report.json"
+}
