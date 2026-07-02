@@ -16,6 +16,19 @@ class TransformResult:
 
 
 class TransformService:
+    SPLIT_ARRAY_FIELDS = {
+        "attendees",
+        "departments",
+        "participants",
+        "responsible_departments",
+        "responsible_units",
+        "policy_measures",
+        "application_materials",
+        "process_steps",
+        "topics",
+        "decisions",
+    }
+
     def transform(
         self,
         task_id: str,
@@ -117,7 +130,15 @@ class TransformService:
         if field.type.startswith("array"):
             if isinstance(value, list):
                 return value, None
+            if (
+                isinstance(value, str)
+                and field.type == "array[string]"
+                and field.field_id in self.SPLIT_ARRAY_FIELDS
+            ):
+                return self._split_array_string(value), None
             return [value], None
+        if field.field_id == "contact" and isinstance(value, str):
+            return self._normalize_contact(value), None
         return value, None
 
     @staticmethod
@@ -130,16 +151,42 @@ class TransformService:
                 "message": "Date field value is not a string.",
             }
         stripped = value.strip()
+        match = re.fullmatch(
+            r"(\d{4})\s*(?:[-/.]|年)\s*(\d{1,2})\s*(?:[-/.]|月)\s*(\d{1,2})\s*(?:日)?",
+            stripped,
+        )
+        if match:
+            year, month, day = match.groups()
+            return TransformService._format_date(value, field, year, month, day)
         match = re.fullmatch(r"(\d{4})[-/年](\d{1,2})[-/月](\d{1,2})(?:日)?", stripped)
         if match:
             year, month, day = match.groups()
-            return f"{year}-{int(month):02d}-{int(day):02d}", None
+            return TransformService._format_date(value, field, year, month, day)
         return value, {
             "field_id": field.field_id,
             "level": "error",
             "code": "date_format_error",
             "message": "Date field value does not match a supported date format.",
         }
+
+    @staticmethod
+    def _format_date(
+        original: Any,
+        field: TargetField,
+        year: str,
+        month: str,
+        day: str,
+    ) -> tuple[Any, dict[str, Any] | None]:
+        try:
+            normalized = datetime(int(year), int(month), int(day))
+        except ValueError:
+            return original, {
+                "field_id": field.field_id,
+                "level": "error",
+                "code": "date_format_error",
+                "message": "Date field value does not match a supported date format.",
+            }
+        return normalized.strftime("%Y-%m-%d"), None
 
     @staticmethod
     def _normalize_number(value: Any, field: TargetField) -> tuple[Any, dict[str, Any] | None]:
@@ -208,3 +255,15 @@ class TransformService:
         if field.type == "enum":
             return "enum_map"
         return "rename"
+
+    @staticmethod
+    def _split_array_string(value: str) -> list[str]:
+        return [
+            item.strip()
+            for item in re.split(r"[、,，;；\n]+", value)
+            if item.strip()
+        ]
+
+    @staticmethod
+    def _normalize_contact(value: str) -> str:
+        return re.sub(r"\s*-\s*", "-", value.strip())
