@@ -37,10 +37,12 @@ $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $backendPython = Join-Path $repoRoot "backend\.venv\Scripts\python.exe"
 $frontendDir = Join-Path $repoRoot "frontend"
 $frontendPackageJson = Join-Path $frontendDir "package.json"
+$frontendVite = Join-Path $frontendDir "node_modules\.bin\vite.cmd"
 $frontendUrl = "http://127.0.0.1:$FrontendPort/"
 
 Assert-PathExists $backendPython "Create the backend virtualenv and install backend dependencies first."
 Assert-PathExists $frontendPackageJson "Check that the frontend directory exists. Run npm ci in frontend before first use."
+Assert-PathExists $frontendVite "Run npm ci in frontend before first use."
 
 $backendBusy = Test-PortListening $BackendPort
 $frontendBusy = Test-PortListening $FrontendPort
@@ -56,6 +58,7 @@ if ($frontendBusy) {
 $quotedRepoRoot = Quote-ForPowerShell $repoRoot
 $quotedBackendPython = Quote-ForPowerShell $backendPython
 $quotedFrontendDir = Quote-ForPowerShell $frontendDir
+$quotedFrontendVite = Quote-ForPowerShell $frontendVite
 
 $backendCommand = "Set-Location -LiteralPath $quotedRepoRoot; " +
   "Write-Host 'Backend API: http://127.0.0.1:$BackendPort' -ForegroundColor Cyan; " +
@@ -63,7 +66,7 @@ $backendCommand = "Set-Location -LiteralPath $quotedRepoRoot; " +
 
 $frontendCommand = "Set-Location -LiteralPath $quotedFrontendDir; " +
   "Write-Host 'Frontend workbench: http://127.0.0.1:$FrontendPort' -ForegroundColor Cyan; " +
-  "npm run dev -- --port $FrontendPort"
+  "& $quotedFrontendVite --host 127.0.0.1 --port $FrontendPort"
 
 if ($DryRun) {
   Write-Step "Dry run: no windows will be opened."
