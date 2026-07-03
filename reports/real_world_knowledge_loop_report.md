@@ -4,8 +4,8 @@
 
 | Stage | Auto mapped | Review required | Missing required |
 | --- | ---: | ---: | ---: |
-| Before | 6 | 5 | 1 |
-| After | 7 | 4 | 0 |
+| Before | 7 | 3 | 1 |
+| After | 8 | 2 | 0 |
 
 ## Decision evidence
 

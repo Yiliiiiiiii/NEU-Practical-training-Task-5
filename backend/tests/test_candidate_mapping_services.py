@@ -281,19 +281,39 @@ def test_mapping_service_marks_fuzzy_low_confidence_as_review_required():
     }
     assert ("通知名称", "title") in review_pairs
     assert ("制定主体", "issuer") in review_pairs
-    accepted_pairs = {
-        (item["source_field"]["source_name"], item["target_field_id"], item["method"])
-        for item in report.mappings
-    }
-    assert ("成文日期", "publish_date", "alias") in accepted_pairs
-    assert ("成文日期", "effective_date") in review_pairs
+    assert ("成文日期", "publish_date") in review_pairs
+    assert ("成文日期", "effective_date") not in review_pairs
     first_review = report.review_required_items[0]
     assert first_review["status"] == "review_required"
     assert first_review["confidence_tier"] == "low"
     assert "fuzzy_match" in first_review["risk_flags"]
     assert first_review["review_required_reason"]
     assert any(item["type"] == "fuzzy_match" for item in first_review["evidence"])
-    assert report.summary["strategy_counts"]["fuzzy"] >= 3
+    assert report.summary["strategy_counts"]["fuzzy"] == 4
+
+
+def test_mapping_service_ignores_weak_fuzzy_noise_below_review_threshold():
+    from app.services.candidate_service import CandidateService
+    from app.services.mapping_service import MappingService
+
+    uir = load_uir("policy/policy_002_alias_variants.json")
+    schema = load_schema("policy_doc")
+    template = load_template("policy_doc_base_v1")
+    candidates = CandidateService().extract_candidates("task_weak_fuzzy", uir)
+
+    report = MappingService().map_fields(
+        task_id="task_weak_fuzzy",
+        uir=uir,
+        schema=schema,
+        template=template,
+        candidates=candidates,
+    )
+
+    assert not any(
+        item["source_field"]["source_name"] == "正文"
+        and item["target_field_id"] == "doc_type"
+        for item in report.review_required_items
+    )
 
 
 def test_mapping_service_records_unmapped_required_fields():

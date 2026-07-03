@@ -14,6 +14,7 @@ from app.services.llm_fallback_service import LLMFallbackService
 
 class MappingService:
     REVIEW_CONFIDENCE = 0.62
+    MIN_FUZZY_REVIEW_SCORE = 0.55
 
     def __init__(self, llm_fallback_service: LLMFallbackService | None = None) -> None:
         self.llm_fallback_service = llm_fallback_service or LLMFallbackService()
@@ -306,7 +307,7 @@ class MappingService:
                 best_candidate = candidate
                 best_score = score
 
-        if best_candidate is None or best_score < 0.45:
+        if best_candidate is None or best_score < self.MIN_FUZZY_REVIEW_SCORE:
             return None
         return self._mapping(
             task_id,

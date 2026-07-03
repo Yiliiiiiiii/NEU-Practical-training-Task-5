@@ -1,0 +1,947 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "沪科指南〔2026〕4号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "为深入实施创新驱动发展战略，加快建成具有全球影响力的科技创新高地，上海市科学技术委员会特发布2026年度关键技术研发计划“细胞与基因治疗”项目申报指南。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、征集范围",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题一、基于新靶点新机制的临床前研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1.基于新型逆转录酶系统的基因编辑新机制与治疗新策略研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：阐明新型逆转录酶系统在基因编辑中的高效逆转录、模板编码及精准整合机制，构建不依赖病毒载体的基因定点插入平台，开发靶向肝细胞和免疫细胞的基因治疗临床前候选药物，获得临床前安全性和有效性评价报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：挖掘并改造Retron、R2等新型逆转录酶，构建新型CRISPR-逆转录酶融合系统，在哺乳动物细胞中实现大于1kb大片段基因序列的可编程定点插入，效率不低于50%。系统评价其脱靶性、随机整合等安全性指标。面向代谢性疾病、自身免疫病、肿瘤等适应症，开发基于新型逆转录酶系统的基因治疗临床前候选药物，并在具有临床价值的实验动物模型中评估其安全性和有效性。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "执行期限：2026年7月1日至2029年6月30日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每项资助额度不超过100万元，自筹经费与申请资助经费的比例不低于1:1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体：本市企业，或本市高校院所联合本市企业申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2.免疫调控、细胞焦亡等相关靶标基因治疗药物成药性研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对免疫调控、细胞焦亡等相关靶标，开发晚期实体瘤治疗临床前候选药物，获得临床前安全性和有效性评价报告。建立临床批次生产工艺，获得生产和质检报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：基于前期研究成果，完成免疫调控、细胞焦亡等细胞因子的工程化改造，开发基于溶瘤病毒的临床前候选药物，并在具有临床价值的实验动物模型中验证其安全性和有效性。开展病毒培养、收集、纯化、灌装工艺研究，获得临床研究批次候选药物。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体：本市企业。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题二、关键技术开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）体内CAR-T领域",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1.基于慢病毒载体的体内CAR-T技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：构建具有自主知识产权的体内慢病毒载体平台，开发基于慢病毒载体的体内CAR-T技术，并在具有临床价值的实验动物模型中验证其安全性和有效性。建立临床批次产品生产工艺体系，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发不依赖VSV-G包膜假型化的慢病毒载体，强化T细胞特异性靶向递送和胞内表达能力，优化体内CAR-T技术的安全性、特异性及活性。开发慢病毒稳转细胞株技术，降低基于慢病毒载体的体内CAR-T产品生产成本。开发相应的复制型慢病毒、抗药抗体等检测方法。面向血液瘤、实体瘤、自身免疫病等适应症，开展基于慢病毒载体的体内CAR-T治疗，评价其临床药代动力学和药效动力学，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每项资助额度不超过200万元，自筹经费与申请资助经费的比例不低于2:1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2.基于靶向脂质纳米粒的体内CAR-T技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：构建具有自主知识产权的T细胞靶向脂质纳米粒（tLNP）载体技术平台，开发基于mRNA-tLNP的体内CAR-T技术，并在具有临床价值的实验动物模型中验证其安全性和有效性。优化放大生产工艺和质量控制体系，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发可离子化脂质体、生物正交连接子、抗体-LNP定点偶联、肝脏隐身配方等技术，构建T细胞靶向LNP载体递送体系，实现高效、精准靶向T细胞递送，降低脱靶率。通过非翻译区调控、密码子优化、核苷酸修饰等方法，提高mRNA体内翻译效率和表达持续性。建立规模化、可放大的tLNP可控制备工艺和质量控制体系，验证批次间一致性与稳定性。在细胞、动物等模型中验证其安全性和有效性。面向血液瘤、自身免疫病等适应症，开展基于tLNP的体内CAR-T治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3.基于病毒样颗粒的体内CAR-T技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：搭建具有自主知识产权的非随机整合、定点敲入型体内CAR-T技术平台，开发基于病毒样颗粒（VLP）的体内CAR-T技术，并在具有临床价值的实验动物模型中验证其安全性和有效性。开发VLP包装生产工艺，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：基于慢病毒骨架结构，通过包膜蛋白修饰、T细胞特异性启动子门控开关等方法，开发靶向T细胞的一步式定点基因敲入体系，具备携带基因编辑工具和敲入基因模板能力。设计优化嵌合膜蛋白基因序列，提升初始CAR-T细胞激活和扩增能力。筛选VLP包装单克隆细胞株，稳定提升产能。开发定点插入体内CAR-T技术，提升CAR-T细胞抗耗竭能力。建立初步VLP载体生产工艺。完成毒理、药效等临床前研究。面向血液瘤等适应症，开展基于VLP的体内CAR-T治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过1个项目，每项资助额度不超过200万元，自筹经费与申请资助经费的比例不低于2:1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）肿瘤治疗性疫苗领域",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向4.mRNA肿瘤治疗性疫苗技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：设计具有自主知识产权的mRNA肿瘤疫苗骨架序列，构建中国人群肿瘤新抗原预测模型，开发个性化mRNA肿瘤治疗性疫苗技术，并在具有临床价值的动物模型中验证其安全性和有效性，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：优化mRNA肿瘤疫苗骨架结构，提升肿瘤新抗原在炎症微环境中的稳定表达和递呈，并评估其安全性和有效性。通过免疫肽段质谱LC-MS检测等方法，建立中国人群高频HLA和肽段配对的训练数据集；构建细胞抗原递呈筛选系统，建立肿瘤中高频突变与HLA的对应关系，完成肿瘤新抗原预测模型，突破体内免疫原性预测技术。开展LNP关键工艺验证和佐剂效应研究，完成工艺放大。面向胰腺癌、肝癌等实体瘤，开展术后序贯个性化mRNA肿瘤疫苗治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向5.树突细胞（DC）肿瘤治疗性疫苗技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发自主知识产权的DC肿瘤治疗性疫苗技术，并在具有临床价值的动物模型中验证其安全性和有效性。构建DC疫苗一体化制备工艺与质控体系，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：构建自体DC体外诱导、分化与成熟技术平台，挖掘肿瘤新抗原、筛选新型自佐剂，优化培养体系与激活信号，使其高水平、稳定表达MHCI/II分子、共刺激分子、细胞/趋化因子等，提升其抗原递呈与肿瘤免疫微环境改善能力。建立DC采集制备标准化流程，以及纯度、表型、安全性、功能性等关键质量属性检测方法，完成批次间一致性与可靠性评价。开发体外DC-T细胞共培养体系、活化T细胞肿瘤杀伤功能评估方法，完成动物水平毒理、药理研究。面向胰腺癌、乳腺癌等实体瘤，开展DC肿瘤疫苗治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）其他领域",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向6.长效修饰mRNA技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发具有自主知识产权的长效修饰mRNA技术，并在具有临床价值的动物模型中验证其安全性与有效性。建立稳定的克级制备工艺，实现无需额外纯化的一步法修饰反应，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发针对poly(A)结构的长效mRNA修饰技术，稳定性不低于环状RNA，提升蛋白表达效率1个数量级。优化mRNA合成修饰、纯化及制剂成型等关键工艺，提升修饰效率和产物均一性。建立全流程分析方法与质量控制体系，完成中试克级工艺放大。在非人灵长类动物模型中完成长效修饰mRNA的药代动力学、药效学、毒性等临床前评价。面向代谢性疾病、自身免疫病等适应症，开展基于长效修饰mRNA的基因治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向7.体内细胞重编程技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发具有自主知识产权的体内细胞重编程技术，并在具有临床价值的动物模型中验证其安全性和有效性，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：构建转化因子和病毒载体技术平台，筛选转录、表观遗传、小RNA等体内细胞重编程因子组合，改造优化序列元件，提升其在靶细胞中的特异性表达水平和效率。构建病毒载体技术平台，开发靶向视网膜、中枢神经等组织的递送系统。完成动物水平毒理、药效评价，建立制备工艺和质控体系。面向视网膜退行性疾病、神经退行性疾病等适应症，开展基于体内细胞重编程的基因治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向8.新型TCR-T技术",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：建立中国人群高频HLA限制性的新型肿瘤抗原及其对应的TCR资源库，开发具有自主知识产权的新型TCR-T技术，降低其脱靶毒性，并在具有临床价值的动物模型中验证其安全性和有效性，获得早期临床验证报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：针对中国人群主要HLA分型和常见肿瘤新抗原蛋白，鉴定全新肿瘤抗原肽序列。通过肿瘤新抗原刺激，高通量筛选低脱靶性、高亲和力的TCR。通过病毒载体制备TCR-T，并评估其对肿瘤细胞的杀伤活性、细胞因子释放、增殖能力，以及耗竭标志物表达。完成其脱靶毒性、肿瘤清除效果、体内持久性、浸润能力等临床前研究。面向胰腺癌、大肠癌、肝癌、鼻咽癌、黑色素瘤等实体瘤，开展TCR-T治疗，完成早期临床验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题三、产品集中攻关",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）异体通用型免疫细胞领域",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1.自身免疫病异体通用型CAR-T产品开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发具有自主知识产权的异体通用型CAR-T技术，提升持续性、降低不良反应。优化基因编辑技术，提升细胞质量和产量。建立符合现行GMP的生产工艺。针对自身免疫病适应症，获得IND批件，完成探索性和关键性临床试验，并取得总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：构建异体通用型CAR-T平台，实施多层次免疫调控策略，精细化调控组织相容性复合体、免疫检查点等，降低异体免疫排斥，完成CAR-T存活时间、异体免疫激活水平、免疫相关毒性等临床前研究。筛选改造CAR-T信号结构域，促进长效杀伤性CAR-T细胞的富集与功能维持，并在动物模型中验证其抗耗竭能力、体内持续性及抗原特异性杀伤效果。建立高活性、高转导效率、高敲除效率和高安全性的通用CAR-T制备工艺。开展异体通用型CAR-T免疫细胞治疗自身免疫病，完成探索性和关键性临床试验。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "里程碑：立项后18个月内，完成探索性临床试验并获得总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每项资助额度不超过500万元，自筹经费与申请资助经费的比例不低于2:1。立项后拨付专项资助经费60%，完成里程碑并通过评估拨付专项资助经费20%，通过验收拨付专项资助经费20%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体：本市企业牵头，联合本市高校院所和/或本市三级甲等医疗机构共同申报（须扫描上传盖章的正式合作协议）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2.异体通用型CAR-NKT产品开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发具有自主知识产权的异体通用型CAR-NKT产品，建立符合现行GMP要求的生产工艺体系。针对血液瘤、自身免疫病、肾病等适应症，获得IND批件，完成探索性和关键性临床试验，并取得总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：基于多能干细胞等来源，获得NKT细胞，并通过多重基因编辑降低其免疫原性，构建通用型底盘免疫细胞。针对血液瘤、自身免疫病、肾病靶点设计CAR序列，开发异体通用型CAR-NKT产品，并在具有临床价值的动物模型中完成安全性和有效性评价。建立封闭式自动化生产工艺，完成工艺验证。开展异体通用型CAR-NKT免疫细胞治疗，完成探索性和关键性临床试验。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过1个项目，每项资助额度不超过500万元，自筹经费与申请资助经费的比例不低于2:1。立项后拨付专项资助经费60%，完成里程碑并通过评估拨付专项资助经费20%，通过验收拨付专项资助经费20%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）体内基因编辑领域",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3.体内DNA基因编辑产品开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：基于具有自主知识产权的新型基因编辑工具与LNP递送系统，开发体内基因编辑产品，获得IND批件，完成探索性临床试验并获得总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：通过理性设计等方法，工程化优化新型基因编辑器，提升其编辑效率、特异性、LNP包载适应性。优化脂质成分比例，设计筛选专属LNP配方，并在动物模型中评价其脱靶效应、靶向效率、免疫原性、持续时间。针对代谢性疾病、遗传性疾病等，开发体内基因编辑产品，并在动物疾病模型中完成毒理学、药代动力学和免疫毒性评估。开展体内基因编辑治疗，完成探索性临床试验。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "里程碑：立项后18个月内，获得IND批件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向4.表观遗传编辑产品开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：构建表观遗传学基础大模型，预测表观遗传靶点可及性，模拟表观遗传编辑效果。开发表观遗传编辑产品，获得IND批件，完成探索性临床试验并获得总结报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：集成DNA序列、DNA修饰、组蛋白修饰等大规模多组学数据，构建能够精准预测基因表达水平的表观遗传基础大模型。开发靶点可及性预测模块，评估不同基因组区域对表观编辑工具的易感性，预测sgRNA、效应器等编辑策略对不同细胞类型中特定靶点的编辑效果。基于预测结果，筛选高可及性、高调控潜力的新靶点，构建高效体内递送系统，开发针对代谢性疾病、慢性传染病等的表观遗传编辑产品，并在具有临床价值的动物模型中验证其安全性和长期有效性。开发符合现行GMP标准的生产工艺和质量控制体系。开展表观遗传编辑治疗，完成探索性临床试验。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、申报要求",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "除满足前述相应条件外，还须遵循以下要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目申报单位应当是注册在本市的法人或非法人组织，具有组织项目实施的相应能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.对于申请人在以往市级财政资金或其他机构（如科技部、国家自然科学基金等）资助项目基础上提出的新项目，应明确阐述二者的异同、继承与发展关系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.所有申报单位和项目参与人应遵守科研诚信管理要求，项目负责人应承诺所提交材料真实性，申报单位应当对申请人的申请资格负责，并对申请材料的真实性和完整性进行审核，不得提交有涉密内容的项目申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.申报项目若提出回避专家申请的，须在提交项目可行性方案的同时，上传由申报单位出具公函提出回避专家名单与理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": "5.项目申报单位及申报人需及时、完整、准确地记录在科研过程中产生的各类科学数据，并按要求在项目实施过程中完成科学数据汇交工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "6.所有申报单位和项目参与人应遵守科技伦理准则。拟开展的科技活动应进行科技伦理风险评估，涉及科技部《科技伦理审查办法（试行）》（国科发监〔2023〕167号）第二条所列范围科技活动的，应按要求进行科技伦理审查并提供相应的科技伦理审查批准材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "7.所有申报单位和项目参与人应遵守人类遗传资源管理相关法规和病原微生物实验室生物安全管理相关规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "8.已作为项目负责人承担市科委科技计划在研项目2项及以上者，不得作为项目负责人申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "9.项目经费预算编制应当真实、合理，符合市科委科技计划项目经费管理的有关要求。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "10.每位项目负责人申报项目不超过1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b078",
+      "level": null,
+      "source_anchor": null,
+      "text": "11.每个方向每个单位申报项目不超过1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b079",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、申报方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b080",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc20.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b081",
+      "level": null,
+      "source_anchor": null,
+      "text": "【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b082",
+      "level": null,
+      "source_anchor": null,
+      "text": "【继续填写】使用“一网通办”登录后，继续该项目的填报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b083",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.项目网上填报起始时间为 2026年5月11日9:00 ，截止时间（含申报单位网上审核提交）为 2026年5月28日16:30 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b084",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、评审方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b085",
+      "level": null,
+      "source_anchor": null,
+      "text": "采用一轮通讯评审方式。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b086",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、立项公示",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b087",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会将向社会公示拟立项项目清单，接受公众异议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b088",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、咨询电话",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b089",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：8008205114（座机）、4008205114（手机）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b090",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_010_cell_gene_therapy_guide_b091",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年4月29日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_010_cell_gene_therapy_guide",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 91,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:16.438307+00:00",
+    "source_format": "html",
+    "source_sha256": "4b189a93eb25044da1984e436fd5a24c9d6d7e4f23721b9ae0247e4aa3f060e5",
+    "source_site": "stcsm.sh.gov.cn",
+    "source_url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20260428/15590796b7104c5fafa8ccba4d68c4ae.html",
+    "title": "上海市科学技术委员会关于发布2026年度关键技术研发计划“细胞与基因治疗”项目申报指南的通知_项目申报_上海市科学技术委员会",
+    "标题": "上海市科学技术委员会关于发布2026年度关键技术研发计划“细胞与基因治疗”项目申报指南的通知_项目申报_上海市科学技术委员会"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "4b189a93eb25044da1984e436fd5a24c9d6d7e4f23721b9ae0247e4aa3f060e5"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_010_cell_gene_therapy_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

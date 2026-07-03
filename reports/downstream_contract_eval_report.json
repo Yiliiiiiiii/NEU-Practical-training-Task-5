@@ -36,6 +36,54 @@
       "errors": [],
       "export_rag_corpus_passed": true,
       "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_005_eldercare_technology_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_006_soft_science_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_007_domestic_cooperation_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_008_science_communication_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_009_food_technology_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_general_010_cell_gene_therapy_guide.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
       "package": "reports\\real_world_packages\\real_meeting_001_changning_executive_minutes.zip",
       "passed": true,
       "warnings": []
@@ -77,6 +125,38 @@
       "export_rag_corpus_passed": true,
       "export_structured_csv_passed": true,
       "package": "reports\\real_world_packages\\real_meeting_006_shandan_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_007_zhenping_49_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_008_wlmqx_2026_01_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_009_kundulun_2026_01_minutes.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_meeting_010_zhangjiagang_64_minutes.zip",
       "passed": true,
       "warnings": []
     },
@@ -164,6 +244,46 @@
       "errors": [],
       "export_rag_corpus_passed": true,
       "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_011_battery_recycling_rules.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_012_sme_gradient_rules.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_013_minor_platform_rules.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_014_digital_aging_campaign.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
+      "package": "reports\\real_world_packages\\real_policy_015_ai_ethics_rules.zip",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "errors": [],
+      "export_rag_corpus_passed": true,
+      "export_structured_csv_passed": true,
       "package": "reports\\real_world_packages\\real_procurement_001_broadcast_security_supervision.zip",
       "passed": true,
       "warnings": []
@@ -243,7 +363,7 @@
   ],
   "summary": {
     "failed_count": 0,
-    "package_count": 30,
-    "passed_count": 30
+    "package_count": 45,
+    "passed_count": 45
   }
 }

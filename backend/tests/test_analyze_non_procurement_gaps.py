@@ -2,6 +2,7 @@ import importlib.util
 import json
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -123,6 +124,35 @@ def test_recursive_discovery_finds_complete_packages_and_ignores_partial_dirs(
     write_json(root / "partial" / "metadata.json", {"doc_id": "partial"})
 
     assert analyzer.discover_package_dirs(root) == [complete]
+
+
+def test_discovery_and_analysis_accept_exported_zip_packages(tmp_path: Path) -> None:
+    analyzer = load_script()
+    root = tmp_path / "packages"
+    package_dir = make_package(
+        tmp_path / "source-package",
+        doc_id="zip-doc",
+        doc_type="general_doc",
+        passed=True,
+    )
+    zip_path = root / "zip-doc.zip"
+    zip_path.parent.mkdir(parents=True)
+    with zipfile.ZipFile(zip_path, "w") as archive:
+        for path in sorted(package_dir.iterdir()):
+            archive.write(path, path.name)
+
+    packages, diagnostics = analyzer.discover_package_inventory(root)
+    report = analyzer.analyze_packages(
+        packages,
+        [gold_row("zip-doc", "general_doc", "title")],
+        [],
+        top_n=10,
+        discovery_diagnostics=diagnostics,
+    )
+
+    assert packages == [zip_path]
+    assert diagnostics["complete_packages_discovered"] == 1
+    assert report["summary"]["documents_total"] == 1
 
 
 def test_analysis_filters_procurement_and_contract_packages(tmp_path: Path) -> None:

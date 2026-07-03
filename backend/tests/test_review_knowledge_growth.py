@@ -80,6 +80,16 @@ def test_full_growth_loop_is_safe_isolated_deterministic_and_improves_metrics(
     assert first["summary"]["old_snapshot_unchanged"] is True
     assert first["summary"]["badcase_violation_count"] == 0
     assert first["summary"]["rejected_candidate_activated_count"] == 0
+    assert first["draft_pack_no_effect"] is True
+    assert first["active_pack_effect"] is True
+    assert first["old_snapshot_unchanged"] is True
+    assert first["badcase_violations"] == 0
+    assert first["rejected_candidates_count"] == 1
+    assert first["badcase_blocked_count"] == 1
+    assert first["before_mapping_counts"] == first["before"]
+    assert first["after_mapping_counts"] == first["after"]
+    assert first["review_required_before"] == first["before"]["review_required_count"]
+    assert first["review_required_after"] == first["after"]["review_required_count"]
     assert first["before"]["review_required_count"] > first["after"]["review_required_count"]
     assert first["after"]["auto_mapped_fields"] > first["before"]["auto_mapped_fields"]
     assert first["after"]["mapping_recall"] > first["before"]["mapping_recall"]

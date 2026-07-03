@@ -10,8 +10,8 @@
 
 | Stage | Review required | Auto mapped | Mapping recall | Required coverage | Strict pass |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Before | 5 | 3 | 0.0000 | 0.5000 | 1 |
-| After | 4 | 4 | 1.0000 | 0.5000 | 1 |
+| Before | 3 | 5 | 0.0000 | 1.0000 | 1 |
+| After | 2 | 6 | 1.0000 | 1.0000 | 1 |
 
 ## Activated aliases
 
@@ -19,7 +19,7 @@
 
 ## Rejected controls
 
-- `retrieved_at` → `target_audience`: activated=False; Retrieval time is provenance metadata and must not become the policy target audience.
+- `source_site` → `source`: activated=False; The hosting domain alone is provenance context and is not the canonical source URL.
 
 ## Snapshot invariant
 

@@ -24,7 +24,9 @@ Outputs:
 
 The report includes before/after mapping counts, decision evidence,
 badcase-violation count, activated aliases, remaining ambiguous cases, and an
-`old_snapshot_unchanged` guard.
+`old_snapshot_unchanged` guard. It also exposes the acceptance fields
+`draft_pack_no_effect`, `active_pack_effect`, `rejected_candidates_count`,
+`badcase_blocked_count`, and `badcase_violations`.
 
 ## Review Knowledge Growth Evaluator
 
@@ -34,3 +36,18 @@ and active-pack activation. The report proves that approved aliases affect only
 future tasks, rejected and badcase aliases do not activate, draft packs have no
 effect, and the original metadata/canonical/mapping/execution snapshots remain
 unchanged.
+
+The 2026-07-03 run proves:
+
+```text
+draft_pack_no_effect: true
+active_pack_effect: true
+old_snapshot_unchanged: true
+rejected candidate activated: 0
+badcase violations: 0
+review-required after <= before
+```
+
+The API-backed evaluator selects only explicitly approved source/target pairs
+from the task it just executed. It no longer consumes unrelated pending reviews
+from historical tasks, and it does not activate `成文日期 -> publish_date`.

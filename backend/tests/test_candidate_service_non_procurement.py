@@ -65,6 +65,120 @@ def mapping_report(uir: UIRDocument, schema_id: str, template_id: str):
     return report
 
 
+def test_general_numbered_sections_emit_bounded_semantic_candidates() -> None:
+    uir = make_uir(
+        [
+            {"block_id": "conditions", "type": "paragraph", "text": "二、申报要求"},
+            {"block_id": "condition_body", "type": "paragraph", "text": "申请单位须诚信经营。"},
+            {"block_id": "process", "type": "paragraph", "text": "三、申报方式"},
+            {"block_id": "process_body", "type": "paragraph", "text": "通过管理系统网上填报。"},
+            {"block_id": "review", "type": "paragraph", "text": "四、评审方式"},
+        ],
+        metadata={"domain": "general_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_sections", uir)
+
+    conditions = candidate_by_name(candidates, "申报要求")
+    assert conditions.value_sample == "申请单位须诚信经营。"
+    assert conditions.source_blocks == ["conditions", "condition_body"]
+    process = candidate_by_name(candidates, "申报方式")
+    assert process.value_sample == "通过管理系统网上填报。"
+    assert process.source_blocks == ["process", "process_body"]
+
+
+def test_meeting_opening_sentence_emits_date_number_and_chairperson() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "opening",
+                "type": "paragraph",
+                "text": "202 6 年 1 月 7 日，县长马建国主持召开县人民政府2026年第1次常务会议。",
+            }
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_opening", uir)
+
+    assert candidate_by_name(candidates, "meeting date").value_sample == "2026年1月7日"
+    assert candidate_by_name(candidates, "meeting_number").value_sample == "第1次"
+    assert candidate_by_name(candidates, "chairperson").value_sample == "马建国"
+
+
+def test_policy_signature_and_official_page_url_emit_traceable_candidates() -> None:
+    uir = make_uir(
+        [
+            {"block_id": "signature", "type": "paragraph", "text": "教 育 部"},
+            {"block_id": "signed_date", "type": "paragraph", "text": "2025年1月3日"},
+        ],
+        metadata={
+            "domain": "policy_doc",
+            "source_url": "https://www.moe.gov.cn/srcsite/A29/202503/t20250326_1184786.html",
+        },
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_signature", uir)
+
+    issuer = candidate_by_name(candidates, "issuer")
+    assert issuer.value_sample == "教育部"
+    assert issuer.source_blocks == ["signature"]
+    assert issuer.source_path == "$.blocks.signature.text"
+    publish_date = candidate_by_name(candidates, "publish_date")
+    assert publish_date.value_sample == "2025-03-26"
+    assert publish_date.source_blocks == []
+    assert publish_date.source_path == "$.metadata.source_url"
+
+
+def test_policy_government_page_banner_emits_publication_date() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "page_banner",
+                "type": "paragraph",
+                "text": "中国政府网 2025-01-16",
+            }
+        ],
+        metadata={"domain": "policy_doc", "source_url": "https://app.www.gov.cn/article.html"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_banner", uir)
+
+    publish_date = candidate_by_name(candidates, "publish_date")
+    assert publish_date.value_sample == "2025-01-16"
+    assert publish_date.source_blocks == ["page_banner"]
+    assert publish_date.source_path == "$.blocks.page_banner.text"
+
+
+def test_policy_signature_date_is_not_treated_as_publication_date() -> None:
+    uir = make_uir(
+        [
+            {"block_id": "signature", "type": "paragraph", "text": "财政部 教育部"},
+            {"block_id": "signed_date", "type": "paragraph", "text": "2025年3月27日"},
+        ],
+        metadata={"domain": "policy_doc", "source_url": "https://example.gov.cn/document.pdf"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_signed_date", uir)
+
+    assert candidate_by_name(candidates, "issuer").value_sample == "财政部、教育部"
+    assert not any(item.source_name == "publish_date" for item in candidates)
+
+
+def test_policy_url_path_date_requires_a_supported_official_site() -> None:
+    uir = make_uir(
+        [],
+        metadata={
+            "domain": "policy_doc",
+            "source_url": "https://example.gov.cn/t20250326_123.html",
+        },
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_url_date", uir)
+
+    assert not any(item.source_name == "publish_date" for item in candidates)
+
+
 def test_all_template_regex_owned_labels_are_reserved_from_key_value_aliases():
     expected_by_domain = {
         "general_doc": {

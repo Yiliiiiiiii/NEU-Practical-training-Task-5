@@ -4,11 +4,25 @@
 
 Average recall `0.3494`；review-required `145`；required missing `18`；strict pass `4/20`；badcase violations `0`。
 
-## 当前 Analyzer Snapshot
+## 深化前 Analyzer Snapshot
 
 Average recall `0.4211`；review-required `139`；required missing `15`；strict pass `4/20`；badcase violations `0`。
 
 API-backed evaluator 当前记录 average recall `0.4211309523809524`、review-required `149`、required missing `12`、package verification `20/20`、badcase violations `0`。Phase 1 仍未达标，因为 recall 与 review-required targets 未达到。
+
+## 深化后验收结果
+
+在扩展到 35 个非采购样本后，干净数据库上的 API-backed evaluator 结果为：
+
+```text
+average recall: 0.5677551020408163
+review-required: 69
+required missing: 6
+package verification: 35/35
+badcase violations: 0
+```
+
+已完成的窄修复包括：通用申报主体/申报方式候选、会议首段日期/编号/主持人候选、政策落款机构、教育部官方页面发布日期、政府网页发布日期、`source_url` aliases，以及将 fuzzy review 最低相似度由 0.45 收紧到 0.55。低置信度 fuzzy 仍然只能进入 Review，不能自动接受。
 
 ## 高频修复项
 
@@ -30,13 +44,13 @@ API-backed evaluator 当前记录 average recall `0.4211309523809524`、review-r
 - `general_doc.application_conditions`：从 process/condition detail、申请专项资金支持单位等来源增强 extraction。
 - `policy_doc.issuer`：从 issuer/issuing body、发文机构、国务院办公厅等来源增强 extraction。
 - `general_doc.service_object`：从 service/subject section 增强 extraction。
-- `policy_doc.publish_date`：从 publication date/date sentence/signed date 增强 extraction。
+- `policy_doc.publish_date`：只从明确 publication evidence 增强 extraction；落款成文日期不自动当作发布日期。
 - `meeting_doc.meeting_date`：从 meeting date sentence 与中文日期表达增强 extraction。
 - `meeting_doc.meeting_number`：从会议编号/发文字号类 evidence 增强 extraction。
 
 ## Template Alias 修复
 
-当前 ranked recommendations 中没有选出安全的自动 alias 项。
+已加入可追溯的 `source_url` aliases、通用申报字段 aliases；删除了会把“成文日期”当作发布日期、把“发布机构”无条件当作发文机关的高风险 aliases。
 
 ## Regex Rule 修复
 
@@ -57,9 +71,9 @@ API-backed evaluator 当前记录 average recall `0.4211309523809524`、review-r
 
 ## 拒绝的自动规则
 
-- `policy_doc.source`（10，alias_missing）：拒绝，因为 `source_block_ids` 为空，source label 是 generic metadata。
-- `meeting_doc.source`（6，alias_missing）：拒绝，因为 `source_block_ids` 为空，source label 是 generic metadata。
-- `general_doc.source`（4，alias_missing）：拒绝，因为 `source_block_ids` 为空，source label 是 generic metadata。
+- `retrieved_at -> effective_date`：拒绝并作为 Knowledge Pack badcase control。
+- `成文日期 -> publish_date`：保留 Review；除非存在独立、明确的发布日期证据。
+- `发布机构 -> issuer`：不作为通用 alias；联合发文或解读机构仍需可追溯证据。
 
 ## 验证命令
 

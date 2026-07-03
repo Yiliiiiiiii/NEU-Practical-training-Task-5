@@ -1,0 +1,29 @@
+{
+  "approved_alias": {
+    "decision": "approve",
+    "doc_id": "real_general_005_eldercare_technology_guide",
+    "doc_type": "general_doc",
+    "source_block_ids": ["real_general_005_eldercare_technology_guide_b011"],
+    "source_label": "申报主体要求",
+    "source_value_sample": "本市企业，须与本市养老机构或康复机构联合申报。",
+    "target_field": "service_object"
+  },
+  "badcase_control": {
+    "decision": "approve_but_block",
+    "doc_id": "real_policy_014_digital_aging_campaign",
+    "doc_type": "policy_doc",
+    "source_block_ids": ["real_policy_014_digital_aging_campaign_b004"],
+    "source_label": "成文日期",
+    "source_value_sample": "2026-05-15",
+    "target_field": "publish_date"
+  },
+  "rejected_mapping": {
+    "decision": "reject",
+    "doc_id": "real_policy_012_sme_gradient_rules",
+    "doc_type": "policy_doc",
+    "source_block_ids": ["real_policy_012_sme_gradient_rules_b004"],
+    "source_label": "成文日期",
+    "source_value_sample": "2026-01-04",
+    "target_field": "publish_date"
+  }
+}

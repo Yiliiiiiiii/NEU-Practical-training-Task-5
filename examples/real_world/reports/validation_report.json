@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T13:41:46.911871+00:00",
+  "generated_at": "2026-07-03T06:45:29.216918+00:00",
   "items": [
     {
       "findings": [],
@@ -19,6 +19,36 @@
     {
       "findings": [],
       "path": "general/real_general_004_tianhe_service_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_005_eldercare_technology_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_006_soft_science_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_007_domestic_cooperation_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_008_science_communication_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_009_food_technology_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_010_cell_gene_therapy_guide.json",
       "status": "passed"
     },
     {
@@ -49,6 +79,26 @@
     {
       "findings": [],
       "path": "meeting/real_meeting_006_shandan_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_007_zhenping_49_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_008_wlmqx_2026_01_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_009_kundulun_2026_01_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_010_zhangjiagang_64_minutes.json",
       "status": "passed"
     },
     {
@@ -99,6 +149,31 @@
     {
       "findings": [],
       "path": "policy/real_policy_010_auto_ota_management.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_011_battery_recycling_rules.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_012_sme_gradient_rules.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_013_minor_platform_rules.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_014_digital_aging_campaign.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_015_ai_ethics_rules.json",
       "status": "passed"
     },
     {
@@ -157,8 +232,8 @@
     "failed": 0,
     "missing_fields": 0,
     "mojibake": 0,
-    "passed": 30,
+    "passed": 45,
     "sensitive": 0,
-    "total": 30
+    "total": 45
   }
 }

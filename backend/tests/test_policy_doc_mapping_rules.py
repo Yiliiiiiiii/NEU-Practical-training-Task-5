@@ -85,7 +85,7 @@ def test_policy_exact_alias_and_regex_rules_map_explicit_policy_labels() -> None
     assert transformed.data["publish_date"] == "2026-06-30"
 
 
-def test_policy_aliases_support_printing_agency_and_document_date() -> None:
+def test_policy_aliases_support_printing_agency_but_keep_authored_date_for_review() -> None:
     _, _, report = map_policy(
         policy_uir(
             {
@@ -99,8 +99,12 @@ def test_policy_aliases_support_printing_agency_and_document_date() -> None:
     mappings = {item["target_field_id"]: item for item in report.mappings}
 
     assert mappings["issuer"]["source_field_name"] == "印发机关"
-    assert mappings["publish_date"]["source_field_name"] == "成文日期"
-    assert mappings["publish_date"]["method"] == "alias"
+    assert "publish_date" not in mappings
+    assert any(
+        item["source_field_name"] == "成文日期"
+        and item["target_field_id"] == "publish_date"
+        for item in report.review_required_items
+    )
 
 
 def test_policy_interpretation_citation_and_attachment_dates_require_review() -> None:

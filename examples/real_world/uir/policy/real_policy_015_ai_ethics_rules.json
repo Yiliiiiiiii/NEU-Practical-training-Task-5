@@ -1,0 +1,260 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文机关： 工业和信息化部 国家发展改革委 教育部 科技部 农业农村部 国家卫生健康委 中国人民银行 国家网信办 中国科学院 中国科协",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "标 题： 工业和信息化部等十部门关于印发《人工智能科技伦理审查与服务办法（试行）》的通知",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文字号： 工信部联科〔2026〕75号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "成文日期： 2026-03-30",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布日期： 2026-04-02",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布机构： 工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "分 类： 高新技术发展及产业化,行政规范性文件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b008",
+      "level": 1,
+      "source_anchor": null,
+      "text": "工业和信息化部等十部门关于印发《人工智能科技伦理审查与服务办法（试行）》的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "工信部联科〔2026〕75号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "各省、自治区、直辖市及计划单列市、新疆生产建设兵团工业和信息化、发展改革、教育、科技、农业农村、卫生健康、网信主管部门、科协，中国人民银行上海总部，各省、自治区、直辖市及计划单列市分行，中国科学院院属各单位，各有关单位 ：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "现将《人工智能科技伦理审查与服务办法（试行）》印发给你们，请结合实际认真抓好落实。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家发展改革委",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "教育部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "科技部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "农业农村部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家卫生健康委",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "中国人民银行",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家网信办",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "中国科学院",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "中国科协",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_015_ai_ethics_rules_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年3月20日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_015_ai_ethics_rules",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 22,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:21:23.480172+00:00",
+    "source_format": "html",
+    "source_sha256": "da64e323c1293203eb4926d09ddbd6b7bfefe5483e0a7b4a15fd1da5bf3b8df4",
+    "source_site": "www.miit.gov.cn",
+    "source_url": "https://www.miit.gov.cn/jgsj/kjs/wjfb/art/2026/art_2995f16b28504ddcbb604e918eb15759.html",
+    "title": "工业和信息化部等十部门关于印发《人工智能科技伦理审查与服务办法（试行）》的通知",
+    "发布日期": "2026-04-02",
+    "发布机构": "工业和信息化部",
+    "发文机关": "工业和信息化部 国家发展改革委 教育部 科技部 农业农村部 国家卫生健康委 中国人民银行 国家网信办 中国科学院 中国科协",
+    "标题": "工业和信息化部等十部门关于印发《人工智能科技伦理审查与服务办法（试行）》的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "da64e323c1293203eb4926d09ddbd6b7bfefe5483e0a7b4a15fd1da5bf3b8df4"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_015_ai_ethics_rules",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

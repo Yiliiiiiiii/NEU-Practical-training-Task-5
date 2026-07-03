@@ -51,7 +51,7 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 | Requirement | Evidence |
 | --- | --- |
 | Non-procurement strict quality | gap analysis、strengthened catalogs、non-procurement evaluator |
-| Real UIR depth | 30-document manifest、inventory、mapping/badcase/retrieval gold |
+| Real UIR depth | 45-document manifest、inventory、mapping/badcase/retrieval gold |
 | Content organization quality | strategy、summary-faithfulness 和 tag-quality reports |
 | Human-review growth | 独立 review-to-active-pack evaluator，带 snapshot/reject/badcase guards |
 | Downstream consumption | CSV、RAG JSONL、30-package contract report、workbench readiness panel |
@@ -60,10 +60,10 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 
 | Requirement | 当前证据 | 状态 |
 | --- | --- | --- |
-| 在不走捷径的前提下提升非采购 mapping recall | Package-based gap analysis 把 average recall 从 `0.3494047619047619` 提升到 `0.4211309523809524`，badcase violations 仍为 0。 | 部分改善，未验收 |
-| 达到 Phase 1 recall target | API-backed evaluator 记录 average recall `0.4211309523809524`，低于 `0.50` acceptance target。 | 未达标 |
-| 降低 review-required 与 required-missing counts | API-backed evaluator 记录 review-required 149、required missing 12；只有 required-missing target 达标。 | 部分达标 |
+| 在不走捷径的前提下提升非采购 mapping recall | 干净数据库上的 API-backed evaluator 把 expanded 35-document average recall 提升到 `0.5677551020408163`，badcase violations 仍为 0。 | 已验收 |
+| 达到深化 recall target | Average recall 高于 `0.55` target。 | 已达标 |
+| 降低 review-required 与 required-missing counts | Review-required 70（目标 ≤120），required missing 6（目标 ≤6），package verification 35/35。 | 已达标 |
 | 保持 badcase filters 生效 | 新增 regression badcases 覆盖 `发布日期 -> effective_date`、`主持人 -> attendees`、`联系人 -> attendees`、`承办单位 -> issuer`、`预算金额 -> award_amount`、`控制价 -> award_amount` 等 unsafe mappings。 | 已保护 |
-| 保持诚实 evaluation evidence | Dedicated acceptance report 把 API-backed evaluator 记录为低于目标，而不是把部分指标提升包装成 phase success。 | 达标 |
+| 保持诚实 evaluation evidence | 报告区分 package verification、mapping recall、strict pass 与 remaining semantic gaps，不宣称所有字段语义完全正确。 | 达标 |
 
 详见 [`reports/non_procurement_acceptance_report.md`](../reports/non_procurement_acceptance_report.md) 和 [`docs/non_procurement_mapping_improvement_plan.md`](non_procurement_mapping_improvement_plan.md)。

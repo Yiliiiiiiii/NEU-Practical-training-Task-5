@@ -134,10 +134,11 @@ backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 
 ## 五项深化证据
 
-- Real-world UIR dataset：30 个 public-source documents；30/30 import、execution 和 package verification。
+- Real-world UIR dataset：45 个 public-source documents；45/45 import、execution 和 package verification。
+- 非采购 mapping：35 个 general/meeting/policy documents；average recall `0.5678`，review-required 69，required missing 6，badcase violations 0，package verification 35/35。
 - Content organization：5 种 chunk strategies，以及 summary-faithfulness 和 tag-quality reports。
 - Knowledge growth：可复现的 review -> candidate -> draft -> active loop；review-required 5 -> 4，old snapshot unchanged，badcase/reject activation 0。
-- Downstream consumption：structured CSV 和 RAG JSONL exporters；30/30 packages 通过 consumer contract。
+- Downstream consumption：structured CSV 和 RAG JSONL exporters；45/45 packages 通过 consumer contract。
 
 ```powershell
 backend\.venv\Scripts\python.exe scripts\eval_review_knowledge_growth.py

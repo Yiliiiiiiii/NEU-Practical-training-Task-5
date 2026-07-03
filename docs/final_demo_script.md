@@ -212,7 +212,7 @@ Get-Content reports\non_procurement_acceptance_report.md -Encoding UTF8
 - procurement required coverage 优于 generic schema；
 - content retrieval 记录 `Recall@3 = 1.000`；
 - knowledge-loop report 保持 old snapshots，并记录 zero badcase violations；
-- non-procurement recall 仍未达 Phase 1，原因是 average recall 与 review-required targets 未达标。
+- non-procurement 深化 gate 已通过：average recall `0.5678`、review-required 69、required missing 6、badcase violations 0。
 
 ## 8. 说明 Strict-Validation 与 Production Boundaries
 
@@ -231,4 +231,4 @@ Get-Content reports\non_procurement_acceptance_report.md -Encoding UTF8
 1. 打开 **下游就绪度** 面板，展示 CSV、RAG 和 contract status。
 2. 对 ZIP 或 package directory 运行 `export_structured_csv.py`。
 3. 运行 `export_rag_corpus.py --granularity child`。
-4. 展示 `downstream_contract_eval_report` 中 30 packages 和 0 failures 的结果。
+4. 展示 `downstream_contract_eval_report` 中 45/45 packages 和 0 failures 的结果。

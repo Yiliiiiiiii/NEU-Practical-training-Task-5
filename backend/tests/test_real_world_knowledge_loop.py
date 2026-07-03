@@ -195,6 +195,11 @@ def test_knowledge_loop_report_sections() -> None:
             "blocked_candidates": [{"candidate_id": "blocked"}],
             "metrics": {"active_packs": 1},
             "before_mapping": {"mappings": []},
+            "after_mapping": {
+                "mappings": [{"status": "accepted"}],
+                "review_required_items": [],
+                "unmapped": [],
+            },
             "old_mapping_after_activation": {"mappings": []},
             "before_recall": 0.5,
             "after_recall": 1.0,
@@ -207,9 +212,57 @@ def test_knowledge_loop_report_sections() -> None:
     assert report["summary"]["old_snapshot_unchanged"] is True
     assert report["summary"]["badcase_violation_count"] == 0
     assert report["summary"]["blocked_candidate_count"] == 1
+    assert report["draft_pack_no_effect"] is True
+    assert report["active_pack_effect"] is True
+    assert report["old_snapshot_unchanged"] is True
+    assert report["badcase_violations"] == 0
+    assert report["rejected_candidates_count"] == 0
+    assert report["before_mapping_counts"]["accepted"] == 0
+    assert report["after_mapping_counts"]["accepted"] == 1
     assert "## Before/After Recall" in markdown
     assert "## Required Coverage" in markdown
     assert "## Review Approvals" in markdown
     assert "## Candidate Acceptance" in markdown
     assert "## Pack Activation" in markdown
     assert "## Snapshot Invariant" in markdown
+
+
+def test_api_loop_selects_only_safe_reviews_from_current_task() -> None:
+    evaluator = load_script("eval_knowledge_loop_real_world")
+    reviews = [
+        {
+            "review_id": "old-safe",
+            "task_id": "old-task",
+            "source_field_name": "通知名称",
+            "target_field_id": "title",
+        },
+        {
+            "review_id": "current-authored-date",
+            "task_id": "current-task",
+            "source_field_name": "成文日期",
+            "target_field_id": "publish_date",
+        },
+        {
+            "review_id": "current-title",
+            "task_id": "current-task",
+            "source_field_name": "通知名称",
+            "target_field_id": "title",
+        },
+        {
+            "review_id": "current-issuer",
+            "task_id": "current-task",
+            "source_field_name": "制定主体",
+            "target_field_id": "issuer",
+        },
+    ]
+
+    selected = evaluator.select_approvable_reviews(
+        reviews,
+        task_id="current-task",
+        max_reviews=3,
+    )
+
+    assert [item["review_id"] for item in selected] == [
+        "current-title",
+        "current-issuer",
+    ]

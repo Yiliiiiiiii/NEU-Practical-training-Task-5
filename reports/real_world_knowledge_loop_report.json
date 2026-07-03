@@ -4,17 +4,30 @@
       "采购方名称"
     ]
   },
+  "active_pack_effect": true,
   "after": {
-    "auto_mapped_fields": 7,
+    "auto_mapped_fields": 8,
     "missing_required_count": 0,
-    "review_required_count": 4
+    "review_required_count": 2
+  },
+  "after_mapping_counts": {
+    "auto_mapped_fields": 8,
+    "missing_required_count": 0,
+    "review_required_count": 2
   },
   "approved_candidates": 1,
+  "badcase_blocked_count": 0,
   "badcase_violation_count": 0,
+  "badcase_violations": 0,
   "before": {
-    "auto_mapped_fields": 6,
+    "auto_mapped_fields": 7,
     "missing_required_count": 1,
-    "review_required_count": 5
+    "review_required_count": 3
+  },
+  "before_mapping_counts": {
+    "auto_mapped_fields": 7,
+    "missing_required_count": 1,
+    "review_required_count": 3
   },
   "boundaries": [
     "Evaluation uses an isolated temporary database and storage root.",
@@ -62,26 +75,30 @@
       "template_id": "procurement_doc_base_v1"
     }
   ],
-  "generated_at": "2026-06-30T06:12:26.236599+00:00",
+  "draft_pack_no_effect": true,
+  "generated_at": "2026-07-03T06:45:08.498466+00:00",
   "metrics": {
     "activated_alias_count": 1,
     "activated_candidate_count": 1,
-    "after_auto_mapped_fields": 7,
+    "after_auto_mapped_fields": 8,
     "after_missing_required_count": 0,
-    "after_review_required_count": 4,
+    "after_review_required_count": 2,
     "approved_candidates": 1,
     "badcase_violation_count": 0,
-    "before_auto_mapped_fields": 6,
+    "before_auto_mapped_fields": 7,
     "before_missing_required_count": 1,
-    "before_review_required_count": 5,
+    "before_review_required_count": 3,
     "old_snapshot_unchanged": 1,
     "rejected_candidates": 1
   },
   "old_snapshot_unchanged": true,
   "rejected_candidates": 1,
+  "rejected_candidates_count": 1,
   "remaining_ambiguous_cases": [
     "最高限价"
   ],
+  "review_required_after": 2,
+  "review_required_before": 3,
   "schema_id": "procurement_doc",
   "template_id": "procurement_doc_base_v1"
 }

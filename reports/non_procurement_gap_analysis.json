@@ -2,29 +2,20 @@
   "alias_gaps": [
     {
       "candidate_source_names": [
-        "source_url"
+        "source_site"
       ],
       "candidate_value_samples": [
-        "https://app.www.gov.cn/govdata/gov/202501/16/523725/article.html",
-        "https://www.gov.cn/zhengce/zhengceku/202511/P020251106333013261545.pdf",
-        "https://www.miit.gov.cn/jgsj/zbys/wjfb/art/2025/art_fa604619ed45484386f37422d01f5527.html",
-        "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_19d8e5b426f540699e5fe07a816a7493.html",
-        "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_3a170b97d16c43ce8d2d6f7a67e9e60e.html"
+        "www.moe.gov.cn",
+        "www.ndrc.gov.cn"
       ],
-      "count": 10,
+      "count": 4,
       "doc_id": "real_policy_001_training_platform_rules",
       "doc_type": "policy_doc",
       "document_ids": [
         "real_policy_001_training_platform_rules",
         "real_policy_002_equipment_renewal",
         "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
+        "real_policy_004_student_loan_relief"
       ],
       "gap_type": "alias_missing",
       "recommended_action": "add_alias",
@@ -34,62 +25,79 @@
     },
     {
       "candidate_source_names": [
-        "source_url"
+        "paragraph_regex.document_number"
       ],
       "candidate_value_samples": [
-        "https://www.fjsx.gov.cn/zwgk/qzfhy/qzfcwh/202601/t20260114_2183728.htm",
-        "https://www.miluo.gov.cn/25221/25235/71992/content_2323268.html",
-        "https://www.miluo.gov.cn/25221/25235/71992/content_2383980.html",
-        "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/W020251120606165226334.pdf",
-        "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/t20251120_1478988.html"
+        "发改环资〔2025〕13号",
+        "国信办发文〔2026〕2号"
       ],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
+      "count": 2,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_policy_002_equipment_renewal",
+        "real_policy_013_minor_platform_rules"
       ],
       "gap_type": "alias_missing",
       "recommended_action": "add_alias",
       "review_required_reason": "Fuzzy mapping requires human review.",
-      "source_block_ids": [],
-      "target_field": "source"
-    },
-    {
-      "candidate_source_names": [
-        "source_url"
+      "source_block_ids": [
+        "real_policy_002_equipment_renewal_b008",
+        "real_policy_013_minor_platform_rules_b005"
       ],
-      "candidate_value_samples": [
-        "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20250307/fff38685e3a34a599574acbfe102b67e.html",
-        "https://www.gz.gov.cn/interf/storage/material/2026/01/20/0ebc48ad0dfd3b325bf2cf024e72a42b.pdf",
-        "https://www.miit.gov.cn/cms_files/filemanager/1226211233/attach/20255/74e5a08865314012a4497aaeddc71c55.pdf",
-        "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/ssfj/zfxxgk/zc/qtzdgkwj/t_5842730.shtml"
-      ],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "alias_missing",
-      "recommended_action": "add_alias",
-      "review_required_reason": "Fuzzy mapping requires human review.",
-      "source_block_ids": [],
-      "target_field": "source"
+      "target_field": "document_number"
     }
   ],
   "badcase_sensitive_items": [
     {
       "candidate_source_names": [
+        "2026年2月11日",
+        "signed date",
+        "信息索引",
+        "发布时间",
+        "成文日期",
+        "生成日期"
+      ],
+      "candidate_value_samples": [
+        "2025年1月14日",
+        "2025年1月3日",
+        "2025年1月5日",
+        "2026年2月11日",
+        "信息名称：: 教育部关于印发《全国校外教育培训监管与服务综合平台应用管理办法》的通知\n信息索引：: 360A29-05-2025-0002-1 | 生成日期： | 2025-03-18 | 发文机构： | 中华人民共和国教育部\n发文字号：: 教监管〔2025〕1号 | 信息类别： | 基础教育\n内容概述：: 教育部关于印发《全国校外教育培训监管与服务综合平台应用管理办法》的通知"
+      ],
+      "count": 7,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_001_training_platform_rules",
+        "real_policy_002_equipment_renewal",
+        "real_policy_003_science_education_guide",
+        "real_policy_012_sme_gradient_rules",
+        "real_policy_013_minor_platform_rules",
+        "real_policy_014_digital_aging_campaign",
+        "real_policy_015_ai_ethics_rules"
+      ],
+      "gap_type": "badcase_sensitive",
+      "recommended_action": "keep_review_required",
+      "review_required_reason": "The authored date is distinct from the explicit publication date.",
+      "source_block_ids": [
+        "real_policy_001_training_platform_rules_b003",
+        "real_policy_001_training_platform_rules_b009",
+        "real_policy_002_equipment_renewal_b002",
+        "real_policy_002_equipment_renewal_b072",
+        "real_policy_003_science_education_guide_b003",
+        "real_policy_003_science_education_guide_b009",
+        "real_policy_012_sme_gradient_rules_b004",
+        "real_policy_013_minor_platform_rules_b016",
+        "real_policy_014_digital_aging_campaign_b004",
+        "real_policy_015_ai_ethics_rules_b004"
+      ],
+      "target_field": "publish_date"
+    },
+    {
+      "candidate_source_names": [
         "meeting date sentence",
+        "区政府办",
         "区政府区长吴晓峰",
         "汨罗市人民政府办公室",
         "黄国杰"
@@ -98,25 +106,28 @@
         "11 月3 日，县委副书记、县长黄国杰主持召开十九届县政",
         "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
         "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
+        "会议研究审议并原则同意《 202 6 年政府工作报告（送审稿）》，责成区政府办结合会上意见继续修改完善经审核把关后，报区委常委会审议。会议要求，要紧密贯彻落实党的二十届四中全会和中央、自治区、包头市经济工作会议以及自治区党委、包头市委、区委全会精神，全面把握新要求、新举措，实而又实部署开局之年各项工作任务，将目标任务具体化、项目化、清单化，明确具体抓手和项目支撑，确保总结成绩客观全面、部署工作务实精准。政府办要充分征求和吸纳各方意见建议，逐字、逐句、逐段研究，注重用实事和数据",
         "来源：汨罗市人民政府办公室"
       ],
-      "count": 4,
+      "count": 5,
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
         "real_meeting_001_changning_executive_minutes",
         "real_meeting_002_shaxian_executive_minutes",
         "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes"
       ],
       "gap_type": "badcase_sensitive",
       "recommended_action": "keep_review_required",
-      "review_required_reason": "The PDF line is split across two blocks and identifies the chair, not an explicit organizing body.",
+      "review_required_reason": "A responsible office in an action item is not necessarily the meeting organizer.",
       "source_block_ids": [
         "real_meeting_001_changning_executive_minutes_b003",
         "real_meeting_002_shaxian_executive_minutes_b001",
         "real_meeting_005_miluo_2026_minutes_b002",
-        "real_meeting_006_shandan_minutes_b005"
+        "real_meeting_006_shandan_minutes_b005",
+        "real_meeting_009_kundulun_2026_01_minutes_b008"
       ],
       "target_field": "organizer"
     },
@@ -151,6 +162,35 @@
     },
     {
       "candidate_source_names": [
+        "出席",
+        "出席会议",
+        "各乡镇、各部门单位"
+      ],
+      "candidate_value_samples": [
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
+        "会议强调，各乡镇、各部门单位要深入学习贯彻习近平总书记重要讲话精神，深刻领会做好新形势下经济工作的规律性认识，深刻领会抓好明年经济工作的重点任务，切实把思想和行动统一到中央经济工作会议精神上来，坚定信心、用好优势、应对挑战，不断巩固拓展经济稳中向好势头，努力实现 “十五五”良好开局。对标对表中央经济工作会议部署要求，贯彻落实“八个坚持”重点任务，积极融入全疆发展大局，紧密结合乌鲁木齐县实际，谋准谋实明年经济工作思路目标和重点举措。要深入学习贯彻习近平总书记对做好“三农”工作的",
+        "出 席：林恒求、杨盛、吴艳平、付文勇、任娜、曹陶、李岳星、向恩泽、胡义"
+      ],
+      "count": 3,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_003_miluo_executive_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "badcase_sensitive",
+      "recommended_action": "keep_review_required",
+      "review_required_reason": "Responsible organizations in an action paragraph are not necessarily meeting attendees.",
+      "source_block_ids": [
+        "real_meeting_003_miluo_executive_minutes_b028",
+        "real_meeting_008_wlmqx_2026_01_minutes_b007",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "attendees"
+    },
+    {
+      "candidate_source_names": [
         "本办法自2025年7月10日起施行",
         "自印发之日起施行"
       ],
@@ -179,66 +219,79 @@
     },
     {
       "candidate_source_names": [
-        "signed date",
-        "信息索引",
-        "发布时间",
-        "生成日期"
-      ],
-      "candidate_value_samples": [
-        "2025年1月14日",
-        "2025年1月3日",
-        "2025年1月5日",
-        "信息名称：: 教育部关于印发《全国校外教育培训监管与服务综合平台应用管理办法》的通知\n信息索引：: 360A29-05-2025-0002-1 | 生成日期： | 2025-03-18 | 发文机构： | 中华人民共和国教育部\n发文字号：: 教监管〔2025〕1号 | 信息类别： | 基础教育\n内容概述：: 教育部关于印发《全国校外教育培训监管与服务综合平台应用管理办法》的通知",
-        "信息名称：: 教育部办公厅关于印发《中小学科学教育工作指南》的通知\n信息索引：: 360A29-05-2025-0001-1 | 生成日期： | 2025-01-16 | 发文机构： | 教育部办公厅\n发文字号：: 教监管厅〔2025〕1号 | 信息类别： | 基础教育\n内容概述：: 教育部办公厅关于印发《中小学科学教育工作指南》的通知"
-      ],
-      "count": 3,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide"
-      ],
-      "gap_type": "badcase_sensitive",
-      "recommended_action": "keep_review_required",
-      "review_required_reason": "The flattened table cell combines an index, generated date, and issuing body; it must be parsed into subfields before any mapping. Required field is missing. required_field_missing",
-      "source_block_ids": [
-        "real_policy_001_training_platform_rules_b003",
-        "real_policy_001_training_platform_rules_b009",
-        "real_policy_002_equipment_renewal_b002",
-        "real_policy_002_equipment_renewal_b072",
-        "real_policy_003_science_education_guide_b003",
-        "real_policy_003_science_education_guide_b009"
-      ],
-      "target_field": "publish_date"
-    },
-    {
-      "candidate_source_names": [
         "issuer or issuing body",
         "joint issuing bodies",
-        "发文机构"
+        "发文机构",
+        "工业和信息化部等部门"
       ],
       "candidate_value_samples": [
         "为加大保障和改善民生力度，支持做好2025年高校毕业生就业服务工作，现就做好2025年国家助学贷款免息及本金延期偿还工作通知如下：",
         "教育部办公厅",
+        "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。",
         "财政部 教育部"
       ],
-      "count": 2,
+      "count": 3,
       "doc_id": "real_policy_003_science_education_guide",
       "doc_type": "policy_doc",
       "document_ids": [
         "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief"
+        "real_policy_004_student_loan_relief",
+        "real_policy_011_battery_recycling_rules"
       ],
       "gap_type": "badcase_sensitive",
       "recommended_action": "keep_review_required",
-      "review_required_reason": "Required field is missing. required_field_missing",
+      "review_required_reason": "The extracted body identifies responsible departments but omits the formal joint-order issuer preamble. Required field is missing. required_field_missing",
       "source_block_ids": [
         "real_policy_003_science_education_guide_b008",
         "real_policy_004_student_loan_relief_b002",
-        "real_policy_004_student_loan_relief_b007"
+        "real_policy_004_student_loan_relief_b007",
+        "real_policy_011_battery_recycling_rules_b005"
       ],
       "target_field": "issuer"
+    },
+    {
+      "candidate_source_names": [],
+      "candidate_value_samples": [],
+      "count": 2,
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide"
+      ],
+      "gap_type": "badcase_sensitive",
+      "recommended_action": "keep_review_required",
+      "review_required_reason": "The source/target pair is forbidden or was blocked by a badcase guard.",
+      "source_block_ids": [],
+      "target_field": "issuer"
+    },
+    {
+      "candidate_source_names": [
+        "11 月 3 日",
+        "5月20日",
+        "生成日期"
+      ],
+      "candidate_value_samples": [
+        "11 月 3 日，县委副书记、县长黄国杰主持召开十九届县政府第 97 次常务会议， 传达学习习近平总书记重要讲话精神， 组织学习中央和省市有关会议文件精神， 专题 研究 经济运行、 为民实事 办理 、安全生产、根治 欠薪 、公平竞争审查、 文物保护、民生保障、 国企监管、交通 项目 建设 等方面工作。县政府在家领导出席会议，各乡镇、县直有关部门、 企事业及省市驻丹有关单位负责同志列席会议，县 人大常委会副主任车明国 、 县 政协副主席唐谦 应邀参加会议。现将会议研究确定事项纪",
+        "5月20日，县委副书记、代县长李靖主持召开县十六届政府第49次常务（扩大）会议 。",
+        "生成日期： 2025-11-14 16:31:47"
+      ],
+      "count": 2,
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_004_shandan_2025_11_minutes",
+        "real_meeting_007_zhenping_49_minutes"
+      ],
+      "gap_type": "badcase_sensitive",
+      "recommended_action": "keep_review_required",
+      "review_required_reason": "The page generation timestamp is not the meeting date stated in the narrative. Required field is missing. required_field_missing",
+      "source_block_ids": [
+        "real_meeting_004_shandan_2025_11_minutes_b009",
+        "real_meeting_004_shandan_2025_11_minutes_b014",
+        "real_meeting_007_zhenping_49_minutes_b002"
+      ],
+      "target_field": "meeting_date"
     },
     {
       "candidate_source_names": [
@@ -266,6 +319,21 @@
       "target_field": "valid_until"
     },
     {
+      "candidate_source_names": [],
+      "candidate_value_samples": [],
+      "count": 1,
+      "doc_id": "real_general_006_soft_science_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_006_soft_science_guide"
+      ],
+      "gap_type": "badcase_sensitive",
+      "recommended_action": "keep_review_required",
+      "review_required_reason": "The source/target pair is forbidden or was blocked by a badcase guard.",
+      "source_block_ids": [],
+      "target_field": "created_date"
+    },
+    {
       "candidate_source_names": [
         "人力资源服务发展壮大支持"
       ],
@@ -288,54 +356,10 @@
     },
     {
       "candidate_source_names": [
-        "出席"
+        "paragraph_regex.document_number"
       ],
       "candidate_value_samples": [
-        "出 席：林恒求、杨盛、吴艳平、付文勇、任娜、曹陶、李岳星、向恩泽、胡义"
-      ],
-      "count": 1,
-      "doc_id": "real_meeting_003_miluo_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_003_miluo_executive_minutes"
-      ],
-      "gap_type": "badcase_sensitive",
-      "recommended_action": "keep_review_required",
-      "review_required_reason": "The document distinguishes attendees, invited observers, government-office observers, and departmental observers; those roles should not be merged automatically.",
-      "source_block_ids": [
-        "real_meeting_003_miluo_executive_minutes_b028"
-      ],
-      "target_field": "attendees"
-    },
-    {
-      "candidate_source_names": [
-        "11 月 3 日",
-        "生成日期"
-      ],
-      "candidate_value_samples": [
-        "11 月 3 日，县委副书记、县长黄国杰主持召开十九届县政府第 97 次常务会议， 传达学习习近平总书记重要讲话精神， 组织学习中央和省市有关会议文件精神， 专题 研究 经济运行、 为民实事 办理 、安全生产、根治 欠薪 、公平竞争审查、 文物保护、民生保障、 国企监管、交通 项目 建设 等方面工作。县政府在家领导出席会议，各乡镇、县直有关部门、 企事业及省市驻丹有关单位负责同志列席会议，县 人大常委会副主任车明国 、 县 政协副主席唐谦 应邀参加会议。现将会议研究确定事项纪",
-        "生成日期： 2025-11-14 16:31:47"
-      ],
-      "count": 1,
-      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_004_shandan_2025_11_minutes"
-      ],
-      "gap_type": "badcase_sensitive",
-      "recommended_action": "keep_review_required",
-      "review_required_reason": "The page generation timestamp is not the meeting date stated in the narrative. Required field is missing. required_field_missing",
-      "source_block_ids": [
-        "real_meeting_004_shandan_2025_11_minutes_b009",
-        "real_meeting_004_shandan_2025_11_minutes_b014"
-      ],
-      "target_field": "meeting_date"
-    },
-    {
-      "candidate_source_names": [
-        "国办函〔2025〕3号"
-      ],
-      "candidate_value_samples": [
+        "国办函〔2025〕3号",
         "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知 国办函〔2025〕3号"
       ],
       "count": 1,
@@ -346,7 +370,7 @@
       ],
       "gap_type": "badcase_sensitive",
       "recommended_action": "keep_review_required",
-      "review_required_reason": "The document number is concatenated with the repeated title and requires label-aware extraction.",
+      "review_required_reason": "Fuzzy mapping requires human review.",
       "source_block_ids": [
         "real_policy_007_one_thing_list_b003"
       ],
@@ -376,57 +400,14 @@
   ],
   "candidate_extraction_gaps": [
     {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 10,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
+      "candidate_source_names": [
+        "自2026年4月1日起施行"
       ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "keywords"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 10,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
+      "candidate_value_samples": [
+        "第五十条 本办法自 2026 年 4 月 1 日起施行。《新能源汽车动力蓄电池回收利用管理暂行办法》（工信部联节〔 2018 〕 43 号）、《新能源汽车动力蓄电池回收利用溯源管理暂行规定》（工业和信息化部公告 2018 年第 35 号）、《新能源汽车动力蓄电池回收服务网点建设和运营指南》（工业和信息化部公告 2019 年第 46 号）、《新能源汽车动力蓄电池梯次利用管理办法》（工信部联节〔 2021 〕 114 号）同时废止。",
+        "第十七条 本办法自2026年4月1日起施行。"
       ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "target_audience"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 7,
+      "count": 12,
       "doc_id": "real_policy_002_equipment_renewal",
       "doc_type": "policy_doc",
       "document_ids": [
@@ -436,18 +417,54 @@
         "real_policy_005_ai_industry_guide",
         "real_policy_007_one_thing_list",
         "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work"
+        "real_policy_009_network_safety_work",
+        "real_policy_011_battery_recycling_rules",
+        "real_policy_012_sme_gradient_rules",
+        "real_policy_013_minor_platform_rules"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
+      "source_block_ids": [
+        "real_policy_011_battery_recycling_rules_b102",
+        "real_policy_013_minor_platform_rules_b053"
+      ],
       "target_field": "effective_date"
     },
     {
       "candidate_source_names": [],
       "candidate_value_samples": [],
-      "count": 6,
+      "count": 10,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_001_notary_service_guide",
+        "real_general_002_biomed_project_guide",
+        "real_general_003_textile_application_flow",
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [],
+      "target_field": "document_subtype"
+    },
+    {
+      "candidate_source_names": [
+        "会议强调",
+        "会议要求"
+      ],
+      "candidate_value_samples": [
+        "会议强调，要深入学习领会习近平总书记二〇二六年新年贺词精神，深刻把握 “拼搏奉献”的时代要求，深入践行“以人民为中心”的发展思想，坚决扛起“敢于斗争”的责任担当，拿出跃马扬鞭的勇气，激发万马奔腾的活力，保持马不停蹄的干劲，集中精力护稳定、促改革、谋发展，奋力推动乌鲁木齐 县 各项工作在新的一年取得新成效、见到新气象。",
+        "会议要求， 把学习贯彻《生态环境法典》作为一项重要的法治工作来抓，深入学习领会法典的核心要义、精神实质和具体规定，不断提升依法开展生态环保工作的能力和水平，自觉运用法治思维和法治方式解决生态环境问题，推动生态环保工作法治化、规范化发展。"
+      ],
+      "count": 10,
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
@@ -456,109 +473,99 @@
         "real_meeting_003_miluo_executive_minutes",
         "real_meeting_004_shandan_2025_11_minutes",
         "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
+      "source_block_ids": [
+        "real_meeting_007_zhenping_49_minutes_b007",
+        "real_meeting_008_wlmqx_2026_01_minutes_b005"
+      ],
       "target_field": "action_items"
     },
     {
       "candidate_source_names": [],
       "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
+      "count": 9,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_general_001_notary_service_guide",
+        "real_general_002_biomed_project_guide",
+        "real_general_003_textile_application_flow",
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
-      "target_field": "deadlines"
+      "target_field": "created_date"
     },
     {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
+      "candidate_source_names": [
+        "截止时间"
+      ],
+      "candidate_value_samples": [
+        "2. 项目网上填报 起始时间为2026年7月6日9:00，截止时间（含申报单位网上审核提交）为2026年7月23日16:30。",
+        "2.项目网上填报 起始时间为2026年3月27日9:00，截止时间（含申报单位网上审核提交）为2026年4月16日16:30 。",
+        "2.项目网上填报 起始时间为2026年5月12日9:00，截止时间（含申报单位网上审核提交）为2026年5月29日16:30 。",
+        "2.项目网上填报 起始时间为2026年5月15日9:00，截止时间（含申报单位网上审核提交）为2026年6月3日16:30 。",
+        "2.项目网上填报起始时间为 2026年5月11日9:00 ，截止时间（含申报单位网上审核提交）为 2026年5月28日16:30 。"
+      ],
+      "count": 9,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_general_001_notary_service_guide",
+        "real_general_003_textile_application_flow",
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "decision_items"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+      "source_block_ids": [
+        "real_general_005_eldercare_technology_guide_b060",
+        "real_general_006_soft_science_guide_b088",
+        "real_general_007_domestic_cooperation_guide_b051",
+        "real_general_008_science_communication_guide_b114",
+        "real_general_009_food_technology_guide_b069",
+        "real_general_010_cell_gene_therapy_guide_b083"
       ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "decisions"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "meeting_location"
+      "target_field": "deadline"
     },
     {
       "candidate_source_names": [
         "agenda sections",
         "first agenda item",
         "reviewed matters",
-        "习近平主席"
+        "习近平主席",
+        "传达学习",
+        "听取全市安全生产"
       ],
       "candidate_value_samples": [
         "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
+        "一 、 传达学习国家主席习近平发表二〇二六年新年贺辞精神和习近平在全国政协新年茶话会上的重要讲话精神",
         "一、会议 传达学习 了 习近平主席在全球妇女峰会开幕式上的重要讲话精神，并研究了贯彻落实工作 。 会议强调， 县妇联、各乡镇及县直相关部门要将学习贯彻 习 近平 主席 在 全 球妇女峰会 开幕式 上的 重要 讲话精神作为重要政治任务，进一步深化学习，统筹谋划新时期妇女工作， 营造促进妇女全面发展 的 良好环境 ， 搭建赋能妇女投身高质量发展 的 广阔平台， 共同构建 保障妇女权益 的 治理格局， 支持妇女在科技创新、乡村振兴、基层治理、经济发展等各领域施展才华、建功立业 ， ",
         "一、会议传达学习了习近平主席在全球妇女峰会开幕式上的",
-        "会议传达学习了习近平总书记在中央城市工作会议上的重要讲话精神。会议强调，一要深入学习领会。我国城镇化进程已从过去的“快速增长期”迈入“稳定发展期”，城市发展模式正从“大规模增量扩张”转向“以存量提质增效为主”的新阶段。必须深入学习领会会议精神，深刻理解把握城镇化进入新阶段的重大判断及内涵要求。二要准确把握精髓。清醒认识县级在城镇化领域的投入能力有限，及时优化工作思路，立足我市实际，聚焦城市精细化管理，将工作重心切实转移到优化存量空间、完善功能、提升品质、提高效能等方面。三要抢",
-        "会议听取区府办关于2025 年区“两会”期间人大代表"
+        "一、传达学习习近平总书记对湖南长沙浏阳市烟花厂爆炸事故重要批示精神"
       ],
-      "count": 6,
+      "count": 9,
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
@@ -566,8 +573,11 @@
         "real_meeting_002_shaxian_executive_minutes",
         "real_meeting_003_miluo_executive_minutes",
         "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
@@ -577,28 +587,106 @@
         "real_meeting_002_shaxian_executive_minutes_b001",
         "real_meeting_003_miluo_executive_minutes_b005",
         "real_meeting_004_shandan_2025_11_minutes_b015",
-        "real_meeting_006_shandan_minutes_b013"
+        "real_meeting_006_shandan_minutes_b013",
+        "real_meeting_007_zhenping_49_minutes_b003",
+        "real_meeting_008_wlmqx_2026_01_minutes_b004",
+        "real_meeting_009_kundulun_2026_01_minutes_b004",
+        "real_meeting_010_zhangjiagang_64_minutes_b002"
       ],
       "target_field": "topics"
     },
     {
       "candidate_source_names": [],
       "candidate_value_samples": [],
-      "count": 5,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
+      "count": 6,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_general_002_biomed_project_guide",
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
-      "target_field": "attendees"
+      "target_field": "issuer"
+    },
+    {
+      "candidate_source_names": [
+        "汨政办发〔2026〕8号",
+        "第1次",
+        "第49次",
+        "第64次"
+      ],
+      "candidate_value_samples": [
+        "202 6 年 1 月 7 日， 县长马建国 主持召开县人民政府 202 6 年第 1 次常务会议 。 现 将会议 有关 事项 纪要如下：",
+        "202 6 年第 1 次 常务 会议 纪要",
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
+        "县 十六届政府第49次常务（扩大）会议纪要",
+        "汨政办发〔2026〕8号（关于废止相关文件的通知）"
+      ],
+      "count": 5,
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_005_miluo_2026_minutes",
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_005_miluo_2026_minutes_b001",
+        "real_meeting_007_zhenping_49_minutes_b001",
+        "real_meeting_008_wlmqx_2026_01_minutes_b003",
+        "real_meeting_009_kundulun_2026_01_minutes_b002",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "meeting_number"
+    },
+    {
+      "candidate_source_names": [
+        "issuer or issuing body",
+        "issuing bodies",
+        "八部门署名",
+        "发文机构",
+        "国务院办公厅"
+      ],
+      "candidate_value_samples": [
+        "国务院办公厅 2025年1月13日",
+        "国家互联网信息办公室",
+        "国家发展改革委 财政部关于2025年",
+        "教 育 部",
+        "附件1"
+      ],
+      "count": 5,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_001_training_platform_rules",
+        "real_policy_002_equipment_renewal",
+        "real_policy_005_ai_industry_guide",
+        "real_policy_007_one_thing_list",
+        "real_policy_013_minor_platform_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_001_training_platform_rules_b008",
+        "real_policy_002_equipment_renewal_b005",
+        "real_policy_005_ai_industry_guide_b002",
+        "real_policy_007_one_thing_list_b007",
+        "real_policy_013_minor_platform_rules_b008"
+      ],
+      "target_field": "issuer"
     },
     {
       "candidate_source_names": [
@@ -632,162 +720,24 @@
       "target_field": "application_conditions"
     },
     {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "application_materials"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "created_date"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "document_subtype"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "process_steps"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "published_at"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "tags"
-    },
-    {
       "candidate_source_names": [
-        "issuer or issuing body",
-        "issuing bodies",
-        "发文机构",
-        "国务院办公厅"
+        "service or subject section",
+        "申报主体"
       ],
       "candidate_value_samples": [
-        "国务院办公厅 2025年1月13日",
-        "国家发展改革委 财政部关于2025年",
-        "教 育 部",
-        "附件1"
-      ],
-      "count": 4,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_007_one_thing_list"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Required field is missing. required_field_missing",
-      "source_block_ids": [
-        "real_policy_001_training_platform_rules_b008",
-        "real_policy_002_equipment_renewal_b005",
-        "real_policy_005_ai_industry_guide_b002",
-        "real_policy_007_one_thing_list_b007"
-      ],
-      "target_field": "issuer"
-    },
-    {
-      "candidate_source_names": [
-        "service or subject section"
-      ],
-      "candidate_value_samples": [
+        "9.项目须由申报主体（上海方）与合作单位共同合作开展，于2025年1月1日至本指南网上截止日期间，就申报内容签订技术合同，且经上海市技术市场管理办公室认定登记。技术合同及认定登记证明须上传提交。",
         "各有关单位：",
         "天门市公证服务办事指南",
         "附件"
       ],
-      "count": 3,
+      "count": 4,
       "doc_id": "real_general_001_notary_service_guide",
       "doc_type": "general_doc",
       "document_ids": [
         "real_general_001_notary_service_guide",
         "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow"
+        "real_general_003_textile_application_flow",
+        "real_general_007_domestic_cooperation_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
@@ -795,9 +745,138 @@
       "source_block_ids": [
         "real_general_001_notary_service_guide_b002",
         "real_general_002_biomed_project_guide_b002",
-        "real_general_003_textile_application_flow_b002"
+        "real_general_003_textile_application_flow_b002",
+        "real_general_007_domestic_cooperation_guide_b041"
       ],
       "target_field": "service_object"
+    },
+    {
+      "candidate_source_names": [
+        "于占江主持",
+        "李靖主持",
+        "沈晶主持",
+        "马建国主持"
+      ],
+      "candidate_value_samples": [
+        "202 6 年 1 月 15 日 上午，区政府党组书记、区长于占江主持召开区人民政府 2026 年第 1 次常务会议，现纪要如下。",
+        "202 6 年 1 月 7 日， 县长马建国 主持召开县人民政府 202 6 年第 1 次常务会议 。 现 将会议 有关 事项 纪要如下：",
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
+        "5月20日，县委副书记、代县长李靖主持召开县十六届政府第49次常务（扩大）会议 。"
+      ],
+      "count": 4,
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_007_zhenping_49_minutes_b002",
+        "real_meeting_008_wlmqx_2026_01_minutes_b003",
+        "real_meeting_009_kundulun_2026_01_minutes_b003",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "chairperson"
+    },
+    {
+      "candidate_source_names": [
+        "2026年1月15日",
+        "2026年1月7日",
+        "meeting date sentence",
+        "二〇二五年十一月三日"
+      ],
+      "candidate_value_samples": [
+        "202 6 年 1 月 15 日 上午，区政府党组书记、区长于占江主持召开区人民政府 2026 年第 1 次常务会议，现纪要如下。",
+        "202 6 年 1 月 7 日， 县长马建国 主持召开县人民政府 202 6 年第 1 次常务会议 。 现 将会议 有关 事项 纪要如下：",
+        "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
+        "（二〇二五年十一月三日）"
+      ],
+      "count": 4,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_001_changning_executive_minutes",
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_001_changning_executive_minutes_b003",
+        "real_meeting_006_shandan_minutes_b004",
+        "real_meeting_008_wlmqx_2026_01_minutes_b003",
+        "real_meeting_009_kundulun_2026_01_minutes_b003"
+      ],
+      "target_field": "meeting_date"
+    },
+    {
+      "candidate_source_names": [
+        "各地主管部门和有关单位",
+        "各省中小企业主管部门",
+        "未成年人网络平台",
+        "老年群体"
+      ],
+      "candidate_value_samples": [
+        "为深入实施积极应对人口老龄化国家战略，树立和践行正确政绩观，落实《中华人民共和国无障碍环境建设法》要求，持续推广数字技术适老化产品和服务优秀成果，更好满足老年人日益增长的数字生活和信息服务需求，现组织开展2026年“数字适老中国行”活动。有关事项通知如下：",
+        "各省、自治区、直辖市及计划单列市、新疆生产建设兵团中小企业主管部门：",
+        "各省、自治区、直辖市及计划单列市、新疆生产建设兵团工业和信息化、发展改革、教育、科技、农业农村、卫生健康、网信主管部门、科协，中国人民银行上海总部，各省、自治区、直辖市及计划单列市分行，中国科学院院属各单位，各有关单位 ：",
+        "第一条 为科学认定未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者范围，根据《中华人民共和国网络安全法》、《中华人民共和国未成年人保护法》、《未成年人网络保护条例》等法律法规规定，制定本办法。"
+      ],
+      "count": 4,
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_012_sme_gradient_rules",
+        "real_policy_013_minor_platform_rules",
+        "real_policy_014_digital_aging_campaign",
+        "real_policy_015_ai_ethics_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_012_sme_gradient_rules_b010",
+        "real_policy_013_minor_platform_rules_b019",
+        "real_policy_014_digital_aging_campaign_b010",
+        "real_policy_015_ai_ethics_rules_b010"
+      ],
+      "target_field": "target_audience"
+    },
+    {
+      "candidate_source_names": [
+        "根据",
+        "活动内容",
+        "结合实际抓好落实"
+      ],
+      "candidate_value_samples": [
+        "四、活动内容",
+        "现将《人工智能科技伦理审查与服务办法（试行）》印发给你们，请结合实际认真抓好落实。",
+        "第一条 为了加强新能源汽车废旧动力电池（以下简称废旧动力电池）回收和综合利用管理，促进资源循环 利用，保护和改善环境， 根据《中华人民共和国循环经济促进法》《中华人民共和国固体废物污染环境防治法》等法律、行政法规，制定本办法。"
+      ],
+      "count": 3,
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_011_battery_recycling_rules",
+        "real_policy_014_digital_aging_campaign",
+        "real_policy_015_ai_ethics_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_011_battery_recycling_rules_b003",
+        "real_policy_014_digital_aging_campaign_b017",
+        "real_policy_015_ai_ethics_rules_b011"
+      ],
+      "target_field": "policy_measures"
     },
     {
       "candidate_source_names": [
@@ -820,7 +899,7 @@
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
-      "review_required_reason": "Required field is missing. required_field_missing",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
         "real_policy_004_student_loan_relief_b009",
         "real_policy_005_ai_industry_guide_b003",
@@ -832,38 +911,6 @@
       "candidate_source_names": [],
       "candidate_value_samples": [],
       "count": 2,
-      "doc_id": "real_general_003_textile_application_flow",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "attachments"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_general_003_textile_application_flow",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "contact"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
@@ -874,48 +921,48 @@
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
-      "target_field": "agenda_items"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "departments"
+      "target_field": "deadlines"
     },
     {
       "candidate_source_names": [
-        "meeting date sentence",
-        "二〇二五年十一月三日"
+        "会议原则通过",
+        "原则同意"
       ],
       "candidate_value_samples": [
-        "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
-        "（二〇二五年十一月三日）"
+        "(一)会议原则通过市政府办公室提交的《政府工作报告》（以下简称《报告》）2026年主要目标任务分工方案。会后，根据会议讨论的意见修改完善后，以市政府名义印发。",
+        "会议研究审议并原则同意《 202 6 年政府工作报告（送审稿）》，责成区政府办结合会上意见继续修改完善经审核把关后，报区委常委会审议。会议要求，要紧密贯彻落实党的二十届四中全会和中央、自治区、包头市经济工作会议以及自治区党委、包头市委、区委全会精神，全面把握新要求、新举措，实而又实部署开局之年各项工作任务，将目标任务具体化、项目化、清单化，明确具体抓手和项目支撑，确保总结成绩客观全面、部署工作务实精准。政府办要充分征求和吸纳各方意见建议，逐字、逐句、逐段研究，注重用实事和数据"
       ],
       "count": 2,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
-      "review_required_reason": "Required field is missing. required_field_missing",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
-        "real_meeting_001_changning_executive_minutes_b003",
-        "real_meeting_006_shandan_minutes_b004"
+        "real_meeting_009_kundulun_2026_01_minutes_b008",
+        "real_meeting_010_zhangjiagang_64_minutes_b008"
       ],
-      "target_field": "meeting_date"
+      "target_field": "decisions"
+    },
+    {
+      "candidate_source_names": [],
+      "candidate_value_samples": [],
+      "count": 2,
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_004_shandan_2025_11_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [],
+      "target_field": "organizer"
     },
     {
       "candidate_source_names": [],
@@ -934,40 +981,46 @@
       "target_field": "document_number"
     },
     {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 1,
-      "doc_id": "real_general_004_tianhe_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "category"
-    },
-    {
       "candidate_source_names": [
-        "汨政办发〔2026〕8号"
+        "推荐函"
       ],
       "candidate_value_samples": [
-        "汨政办发〔2026〕8号（关于废止相关文件的通知）"
+        "1）专题一须提供由省级科技主管部门出具的推荐函（详见附件2）；"
       ],
       "count": 1,
-      "doc_id": "real_meeting_005_miluo_2026_minutes",
-      "doc_type": "meeting_doc",
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
       "document_ids": [
-        "real_meeting_005_miluo_2026_minutes"
+        "real_general_007_domestic_cooperation_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
-        "real_meeting_005_miluo_2026_minutes_b001"
+        "real_general_007_domestic_cooperation_guide_b043"
       ],
-      "target_field": "meeting_number"
+      "target_field": "application_materials"
+    },
+    {
+      "candidate_source_names": [
+        "咨询电话"
+      ],
+      "candidate_value_samples": [
+        "六、咨询电话"
+      ],
+      "count": 1,
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_009_food_technology_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_general_009_food_technology_guide_b074"
+      ],
+      "target_field": "contact"
     },
     {
       "candidate_source_names": [],
@@ -982,85 +1035,69 @@
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
-      "target_field": "organizer"
+      "target_field": "attendees"
+    },
+    {
+      "candidate_source_names": [
+        "市政府501会议室"
+      ],
+      "candidate_value_samples": [
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生"
+      ],
+      "count": 1,
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "meeting_location"
+    },
+    {
+      "candidate_source_names": [
+        "负责"
+      ],
+      "candidate_value_samples": [
+        "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
+      ],
+      "count": 1,
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_011_battery_recycling_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_011_battery_recycling_rules_b005"
+      ],
+      "target_field": "responsible_departments"
     }
   ],
   "recommended_plan": [
     {
       "candidate_source_names": [
-        "source_url"
-      ],
-      "candidate_value_samples": [
-        "https://app.www.gov.cn/govdata/gov/202501/16/523725/article.html",
-        "https://www.gov.cn/zhengce/zhengceku/202511/P020251106333013261545.pdf",
-        "https://www.miit.gov.cn/jgsj/zbys/wjfb/art/2025/art_fa604619ed45484386f37422d01f5527.html",
-        "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_19d8e5b426f540699e5fe07a816a7493.html",
-        "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_3a170b97d16c43ce8d2d6f7a67e9e60e.html"
-      ],
-      "count": 10,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
-      ],
-      "gap_type": "alias_missing",
-      "recommended_action": "add_alias",
-      "review_required_reason": "Fuzzy mapping requires human review.",
-      "source_block_ids": [],
-      "target_field": "source"
-    },
-    {
-      "candidate_source_names": [
-        "source_url"
-      ],
-      "candidate_value_samples": [
-        "https://www.fjsx.gov.cn/zwgk/qzfhy/qzfcwh/202601/t20260114_2183728.htm",
-        "https://www.miluo.gov.cn/25221/25235/71992/content_2323268.html",
-        "https://www.miluo.gov.cn/25221/25235/71992/content_2383980.html",
-        "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/W020251120606165226334.pdf",
-        "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/t20251120_1478988.html"
-      ],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "alias_missing",
-      "recommended_action": "add_alias",
-      "review_required_reason": "Fuzzy mapping requires human review.",
-      "source_block_ids": [],
-      "target_field": "source"
-    },
-    {
-      "candidate_source_names": [
         "agenda sections",
         "first agenda item",
         "reviewed matters",
-        "习近平主席"
+        "习近平主席",
+        "传达学习",
+        "听取全市安全生产"
       ],
       "candidate_value_samples": [
         "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
+        "一 、 传达学习国家主席习近平发表二〇二六年新年贺辞精神和习近平在全国政协新年茶话会上的重要讲话精神",
         "一、会议 传达学习 了 习近平主席在全球妇女峰会开幕式上的重要讲话精神，并研究了贯彻落实工作 。 会议强调， 县妇联、各乡镇及县直相关部门要将学习贯彻 习 近平 主席 在 全 球妇女峰会 开幕式 上的 重要 讲话精神作为重要政治任务，进一步深化学习，统筹谋划新时期妇女工作， 营造促进妇女全面发展 的 良好环境 ， 搭建赋能妇女投身高质量发展 的 广阔平台， 共同构建 保障妇女权益 的 治理格局， 支持妇女在科技创新、乡村振兴、基层治理、经济发展等各领域施展才华、建功立业 ， ",
         "一、会议传达学习了习近平主席在全球妇女峰会开幕式上的",
-        "会议传达学习了习近平总书记在中央城市工作会议上的重要讲话精神。会议强调，一要深入学习领会。我国城镇化进程已从过去的“快速增长期”迈入“稳定发展期”，城市发展模式正从“大规模增量扩张”转向“以存量提质增效为主”的新阶段。必须深入学习领会会议精神，深刻理解把握城镇化进入新阶段的重大判断及内涵要求。二要准确把握精髓。清醒认识县级在城镇化领域的投入能力有限，及时优化工作思路，立足我市实际，聚焦城市精细化管理，将工作重心切实转移到优化存量空间、完善功能、提升品质、提高效能等方面。三要抢",
-        "会议听取区府办关于2025 年区“两会”期间人大代表"
+        "一、传达学习习近平总书记对湖南长沙浏阳市烟花厂爆炸事故重要批示精神"
       ],
-      "count": 5,
+      "count": 9,
       "doc_id": "real_meeting_001_changning_executive_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
@@ -1068,7 +1105,11 @@
         "real_meeting_002_shaxian_executive_minutes",
         "real_meeting_003_miluo_executive_minutes",
         "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
@@ -1078,9 +1119,121 @@
         "real_meeting_002_shaxian_executive_minutes_b001",
         "real_meeting_003_miluo_executive_minutes_b005",
         "real_meeting_004_shandan_2025_11_minutes_b015",
-        "real_meeting_006_shandan_minutes_b013"
+        "real_meeting_006_shandan_minutes_b013",
+        "real_meeting_007_zhenping_49_minutes_b003",
+        "real_meeting_008_wlmqx_2026_01_minutes_b004",
+        "real_meeting_009_kundulun_2026_01_minutes_b004",
+        "real_meeting_010_zhangjiagang_64_minutes_b002"
       ],
       "target_field": "topics"
+    },
+    {
+      "candidate_source_names": [
+        "截止时间"
+      ],
+      "candidate_value_samples": [
+        "2. 项目网上填报 起始时间为2026年7月6日9:00，截止时间（含申报单位网上审核提交）为2026年7月23日16:30。",
+        "2.项目网上填报 起始时间为2026年3月27日9:00，截止时间（含申报单位网上审核提交）为2026年4月16日16:30 。",
+        "2.项目网上填报 起始时间为2026年5月12日9:00，截止时间（含申报单位网上审核提交）为2026年5月29日16:30 。",
+        "2.项目网上填报 起始时间为2026年5月15日9:00，截止时间（含申报单位网上审核提交）为2026年6月3日16:30 。",
+        "2.项目网上填报起始时间为 2026年5月11日9:00 ，截止时间（含申报单位网上审核提交）为 2026年5月28日16:30 。"
+      ],
+      "count": 6,
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_general_005_eldercare_technology_guide_b060",
+        "real_general_006_soft_science_guide_b088",
+        "real_general_007_domestic_cooperation_guide_b051",
+        "real_general_008_science_communication_guide_b114",
+        "real_general_009_food_technology_guide_b069",
+        "real_general_010_cell_gene_therapy_guide_b083"
+      ],
+      "target_field": "deadline"
+    },
+    {
+      "candidate_source_names": [
+        "汨政办发〔2026〕8号",
+        "第1次",
+        "第49次",
+        "第64次"
+      ],
+      "candidate_value_samples": [
+        "202 6 年 1 月 7 日， 县长马建国 主持召开县人民政府 202 6 年第 1 次常务会议 。 现 将会议 有关 事项 纪要如下：",
+        "202 6 年第 1 次 常务 会议 纪要",
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
+        "县 十六届政府第49次常务（扩大）会议纪要",
+        "汨政办发〔2026〕8号（关于废止相关文件的通知）"
+      ],
+      "count": 5,
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_005_miluo_2026_minutes",
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_005_miluo_2026_minutes_b001",
+        "real_meeting_007_zhenping_49_minutes_b001",
+        "real_meeting_008_wlmqx_2026_01_minutes_b003",
+        "real_meeting_009_kundulun_2026_01_minutes_b002",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "meeting_number"
+    },
+    {
+      "candidate_source_names": [
+        "issuer or issuing body",
+        "issuing bodies",
+        "八部门署名",
+        "发文机构",
+        "国务院办公厅"
+      ],
+      "candidate_value_samples": [
+        "国务院办公厅 2025年1月13日",
+        "国家互联网信息办公室",
+        "国家发展改革委 财政部关于2025年",
+        "教 育 部",
+        "附件1"
+      ],
+      "count": 5,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_001_training_platform_rules",
+        "real_policy_002_equipment_renewal",
+        "real_policy_005_ai_industry_guide",
+        "real_policy_007_one_thing_list",
+        "real_policy_013_minor_platform_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_001_training_platform_rules_b008",
+        "real_policy_002_equipment_renewal_b005",
+        "real_policy_005_ai_industry_guide_b002",
+        "real_policy_007_one_thing_list_b007",
+        "real_policy_013_minor_platform_rules_b008"
+      ],
+      "target_field": "issuer"
     },
     {
       "candidate_source_names": [
@@ -1115,13 +1268,14 @@
     },
     {
       "candidate_source_names": [
-        "source_url"
+        "service or subject section",
+        "申报主体"
       ],
       "candidate_value_samples": [
-        "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20250307/fff38685e3a34a599574acbfe102b67e.html",
-        "https://www.gz.gov.cn/interf/storage/material/2026/01/20/0ebc48ad0dfd3b325bf2cf024e72a42b.pdf",
-        "https://www.miit.gov.cn/cms_files/filemanager/1226211233/attach/20255/74e5a08865314012a4497aaeddc71c55.pdf",
-        "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/ssfj/zfxxgk/zc/qtzdgkwj/t_5842730.shtml"
+        "9.项目须由申报主体（上海方）与合作单位共同合作开展，于2025年1月1日至本指南网上截止日期间，就申报内容签订技术合同，且经上海市技术市场管理办公室认定登记。技术合同及认定登记证明须上传提交。",
+        "各有关单位：",
+        "天门市公证服务办事指南",
+        "附件"
       ],
       "count": 4,
       "doc_id": "real_general_001_notary_service_guide",
@@ -1130,7 +1284,134 @@
         "real_general_001_notary_service_guide",
         "real_general_002_biomed_project_guide",
         "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
+        "real_general_007_domestic_cooperation_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_general_001_notary_service_guide_b002",
+        "real_general_002_biomed_project_guide_b002",
+        "real_general_003_textile_application_flow_b002",
+        "real_general_007_domestic_cooperation_guide_b041"
+      ],
+      "target_field": "service_object"
+    },
+    {
+      "candidate_source_names": [
+        "于占江主持",
+        "李靖主持",
+        "沈晶主持",
+        "马建国主持"
+      ],
+      "candidate_value_samples": [
+        "202 6 年 1 月 15 日 上午，区政府党组书记、区长于占江主持召开区人民政府 2026 年第 1 次常务会议，现纪要如下。",
+        "202 6 年 1 月 7 日， 县长马建国 主持召开县人民政府 202 6 年第 1 次常务会议 。 现 将会议 有关 事项 纪要如下：",
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
+        "5月20日，县委副书记、代县长李靖主持召开县十六届政府第49次常务（扩大）会议 。"
+      ],
+      "count": 4,
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_007_zhenping_49_minutes_b002",
+        "real_meeting_008_wlmqx_2026_01_minutes_b003",
+        "real_meeting_009_kundulun_2026_01_minutes_b003",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "chairperson"
+    },
+    {
+      "candidate_source_names": [
+        "2026年1月15日",
+        "2026年1月7日",
+        "meeting date sentence",
+        "二〇二五年十一月三日"
+      ],
+      "candidate_value_samples": [
+        "202 6 年 1 月 15 日 上午，区政府党组书记、区长于占江主持召开区人民政府 2026 年第 1 次常务会议，现纪要如下。",
+        "202 6 年 1 月 7 日， 县长马建国 主持召开县人民政府 202 6 年第 1 次常务会议 。 现 将会议 有关 事项 纪要如下：",
+        "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
+        "（二〇二五年十一月三日）"
+      ],
+      "count": 4,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_001_changning_executive_minutes",
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_001_changning_executive_minutes_b003",
+        "real_meeting_006_shandan_minutes_b004",
+        "real_meeting_008_wlmqx_2026_01_minutes_b003",
+        "real_meeting_009_kundulun_2026_01_minutes_b003"
+      ],
+      "target_field": "meeting_date"
+    },
+    {
+      "candidate_source_names": [
+        "2026-06-16",
+        "2026年3月6日",
+        "meeting sentence",
+        "opening sentence"
+      ],
+      "candidate_value_samples": [
+        "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
+        "2025年7月30日，市长林恒求主持召开汨罗市第13届人民政府第47次常务会议。",
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
+        "日期：2026-06-16 08:28"
+      ],
+      "count": 4,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_002_shaxian_executive_minutes",
+        "real_meeting_003_miluo_executive_minutes",
+        "real_meeting_005_miluo_2026_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "regex_missing",
+      "recommended_action": "add_regex",
+      "review_required_reason": "Stable labeled source text lacks a deterministic mapping rule.",
+      "source_block_ids": [
+        "real_meeting_002_shaxian_executive_minutes_b001",
+        "real_meeting_003_miluo_executive_minutes_b003",
+        "real_meeting_005_miluo_2026_minutes_b003",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "meeting_date"
+    },
+    {
+      "candidate_source_names": [
+        "source_site"
+      ],
+      "candidate_value_samples": [
+        "www.moe.gov.cn",
+        "www.ndrc.gov.cn"
+      ],
+      "count": 4,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_001_training_platform_rules",
+        "real_policy_002_equipment_renewal",
+        "real_policy_003_science_education_guide",
+        "real_policy_004_student_loan_relief"
       ],
       "gap_type": "alias_missing",
       "recommended_action": "add_alias",
@@ -1140,92 +1421,65 @@
     },
     {
       "candidate_source_names": [
-        "issuer or issuing body",
-        "issuing bodies",
-        "发文机构",
-        "国务院办公厅"
+        "各地主管部门和有关单位",
+        "各省中小企业主管部门",
+        "未成年人网络平台",
+        "老年群体"
       ],
       "candidate_value_samples": [
-        "国务院办公厅 2025年1月13日",
-        "国家发展改革委 财政部关于2025年",
-        "教 育 部",
-        "附件1"
+        "为深入实施积极应对人口老龄化国家战略，树立和践行正确政绩观，落实《中华人民共和国无障碍环境建设法》要求，持续推广数字技术适老化产品和服务优秀成果，更好满足老年人日益增长的数字生活和信息服务需求，现组织开展2026年“数字适老中国行”活动。有关事项通知如下：",
+        "各省、自治区、直辖市及计划单列市、新疆生产建设兵团中小企业主管部门：",
+        "各省、自治区、直辖市及计划单列市、新疆生产建设兵团工业和信息化、发展改革、教育、科技、农业农村、卫生健康、网信主管部门、科协，中国人民银行上海总部，各省、自治区、直辖市及计划单列市分行，中国科学院院属各单位，各有关单位 ：",
+        "第一条 为科学认定未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者范围，根据《中华人民共和国网络安全法》、《中华人民共和国未成年人保护法》、《未成年人网络保护条例》等法律法规规定，制定本办法。"
       ],
       "count": 4,
-      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_id": "real_policy_012_sme_gradient_rules",
       "doc_type": "policy_doc",
       "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_007_one_thing_list"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Required field is missing. required_field_missing",
-      "source_block_ids": [
-        "real_policy_001_training_platform_rules_b008",
-        "real_policy_002_equipment_renewal_b005",
-        "real_policy_005_ai_industry_guide_b002",
-        "real_policy_007_one_thing_list_b007"
-      ],
-      "target_field": "issuer"
-    },
-    {
-      "candidate_source_names": [
-        "service or subject section"
-      ],
-      "candidate_value_samples": [
-        "各有关单位：",
-        "天门市公证服务办事指南",
-        "附件"
-      ],
-      "count": 3,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow"
+        "real_policy_012_sme_gradient_rules",
+        "real_policy_013_minor_platform_rules",
+        "real_policy_014_digital_aging_campaign",
+        "real_policy_015_ai_ethics_rules"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
-        "real_general_001_notary_service_guide_b002",
-        "real_general_002_biomed_project_guide_b002",
-        "real_general_003_textile_application_flow_b002"
+        "real_policy_012_sme_gradient_rules_b010",
+        "real_policy_013_minor_platform_rules_b019",
+        "real_policy_014_digital_aging_campaign_b010",
+        "real_policy_015_ai_ethics_rules_b010"
       ],
-      "target_field": "service_object"
+      "target_field": "target_audience"
     },
     {
       "candidate_source_names": [
-        "2026-06-16",
-        "meeting sentence",
-        "opening sentence"
+        "根据",
+        "活动内容",
+        "结合实际抓好落实"
       ],
       "candidate_value_samples": [
-        "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
-        "2025年7月30日，市长林恒求主持召开汨罗市第13届人民政府第47次常务会议。",
-        "日期：2026-06-16 08:28"
+        "四、活动内容",
+        "现将《人工智能科技伦理审查与服务办法（试行）》印发给你们，请结合实际认真抓好落实。",
+        "第一条 为了加强新能源汽车废旧动力电池（以下简称废旧动力电池）回收和综合利用管理，促进资源循环 利用，保护和改善环境， 根据《中华人民共和国循环经济促进法》《中华人民共和国固体废物污染环境防治法》等法律、行政法规，制定本办法。"
       ],
       "count": 3,
-      "doc_id": "real_meeting_002_shaxian_executive_minutes",
-      "doc_type": "meeting_doc",
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
       "document_ids": [
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_005_miluo_2026_minutes"
+        "real_policy_011_battery_recycling_rules",
+        "real_policy_014_digital_aging_campaign",
+        "real_policy_015_ai_ethics_rules"
       ],
-      "gap_type": "regex_missing",
-      "recommended_action": "add_regex",
-      "review_required_reason": "Stable labeled source text lacks a deterministic mapping rule.",
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
-        "real_meeting_002_shaxian_executive_minutes_b001",
-        "real_meeting_003_miluo_executive_minutes_b003",
-        "real_meeting_005_miluo_2026_minutes_b003"
+        "real_policy_011_battery_recycling_rules_b003",
+        "real_policy_014_digital_aging_campaign_b017",
+        "real_policy_015_ai_ethics_rules_b011"
       ],
-      "target_field": "meeting_date"
+      "target_field": "policy_measures"
     },
     {
       "candidate_source_names": [
@@ -1248,7 +1502,7 @@
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
-      "review_required_reason": "Required field is missing. required_field_missing",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
         "real_policy_004_student_loan_relief_b009",
         "real_policy_005_ai_industry_guide_b003",
@@ -1258,91 +1512,209 @@
     },
     {
       "candidate_source_names": [
-        "meeting date sentence",
-        "二〇二五年十一月三日"
+        "会议强调",
+        "会议要求"
       ],
       "candidate_value_samples": [
-        "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
-        "（二〇二五年十一月三日）"
+        "会议强调，要深入学习领会习近平总书记二〇二六年新年贺词精神，深刻把握 “拼搏奉献”的时代要求，深入践行“以人民为中心”的发展思想，坚决扛起“敢于斗争”的责任担当，拿出跃马扬鞭的勇气，激发万马奔腾的活力，保持马不停蹄的干劲，集中精力护稳定、促改革、谋发展，奋力推动乌鲁木齐 县 各项工作在新的一年取得新成效、见到新气象。",
+        "会议要求， 把学习贯彻《生态环境法典》作为一项重要的法治工作来抓，深入学习领会法典的核心要义、精神实质和具体规定，不断提升依法开展生态环保工作的能力和水平，自觉运用法治思维和法治方式解决生态环境问题，推动生态环保工作法治化、规范化发展。"
       ],
       "count": 2,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "recommended_action": "enhance_candidate",
-      "review_required_reason": "Required field is missing. required_field_missing",
-      "source_block_ids": [
-        "real_meeting_001_changning_executive_minutes_b003",
-        "real_meeting_006_shandan_minutes_b004"
-      ],
-      "target_field": "meeting_date"
-    },
-    {
-      "candidate_source_names": [
-        "申报对象"
-      ],
-      "candidate_value_samples": [
-        "1.申报对象：人力资源服务企业"
-      ],
-      "count": 1,
-      "doc_id": "real_general_004_tianhe_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "regex_missing",
-      "recommended_action": "add_regex",
-      "review_required_reason": "Stable labeled source text lacks a deterministic mapping rule.",
-      "source_block_ids": [
-        "real_general_004_tianhe_service_guide_b007"
-      ],
-      "target_field": "service_object"
-    },
-    {
-      "candidate_source_names": [
-        "汨政办发〔2026〕8号"
-      ],
-      "candidate_value_samples": [
-        "汨政办发〔2026〕8号（关于废止相关文件的通知）"
-      ],
-      "count": 1,
-      "doc_id": "real_meeting_005_miluo_2026_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_005_miluo_2026_minutes"
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "recommended_action": "enhance_candidate",
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
-        "real_meeting_005_miluo_2026_minutes_b001"
+        "real_meeting_007_zhenping_49_minutes_b007",
+        "real_meeting_008_wlmqx_2026_01_minutes_b005"
       ],
-      "target_field": "meeting_number"
+      "target_field": "action_items"
+    },
+    {
+      "candidate_source_names": [
+        "会议原则通过",
+        "原则同意"
+      ],
+      "candidate_value_samples": [
+        "(一)会议原则通过市政府办公室提交的《政府工作报告》（以下简称《报告》）2026年主要目标任务分工方案。会后，根据会议讨论的意见修改完善后，以市政府名义印发。",
+        "会议研究审议并原则同意《 202 6 年政府工作报告（送审稿）》，责成区政府办结合会上意见继续修改完善经审核把关后，报区委常委会审议。会议要求，要紧密贯彻落实党的二十届四中全会和中央、自治区、包头市经济工作会议以及自治区党委、包头市委、区委全会精神，全面把握新要求、新举措，实而又实部署开局之年各项工作任务，将目标任务具体化、项目化、清单化，明确具体抓手和项目支撑，确保总结成绩客观全面、部署工作务实精准。政府办要充分征求和吸纳各方意见建议，逐字、逐句、逐段研究，注重用实事和数据"
+      ],
+      "count": 2,
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_009_kundulun_2026_01_minutes_b008",
+        "real_meeting_010_zhangjiagang_64_minutes_b008"
+      ],
+      "target_field": "decisions"
+    },
+    {
+      "candidate_source_names": [
+        "paragraph_regex.document_number"
+      ],
+      "candidate_value_samples": [
+        "发改环资〔2025〕13号",
+        "国信办发文〔2026〕2号"
+      ],
+      "count": 2,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_002_equipment_renewal",
+        "real_policy_013_minor_platform_rules"
+      ],
+      "gap_type": "alias_missing",
+      "recommended_action": "add_alias",
+      "review_required_reason": "Fuzzy mapping requires human review.",
+      "source_block_ids": [
+        "real_policy_002_equipment_renewal_b008",
+        "real_policy_013_minor_platform_rules_b005"
+      ],
+      "target_field": "document_number"
+    },
+    {
+      "candidate_source_names": [
+        "自2026年4月1日起施行"
+      ],
+      "candidate_value_samples": [
+        "第五十条 本办法自 2026 年 4 月 1 日起施行。《新能源汽车动力蓄电池回收利用管理暂行办法》（工信部联节〔 2018 〕 43 号）、《新能源汽车动力蓄电池回收利用溯源管理暂行规定》（工业和信息化部公告 2018 年第 35 号）、《新能源汽车动力蓄电池回收服务网点建设和运营指南》（工业和信息化部公告 2019 年第 46 号）、《新能源汽车动力蓄电池梯次利用管理办法》（工信部联节〔 2021 〕 114 号）同时废止。",
+        "第十七条 本办法自2026年4月1日起施行。"
+      ],
+      "count": 2,
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_011_battery_recycling_rules",
+        "real_policy_013_minor_platform_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_011_battery_recycling_rules_b102",
+        "real_policy_013_minor_platform_rules_b053"
+      ],
+      "target_field": "effective_date"
+    },
+    {
+      "candidate_source_names": [
+        "推荐函"
+      ],
+      "candidate_value_samples": [
+        "1）专题一须提供由省级科技主管部门出具的推荐函（详见附件2）；"
+      ],
+      "count": 1,
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_007_domestic_cooperation_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_general_007_domestic_cooperation_guide_b043"
+      ],
+      "target_field": "application_materials"
+    },
+    {
+      "candidate_source_names": [
+        "咨询电话"
+      ],
+      "candidate_value_samples": [
+        "六、咨询电话"
+      ],
+      "count": 1,
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_009_food_technology_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_general_009_food_technology_guide_b074"
+      ],
+      "target_field": "contact"
+    },
+    {
+      "candidate_source_names": [
+        "市政府501会议室"
+      ],
+      "candidate_value_samples": [
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生"
+      ],
+      "count": 1,
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_010_zhangjiagang_64_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
+      ],
+      "target_field": "meeting_location"
+    },
+    {
+      "candidate_source_names": [
+        "负责"
+      ],
+      "candidate_value_samples": [
+        "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
+      ],
+      "count": 1,
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_011_battery_recycling_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "recommended_action": "enhance_candidate",
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_011_battery_recycling_rules_b005"
+      ],
+      "target_field": "responsible_departments"
     }
   ],
   "regex_gaps": [
     {
       "candidate_source_names": [
         "2026-06-16",
+        "2026年3月6日",
         "meeting sentence",
         "opening sentence"
       ],
       "candidate_value_samples": [
         "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
         "2025年7月30日，市长林恒求主持召开汨罗市第13届人民政府第47次常务会议。",
+        "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生",
         "日期：2026-06-16 08:28"
       ],
-      "count": 3,
+      "count": 4,
       "doc_id": "real_meeting_002_shaxian_executive_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
         "real_meeting_002_shaxian_executive_minutes",
         "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_005_miluo_2026_minutes"
+        "real_meeting_005_miluo_2026_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
       ],
       "gap_type": "regex_missing",
       "recommended_action": "add_regex",
@@ -1350,154 +1722,96 @@
       "source_block_ids": [
         "real_meeting_002_shaxian_executive_minutes_b001",
         "real_meeting_003_miluo_executive_minutes_b003",
-        "real_meeting_005_miluo_2026_minutes_b003"
+        "real_meeting_005_miluo_2026_minutes_b003",
+        "real_meeting_010_zhangjiagang_64_minutes_b001"
       ],
       "target_field": "meeting_date"
-    },
-    {
-      "candidate_source_names": [
-        "申报对象"
-      ],
-      "candidate_value_samples": [
-        "1.申报对象：人力资源服务企业"
-      ],
-      "count": 1,
-      "doc_id": "real_general_004_tianhe_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "regex_missing",
-      "recommended_action": "add_regex",
-      "review_required_reason": "Stable labeled source text lacks a deterministic mapping rule.",
-      "source_block_ids": [
-        "real_general_004_tianhe_service_guide_b007"
-      ],
-      "target_field": "service_object"
     }
   ],
-  "schema_gaps": [],
+  "schema_gaps": [
+    {
+      "candidate_source_names": [],
+      "candidate_value_samples": [],
+      "count": 1,
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_011_battery_recycling_rules"
+      ],
+      "gap_type": "schema_too_strict",
+      "recommended_action": "review_schema",
+      "review_required_reason": "Required field is missing. required_field_missing",
+      "source_block_ids": [],
+      "target_field": "publish_date"
+    }
+  ],
   "summary": {
-    "average_recall": 0.4211309523809524,
+    "average_recall": 0.5595918367346938,
     "badcase_violation_count": 0,
     "by_doc_type": {
       "general_doc": {
-        "average_recall": 0.3333333333333333,
-        "badcase_violation_count": 0,
-        "documents": 4,
-        "documents_total": 4,
-        "required_missing_count": 0,
-        "review_required_count": 44,
-        "strict_pass_count": 0
-      },
-      "meeting_doc": {
-        "average_recall": 0.3333333333333333,
-        "badcase_violation_count": 0,
-        "documents": 6,
-        "documents_total": 6,
-        "required_missing_count": 3,
-        "review_required_count": 53,
-        "strict_pass_count": 0
-      },
-      "policy_doc": {
-        "average_recall": 0.5089285714285714,
+        "average_recall": 0.6291666666666667,
         "badcase_violation_count": 0,
         "documents": 10,
         "documents_total": 10,
-        "required_missing_count": 12,
-        "review_required_count": 42,
-        "strict_pass_count": 4
+        "required_missing_count": 0,
+        "review_required_count": 31,
+        "strict_pass_count": 5
+      },
+      "meeting_doc": {
+        "average_recall": 0.4341666666666667,
+        "badcase_violation_count": 0,
+        "documents": 10,
+        "documents_total": 10,
+        "required_missing_count": 3,
+        "review_required_count": 17,
+        "strict_pass_count": 0
+      },
+      "policy_doc": {
+        "average_recall": 0.5968253968253968,
+        "badcase_violation_count": 0,
+        "documents": 15,
+        "documents_total": 15,
+        "required_missing_count": 6,
+        "review_required_count": 22,
+        "strict_pass_count": 7
       }
     },
     "diagnostics": {
-      "complete_packages_discovered": 30,
+      "complete_packages_discovered": 45,
       "ignored_document_type_count": 10,
       "ignored_document_types": {
         "procurement_doc": 10
       },
       "incomplete_package_count": 0,
-      "packages_analyzed": 20
+      "packages_analyzed": 35
     },
-    "documents_total": 20,
-    "required_missing_count": 15,
-    "review_required_count": 139,
-    "strict_pass_count": 4
+    "documents_total": 35,
+    "required_missing_count": 9,
+    "review_required_count": 70,
+    "strict_pass_count": 12
   },
   "top_missing_required_fields": [
     {
       "candidate_source_names": [
-        "issuer or issuing body",
-        "issuing bodies",
-        "joint issuing bodies",
-        "发文机构",
-        "国务院办公厅"
-      ],
-      "candidate_value_samples": [
-        "为加大保障和改善民生力度，支持做好2025年高校毕业生就业服务工作，现就做好2025年国家助学贷款免息及本金延期偿还工作通知如下：",
-        "国务院办公厅 2025年1月13日",
-        "国家发展改革委 财政部关于2025年",
-        "教 育 部",
-        "教育部办公厅"
-      ],
-      "count": 6,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_007_one_thing_list"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "badcase_sensitive",
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate",
-        "keep_review_required"
-      ],
-      "review_required_reason": "Required field is missing. required_field_missing",
-      "source_block_ids": [
-        "real_policy_001_training_platform_rules_b008",
-        "real_policy_002_equipment_renewal_b005",
-        "real_policy_003_science_education_guide_b008",
-        "real_policy_004_student_loan_relief_b002",
-        "real_policy_004_student_loan_relief_b007",
-        "real_policy_005_ai_industry_guide_b002",
-        "real_policy_007_one_thing_list_b007"
-      ],
-      "target_field": "issuer"
-    },
-    {
-      "candidate_source_names": [
-        "2025-01-16",
-        "publication date or date sentence",
-        "signed date",
-        "信息索引",
-        "发布时间",
+        "11 月 3 日",
+        "5月20日",
+        "二〇二五年十一月三日",
         "生成日期"
       ],
       "candidate_value_samples": [
-        "2025 年人工智能产业及赋能新型工业化创新任务",
-        "2025年1月14日",
-        "2025年1月3日",
-        "2025年1月5日",
-        "2025年3月27日"
+        "11 月 3 日，县委副书记、县长黄国杰主持召开十九届县政府第 97 次常务会议， 传达学习习近平总书记重要讲话精神， 组织学习中央和省市有关会议文件精神， 专题 研究 经济运行、 为民实事 办理 、安全生产、根治 欠薪 、公平竞争审查、 文物保护、民生保障、 国企监管、交通 项目 建设 等方面工作。县政府在家领导出席会议，各乡镇、县直有关部门、 企事业及省市驻丹有关单位负责同志列席会议，县 人大常委会副主任车明国 、 县 政协副主席唐谦 应邀参加会议。现将会议研究确定事项纪",
+        "5月20日，县委副书记、代县长李靖主持召开县十六届政府第49次常务（扩大）会议 。",
+        "生成日期： 2025-11-14 16:31:47",
+        "（二〇二五年十一月三日）"
       ],
-      "count": 6,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
+      "count": 3,
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
       "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_007_one_thing_list"
+        "real_meeting_004_shandan_2025_11_minutes",
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_007_zhenping_49_minutes"
       ],
       "gap_type": "badcase_sensitive",
       "gap_types": [
@@ -1511,38 +1825,31 @@
       ],
       "review_required_reason": "Required field is missing. required_field_missing",
       "source_block_ids": [
-        "real_policy_001_training_platform_rules_b003",
-        "real_policy_001_training_platform_rules_b009",
-        "real_policy_002_equipment_renewal_b002",
-        "real_policy_002_equipment_renewal_b072",
-        "real_policy_003_science_education_guide_b003",
-        "real_policy_003_science_education_guide_b009",
-        "real_policy_004_student_loan_relief_b009",
-        "real_policy_005_ai_industry_guide_b003",
-        "real_policy_007_one_thing_list_b002"
+        "real_meeting_004_shandan_2025_11_minutes_b009",
+        "real_meeting_004_shandan_2025_11_minutes_b014",
+        "real_meeting_006_shandan_minutes_b004",
+        "real_meeting_007_zhenping_49_minutes_b002"
       ],
-      "target_field": "publish_date"
+      "target_field": "meeting_date"
     },
     {
       "candidate_source_names": [
-        "11 月 3 日",
-        "meeting date sentence",
-        "二〇二五年十一月三日",
-        "生成日期"
+        "issuer or issuing body",
+        "国务院办公厅",
+        "工业和信息化部等部门"
       ],
       "candidate_value_samples": [
-        "11 月 3 日，县委副书记、县长黄国杰主持召开十九届县政府第 97 次常务会议， 传达学习习近平总书记重要讲话精神， 组织学习中央和省市有关会议文件精神， 专题 研究 经济运行、 为民实事 办理 、安全生产、根治 欠薪 、公平竞争审查、 文物保护、民生保障、 国企监管、交通 项目 建设 等方面工作。县政府在家领导出席会议，各乡镇、县直有关部门、 企事业及省市驻丹有关单位负责同志列席会议，县 人大常委会副主任车明国 、 县 政协副主席唐谦 应邀参加会议。现将会议研究确定事项纪",
-        "2025 年1 月21 日下午，区长刘平主持召开区政府第96",
-        "生成日期： 2025-11-14 16:31:47",
-        "（二〇二五年十一月三日）"
+        "国务院办公厅 2025年1月13日",
+        "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。",
+        "附件1"
       ],
       "count": 3,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
       "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_policy_005_ai_industry_guide",
+        "real_policy_007_one_thing_list",
+        "real_policy_011_battery_recycling_rules"
       ],
       "gap_type": "candidate_not_extracted",
       "gap_types": [
@@ -1556,26 +1863,61 @@
       ],
       "review_required_reason": "Required field is missing. required_field_missing",
       "source_block_ids": [
-        "real_meeting_001_changning_executive_minutes_b003",
-        "real_meeting_004_shandan_2025_11_minutes_b009",
-        "real_meeting_004_shandan_2025_11_minutes_b014",
-        "real_meeting_006_shandan_minutes_b004"
+        "real_policy_005_ai_industry_guide_b002",
+        "real_policy_007_one_thing_list_b007",
+        "real_policy_011_battery_recycling_rules_b005"
       ],
-      "target_field": "meeting_date"
+      "target_field": "issuer"
+    },
+    {
+      "candidate_source_names": [
+        "2026年2月11日",
+        "publication date or date sentence"
+      ],
+      "candidate_value_samples": [
+        "2025 年人工智能产业及赋能新型工业化创新任务",
+        "2026年2月11日"
+      ],
+      "count": 3,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_005_ai_industry_guide",
+        "real_policy_011_battery_recycling_rules",
+        "real_policy_013_minor_platform_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "gap_types": [
+        "badcase_sensitive",
+        "candidate_not_extracted",
+        "schema_too_strict"
+      ],
+      "recommended_action": "enhance_candidate",
+      "recommended_actions": [
+        "enhance_candidate",
+        "keep_review_required",
+        "review_schema"
+      ],
+      "review_required_reason": "Required field is missing. required_field_missing",
+      "source_block_ids": [
+        "real_policy_005_ai_industry_guide_b003",
+        "real_policy_013_minor_platform_rules_b016"
+      ],
+      "target_field": "publish_date"
     }
   ],
   "top_review_required_fields": [
     {
       "candidate_source_names": [
-        "本办法自2025年7月10日起施行",
+        "自2026年4月1日起施行",
         "自印发之日起施行"
       ],
       "candidate_value_samples": [
         "本通知自印发之日起施行。",
-        "第二十九条 本办法自2025年7月10日起施行。",
-        "第二十五条 本办法自印发之日起施行，由教育部负责解释。"
+        "第二十五条 本办法自印发之日起施行，由教育部负责解释。",
+        "第五十条 本办法自 2026 年 4 月 1 日起施行。《新能源汽车动力蓄电池回收利用管理暂行办法》（工信部联节〔 2018 〕 43 号）、《新能源汽车动力蓄电池回收利用溯源管理暂行规定》（工业和信息化部公告 2018 年第 35 号）、《新能源汽车动力蓄电池回收服务网点建设和运营指南》（工业和信息化部公告 2019 年第 46 号）、《新能源汽车动力蓄电池梯次利用管理办法》（工信部联节〔 2021 〕 114 号）同时废止。"
       ],
-      "count": 10,
+      "count": 13,
       "doc_id": "real_policy_001_training_platform_rules",
       "doc_type": "policy_doc",
       "document_ids": [
@@ -1584,11 +1926,11 @@
         "real_policy_003_science_education_guide",
         "real_policy_004_student_loan_relief",
         "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
         "real_policy_007_one_thing_list",
         "real_policy_008_sme_leader_training",
         "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
+        "real_policy_010_auto_ota_management",
+        "real_policy_011_battery_recycling_rules"
       ],
       "gap_type": "badcase_sensitive",
       "gap_types": [
@@ -1603,8 +1945,8 @@
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
         "real_policy_001_training_platform_rules_b045",
-        "real_policy_006_technology_incubator_rules_b070",
-        "real_policy_010_auto_ota_management_b027"
+        "real_policy_010_auto_ota_management_b027",
+        "real_policy_011_battery_recycling_rules_b102"
       ],
       "target_field": "effective_date"
     },
@@ -1612,143 +1954,19 @@
       "candidate_source_names": [],
       "candidate_value_samples": [],
       "count": 10,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
       "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "keywords"
-    },
-    {
-      "candidate_source_names": [
-        "source_url"
-      ],
-      "candidate_value_samples": [
-        "https://app.www.gov.cn/govdata/gov/202501/16/523725/article.html",
-        "https://www.gov.cn/zhengce/zhengceku/202511/P020251106333013261545.pdf",
-        "https://www.miit.gov.cn/jgsj/zbys/wjfb/art/2025/art_fa604619ed45484386f37422d01f5527.html",
-        "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_19d8e5b426f540699e5fe07a816a7493.html",
-        "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_3a170b97d16c43ce8d2d6f7a67e9e60e.html"
-      ],
-      "count": 10,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
-      ],
-      "gap_type": "alias_missing",
-      "gap_types": [
-        "alias_missing"
-      ],
-      "recommended_action": "add_alias",
-      "recommended_actions": [
-        "add_alias"
-      ],
-      "review_required_reason": "Fuzzy mapping requires human review.",
-      "source_block_ids": [],
-      "target_field": "source"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 10,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_002_equipment_renewal",
-        "real_policy_003_science_education_guide",
-        "real_policy_004_student_loan_relief",
-        "real_policy_005_ai_industry_guide",
-        "real_policy_006_technology_incubator_rules",
-        "real_policy_007_one_thing_list",
-        "real_policy_008_sme_leader_training",
-        "real_policy_009_network_safety_work",
-        "real_policy_010_auto_ota_management"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "target_audience"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "action_items"
-    },
-    {
-      "candidate_source_names": [
-        "出席"
-      ],
-      "candidate_value_samples": [
-        "出 席：林恒求、杨盛、吴艳平、付文勇、任娜、曹陶、李岳星、向恩泽、胡义"
-      ],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
+        "real_general_001_notary_service_guide",
+        "real_general_002_biomed_project_guide",
+        "real_general_003_textile_application_flow",
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "gap_types": [
@@ -1759,312 +1977,6 @@
       "recommended_actions": [
         "enhance_candidate",
         "keep_review_required"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [
-        "real_meeting_003_miluo_executive_minutes_b028"
-      ],
-      "target_field": "attendees"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "deadlines"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "decision_items"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "decisions"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "meeting_location"
-    },
-    {
-      "candidate_source_names": [
-        "source_url"
-      ],
-      "candidate_value_samples": [
-        "https://www.fjsx.gov.cn/zwgk/qzfhy/qzfcwh/202601/t20260114_2183728.htm",
-        "https://www.miluo.gov.cn/25221/25235/71992/content_2323268.html",
-        "https://www.miluo.gov.cn/25221/25235/71992/content_2383980.html",
-        "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/W020251120606165226334.pdf",
-        "https://www.shandan.gov.cn/zfxxgk/fdzdgknr/xzfhy/xzfcwhy/202511/t20251120_1478988.html"
-      ],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "alias_missing",
-      "gap_types": [
-        "alias_missing"
-      ],
-      "recommended_action": "add_alias",
-      "recommended_actions": [
-        "add_alias"
-      ],
-      "review_required_reason": "Fuzzy mapping requires human review.",
-      "source_block_ids": [],
-      "target_field": "source"
-    },
-    {
-      "candidate_source_names": [
-        "agenda sections",
-        "first agenda item",
-        "reviewed matters",
-        "习近平主席"
-      ],
-      "candidate_value_samples": [
-        "2025年12月19日下午，区政府区长吴晓峰在区政府办公大楼三楼1号会议室主持召开区政府第78次常务会议，审议《2026年三明市沙县区政府工作报告（送审稿）》《三明市沙县区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划（草案）的报告（送审稿）》《三明市沙县区国民经济和社会发展第十五个五年规划纲要（送审稿）》《三明市沙县区2025年预算执行情况及2026年预算草案的报告（送审稿）》等事项。",
-        "一、会议 传达学习 了 习近平主席在全球妇女峰会开幕式上的重要讲话精神，并研究了贯彻落实工作 。 会议强调， 县妇联、各乡镇及县直相关部门要将学习贯彻 习 近平 主席 在 全 球妇女峰会 开幕式 上的 重要 讲话精神作为重要政治任务，进一步深化学习，统筹谋划新时期妇女工作， 营造促进妇女全面发展 的 良好环境 ， 搭建赋能妇女投身高质量发展 的 广阔平台， 共同构建 保障妇女权益 的 治理格局， 支持妇女在科技创新、乡村振兴、基层治理、经济发展等各领域施展才华、建功立业 ， ",
-        "一、会议传达学习了习近平主席在全球妇女峰会开幕式上的",
-        "会议传达学习了习近平总书记在中央城市工作会议上的重要讲话精神。会议强调，一要深入学习领会。我国城镇化进程已从过去的“快速增长期”迈入“稳定发展期”，城市发展模式正从“大规模增量扩张”转向“以存量提质增效为主”的新阶段。必须深入学习领会会议精神，深刻理解把握城镇化进入新阶段的重大判断及内涵要求。二要准确把握精髓。清醒认识县级在城镇化领域的投入能力有限，及时优化工作思路，立足我市实际，聚焦城市精细化管理，将工作重心切实转移到优化存量空间、完善功能、提升品质、提高效能等方面。三要抢",
-        "会议听取区府办关于2025 年区“两会”期间人大代表"
-      ],
-      "count": 6,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_002_shaxian_executive_minutes",
-        "real_meeting_003_miluo_executive_minutes",
-        "real_meeting_004_shandan_2025_11_minutes",
-        "real_meeting_005_miluo_2026_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [
-        "real_meeting_001_changning_executive_minutes_b005",
-        "real_meeting_002_shaxian_executive_minutes_b001",
-        "real_meeting_003_miluo_executive_minutes_b005",
-        "real_meeting_004_shandan_2025_11_minutes_b015",
-        "real_meeting_006_shandan_minutes_b013"
-      ],
-      "target_field": "topics"
-    },
-    {
-      "candidate_source_names": [
-        "process or condition detail",
-        "申请专项资金支持的单位"
-      ],
-      "candidate_value_samples": [
-        "2025 年度十大类纺织创新精品",
-        "为深入实施创新驱动发展战略，加快建设具有全球影响力的科技创新中心，根据《上海市建设具有全球影响力的科技创新中心“十四五”规划》，上海市科学技术委员会特发布2025年度科技产业高质量发展计划“生物医药创新发展”项目申报指南。",
-        "（ 2025 版）",
-        "（一）申请专项资金支持的单位，原则上必须满足以下基本"
-      ],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [
-        "real_general_001_notary_service_guide_b003",
-        "real_general_002_biomed_project_guide_b003",
-        "real_general_003_textile_application_flow_b003",
-        "real_general_004_tianhe_service_guide_b038"
-      ],
-      "target_field": "application_conditions"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "application_materials"
-    },
-    {
-      "candidate_source_names": [
-        "办理事项及证明材料清单",
-        "建设推广工作网上申报流程说明",
-        "经费额度"
-      ],
-      "candidate_value_samples": [
-        "一、办理事项及证明材料清单",
-        "建设推广工作网上申报流程说明",
-        "经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。"
-      ],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "badcase_sensitive",
-      "gap_types": [
-        "badcase_sensitive",
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "keep_review_required",
-      "recommended_actions": [
-        "enhance_candidate",
-        "keep_review_required"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [
-        "real_general_001_notary_service_guide_b004",
-        "real_general_002_biomed_project_guide_b010",
-        "real_general_003_textile_application_flow_b004"
-      ],
-      "target_field": "category"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
       ],
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
@@ -2073,14 +1985,20 @@
     {
       "candidate_source_names": [],
       "candidate_value_samples": [],
-      "count": 4,
+      "count": 10,
       "doc_id": "real_general_001_notary_service_guide",
       "doc_type": "general_doc",
       "document_ids": [
         "real_general_001_notary_service_guide",
         "real_general_002_biomed_project_guide",
         "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
       ],
       "gap_type": "candidate_not_extracted",
       "gap_types": [
@@ -2095,110 +2013,130 @@
       "target_field": "document_subtype"
     },
     {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "process_steps"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "published_at"
-    },
-    {
       "candidate_source_names": [
-        "service or subject section",
-        "申报对象"
+        "会议强调",
+        "会议要求"
       ],
       "candidate_value_samples": [
-        "1.申报对象：人力资源服务企业",
-        "各有关单位：",
-        "天门市公证服务办事指南",
-        "附件"
+        "会议强调，要深入学习领会习近平总书记二〇二六年新年贺词精神，深刻把握 “拼搏奉献”的时代要求，深入践行“以人民为中心”的发展思想，坚决扛起“敢于斗争”的责任担当，拿出跃马扬鞭的勇气，激发万马奔腾的活力，保持马不停蹄的干劲，集中精力护稳定、促改革、谋发展，奋力推动乌鲁木齐 县 各项工作在新的一年取得新成效、见到新气象。",
+        "会议要求， 把学习贯彻《生态环境法典》作为一项重要的法治工作来抓，深入学习领会法典的核心要义、精神实质和具体规定，不断提升依法开展生态环保工作的能力和水平，自觉运用法治思维和法治方式解决生态环境问题，推动生态环保工作法治化、规范化发展。"
       ],
-      "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
+      "count": 10,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
       "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
+        "real_meeting_001_changning_executive_minutes",
+        "real_meeting_002_shaxian_executive_minutes",
+        "real_meeting_003_miluo_executive_minutes",
+        "real_meeting_004_shandan_2025_11_minutes",
+        "real_meeting_005_miluo_2026_minutes",
+        "real_meeting_006_shandan_minutes",
+        "real_meeting_007_zhenping_49_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes",
+        "real_meeting_009_kundulun_2026_01_minutes",
+        "real_meeting_010_zhangjiagang_64_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "gap_types": [
-        "candidate_not_extracted",
-        "regex_missing"
+        "candidate_not_extracted"
       ],
       "recommended_action": "enhance_candidate",
       "recommended_actions": [
-        "add_regex",
         "enhance_candidate"
       ],
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [
-        "real_general_001_notary_service_guide_b002",
-        "real_general_002_biomed_project_guide_b002",
-        "real_general_003_textile_application_flow_b002",
-        "real_general_004_tianhe_service_guide_b007"
+        "real_meeting_007_zhenping_49_minutes_b007",
+        "real_meeting_008_wlmqx_2026_01_minutes_b005"
       ],
-      "target_field": "service_object"
+      "target_field": "action_items"
+    },
+    {
+      "candidate_source_names": [],
+      "candidate_value_samples": [],
+      "count": 8,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "document_ids": [
+        "real_general_002_biomed_project_guide",
+        "real_general_004_tianhe_service_guide",
+        "real_general_005_eldercare_technology_guide",
+        "real_general_006_soft_science_guide",
+        "real_general_007_domestic_cooperation_guide",
+        "real_general_008_science_communication_guide",
+        "real_general_009_food_technology_guide",
+        "real_general_010_cell_gene_therapy_guide"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "gap_types": [
+        "badcase_sensitive",
+        "candidate_not_extracted"
+      ],
+      "recommended_action": "enhance_candidate",
+      "recommended_actions": [
+        "enhance_candidate",
+        "keep_review_required"
+      ],
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [],
+      "target_field": "issuer"
     },
     {
       "candidate_source_names": [
-        "source_url"
+        "paragraph_regex.document_number"
       ],
       "candidate_value_samples": [
-        "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20250307/fff38685e3a34a599574acbfe102b67e.html",
-        "https://www.gz.gov.cn/interf/storage/material/2026/01/20/0ebc48ad0dfd3b325bf2cf024e72a42b.pdf",
-        "https://www.miit.gov.cn/cms_files/filemanager/1226211233/attach/20255/74e5a08865314012a4497aaeddc71c55.pdf",
-        "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/ssfj/zfxxgk/zc/qtzdgkwj/t_5842730.shtml"
+        "发改环资〔2025〕13号",
+        "国信办发文〔2026〕2号",
+        "国办函〔2025〕3号",
+        "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知 国办函〔2025〕3号"
+      ],
+      "count": 5,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "document_ids": [
+        "real_policy_001_training_platform_rules",
+        "real_policy_002_equipment_renewal",
+        "real_policy_003_science_education_guide",
+        "real_policy_007_one_thing_list",
+        "real_policy_013_minor_platform_rules"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "gap_types": [
+        "alias_missing",
+        "badcase_sensitive",
+        "candidate_not_extracted"
+      ],
+      "recommended_action": "enhance_candidate",
+      "recommended_actions": [
+        "add_alias",
+        "enhance_candidate",
+        "keep_review_required"
+      ],
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_policy_002_equipment_renewal_b008",
+        "real_policy_007_one_thing_list_b003",
+        "real_policy_013_minor_platform_rules_b005"
+      ],
+      "target_field": "document_number"
+    },
+    {
+      "candidate_source_names": [
+        "source_site"
+      ],
+      "candidate_value_samples": [
+        "www.moe.gov.cn",
+        "www.ndrc.gov.cn"
       ],
       "count": 4,
-      "doc_id": "real_general_001_notary_service_guide",
-      "doc_type": "general_doc",
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
       "document_ids": [
-        "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
+        "real_policy_001_training_platform_rules",
+        "real_policy_002_equipment_renewal",
+        "real_policy_003_science_education_guide",
+        "real_policy_004_student_loan_relief"
       ],
       "gap_type": "alias_missing",
       "gap_types": [
@@ -2215,12 +2153,11 @@
     {
       "candidate_source_names": [],
       "candidate_value_samples": [],
-      "count": 4,
+      "count": 3,
       "doc_id": "real_general_001_notary_service_guide",
       "doc_type": "general_doc",
       "document_ids": [
         "real_general_001_notary_service_guide",
-        "real_general_002_biomed_project_guide",
         "real_general_003_textile_application_flow",
         "real_general_004_tianhe_service_guide"
       ],
@@ -2234,126 +2171,78 @@
       ],
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
-      "target_field": "tags"
+      "target_field": "deadline"
     },
     {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_general_003_textile_application_flow",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
+      "candidate_source_names": [
+        "汨罗市人民政府办公室"
       ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
+      "candidate_value_samples": [
+        "来源：汨罗市人民政府办公室"
       ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "attachments"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_general_003_textile_application_flow",
-      "doc_type": "general_doc",
-      "document_ids": [
-        "real_general_003_textile_application_flow",
-        "real_general_004_tianhe_service_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "contact"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "agenda_items"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_meeting_001_changning_executive_minutes",
-      "doc_type": "meeting_doc",
-      "document_ids": [
-        "real_meeting_001_changning_executive_minutes",
-        "real_meeting_006_shandan_minutes"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "departments"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 2,
-      "doc_id": "real_policy_001_training_platform_rules",
-      "doc_type": "policy_doc",
-      "document_ids": [
-        "real_policy_001_training_platform_rules",
-        "real_policy_003_science_education_guide"
-      ],
-      "gap_type": "candidate_not_extracted",
-      "gap_types": [
-        "candidate_not_extracted"
-      ],
-      "recommended_action": "enhance_candidate",
-      "recommended_actions": [
-        "enhance_candidate"
-      ],
-      "review_required_reason": "Expected source evidence produced no mapping candidate.",
-      "source_block_ids": [],
-      "target_field": "document_number"
-    },
-    {
-      "candidate_source_names": [],
-      "candidate_value_samples": [],
-      "count": 1,
+      "count": 3,
       "doc_id": "real_meeting_004_shandan_2025_11_minutes",
       "doc_type": "meeting_doc",
       "document_ids": [
+        "real_meeting_004_shandan_2025_11_minutes",
+        "real_meeting_005_miluo_2026_minutes",
+        "real_meeting_008_wlmqx_2026_01_minutes"
+      ],
+      "gap_type": "candidate_not_extracted",
+      "gap_types": [
+        "badcase_sensitive",
+        "candidate_not_extracted"
+      ],
+      "recommended_action": "enhance_candidate",
+      "recommended_actions": [
+        "enhance_candidate",
+        "keep_review_required"
+      ],
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_005_miluo_2026_minutes_b002"
+      ],
+      "target_field": "organizer"
+    },
+    {
+      "candidate_source_names": [
+        "出席"
+      ],
+      "candidate_value_samples": [
+        "出 席：林恒求、杨盛、吴艳平、付文勇、任娜、曹陶、李岳星、向恩泽、胡义"
+      ],
+      "count": 2,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_003_miluo_executive_minutes",
         "real_meeting_004_shandan_2025_11_minutes"
+      ],
+      "gap_type": "badcase_sensitive",
+      "gap_types": [
+        "badcase_sensitive",
+        "candidate_not_extracted"
+      ],
+      "recommended_action": "keep_review_required",
+      "recommended_actions": [
+        "enhance_candidate",
+        "keep_review_required"
+      ],
+      "review_required_reason": "Expected source evidence produced no mapping candidate.",
+      "source_block_ids": [
+        "real_meeting_003_miluo_executive_minutes_b028"
+      ],
+      "target_field": "attendees"
+    },
+    {
+      "candidate_source_names": [],
+      "candidate_value_samples": [],
+      "count": 2,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "document_ids": [
+        "real_meeting_001_changning_executive_minutes",
+        "real_meeting_006_shandan_minutes"
       ],
       "gap_type": "candidate_not_extracted",
       "gap_types": [
@@ -2365,7 +2254,7 @@
       ],
       "review_required_reason": "Expected source evidence produced no mapping candidate.",
       "source_block_ids": [],
-      "target_field": "organizer"
+      "target_field": "deadlines"
     }
   ],
   "transform_gaps": []

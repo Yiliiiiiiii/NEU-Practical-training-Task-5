@@ -83,8 +83,8 @@ def test_execute_task_runs_service_pipeline_and_updates_detail(execution_client)
     assert response.status_code == 200
     executed = response.json()
     assert executed["task_id"] == task_id
-    assert executed["status"] == "review_required"
-    assert executed["review_required_count"] > 0
+    assert executed["status"] == "completed"
+    assert executed["review_required_count"] == 0
     assert executed["unmapped_required_count"] == 0
     assert Path(executed["package_zip_path"]).is_file()
 
@@ -115,7 +115,7 @@ def test_execute_task_runs_service_pipeline_and_updates_detail(execution_client)
     detail_response = client.get(f"/api/v1/tasks/{task_id}")
     assert detail_response.status_code == 200
     detail = detail_response.json()
-    assert detail["status"] == "review_required"
+    assert detail["status"] == "completed"
     assert detail["package_zip_path"] == executed["package_zip_path"]
     assert detail["report_paths"] == report_paths
 

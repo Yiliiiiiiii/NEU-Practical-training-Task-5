@@ -99,3 +99,10 @@ backend\.venv\Scripts\python.exe scripts\eval_non_procurement_mapping.py --base-
 - 持续通过 gold-label、badcase、review 和 snapshot-preservation checks 扩展 regression datasets。
 - 如 downstream consumers 需要强类型集成，可发布 generated API clients。
 - 继续诚实区分 verifier-passing packages 与 strict field-valid claims。
+
+## 2026-07-03 三项深化交接
+
+- Real-world UIR：45 documents（general 10、meeting 10、policy 15、procurement 10）。
+- 非采购：average recall `0.5677551020408163`，review-required 69，required missing 6，badcase violations 0，package verification 35/35。
+- Knowledge Pack：draft 无影响；active 影响 future task；old snapshot unchanged；rejected/badcase activation 为 0。
+- Runtime 边界仍是 `UIR input -> schema-driven package output`；没有加入 OCR、完整 RAG、模型训练或 LLM 自动激活规则。

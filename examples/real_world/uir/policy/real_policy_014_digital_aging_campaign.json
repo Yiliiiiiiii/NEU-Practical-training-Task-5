@@ -1,0 +1,390 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文机关： 工业和信息化部办公厅",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "标 题： 工业和信息化部办公厅关于开展2026年“数字适老中国行”活动的通知",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文字号： 工信厅信管函〔2026〕223号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "成文日期： 2026-05-15",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布日期： 2026-05-22",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布机构： 工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "分 类： 信息通信管理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b008",
+      "level": 1,
+      "source_anchor": null,
+      "text": "工业和信息化部办公厅关于开展2026年“数字适老中国行”活动的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "各省、自治区、直辖市通信管理局、工业和信息化主管部门，中国电信集团有限公司、中国移动通信集团有限公司、中国联合网络通信集团有限公司、中国广播电视网络集团有限公司，工业和信息化部新闻宣传中心，中国信息通信研究院，中国互联网协会，各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "为深入实施积极应对人口老龄化国家战略，树立和践行正确政绩观，落实《中华人民共和国无障碍环境建设法》要求，持续推广数字技术适老化产品和服务优秀成果，更好满足老年人日益增长的数字生活和信息服务需求，现组织开展2026年“数字适老中国行”活动。有关事项通知如下：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、活动主题",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "数字适老 智享生活",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、活动时间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年5月—12月",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、活动形式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "采用 “ 1+3+N ” 模式系统推进，即打造1个 “ 数字适老中国行”品牌形象、开展3个系列主题活动和多个区域特色专场活动，通过专题宣传、典型推广、服务创新、交流互动等不同形式，系统化塑造“数字适老中国行”知名度影响力，多样化推广数字技术适老化优秀成果，构建全国统筹、区域示范、多层联动的适老化发展生态。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、活动内容",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）集中宣贯活动",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "围绕数字技术适老化领域相关法规政策、标准规范，组织召开“数字适老中国行 ” 集中宣贯活动，统一品牌形象、宣传口径与活动内容，精准面向老年群体传递服务价值。动员企事业单位、社会组织和公众力量参与数字技术适老化建设，广泛交流地方及企业先进经验做法，推动全行业进一步统一思想、提高认识，营造全社会共建共享的良好氛围，树立“数字适老中国行”标杆品牌。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）普惠推广活动",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.展成果，树标杆。推广适老助残典型案例，全面展示一批贴合老年人实际生活需要、适用性和创新性突出的优质成果。聚焦世界电信和信息社会日、中国国际信息通信展、重阳节等重要时间节点，通过广播、电视、新媒体等途径，开展形式多样、内容丰富的宣传推广活动，凝聚发展合力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.拓应用，优服务。推动基础电信企业走进社区、老年大学、养老机构，常态化开展“银龄数字课堂”等数字技术应用教学活动，优化线下营业厅爱心台席和“尊老专线”服务能力，便捷老年人电信业务办理，打通数字适老服务“最后一公里”。鼓励有条件的企业为老年人学习使用数字产品提供流量扶持、定向推送等服务保障，支持企业设立老年人专属客服热线。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.汇众力，增福祉。鼓励电商平台优化升级“适老版”使用体验，设立并推广惠老消费体验专区，为老年人推荐优质实用、高性价比的适老产品。支持智能终端、设备企业在线下门店设立适老体验专区，提供产品体验、功能演示、咨询答疑等服务，帮助老年人直观感受数字适老实用价值，激发“银发消费”活力。探索将数字适老助残产品和服务纳入消费补贴范围，打通“需求—体验－优惠—消费”闭环，提升老年人使用数字技术的幸福感。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）特色专场活动",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "鼓励有条件的地区结合实际组织开展丰富多彩、具有本地特色的专场活动，打造“数字适老中国行”活动样板。活动包括但不限于：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.以研促用。围绕多模态交互系统、AI辅助决策、无障碍信息识别等关键环节，举办数字适老助残技术交流活动，推动技术共享和互助，促进跨领域协作和共性技术攻关。围绕新一代信息技术在适老助残领域的发展和应用，举办数字适老助残产品与服务应用大赛，强化技术引领与产业带动，加快推动优秀成果从赛场走向市场。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.以标提质。围绕就医、出行、支付等领域，支持利用智能体等新技术打造适老化及无障碍改造技术共性平台，提供适老化及无障碍公益性公共服务产品，标准化、规模化推进互联网应用适老化及无障碍改造。探索纯语音交互打车、低风险操作“一键免验证”、移动支付“老年专享”等特色适老服务，制定统一技术规范推动快速复制落地。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.以用聚能。围绕人工智能、VR/AR、具身智能等前沿技术在适老助残领域的最新应用，打造数字适老助残成果展示交流平台，集中展示数字适老助残领域创新产品和服务，促进资源对接，推动优质产品和服务加速落地与普及。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、活动实施",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）准备阶段（2026年5月）。各地通信管理局、工业和信息化主管部门按照通知要求，结合本地实际制定属地活动计划，并自愿开展特色专场活动，于5月30日前报工业和信息化部（信息通信管理局）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）实施阶段（2026年6月—11月 ） 。各地通信管理局、工业和信息化主管部门组织本地活动。各基础电信企业、中国信息通信研究院、中国互联网协会做好活动相关工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）总结阶段（2026年12月）。工业和信息化部根据各地活动情况，组织经验交流与宣传推广，各地通信管理局、工业和信息化主管部门可向工业和信息化部（信息通信管理局）报送典型经验、意见建议等相关材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "各相关单位要高度重视，加强协同配合，推动“数字适老中国行”活动顺利开展。充分发挥主动性和创造性，创新活动形式及方法，为老年人提供更周全、更贴心、更便捷的服务。做好成效评估，对影响力大、群众认可度高的典型案例和成功做法要加大推广力度。强化监督管理，活动中要及时回应群众关切，确保活动取得实效。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "工业和信息化部办公厅",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_014_digital_aging_campaign_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年5月15日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_014_digital_aging_campaign",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 35,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:20.270419+00:00",
+    "source_format": "html",
+    "source_sha256": "1fbf5382d72ec252f20c89ae58485ef623beb1c43b69b7a2b896e51adcdc0693",
+    "source_site": "wap.miit.gov.cn",
+    "source_url": "https://wap.miit.gov.cn/jgsj/xgj/wjfb/art/2026/art_ed6aa7f5ad554b71991e26c4af95a1be.html",
+    "title": "工业和信息化部办公厅关于开展2026年“数字适老中国行”活动的通知",
+    "发布日期": "2026-05-22",
+    "发布机构": "工业和信息化部",
+    "发文机关": "工业和信息化部办公厅",
+    "标题": "工业和信息化部办公厅关于开展2026年“数字适老中国行”活动的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "1fbf5382d72ec252f20c89ae58485ef623beb1c43b69b7a2b896e51adcdc0693"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_014_digital_aging_campaign",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

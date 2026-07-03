@@ -1,0 +1,717 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "沪科指南〔2026〕16号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "根据《上海市推进养老科技创新发展行动方案（2024- 2027年）》要求，上海市科学技术委员会发布上海市2026年度科技产业高质量发展计划“养老科技支撑”项目申报指南。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、征集范围",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题一：养老科技产品研发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1：可穿戴式老年人偏瘫训练康复仪",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对脑卒中等疾病导致的老年偏瘫群体，通过采集老年人健康侧目标肌群肌肉运动特征，采用电刺激疗法，研发具有自主知识产权的可穿戴式偏瘫训练康复仪，实时、自动调控患病侧目标肌群的电刺激点位和强度，实现闭环调控，助力偏瘫老年人提高行走能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：产品需为可穿戴式，在运动条件下助力偏瘫老人行走和康复训练，运动意图识别准确度90%以上，运动强度拟合相对精度90%以上；偏瘫助行临床有效率90%以上，老年人偏瘫症状改善40%以上。在本市养老院、康复医院等场景示范服务偏瘫老年人500人以上。完成发明专利申请，产品实现销售。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "执行期限：2026年9月1日至2029年8月31日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每个项目资助额度不超过50万元。企业自筹经费与申请资助经费的比例不低于2∶1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市企业，须与本市养老机构或康复机构联合申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2：护理人员用卧床老年人体位转移腰部助力设备",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：面向养老护理与康复医疗场景中卧床老年人体位转移作业需求，研发具有自主知识产权、护理人员使用的卧床老年人体位转移腰部助力设备。通过人机协同与智能助力技术，显著降低护理人员腰部负载与职业伤病风险，提升老年人体位转移过程安全性、稳定性与舒适性，推动护理作业由体力主导向设备辅助转型。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：具备多级助力模式，适配床位转移、翻身、洗澡、如厕等多种体位转移场景；穿戴与拆卸便捷；整机重量小于5kg；配置腰部负载实时监测模块，对护理人员腰部受力进行动态评估与记录；配置患者姿态稳定性与转移舒适度评估模块，支持护理质量量化分析。连续使用3个月后，护理人员腰部负载降低50%以上，相关职业伤病发生率降低不少于40%。在本市养老院、康复医院等场景实现护理人员100人以上示范应用。完成发明专利申请，产品实现销售。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市企业，须与本市养老机构联合申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3：面向老年人大脑功能衰退的预防性神经调控康复仪",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：面向老年人大脑功能衰退与情感陪伴综合需求，构建脑功能评估模型，研发具有自主知识产权的非侵入式神经调控康复仪，并结合数字虚拟人多模态交互，实现“情感-脑功能”协同分析、神经调控与语音合成自适应干预，形成“评估-调控-陪伴”一体化智能康复解决方案。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：产品为1套非侵入式神经调控干预设备，具备融合语音、表情、脑电等多模态数据的协同评估垂类模型，实现“情感-脑功能”双维度同步分析，脑功能评估准确率大于90%，情感状态识别准确率大于80%；结合虚拟人交互的个性化智能体，产品具有记忆和注意力训练、情绪疏导及情感陪伴等功能，训练有效率大于90%；实现语音识别与交互，覆盖普通话和国内方言不少于20种，方言识别和交互回复准确率90%以上；降低认知衰退风险、改善睡眠障碍、情绪障碍等脑健康问题；在本市完成2家以上康复医院或养老机构示范应用，累计提供不少于10000人次脑健康神经调控干预服务，示范服务老年人2000人以上，完成发明专利申请，产品实现销售。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每个项目资助额度不超过100万元。企业自筹经费与申请资助经费的比例不低于2∶1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向4：非接触式急性心肌梗死预后居家监测仪",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：研发具有自主知识产权的、针对老年心梗出院患者的长程连续无感监测仪，实现在居家环境中24h的无感、连续心功能监测，获取射频心震图（RF-SCG）等电–机械耦合信号，构建面向老年人的不良心血管事件AI预警模型，提升老年心梗患者康复与预后管理能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：采用无感监测方式，准确获取心脏机械震动，RF-SCG可提取5个以上稳定特征点，清晰区分主动脉、二尖瓣开闭及左心室射血等事件；LVET（左心室射血时间）、IVRT（等容舒张期）估计误差优于20ms，RR间期误差优于20ms；恶性室性心律失常检测灵敏度大于95%，预警响应时间小于30s。建立云端平台，通过APP或小程序实时链接，支持数据同步、存储、脱敏与远程查看。具备即时报警功能，误报率小于1%。在4家以上三甲医院开展多中心临床验证，示范服务老年人不少于2000人，构建数据规模10000分钟以上的临床金标准同步数据库；完成心梗康复临床验证，建立大于20000片段的心梗数据库；相关设备获得医疗器械注册证；完成2项发明专利申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题二：养老科技产品集成示范与场景应用",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1：养老机构失能半失能老人安全监护场景集成示范",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对养老机构失能半失能老人起居安全、跌倒风险、夜间巡查、走失防范等，构建基于多模态传感融合与AI算法预判的非接触式智慧照护和安全防范技术集成与场景示范，通过无感监测设备、巡查机器人、电子围栏、智能化一键呼叫报警器、防摔气囊马甲等多源设备的统一接入,构建多模态安全事件融合机制，实现风险的提前预判与分级预警，构建养老机构“无感监测+精准预判+快速响应”照护模式，实现老人安全照护的精准监护、及时预警。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：支持不少于10类安全监护设备统一接入，形成防范坠床、跌倒、夜间巡查、走失防范等不少于4类跨设备融合场景，实现安全事件识别和预警。采用统一的安全监护系统入口与交互范式，融合基于大数据的AI算法和大模型，实现远程动态监测及风险分层管理，构建非接触式感知设备与智能监测技术集成操控示范系统。围绕老人起居安全场景，实现在床老人翻身坠床、活力老人夜间长时间离床未归、失能老人离床5s等风险识别和预警。围绕老人防范跌倒场景，实现老人四肢及躯干姿态异常监测与预警。围绕夜间巡查场景，解决巡查机器人跨楼层转移和风险精准定位，实现对养老机构居住区全覆盖，提升养老机构风险防范能力。围绕老人走失防范场景，在户外条件下，实现老人离开安全区域后快速甄别与预警，定位精度≤3m，定位更新频率系统可调。支持老人在意外条件下的一键报警和自我保护。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "构建面向真实照护场景的多模态安全监护高质量语料加工管线，形成不少于4类（含音频、图像、视频、生理指标等）可训练、可评测、可复用的安全监护语料资产，支撑技术集成与系统优化，确保安全监护体系在养老机构等有效落地。在本市养老机构示范推广应用5家以上，服务老年人不少于500人。建立老年人起居场景和活动场景安全监护标准不少于2项。形成养老机构安全监护标准化场景改造模板和关键效果指标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每个项目资助额度不超过400万元。项目单位自筹经费与申请资助经费的比例不低于1∶1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2：面向功能残障老年人的康复医院智能助诊场景集成示范",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对老年功能残障人群高频次、高依赖的就医与康复需求，面向视障、听障及肢体障碍老年人群进入康复医院后的康复导诊、流程指引、患者和物品转运、康复陪护等需求，通过导诊机器人、智能转运床、智能天轨、康复陪护机器人、物品转运机器人、情感慰藉机器人等多源设备的统一接入，构建多模态助诊就医信息融合机制，实现多种机器人在复杂康复就诊环境中的服务协同，打破导诊、转运与陪护各功能模块间的信息与技术壁垒，实现康复服务全流程的协同调度与顺畅运行，形成可复制、可推广的智能康复助诊方案。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：支持不少于10类就医导诊设备统一接入，形成导诊、转运、陪护等不少于3类跨设备融合场景，助力残障老人便捷就医。采用统一助诊入口与交互范式，搭建技术和信息的集成示范，构建多种机器人与智能终端在康复助诊场景中的标准化使用与协同调度系统。围绕导诊助医场景，解决功能残障老人在导诊过程中信息不同步、表达受限及语义理解困难等问题，实现稳定感知与准确导诊。围绕康复转运场景，聚焦门诊—康复评估区—康复训练区—病房生活区之间的患者与物品转运需求，解决流程割裂、衔接不畅及复杂环境下易受干扰问题，实现跨场景连续执行。围绕康复陪护场景，聚焦康复训练与等待过程中患者的持续陪护、状态监测、自适应调整与指令交互，支持语音、文字、图片等人机交互模态，支持多模态并行或切换交互，解决不同功能障碍人群交互能力差异大、单一方式适配性不足，实现个性化交互与动态适配。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "构建面向真实就医场景的多模态导诊助诊高质量语料加工管线，形成不少于4类（含音频、图像、视频、生理指标等）可训练、可评测、可复用的安全监护语料资产。支撑场景运行与系统优化，保障功能残障老人享受康复就医权利。在本市康复医院示范应用不少于2家，为功能残障老人示范应用500名以上。建立功能残障老人康复智能助诊领域标准不少于2项。形成康复医药导诊标准化场景改造模板和关键效果指标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体要求：本市企业，须与本市康复医院联合申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3：老年衰弱人群户内外智能助行与康复训练场景集成示范",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对老年衰弱人群户内外行走与康复运动时肌肉力量不足、平衡能力减弱、跌倒风险增高等难题，依托轻量化仿生驱动技术，采用外骨骼机器人、下肢康复机器人、智能感知鞋垫等多源设备的统一接入,构建多模态助行和康复训练信息融合机制，通过多自由度调节与精准助力功能，实现老人安全助行、跌倒预防，以及步态功能康复训练的场景示范与技术集成。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：支持不少于10类助行与康复训练设备统一接入，形成安全助行、跌倒预防、康复训练等不少于3类跨设备融合场景，助力老人行走运动。通过融合传感感知、智能控制与数据反馈技术，构建老年衰弱人群室内外助行、康复训练等场景下的管理系统入口与交互范式，实现多种机器人与智能终端的技术集成，形成标准化使用与协同调度系统。围绕跌倒预防和康复训练场景，聚焦老年人运动功能衰退、平衡能力弱、重心偏移等问题，构建适用于复杂环境下的多模态步态训练体系。围绕室内外助行场景，提供辅助步行的下肢步行辅助设备等，实现训练8周后，Berg平衡量表评估提升8分以上，计时起立-行走测试（TUG）降低大于3s，6分钟步行测试增加20%以上，髋膝踝重心偏移度稳定在5cm以下的时长占比提升30%。实现老年人室内外行走步态的稳定性辅助与跌倒风险预警、技术集成，助力老人安全行走与康复训练。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "构建面向真实运动场景的多模态助行与康复训练的高质量语料加工管线，形成不少于4类（含音频、图像、视频、生理指标等）可训练、可评测、可复用的安全监护语料资产,支撑场景运行与系统优化，确保老人助行、跌倒预防、康复训练等在养老机构等有效落地。在本市养老机构或社区开展示范应用不少于5家，服务老年人500人以上。建立老年人助行、康复训练等领域标准不少于2项。完成发明专利申请不少于2项。形成老年人户内外助行和康复训练标准化场景改造模板和关键效果指标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过2个项目，每个项目资助额度不超过300万元。项目单位自筹经费与申请资助经费的比例不低于1∶1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向4：老年人情感慰藉与照护陪伴场景集成示范",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对失能半失能、高龄老年人情感需求，通过情感陪伴机器人、智能护理机器人、智能仿生宠物、巡查机器人等多源设备的统一接入,构建多模态情感慰藉和照护陪伴信息融合机制，实现技术的集成示范应用，构建面向老年人的主动式情感慰藉与照护陪伴场景，破除老人孤独感，提供基础性的日常照护，打通技术与场景落地壁垒，提升老年人生活质量与幸福感。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核指标：支持不少于10类情感慰藉与照护陪伴设备统一接入，形成陪伴、精神慰藉、照护、抚慰等不少于4类跨设备融合场景，助力对老人的精神慰藉和陪伴。依托具身智能、边缘计算、全感交互等技术，采用统一的入口与交互范式，搭建主动式精神慰藉与照护陪伴应用场景，形成多种机器人与智能终端在养老机构情感慰藉和照护陪伴场景中的标准化集成示范与协同调度系统。在精神慰藉场景方面，集成怀旧陪伴、兴趣爱好、用药提醒及家属远程视频联动等，可识别老人语音（普通话和不少于20种方言），准确率95%以上，智能答复老人诉求，准确率95%以上；围绕老人过往经历、兴趣爱好、家庭情况等话题开展主动、开放式交流，无明显答非所问；记忆老人喜爱的人物、话题、食物、宠物等。在照护老人场景方面，通过高精度行为监测、柔性肢体交互、自适应情感对话及康复方案个性化推送，助力完成药品转送、环境消杀、生命体征监测、安全监护等基础性护理，准确率大于95%。在抚慰老人场景方面，采用智能仿生宠物，实现在老人情绪低落时，主动抚慰老人，给予老人精神安慰，动作自然度95%以上。实现老人孤独感评分降低80%以上、情绪识别准确率大于90%，老年人满意度大于90%，有效解决老人情感孤独问题。在陪伴场景方面，基于国产大模型，实现多模态数据（语音、表情、活动）融合的情感感知、心理健康辅助诊断、心理问题分级预警，提供个性化陪伴。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "构建面向真实照护场景的多模态精神慰藉与照护陪伴高质量语料加工管线，形成不少于4类（含音频、图像、视频、生理指标等）可训练、可评测、可复用的安全监护语料资产，为支持老人情感慰藉和照护服务提供支撑。在本市养老机构、社区示范应用不少于5家，示范应用500人以上。建立老年人精神慰藉与陪护领域标准不少于2项。形成老年人精神慰藉与陪护标准化场景改造模板和关键效果指标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、申报要求",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "除满足前述相应条件外，还须遵循以下要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 项目申报单位应当是注册在本市的法人或非法人组织，具有组织项目实施的相应能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 对于申请人在以往市级财政资金或其他机构（如科技部、国家自然科学基金等）资助项目基础上提出的新项目，应明确阐述二者的异同、继承与发展关系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 所有申报单位和项目参与人应遵守科研诚信管理要求，项目负责人应承诺所提交材料真实性，申报单位应当对申请人的申请资格负责，并对申请材料的真实性和完整性进行审核，不得提交有涉密内容的项目申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "4. 申报项目若提出回避专家申请的，须在提交项目可行性方案的同时，上传由申报单位出具公函提出回避专家名单与理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "5. 对项目负责人实行限项管理，作为项目负责人以及课题负责人承担本市科技计划在研项目及课题合计一般不超过2项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "6. 项目申报单位及申报人需及时、完整、准确地记录在科研过程中产生的各类科学数据，并按要求在项目实施过程中完成科学数据汇交工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "7. 所有申报单位和项目参与人应遵守科技伦理准则。拟开展的科技活动应进行科技伦理风险评估，涉及科技部《科技伦理审查办法（试行）》（国科发监〔2023〕167号）第二条所列范围科技活动的，应按要求进行科技伦理审查并提供相应的科技伦理审查批准材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "8. 所有申报单位和项目参与人应遵守人类遗传资源管理相关法规和病原微生物实验室生物安全管理相关规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "9. 项目经费预算编制应当真实、合理，符合市科委科技计划项目经费管理的有关要求。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "10. 每个申报单位在任一研究方向申报项目不超过1项。每位项目负责人申报项目不超过1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、申报方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 项目申报采用网上申报方式，无需递交纸质材料。请申请人通过“上海市科技管理信息系统”（svc.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "【继续填写】使用“一网通办”登录后，继续该项目的填报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "有关操作可参阅在线帮助。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 项目网上填报 起始时间为2026年7月6日9:00，截止时间（含申报单位网上审核提交）为2026年7月23日16:30。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、评审方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "采用一轮通讯评审方式。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、立项公示",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会将按规定向社会公示拟立项项目清单，接受公众异议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、咨询电话",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：8008205114（座机） 4008205114（手机）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_005_eldercare_technology_guide_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年6月26日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_005_eldercare_technology_guide",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 68,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:15.824530+00:00",
+    "source_format": "html",
+    "source_sha256": "5182965304ff7e4d93e9af0f847d1ce1cac4924413d53190faaca9d50e6ac53e",
+    "source_site": "stcsm.sh.gov.cn",
+    "source_url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20260626/7650e0bf1a0843f181b5b4304516cad7.html",
+    "title": "上海市科学技术委员会关于发布上海市2026年度科技产业高质量发展计划“养老科技支撑”项目申报指南的通知_项目申报_上海市科学技术委员会",
+    "标题": "上海市科学技术委员会关于发布上海市2026年度科技产业高质量发展计划“养老科技支撑”项目申报指南的通知_项目申报_上海市科学技术委员会"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "5182965304ff7e4d93e9af0f847d1ce1cac4924413d53190faaca9d50e6ac53e"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_005_eldercare_technology_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

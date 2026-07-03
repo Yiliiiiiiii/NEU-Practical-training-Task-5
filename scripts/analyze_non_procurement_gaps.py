@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import zipfile
 from collections import Counter
 from collections.abc import Iterable
 from pathlib import Path
@@ -17,6 +18,7 @@ from eval_support import (
     write_json,
     write_markdown,
 )
+from package_consumption import resolved_package_dir
 
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORTED_DOC_TYPES = ("general_doc", "meeting_doc", "policy_doc")
@@ -150,19 +152,36 @@ def _read_optional_jsonl(path: Path) -> list[dict[str, Any]]:
 def discover_package_inventory(
     packages_root: Path,
 ) -> tuple[list[Path], dict[str, int]]:
-    """Find package directories and retain discovery-quality diagnostics."""
+    """Find complete package directories or ZIP exports with diagnostics."""
     if not packages_root.is_dir():
         raise ValueError(f"Package root not found or not a directory: {packages_root}")
     metadata_dirs = {metadata.parent for metadata in packages_root.rglob("metadata.json")}
-    complete = {
+    complete_dirs = {
         package
         for package in metadata_dirs
         if all((package / filename).is_file() for filename in CORE_FILES)
     }
-    packages = sorted(complete, key=lambda path: path.as_posix())
+    complete_zips: set[Path] = set()
+    incomplete_zips = 0
+    for zip_path in packages_root.rglob("*.zip"):
+        try:
+            with zipfile.ZipFile(zip_path) as archive:
+                names = {
+                    name.removeprefix("./")
+                    for name in archive.namelist()
+                    if name and not name.endswith("/")
+                }
+        except zipfile.BadZipFile:
+            incomplete_zips += 1
+            continue
+        if all(filename in names for filename in CORE_FILES):
+            complete_zips.add(zip_path)
+        else:
+            incomplete_zips += 1
+    packages = sorted(complete_dirs | complete_zips, key=lambda path: path.as_posix())
     return packages, {
         "complete_packages_discovered": len(packages),
-        "incomplete_package_count": len(metadata_dirs - complete),
+        "incomplete_package_count": len(metadata_dirs - complete_dirs) + incomplete_zips,
     }
 
 
@@ -1063,8 +1082,10 @@ def analyze_packages(
     }
     packages: list[tuple[str, str, dict[str, Any]]] = []
     ignored_doc_types: Counter[str] = Counter()
-    for package_dir in sorted(package_dirs, key=lambda path: path.as_posix()):
-        package = _load_package(package_dir)
+    for package_path in sorted(package_dirs, key=lambda path: path.as_posix()):
+        with resolved_package_dir(package_path) as package_dir:
+            package = _load_package(package_dir)
+        package["package_dir"] = package_path
         doc_id, doc_type = _package_identity(package)
         if doc_type in doc_types:
             packages.append((doc_id, doc_type, package))

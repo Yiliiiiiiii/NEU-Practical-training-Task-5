@@ -1,0 +1,170 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文机关： 工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "标 题： 工业和信息化部关于印发《优质中小企业梯度培育管理办法》的通知",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "发文字号： 工信部企业〔2026〕2号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "成文日期： 2026-01-04",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布日期： 2026-01-16",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "发布机构： 工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "分 类： 中小企业管理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b008",
+      "level": 1,
+      "source_anchor": null,
+      "text": "工业和信息化部关于印发《优质中小企业梯度培育管理办法》的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "工信部企业〔2026〕2号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "各省、自治区、直辖市及计划单列市、新疆生产建设兵团中小企业主管部门：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "为进一步加强优质中小企业梯度培育工作，促进中小企业专精特新发展，现将《优质中小企业梯度培育管理办法》印发给你们，请认真遵照执行。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_012_sme_gradient_rules_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年1月4日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_012_sme_gradient_rules",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 13,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:19.558611+00:00",
+    "source_format": "html",
+    "source_sha256": "09aa2217c6e86a3b9c3bdf3e7d0f9f42f008acdc1a67ed7df004f419af6a435b",
+    "source_site": "wap.miit.gov.cn",
+    "source_url": "https://wap.miit.gov.cn/jgsj/qyj/wjfb/art/2026/art_2aa4981e3c9248379bc210c62dbb0569.html",
+    "title": "工业和信息化部关于印发《优质中小企业梯度培育管理办法》的通知",
+    "发布日期": "2026-01-16",
+    "发布机构": "工业和信息化部",
+    "发文机关": "工业和信息化部",
+    "标题": "工业和信息化部关于印发《优质中小企业梯度培育管理办法》的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "09aa2217c6e86a3b9c3bdf3e7d0f9f42f008acdc1a67ed7df004f419af6a435b"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_012_sme_gradient_rules",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

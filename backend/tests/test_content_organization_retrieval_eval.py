@@ -44,7 +44,7 @@ def test_real_world_retrieval_queries_are_valid_jsonl() -> None:
         }
 
     assert len(rows) >= 32
-    assert len({row["doc_id"] for row in rows}) == 30
+    assert len({row["doc_id"] for row in rows}) == 45
     assert all(row["query"].strip() for row in rows)
     assert all(
         row["relevant_source_block_ids"]

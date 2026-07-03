@@ -1,260 +1,28 @@
 {
   "by_format": {
-    "html": 25,
+    "html": 40,
     "pdf": 5
   },
   "collection_totals": {
-    "downloaded": 30,
+    "downloaded": 45,
     "failed": 0,
     "skipped": 0
   },
-  "generated_at": "2026-06-30T13:41:20.818387+00:00",
+  "generated_at": "2026-07-03T01:21:24.062180+00:00",
   "items": [
     {
-      "block_count": 48,
+      "block_count": 22,
       "reason": "",
       "source_format": "html",
-      "source_id": "real_policy_001_training_platform_rules",
+      "source_id": "real_policy_015_ai_ethics_rules",
       "status": "extracted",
-      "uir_path": "uir/policy/real_policy_001_training_platform_rules.json"
-    },
-    {
-      "block_count": 75,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_002_equipment_renewal",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_002_equipment_renewal.json"
-    },
-    {
-      "block_count": 91,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_003_science_education_guide",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_003_science_education_guide.json"
-    },
-    {
-      "block_count": 10,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_004_student_loan_relief",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_004_student_loan_relief.json"
-    },
-    {
-      "block_count": 250,
-      "reason": "",
-      "source_format": "pdf",
-      "source_id": "real_policy_005_ai_industry_guide",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_005_ai_industry_guide.json"
-    },
-    {
-      "block_count": 55,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_001_broadcast_security_supervision",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_001_broadcast_security_supervision.json"
-    },
-    {
-      "block_count": 59,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_002_special_equipment_bid",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_002_special_equipment_bid.json"
-    },
-    {
-      "block_count": 44,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_003_radiation_monitoring_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_003_radiation_monitoring_award.json"
-    },
-    {
-      "block_count": 52,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_004_veterinary_platform_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_004_veterinary_platform_award.json"
-    },
-    {
-      "block_count": 63,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_005_rehabilitation_equipment_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_005_rehabilitation_equipment_award.json"
-    },
-    {
-      "block_count": 35,
-      "reason": "",
-      "source_format": "pdf",
-      "source_id": "real_meeting_001_changning_executive_minutes",
-      "status": "extracted",
-      "uir_path": "uir/meeting/real_meeting_001_changning_executive_minutes.json"
-    },
-    {
-      "block_count": 7,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_meeting_002_shaxian_executive_minutes",
-      "status": "extracted",
-      "uir_path": "uir/meeting/real_meeting_002_shaxian_executive_minutes.json"
-    },
-    {
-      "block_count": 33,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_meeting_003_miluo_executive_minutes",
-      "status": "extracted",
-      "uir_path": "uir/meeting/real_meeting_003_miluo_executive_minutes.json"
-    },
-    {
-      "block_count": 123,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_general_001_notary_service_guide",
-      "status": "extracted",
-      "uir_path": "uir/general/real_general_001_notary_service_guide.json"
-    },
-    {
-      "block_count": 80,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_general_002_biomed_project_guide",
-      "status": "extracted",
-      "uir_path": "uir/general/real_general_002_biomed_project_guide.json"
-    },
-    {
-      "block_count": 33,
-      "reason": "",
-      "source_format": "pdf",
-      "source_id": "real_general_003_textile_application_flow",
-      "status": "extracted",
-      "uir_path": "uir/general/real_general_003_textile_application_flow.json"
-    },
-    {
-      "block_count": 70,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_006_technology_incubator_rules",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_006_technology_incubator_rules.json"
-    },
-    {
-      "block_count": 9,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_007_one_thing_list",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_007_one_thing_list.json"
-    },
-    {
-      "block_count": 33,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_008_sme_leader_training",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_008_sme_leader_training.json"
-    },
-    {
-      "block_count": 32,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_009_network_safety_work",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_009_network_safety_work.json"
-    },
-    {
-      "block_count": 59,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_006_vaccine_tender",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_006_vaccine_tender.json"
-    },
-    {
-      "block_count": 42,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_007_testing_equipment_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_007_testing_equipment_award.json"
-    },
-    {
-      "block_count": 95,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_008_desktop_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_008_desktop_award.json"
-    },
-    {
-      "block_count": 44,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_009_pollutant_monitoring_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_009_pollutant_monitoring_award.json"
-    },
-    {
-      "block_count": 63,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_procurement_010_ultrasound_award",
-      "status": "extracted",
-      "uir_path": "uir/procurement/real_procurement_010_ultrasound_award.json"
-    },
-    {
-      "block_count": 53,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_meeting_004_shandan_2025_11_minutes",
-      "status": "extracted",
-      "uir_path": "uir/meeting/real_meeting_004_shandan_2025_11_minutes.json"
-    },
-    {
-      "block_count": 4,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_meeting_005_miluo_2026_minutes",
-      "status": "extracted",
-      "uir_path": "uir/meeting/real_meeting_005_miluo_2026_minutes.json"
-    },
-    {
-      "block_count": 219,
-      "reason": "",
-      "source_format": "pdf",
-      "source_id": "real_meeting_006_shandan_minutes",
-      "status": "extracted",
-      "uir_path": "uir/meeting/real_meeting_006_shandan_minutes.json"
-    },
-    {
-      "block_count": 250,
-      "reason": "",
-      "source_format": "pdf",
-      "source_id": "real_general_004_tianhe_service_guide",
-      "status": "extracted",
-      "uir_path": "uir/general/real_general_004_tianhe_service_guide.json"
-    },
-    {
-      "block_count": 33,
-      "reason": "",
-      "source_format": "html",
-      "source_id": "real_policy_010_auto_ota_management",
-      "status": "extracted",
-      "uir_path": "uir/policy/real_policy_010_auto_ota_management.json"
+      "uir_path": "uir/policy/real_policy_015_ai_ethics_rules.json"
     }
   ],
   "totals": {
-    "extracted": 30,
+    "extracted": 1,
     "rejected": 0,
     "skipped": 0,
-    "sources": 30
+    "sources": 1
   }
 }

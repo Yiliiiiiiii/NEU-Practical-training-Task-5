@@ -28,7 +28,7 @@
       "display_name": "发布日期",
       "type": "date",
       "required": true,
-      "aliases": ["发布日期", "发文日期", "印发日期", "成文日期"],
+      "aliases": ["发布日期", "发文日期", "印发日期"],
       "constraints": {"format": "YYYY-MM-DD"}
     },
     {

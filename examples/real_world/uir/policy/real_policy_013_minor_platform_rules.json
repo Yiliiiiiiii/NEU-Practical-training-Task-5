@@ -1,0 +1,686 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "items": [
+          "首 页",
+          "时政要闻",
+          "网信政务",
+          "互动服务",
+          "热点专题"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "当前位置： 首页 > 正文",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "时政要闻",
+          "网信政务",
+          "互动服务",
+          "热点专题"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "h1"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b004",
+      "level": 1,
+      "source_anchor": null,
+      "text": "关于印发《未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者认定办法》的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "国信办发文〔2026〕2号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "各省、自治区、直辖市互联网信息办公室、新闻出版局、教育厅（局）、通信管理局、公安厅（局）、文化和旅游厅（局）、市场监管局（厅、委）、广播电视局，新疆生产建设兵团互联网信息办公室、新闻出版局、教育局、公安局、市场监管局、文化体育广电和旅游局：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "现将《未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者认定办法》印发给你们，请认真贯彻执行。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家互联网信息办公室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家新闻出版署",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "教育部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "工业和信息化部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "公安部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "文化和旅游部",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家市场监督管理总局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家广播电视总局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年2月11日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者认定办法",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一章 总则",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一条 为科学认定未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者范围，根据《中华人民共和国网络安全法》、《中华人民共和国未成年人保护法》、《未成年人网络保护条例》等法律法规规定，制定本办法。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二条 认定工作坚持依法依规、公平公正、实事求是的原则，充分保障未成年人合法权益，发挥各方力量强化未成年人网络保护。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三条 国家网信部门会同国家新闻出版和国务院教育、电信、公安、文化和旅游、市场监督管理、广播电视等有关部门组织开展认定工作，并指导组成认定工作咨询委员会。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四条 按照本办法开展认定工作，应当避免影响网络平台服务提供者的正常生产经营活动。符合认定标准的网络平台服务提供者应当依据本办法主动申请认定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五条 认定工作原则上公开进行，涉及国家秘密、商业秘密、个人隐私等应当依法予以保密的除外。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二章 认定标准",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "第六条 符合以下情形之一的，应当认定为未成年人用户数量巨大的网络平台服务提供者：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）该网络平台提供的产品或者服务专门以未成年人为服务对象，注册用户在1000万以上或者月活跃用户在100万以上；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）该网络平台提供的产品或者服务的对象不局限于未成年人的，未成年人注册用户数量在1000万以上或者月活跃未成年人用户在100万以上。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "第七条 认定对未成年人群体具有显著影响的网络平台服务提供者，应当综合考虑以下因素：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）该网络平台下载量、用户数量规模较大，或者网络产品的销售额、交易量等较大；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）该网络平台未成年人登录频次、使用时长、使用偏好、消费金额等指标较高；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）该网络平台涵盖大量涉及或者面向未成年人的信息内容；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）该网络平台是涉未成年人相关垂直领域的代表性平台；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）该网络平台在近3年内存在较多涉未成年人违法违规问题，产生较大负面影响；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "（六）其他对未成年人群体具有显著影响的因素。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三章 启动与自评估",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "第八条 国家网信部门会同有关部门按照认定程序，研究启动认定工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "认定工作原则上每3年开展一次，也可在发生网络平台用户数量激增、对未成年人影响显著提升等情形时适时启动。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "第九条 网络平台服务提供者应当按照认定标准，自行评估对未成年人的影响；认为符合认定标准的，应当主动申请认定，并提交自评估报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十条 认定工作咨询委员会根据认定标准与业态发展实际，对研究认为符合认定标准且未主动申请认定的网络平台服务提供者，提出拟纳入认定范围的建议，经国家网信部门会同有关部门研究同意后，通知相关网络平台服务提供者提交自评估报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "网络平台服务提供者应当在收到通知之日起20个工作日内提交自评估报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十一条 网络平台服务提供者对所提交的自评估报告及材料完整性、真实性、准确性负责，并按照要求提供必要的解释说明等补充材料，不得存在虚假信息、误导性陈述以及重大遗漏等情形。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "网络平台服务提供者未按照本办法规定申请、配合开展认定工作，或者提供虚假材料、隐瞒重要事实的，由网信等有关部门依照相关法律法规的规定处理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四章 论证与决定",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十二条 认定工作应当通过座谈会、论证会、实地走访等多种形式听取各方意见建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "认定建议名单征求意见稿向社会公开征求意见。公开征求意见的期限一般不少于30日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十三条 认定工作咨询委员会根据征求意见情况，提出认定建议名单。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十四条 国家网信部门会同有关部门根据认定标准，结合自评估报告、征求意见情况等，对认定建议名单综合研究，确定认定名单并向社会公布。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五章 监督管理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十五条 国家网信部门会同有关部门对认定工作和被认定的网络平台服务提供者依法履行义务情况进行监督管理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十六条 被认定的网络平台服务提供者认为其已持续6个月不符合认定标准的，可以提交变更认定申请及相关证明材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "国家网信部门会同有关部门对变更认定申请进行审核，经审核认为不再符合认定标准的，应当及时移出认定名单。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "第六章 附则",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十七条 本办法自2026年4月1日起施行。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "中央网络安全和信息化委员会办公室 中华人民共和国国家互联网信息办公室 © 版权所有 联系我们",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "承办：国家互联网应急中心 技术支持：长安通信科技有限责任公司 京ICP备14042428号 京公网安备11040102700108号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "学习强国 ◆ ◆",
+          "微信 ◆ ◆",
+          "返回顶部"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "中央网络安全和信息化委员会办公室",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "中华人民共和国国家互联网信息办公室 © 版权所有",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "承办：国家互联网应急中心",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "技术支持：长安通信科技有限责任公司",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "京ICP备14042428号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "京公网安备11040102700108号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_013_minor_platform_rules_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "PC版",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_policy_013_minor_platform_rules",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 63,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:20.124852+00:00",
+    "source_format": "html",
+    "source_sha256": "69fc751e4b44143dfe51670fe4ce90e329458276feb77c1e6918707de650ea5a",
+    "source_site": "www.cac.gov.cn",
+    "source_url": "https://www.cac.gov.cn/2026-02/28/c_1774010730056867.htm",
+    "title": "关于印发《未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者认定办法》的通知",
+    "标题": "关于印发《未成年人用户数量巨大和对未成年人群体具有显著影响的网络平台服务提供者认定办法》的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "69fc751e4b44143dfe51670fe4ce90e329458276feb77c1e6918707de650ea5a"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_013_minor_platform_rules",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

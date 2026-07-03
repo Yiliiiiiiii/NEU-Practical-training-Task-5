@@ -1,6 +1,7 @@
 import re
 from itertools import islice
 from typing import Any
+from urllib.parse import urlparse
 
 from app.schemas.mapping import FieldCandidate
 from app.schemas.uir import UIRBlock, UIRDocument
@@ -119,6 +120,32 @@ class CandidateService:
         r"(?:发文机关|发布机关|制定机关|印发机关|主办单位|发布单位)"
         r"\s*[:：]\s*(?P<value>[^，。；;\n]{2,100})"
     )
+    POLICY_ORGANIZATION_PATTERN = re.compile(
+        r"[\u4e00-\u9fff]{2,30}?"
+        r"(?:国家互联网信息办公室|办公厅|办公室|委员会|监管总局|总局|改革委|"
+        r"人民银行|管理局|部|署|厅|委|局)"
+    )
+    POLICY_URL_PUBLISH_DATE_PATTERN = re.compile(r"/t(?P<date>20\d{6})(?:_|[/.])")
+    POLICY_URL_DATE_HOSTS = {"moe.gov.cn", "www.moe.gov.cn"}
+    POLICY_PAGE_BANNER_PATTERN = re.compile(
+        r"中国政府网\s*(?P<date>20\d{2})-(?P<month>\d{1,2})-(?P<day>\d{1,2})"
+    )
+    POLICY_ISSUER_SOURCE_NAMES = {
+        "issuer",
+        "发文机关",
+        "发布单位",
+        "颁布机构",
+        "制定机关",
+        "印发机关",
+    }
+    POLICY_PUBLISH_DATE_SOURCE_NAMES = {
+        "publishdate",
+        "发布日期",
+        "发文日期",
+        "印发日期",
+        "发布时间",
+        "公开日期",
+    }
     FULL_DATE_REGEX = re.compile(FULL_DATE_PATTERN)
 
     def extract_candidates(self, task_id: str, uir: UIRDocument) -> list[FieldCandidate]:
@@ -212,6 +239,11 @@ class CandidateService:
             meeting_date = self._meeting_date_candidate(task_id, uir, seen_names)
             if meeting_date is not None:
                 candidates.append(meeting_date)
+            candidates.extend(self._meeting_opening_candidates(task_id, uir, seen_names))
+        elif uir.metadata.get("domain") == "policy_doc":
+            candidates.extend(
+                self._policy_document_candidates(task_id, uir, seen_names, candidates)
+            )
 
         self._add_traceable_block_candidates(task_id, uir, candidates, seen_names)
         return candidates
@@ -277,6 +309,40 @@ class CandidateService:
                     display_name=display_name,
                 )
             )
+
+        if domain == "general_doc":
+            section_pattern = re.compile(
+                r"^[一二三四五六七八九十]+[、.．]\s*(申报要求|申报方式)\s*$"
+            )
+            for index, block in enumerate(uir.blocks):
+                text = block.text.strip() if isinstance(block.text, str) else ""
+                match = section_pattern.fullmatch(text)
+                if match is None:
+                    continue
+                body_blocks: list[str] = []
+                body_text: list[str] = []
+                for child in uir.blocks[index + 1 :]:
+                    child_text = (
+                        child.text.strip() if isinstance(child.text, str) else ""
+                    )
+                    if section_pattern.fullmatch(child_text) or re.fullmatch(
+                        r"^[一二三四五六七八九十]+[、.．]\s*[^。；]{2,20}\s*$",
+                        child_text,
+                    ):
+                        break
+                    value = self._block_text(child.text, child.attributes)
+                    if value:
+                        body_blocks.append(child.block_id)
+                        body_text.append(value)
+                if body_text:
+                    append_candidate(
+                        source_path=f"$.blocks.{block.block_id}.section",
+                        source_name=match.group(1),
+                        value="\n".join(body_text),
+                        source_blocks=[block.block_id, *body_blocks],
+                        source_kind="numbered_section",
+                        confidence=0.8,
+                    )
 
         headings: list[tuple[int, int, UIRBlock, str]] = []
         pending_list_heading: tuple[str, str] | None = None
@@ -525,6 +591,9 @@ class CandidateService:
         seen_names: dict[str, int],
     ) -> FieldCandidate | None:
         patterns = [
+            re.compile(
+                r"\d\s*\d\s*\d\s*\d\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
+            ),
             re.compile(r"\d{4}\s*[年/-]\s*\d{1,2}\s*[月/-]\s*\d{1,2}\s*日?"),
             re.compile(r"[二〇○零一二三四五六七八九十]{4}\s*年\s*[一二三四五六七八九十]{1,3}\s*月\s*[一二三四五六七八九十]{1,3}\s*日"),
             re.compile(r"\d{1,2}\s*月\s*\d{1,2}\s*日"),
@@ -544,6 +613,7 @@ class CandidateService:
         if not matches:
             return None
         _score, _index, value, block_id = max(matches)
+        value = re.sub(r"\s+", "", value)
         return self._candidate(
             task_id=task_id,
             uir=uir,
@@ -554,6 +624,175 @@ class CandidateService:
             source_kind="derived_meeting_date",
             seen_names=seen_names,
         )
+
+    def _meeting_opening_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+    ) -> list[FieldCandidate]:
+        candidates: list[FieldCandidate] = []
+        number_pattern = re.compile(r"第\s*(\d+)\s*次(?:常务|专题|全体)?会议")
+        chair_pattern = re.compile(
+            r"(?:县委副书记、代县长|区政府党组书记、区长|市委副书记、市长|"
+            r"县委副书记、县长|县长|区长|市长)?"
+            r"(?P<name>[\u4e00-\u9fff·]{2,4})\s*主持召开"
+        )
+        for block in uir.blocks:
+            text = block.text if isinstance(block.text, str) else ""
+            if not text:
+                continue
+            number_match = number_pattern.search(text)
+            if number_match is not None and not any(
+                item.source_name == "meeting_number" for item in candidates
+            ):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text",
+                        source_name="meeting_number",
+                        value=f"第{number_match.group(1)}次",
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                    )
+                )
+            chair_match = chair_pattern.search(text)
+            if chair_match is not None and not any(
+                item.source_name == "chairperson" for item in candidates
+            ):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text",
+                        source_name="chairperson",
+                        value=chair_match.group("name"),
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                    )
+                )
+            if candidates and {item.source_name for item in candidates} == {
+                "meeting_number",
+                "chairperson",
+            }:
+                break
+        return candidates
+
+    def _policy_document_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+        existing_candidates: list[FieldCandidate],
+    ) -> list[FieldCandidate]:
+        candidates: list[FieldCandidate] = []
+        blocks = list(uir.blocks)
+        existing_names = {
+            self.normalize_name(candidate.source_name) for candidate in existing_candidates
+        }
+
+        if not existing_names.intersection(self.POLICY_ISSUER_SOURCE_NAMES):
+            for index, block in enumerate(blocks):
+                text = block.text.strip() if isinstance(block.text, str) else ""
+                if not self.FULL_DATE_REGEX.fullmatch(text):
+                    continue
+                issuer_values: list[str] = []
+                issuer_blocks: list[str] = []
+                for previous in reversed(blocks[max(0, index - 8) : index]):
+                    previous_text = (
+                        previous.text.strip() if isinstance(previous.text, str) else ""
+                    )
+                    organizations = self._policy_organizations(previous_text)
+                    if not organizations:
+                        break
+                    issuer_values[0:0] = organizations
+                    issuer_blocks.insert(0, previous.block_id)
+                if issuer_values:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=(
+                                f"$.blocks.{issuer_blocks[0]}.text"
+                                if len(issuer_blocks) == 1
+                                else "$.blocks.policy_signature"
+                            ),
+                            source_name="issuer",
+                            value="、".join(dict.fromkeys(issuer_values)),
+                            source_blocks=issuer_blocks,
+                            source_kind="policy_signature",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                        )
+                    )
+                    break
+
+        source_url = uir.metadata.get("source_url")
+        has_publish_date = bool(
+            existing_names.intersection(self.POLICY_PUBLISH_DATE_SOURCE_NAMES)
+        )
+        if (
+            not has_publish_date
+            and isinstance(source_url, str)
+            and urlparse(source_url).hostname in self.POLICY_URL_DATE_HOSTS
+        ):
+            url_match = self.POLICY_URL_PUBLISH_DATE_PATTERN.search(source_url)
+            if url_match is not None:
+                raw_date = url_match.group("date")
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path="$.metadata.source_url",
+                        source_name="publish_date",
+                        value=f"{raw_date[:4]}-{raw_date[4:6]}-{raw_date[6:8]}",
+                        source_blocks=[],
+                        source_kind="official_page_url",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                    )
+                )
+
+        if not has_publish_date and not any(
+            item.source_name == "publish_date" for item in candidates
+        ):
+            for block in blocks:
+                text = block.text.strip() if isinstance(block.text, str) else ""
+                banner_match = self.POLICY_PAGE_BANNER_PATTERN.fullmatch(text)
+                if banner_match is None:
+                    continue
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text",
+                        source_name="publish_date",
+                        value=(
+                            f"{banner_match.group('date')}-"
+                            f"{int(banner_match.group('month')):02d}-"
+                            f"{int(banner_match.group('day')):02d}"
+                        ),
+                        source_blocks=[block.block_id],
+                        source_kind="official_page_banner",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                    )
+                )
+                break
+        return candidates
+
+    @classmethod
+    def _policy_organizations(cls, text: str) -> list[str]:
+        if not text or len(text) > 120 or any(mark in text for mark in "：:，,。；;"):
+            return []
+        compact = re.sub(r"\s+", "", text)
+        matches = [match.group(0) for match in cls.POLICY_ORGANIZATION_PATTERN.finditer(compact)]
+        return matches if "".join(matches) == compact else []
 
     @staticmethod
     def _block_text(text: str | None, attributes: dict[str, Any]) -> str:

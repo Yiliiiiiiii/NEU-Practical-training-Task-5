@@ -30,6 +30,7 @@ EXPECTED_BADCASE_TYPES = {
     "irregular_heading",
     "flattened_complex_table",
     "general_schema_overload",
+    "semantic_role_confusion",
 }
 PROCUREMENT_TARGET_FIELDS = {
     "title",
@@ -195,7 +196,6 @@ def validate_mapping_row(
 
     known_badcases = row.get("known_badcases")
     assert isinstance(known_badcases, list), f"{doc_id}: known_badcases must be a list"
-    assert known_badcases, f"{doc_id}: known_badcases must not be empty"
     for badcase in known_badcases:
         assert isinstance(badcase, dict), f"{doc_id}: badcase must be an object"
         assert_nonempty_string(badcase.get("case_id"), f"{doc_id}: badcase case_id required")
@@ -665,12 +665,25 @@ def test_real_world_mapping_gold_is_valid_jsonl() -> None:
     )
     assert {
         badcase["badcase_type"] for badcase in embedded_badcases
-    } == EXPECTED_BADCASE_TYPES, "embedded badcase types must match the six-class contract"
+    } == EXPECTED_BADCASE_TYPES - {
+        "semantic_role_confusion"
+    }, "legacy embedded badcases must retain the original six-class contract"
     assert {
         badcase.get("badcase_type") for badcase in standalone_badcases
-    } == EXPECTED_BADCASE_TYPES, "standalone badcase types must match the six-class contract"
-    assert standalone_badcases == embedded_badcases, (
-        "standalone badcases must exactly match deterministic embedded flattening"
+    } == EXPECTED_BADCASE_TYPES, "standalone badcases must cover the expanded taxonomy"
+    assert all(badcase in standalone_badcases for badcase in embedded_badcases), (
+        "every embedded badcase must be present in the standalone registry"
+    )
+    badcase_doc_ids = {badcase["doc_id"] for badcase in standalone_badcases}
+    assert set(doc_ids) <= badcase_doc_ids, (
+        "every real-world document must have standalone badcase coverage"
+    )
+    doc_order = {doc_id: index for index, doc_id in enumerate(doc_ids)}
+    standalone_order = [
+        doc_order[badcase["doc_id"]] for badcase in standalone_badcases
+    ]
+    assert standalone_order == sorted(standalone_order), (
+        "standalone badcase rows must follow mapping-gold document order"
     )
 
 

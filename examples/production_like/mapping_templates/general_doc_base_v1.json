@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "aliases": {
     "title": ["title", "标题", "文档标题", "document_title", "guide_title", "事项名称", "服务事项", "办事事项", "项目名称", "通知标题", "指南名称", "业务名称"],
-    "source": ["source", "来源", "出处"],
+    "source": ["source", "来源", "出处", "source_url"],
     "created_date": ["created_date", "创建日期", "形成日期"],
     "category": ["category", "类别", "分类"],
     "content": ["content", "document text", "正文", "内容"],
@@ -14,12 +14,12 @@
     "issuer": ["issuer", "发布主体", "发布单位", "发文单位", "发布机构"],
     "published_at": ["published_at", "发布日期", "公开日期", "发布时间", "印发日期"],
     "summary": ["summary", "摘要", "内容摘要", "简介"],
-    "service_object": ["service_object", "服务对象", "适用对象", "受理对象", "面向对象", "申请对象", "办理对象", "支持对象", "申报对象"],
-    "application_conditions": ["application_conditions", "申请条件", "申报条件", "办理条件", "受理条件", "资格条件", "基本条件"],
+    "service_object": ["service_object", "服务对象", "适用对象", "受理对象", "面向对象", "申请对象", "办理对象", "支持对象", "申报对象", "申报主体", "申报主体要求", "项目负责人要求"],
+    "application_conditions": ["application_conditions", "申请条件", "申报条件", "办理条件", "受理条件", "资格条件", "基本条件", "申报要求"],
     "application_materials": ["application_materials", "申请材料", "申报材料", "办理材料", "所需材料", "提交材料", "材料清单"],
-    "process_steps": ["process_steps", "办理流程", "申报流程", "办理步骤", "流程步骤", "办理程序", "申请流程", "办事流程", "操作流程", "流程说明"],
+    "process_steps": ["process_steps", "办理流程", "申报流程", "办理步骤", "流程步骤", "办理程序", "申请流程", "办事流程", "操作流程", "流程说明", "申报方式"],
     "deadline": ["deadline", "截止时间", "截止日期", "申报截止日期"],
-    "contact": ["contact", "联系方式", "联系电话", "咨询电话", "联系地址"],
+    "contact": ["contact", "联系方式", "联系电话", "咨询电话", "联系地址", "服务热线"],
     "attachments": ["attachments", "附件", "附件清单", "下载材料"]
   },
   "regex_rules": [

@@ -8,21 +8,21 @@
 
 ## Before/After Recall
 
-- Before recall: 0.231
-- After recall: 0.462
+- Before recall: 0.222
+- After recall: 0.571
 
 ## Required Coverage
 
-- Before: 0.846
-- After: 0.846
+- Before: 0.667
+- After: 0.857
 
 ## Review Approvals
 
-- Approved reviews: 3
+- Approved reviews: 2
 
 ## Candidate Acceptance
 
-- Accepted candidates: 3
+- Accepted candidates: 2
 - Blocked candidates: 0
 
 ## Pack Activation

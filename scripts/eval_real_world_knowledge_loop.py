@@ -333,6 +333,7 @@ def run_loop(
         create_reviews(db, decisions)
         workflow = ReviewKnowledgeWorkflowService(db, template_service=template_service)
         decision_evidence = apply_decisions(workflow, decisions)
+        draft = before
         if workflow.list_candidates("accepted"):
             pack = workflow.create_pack(
                 schema_id="procurement_doc",
@@ -340,6 +341,11 @@ def run_loop(
                 name="Procurement real-world review pack",
                 created_by="real_world_knowledge_loop",
             )
+            draft_template = workflow.effective_template(
+                "procurement_doc",
+                "procurement_doc_base_v1",
+            )
+            draft = map_with_template(draft_template, "task_knowledge_loop_draft")
             workflow.activate_pack(pack.pack_id)
         effective_template = workflow.effective_template(
             "procurement_doc",
@@ -389,7 +395,20 @@ def run_loop(
         "rejected_candidates": metrics["rejected_candidates"],
         "activated_aliases": activated_aliases,
         "badcase_violation_count": badcase_violation_count,
+        "badcase_violations": badcase_violation_count,
+        "badcase_blocked_count": sum(
+            1
+            for item in decision_evidence
+            if item["badcase_hit"] and not item["activated"]
+        ),
         "old_snapshot_unchanged": old_snapshot_unchanged,
+        "draft_pack_no_effect": draft == before,
+        "active_pack_effect": after != before,
+        "rejected_candidates_count": metrics["rejected_candidates"],
+        "before_mapping_counts": before,
+        "after_mapping_counts": after,
+        "review_required_before": before["review_required_count"],
+        "review_required_after": after["review_required_count"],
         "before": before,
         "after": after,
         "metrics": metrics,

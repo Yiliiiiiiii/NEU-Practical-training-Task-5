@@ -1,0 +1,807 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "沪科指南〔2026〕3号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "为深入实施创新驱动发展战略，加快建成具有全球影响力的科技创新高地，根据《上海市加快食品科技创新赋能产业发展行动方案（2026-2030年）》，上海市科学技术委员会特发布2026年度关键技术研发计划“食品科技”项目申报指南。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、征集范围",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题一、食品原料研发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1.功能性糖的生物合成",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：建立用于食品原料制造的微生物底盘及工程化平台，高效生物合成母乳寡糖类（HMOs）功能性食品原料不少于2种并开展功效及安全性评价，有1款产品完成国内“三新食品”申报并获得国家主管部门审批通过。完成不少于1种HMOs产品的吨级发酵规模生产，乳糖等起始原料的转化率不低于90%。应用生物合成HMOs食品原料，设计开发不少于5款功能食品并上市销售。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发中性（非）岩藻糖基化HMOs、酸性唾液酸化HMOs等母乳寡糖的生物元件并构建微生物底盘，通过模块化设计糖基转移酶等方式开展发酵代谢流精准调控。解析母乳寡糖产品的生理调控机制，开展稳态化、递送技术、配方设计等研究，完成合成生物食品功效及安全性评价。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "里程碑：立项后2年内，至少有1款生物合成HMOs食品原料产品完成国内“三新食品”申报并通过国家主管部门组织的专家评审委员会技术审查，至少有3款添加生物合成母乳寡糖的配方产品上市销售。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "执行期限：2026年7月1日至2029年6月30日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过1个项目，拟投入专项资助经费不超过200万元。自筹经费与申请资助经费的比例不低于2:1。立项后拨付专项资助经费60%，完成里程碑拨付专项资助经费20%，通过验收拨付专项资助经费20%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体：本市企业。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2.高价值蛋白的生物合成",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：建立用于食品原料制造的微生物底盘及工程化平台，高效生物合成高价值（市场售价≥5000元/kg）功能性蛋白类食品原料不少于2种并开展功效及安全性评价，有1款产品完成国内“三新食品”申报并获得国家主管部门审批通过。开发不少于100个食用功能性蛋白表达的基因元件。完成不少于1种产品的吨级发酵规模生产，产量不低于3g/L，发酵批次间产量波动的变异系数（CV）≤15%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发表达乳铁蛋白、甜味蛋白等食用功能性蛋白的生物元件并构建微生物底盘，研究复杂糖基化修饰等翻译后修饰技术并建立非甲醇原料合成蛋白的方法。解析蛋白表达的代谢调控与机制，并开展产品稳定性、食品配方设计等研究，完成合成生物食品功效及安全性评价。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "里程碑：立项后2年内，至少有1款生物合成功能性蛋白类食品原料产品完成国内“三新食品”申报并获得受理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3.发酵剂研发与应用",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：建立规模不少于2万株的乳酸菌实体菌库，开发具有自主知识产权的酸奶发酵剂不少于6款、奶酪发酵剂不少于3款。发酵剂的发酵活力≤40g/t牛奶，唾液链球菌嗜热亚种≥1.0×10 11 CFU/g、德氏乳杆菌保加利亚亚种≥5.0×10 10 CFU/g，益生菌≥5.0×10 11 CFU/g，杂菌数低于500CFU/g。生产发酵剂菌粉规模超过30吨/年，发酵剂年产值不低于5000万元。应用于不少于3种发酵乳产品、不少于2种原制奶酪等奶酪产品的生产，并建立示范生产线。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发具有自主知识产权的发酵剂，适配酸奶、奶酪制作中高盐、高酸、低水分活度等环境，在高渗透压条件下稳定产酸以及风味物质，抑制杂菌并提升益生菌含量与存活率，提高产品功能性与稳定性。开发规模化益生菌增殖技术，研制全益生菌发酵剂。基于发酵剂，开发高品质原制奶酪及发酵乳产品。建立稳定放大生产工艺，完成发酵剂性能测试和评价。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "里程碑：立项后2年内，形成具有自主知识产权的酸奶发酵剂不少于1款、奶酪发酵剂不少于1款并上市销售，且应用于发酵乳示范生产线、奶酪示范生产线，在至少1款乳品的生产中实现国产发酵剂的完全替代。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题二、功能食品创制",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1.特殊医学用途配方食品",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：针对进食受限、消化吸收障碍、代谢紊乱或特定疾病状态人群，以及先天性代谢病等罕见病患者，开发特殊医学用途配方食品，并获得国家主管部门颁发的注册证书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：围绕特殊人群临床营养需求，基于国内外临床营养共识、高质量Meta分析或临床前研究数据，设计特殊医学用途配方食品配方，建立产品适宜人群评估、营养功效评估、临床效果评价等方法，开发差异化剂型的产品，通过感官修饰等技术改善产品口感，提升患者接受度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过1个项目，拟投入专项资助经费不超过200万元。自筹经费与申请资助经费的比例不低于2:1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2.GI值预测技术与低GI食品",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发低GI（血糖生成指数）食品智能设计系统，精准预测产品GI值与感官特征，GI值预测准确率不低于90%。验证具有降GI功效的核心食品基料不少于3种，创制低GI主食产品不少于5款并上市销售，GI值低于50且感官接受度不低于同类产品。建立年产量百吨级的低GI食品生产示范线，并开展产品推广。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：通过淀粉颗粒界面工程构建与消化酶活性抑制物筛选，结合体外体内评价及构效关系分析，挖掘降GI食品基料。基于基料与食品胶体间的分子互作，建立其稳态化控制与感官补偿技术，并通过微观结构定向设计实现质构的精准调控，提升加工适应性。构建人工智能驱动的低GI食品配方与感官预测平台，完成低GI主食产品的感官评价与人群验证。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过1个项目，拟投入专项资助经费不超过150万元。自筹经费与申请资助经费的比例不低于2:1。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3.风味量化评价技术与风味肽",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：挖掘并鉴定咸味肽、鲜味肽等风味肽，筛选能够定向酶解的酶制剂，建立不少于3种天然来源风味肽基料的百公斤级制备工艺。建立风味肽数据库，构建减盐调味品配方的预测设计模型，实现风味的量化评价与预测优化。基于风味肽基料，开发不少于2款减盐调味品并上市销售，钠元素含量降低30%以上且咸度不减。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：运用分子感官组学、分子动力学，解析风味肽与味觉受体的相互作用、钠盐与风味肽协同作用、基料组分与食品基质间的风味协同作用。通过生物传感多源数据融合分析技术，开发能够指导配方设计优化的风味预测模型，建立能够量化表征的风味感知科学评价方法。开展安全性评价，确定风味肽的添加剂量，设计基于风味肽的调味料配方并开发减盐调味产品，完成规模化生产。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向4.食药同源食品",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：选取《按照传统既是食品又是中药材的物质目录》中适合长三角地区种植且符合《中药材生产质量管理规范》（中药材GAP）的中药材，挖掘和鉴定适合作为食药同源食品原料的多糖类、糖苷类、多酚类或黄酮类功能因子不少于3类，开发功能因子的百公斤级单次提取工艺。应用功能因子开发剂型不同的食药同源食品不少于4款并上市销售。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：基于麦冬、杭白菊等温和适口的中药材，鉴定具有生理调控功能的营养因子，开发分离提取方法和食药同源食品配方，建立产品适宜人群评估、营养功效评估、临床效果评价等方法。运用微囊化包埋、流化床造粒、纳米乳化等技术，提升活性成分稳定性与生物利用度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题三、加工制造智能化",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向1.食品安全与品质的高通量智能速测",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发食品及原料的多靶标高通量速测试剂盒不少于10款，研制便携式检测设备不少于2款并配套开发数据分析终端应用（App），能够同时检测不少于10种可表征食品安全与品质的指标，检测限达国家限量标准，检测效率较同类检测方法提升至少5倍，假阳性≤5%，假阴性≤5%，产品与仪器检测结果符合率≥90%。检测产品的示范应用场景涵盖校园餐制作、农贸市场、超市、餐饮店等食品检测应用场景，检测样品量不低于10万项次，取得主管部门、企业的肯定性应用反馈。完成速测产品的上市销售，检测试剂盒销售量不低于1万套。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：筛选和构建高灵敏度、高选择性的速测识别材料与传感探针。基于新型纳米材料、免疫生物识别，开发高通量食品速测技术和样品快速前处理方法，研制试剂盒产品。集成机器视觉、智能传感等技术，研制便携式AI智能高通量速测设备，实现食品中多个典型关键指标的同步智能速测。在食品基质中验证高通量快速检测方法和产品，在不同复杂应用场景中开展示范应用，高效检测食品关键品质指标与有害物质残留。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向2.可降解食品包装材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发符合国家食品接触材料标准的可降解防油纸基阻隔型、耐热型食品包装材料不少于2款，材料均不含全氟或多氟烷基物质（PFAS），防油等级（Kit）＞10级，最大生物分解率不低于95%（180天），Cobb吸水值（1min）＜10g/m 2 。阻隔型包装的氧气透过率（OTR）≤20cm 3 /（m 2 ·day·atm）、水蒸气透过率（WVTR）≤40g/（m 2 ·day），能在100 ℃下使用且不产生有害物质，食品货架期较同类包装材料延长20%以上；耐热型包装的OTR＞200cm 3 /（m 2 ·day·atm），WVTR＞3000g/（m 2 ·day），能在200℃下使用且不产生有害物质。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：选取不含PFAS的生物基材料，开发生物基材料的高稳定性均相悬浮液制备技术，通过涂布与后处理改性调控材料构效关系，提升材料的防水、防油、耐热、抗菌、抗氧化等性能，根据包装材料应用场景调控适配的水、氧阻隔性能，开发符合国家食品接触材料标准的可降解防油纸基阻隔型、耐热型食品包装材料。开发实时监测与微环境调控等智能包装技术，研究食品包装集成智能传感与响应功能的方法，延缓食品品质劣变。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向3.食品生产全流程数字孪生系统开发",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：面向高端定制化需求，建立食品产品全流程智能柔性生产示范线，实现从订单到成品的全流程自动化生产，单个产线面积不低于1000m 2 。开发产线数字孪生系统，能够实时采集温度、关键成分含量等不少于10类关键工艺参数，建立多源数据融合分析模型，实现对食品安全风险的快速实时预警与自动拦截。智能产线具备柔性生产能力，在小时时间尺度内完成多剂型产品的快速切换生产。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：开发数智化生产装备，建立发酵等生物过程的动态调控模型，实时收集分析环境参数、污染物含量、营养成分含量等数据，决策调整生产工艺参数并对质控风险进行预警拦截，实现从订单分析、智能排产、配料生产、自动包装、质量追溯等全产线的在线监测与自动化过程控制。运用工业物联网、工业互联网、具身智能等信息技术，搭建集成自主学习和决策系统的食品工厂柔性生产智能场景，完成多剂型产品生产的智能调度，实现节能减排。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题四、平台建设",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向：食品研发共性技术服务平台构建",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：开发食品研发共性技术，搭建不少于1000m 2 的食品研发共性技术服务平台，面向不少于20家食品研发企业提供技术服务，包括提供食品功效与安全性评价、食品检测、生物合成设计、风味增强、质构调控、营养优化等技术服务不少于15项。带动在沪食品企业新增收入不低于5000万，设计制作上海食品研发技术服务工具包。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：围绕食品研发全链条需求，系统构建以食品安全检测与风险评估为基础、以食品功能与品质定向创制技术为核心、以支撑产品合规上市与国内外市场推广为目标的公共服务技术体系。重点开展营养功效与毒理学评价、遗传稳定性分析、膳食暴露评估等风险评估服务，以及病原微生物检测、菌种鉴定、活菌定量、蛋白序列解析、过敏原筛查等精准检测服务，并集成生物合成路径设计、风味增强、质构调控与营养优化等关键技术，为企业提供权威检测数据、科学评估报告与定制化技术解决方案，助力创新食品高效、合规进入国内外市场。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：非定额资助，拟支持不超过1个项目，拟投入专项资助经费不超过500万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "申报主体：国家卫生健康委食品安全风险评估与标准研制特色实验室的本市共建单位。须通过所属区科技主管部门推荐（须扫描上传推荐函），所属区给予不低于1:1的配套资助，每个区可推荐1个项目。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、申报要求",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "除满足前述相应条件外，还须遵循以下要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目申报单位应当是注册在本市的法人或非法人组织，具有组织项目实施的相应能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.对于申请人在以往市级财政资金或其他机构（如科技部、国家自然科学基金等）资助项目基础上提出的新项目，应明确阐述二者的异同、继承与发展关系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.所有申报单位和项目参与人应遵守科研诚信管理要求，项目负责人应承诺所提交材料真实性，申报单位应当对申请人的申请资格负责，并对申请材料的真实性和完整性进行审核，不得提交有涉密内容的项目申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.申报项目若提出回避专家申请的，须在提交项目可行性方案的同时，上传由申报单位出具公函提出回避专家名单与理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "5.项目申报单位及申报人需及时、完整、准确地记录在科研过程中产生的各类科学数据，并按要求在项目实施过程中完成科学数据汇交工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "6.所有申报单位和项目参与人应遵守科技伦理准则。拟开展的科技活动应进行科技伦理风险评估，涉及科技部《科技伦理审查办法（试行）》（国科发监〔2023〕167号）第二条所列范围科技活动的，应按要求进行科技伦理审查并提供相应的科技伦理审查批准材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "7.所有申报单位和项目参与人应遵守人类遗传资源管理相关法规和病原微生物实验室生物安全管理相关规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "8.已作为项目负责人承担市科委科技计划在研项目2项及以上者，不得作为项目负责人申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "9.项目经费预算编制应当真实、合理，符合市科委科技计划项目经费管理的有关要求。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "10.每位项目负责人申报项目不超过1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "11.每个方向每个单位申报项目不超过1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、申报方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc20.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "【继续填写】使用“一网通办”登录后，继续该项目的填报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.项目网上填报起始时间为 2026年5月11日9:00 ，截止时间（含申报单位网上审核提交）为 2026年5月28日16:30 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、评审方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "采用一轮通讯评审方式。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、立项公示",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会将按规定向社会公示拟立项项目清单，接受公众异议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、咨询电话",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "8008205114（座机）、4008205114（手机）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_009_food_technology_guide_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年4月29日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_009_food_technology_guide",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 77,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:16.305339+00:00",
+    "source_format": "html",
+    "source_sha256": "80317d3d47ad3c235b08d47e6643866c41fda8407d36e4c28bc4248a396fbd47",
+    "source_site": "stcsm.sh.gov.cn",
+    "source_url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20260428/1dc9d15691b24a2aad1c9aca59fbd6d7.html",
+    "title": "上海市科学技术委员会关于发布2026年度关键技术研发计划“食品科技”项目申报指南的通知_项目申报_上海市科学技术委员会",
+    "标题": "上海市科学技术委员会关于发布2026年度关键技术研发计划“食品科技”项目申报指南的通知_项目申报_上海市科学技术委员会"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "80317d3d47ad3c235b08d47e6643866c41fda8407d36e4c28bc4248a396fbd47"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_009_food_technology_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

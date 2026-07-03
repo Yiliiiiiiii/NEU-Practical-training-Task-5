@@ -51,7 +51,7 @@ badcase_pass_rate = 1.0
 
 ## 非采购 Recall Badcases
 
-Expanded real-world mapping gold 内嵌 badcases，并且 standalone `examples/real_world/gold/real_world_badcases.jsonl` 与这些 embedded `known_badcases` 保持同步。非采购 recall 工作新增了高风险 source/target pairs 的 regression coverage，确保它们不会 auto-accept：
+Expanded real-world mapping gold 可以内嵌 badcases；standalone `examples/real_world/gold/real_world_badcases.jsonl` 是覆盖全部文档的权威 registry，并包含所有 embedded `known_badcases`。非采购 recall 工作新增了高风险 source/target pairs 的 regression coverage，确保它们不会 auto-accept：
 
 | Source label | Forbidden target | Reason |
 | --- | --- | --- |
@@ -62,7 +62,13 @@ Expanded real-world mapping gold 内嵌 badcases，并且 standalone `examples/r
 | `预算金额` | `award_amount` | 预算不是中标金额。 |
 | `控制价` | `award_amount` | 控制价不是中标金额。 |
 
-这些 badcases 防止 recall 工作变成指标投机：ambiguous 或 high-risk evidence 应保持 review-required，除非有 source-backed safe rule。最新 package-based non-procurement analysis 和 API-backed non-procurement evaluator 均记录 zero badcase violations。Phase gate 仍未通过，因为 recall 和 review-required targets 尚未达标。
+这些 badcases 防止 recall 工作变成指标投机：ambiguous 或 high-risk evidence 应保持 review-required，除非有 source-backed safe rule。最新 package-based non-procurement analysis 和 API-backed non-procurement evaluator 均记录 zero badcase violations。深化后的 phase gate 已通过：average recall `0.5678`、review-required 69、required missing 6、package verification 35/35。
+
+本轮另外固定了三条治理边界：
+
+- `成文日期 -> publish_date` 不自动接受；
+- `retrieved_at -> effective_date` 作为 Knowledge Pack 阻断控制；
+- API knowledge evaluator 只处理当前 task 的显式安全 review pairs，不消费历史 pending reviews。
 
 ## 剩余限制
 

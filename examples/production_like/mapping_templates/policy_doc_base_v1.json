@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "aliases": {
     "title": ["title", "标题", "文档名称", "政策名称", "policy_title", "文件名称", "政策标题", "文件标题"],
-    "issuer": ["issuer", "发文机关", "发布单位", "颁布机构", "制定机关", "印发机关", "发布机构"],
-    "publish_date": ["publish_date", "发布日期", "发文日期", "印发日期", "成文日期", "发布时间", "公开日期"],
+    "issuer": ["issuer", "发文机关", "发布单位", "颁布机构", "制定机关", "印发机关"],
+    "publish_date": ["publish_date", "发布日期", "发文日期", "印发日期", "发布时间", "公开日期"],
     "doc_type": ["doc_type", "文种", "文件类型"],
     "effective_date": ["effective_date", "生效日期", "实施日期", "施行日期", "执行日期"],
     "summary": ["summary", "摘要", "内容摘要"],
@@ -19,12 +19,12 @@
     "policy_measures": ["policy_measures", "政策措施", "支持措施", "主要措施", "扶持措施", "重点任务", "工作措施", "具体措施"],
     "responsible_departments": ["responsible_departments", "责任部门", "牵头部门", "负责部门"],
     "valid_until": ["valid_until", "有效期至", "有效截止日期", "失效日期"],
-    "source": ["source", "来源", "公开来源", "发布渠道"]
+    "source": ["source", "来源", "公开来源", "发布渠道", "source_url"]
   },
   "regex_rules": [
     {
       "target_field_id": "publish_date",
-      "pattern": "(?:^|\\n)(?:发布日期|发文日期|印发日期|成文日期)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?)",
+      "pattern": "(?:^|\\n)(?:发布日期|发文日期|印发日期)[:：\\s]*(\\d{4}[-/年]\\d{1,2}[-/月]\\d{1,2}(?:日)?)",
       "group": 1
     },
     {

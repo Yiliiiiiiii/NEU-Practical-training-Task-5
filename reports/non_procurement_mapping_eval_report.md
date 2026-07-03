@@ -2,75 +2,61 @@
 
 ## Summary
 
-- Dataset size: 20
-- Strict pass: 4
-- Average recall: 0.421
-- Review required: 149
-- Required missing: 12
+- Dataset size: 35
+- Strict pass: 13
+- Average recall: 0.568
+- Review required: 69
+- Required missing: 6
 - Badcase violations: 0
-- Package verification pass: 20
+- Package verification pass: 35
 
 ## Baseline Delta
 
-- Average recall: +0.072
-- Review required: +4
-- Required missing: -6
-- Strict pass: +0
+- Average recall: +0.218
+- Review required: -76
+- Required missing: -12
+- Strict pass: +9
 
 ## Metrics By Document Type
 
 | Type | Documents | Strict pass | Recall avg | Review required | Required missing |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| general_doc | 4 | 0 | 0.333 | 49 | 0 |
-| meeting_doc | 6 | 0 | 0.333 | 54 | 0 |
-| policy_doc | 10 | 4 | 0.509 | 46 | 12 |
+| general_doc | 10 | 5 | 0.629 | 31 | 0 |
+| meeting_doc | 10 | 0 | 0.434 | 17 | 0 |
+| policy_doc | 15 | 8 | 0.616 | 21 | 6 |
 
 ## Field-level Recall
 
 | Field | Mapped or review | Required missing |
 | --- | ---: | ---: |
-| action_items | 6 | 0 |
-| agenda_items | 3 | 0 |
-| application_conditions | 4 | 0 |
-| application_materials | 4 | 0 |
-| attachments | 2 | 0 |
-| attendees | 6 | 0 |
-| category | 4 | 0 |
-| contact | 2 | 0 |
-| content | 20 | 0 |
-| created_date | 4 | 0 |
+| action_items | 10 | 0 |
+| application_conditions | 7 | 0 |
+| attendees | 2 | 0 |
+| contact | 6 | 0 |
+| content | 35 | 0 |
+| created_date | 10 | 0 |
 | deadline | 3 | 0 |
-| deadlines | 6 | 0 |
-| decision_items | 6 | 0 |
-| decisions | 6 | 0 |
-| departments | 2 | 0 |
-| doc_type | 10 | 0 |
-| document_number | 8 | 0 |
-| document_subtype | 4 | 0 |
-| effective_date | 10 | 0 |
-| issuer | 7 | 6 |
-| keywords | 10 | 0 |
-| meeting_date | 6 | 0 |
-| meeting_location | 6 | 0 |
-| meeting_title | 6 | 0 |
-| organizer | 2 | 0 |
-| process_steps | 4 | 0 |
-| publish_date | 5 | 6 |
-| published_at | 4 | 0 |
-| service_object | 4 | 0 |
-| source | 20 | 0 |
-| summary | 1 | 0 |
-| tags | 4 | 0 |
-| target_audience | 10 | 0 |
-| title | 14 | 0 |
-| topics | 6 | 0 |
+| deadlines | 2 | 0 |
+| doc_type | 15 | 0 |
+| document_number | 12 | 0 |
+| document_subtype | 10 | 0 |
+| effective_date | 15 | 0 |
+| issuer | 20 | 3 |
+| meeting_date | 10 | 0 |
+| meeting_number | 2 | 0 |
+| meeting_title | 10 | 0 |
+| organizer | 3 | 0 |
+| process_steps | 7 | 0 |
+| publish_date | 12 | 3 |
+| service_object | 7 | 0 |
+| source | 35 | 0 |
+| title | 25 | 0 |
 
 ## Strict Validation
 
-- real_policy_001_training_platform_rules (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
-- real_policy_002_equipment_renewal (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
-- real_policy_003_science_education_guide (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
-- real_policy_004_student_loan_relief (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
+- real_policy_001_training_platform_rules (policy_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_policy_003_science_education_guide (policy_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_policy_004_student_loan_relief (policy_doc): strict_pass_failed, mapping_recall_below_threshold
 - real_policy_005_ai_industry_guide (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
 - real_meeting_001_changning_executive_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
 - real_meeting_002_shaxian_executive_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
@@ -82,15 +68,22 @@
 - real_meeting_004_shandan_2025_11_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
 - real_meeting_005_miluo_2026_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
 - real_meeting_006_shandan_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
-- real_general_004_tianhe_service_guide (general_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_general_007_domestic_cooperation_guide (general_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_general_009_food_technology_guide (general_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_meeting_007_zhenping_49_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_meeting_008_wlmqx_2026_01_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_meeting_009_kundulun_2026_01_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_meeting_010_zhangjiagang_64_minutes (meeting_doc): strict_pass_failed, mapping_recall_below_threshold
+- real_policy_011_battery_recycling_rules (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
+- real_policy_013_minor_platform_rules (policy_doc): strict_pass_failed, missing_required_fields, mapping_recall_below_threshold
 
 ## Review-required Analysis
 
-- Total review-required items: 149
+- Total review-required items: 69
 
 ## Required Missing Analysis
 
-- Total required missing items: 12
+- Total required missing items: 6
 
 ## Badcase Safety
 
@@ -102,22 +95,28 @@
 
 ## Remaining Gaps
 
-- real_policy_001_training_platform_rules (policy_doc): missing=['issuer', 'publish_date']; review_required=5; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
-- real_policy_002_equipment_renewal (policy_doc): missing=['issuer', 'publish_date']; review_required=7; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
-- real_policy_003_science_education_guide (policy_doc): missing=['issuer', 'publish_date']; review_required=5; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
-- real_policy_004_student_loan_relief (policy_doc): missing=['issuer', 'publish_date']; review_required=4; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
-- real_policy_005_ai_industry_guide (policy_doc): missing=['issuer', 'publish_date']; review_required=4; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
-- real_meeting_001_changning_executive_minutes (meeting_doc): missing=[]; review_required=10; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_meeting_002_shaxian_executive_minutes (meeting_doc): missing=[]; review_required=8; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_meeting_003_miluo_executive_minutes (meeting_doc): missing=[]; review_required=9; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_general_001_notary_service_guide (general_doc): missing=[]; review_required=11; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_general_002_biomed_project_guide (general_doc): missing=[]; review_required=12; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_general_003_textile_application_flow (general_doc): missing=[]; review_required=13; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_policy_007_one_thing_list (policy_doc): missing=['issuer', 'publish_date']; review_required=5; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
-- real_meeting_004_shandan_2025_11_minutes (meeting_doc): missing=[]; review_required=9; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_meeting_005_miluo_2026_minutes (meeting_doc): missing=[]; review_required=8; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_meeting_006_shandan_minutes (meeting_doc): missing=[]; review_required=10; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
-- real_general_004_tianhe_service_guide (general_doc): missing=[]; review_required=13; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_policy_001_training_platform_rules (policy_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_policy_003_science_education_guide (policy_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_policy_004_student_loan_relief (policy_doc): missing=[]; review_required=2; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_policy_005_ai_industry_guide (policy_doc): missing=['issuer', 'publish_date']; review_required=1; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
+- real_meeting_001_changning_executive_minutes (meeting_doc): missing=[]; review_required=2; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_002_shaxian_executive_minutes (meeting_doc): missing=[]; review_required=1; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_003_miluo_executive_minutes (meeting_doc): missing=[]; review_required=2; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_general_001_notary_service_guide (general_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_general_002_biomed_project_guide (general_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_general_003_textile_application_flow (general_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_policy_007_one_thing_list (policy_doc): missing=['issuer']; review_required=2; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
+- real_meeting_004_shandan_2025_11_minutes (meeting_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_005_miluo_2026_minutes (meeting_doc): missing=[]; review_required=2; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_006_shandan_minutes (meeting_doc): missing=[]; review_required=2; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_general_007_domestic_cooperation_guide (general_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_general_009_food_technology_guide (general_doc): missing=[]; review_required=3; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_007_zhenping_49_minutes (meeting_doc): missing=[]; review_required=1; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_008_wlmqx_2026_01_minutes (meeting_doc): missing=[]; review_required=2; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_009_kundulun_2026_01_minutes (meeting_doc): missing=[]; review_required=1; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_meeting_010_zhangjiagang_64_minutes (meeting_doc): missing=[]; review_required=1; reasons=['strict_pass_failed', 'mapping_recall_below_threshold']
+- real_policy_011_battery_recycling_rules (policy_doc): missing=['issuer', 'publish_date']; review_required=1; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
+- real_policy_013_minor_platform_rules (policy_doc): missing=['publish_date']; review_required=1; reasons=['strict_pass_failed', 'missing_required_fields', 'mapping_recall_below_threshold']
 
 ## Commands
 

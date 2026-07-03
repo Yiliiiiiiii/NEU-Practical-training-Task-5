@@ -51,11 +51,15 @@ def test_only_approved_non_badcase_decisions_activate(tmp_path: Path) -> None:
     assert result["approved_candidates"] == 1
     assert result["rejected_candidates"] == 1
     assert result["badcase_violation_count"] == 0
+    assert result["draft_pack_no_effect"] is True
+    assert result["active_pack_effect"] is True
     assert "采购方名称" in result["activated_aliases"]["purchaser"]
     assert "最高限价" not in result["activated_aliases"].get("award_amount", [])
     assert result["after"]["auto_mapped_fields"] >= result["before"]["auto_mapped_fields"]
     assert result["after"]["review_required_count"] <= result["before"]["review_required_count"]
     assert result["metrics"]["approved_candidates"] == 1
+    assert result["rejected_candidates_count"] == 1
+    assert result["badcase_blocked_count"] == 0
 
 
 def test_activation_does_not_mutate_old_snapshot_and_writes_reports(

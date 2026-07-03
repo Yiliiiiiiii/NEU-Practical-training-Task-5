@@ -39,11 +39,27 @@ EXPECTED_ALIASES = {
             "发布机构",
         },
         "published_at": {"发布时间", "印发日期"},
-        "service_object": {"面向对象", "申请对象", "办理对象", "支持对象", "申报对象"},
+        "service_object": {
+            "面向对象",
+            "申请对象",
+            "办理对象",
+            "支持对象",
+            "申报对象",
+            "申报主体",
+            "申报主体要求",
+            "项目负责人要求",
+        },
         "application_conditions": {"受理条件", "资格条件", "基本条件"},
         "application_materials": {"所需材料", "提交材料", "材料清单"},
-        "process_steps": {"办理程序", "申请流程", "办事流程", "操作流程", "流程说明"},
-        "contact": {"联系地址"},
+        "process_steps": {
+            "办理程序",
+            "申请流程",
+            "办事流程",
+            "操作流程",
+            "流程说明",
+            "申报方式",
+        },
+        "contact": {"联系地址", "服务热线"},
     },
     "meeting_doc": {
         "meeting_title": {"会议纪要", "专题会议", "常务会议"},
@@ -55,7 +71,7 @@ EXPECTED_ALIASES = {
     },
     "policy_doc": {
         "title": {"policy_title", "文件名称", "政策标题", "文件标题"},
-        "issuer": {"发布机构"},
+        "issuer": {"发文机关"},
         "document_number": {"政策编号", "通知编号"},
         "publish_date": {"发布时间", "公开日期"},
         "effective_date": {"施行日期", "执行日期"},
@@ -135,6 +151,25 @@ def test_high_frequency_aliases_are_available_without_invalid_targets(schema_id:
     assert TemplateService(TEMPLATES_DIR).validate_template(template, schema) is template
 
 
+def test_non_procurement_templates_map_traceable_source_urls() -> None:
+    for schema_id in TEMPLATES:
+        assert "source_url" in load_template(schema_id).aliases["source"]
+
+
+def test_policy_template_excludes_ambiguous_issuer_and_authored_date_aliases() -> None:
+    schema = load_schema("policy_doc")
+    template = load_template("policy_doc")
+    publish_field = next(field for field in schema.fields if field.field_id == "publish_date")
+
+    assert "发布机构" not in template.aliases["issuer"]
+    assert "成文日期" not in template.aliases["publish_date"]
+    assert "成文日期" not in publish_field.aliases
+    publish_rule = next(
+        rule for rule in template.regex_rules if rule.target_field_id == "publish_date"
+    )
+    assert "成文日期" not in publish_rule.pattern
+
+
 @pytest.mark.parametrize("schema_id", TEMPLATES)
 def test_effective_aliases_do_not_collide_across_targets(schema_id: str) -> None:
     schema = load_schema(schema_id)
@@ -151,9 +186,9 @@ def test_effective_aliases_do_not_collide_across_targets(schema_id: str) -> None
 def test_template_validation_rejects_effective_alias_collisions() -> None:
     schema = load_schema("policy_doc")
     template = load_template("policy_doc").model_copy(deep=True)
-    template.aliases["title"] = [*template.aliases["title"], "发布机构"]
+    template.aliases["title"] = [*template.aliases["title"], "发文机关"]
 
-    with pytest.raises(ValueError, match="effective alias collision.*发布机构"):
+    with pytest.raises(ValueError, match="effective alias collision.*发文机关"):
         TemplateService(TEMPLATES_DIR).validate_template(template, schema)
 
 

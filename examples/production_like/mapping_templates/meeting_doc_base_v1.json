@@ -20,7 +20,7 @@
     "decision_items": ["decision_items", "议定事项", "决定事项", "形成意见"],
     "responsible_units": ["responsible_units", "责任单位", "牵头单位", "负责单位"],
     "deadlines": ["deadlines", "完成时限", "办理期限", "时间节点"],
-    "source": ["source", "来源", "记录来源"]
+    "source": ["source", "来源", "记录来源", "source_url"]
   },
   "regex_rules": [
     {

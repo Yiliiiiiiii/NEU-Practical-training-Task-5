@@ -325,13 +325,26 @@ def write_manifest(path: Path, items: list[dict[str, object]]) -> None:
     )
 
 
-def test_real_world_dataset_has_at_least_thirty_official_sources() -> None:
+def test_real_world_dataset_has_at_least_forty_five_official_sources() -> None:
     manifest_path = ROOT / "examples" / "real_world" / "sources" / "source_manifest.json"
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     items = manifest["items"]
 
-    assert len(items) >= 30
+    assert len(items) >= 45
+    doc_type_counts = {
+        doc_type: sum(item["doc_type"] == doc_type for item in items)
+        for doc_type in {
+            "general_doc",
+            "meeting_doc",
+            "policy_doc",
+            "procurement_doc",
+        }
+    }
+    assert doc_type_counts["general_doc"] >= 10
+    assert doc_type_counts["meeting_doc"] >= 10
+    assert doc_type_counts["policy_doc"] >= 15
+    assert doc_type_counts["procurement_doc"] >= 10
     source_ids = [item["source_id"] for item in items]
     source_urls = [item["source_url"] for item in items]
     uir_paths = [item["uir_path"] for item in items]

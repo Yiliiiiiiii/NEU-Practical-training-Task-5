@@ -4,24 +4,41 @@
       "发文字号："
     ]
   },
+  "active_pack_effect": true,
   "after": {
-    "auto_mapped_fields": 4,
+    "auto_mapped_fields": 6,
     "mapping_recall": 1.0,
-    "required_coverage": 0.5,
-    "review_required_count": 4,
+    "required_coverage": 1.0,
+    "review_required_count": 2,
     "strict_pass_count": 1
   },
+  "after_mapping_counts": {
+    "auto_mapped_fields": 6,
+    "mapping_recall": 1.0,
+    "required_coverage": 1.0,
+    "review_required_count": 2,
+    "strict_pass_count": 1
+  },
+  "badcase_blocked_count": 1,
   "badcase_controls": {
     "blocked_aliases": [
-      "extracted_block_count"
+      "retrieved_at"
     ],
     "violation_count": 0
   },
+  "badcase_violations": 0,
   "before": {
-    "auto_mapped_fields": 3,
+    "auto_mapped_fields": 5,
     "mapping_recall": 0.0,
-    "required_coverage": 0.5,
-    "review_required_count": 5,
+    "required_coverage": 1.0,
+    "review_required_count": 3,
+    "strict_pass_count": 1
+  },
+  "before_mapping_counts": {
+    "auto_mapped_fields": 5,
+    "mapping_recall": 0.0,
+    "required_coverage": 1.0,
+    "review_required_count": 3,
     "strict_pass_count": 1
   },
   "boundaries": [
@@ -42,17 +59,17 @@
       "badcase_hit": false,
       "candidate_status": null,
       "decision": "rejected",
-      "reason": "Retrieval time is provenance metadata and must not become the policy target audience.",
-      "source_label": "retrieved_at",
-      "target_field": "target_audience"
+      "reason": "The hosting domain alone is provenance context and is not the canonical source URL.",
+      "source_label": "source_site",
+      "target_field": "source"
     },
     {
       "badcase_hit": true,
       "candidate_status": "blocked",
       "decision": "approved",
-      "reason": "Control case: extracted block count is forbidden from becoming semantic keywords.",
-      "source_label": "extracted_block_count",
-      "target_field": "keywords"
+      "reason": "Control case: retrieval time is forbidden from becoming a policy effective date.",
+      "source_label": "retrieved_at",
+      "target_field": "effective_date"
     }
   ],
   "draft_pack_evidence": {
@@ -60,12 +77,14 @@
     "metrics_equal_to_before": true,
     "status": "draft"
   },
+  "draft_pack_no_effect": true,
   "fixture": {
     "decision_count": 3,
     "doc_id": "real_policy_001_training_platform_rules",
     "doc_type": "policy_doc",
     "real_uir_path": "examples/real_world/uir/policy/real_policy_001_training_platform_rules.json"
   },
+  "old_snapshot_unchanged": true,
   "old_task_invariant": {
     "artifacts": {
       "canonical": {
@@ -91,15 +110,18 @@
     "metadata_unchanged": true,
     "task_record_unchanged": true
   },
+  "rejected_candidates_count": 1,
   "rejected_controls": [
     {
       "activated": false,
       "candidate_created": false,
-      "reason": "Retrieval time is provenance metadata and must not become the policy target audience.",
-      "source_label": "retrieved_at",
-      "target_field": "target_audience"
+      "reason": "The hosting domain alone is provenance context and is not the canonical source URL.",
+      "source_label": "source_site",
+      "target_field": "source"
     }
   ],
+  "review_required_after": 2,
+  "review_required_before": 3,
   "summary": {
     "badcase_violation_count": 0,
     "isolated_state": true,

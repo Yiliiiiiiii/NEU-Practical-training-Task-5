@@ -1,0 +1,997 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "沪科指南〔2026〕6号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "为深入实施创新驱动发展战略，加快建设具有全球影响力的科技创新中心，上海市科学技术委员会特发布2026年度高水平机构建设运行计划“软科学研究”项目申报指南。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、征集范围",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题一、重点项目（题目不得调整，可增加副标题）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向一：抢占战略前沿制高点，强化创新策源功能",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目1:非共识创新的识别遴选、评审、资助方式研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：梳理非共识创新的内涵、特征，分析非共识创新与重大科学发现、颠覆性技术创新、科技产业发展间的演化关系与培育机制；调研政府部门、科学基金会、投资机构等科研资助机构，围绕识别遴选非共识创新项目、探索非常规评审机制、设计灵活资助方式等方面，梳理归纳实践经验；提出上海发现和鼓励非共识创新、优化资助机制的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于10家代表性单位，梳理案例集1份，提炼相关经验、问题；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "执行期限：2026年7月1日至2027年6月30日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：定额资助，拟支持不超过1个项目，每项资助额度20.00万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目2:AI for Science驱动科研范式变革与创新治理研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：从科研活动视角，梳理分析大模型、智能体等对科研组织实施的变革性影响，构建AI for Science（AI4S）驱动的新型科研范式框架；从科技管理视角，分析AI4S新型科研范式下，传统科研任务生成、创新资源配置、成果评价考核等方面的适配性问题，提出进一步优化科研组织管理、提升治理效能的对策建议；结合具体AI4S科研场景和关键环节问题，提出创新治理的参考指引。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于10家代表性单位，形成不少于3个具体场景的AI4S应用案例和治理机制建议；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目3:人工智能训练数据的知识产权与治理问题研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：梳理国内外在人工智能大模型训练中产生的知识产权问题、应对举措与治理机制；调研访谈上海人工智能创新主体，梳理模型训练中的知识产权风险与政策需求，提出符合人工智能发展规律、兼顾创新激励与权益保护的治理策略；聚焦AI for Science发展对科学数据的需要，构建知识产权确权与保护、数据共享权益分配与成果认定等规则。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于10家代表性单位，梳理问题、需求等清单；形成科学数据相关数据治理规则；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目4:上海加快未来产业重大应用场景建设研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：着眼应用加速新技术、新产品验证和商业化，围绕上海重点布局的未来产业赛道，排摸梳理新技术新产品研发与应用现状；调研访谈供给方与潜在需求方，梳理采购应用需求意愿、风险顾虑和政策诉求；围绕具体领域赛道，研究提出构建综合性、集成式、带动强的应用场景，或体系化应用布局建议；梳理国内外经验案例，围绕政产学研金服用协同、建立风险共担利益共享机制、探索沙盒监管等方面，提出加快未来产业应用场景开发开放的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于20家代表性单位，梳理供给、需求等清单；形成具体领域应用场景开发开放方案；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目5:上海构建体育赛事牵引的前沿科技应用场景研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：深入研究国内外重大体育赛事中科技渗透支撑的新趋势、新动态，通过调研访谈与案例梳理，分析成功经验和存在问题；梳理形成国内外重大赛事的具体技术溢出清单，研究新的科技型体育赛事活动组织运营机制，以及通过体育赛事形成前沿科技应用场景的路径机制，对上海打造体育赛事牵引的前沿科技应用场景提出对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向二：聚焦科技创新与产业创新深度融合，提升创新生态势能",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目6:上海提升创新创业载体专业发展能级研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：深入调研全市孵化器、加速器、众创空间、大学科技园等创新创业载体，梳理载体运营与企业孵化等情况；对标研究国内外优秀创业孵化载体发展经验与创新模式，围绕产业适配、专业支撑、人才保障、投资赋能、创新加速等方面，深入分析我市创新创业载体建设的问题与原因，提出优化全市创新创业载体建设的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于20家代表性单位，梳理运营情况、问题、需求等清单；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目7:上海构建多方协同的概念验证体系研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：着眼创新转化链条中的概念验证关键环节，深入调研高校院所、创新企业、概念验证平台、金融资本、园区服务等各类主体，梳理我市概念验证环节的要素供给情况，分析概念验证平台在运营模式、创新转化、资源链接等方面的现状与存在问题，对标国际领先的概念验证类平台，提出强化多方协同参与、构建概念验证体系、加速科技成果转化的思路、对策与机制设计。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目8:上海构建投早、投小、投长期、投硬科技的科技金融体系研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：围绕创业投资、货币信贷、资本市场、科技创新债券、科技保险、科技担保等领域，深入调研和访谈我市各类金融机构，梳理相关业务投早、投小、投长期、投硬科技的现状与存在问题，并提供数据和案例佐证；剖析体制机制、服务体系等方面原因，对标国际经验案例，提出具体的政策优化和改革创新建议，并提出相应风险分析研判和制度完善策略。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于10家代表性单位，形成科技金融政策优化与制度创新建议清单；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目9:上海推动科技服务专业化高端化发展研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：聚焦研发设计、技术转移、知识产权、检验检测、科技咨询等科技服务行业的一个具体领域，开展上海与国内主要省市的实证数据比较分析，调研访谈代表性服务机构、科技创新企业，梳理上海在该领域的发展现状、特征与存在问题，分析行业发展新趋势、市场潜在需求，研究提出加快行业改革创新、提升专业服务能级、培育高端业态模式的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于20家代表性单位，梳理问题、需求等清单；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "执行期限：2026年7月1日至2027年06月30日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.定额资助，每项资助额度20.00万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.每个领域1项，拟支持不超过5个项目。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目10:上海推动生物医药产业国际化发展研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：分析近年来全球生物医药产业发展最新动向，梳理主流国家与区域的市场格局、准入规则、临床试验、支付体系等情况；调研访谈我市不同发展阶段、不同类型生物医药企业，梳理企业国际化战略选择、“出海”现状与政策服务需求，聚焦本土企业和创新产品海外上市的痛点难点问题，研究提出政策支持、制度创新、服务保障等方面的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于20家代表性单位，梳理问题、需求等清单；形成主流国家与区域相关监管准入政策对比表；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "方向三：深化科技体制机制改革，激活创新体系效能",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目11:上海深化“科学家+创业者”创新人才培养研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：面向在沪科学家创业者群体，深入访谈调研人才创新创业历程、面临问题瓶颈和政策服务需求等；针对创业团队结构性需求，分析CXO类人才（如CEO、CTO、COO等职业经理人）的供给现状、短板不足；借鉴国内外创新人才培养经验举措，研究提出上海培养科学家创业者、CXO类专业人才的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于30位科学家创业者、CXO类人才，梳理问题、需求等清单；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目12：海外青年科技人才在沪创新创业情况调研",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：通过问卷调查、座谈访谈，深入调研在沪创新创业的海外青年科技人才、青年科技企业家等群体，总结人才结构画像与创新创业活动分布特征；梳理海外青年科技人才在签证居留、项目支持、职业发展、生活保障等方面的问题与政策服务需求；对标国际领先的科技创新城市，研究提出上海优化开放创新生态、打造全球青年科技人才汇集地的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于30位海外青年科技人才，梳理问题、需求等清单；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目13：对标国际前沿提升上海生物医药监管服务能级研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：分析全球生物医药产业发展新趋势与前沿领域科学监管新需求，梳理国际主要医药监管体系的经验举措；调研生物医药企业、医疗卫生机构、监管部门等，围绕“研发-临床-审评审批-生产-流通”全链条，梳理我市在监管服务方面的现状与存在不足；围绕推动生物医药创新产品注册与生产、国产/地产化注册、工艺技术或生产模式变更等方面，提出加快前沿领域先行先试、深化高水平制度型开放、提升科学有效监管水平等政策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目14:长三角跨园区产业联动、利益共享机制研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：立足上海（长三角）国际科技创新中心建设，调研访谈长三角区域内高科技园区运营主体，梳理园区合作、产业转移、资源对接、利益共享等方面的现状、成效和问题，分析堵点难点和体制机制原因；研究借鉴国内外跨园区产业合作经验，提出推动长三角跨园区产业联动、利益共享的对策建议；聚焦长三角某一重点产业领域，研究设计跨园区产业协同、共赢合作的实施路径。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于10家代表性单位，梳理问题、需求等清单；形成1个具体领域跨园区协同合作方案；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目15:上海推动科普市场化发展机制研究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：分别从供给、需求角度，梳理分析上海科普资源与建设运营情况、科普市场规模、结构特征与发展趋势等；调研访谈上海及国内主要城市的科普场馆、机构和企业，分析我市科普产业化、市场化、社会化发展的现状、不足及原因；对标国际科普场馆运营和科普市场化发展经验案例，提出推动上海科普市场化运作、提升科普工作能级、助力科普消费市场发展的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：调研访谈不少于20家代表性单位，梳理问题、需求等清单；形成国内外科普市场化发展案例集1份；提交研究报告1份。采用“里程碑”考核方式，设立6个月里程碑考核节点。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题二、调查研究项目（题目不得调整，可增加副标题）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目1:上海科技型企业创新发展需求调研",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：聚焦科技领军企业、独角兽和瞪羚等高成长企业、专精特新和隐形冠军企业、科技型中小企业、外资研发中心、一人创业公司等不同阶段、不同类型企业主体，围绕企业研发创新、产学研合作、绿色化智能化转型、科技金融、科技服务、国际化发展等方面，选择一个具体角度，通过访谈调研，深入分析现状、问题和原因，研究提出上海优化企业政策服务的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：座谈或走访调研不少于20家代表性企业，梳理问题、需求、建议等清单，提交调研报告1份。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：定额资助，拟支持不超过10个项目，每项资助额度15.00万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目2:上海科技创新政策实施情况评估调研",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：围绕上海近年来发布实施且在有效期内的科技创新支持政策（包括科技创新和科技产业具体领域行动方案，基础研究、成果转化、平台基地、企业培育、科技园区、科技体制改革等政策文件），自选一类或一项政策，针对政策适用主体开展分类座谈调研，全面分析政策实施成效、存在问题、落地堵点和深层次原因，评估政策内容、支持方式与科技创新形势发展适配度，结合国内外经验和上海实际，提出进一步优化科技创新政策支持的对策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "考核要求：座谈或走访调研不少于20家代表性单位，梳理问题、需求、建议等清单，提交调研报告1份。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：定额资助，拟支持不超过5个项目，每项资助额度15.00万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "题目3:上海重点科技产业政策与制度创新调研",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究内容：聚焦上海三大先导产业和未来产业发展的具体细分领域，通过行业数据分析和对重点企业、机构、行业组织等访谈调研，梳理分析上海该领域发展现状、优势与不足，对标国内外科技创新与产业发展新趋势，围绕产业布局、技术创新、要素供给、生态服务、政策监管等角度，研究提出针对性政策创新与体制机制改革建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题三、青年项目",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "研究目标：鼓励青年软科学研究人员面向上海（长三角）国际科技创新中心建设的重点、热点和难点，自行选题开展研究，题目不应与专题一、专题二的研究题目重复。项目执行期内，应参加相关学术沙龙、座谈交流等主题研讨，围绕研究方向和成果作交流分享。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "经费额度：定额资助，拟支持不超过70个项目，每项资助额度10.00万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目负责人要求：申请者年龄应未满35周岁（1991—01—01及以后出生），鼓励硬科技领域研究者开展软科学研究。已作为项目负责人承担青年项目2项及以上者，不得作为项目负责人申报青年项目。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、申报要求",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "除满足前述相应条件外，还须遵循以下要求：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目申报单位应当是注册在本市的法人或非法人组织，具有组织项目实施的相应能力。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.对于申请人在以往市级财政资金或其他机构（如科技部、国家自然科学基金等）资助项目基础上提出的新项目，应明确阐述二者的异同、继承与发展关系。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.所有申报单位和项目参与人应遵守科研诚信管理要求，项目负责人应承诺所提交材料真实性，申报单位应当对申请人的申请资格负责，并对申请材料的真实性和完整性进行审核，不得提交有涉密内容的项目申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.申报项目若提出回避专家申请的，须在提交项目可行性方案的同时，上传由申报单位出具公函提出回避专家名单与理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b078",
+      "level": null,
+      "source_anchor": null,
+      "text": "5.已作为项目负责人承担市科委科技计划在研项目2项及以上者，不得作为项目负责人申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b079",
+      "level": null,
+      "source_anchor": null,
+      "text": "6.鼓励企业主体申报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b080",
+      "level": null,
+      "source_anchor": null,
+      "text": "7.每位申请者限报1项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b081",
+      "level": null,
+      "source_anchor": null,
+      "text": "8.软科学研究应坚持面向国家和上海科技战略决策重大需求，突出研究成果服务政府决策的及时性、有效性，注重深入开展调查研究，注重数据、案例分析，提出符合实际的、操作性强的政策建议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b082",
+      "level": null,
+      "source_anchor": null,
+      "text": "9.本指南所有项目纳入科研经费管理“包干制”试点，赋予科研人员更大的经费使用自主权。重点项目根据“里程碑”节点考核情况拨付经费。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b083",
+      "level": null,
+      "source_anchor": null,
+      "text": "10.“重点项目”所有题目原则上不得申请延期，因故不能按期完成项目研究并提交成果的，承担单位应按要求向市科委提出结题申请。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b084",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、申报方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b085",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc20.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b086",
+      "level": null,
+      "source_anchor": null,
+      "text": "【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b087",
+      "level": null,
+      "source_anchor": null,
+      "text": "【继续填写】使用“一网通办”登录后，继续该项目的填报。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b088",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.项目网上填报 起始时间为2026年5月12日9:00，截止时间（含申报单位网上审核提交）为2026年5月29日16:30 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b089",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、评审方式",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b090",
+      "level": null,
+      "source_anchor": null,
+      "text": "专题一、专题二采用第一轮通讯评审、第二轮见面会评审方式；专题三采用一轮通讯评审方式。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b091",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、立项公示",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b092",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科委将向社会公示拟立项项目清单，接受公众异议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b093",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、咨询电话",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b094",
+      "level": null,
+      "source_anchor": null,
+      "text": "服务热线：8008205114（座机）、4008205114（手机）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b095",
+      "level": null,
+      "source_anchor": null,
+      "text": "上海市科学技术委员会",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_006_soft_science_guide_b096",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年4月30日",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_006_soft_science_guide",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 96,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-03T01:19:15.947672+00:00",
+    "source_format": "html",
+    "source_sha256": "2e40773b585f739b0d993306e5bec9706dd90f142ed63b2d9790a1114f2db4f8",
+    "source_site": "stcsm.sh.gov.cn",
+    "source_url": "https://stcsm.sh.gov.cn/zwgk/kyjhxm/xmsb/20260430/2e358bdafedd4a82b040344feb08a6e1.html",
+    "title": "上海市科学技术委员会关于发布2026年度高水平机构建设运行计划“软科学研究”项目申报指南的通知_项目申报_上海市科学技术委员会",
+    "标题": "上海市科学技术委员会关于发布2026年度高水平机构建设运行计划“软科学研究”项目申报指南的通知_项目申报_上海市科学技术委员会"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "2e40773b585f739b0d993306e5bec9706dd90f142ed63b2d9790a1114f2db4f8"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_006_soft_science_guide",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}
