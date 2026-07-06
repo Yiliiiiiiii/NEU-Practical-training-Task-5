@@ -13,6 +13,10 @@ From the repository root:
 
 The script imports the FastAPI app and writes `docs/openapi.json`.
 
+Current synchronized baseline: 63 paths. The snapshot includes document/task,
+catalog, review/knowledge governance, External UIR, schema draft, Evaluation
+Center, audit, and report endpoints. Webhook endpoints are not implemented.
+
 ## Check Diff
 
 ```powershell

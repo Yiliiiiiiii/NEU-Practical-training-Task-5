@@ -7,7 +7,7 @@
     "meeting_title": ["meeting_title", "title", "标题", "会议名称", "会议主题", "会议标题", "会议纪要", "专题会议", "常务会议"],
     "meeting_date": ["meeting_date", "meeting date", "会议日期", "会议时间", "召开日期", "召开时间"],
     "organizer": ["organizer", "主持单位", "组织方", "组织单位"],
-    "attendees": ["attendees", "参会人员", "与会人员", "出席人员", "参会同志", "出席同志", "参加人员"],
+    "attendees": ["attendees", "参会人员", "与会人员", "出席人员", "出席", "参会同志", "出席同志", "参加人员"],
     "topics": ["topics", "议题", "会议议题", "会议议程", "研究事项", "讨论事项"],
     "decisions": ["decisions", "决议", "会议决定", "会议要求", "工作部署"],
     "action_items": ["action_items", "行动项", "待办事项", "下一步工作", "任务分工"],

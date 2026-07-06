@@ -1,0 +1,155 @@
+{
+  "id": "raw_c95c7077f29c5131",
+  "title": "Sample Procurement Policy",
+  "source": {
+    "provider": "pymupdf_text",
+    "original_name": "sample_policy.pdf",
+    "source_sha256": "c95c7077f29c5131ccd349482ad5363d1e58090eef5ba9fdb436188547f5e3e1"
+  },
+  "metadata": {
+    "raw_upstream_provider": "pymupdf_text",
+    "original_name": "sample_policy.pdf",
+    "source_sha256": "c95c7077f29c5131ccd349482ad5363d1e58090eef5ba9fdb436188547f5e3e1",
+    "extraction_metadata": {
+      "page_count": 1,
+      "page_text_lengths": [
+        306
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "id": "raw_b0001",
+      "type": "heading",
+      "text": "Sample Procurement Policy",
+      "page": 1,
+      "bbox": [
+        72.0,
+        66.5,
+        318.739990234375,
+        93.9800033569336
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 20.0,
+          "font_bold": false
+        }
+      }
+    },
+    {
+      "id": "raw_b0002",
+      "type": "paragraph",
+      "text": "1. Purpose",
+      "page": 1,
+      "bbox": [
+        72.0,
+        116.94999694824219,
+        139.70401000976562,
+        136.18600463867188
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 14.0,
+          "font_bold": false
+        }
+      }
+    },
+    {
+      "id": "raw_b0003",
+      "type": "paragraph",
+      "text": "This policy defines procurement review, supplier controls, and approval evidence.",
+      "page": 1,
+      "bbox": [
+        72.0,
+        146.1750030517578,
+        468.1539306640625,
+        161.28900146484375
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 11.0,
+          "font_bold": false
+        }
+      }
+    },
+    {
+      "id": "raw_b0004",
+      "type": "paragraph",
+      "text": "2. Review Requirements",
+      "page": 1,
+      "bbox": [
+        72.0,
+        184.9499969482422,
+        224.4879913330078,
+        204.18600463867188
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 14.0,
+          "font_bold": false
+        }
+      }
+    },
+    {
+      "id": "raw_b0005",
+      "type": "paragraph",
+      "text": "Purchases above the threshold require documented review before award.",
+      "page": 1,
+      "bbox": [
+        72.0,
+        214.1750030517578,
+        429.6649169921875,
+        229.28900146484375
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 11.0,
+          "font_bold": false
+        }
+      }
+    },
+    {
+      "id": "raw_b0006",
+      "type": "paragraph",
+      "text": "3. Supplier Controls",
+      "page": 1,
+      "bbox": [
+        72.0,
+        252.9499969482422,
+        194.93402099609375,
+        272.1860046386719
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 14.0,
+          "font_bold": false
+        }
+      }
+    },
+    {
+      "id": "raw_b0007",
+      "type": "paragraph",
+      "text": "Supplier identity, sanctions status, and contract terms must be verified.",
+      "page": 1,
+      "bbox": [
+        72.0,
+        282.17498779296875,
+        416.2010192871094,
+        297.28900146484375
+      ],
+      "metadata": {
+        "upstream_provider": "pymupdf_text",
+        "source_attributes": {
+          "font_size": 11.0,
+          "font_bold": false
+        }
+      }
+    }
+  ]
+}

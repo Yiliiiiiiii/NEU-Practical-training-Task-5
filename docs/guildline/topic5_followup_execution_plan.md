@@ -1,5 +1,7 @@
 # SchemaPack Agent 课题 5 后续深化执行文档（不含答辩验收事项）
 
+> **历史执行文档**：本文保留当时的深化计划；当前实现与验证基线见 [`../project_status.md`](../project_status.md)。
+
 > 适用对象：Codex / 代码执行模型  
 > 项目边界：继续深化课题 5「数据格式标准化转换智能体」，不横向实现课题 2/3/4/6/11 的完整能力。  
 > 当前基线：项目已完成核心 `UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP` 链路，并已有 FastAPI 后端、React/Vite 前端、Review/Knowledge、Package Verifier、Docker Compose、生产化 evaluator 与下游 smoke 脚本。  

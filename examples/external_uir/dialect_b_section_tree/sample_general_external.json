@@ -1,0 +1,19 @@
+{
+  "document": {
+    "docNo": "ext_general_001",
+    "name": "企业登记服务指南",
+    "source": {
+      "url": "https://example.gov/service/001"
+    },
+    "sections": [
+      {
+        "heading": "申请条件",
+        "paragraphs": ["服务对象为符合条件的企业。"]
+      },
+      {
+        "heading": "办理流程",
+        "paragraphs": ["申请人提交材料清单后按流程办理。联系方式：12345。"]
+      }
+    ]
+  }
+}

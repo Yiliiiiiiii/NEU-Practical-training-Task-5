@@ -1,5 +1,7 @@
 # SchemaPack Phase 2 Documents And Tasks Implementation Plan
 
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Implement the first usable document and conversion-task management slice.

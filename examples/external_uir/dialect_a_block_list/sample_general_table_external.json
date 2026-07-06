@@ -1,0 +1,18 @@
+{
+  "id": "ext_general_table_001",
+  "title": "公共服务事项办理指南",
+  "url": "https://example.gov/service/table001",
+  "blocks": [
+    {"id": "gt1", "type": "title", "text": "公共服务事项办理指南"},
+    {"id": "gt2", "type": "paragraph", "text": "本服务指南说明服务对象、申请条件、申请材料、办理流程和联系方式。"},
+    {
+      "id": "gt3",
+      "type": "table",
+      "rows": [
+        {"field": "办理时限", "value": "5个工作日"},
+        {"field": "咨询电话", "value": "010-87654321"}
+      ]
+    },
+    {"id": "gt4", "type": "paragraph", "text": "申请人可通过政务服务网提交。"}
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "dataset_id": "real_world_uir_2026_07_03",
+      "dataset_type": "real_world_uir",
+      "doc_count": 45,
+      "doc_types": {
+        "general_doc": 10,
+        "meeting_doc": 10,
+        "policy_doc": 15,
+        "procurement_doc": 10
+      },
+      "gold_files": [
+        "examples/real_world/gold/mapping_gold.jsonl",
+        "examples/real_world/gold/real_world_badcases.jsonl",
+        "examples/real_world/gold/retrieval_queries.jsonl"
+      ]
+    },
+    {
+      "dataset_id": "external_uir_adapter_v1",
+      "dataset_type": "external_uir",
+      "doc_count": 18,
+      "doc_types": {
+        "general_doc": 5,
+        "meeting_doc": 4,
+        "policy_doc": 5,
+        "procurement_doc": 4
+      },
+      "gold_files": [
+        "examples/external_uir/expected"
+      ]
+    }
+  ]
+}

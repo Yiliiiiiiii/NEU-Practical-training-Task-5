@@ -5,6 +5,8 @@ SENSITIVE_KEYS = {
     "api_key",
     "apikey",
     "authorization",
+    "bearer",
+    "deepseek_api_key",
     "llm_api_key",
     "password",
     "secret",

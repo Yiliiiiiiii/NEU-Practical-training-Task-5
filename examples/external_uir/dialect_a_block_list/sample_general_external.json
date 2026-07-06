@@ -1,0 +1,11 @@
+{
+  "id": "ext_general_a_001",
+  "title": "企业开办服务指南",
+  "url": "https://example.gov/service/a001",
+  "items": [
+    {"id": "g1", "type": "title", "text": "企业开办服务指南"},
+    {"id": "g2", "type": "heading", "text": "申请条件"},
+    {"id": "g3", "type": "paragraph", "text": "服务对象为本市登记企业。"},
+    {"id": "g4", "type": "paragraph", "text": "办理流程：在线提交申请材料，咨询电话：010-12345678。"}
+  ]
+}

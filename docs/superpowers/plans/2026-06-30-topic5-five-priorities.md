@@ -1,5 +1,7 @@
 # SchemaPack Agent 五优先级深化 Implementation Plan
 
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 连续落实课题 5 五优先级指导文档，提升非采购映射与严格验证，扩展真实 UIR 数据集，增加内容质量和知识成长评测，并证明成果包可被下游消费。

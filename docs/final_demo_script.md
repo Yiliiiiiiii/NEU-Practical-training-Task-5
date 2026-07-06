@@ -13,7 +13,7 @@ backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 - backend pytest：通过；
 - Ruff：clean；
 - frontend production build：successful；
-- OpenAPI export：32 paths 写入 `docs\openapi.json`。
+- OpenAPI export：63 paths 写入 `docs\openapi.json`。
 
 ## 2. 启动 Backend 与 Frontend
 
@@ -232,3 +232,43 @@ Get-Content reports\non_procurement_acceptance_report.md -Encoding UTF8
 2. 对 ZIP 或 package directory 运行 `export_structured_csv.py`。
 3. 运行 `export_rag_corpus.py --granularity child`。
 4. 展示 `downstream_contract_eval_report` 中 45/45 packages 和 0 failures 的结果。
+## External UIR Adapter Segment
+
+Show the External UIR Adapter API/UI MVP:
+
+1. Paste the topic11 External UIR JSON fixture.
+2. Click `Convert & Preview`.
+3. Review the standard UIR preview, adapter trace, and route recommendation.
+4. Confirm the recommended `procurement_doc / procurement_doc_base_v1` route.
+5. Click `Import Standard UIR`.
+6. Click `Create Task`.
+7. Execute with the existing task pipeline and package flow.
+
+## 10. 展示成熟化平台能力
+
+1. 在 `Schema Draft Lab` 中从样本发现字段、生成并校验 draft，说明不会自动激活。
+2. 在 `Review Workbench` 中展示分组、影响预览、批量安全和负知识。
+3. 展示 Knowledge Pack conflict、diff、impact 与 rollback。
+4. 在 `Evaluation Center` 中展示 dataset、run、metric、scorecard 和 8/8 gates。
+5. 展示质量打磨结果：strict pass `13/35 -> 17/35`、review-required
+   `69 -> 59`、required missing `6 -> 4`；Adapter fixtures `4 -> 18`，
+   trace coverage 与 router top-1 accuracy 均为 `1.0`。
+6. 强调 package verification 只证明结构完整、hash/manifest/JSON/JSONL
+   可解析和 traceability，不代表每个字段都通过 strict semantic validation。
+7. 用统一 CLI 或 Python SDK 完成一次集成调用，并用版本化 consumer contract
+   校验成果包。
+8. 展示可选 raw-upstream 样例，说明其是离线入口，不是 OCR 或生产上传 API。
+
+## 11. 展示 SchemaPack-Lineage
+
+1. 执行一个已导入的 Standard/External UIR task，确认产生
+   `lineage_graph.json` 与 `lineage_summary.json` task reports。
+2. 在“可信链路”中选择 `title` 或当前文档代表字段，展示 upstream path。
+3. 选择一个 chunk，展示 source blocks；选择 `content.json` 或
+   `chunks.jsonl`，展示 manifest hash、role 与 consumer contract。
+4. 展示 review-required、badcase-blocked、knowledge 和
+   `source_not_present` 状态文字。
+5. 打开 Evaluation Center，确认 lineage parse/edge/secret/coverage gates
+   通过。
+6. 说明 lineage 不改变 mapping，不让 LLM 自动接受，也不等于 strict semantic
+   correctness。

@@ -71,11 +71,14 @@ def export_rag_corpus(
         encoding="utf-8",
     )
     return {
+        "exporter": "export_rag_corpus",
+        "contract_id": "rag_corpus_contract",
         "package": str(package_path),
         "output": str(output_path),
         "row_count": len(rows),
         "granularity": granularity,
         "missing_source_link_count": missing,
+        "contract_pass": bool(rows),
     }
 
 

@@ -1,5 +1,10 @@
 # SchemaPack Agent Service Migration Plan
 
+> **Historical migration record:** Detailed module gaps and “later” steps below
+> describe earlier checkpoints. The current implementation has progressed
+> through the maturity roadmap; use [`project_status.md`](project_status.md) for
+> current capabilities and boundaries.
+
 ## 1. Purpose
 
 This document is now a historical migration plan plus completion record for the

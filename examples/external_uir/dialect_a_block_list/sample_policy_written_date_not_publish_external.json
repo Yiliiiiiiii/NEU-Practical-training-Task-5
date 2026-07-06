@@ -1,0 +1,9 @@
+{
+  "id": "ext_policy_bad_written_date",
+  "title": "关于规范平台服务的管理办法",
+  "blocks": [
+    {"id": "pw1", "type": "title", "text": "关于规范平台服务的管理办法"},
+    {"id": "pw2", "type": "paragraph", "field": "成文日期", "text": "2026-06-20"},
+    {"id": "pw3", "type": "paragraph", "text": "本政策通知为实施方案，由发布机关组织落实，有效期内施行。本办法自2026年8月1日起施行。"}
+  ]
+}

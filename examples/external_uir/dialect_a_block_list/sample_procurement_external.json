@@ -1,0 +1,25 @@
+{
+  "id": "ext_proc_001",
+  "title": "某采购项目中标公告",
+  "url": "https://example.gov/procurement/001",
+  "chunks": [
+    {
+      "id": "c1",
+      "type": "title",
+      "text": "某采购项目中标公告"
+    },
+    {
+      "id": "c2",
+      "type": "paragraph",
+      "text": "项目编号：ABC-001"
+    },
+    {
+      "id": "c3",
+      "type": "table",
+      "rows": [
+        ["中标供应商", "某某公司"],
+        ["中标金额", "100万元"]
+      ]
+    }
+  ]
+}

@@ -391,3 +391,66 @@ Package verification 主要证明结果包结构完整、文件可解析、hash 
 ```
 
 如果遇到不确定的 Mapping，就进入 Review；如果结果包生成成功，就可以下载 ZIP 交给下游使用。
+## External UIR Adapter Panel
+
+Use this panel when the input is upstream External UIR JSON rather than a
+SchemaPack standard UIRDocument. It is not a PDF, Word, Excel, image, or OCR
+upload path.
+
+Recommended manual flow:
+
+1. Paste or upload the External UIR JSON.
+2. Keep `Route Schema` enabled and leave `DeepSeek` off unless the backend has
+   been configured locally.
+3. Click `Convert & Preview`.
+4. Review the standard UIR preview, adapter summary, warnings, route
+   recommendation, and adapter report JSON.
+5. Click `Import Standard UIR`.
+6. Confirm the recommended schema/template in the main controls.
+7. Click `Create Task` in the External UIR panel or use the existing task flow.
+8. Execute the task through the existing `Execute` button.
+
+## Schema Draft Lab
+
+Use `Schema Draft Lab` when existing catalogs do not fit a reviewed set of
+standard or External UIR samples:
+
+1. Select representative samples and run field discovery.
+2. Generate a schema/template draft.
+3. Review required fields, aliases, types, risk flags, and validation output.
+4. Export only after validation.
+5. Submit the exported draft to the normal catalog review process.
+
+Draft generation never activates a schema or template.
+
+## Review Workbench
+
+Use `Review Workbench` for grouped review, impact preview, and controlled batch
+decisions:
+
+1. Filter or group pending reviews.
+2. Open impact preview before accepting a mapping.
+3. Use batch actions only when all selected items satisfy the safety checks.
+4. Record rejected mappings as negative knowledge where appropriate.
+5. Inspect Knowledge Pack conflict, diff, impact, and rollback information
+   before activation.
+
+## Evaluation Center
+
+`Evaluation Center` shows registered datasets, runs, metrics, scorecards, and
+report artifacts. A green package result does not imply every target field is
+semantically strict-valid; compare package verification, mapping recall,
+review-required, required-missing, badcase, and LLM auto-accept metrics
+separately.
+
+The page has four sections:
+
+1. `Dataset Registry` lists dataset size and evidence paths.
+2. `Evaluation Runs` shows status, package rate, safety counts, and report links.
+3. `Metric Scorecard` labels each card as passed, needs attention, or failed.
+4. `Regression Gates` shows the current value, operator, threshold, and
+   reproduction command.
+
+The fixed warning explains that package verification proves structure,
+parseability, hashes, and traceability—not strict field semantics. LLM
+suggestions and Schema Drafts never activate production rules automatically.

@@ -124,10 +124,13 @@ def export_structured_csv(
         writer.writeheader()
         writer.writerows(rows)
     return {
+        "exporter": "export_structured_csv",
+        "contract_id": "structured_csv_contract",
         "package": str(package_path),
         "output": str(output_path),
         "row_count": len(rows),
         "mode": mode,
+        "contract_pass": bool(rows),
     }
 
 

@@ -44,12 +44,15 @@ def export_training_corpus(
         encoding="utf-8",
     )
     return {
+        "exporter": "export_training_corpus",
+        "contract_id": "training_corpus_contract",
         "package": str(package_path),
         "output": str(output_path),
         "row_count": len(rows),
         "granularity": granularity,
         "schema_id": manifest.get("generator", {}).get("schema_id"),
         "template_id": manifest.get("generator", {}).get("template_id"),
+        "contract_pass": bool(rows),
     }
 
 

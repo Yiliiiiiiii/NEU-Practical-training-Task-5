@@ -82,6 +82,8 @@ def test_minimal_production_report_generates_json_and_markdown_outputs(
     markdown = report_markdown_path.read_text(encoding="utf-8")
     assert "课题 5" in markdown
     assert "UIR -> Schema -> Mapping" in markdown
+    assert "Content Organization" in markdown
+    assert "Package Verification" in markdown
     assert all(f"## {heading}" in markdown for heading in EXPECTED_HEADINGS)
     assert docs_markdown_path.read_text(encoding="utf-8") == markdown
 
@@ -136,10 +138,10 @@ def test_current_handoff_verification_markers_are_recognized(tmp_path: Path) -> 
         "\n".join(
             [
                 "# SchemaPack Agent Final Handoff Status",
-                "- Backend pytest: 203 passed.",
+                "- Backend pytest: 491 passed.",
                 "- Ruff: clean.",
                 "- Frontend production build: successful.",
-                "- OpenAPI export: 32 paths written to `docs/openapi.json`.",
+                "- OpenAPI export: 58 paths written to `docs/openapi.json`.",
             ]
         ),
         encoding="utf-8",

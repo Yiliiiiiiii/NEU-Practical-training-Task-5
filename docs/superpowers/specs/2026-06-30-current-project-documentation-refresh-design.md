@@ -1,5 +1,7 @@
 # Current Project Documentation Refresh Design
 
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+
 ## Goal
 
 Refresh the canonical project documentation so that acceptance reviewers and

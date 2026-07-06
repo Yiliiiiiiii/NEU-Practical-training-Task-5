@@ -1,5 +1,7 @@
 # SchemaPack Phase 0-1 Design
 
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+
 **Source blueprint:** `SchemaPack_Agent_项目实施文档_修订版.md`
 
 **Approved scope for this slice:** establish the project skeleton and the first executable backend contract. This slice covers Phase 0 and Phase 1 only: FastAPI health wiring, configuration, SQLite session setup, Pydantic data contracts, and demo examples that validate against those contracts.

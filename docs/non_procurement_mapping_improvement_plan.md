@@ -8,7 +8,7 @@ Average recall `0.3494`；review-required `145`；required missing `18`；strict
 
 Average recall `0.4211`；review-required `139`；required missing `15`；strict pass `4/20`；badcase violations `0`。
 
-API-backed evaluator 当前记录 average recall `0.4211309523809524`、review-required `149`、required missing `12`、package verification `20/20`、badcase violations `0`。Phase 1 仍未达标，因为 recall 与 review-required targets 未达到。
+最新 API-backed evaluator 记录 average recall `0.5677551020408163`、review-required `69`、required missing `6`、strict pass `13/35`、package verification `35/35`、badcase violations `0`。既定 recall 与 review-required 阈值已达到；剩余重点是 meeting/policy strict validity 与 required-field 缺口。
 
 ## 深化后验收结果
 

@@ -1,0 +1,17 @@
+{
+  "document": {
+    "docNo": "ext_policy_multi_issuer_001",
+    "name": "关于联合开展产业升级行动的通知",
+    "source": {"url": "https://example.gov/policy/multi001"},
+    "sections": [
+      {
+        "heading": "发布信息",
+        "paragraphs": ["本政策通知为联合实施方案。发布机关：工业和信息化部、国家发展改革委。发布日期：2026年7月4日。有效期三年。"]
+      },
+      {
+        "heading": "重点任务",
+        "paragraphs": ["两部门联合推进产业升级和技术改造。"]
+      }
+    ]
+  }
+}

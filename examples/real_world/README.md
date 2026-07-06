@@ -5,6 +5,10 @@ The raw cache is local-only; regenerate it from `sources/source_manifest.json` w
 collection and build scripts. The SchemaPack core still starts from UIR—these tools only
 construct evaluation inputs.
 
+The current manifest contains 45 documents across `general_doc`,
+`meeting_doc`, `policy_doc`, and `procurement_doc`. The committed evaluation
+evidence records 45/45 import, task execution, and package verification.
+
 Run the pipeline from the repository root:
 
 ```powershell

@@ -4,10 +4,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.config import Settings
-from app.db.models import ConversionTask, Document
+from app.db.models import ConversionTask, Document, KnowledgeCandidateRecord
 from app.schemas.reports import MappingReport
 from app.schemas.uir import UIRDocument
 from app.services.candidate_service import CandidateService
@@ -15,6 +16,7 @@ from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
 from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.effective_template_service import EffectiveTemplateService
+from app.services.lineage_graph_service import LineageGraphService
 from app.services.llm_fallback_service import LLMFallbackService
 from app.services.mapping_service import MappingService
 from app.services.package_service import PackageService
@@ -50,6 +52,10 @@ class TaskExecutionService:
         "content_organization": "content_organization_report",
         "content-organization": "content_organization_report",
         "manifest": "manifest",
+        "lineage": "lineage_graph",
+        "lineage_graph": "lineage_graph",
+        "lineage-summary": "lineage_summary",
+        "lineage_summary": "lineage_summary",
     }
 
     def __init__(
@@ -185,7 +191,7 @@ class TaskExecutionService:
             candidates=candidates,
             options=options,
         )
-        review_knowledge_service.create_pending_reviews(
+        review_records = review_knowledge_service.create_pending_reviews(
             task=task,
             doc_id=document.doc_id,
             mapping_report=mapping_report,
@@ -274,6 +280,84 @@ class TaskExecutionService:
             content_organization_report=content_organization_report,
         )
 
+        lineage_graph: dict[str, Any] | None = None
+        lineage_summary: dict[str, Any] | None = None
+        lineage_warnings: list[str] = []
+        if bool(options.get("enable_lineage", True)):
+            external_options = options.get("external_uir")
+            adapter_report = (
+                external_options.get("adapter_report")
+                if isinstance(external_options, dict)
+                else None
+            )
+            knowledge_records: list[dict[str, Any]] = [
+                {
+                    "record_type": "pack",
+                    "pack_id": pack.pack_id,
+                    "schema_id": pack.schema_id,
+                    "template_id": pack.template_id,
+                    "status": pack.status,
+                    "candidate_ids": pack.candidate_ids,
+                }
+                for pack in active_packs
+            ]
+            review_ids = [record.review_id for record in review_records]
+            if review_ids:
+                knowledge_records.extend(
+                    {
+                        "record_type": "candidate",
+                        "candidate_id": record.candidate_id,
+                        "review_id": record.review_id,
+                        "target_field_id": record.target_field_id,
+                        "alias": record.alias,
+                        "candidate_type": record.candidate_type,
+                        "badcase_hit": record.badcase_hit,
+                        "status": record.status,
+                    }
+                    for record in self.db.scalars(
+                        select(KnowledgeCandidateRecord).where(
+                            KnowledgeCandidateRecord.review_id.in_(review_ids)
+                        )
+                    )
+                )
+            try:
+                graph = LineageGraphService().build(
+                    task_id=task.task_id,
+                    doc_id=document.doc_id,
+                    uir=uir,
+                    candidates=candidates,
+                    mapping_report=mapping_report,
+                    schema=schema,
+                    template=template,
+                    canonical=canonical,
+                    chunks=rendered.chunks,
+                    manifest=package_result.manifest,
+                    adapter_report=adapter_report,
+                    review_decisions=[
+                        {
+                            "review_id": record.review_id,
+                            "mapping_id": record.mapping_id,
+                            "candidate_id": record.candidate_id,
+                            "target_field_id": record.target_field_id,
+                            "status": record.status,
+                            "decision": record.decision,
+                            "reason": record.reason,
+                            "review_comment": record.review_comment,
+                            "reviewer": record.reviewer,
+                            "confidence": record.confidence,
+                        }
+                        for record in review_records
+                    ],
+                    knowledge_records=knowledge_records,
+                    applied_knowledge_pack_ids=effective_result.applied_pack_ids,
+                )
+                lineage_graph = graph.model_dump(mode="json")
+                lineage_summary = graph.summary
+            except Exception as exc:
+                if bool(options.get("strict_lineage", False)):
+                    raise
+                lineage_warnings.append(str(exc))
+
         report_paths = self._write_execution_artifacts(
             task_id=task.task_id,
             mapping_report=mapping_report,
@@ -286,6 +370,8 @@ class TaskExecutionService:
             package_metadata=package_result.metadata.model_dump(mode="json"),
             verifier_report=package_result.verifier_report.model_dump(mode="json"),
             manifest=package_result.manifest.model_dump(mode="json"),
+            lineage_graph=lineage_graph,
+            lineage_summary=lineage_summary,
         )
         finished_at = self._now()
         review_required_count = len(mapping_report.review_required_items)
@@ -308,6 +394,7 @@ class TaskExecutionService:
                 "unmapped_required_count": unmapped_required_count,
                 "validation_passed": validation_report.passed,
                 "package_verifier_passed": package_result.verifier_report.passed,
+                "lineage_warnings": lineage_warnings,
             }
         )
         self.storage.save_json(snapshot_path, execution_snapshot)
@@ -343,9 +430,11 @@ class TaskExecutionService:
         package_metadata: dict[str, Any],
         verifier_report: dict[str, Any],
         manifest: dict[str, Any],
+        lineage_graph: dict[str, Any] | None = None,
+        lineage_summary: dict[str, Any] | None = None,
     ) -> dict[str, str]:
         base = f"tasks/{task_id}"
-        return {
+        report_paths = {
             "mapping_report": str(
                 self.storage.save_json(
                     f"{base}/mapping_report.json",
@@ -380,6 +469,21 @@ class TaskExecutionService:
             ),
             "manifest": str(self.storage.save_json(f"{base}/manifest.json", manifest)),
         }
+        if lineage_graph is not None:
+            report_paths["lineage_graph"] = str(
+                self.storage.save_json(
+                    f"{base}/lineage_graph.json",
+                    lineage_graph,
+                )
+            )
+        if lineage_summary is not None:
+            report_paths["lineage_summary"] = str(
+                self.storage.save_json(
+                    f"{base}/lineage_summary.json",
+                    lineage_summary,
+                )
+            )
+        return report_paths
 
     @staticmethod
     def _final_status(

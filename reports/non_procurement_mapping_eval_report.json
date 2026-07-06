@@ -16,38 +16,38 @@
       "badcase_violation_count": 0,
       "document_count": 10,
       "high_risk_auto_accepted_count": 0,
-      "mapping_recall_average": 0.4341666666666667,
+      "mapping_recall_average": 0.5599999999999999,
       "package_valid_count": 10,
       "package_valid_rate": 1.0,
       "required_missing_count": 0,
-      "review_required_count": 17,
-      "strict_pass_count": 0,
-      "strict_pass_rate": 0.0
+      "review_required_count": 6,
+      "strict_pass_count": 3,
+      "strict_pass_rate": 0.3
     },
     "policy_doc": {
       "badcase_violation_count": 0,
       "document_count": 15,
       "high_risk_auto_accepted_count": 0,
-      "mapping_recall_average": 0.6158730158730158,
+      "mapping_recall_average": 0.6297619047619047,
       "package_valid_count": 15,
       "package_valid_rate": 1.0,
-      "required_missing_count": 6,
-      "review_required_count": 21,
-      "strict_pass_count": 8,
-      "strict_pass_rate": 0.5333333333333333
+      "required_missing_count": 4,
+      "review_required_count": 22,
+      "strict_pass_count": 9,
+      "strict_pass_rate": 0.6
     }
   },
   "by_field": {
-    "action_items": {
-      "mapped_or_review_count": 10,
-      "missing_required_count": 0
-    },
     "application_conditions": {
       "mapped_or_review_count": 7,
       "missing_required_count": 0
     },
     "attendees": {
       "mapped_or_review_count": 2,
+      "missing_required_count": 0
+    },
+    "chairperson": {
+      "mapped_or_review_count": 9,
       "missing_required_count": 0
     },
     "contact": {
@@ -67,7 +67,7 @@
       "missing_required_count": 0
     },
     "deadlines": {
-      "mapped_or_review_count": 2,
+      "mapped_or_review_count": 3,
       "missing_required_count": 0
     },
     "doc_type": {
@@ -87,15 +87,15 @@
       "missing_required_count": 0
     },
     "issuer": {
-      "mapped_or_review_count": 20,
-      "missing_required_count": 3
+      "mapped_or_review_count": 21,
+      "missing_required_count": 2
     },
     "meeting_date": {
       "mapped_or_review_count": 10,
       "missing_required_count": 0
     },
     "meeting_number": {
-      "mapped_or_review_count": 2,
+      "mapped_or_review_count": 7,
       "missing_required_count": 0
     },
     "meeting_title": {
@@ -111,8 +111,8 @@
       "missing_required_count": 0
     },
     "publish_date": {
-      "mapped_or_review_count": 12,
-      "missing_required_count": 3
+      "mapped_or_review_count": 13,
+      "missing_required_count": 2
     },
     "service_object": {
       "mapped_or_review_count": 7,
@@ -128,10 +128,10 @@
     }
   },
   "delta": {
-    "average_recall": 0.218,
-    "required_missing_count": -12,
-    "review_required_count": -76,
-    "strict_pass_count": 9
+    "average_recall": 0.26,
+    "required_missing_count": -14,
+    "review_required_count": -86,
+    "strict_pass_count": 13
   },
   "documents": [
     {
@@ -176,7 +176,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1cc449ef1fc7_retrieved_at_1",
+          "candidate_id": "cand_task_b63088dabebd_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -192,7 +192,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1cc449ef1fc7_effective_date_fuzzy",
+          "mapping_id": "map_task_b63088dabebd_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -211,7 +211,7 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_1cc449ef1fc7",
+          "task_id": "task_b63088dabebd",
           "value_sample": "2026-06-30T13:19:59.218944+00:00"
         },
         {
@@ -220,7 +220,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1cc449ef1fc7_发文字号_1",
+          "candidate_id": "cand_task_b63088dabebd_发文字号_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -236,7 +236,7 @@
             "fuzzy score 0.89 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1cc449ef1fc7_document_number_fuzzy",
+          "mapping_id": "map_task_b63088dabebd_document_number_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -257,7 +257,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_number",
           "target_field_name": "document_number",
-          "task_id": "task_1cc449ef1fc7",
+          "task_id": "task_b63088dabebd",
           "value_sample": "教监管〔2025〕1号 | 信息类别： | 基础教育"
         },
         {
@@ -266,7 +266,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1cc449ef1fc7_source_site_1",
+          "candidate_id": "cand_task_b63088dabebd_source_site_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -282,7 +282,7 @@
             "fuzzy score 0.75 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1cc449ef1fc7_source_fuzzy",
+          "mapping_id": "map_task_b63088dabebd_source_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -301,13 +301,13 @@
           "strategy": "fuzzy",
           "target_field_id": "source",
           "target_field_name": "source",
-          "task_id": "task_1cc449ef1fc7",
+          "task_id": "task_b63088dabebd",
           "value_sample": "www.moe.gov.cn"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_1cc449ef1fc7",
+      "task_id": "task_b63088dabebd",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -351,7 +351,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1439652b52f1_retrieved_at_1",
+          "candidate_id": "cand_task_8e1b3b1b6b45_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -367,7 +367,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1439652b52f1_effective_date_fuzzy",
+          "mapping_id": "map_task_8e1b3b1b6b45_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -386,7 +386,7 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_1439652b52f1",
+          "task_id": "task_8e1b3b1b6b45",
           "value_sample": "2026-06-30T13:19:59.814129+00:00"
         },
         {
@@ -395,7 +395,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1439652b52f1_paragraph_regex_document_number_1",
+          "candidate_id": "cand_task_8e1b3b1b6b45_paragraph_regex_document_number_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -411,7 +411,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1439652b52f1_document_number_fuzzy",
+          "mapping_id": "map_task_8e1b3b1b6b45_document_number_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -432,13 +432,13 @@
           "strategy": "fuzzy",
           "target_field_id": "document_number",
           "target_field_name": "document_number",
-          "task_id": "task_1439652b52f1",
+          "task_id": "task_8e1b3b1b6b45",
           "value_sample": "发改环资〔2025〕13号"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_1439652b52f1",
+      "task_id": "task_8e1b3b1b6b45",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -485,7 +485,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_12fcf05ad7ed_retrieved_at_1",
+          "candidate_id": "cand_task_d982e97dbce3_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -501,7 +501,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_12fcf05ad7ed_effective_date_fuzzy",
+          "mapping_id": "map_task_d982e97dbce3_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -520,7 +520,7 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_12fcf05ad7ed",
+          "task_id": "task_d982e97dbce3",
           "value_sample": "2026-06-30T13:20:00.028223+00:00"
         },
         {
@@ -529,7 +529,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_12fcf05ad7ed_发文字号_1",
+          "candidate_id": "cand_task_d982e97dbce3_发文字号_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -545,7 +545,7 @@
             "fuzzy score 0.89 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_12fcf05ad7ed_document_number_fuzzy",
+          "mapping_id": "map_task_d982e97dbce3_document_number_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -566,7 +566,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_number",
           "target_field_name": "document_number",
-          "task_id": "task_12fcf05ad7ed",
+          "task_id": "task_d982e97dbce3",
           "value_sample": "教监管厅〔2025〕1号 | 信息类别： | 基础教育"
         },
         {
@@ -575,7 +575,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_12fcf05ad7ed_source_site_1",
+          "candidate_id": "cand_task_d982e97dbce3_source_site_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -591,7 +591,7 @@
             "fuzzy score 0.75 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_12fcf05ad7ed_source_fuzzy",
+          "mapping_id": "map_task_d982e97dbce3_source_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -610,13 +610,13 @@
           "strategy": "fuzzy",
           "target_field_id": "source",
           "target_field_name": "source",
-          "task_id": "task_12fcf05ad7ed",
+          "task_id": "task_d982e97dbce3",
           "value_sample": "www.moe.gov.cn"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_12fcf05ad7ed",
+      "task_id": "task_d982e97dbce3",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -662,7 +662,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_e2f6873cc6e8_retrieved_at_1",
+          "candidate_id": "cand_task_b22ee52045fc_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -678,7 +678,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_e2f6873cc6e8_effective_date_fuzzy",
+          "mapping_id": "map_task_b22ee52045fc_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -697,7 +697,7 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_e2f6873cc6e8",
+          "task_id": "task_b22ee52045fc",
           "value_sample": "2026-06-30T13:20:00.293373+00:00"
         },
         {
@@ -706,7 +706,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_e2f6873cc6e8_source_site_1",
+          "candidate_id": "cand_task_b22ee52045fc_source_site_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -722,7 +722,7 @@
             "fuzzy score 0.75 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_e2f6873cc6e8_source_fuzzy",
+          "mapping_id": "map_task_b22ee52045fc_source_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -741,13 +741,13 @@
           "strategy": "fuzzy",
           "target_field_id": "source",
           "target_field_name": "source",
-          "task_id": "task_e2f6873cc6e8",
+          "task_id": "task_b22ee52045fc",
           "value_sample": "www.moe.gov.cn"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_e2f6873cc6e8",
+      "task_id": "task_b22ee52045fc",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -795,7 +795,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_c905625b0cc2_retrieved_at_1",
+          "candidate_id": "cand_task_0b6c194fb901_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -811,7 +811,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_c905625b0cc2_effective_date_fuzzy",
+          "mapping_id": "map_task_0b6c194fb901_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -830,13 +830,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_c905625b0cc2",
+          "task_id": "task_0b6c194fb901",
           "value_sample": "2026-06-30T13:20:00.947072+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_c905625b0cc2",
+      "task_id": "task_0b6c194fb901",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -854,7 +854,7 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "deadlines",
         "meeting_date",
@@ -881,51 +881,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_918f8d3a9809_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_918f8d3a9809_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_918f8d3a9809",
-          "value_sample": "0.1.0"
-        },
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_918f8d3a9809_heading_1",
+          "candidate_id": "cand_task_32112897bf3a_heading_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -941,7 +897,7 @@
             "fuzzy score 0.62 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_918f8d3a9809_deadlines_fuzzy",
+          "mapping_id": "map_task_32112897bf3a_deadlines_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -962,13 +918,13 @@
           "strategy": "fuzzy",
           "target_field_id": "deadlines",
           "target_field_name": "deadlines",
-          "task_id": "task_918f8d3a9809",
+          "task_id": "task_32112897bf3a",
           "value_sample": "区政府常务会议纪要"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_918f8d3a9809",
+      "task_id": "task_32112897bf3a",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -986,9 +942,10 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "meeting_date",
+        "meeting_number",
         "meeting_title",
         "source"
       ],
@@ -1005,56 +962,11 @@
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_a9d1dac7e0fa_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_a9d1dac7e0fa_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_a9d1dac7e0fa",
-          "value_sample": "0.1.0"
-        }
-      ],
+      "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_a9d1dac7e0fa",
-      "task_status": "review_required",
+      "task_id": "task_c64e44a64491",
+      "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
     },
@@ -1071,10 +983,11 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
         "attendees",
+        "chairperson",
         "content",
         "meeting_date",
+        "meeting_number",
         "meeting_title",
         "source"
       ],
@@ -1091,102 +1004,11 @@
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_82f0356de008_出_席_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.67 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.67 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_82f0356de008_attendees_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [
-            "real_meeting_003_miluo_executive_minutes_b028"
-          ],
-          "source_field": {
-            "source_name": "出 席",
-            "source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b028.text"
-          },
-          "source_field_name": "出 席",
-          "source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b028.text",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "attendees",
-          "target_field_name": "attendees",
-          "task_id": "task_82f0356de008",
-          "value_sample": "林恒求、杨盛、吴艳平、付文勇、任娜、曹陶、李岳星、向恩泽、胡义"
-        },
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_82f0356de008_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_82f0356de008_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_82f0356de008",
-          "value_sample": "0.1.0"
-        }
-      ],
+      "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_82f0356de008",
-      "task_status": "review_required",
+      "task_id": "task_e66657f2f84f",
+      "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
     },
@@ -1230,7 +1052,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_3ac613b6d5c2_retrieved_at_1",
+          "candidate_id": "cand_task_80d2b0acccff_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1246,7 +1068,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_3ac613b6d5c2_created_date_fuzzy",
+          "mapping_id": "map_task_80d2b0acccff_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1265,7 +1087,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_3ac613b6d5c2",
+          "task_id": "task_80d2b0acccff",
           "value_sample": "2026-06-30T13:20:04.836208+00:00"
         },
         {
@@ -1274,7 +1096,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_3ac613b6d5c2_doc_type_1",
+          "candidate_id": "cand_task_80d2b0acccff_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1290,7 +1112,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_3ac613b6d5c2_document_subtype_fuzzy",
+          "mapping_id": "map_task_80d2b0acccff_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1309,7 +1131,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_3ac613b6d5c2",
+          "task_id": "task_80d2b0acccff",
           "value_sample": "general_doc"
         },
         {
@@ -1318,7 +1140,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_3ac613b6d5c2_heading_1",
+          "candidate_id": "cand_task_80d2b0acccff_heading_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1334,7 +1156,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_3ac613b6d5c2_deadline_fuzzy",
+          "mapping_id": "map_task_80d2b0acccff_deadline_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1355,13 +1177,13 @@
           "strategy": "fuzzy",
           "target_field_id": "deadline",
           "target_field_name": "deadline",
-          "task_id": "task_3ac613b6d5c2",
+          "task_id": "task_80d2b0acccff",
           "value_sample": "天门市公证服务办事指南（2025年版）"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": false,
-      "task_id": "task_3ac613b6d5c2",
+      "task_id": "task_80d2b0acccff",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -1410,7 +1232,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1134c9fc6b56_retrieved_at_1",
+          "candidate_id": "cand_task_db8729cb12c1_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1426,7 +1248,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1134c9fc6b56_created_date_fuzzy",
+          "mapping_id": "map_task_db8729cb12c1_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1445,7 +1267,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_1134c9fc6b56",
+          "task_id": "task_db8729cb12c1",
           "value_sample": "2026-06-30T13:20:05.440923+00:00"
         },
         {
@@ -1454,7 +1276,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1134c9fc6b56_doc_type_1",
+          "candidate_id": "cand_task_db8729cb12c1_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1470,7 +1292,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1134c9fc6b56_document_subtype_fuzzy",
+          "mapping_id": "map_task_db8729cb12c1_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1489,7 +1311,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_1134c9fc6b56",
+          "task_id": "task_db8729cb12c1",
           "value_sample": "general_doc"
         },
         {
@@ -1498,7 +1320,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1134c9fc6b56_申报方式_1",
+          "candidate_id": "cand_task_db8729cb12c1_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1514,7 +1336,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1134c9fc6b56_issuer_fuzzy",
+          "mapping_id": "map_task_db8729cb12c1_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1539,13 +1361,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_1134c9fc6b56",
+          "task_id": "task_db8729cb12c1",
           "value_sample": "1. 项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（svc.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。有关操作可参阅在线帮助。\n2. 项目网上填报起始时间为2025年3月17日9:00，截止时间（含申报单位网上审核提交）为2025年4月3日16:30 。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": false,
-      "task_id": "task_1134c9fc6b56",
+      "task_id": "task_db8729cb12c1",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -1590,7 +1412,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_a65becfc1495_retrieved_at_1",
+          "candidate_id": "cand_task_a53674d0eb98_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1606,7 +1428,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_a65becfc1495_created_date_fuzzy",
+          "mapping_id": "map_task_a53674d0eb98_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1625,7 +1447,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_a65becfc1495",
+          "task_id": "task_a53674d0eb98",
           "value_sample": "2026-06-30T13:20:06.067425+00:00"
         },
         {
@@ -1634,7 +1456,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_a65becfc1495_doc_type_1",
+          "candidate_id": "cand_task_a53674d0eb98_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1650,7 +1472,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_a65becfc1495_document_subtype_fuzzy",
+          "mapping_id": "map_task_a53674d0eb98_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1669,7 +1491,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_a65becfc1495",
+          "task_id": "task_a53674d0eb98",
           "value_sample": "general_doc"
         },
         {
@@ -1678,7 +1500,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_a65becfc1495_heading_1",
+          "candidate_id": "cand_task_a53674d0eb98_heading_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1694,7 +1516,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_a65becfc1495_deadline_fuzzy",
+          "mapping_id": "map_task_a53674d0eb98_deadline_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1715,13 +1537,13 @@
           "strategy": "fuzzy",
           "target_field_id": "deadline",
           "target_field_name": "deadline",
-          "task_id": "task_a65becfc1495",
+          "task_id": "task_a53674d0eb98",
           "value_sample": "2025 年度十大类纺织创新精品"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": false,
-      "task_id": "task_a65becfc1495",
+      "task_id": "task_a53674d0eb98",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -1761,7 +1583,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_15cb18968def",
+      "task_id": "task_60e2524a077d",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -1773,36 +1595,31 @@
       },
       "doc_id": "real_policy_007_one_thing_list",
       "doc_type": "policy_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "missing_required_fields",
-        "mapping_recall_below_threshold"
-      ],
+      "failure_reasons": [],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
         "content",
         "doc_type",
         "document_number",
         "effective_date",
+        "issuer",
         "publish_date",
         "source",
         "title"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 5,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_policy_007_one_thing_list",
         "gold_mapping_count": 5,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.5,
-        "missing_gold_mappings": 2,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
         "review_required_correct": 0
       },
       "package_passed": true,
-      "required_missing": [
-        "issuer"
-      ],
+      "required_missing": [],
       "review_evidence": [
         {
           "badcase_filter": {
@@ -1810,7 +1627,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_70cdd31482a5_retrieved_at_1",
+          "candidate_id": "cand_task_ce3bc8cbc440_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1826,7 +1643,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_70cdd31482a5_effective_date_fuzzy",
+          "mapping_id": "map_task_ce3bc8cbc440_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1845,7 +1662,7 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_70cdd31482a5",
+          "task_id": "task_ce3bc8cbc440",
           "value_sample": "2026-06-30T13:20:06.975986+00:00"
         },
         {
@@ -1854,7 +1671,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_70cdd31482a5_paragraph_regex_document_number_1",
+          "candidate_id": "cand_task_ce3bc8cbc440_paragraph_regex_document_number_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1870,7 +1687,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_70cdd31482a5_document_number_fuzzy",
+          "mapping_id": "map_task_ce3bc8cbc440_document_number_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1891,13 +1708,13 @@
           "strategy": "fuzzy",
           "target_field_id": "document_number",
           "target_field_name": "document_number",
-          "task_id": "task_70cdd31482a5",
+          "task_id": "task_ce3bc8cbc440",
           "value_sample": "国办函〔2025〕3号"
         }
       ],
       "schema_id": "policy_doc",
-      "strict_passed": false,
-      "task_id": "task_70cdd31482a5",
+      "strict_passed": true,
+      "task_id": "task_ce3bc8cbc440",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -1941,7 +1758,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_b69704812dc2_retrieved_at_1",
+          "candidate_id": "cand_task_09ae4e2fd9ac_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -1957,7 +1774,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_b69704812dc2_effective_date_fuzzy",
+          "mapping_id": "map_task_09ae4e2fd9ac_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -1976,13 +1793,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_b69704812dc2",
+          "task_id": "task_09ae4e2fd9ac",
           "value_sample": "2026-06-30T13:20:07.186934+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_b69704812dc2",
+      "task_id": "task_09ae4e2fd9ac",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -2026,7 +1843,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_5ba4f005320b_retrieved_at_1",
+          "candidate_id": "cand_task_39a821a14b9d_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2042,7 +1859,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_5ba4f005320b_effective_date_fuzzy",
+          "mapping_id": "map_task_39a821a14b9d_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2061,13 +1878,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_5ba4f005320b",
+          "task_id": "task_39a821a14b9d",
           "value_sample": "2026-06-30T13:20:07.328545+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_5ba4f005320b",
+      "task_id": "task_39a821a14b9d",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -2085,9 +1902,10 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
         "attendees",
+        "chairperson",
         "content",
+        "deadlines",
         "meeting_date",
         "meeting_number",
         "meeting_title",
@@ -2114,7 +1932,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_26f0e0ecda3d_发布机构_1",
+          "candidate_id": "cand_task_7312ad9e8d42_发布机构_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2130,7 +1948,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_26f0e0ecda3d_organizer_fuzzy",
+          "mapping_id": "map_task_7312ad9e8d42_organizer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2149,7 +1967,7 @@
           "strategy": "fuzzy",
           "target_field_id": "organizer",
           "target_field_name": "organizer",
-          "task_id": "task_26f0e0ecda3d",
+          "task_id": "task_7312ad9e8d42",
           "value_sample": "政府办"
         },
         {
@@ -2158,12 +1976,12 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_26f0e0ecda3d_出_席_1",
+          "candidate_id": "cand_task_7312ad9e8d42_heading_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
             {
-              "message": "fuzzy score 0.67 requires review",
+              "message": "fuzzy score 0.62 requires review",
               "metadata": {},
               "source": null,
               "type": "fuzzy_match",
@@ -2171,10 +1989,10 @@
             }
           ],
           "evidence_text": [
-            "fuzzy score 0.67 requires review"
+            "fuzzy score 0.62 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_26f0e0ecda3d_attendees_fuzzy",
+          "mapping_id": "map_task_7312ad9e8d42_deadlines_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2183,69 +2001,25 @@
             "low_confidence"
           ],
           "source_blocks": [
-            "real_meeting_004_shandan_2025_11_minutes_b026"
+            "real_meeting_004_shandan_2025_11_minutes_b002"
           ],
           "source_field": {
-            "source_name": "出 席",
-            "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b026.text"
+            "source_name": "heading",
+            "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b002.text"
           },
-          "source_field_name": "出 席",
-          "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b026.text",
+          "source_field_name": "heading",
+          "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b002.text",
           "status": "review_required",
           "strategy": "fuzzy",
-          "target_field_id": "attendees",
-          "target_field_name": "attendees",
-          "task_id": "task_26f0e0ecda3d",
-          "value_sample": "黄国杰 郭 强 杨从军 李 辉 石 晶"
-        },
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_26f0e0ecda3d_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_26f0e0ecda3d_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_26f0e0ecda3d",
-          "value_sample": "0.1.0"
+          "target_field_id": "deadlines",
+          "target_field_name": "deadlines",
+          "task_id": "task_7312ad9e8d42",
+          "value_sample": "十九届县政府第97次常务会议纪要"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_26f0e0ecda3d",
+      "task_id": "task_7312ad9e8d42",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -2257,13 +2031,9 @@
       },
       "doc_id": "real_meeting_005_miluo_2026_minutes",
       "doc_type": "meeting_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ],
+      "failure_reasons": [],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
         "content",
         "meeting_date",
         "meeting_title",
@@ -2271,14 +2041,14 @@
         "source"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 4,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_meeting_005_miluo_2026_minutes",
         "gold_mapping_count": 5,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.5,
-        "missing_gold_mappings": 2,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
         "review_required_correct": 0
       },
       "package_passed": true,
@@ -2290,7 +2060,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_716058101ba2_来源_1",
+          "candidate_id": "cand_task_a999436dfb03_来源_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2306,7 +2076,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_716058101ba2_organizer_fuzzy",
+          "mapping_id": "map_task_a999436dfb03_organizer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2327,57 +2097,13 @@
           "strategy": "fuzzy",
           "target_field_id": "organizer",
           "target_field_name": "organizer",
-          "task_id": "task_716058101ba2",
+          "task_id": "task_a999436dfb03",
           "value_sample": "汨罗市人民政府办公室"
-        },
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_716058101ba2_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_716058101ba2_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_716058101ba2",
-          "value_sample": "0.1.0"
         }
       ],
       "schema_id": "meeting_doc",
-      "strict_passed": false,
-      "task_id": "task_716058101ba2",
+      "strict_passed": true,
+      "task_id": "task_a999436dfb03",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -2395,7 +2121,7 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "deadlines",
         "meeting_date",
@@ -2423,51 +2149,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_69597dddc361_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_69597dddc361_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_69597dddc361",
-          "value_sample": "0.1.0"
-        },
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_69597dddc361_heading_1",
+          "candidate_id": "cand_task_485747db67c2_heading_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2483,7 +2165,7 @@
             "fuzzy score 0.62 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_69597dddc361_deadlines_fuzzy",
+          "mapping_id": "map_task_485747db67c2_deadlines_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2504,13 +2186,13 @@
           "strategy": "fuzzy",
           "target_field_id": "deadlines",
           "target_field_name": "deadlines",
-          "task_id": "task_69597dddc361",
+          "task_id": "task_485747db67c2",
           "value_sample": "山丹县人民政府常务会议\u0000纪要\u0001"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_69597dddc361",
+      "task_id": "task_485747db67c2",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -2554,7 +2236,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d87bc05f03e7_retrieved_at_1",
+          "candidate_id": "cand_task_aaefef5b1a3c_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2570,7 +2252,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d87bc05f03e7_created_date_fuzzy",
+          "mapping_id": "map_task_aaefef5b1a3c_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2589,7 +2271,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_d87bc05f03e7",
+          "task_id": "task_aaefef5b1a3c",
           "value_sample": "2026-06-30T13:20:10.792819+00:00"
         },
         {
@@ -2598,7 +2280,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d87bc05f03e7_doc_type_1",
+          "candidate_id": "cand_task_aaefef5b1a3c_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2614,7 +2296,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d87bc05f03e7_document_subtype_fuzzy",
+          "mapping_id": "map_task_aaefef5b1a3c_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2633,7 +2315,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_d87bc05f03e7",
+          "task_id": "task_aaefef5b1a3c",
           "value_sample": "general_doc"
         },
         {
@@ -2642,7 +2324,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d87bc05f03e7_支付方式_1",
+          "candidate_id": "cand_task_aaefef5b1a3c_支付方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2658,7 +2340,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d87bc05f03e7_issuer_fuzzy",
+          "mapping_id": "map_task_aaefef5b1a3c_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2679,7 +2361,7 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_d87bc05f03e7",
+          "task_id": "task_aaefef5b1a3c",
           "value_sample": "后支持"
         },
         {
@@ -2688,7 +2370,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d87bc05f03e7_heading_1",
+          "candidate_id": "cand_task_aaefef5b1a3c_heading_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2704,7 +2386,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d87bc05f03e7_deadline_fuzzy",
+          "mapping_id": "map_task_aaefef5b1a3c_deadline_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2725,13 +2407,13 @@
           "strategy": "fuzzy",
           "target_field_id": "deadline",
           "target_field_name": "deadline",
-          "task_id": "task_d87bc05f03e7",
+          "task_id": "task_aaefef5b1a3c",
           "value_sample": "天河区高端专业服务业政策兑现事项办事指南"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_d87bc05f03e7",
+      "task_id": "task_aaefef5b1a3c",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -2775,7 +2457,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_7bd454a4658a_retrieved_at_1",
+          "candidate_id": "cand_task_0340a65919b4_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2791,7 +2473,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_7bd454a4658a_effective_date_fuzzy",
+          "mapping_id": "map_task_0340a65919b4_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2810,13 +2492,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_7bd454a4658a",
+          "task_id": "task_0340a65919b4",
           "value_sample": "2026-06-30T13:20:10.909514+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_7bd454a4658a",
+      "task_id": "task_0340a65919b4",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -2862,7 +2544,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_837897571cc3_retrieved_at_1",
+          "candidate_id": "cand_task_b1157df9bbd0_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2878,7 +2560,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_837897571cc3_created_date_fuzzy",
+          "mapping_id": "map_task_b1157df9bbd0_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2897,7 +2579,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_837897571cc3",
+          "task_id": "task_b1157df9bbd0",
           "value_sample": "2026-07-03T01:19:15.824530+00:00"
         },
         {
@@ -2906,7 +2588,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_837897571cc3_doc_type_1",
+          "candidate_id": "cand_task_b1157df9bbd0_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2922,7 +2604,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_837897571cc3_document_subtype_fuzzy",
+          "mapping_id": "map_task_b1157df9bbd0_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2941,7 +2623,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_837897571cc3",
+          "task_id": "task_b1157df9bbd0",
           "value_sample": "general_doc"
         },
         {
@@ -2950,7 +2632,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_837897571cc3_申报方式_1",
+          "candidate_id": "cand_task_b1157df9bbd0_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2966,7 +2648,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_837897571cc3_issuer_fuzzy",
+          "mapping_id": "map_task_b1157df9bbd0_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -2992,13 +2674,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_837897571cc3",
+          "task_id": "task_b1157df9bbd0",
           "value_sample": "1. 项目申报采用网上申报方式，无需递交纸质材料。请申请人通过“上海市科技管理信息系统”（svc.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。\n有关操作可参阅在线帮助。\n2. 项目网上填报 起始时间为2026年7月6日9:00，截止时间（含申报单位网上审核提交）为2026年7月23日16:30。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_837897571cc3",
+      "task_id": "task_b1157df9bbd0",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -3044,7 +2726,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_c690398f3780_retrieved_at_1",
+          "candidate_id": "cand_task_c5e4547446c2_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3060,7 +2742,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_c690398f3780_created_date_fuzzy",
+          "mapping_id": "map_task_c5e4547446c2_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3079,7 +2761,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_c690398f3780",
+          "task_id": "task_c5e4547446c2",
           "value_sample": "2026-07-03T01:19:15.947672+00:00"
         },
         {
@@ -3088,7 +2770,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_c690398f3780_doc_type_1",
+          "candidate_id": "cand_task_c5e4547446c2_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3104,7 +2786,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_c690398f3780_document_subtype_fuzzy",
+          "mapping_id": "map_task_c5e4547446c2_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3123,7 +2805,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_c690398f3780",
+          "task_id": "task_c5e4547446c2",
           "value_sample": "general_doc"
         },
         {
@@ -3132,7 +2814,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_c690398f3780_申报方式_1",
+          "candidate_id": "cand_task_c5e4547446c2_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3148,7 +2830,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_c690398f3780_issuer_fuzzy",
+          "mapping_id": "map_task_c5e4547446c2_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3173,13 +2855,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_c690398f3780",
+          "task_id": "task_c5e4547446c2",
           "value_sample": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc20.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。\n2.项目网上填报 起始时间为2026年5月12日9:00，截止时间（含申报单位网上审核提交）为2026年5月29日16:30 。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_c690398f3780",
+      "task_id": "task_c5e4547446c2",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -3227,7 +2909,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_73b7ea7135ed_retrieved_at_1",
+          "candidate_id": "cand_task_f41f8ae7f977_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3243,7 +2925,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_73b7ea7135ed_created_date_fuzzy",
+          "mapping_id": "map_task_f41f8ae7f977_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3262,7 +2944,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_73b7ea7135ed",
+          "task_id": "task_f41f8ae7f977",
           "value_sample": "2026-07-03T01:19:16.042715+00:00"
         },
         {
@@ -3271,7 +2953,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_73b7ea7135ed_doc_type_1",
+          "candidate_id": "cand_task_f41f8ae7f977_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3287,7 +2969,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_73b7ea7135ed_document_subtype_fuzzy",
+          "mapping_id": "map_task_f41f8ae7f977_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3306,7 +2988,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_73b7ea7135ed",
+          "task_id": "task_f41f8ae7f977",
           "value_sample": "general_doc"
         },
         {
@@ -3315,7 +2997,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_73b7ea7135ed_申报方式_1",
+          "candidate_id": "cand_task_f41f8ae7f977_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3331,7 +3013,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_73b7ea7135ed_issuer_fuzzy",
+          "mapping_id": "map_task_f41f8ae7f977_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3357,13 +3039,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_73b7ea7135ed",
+          "task_id": "task_f41f8ae7f977",
           "value_sample": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc.stcsm. sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。\n有关操作可参阅在线帮助。\n2.项目网上填报 起始时间为2026年5月15日9:00，截止时间（含申报单位网上审核提交）为2026年6月3日16:30 。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": false,
-      "task_id": "task_73b7ea7135ed",
+      "task_id": "task_f41f8ae7f977",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -3409,7 +3091,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_9d7fc84d3bac_retrieved_at_1",
+          "candidate_id": "cand_task_18ccc5537537_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3425,7 +3107,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_9d7fc84d3bac_created_date_fuzzy",
+          "mapping_id": "map_task_18ccc5537537_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3444,7 +3126,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_9d7fc84d3bac",
+          "task_id": "task_18ccc5537537",
           "value_sample": "2026-07-03T01:19:16.174762+00:00"
         },
         {
@@ -3453,7 +3135,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_9d7fc84d3bac_doc_type_1",
+          "candidate_id": "cand_task_18ccc5537537_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3469,7 +3151,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_9d7fc84d3bac_document_subtype_fuzzy",
+          "mapping_id": "map_task_18ccc5537537_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3488,7 +3170,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_9d7fc84d3bac",
+          "task_id": "task_18ccc5537537",
           "value_sample": "general_doc"
         },
         {
@@ -3497,7 +3179,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_9d7fc84d3bac_申报方式_1",
+          "candidate_id": "cand_task_18ccc5537537_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3513,7 +3195,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_9d7fc84d3bac_issuer_fuzzy",
+          "mapping_id": "map_task_18ccc5537537_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3538,13 +3220,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_9d7fc84d3bac",
+          "task_id": "task_18ccc5537537",
           "value_sample": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。\n2.项目网上填报 起始时间为2026年3月27日9:00，截止时间（含申报单位网上审核提交）为2026年4月16日16:30 。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_9d7fc84d3bac",
+      "task_id": "task_18ccc5537537",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -3592,7 +3274,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_b7e6de9c3949_retrieved_at_1",
+          "candidate_id": "cand_task_3c1d1c9b673e_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3608,7 +3290,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_b7e6de9c3949_created_date_fuzzy",
+          "mapping_id": "map_task_3c1d1c9b673e_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3627,7 +3309,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_b7e6de9c3949",
+          "task_id": "task_3c1d1c9b673e",
           "value_sample": "2026-07-03T01:19:16.305339+00:00"
         },
         {
@@ -3636,7 +3318,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_b7e6de9c3949_doc_type_1",
+          "candidate_id": "cand_task_3c1d1c9b673e_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3652,7 +3334,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_b7e6de9c3949_document_subtype_fuzzy",
+          "mapping_id": "map_task_3c1d1c9b673e_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3671,7 +3353,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_b7e6de9c3949",
+          "task_id": "task_3c1d1c9b673e",
           "value_sample": "general_doc"
         },
         {
@@ -3680,7 +3362,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_b7e6de9c3949_申报方式_1",
+          "candidate_id": "cand_task_3c1d1c9b673e_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3696,7 +3378,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_b7e6de9c3949_issuer_fuzzy",
+          "mapping_id": "map_task_3c1d1c9b673e_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3721,13 +3403,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_b7e6de9c3949",
+          "task_id": "task_3c1d1c9b673e",
           "value_sample": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc20.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。\n2.项目网上填报起始时间为 2026年5月11日9:00 ，截止时间（含申报单位网上审核提交）为 2026年5月28日16:30 。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": false,
-      "task_id": "task_b7e6de9c3949",
+      "task_id": "task_3c1d1c9b673e",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -3773,7 +3455,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d3727e6a6e0b_retrieved_at_1",
+          "candidate_id": "cand_task_3b1995dc9270_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3789,7 +3471,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d3727e6a6e0b_created_date_fuzzy",
+          "mapping_id": "map_task_3b1995dc9270_created_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3808,7 +3490,7 @@
           "strategy": "fuzzy",
           "target_field_id": "created_date",
           "target_field_name": "created_date",
-          "task_id": "task_d3727e6a6e0b",
+          "task_id": "task_3b1995dc9270",
           "value_sample": "2026-07-03T01:19:16.438307+00:00"
         },
         {
@@ -3817,7 +3499,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d3727e6a6e0b_doc_type_1",
+          "candidate_id": "cand_task_3b1995dc9270_doc_type_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3833,7 +3515,7 @@
             "fuzzy score 0.64 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d3727e6a6e0b_document_subtype_fuzzy",
+          "mapping_id": "map_task_3b1995dc9270_document_subtype_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3852,7 +3534,7 @@
           "strategy": "fuzzy",
           "target_field_id": "document_subtype",
           "target_field_name": "document_subtype",
-          "task_id": "task_d3727e6a6e0b",
+          "task_id": "task_3b1995dc9270",
           "value_sample": "general_doc"
         },
         {
@@ -3861,7 +3543,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d3727e6a6e0b_申报方式_1",
+          "candidate_id": "cand_task_3b1995dc9270_申报方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -3877,7 +3559,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d3727e6a6e0b_issuer_fuzzy",
+          "mapping_id": "map_task_3b1995dc9270_issuer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -3902,13 +3584,13 @@
           "strategy": "fuzzy",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_d3727e6a6e0b",
+          "task_id": "task_3b1995dc9270",
           "value_sample": "1.项目申报采用网上申报方式，无需送交纸质材料。请申请人通过“上海市科技管理信息系统”（https://svc20.stcsm.sh.gov.cn）进入“项目申报”，进行网上填报，由申报单位对填报内容进行网上审核后提交。\n【初次填写】使用“一网通办”登录（如尚未注册账号，请先转入“一网通办”注册账号页面完成注册），进入申报指南页面，点击相应的指南专题，进行项目申报；\n【继续填写】使用“一网通办”登录后，继续该项目的填报。\n2.项目网上填报起始时间为 2026年5月11日9:00 ，截止时间（含申报单位网上审核提交）为 2026年5月28日16:30 。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_d3727e6a6e0b",
+      "task_id": "task_3b1995dc9270",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -3926,75 +3608,30 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "meeting_date",
         "meeting_title",
         "source"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 4,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_meeting_007_zhenping_49_minutes",
         "gold_mapping_count": 7,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.375,
-        "missing_gold_mappings": 4,
+        "mapping_recall": 0.5,
+        "missing_gold_mappings": 3,
         "review_required_correct": 0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_d68fbce408cd_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_d68fbce408cd_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_d68fbce408cd",
-          "value_sample": "0.1.0"
-        }
-      ],
+      "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_d68fbce408cd",
-      "task_status": "review_required",
+      "task_id": "task_3bc08205cc63",
+      "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
     },
@@ -4005,28 +3642,26 @@
       },
       "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
       "doc_type": "meeting_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ],
+      "failure_reasons": [],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "meeting_date",
+        "meeting_number",
         "meeting_title",
         "organizer",
         "source"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 6,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
         "gold_mapping_count": 8,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.3333333333333333,
-        "missing_gold_mappings": 5,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 2,
         "review_required_correct": 0
       },
       "package_passed": true,
@@ -4038,7 +3673,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_567646fde8e0_网站维护联系方式_1",
+          "candidate_id": "cand_task_1a392ac47083_网站维护联系方式_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -4054,7 +3689,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_567646fde8e0_organizer_fuzzy",
+          "mapping_id": "map_task_1a392ac47083_organizer_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -4075,57 +3710,13 @@
           "strategy": "fuzzy",
           "target_field_id": "organizer",
           "target_field_name": "organizer",
-          "task_id": "task_567646fde8e0",
+          "task_id": "task_1a392ac47083",
           "value_sample": "0991-5923022"
-        },
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_567646fde8e0_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_567646fde8e0_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_567646fde8e0",
-          "value_sample": "0.1.0"
         }
       ],
       "schema_id": "meeting_doc",
-      "strict_passed": false,
-      "task_id": "task_567646fde8e0",
+      "strict_passed": true,
+      "task_id": "task_1a392ac47083",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -4137,81 +3728,34 @@
       },
       "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
       "doc_type": "meeting_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ],
+      "failure_reasons": [],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "meeting_date",
+        "meeting_number",
         "meeting_title",
         "source"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 6,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
         "gold_mapping_count": 8,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.3333333333333333,
-        "missing_gold_mappings": 5,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 2,
         "review_required_correct": 0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_26e3c16c39cb_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_26e3c16c39cb_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_26e3c16c39cb",
-          "value_sample": "0.1.0"
-        }
-      ],
+      "review_evidence": [],
       "schema_id": "meeting_doc",
-      "strict_passed": false,
-      "task_id": "task_26e3c16c39cb",
-      "task_status": "review_required",
+      "strict_passed": true,
+      "task_id": "task_8def309ac3e1",
+      "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
     },
@@ -4228,75 +3772,31 @@
       ],
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
-        "action_items",
+        "chairperson",
         "content",
         "meeting_date",
+        "meeting_number",
         "meeting_title",
         "source"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 6,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
         "gold_mapping_count": 9,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.3,
-        "missing_gold_mappings": 6,
+        "mapping_recall": 0.6,
+        "missing_gold_mappings": 3,
         "review_required_correct": 0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [
-        {
-          "badcase_filter": {
-            "blocked": false,
-            "checked": false,
-            "reason": null
-          },
-          "candidate_id": "cand_task_834232414c6d_extraction_version_1",
-          "confidence": 0.62,
-          "confidence_tier": "low",
-          "evidence": [
-            {
-              "message": "fuzzy score 0.57 requires review",
-              "metadata": {},
-              "source": null,
-              "type": "fuzzy_match",
-              "weight": null
-            }
-          ],
-          "evidence_text": [
-            "fuzzy score 0.57 requires review"
-          ],
-          "llm_metadata": null,
-          "mapping_id": "map_task_834232414c6d_action_items_fuzzy",
-          "method": "fuzzy",
-          "need_review": true,
-          "review_required_reason": "Fuzzy mapping requires human review.",
-          "risk_flags": [
-            "fuzzy_match",
-            "low_confidence"
-          ],
-          "source_blocks": [],
-          "source_field": {
-            "source_name": "extraction_version",
-            "source_path": "$.metadata.extraction_version"
-          },
-          "source_field_name": "extraction_version",
-          "source_path": "$.metadata.extraction_version",
-          "status": "review_required",
-          "strategy": "fuzzy",
-          "target_field_id": "action_items",
-          "target_field_name": "action_items",
-          "task_id": "task_834232414c6d",
-          "value_sample": "0.1.0"
-        }
-      ],
+      "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": false,
-      "task_id": "task_834232414c6d",
-      "task_status": "review_required",
+      "task_id": "task_fe7e41afb4aa",
+      "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
     },
@@ -4343,7 +3843,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_bea5071d5528_retrieved_at_1",
+          "candidate_id": "cand_task_72c0d108e184_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -4359,7 +3859,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_bea5071d5528_effective_date_fuzzy",
+          "mapping_id": "map_task_72c0d108e184_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -4378,13 +3878,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_bea5071d5528",
+          "task_id": "task_72c0d108e184",
           "value_sample": "2026-07-03T01:19:19.085487+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_bea5071d5528",
+      "task_id": "task_72c0d108e184",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -4428,7 +3928,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_19274e533f0e_retrieved_at_1",
+          "candidate_id": "cand_task_b02c6cfe5db8_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -4444,7 +3944,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_19274e533f0e_effective_date_fuzzy",
+          "mapping_id": "map_task_b02c6cfe5db8_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -4463,13 +3963,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_19274e533f0e",
+          "task_id": "task_b02c6cfe5db8",
           "value_sample": "2026-07-03T01:19:19.558611+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_19274e533f0e",
+      "task_id": "task_b02c6cfe5db8",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -4483,7 +3983,6 @@
       "doc_type": "policy_doc",
       "failure_reasons": [
         "strict_pass_failed",
-        "missing_required_fields",
         "mapping_recall_below_threshold"
       ],
       "high_risk_auto_accepted": [],
@@ -4493,24 +3992,23 @@
         "document_number",
         "effective_date",
         "issuer",
+        "publish_date",
         "source",
         "title"
       ],
       "metrics": {
-        "auto_accepted_correct": 3,
+        "auto_accepted_correct": 2,
         "badcase_violation_count": 0,
         "badcase_violations": [],
         "doc_id": "real_policy_013_minor_platform_rules",
         "gold_mapping_count": 7,
         "gold_review_required_count": 1,
-        "mapping_recall": 0.375,
-        "missing_gold_mappings": 4,
+        "mapping_recall": 0.25,
+        "missing_gold_mappings": 5,
         "review_required_correct": 0
       },
       "package_passed": true,
-      "required_missing": [
-        "publish_date"
-      ],
+      "required_missing": [],
       "review_evidence": [
         {
           "badcase_filter": {
@@ -4518,7 +4016,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_67f211697890_paragraph_regex_document_number_1",
+          "candidate_id": "cand_task_b0bb9139750c_paragraph_regex_document_number_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -4534,7 +4032,7 @@
             "fuzzy score 0.65 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_67f211697890_document_number_fuzzy",
+          "mapping_id": "map_task_b0bb9139750c_document_number_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -4555,13 +4053,57 @@
           "strategy": "fuzzy",
           "target_field_id": "document_number",
           "target_field_name": "document_number",
-          "task_id": "task_67f211697890",
+          "task_id": "task_b0bb9139750c",
           "value_sample": "国信办发文〔2026〕2号"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_b0bb9139750c_source_site_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.75 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.75 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_b0bb9139750c_source_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_site",
+            "source_path": "$.metadata.source_site"
+          },
+          "source_field_name": "source_site",
+          "source_path": "$.metadata.source_site",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "source",
+          "target_field_name": "source",
+          "task_id": "task_b0bb9139750c",
+          "value_sample": "www.cac.gov.cn"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_67f211697890",
+      "task_id": "task_b0bb9139750c",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -4605,7 +4147,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_2d7b2a927727_retrieved_at_1",
+          "candidate_id": "cand_task_9a52b0c3d303_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -4621,7 +4163,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_2d7b2a927727_effective_date_fuzzy",
+          "mapping_id": "map_task_9a52b0c3d303_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -4640,13 +4182,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_2d7b2a927727",
+          "task_id": "task_9a52b0c3d303",
           "value_sample": "2026-07-03T01:19:20.270419+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_2d7b2a927727",
+      "task_id": "task_9a52b0c3d303",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -4690,7 +4232,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_75939490c11a_retrieved_at_1",
+          "candidate_id": "cand_task_111d8b7b75ca_retrieved_at_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -4706,7 +4248,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_75939490c11a_effective_date_fuzzy",
+          "mapping_id": "map_task_111d8b7b75ca_effective_date_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "review_required_reason": "Fuzzy mapping requires human review.",
@@ -4725,13 +4267,13 @@
           "strategy": "fuzzy",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_75939490c11a",
+          "task_id": "task_111d8b7b75ca",
           "value_sample": "2026-07-03T01:21:23.480172+00:00"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_75939490c11a",
+      "task_id": "task_111d8b7b75ca",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -4820,24 +4362,7 @@
       ]
     },
     {
-      "doc_id": "real_policy_007_one_thing_list",
-      "doc_type": "policy_doc",
-      "reasons": [
-        "strict_pass_failed",
-        "missing_required_fields",
-        "mapping_recall_below_threshold"
-      ]
-    },
-    {
       "doc_id": "real_meeting_004_shandan_2025_11_minutes",
-      "doc_type": "meeting_doc",
-      "reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ]
-    },
-    {
-      "doc_id": "real_meeting_005_miluo_2026_minutes",
       "doc_type": "meeting_doc",
       "reasons": [
         "strict_pass_failed",
@@ -4877,22 +4402,6 @@
       ]
     },
     {
-      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
-      "doc_type": "meeting_doc",
-      "reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ]
-    },
-    {
-      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
-      "doc_type": "meeting_doc",
-      "reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ]
-    },
-    {
       "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
       "doc_type": "meeting_doc",
       "reasons": [
@@ -4914,12 +4423,11 @@
       "doc_type": "policy_doc",
       "reasons": [
         "strict_pass_failed",
-        "missing_required_fields",
         "mapping_recall_below_threshold"
       ]
     }
   ],
-  "generated_at": "2026-07-03T06:51:51.860682+00:00",
+  "generated_at": "2026-07-05T11:28:47.688195+00:00",
   "remaining_gaps": [
     {
       "doc_id": "real_policy_001_training_platform_rules",
@@ -4973,7 +4481,7 @@
         "mapping_recall_below_threshold"
       ],
       "required_missing": [],
-      "review_required_count": 2
+      "review_required_count": 1
     },
     {
       "doc_id": "real_meeting_002_shaxian_executive_minutes",
@@ -4983,7 +4491,7 @@
         "mapping_recall_below_threshold"
       ],
       "required_missing": [],
-      "review_required_count": 1
+      "review_required_count": 0
     },
     {
       "doc_id": "real_meeting_003_miluo_executive_minutes",
@@ -4993,7 +4501,7 @@
         "mapping_recall_below_threshold"
       ],
       "required_missing": [],
-      "review_required_count": 2
+      "review_required_count": 0
     },
     {
       "doc_id": "real_general_001_notary_service_guide",
@@ -5026,30 +4534,7 @@
       "review_required_count": 3
     },
     {
-      "doc_id": "real_policy_007_one_thing_list",
-      "doc_type": "policy_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "missing_required_fields",
-        "mapping_recall_below_threshold"
-      ],
-      "required_missing": [
-        "issuer"
-      ],
-      "review_required_count": 2
-    },
-    {
       "doc_id": "real_meeting_004_shandan_2025_11_minutes",
-      "doc_type": "meeting_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ],
-      "required_missing": [],
-      "review_required_count": 3
-    },
-    {
-      "doc_id": "real_meeting_005_miluo_2026_minutes",
       "doc_type": "meeting_doc",
       "failure_reasons": [
         "strict_pass_failed",
@@ -5066,7 +4551,7 @@
         "mapping_recall_below_threshold"
       ],
       "required_missing": [],
-      "review_required_count": 2
+      "review_required_count": 1
     },
     {
       "doc_id": "real_general_007_domestic_cooperation_guide",
@@ -5096,27 +4581,7 @@
         "mapping_recall_below_threshold"
       ],
       "required_missing": [],
-      "review_required_count": 1
-    },
-    {
-      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
-      "doc_type": "meeting_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ],
-      "required_missing": [],
-      "review_required_count": 2
-    },
-    {
-      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
-      "doc_type": "meeting_doc",
-      "failure_reasons": [
-        "strict_pass_failed",
-        "mapping_recall_below_threshold"
-      ],
-      "required_missing": [],
-      "review_required_count": 1
+      "review_required_count": 0
     },
     {
       "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
@@ -5126,7 +4591,7 @@
         "mapping_recall_below_threshold"
       ],
       "required_missing": [],
-      "review_required_count": 1
+      "review_required_count": 0
     },
     {
       "doc_id": "real_policy_011_battery_recycling_rules",
@@ -5147,24 +4612,21 @@
       "doc_type": "policy_doc",
       "failure_reasons": [
         "strict_pass_failed",
-        "missing_required_fields",
         "mapping_recall_below_threshold"
       ],
-      "required_missing": [
-        "publish_date"
-      ],
-      "review_required_count": 1
+      "required_missing": [],
+      "review_required_count": 2
     }
   ],
   "summary": {
-    "average_recall": 0.5677551020408163,
+    "average_recall": 0.6096598639455783,
     "badcase_violation_count": 0,
     "dataset_size": 35,
     "package_verify_pass_count": 35,
-    "required_missing_count": 6,
-    "review_required_count": 69,
-    "strict_pass_count": 13,
-    "strict_pass_rate": 0.37142857142857144
+    "required_missing_count": 4,
+    "review_required_count": 59,
+    "strict_pass_count": 17,
+    "strict_pass_rate": 0.4857142857142857
   },
   "typical_improvements": []
 }

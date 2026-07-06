@@ -1,0 +1,4 @@
+{"fixture":"dialect_a_block_list/sample_meeting_host_not_attendees_external.json","schema_id":"meeting_doc","template_id":"meeting_doc_base_v1","source_label":"主持人","forbidden_target":"attendees","reason":"主持人不是完整参会人员列表"}
+{"fixture":"dialect_a_block_list/sample_procurement_budget_not_award_external.json","schema_id":"procurement_doc","template_id":"procurement_doc_base_v1","source_label":"预算金额","forbidden_target":"award_amount","reason":"预算金额不是中标金额"}
+{"fixture":"dialect_a_block_list/sample_procurement_budget_not_award_external.json","schema_id":"procurement_doc","template_id":"procurement_doc_base_v1","source_label":"控制价","forbidden_target":"award_amount","reason":"控制价不是中标金额"}
+{"fixture":"dialect_a_block_list/sample_policy_written_date_not_publish_external.json","schema_id":"policy_doc","template_id":"policy_doc_base_v1","source_label":"成文日期","forbidden_target":"publish_date","reason":"成文日期不能自动视为发布日期"}

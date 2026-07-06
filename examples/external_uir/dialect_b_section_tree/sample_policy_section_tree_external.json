@@ -1,0 +1,17 @@
+{
+  "document": {
+    "docNo": "ext_policy_tree_001",
+    "name": "关于促进数字产业发展的政策通知",
+    "source": {"url": "https://example.gov/policy/tree001"},
+    "sections": [
+      {
+        "heading": "政策目标",
+        "paragraphs": ["发布机关：某市发展改革委。发布日期：2026年7月2日。"]
+      },
+      {
+        "heading": "主要措施",
+        "paragraphs": ["支持数字产业项目建设和技术创新。"]
+      }
+    ]
+  }
+}

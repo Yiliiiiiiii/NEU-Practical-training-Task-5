@@ -119,6 +119,8 @@ def test_structured_csv_exports_directory_and_zip(tmp_path: Path) -> None:
     zip_result = module.export_structured_csv(archive, tmp_path / "zip.csv")
     assert directory_result["row_count"] >= 3
     assert zip_result["row_count"] == directory_result["row_count"]
+    assert directory_result["contract_id"] == "structured_csv_contract"
+    assert directory_result["contract_pass"] is True
     assert "schema_id" in (tmp_path / "dir.csv").read_text(encoding="utf-8-sig")
 
 
@@ -137,6 +139,8 @@ def test_rag_export_filters_granularity_and_options(tmp_path: Path) -> None:
         for line in (tmp_path / "rag.jsonl").read_text(encoding="utf-8").splitlines()
     ]
     assert result["row_count"] == 1
+    assert result["contract_id"] == "rag_corpus_contract"
+    assert result["contract_pass"] is True
     assert rows[0]["id"] == "child"
     assert rows[0]["metadata"]["granularity"] == "child"
     assert "summary" not in rows[0]["metadata"]

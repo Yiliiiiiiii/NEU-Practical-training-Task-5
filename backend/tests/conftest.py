@@ -26,6 +26,15 @@ def clear_settings_env(monkeypatch: pytest.MonkeyPatch) -> Iterator[None]:
         "ARTIFACT_RETENTION_DAYS",
         "ARTIFACT_RETENTION_DRY_RUN",
         "PACKAGE_DOWNLOAD_REQUIRES_AUTH",
+        "EXTERNAL_UIR_LLM_ENABLED",
+        "EXTERNAL_UIR_LLM_PROVIDER",
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_MODEL",
+        "DEEPSEEK_TIMEOUT_SECONDS",
+        "DEEPSEEK_MAX_RETRIES",
+        "DEEPSEEK_MAX_SUGGESTIONS_PER_REQUEST",
+        "DEEPSEEK_STRICT_JSON",
     ]
     for key in keys:
         monkeypatch.delenv(key, raising=False)

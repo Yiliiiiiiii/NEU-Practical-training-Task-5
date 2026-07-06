@@ -1,0 +1,26 @@
+{
+  "contract_id": "package_contract",
+  "version": "1.1.0",
+  "artifact_type": "package",
+  "required_package_files": [
+    "content.json",
+    "content.md",
+    "chunks.jsonl",
+    "mapping_report.json",
+    "transform_report.json",
+    "validation_report.json",
+    "content_organization_report.json",
+    "canonical.json",
+    "metadata.json",
+    "manifest.json",
+    "verifier_report.json"
+  ],
+  "required_fields": [
+    "manifest.manifest_version",
+    "manifest.package_id",
+    "manifest.files"
+  ],
+  "optional_fields": [
+    "manifest.package_version"
+  ]
+}

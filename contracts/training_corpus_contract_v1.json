@@ -1,0 +1,19 @@
+{
+  "contract_id": "training_corpus_contract",
+  "version": "1.0.0",
+  "artifact_type": "jsonl",
+  "exporter": "export_training_corpus",
+  "required_fields": [
+    "id",
+    "text",
+    "metadata.schema_id",
+    "metadata.template_id",
+    "metadata.source_block_ids",
+    "metadata.tags"
+  ],
+  "optional_fields": [
+    "metadata.parent_chunk_id",
+    "metadata.summary",
+    "metadata.keywords"
+  ]
+}

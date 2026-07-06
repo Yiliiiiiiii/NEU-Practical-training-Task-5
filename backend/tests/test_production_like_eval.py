@@ -125,4 +125,13 @@ def test_production_like_eval_generates_reports_and_pack_delta(tmp_path):
         and "simulated by evaluator active aliases" not in issue
         for issue in report["remaining_issues"]
     )
+    assert all(
+        "authentication" not in issue.lower()
+        and "audit logging" not in issue.lower()
+        for issue in report["remaining_issues"]
+    )
+    assert any(
+        "optional offline upstream scripts" in boundary
+        for boundary in report["boundaries"]
+    )
     assert "Production-like Evaluation Report" in markdown_report.read_text(encoding="utf-8")

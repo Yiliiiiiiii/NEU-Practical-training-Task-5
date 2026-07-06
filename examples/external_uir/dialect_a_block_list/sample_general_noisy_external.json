@@ -1,0 +1,9 @@
+{
+  "id": "ext_noisy_001",
+  "title": "导入记录",
+  "unexpected_top_level": "unknown-value",
+  "items": [
+    {"id": "n1", "type": "paragraph", "text": "", "unknown": true},
+    {"id": "n2", "type": "paragraph", "text": "仅包含无法可靠分类的普通说明。", "extra": "noise"}
+  ]
+}

@@ -1,5 +1,7 @@
 # Non-procurement Mapping Recall Improvement Design
 
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+
 ## Context
 
 SchemaPack Agent currently evaluates 20 non-procurement documents across
@@ -293,4 +295,3 @@ The acceptance report compares actual metrics with phase-one thresholds. A
 threshold is marked passed only when the fresh evaluator output proves it.
 Otherwise, the report names the remaining high-frequency gaps and recommends
 the next bounded iteration.
-

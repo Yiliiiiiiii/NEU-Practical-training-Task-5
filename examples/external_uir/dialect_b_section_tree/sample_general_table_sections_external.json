@@ -1,0 +1,25 @@
+{
+  "document": {
+    "docNo": "ext_general_tree_table_001",
+    "name": "社会保障服务办理指南",
+    "source": {"url": "https://example.gov/service/tree-table001"},
+    "sections": [
+      {
+        "heading": "办理信息",
+        "paragraphs": ["本服务指南说明服务对象、申请条件、所需材料和联系方式。"],
+        "tables": [
+          {
+            "rows": [
+              {"field": "申请材料", "value": "身份证明、申请表"},
+              {"field": "办理时限", "value": "7个工作日"}
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "办理流程",
+        "paragraphs": ["在线申请后到窗口核验。"]
+      }
+    ]
+  }
+}

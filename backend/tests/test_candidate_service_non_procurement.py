@@ -101,9 +101,10 @@ def test_meeting_opening_sentence_emits_date_number_and_chairperson() -> None:
 
     candidates = CandidateService().extract_candidates("task_meeting_opening", uir)
 
-    assert candidate_by_name(candidates, "meeting date").value_sample == "2026年1月7日"
-    assert candidate_by_name(candidates, "meeting_number").value_sample == "第1次"
-    assert candidate_by_name(candidates, "chairperson").value_sample == "马建国"
+    by_display_name = {item.display_name: item for item in candidates}
+    assert by_display_name["meeting_date"].value_sample == "2026年1月7日"
+    assert by_display_name["meeting_number"].value_sample == "第1次"
+    assert by_display_name["chairperson"].value_sample == "马建国"
 
 
 def test_policy_signature_and_official_page_url_emit_traceable_candidates() -> None:
@@ -124,10 +125,12 @@ def test_policy_signature_and_official_page_url_emit_traceable_candidates() -> N
     assert issuer.value_sample == "教育部"
     assert issuer.source_blocks == ["signature"]
     assert issuer.source_path == "$.blocks.signature.text"
-    publish_date = candidate_by_name(candidates, "publish_date")
+    publish_date = next(
+        item for item in candidates if item.display_name == "publish_date"
+    )
     assert publish_date.value_sample == "2025-03-26"
     assert publish_date.source_blocks == []
-    assert publish_date.source_path == "$.metadata.source_url"
+    assert publish_date.source_path == "$.metadata.source_url#publish_date"
 
 
 def test_policy_government_page_banner_emits_publication_date() -> None:
@@ -144,10 +147,12 @@ def test_policy_government_page_banner_emits_publication_date() -> None:
 
     candidates = CandidateService().extract_candidates("task_policy_banner", uir)
 
-    publish_date = candidate_by_name(candidates, "publish_date")
+    publish_date = next(
+        item for item in candidates if item.display_name == "publish_date"
+    )
     assert publish_date.value_sample == "2025-01-16"
     assert publish_date.source_blocks == ["page_banner"]
-    assert publish_date.source_path == "$.blocks.page_banner.text"
+    assert publish_date.source_path == "$.blocks.page_banner.text#publish_date"
 
 
 def test_policy_signature_date_is_not_treated_as_publication_date() -> None:

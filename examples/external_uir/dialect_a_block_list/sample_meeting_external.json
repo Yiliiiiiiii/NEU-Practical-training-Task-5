@@ -1,0 +1,11 @@
+{
+  "id": "ext_meeting_a_001",
+  "title": "市政府第18次常务会议纪要",
+  "url": "https://example.gov/meeting/a001",
+  "blocks": [
+    {"id": "m1", "type": "title", "text": "市政府第18次常务会议纪要"},
+    {"id": "m2", "type": "paragraph", "text": "会议时间：2026年7月1日。会议地点：市政府会议室。"},
+    {"id": "m3", "type": "paragraph", "text": "参会人员：张三、李四。"},
+    {"id": "m4", "type": "paragraph", "text": "会议审议并原则同意相关事项。"}
+  ]
+}

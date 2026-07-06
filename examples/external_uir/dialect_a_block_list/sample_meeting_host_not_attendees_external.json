@@ -1,0 +1,9 @@
+{
+  "id": "ext_meeting_bad_host",
+  "title": "专题会议纪要",
+  "blocks": [
+    {"id": "mh1", "type": "title", "text": "专题会议纪要"},
+    {"id": "mh2", "type": "paragraph", "field": "主持人", "text": "张三"},
+    {"id": "mh3", "type": "paragraph", "text": "会议时间：2026年7月3日。参会人员：李四、王五。会议议题：研究安全生产工作。"}
+  ]
+}

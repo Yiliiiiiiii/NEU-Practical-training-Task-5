@@ -1,0 +1,8 @@
+{
+  "adapter_id": "{{ADAPTER_ID}}",
+  "class_name": "{{CLASS_NAME}}",
+  "version": "1.0.0",
+  "entrypoint": "adapter.py",
+  "auto_register": false,
+  "requires_review": true
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ext_proc_table_001",
+  "title": "数据平台采购项目中标公告",
+  "url": "https://example.gov/procurement/table001",
+  "chunks": [
+    {"id": "pt1", "type": "title", "text": "数据平台采购项目中标公告"},
+    {"id": "pt2", "type": "paragraph", "text": "项目编号：PROC-2026-001"},
+    {
+      "id": "pt3",
+      "type": "table",
+      "rows": [
+        {"field": "中标供应商", "value": "示例科技有限公司"},
+        {"field": "中标金额", "value": "128万元"}
+      ]
+    },
+    {"id": "pt4", "type": "paragraph", "text": "采购人：某市数据局。"}
+  ]
+}

@@ -15,6 +15,22 @@ from app.services.llm_fallback_service import LLMFallbackService
 class MappingService:
     REVIEW_CONFIDENCE = 0.62
     MIN_FUZZY_REVIEW_SCORE = 0.55
+    SAFE_DISPLAY_ALIAS_EVIDENCE = {
+        "extracted from metadata",
+        "extracted from key_value",
+        "extracted from derived_meeting_date",
+        "extracted from meeting_opening",
+        "extracted from policy_title_issuer",
+        "extracted from official_page_url",
+        "extracted from official_page_banner",
+    }
+    LEGACY_ALIAS_EVIDENCE = {
+        "extracted from derived_meeting_date_alias",
+        "extracted from meeting_opening_alias",
+        "extracted from policy_title_issuer_alias",
+        "extracted from official_page_url_alias",
+        "extracted from official_page_banner_alias",
+    }
 
     def __init__(self, llm_fallback_service: LLMFallbackService | None = None) -> None:
         self.llm_fallback_service = llm_fallback_service or LLMFallbackService()
@@ -56,7 +72,10 @@ class MappingService:
                     review_required.append(mapping.model_dump(mode="json"))
                 else:
                     mappings.append(mapping.model_dump(mode="json"))
-                    used_source_paths.add(mapping.source_field.source_path)
+                    source_path = mapping.source_field.source_path
+                    used_source_paths.add(source_path)
+                    if source_path.startswith("$.metadata.source_url#"):
+                        used_source_paths.add(source_path.partition("#")[0])
                 strategy_counts[mapping.method] += 1
                 continue
 
@@ -181,6 +200,11 @@ class MappingService:
         for candidate in candidates:
             if candidate.source_path in used_source_paths:
                 continue
+            if any(
+                evidence in self.LEGACY_ALIAS_EVIDENCE
+                for evidence in candidate.evidence
+            ):
+                continue
             if self.normalize_name(candidate.source_name) in target_names:
                 return self._mapping(task_id, candidate, field, "exact", 1.0, False)
         return None
@@ -200,7 +224,15 @@ class MappingService:
         for candidate in candidates:
             if candidate.source_path in used_source_paths:
                 continue
-            if self.normalize_name(candidate.source_name) in normalized_aliases:
+            candidate_names = {self.normalize_name(candidate.source_name)}
+            if any(
+                evidence in self.SAFE_DISPLAY_ALIAS_EVIDENCE
+                for evidence in candidate.evidence
+            ):
+                candidate_names.add(
+                    self.normalize_name(candidate.display_name or "")
+                )
+            if candidate_names & normalized_aliases:
                 return self._mapping(
                     task_id,
                     candidate,

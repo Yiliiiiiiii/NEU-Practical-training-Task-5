@@ -5,7 +5,10 @@
 - 本地开发：FastAPI backend 运行在 `127.0.0.1:8000`，Vite frontend 运行在 `127.0.0.1:5173`。
 - Docker Compose demo：backend 加 Nginx 托管的 frontend，入口为 `127.0.0.1:8080`，backend 同时暴露在 `127.0.0.1:8000`。
 
-生产运行边界仍然是从 UIR 输入到 schema-governed package 输出。Raw PDF、Word、Excel、image、OCR parsing 不属于此部署 profile。
+生产运行边界仍然是从 UIR/External UIR JSON 输入到 schema-governed package
+输出。Raw PDF、Word、Excel、image、OCR parsing 不属于此部署 profile。可选
+Docling/Unstructured 脚本仅在独立离线工具环境中运行，不随 backend 或 frontend
+容器安装。
 
 ## 本地 Backend 与 Frontend
 

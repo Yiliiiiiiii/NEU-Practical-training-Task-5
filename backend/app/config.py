@@ -20,6 +20,15 @@ class Settings(BaseSettings):
     llm_max_retries: int = Field(default=0, ge=0, le=5)
     llm_max_suggestions_per_task: int = Field(default=20, ge=0)
     llm_strict_failure: bool = False
+    external_uir_llm_enabled: bool = False
+    external_uir_llm_provider: str = "deepseek"
+    deepseek_api_key: str | None = None
+    deepseek_base_url: str = "https://api.deepseek.com"
+    deepseek_model: str = "deepseek-v4-flash"
+    deepseek_timeout_seconds: int = Field(default=20, ge=1)
+    deepseek_max_retries: int = Field(default=0, ge=0, le=5)
+    deepseek_max_suggestions_per_request: int = Field(default=20, ge=0)
+    deepseek_strict_json: bool = True
     offline_mode: bool = False
     max_upload_bytes: int = Field(default=10 * 1024 * 1024, ge=1)
     api_key_auth_enabled: bool = False

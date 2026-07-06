@@ -1,0 +1,16 @@
+{
+  "id": "ext_proc_bad_budget",
+  "title": "信息系统采购招标公告",
+  "blocks": [
+    {"id": "pb1", "type": "title", "text": "信息系统采购招标公告"},
+    {"id": "pb2", "type": "paragraph", "text": "项目编号：BUDGET-001"},
+    {
+      "id": "pb3",
+      "type": "table",
+      "rows": [
+        {"field": "预算金额", "value": "200万元"},
+        {"field": "控制价", "value": "180万元"}
+      ]
+    }
+  ]
+}

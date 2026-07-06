@@ -102,3 +102,49 @@ docs/openapi.json
 ## 五项深化证据运行
 
 运行 review-growth evaluator、三个 content-quality evaluators 和 downstream contract verifier。随后在工作台中，**下游就绪度** 面板会基于当前 task package 显示 CSV、source-linked RAG 和 verifier readiness。
+## External UIR API/UI Demo
+
+1. Start the backend and frontend workbench.
+2. Open the External UIR Adapter panel.
+3. Upload or paste `examples/external_uir/dialect_a_block_list/sample_procurement_external.json`.
+4. Click `Convert & Preview` and point out the adapter trace and
+   `procurement_doc` route recommendation.
+5. Click `Import Standard UIR`.
+6. Click `Create Task`, then execute through the existing task pipeline.
+7. Show that DeepSeek assistance is off by default and, when requested without
+   local configuration, returns a warning while preserving deterministic output.
+
+## Maturity Platform Demo
+
+1. Open `Schema Draft Lab`, discover fields from curated UIR samples, generate
+   a draft, and show that validation/export does not activate it.
+2. Open `Review Workbench`, group pending items, preview impact, and demonstrate
+   that unsafe batch actions are blocked.
+3. Show Knowledge Pack conflict/diff/impact/rollback while confirming old task
+   snapshots remain unchanged.
+4. Open `Evaluation Center`, inspect datasets, runs, metrics, scorecard, and the
+   8/8 regression gate report.
+   Point out the four explicit sections and the fixed
+   `package verification != strict semantic validation` warning.
+5. Show the quality-polish evidence: non-procurement strict pass `17/35`,
+   review-required `59`, required missing `4`; External UIR fixtures `18/18`
+   with trace/router accuracy `1.0`.
+6. Run the unified CLI or Python SDK workflow, then verify the resulting ZIP
+   against a versioned consumer contract.
+7. Explain that the optional Docling/Unstructured scripts are offline upstream
+   tools and that scanned-document OCR remains unsupported.
+
+## SchemaPack-Lineage Demo
+
+1. Convert and import an External UIR fixture, then create and execute its task.
+2. Open Mapping Evidence for a target field.
+3. Open “可信链路”, select the same field, and show External Field → Adapter
+   Trace → UIR Block → Candidate → Mapping → Schema → Canonical.
+4. Switch to Chunk and show `source_block_ids`; switch to Artifact and show
+   manifest role/hash plus the consumer contract.
+5. Point out the explicit `待 Review` and `已阻断` labels; color is not the only
+   status signal.
+6. Open Evaluation Center and show the four lineage gates inside the 8/8 gate
+   report.
+7. State that traceability is not strict semantic correctness and open
+   Validation/Review/Badcase evidence separately.

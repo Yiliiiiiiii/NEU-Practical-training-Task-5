@@ -1,0 +1,19 @@
+{
+  "document": {
+    "docNo": "ext_proc_nested_001",
+    "name": "医疗设备采购项目成交公告",
+    "source": {"url": "https://example.gov/procurement/nested001"},
+    "sections": [
+      {
+        "heading": "项目概况",
+        "paragraphs": ["项目编号：MED-2026-09。采购人：某市医院。"],
+        "children": [
+          {
+            "heading": "成交结果",
+            "paragraphs": ["成交供应商：示例医疗有限公司。成交金额：95万元。"]
+          }
+        ]
+      }
+    ]
+  }
+}

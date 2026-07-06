@@ -15,6 +15,15 @@ class CandidateService:
         "expected_learning_fields",
         "expected_review_fields",
         "scenario",
+        "extraction_version",
+        "extracted_block_count",
+        "page_count",
+        "page_text_lengths",
+        "source_sha256",
+        "source_format",
+        "extraction_method",
+        "extraction_truncated",
+        "language",
     }
     TITLE_CANDIDATE_NAMES = (
         "document_title",
@@ -126,7 +135,15 @@ class CandidateService:
         r"人民银行|管理局|部|署|厅|委|局)"
     )
     POLICY_URL_PUBLISH_DATE_PATTERN = re.compile(r"/t(?P<date>20\d{6})(?:_|[/.])")
-    POLICY_URL_DATE_HOSTS = {"moe.gov.cn", "www.moe.gov.cn"}
+    POLICY_URL_SLASH_DATE_PATTERN = re.compile(
+        r"/(?P<year>20\d{2})-(?P<month>\d{1,2})/(?P<day>\d{1,2})/"
+    )
+    POLICY_URL_DATE_HOSTS = {
+        "moe.gov.cn",
+        "www.moe.gov.cn",
+        "cac.gov.cn",
+        "www.cac.gov.cn",
+    }
     POLICY_PAGE_BANNER_PATTERN = re.compile(
         r"中国政府网\s*(?P<date>20\d{2})-(?P<month>\d{1,2})-(?P<day>\d{1,2})"
     )
@@ -155,6 +172,12 @@ class CandidateService:
         for key, value in uir.metadata.items():
             if key in self.CONTROL_METADATA_KEYS:
                 continue
+            display_name = (
+                "attendees"
+                if uir.metadata.get("domain") == "meeting_doc"
+                and self.normalize_name(key) == "出席"
+                else None
+            )
             candidates.append(
                 self._candidate(
                     task_id=task_id,
@@ -165,6 +188,7 @@ class CandidateService:
                     source_blocks=[],
                     source_kind="metadata",
                     seen_names=seen_names,
+                    display_name=display_name,
                 )
             )
 
@@ -239,6 +263,19 @@ class CandidateService:
             meeting_date = self._meeting_date_candidate(task_id, uir, seen_names)
             if meeting_date is not None:
                 candidates.append(meeting_date)
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=meeting_date.source_path,
+                        source_name="meeting date",
+                        value=meeting_date.value_sample,
+                        source_blocks=meeting_date.source_blocks,
+                        source_kind="derived_meeting_date_alias",
+                        seen_names=seen_names,
+                        confidence=meeting_date.confidence,
+                    )
+                )
             candidates.extend(self._meeting_opening_candidates(task_id, uir, seen_names))
         elif uir.metadata.get("domain") == "policy_doc":
             candidates.extend(
@@ -416,6 +453,12 @@ class CandidateService:
                         source_blocks=[block.block_id],
                         source_kind="key_value",
                         confidence=0.8,
+                        display_name=(
+                            "attendees"
+                            if domain == "meeting_doc"
+                            and self.normalize_name(key) == "出席"
+                            else None
+                        ),
                     )
 
             for source_name, display_name, value, confidence in self._paragraph_regex_values(
@@ -617,12 +660,13 @@ class CandidateService:
         return self._candidate(
             task_id=task_id,
             uir=uir,
-            source_path=f"$.blocks.{block_id}.text",
-            source_name="meeting date",
+            source_path=f"$.blocks.{block_id}.text#meeting_date",
+            source_name=value,
             value=value,
             source_blocks=[block_id],
             source_kind="derived_meeting_date",
             seen_names=seen_names,
+            display_name="meeting_date",
         )
 
     def _meeting_opening_candidates(
@@ -636,7 +680,8 @@ class CandidateService:
         chair_pattern = re.compile(
             r"(?:县委副书记、代县长|区政府党组书记、区长|市委副书记、市长|"
             r"县委副书记、县长|县长|区长|市长)?"
-            r"(?P<name>[\u4e00-\u9fff·]{2,4})\s*主持召开"
+            r"(?P<name>[\u4e00-\u9fff·]{2,4})"
+            r"(?:在[^，。；]{1,30})?\s*主持召开"
         )
         for block in uir.blocks:
             text = block.text if isinstance(block.text, str) else ""
@@ -644,39 +689,71 @@ class CandidateService:
                 continue
             number_match = number_pattern.search(text)
             if number_match is not None and not any(
-                item.source_name == "meeting_number" for item in candidates
+                item.display_name == "meeting_number" for item in candidates
             ):
+                number = f"第{number_match.group(1)}次"
+                number_path = f"$.blocks.{block.block_id}.text#meeting_number"
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path=f"$.blocks.{block.block_id}.text",
-                        source_name="meeting_number",
-                        value=f"第{number_match.group(1)}次",
+                        source_path=number_path,
+                        source_name=number,
+                        value=number,
                         source_blocks=[block.block_id],
                         source_kind="meeting_opening",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="meeting_number",
+                    )
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=number_path,
+                        source_name="meeting_number",
+                        value=number,
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening_alias",
                         seen_names=seen_names,
                         confidence=0.9,
                     )
                 )
             chair_match = chair_pattern.search(text)
             if chair_match is not None and not any(
-                item.source_name == "chairperson" for item in candidates
+                item.display_name == "chairperson" for item in candidates
             ):
+                chairperson = chair_match.group("name")
+                chair_path = f"$.blocks.{block.block_id}.text#chairperson"
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path=f"$.blocks.{block.block_id}.text",
-                        source_name="chairperson",
-                        value=chair_match.group("name"),
+                        source_path=chair_path,
+                        source_name=f"{chairperson}主持",
+                        value=chairperson,
                         source_blocks=[block.block_id],
                         source_kind="meeting_opening",
                         seen_names=seen_names,
                         confidence=0.9,
+                        display_name="chairperson",
                     )
                 )
-            if candidates and {item.source_name for item in candidates} == {
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=chair_path,
+                        source_name="chairperson",
+                        value=chairperson,
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening_alias",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                    )
+                )
+            if candidates and {item.display_name for item in candidates} == {
                 "meeting_number",
                 "chairperson",
             }:
@@ -696,7 +773,44 @@ class CandidateService:
             self.normalize_name(candidate.source_name) for candidate in existing_candidates
         }
 
-        if not existing_names.intersection(self.POLICY_ISSUER_SOURCE_NAMES):
+        has_issuer = bool(existing_names.intersection(self.POLICY_ISSUER_SOURCE_NAMES))
+        if not has_issuer:
+            title = uir.metadata.get("title")
+            if isinstance(title, str) and "关于" in title:
+                prefix = title.partition("关于")[0].strip()
+                organizations = self._policy_organizations(prefix)
+                if len(organizations) == 1 and organizations[0] == prefix:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path="$.metadata.title#issuer",
+                            source_name=prefix,
+                            value=prefix,
+                            source_blocks=[],
+                            source_kind="policy_title_issuer",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="issuer",
+                        )
+                    )
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path="$.metadata.title#issuer",
+                            source_name="issuer",
+                            value=prefix,
+                            source_blocks=[],
+                            source_kind="policy_title_issuer_alias",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="issuer",
+                        )
+                    )
+                    has_issuer = True
+
+        if not has_issuer:
             for index, block in enumerate(blocks):
                 text = block.text.strip() if isinstance(block.text, str) else ""
                 if not self.FULL_DATE_REGEX.fullmatch(text):
@@ -741,46 +855,87 @@ class CandidateService:
             and isinstance(source_url, str)
             and urlparse(source_url).hostname in self.POLICY_URL_DATE_HOSTS
         ):
-            url_match = self.POLICY_URL_PUBLISH_DATE_PATTERN.search(source_url)
-            if url_match is not None:
-                raw_date = url_match.group("date")
+            compact_match = self.POLICY_URL_PUBLISH_DATE_PATTERN.search(source_url)
+            slash_match = self.POLICY_URL_SLASH_DATE_PATTERN.search(source_url)
+            if compact_match is not None or slash_match is not None:
+                if compact_match is not None:
+                    raw_date = compact_match.group("date")
+                    publish_date = f"{raw_date[:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
+                else:
+                    assert slash_match is not None
+                    publish_date = (
+                        f"{slash_match.group('year')}-"
+                        f"{int(slash_match.group('month')):02d}-"
+                        f"{int(slash_match.group('day')):02d}"
+                    )
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path="$.metadata.source_url",
-                        source_name="publish_date",
-                        value=f"{raw_date[:4]}-{raw_date[4:6]}-{raw_date[6:8]}",
+                        source_path="$.metadata.source_url#publish_date",
+                        source_name=publish_date,
+                        value=publish_date,
                         source_blocks=[],
                         source_kind="official_page_url",
                         seen_names=seen_names,
                         confidence=0.9,
+                        display_name="publish_date",
+                    )
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path="$.metadata.source_url#publish_date",
+                        source_name="publish_date",
+                        value=publish_date,
+                        source_blocks=[],
+                        source_kind="official_page_url_alias",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="publish_date",
                     )
                 )
 
         if not has_publish_date and not any(
-            item.source_name == "publish_date" for item in candidates
+            item.display_name == "publish_date" for item in candidates
         ):
             for block in blocks:
                 text = block.text.strip() if isinstance(block.text, str) else ""
                 banner_match = self.POLICY_PAGE_BANNER_PATTERN.fullmatch(text)
                 if banner_match is None:
                     continue
+                publish_date = (
+                    f"{banner_match.group('date')}-"
+                    f"{int(banner_match.group('month')):02d}-"
+                    f"{int(banner_match.group('day')):02d}"
+                )
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path=f"$.blocks.{block.block_id}.text",
-                        source_name="publish_date",
-                        value=(
-                            f"{banner_match.group('date')}-"
-                            f"{int(banner_match.group('month')):02d}-"
-                            f"{int(banner_match.group('day')):02d}"
-                        ),
+                        source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                        source_name=publish_date,
+                        value=publish_date,
                         source_blocks=[block.block_id],
                         source_kind="official_page_banner",
                         seen_names=seen_names,
                         confidence=0.9,
+                        display_name="publish_date",
+                    )
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                        source_name="publish_date",
+                        value=publish_date,
+                        source_blocks=[block.block_id],
+                        source_kind="official_page_banner_alias",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="publish_date",
                     )
                 )
                 break

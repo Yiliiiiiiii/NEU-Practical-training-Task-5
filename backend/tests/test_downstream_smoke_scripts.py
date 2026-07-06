@@ -86,6 +86,8 @@ def test_export_training_corpus_writes_jsonl_with_metadata(tmp_path):
     rows = [json.loads(line) for line in output.read_text(encoding="utf-8").splitlines()]
 
     assert result["row_count"] == 1
+    assert result["contract_id"] == "training_corpus_contract"
+    assert result["contract_pass"] is True
     assert rows[0]["id"] == "chunk_001"
     assert rows[0]["text"].startswith("本制度")
     assert rows[0]["metadata"]["schema_id"] == "policy_doc"

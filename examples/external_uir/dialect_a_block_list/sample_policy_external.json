@@ -1,0 +1,22 @@
+{
+  "id": "ext_policy_001",
+  "title": "某市关于优化营商环境的通知",
+  "url": "https://example.gov/policy/001",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "title",
+      "text": "某市关于优化营商环境的通知"
+    },
+    {
+      "id": "b2",
+      "type": "paragraph",
+      "text": "发布机关：某市人民政府。成文日期：2026年6月20日。"
+    },
+    {
+      "id": "b3",
+      "type": "paragraph",
+      "text": "本通知提出若干政策措施和实施方案。"
+    }
+  ]
+}

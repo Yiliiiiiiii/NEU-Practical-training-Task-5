@@ -1,5 +1,7 @@
 # SchemaPack Agent 四项深化 Implementation Plan
 
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 为 16 份真实 UIR 增加映射、采购领域、内容组织检索和人审知识闭环的可复现评测证据。

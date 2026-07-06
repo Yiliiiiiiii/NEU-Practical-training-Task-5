@@ -1,22 +1,30 @@
 import {
   AlertTriangle,
+  BarChart3,
   CheckCircle2,
   ClipboardList,
   FileJson,
+  GitBranch,
   Package,
   Play,
   RefreshCw,
   Tags,
-  UploadCloud
+  UploadCloud,
+  Users
 } from "lucide-react";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import { api } from "./api";
 import { ChunkEvidencePanel } from "./components/ChunkEvidencePanel";
 import { DownstreamReadinessPanel } from "./components/DownstreamReadinessPanel";
+import { EvaluationCenterPanel } from "./components/EvaluationCenterPanel";
+import { ExternalUirPanel } from "./components/ExternalUirPanel";
 import { KnowledgeComparisonPanel } from "./components/KnowledgeComparisonPanel";
+import { LineagePanel } from "./components/LineagePanel";
 import { MappingEvidencePanel } from "./components/MappingEvidencePanel";
 import { PackageManifestPanel } from "./components/PackageManifestPanel";
+import { ReviewWorkbenchPanel } from "./components/ReviewWorkbenchPanel";
+import { SchemaDraftLabPanel } from "./components/SchemaDraftLabPanel";
 import { ValidationIssuePanel } from "./components/ValidationIssuePanel";
 import { sampleUirText } from "./sampleUir";
 import type {
@@ -24,6 +32,8 @@ import type {
   ChunksReport,
   ContentOrganizationOptions,
   ContentOrganizationReport,
+  ExternalUirImportResponse,
+  ExternalUirRouteReport,
   KnowledgeCandidate,
   KnowledgeLoopApiResponse,
   KnowledgeMetrics,
@@ -34,6 +44,7 @@ import type {
   PackageMetadata,
   ReviewRecord,
   TargetSchema,
+  TaskCreateResponse,
   TaskDetailResponse,
   ValidationReport,
   VerifierReport
@@ -144,6 +155,51 @@ function App() {
       setRunState("error");
       setError(errorMessage(caught));
     }
+  }
+
+  function resetTaskOutputs() {
+    setTask(null);
+    setMapping(null);
+    setValidation(null);
+    setContentOrg(null);
+    setChunks(null);
+    setPkg(null);
+    setManifest(null);
+    setVerifier(null);
+    setKnowledgeLoop(null);
+    setAuditLogs([]);
+    clearReviewKnowledge();
+  }
+
+  function applyRecommendedRoute(route: ExternalUirRouteReport) {
+    if (route.selected_schema_id) {
+      setSelectedSchema(route.selected_schema_id);
+    }
+    if (route.selected_template_id) {
+      setSelectedTemplate(route.selected_template_id);
+    }
+  }
+
+  function handleExternalImport(response: ExternalUirImportResponse) {
+    setDocId(response.doc_id);
+    setTaskId("");
+    resetTaskOutputs();
+  }
+
+  async function handleExternalTaskCreated(response: TaskCreateResponse) {
+    setTaskId(response.task_id);
+    const detail = await api.getTask(response.task_id);
+    setTask(detail);
+    setMapping(null);
+    setValidation(null);
+    setContentOrg(null);
+    setChunks(null);
+    setPkg(null);
+    setManifest(null);
+    setVerifier(null);
+    setKnowledgeLoop(null);
+    setAuditLogs([]);
+    clearReviewKnowledge();
   }
 
   async function createTask() {
@@ -477,6 +533,17 @@ function App() {
           </button>
         </div>
 
+        <ExternalUirPanel
+          currentDocId={docId}
+          working={working}
+          onStandardUirPreview={setUirText}
+          onImported={handleExternalImport}
+          onRecommendedRoute={applyRecommendedRoute}
+          onTaskCreated={(response) => void handleExternalTaskCreated(response)}
+        />
+
+        <SchemaDraftLabPanel />
+
         <label className="uir-editor-label" htmlFor="uir">
           UIR JSON
         </label>
@@ -541,6 +608,13 @@ function App() {
 
           <ReportPanel title="Package Manifest" icon={<Package size={18} />}>
             <PackageManifestPanel manifest={manifest} verifier={verifier} />
+          </ReportPanel>
+
+          <ReportPanel title="可信链路" icon={<GitBranch size={18} />}>
+            <LineagePanel
+              taskId={taskId}
+              available={Boolean(task?.report_paths?.lineage_graph)}
+            />
           </ReportPanel>
 
           <ReportPanel title="下游就绪度" icon={<Package size={18} />}>
@@ -853,6 +927,14 @@ function App() {
                 </div>
               ) : null}
             </div>
+          </ReportPanel>
+
+          <ReportPanel title="Review Workbench" icon={<Users size={18} />}>
+            <ReviewWorkbenchPanel />
+          </ReportPanel>
+
+          <ReportPanel title="Evaluation Center" icon={<BarChart3 size={18} />}>
+            <EvaluationCenterPanel />
           </ReportPanel>
         </section>
       </section>

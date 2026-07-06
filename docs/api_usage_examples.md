@@ -247,6 +247,39 @@ Audit entries are intentionally small. They should identify operations and
 artifact references without logging API keys, LLM keys, full UIR payloads, or
 package contents.
 
+## 10. Maturity Platform APIs
+
+The synchronized OpenAPI surface also includes:
+
+```text
+POST /api/v1/schema-drafts/discover
+POST /api/v1/schema-drafts/generate
+GET  /api/v1/schema-drafts/{draft_id}
+POST /api/v1/schema-drafts/{draft_id}/validate
+POST /api/v1/schema-drafts/{draft_id}/export
+
+GET  /api/v1/reviews/summary
+GET  /api/v1/reviews/grouped
+POST /api/v1/reviews/{review_id}/impact-preview
+POST /api/v1/reviews/batch-approve
+POST /api/v1/reviews/batch-reject
+
+GET  /api/v1/knowledge/conflicts
+GET  /api/v1/knowledge/packs/{pack_id}/diff
+GET  /api/v1/knowledge/packs/{pack_id}/impact
+POST /api/v1/knowledge/packs/{pack_id}/rollback
+
+GET  /api/v1/evaluation-center/datasets
+POST /api/v1/evaluation-center/run
+GET  /api/v1/evaluation-center/runs
+GET  /api/v1/evaluation-center/metrics
+GET  /api/v1/evaluation-center/scorecard
+```
+
+Draft generation, review decisions, knowledge activation/rollback, and
+evaluation runs are separate explicit operations. No endpoint in this group
+auto-activates an LLM suggestion.
+
 ## Downstream Package Smoke Commands
 
 After downloading or generating a package ZIP:
@@ -272,3 +305,155 @@ backend\.venv\Scripts\python.exe scripts\verify_downstream_contract.py --package
 
 These are offline consumers of the existing package contract; they do not add a
 vector database or RAG runtime API.
+
+## External UIR Adapter CLI
+
+External UIR conversion is available through both the legacy offline CLI and
+the `/api/v1/external-uir/*` API/UI workflow. The legacy CLI converts upstream
+UIR dialect JSON into the standard `UIRDocument` contract:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\convert_external_uir.py `
+  --input examples\external_uir\dialect_a_block_list\sample_procurement_external.json `
+  --source-system topic11 `
+  --out examples\external_uir\converted\sample_procurement_standard_uir.json `
+  --report reports\external_uir_adapter\sample_procurement_adapter_report.json `
+  --route-schema `
+  --route-report reports\external_uir_adapter\sample_procurement_route_report.json
+```
+
+Batch evaluation:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_external_uir_adapter.py `
+  --fixtures examples\external_uir `
+  --out reports\external_uir_adapter_eval_report.json `
+  --markdown reports\external_uir_adapter_eval_report.md
+```
+
+The CLI does not create tasks, activate schema/template drafts, or accept LLM
+mapping suggestions automatically.
+
+## Unified CLI And Python SDK
+
+The unified CLI calls the public HTTP API and can compose the full External UIR
+to Package workflow. `convert-external --out` writes only the standard UIR so it
+can be passed directly to `import`; the terminal response still includes route
+and adapter reports.
+
+```powershell
+$env:SCHEMAPACK_BASE_URL = "http://127.0.0.1:8000"
+backend\.venv\Scripts\python.exe scripts\schemapack_cli.py list-adapters
+backend\.venv\Scripts\python.exe scripts\schemapack_cli.py list-schemas
+```
+
+SDK example:
+
+```python
+from schemapack_client import SchemaPackClient
+
+with SchemaPackClient("http://127.0.0.1:8000") as client:
+    imported = client.import_uir(standard_uir)
+    task = client.create_task(
+        imported["doc_id"],
+        "policy_doc",
+        "policy_doc_base_v1",
+    )
+    client.execute_task(task["task_id"])
+    client.download_package(task["task_id"], "standard_package.zip")
+```
+
+When authentication is enabled, pass the SDK `api_key` argument or set
+`SCHEMAPACK_API_KEY` for the CLI. Do not place keys in command output, fixtures,
+reports, or adapter manifests.
+
+## Optional Raw Document Upstream Handoff
+
+Generate reviewable External UIR offline:
+
+```powershell
+python scripts\upstream_unstructured_to_external_uir.py `
+  input.pdf `
+  --out external.json `
+  --report upstream_report.json
+```
+
+Then use the public API through the unified CLI. `--base-url` is a global option
+and must appear before the command:
+
+```powershell
+python scripts\schemapack_cli.py --base-url http://127.0.0.1:8000 `
+  convert-external --input external.json --out standard_uir.json `
+  --source-system raw_upstream --route
+python scripts\schemapack_cli.py --base-url http://127.0.0.1:8000 `
+  import --input standard_uir.json --out imported.json
+```
+
+Review the conversion and route reports before explicitly calling
+`create-task`. Raw-document tooling never imports a document, creates a task,
+executes a task, or accepts an LLM suggestion by itself.
+
+## External UIR API
+
+Convert upstream External UIR JSON without persisting a document:
+
+```powershell
+$external = Get-Content examples\external_uir\dialect_a_block_list\sample_procurement_external.json -Raw | ConvertFrom-Json
+$body = @{
+  payload = $external
+  source_system = "topic11"
+  dialect_hint = "auto"
+  route_schema = $true
+  allow_llm = $false
+} | ConvertTo-Json -Depth 100
+
+$result = Invoke-RestMethod -Method Post `
+  -Uri http://127.0.0.1:8000/api/v1/external-uir/convert `
+  -ContentType "application/json" `
+  -Body $body
+
+$result.route_report
+```
+
+Request DeepSeek suggestions without auto-accepting mappings:
+
+```powershell
+$body = @{
+  payload = $external
+  source_system = "topic11"
+  dialect_hint = "auto"
+  route_schema = $true
+  allow_llm = $true
+  llm_mode = "deepseek"
+} | ConvertTo-Json -Depth 100
+```
+
+`allow_llm=true` only requests suggestions in the adapter report. It does not
+create mappings, activate schemas/templates, create tasks, or execute tasks.
+
+## SchemaPack-Lineage API
+
+```powershell
+$taskId = "task_xxx"
+
+# Full graph and summary
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$taskId/lineage"
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$taskId/lineage/summary"
+
+# Bounded upstream field path
+Invoke-RestMethod `
+  "http://127.0.0.1:8000/api/v1/tasks/$taskId/lineage/fields/title?direction=upstream&max_depth=8"
+
+# Chunk source path
+Invoke-RestMethod `
+  "http://127.0.0.1:8000/api/v1/tasks/$taskId/lineage/chunks/chunk_1?direction=upstream&max_depth=8"
+
+# Artifact path (URL encode nested paths)
+$artifact = [uri]::EscapeDataString("content.json")
+Invoke-RestMethod `
+  "http://127.0.0.1:8000/api/v1/tasks/$taskId/lineage/artifacts/$artifact?direction=both&max_depth=8"
+```
+
+Create an External UIR task with trace preservation by passing the
+`adapter_report` returned by `/external-uir/convert` or `/external-uir/import`
+to `/external-uir/create-task`. The web workbench does this automatically.

@@ -1,0 +1,61 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "ext_proc_001",
+  "source": {
+    "source_type": "external_uir",
+    "source_name": "topic11",
+    "upstream_agents": [
+      "topic11"
+    ]
+  },
+  "metadata": {
+    "title": "某采购项目中标公告",
+    "source_system": "topic11",
+    "external_uir_adapter_version": "external-uir-adapter-v1",
+    "source_url": "https://example.gov/procurement/001"
+  },
+  "blocks": [
+    {
+      "block_id": "c1",
+      "type": "heading",
+      "level": null,
+      "text": "某采购项目中标公告",
+      "source_anchor": null,
+      "attributes": {
+        "external_path": "payload.chunks[0]"
+      }
+    },
+    {
+      "block_id": "c2",
+      "type": "paragraph",
+      "level": null,
+      "text": "项目编号：ABC-001",
+      "source_anchor": null,
+      "attributes": {
+        "external_path": "payload.chunks[1]"
+      }
+    },
+    {
+      "block_id": "c3",
+      "type": "table",
+      "level": null,
+      "text": null,
+      "source_anchor": null,
+      "attributes": {
+        "external_path": "payload.chunks[2]",
+        "rows": [
+          [
+            "中标供应商",
+            "某某公司"
+          ],
+          [
+            "中标金额",
+            "100万元"
+          ]
+        ]
+      }
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

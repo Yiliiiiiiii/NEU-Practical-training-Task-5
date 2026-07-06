@@ -30,7 +30,7 @@ COMMANDS = {
 
 PIPELINE = (
     "UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> "
-    "Validate -> Manifest -> ZIP"
+    "Content Organization -> Validate -> Manifest -> ZIP -> Package Verification"
 )
 
 
@@ -507,9 +507,9 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
             final_handoff,
             command=COMMANDS["pytest"],
             markers=(
-                "Backend pytest: 203 passed.",
+                "Backend pytest: 491 passed.",
                 "Ruff: clean.",
-                "OpenAPI export: 32 paths",
+                "OpenAPI export: 58 paths",
             ),
             passed_reason=(
                 "final handoff records the backend pytest, ruff, and OpenAPI "
@@ -575,7 +575,11 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
         "evidence": evidence,
         "boundaries": {
             "input": "UIR is the governed input to the core conversion pipeline.",
-            "ocr": "No OCR or scanned-document recognition is implemented.",
+            "ocr": (
+                "No OCR or scanned-document recognition is implemented. Optional "
+                "offline Docling/Unstructured entry scripts can produce External UIR "
+                "from supported local files without changing the production runtime."
+            ),
             "rag": "No full RAG or vector-database implementation is included.",
             "model_training": "No model training is implemented.",
             "llm_fallback": (

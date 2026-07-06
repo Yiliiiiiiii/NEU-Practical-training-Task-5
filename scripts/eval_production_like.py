@@ -882,11 +882,13 @@ def build_report(
         "old_run_snapshot_unchanged": old_run_snapshot_unchanged(phase_a, phase_b),
         "badcases": evaluate_badcases(phase_b, expectations["badcases"]),
         "remaining_issues": [
-            "Authentication, authorization, tenancy, audit logging, hosted model operations, "
-            "and production access controls are not implemented.",
+            "Enterprise SSO, tenant-aware authorization, TLS termination, managed "
+            "secret storage, hosted credential provisioning, and model/provider "
+            "monitoring are not implemented.",
         ],
         "boundaries": [
-            "No PDF/Word/Excel/OCR/image source parsing is included.",
+            "No raw-document parsing or OCR is included in the production runtime; "
+            "optional offline upstream scripts are separate.",
             "No cleaning, normalization, entity linking, full quality scoring, full RAG, or model training is included.",
             "No LLM-generated production rule is activated.",
         ],

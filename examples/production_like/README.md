@@ -25,7 +25,7 @@ The script writes:
 - `reports/production_like_eval_report.md`
 - package-like artifacts under `reports/packages/`
 
-The current checkout does not include production mapping, effective-template,
-knowledge, or package services. The evaluator therefore reuses the Pydantic
-contracts and executes a deterministic harness while explicitly reporting that
-service-layer gap in the generated report.
+The evaluator runs the current production mapping, effective-template,
+review/knowledge, content-organization, package, and verifier services against
+isolated synthetic fixtures. It does not use raw-document parsing, OCR, network
+LLM calls, or autonomous rule activation.

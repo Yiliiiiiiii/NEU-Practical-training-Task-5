@@ -1,0 +1,25 @@
+{
+  "document": {
+    "docNo": "ext_meeting_nested_001",
+    "name": "县政府第9次常务会议纪要",
+    "source": {"url": "https://example.gov/meeting/nested001"},
+    "sections": [
+      {
+        "heading": "会议概况",
+        "paragraphs": ["会议时间：2026年7月3日。会议编号：第9次。主持人：李明。参会人员：有关部门负责人。"],
+        "children": [
+          {
+            "heading": "审议事项",
+            "paragraphs": ["会议听取安全生产情况并审议相关方案。"],
+            "children": [
+              {
+                "heading": "会议决定",
+                "paragraphs": ["原则同意方案，要求责任单位限期落实。"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

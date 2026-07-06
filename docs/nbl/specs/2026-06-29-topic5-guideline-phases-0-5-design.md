@@ -1,5 +1,7 @@
 # SchemaPack Agent Topic 5 Phases 0–5 Design
 
+> **Historical specification:** Preserved for design rationale. See [`../../project_status.md`](../../project_status.md) for current implementation status.
+
 ## 1. Purpose
 
 Implement all required and optional items in

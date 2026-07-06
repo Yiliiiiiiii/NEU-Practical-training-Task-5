@@ -4,7 +4,7 @@ from typing import Annotated
 from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_db
+from app.api.deps import get_db, get_storage_service
 from app.db.models import KnowledgeCandidateRecord, KnowledgePackRecord
 from app.schemas.api import (
     KnowledgeCandidateListResponse,
@@ -15,7 +15,17 @@ from app.schemas.api import (
     KnowledgePackResponse,
 )
 from app.schemas.mapping_template import MappingTemplate
+from app.schemas.review_workbench import (
+    KnowledgeConflictResponse,
+    KnowledgePackDiffResponse,
+    KnowledgePackImpactResponse,
+    KnowledgePackRollbackResponse,
+)
+from app.services.knowledge_pack_governance_service import (
+    KnowledgePackGovernanceService,
+)
 from app.services.review_knowledge_workflow_service import ReviewKnowledgeWorkflowService
+from app.services.storage_service import StorageService
 
 router = APIRouter(prefix="/knowledge", tags=["knowledge"])
 
@@ -24,6 +34,13 @@ def get_review_workflow_service(
     db: Annotated[Session, Depends(get_db)],
 ) -> ReviewKnowledgeWorkflowService:
     return ReviewKnowledgeWorkflowService(db=db)
+
+
+def get_pack_governance_service(
+    db: Annotated[Session, Depends(get_db)],
+    storage: Annotated[StorageService, Depends(get_storage_service)],
+) -> KnowledgePackGovernanceService:
+    return KnowledgePackGovernanceService(db=db, storage=storage)
 
 
 @router.get("/candidates", response_model=KnowledgeCandidateListResponse)
@@ -94,11 +111,18 @@ def create_pack(
 def activate_pack(
     pack_id: str,
     service: Annotated[ReviewKnowledgeWorkflowService, Depends(get_review_workflow_service)],
+    governance: Annotated[
+        KnowledgePackGovernanceService,
+        Depends(get_pack_governance_service),
+    ],
 ) -> KnowledgePackResponse:
     try:
+        governance.assert_can_activate(pack_id)
         return pack_response(service, service.activate_pack(pack_id))
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.post("/packs/{pack_id}/archive", response_model=KnowledgePackResponse)
@@ -110,6 +134,58 @@ def archive_pack(
         return pack_response(service, service.archive_pack(pack_id))
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.get("/packs/{pack_id}/diff", response_model=KnowledgePackDiffResponse)
+def pack_diff(
+    pack_id: str,
+    service: Annotated[
+        KnowledgePackGovernanceService,
+        Depends(get_pack_governance_service),
+    ],
+) -> KnowledgePackDiffResponse:
+    try:
+        return service.diff(pack_id)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.get("/packs/{pack_id}/impact", response_model=KnowledgePackImpactResponse)
+def pack_impact(
+    pack_id: str,
+    service: Annotated[
+        KnowledgePackGovernanceService,
+        Depends(get_pack_governance_service),
+    ],
+) -> KnowledgePackImpactResponse:
+    try:
+        return service.impact(pack_id)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.post("/packs/{pack_id}/rollback", response_model=KnowledgePackRollbackResponse)
+def rollback_pack(
+    pack_id: str,
+    service: Annotated[
+        KnowledgePackGovernanceService,
+        Depends(get_pack_governance_service),
+    ],
+) -> KnowledgePackRollbackResponse:
+    try:
+        return service.rollback(pack_id)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.get("/conflicts", response_model=KnowledgeConflictResponse)
+def knowledge_conflicts(
+    service: Annotated[
+        KnowledgePackGovernanceService,
+        Depends(get_pack_governance_service),
+    ],
+) -> KnowledgeConflictResponse:
+    return service.conflicts()
 
 
 @router.get("/effective-template", response_model=MappingTemplate)

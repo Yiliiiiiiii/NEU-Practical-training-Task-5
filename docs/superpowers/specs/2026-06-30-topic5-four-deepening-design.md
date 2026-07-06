@@ -1,5 +1,7 @@
 # SchemaPack Agent 四项深化设计
 
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+
 ## 目标
 
 在保持现有

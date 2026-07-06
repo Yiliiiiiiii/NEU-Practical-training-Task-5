@@ -58,6 +58,14 @@ Verifier 会把每个 manifest entry 与 package 中实际 file bytes 比对。H
 
 Source links 与 source block IDs 是 traceability aids。它们让 downstream retrieval 或 training-corpus consumers 可以把 chunk 追溯到生成它的 UIR blocks。
 
+## Consumer Contracts
+
+`contracts/` contains versioned Package 1.1, RAG corpus, training corpus, and
+structured CSV contracts. `scripts/verify_consumer_contract.py` validates one
+ZIP or a package tree and writes JSON/Markdown evidence. These contracts are
+offline consumption profiles; they do not add a vector database, model-training
+runtime, or webhook service.
+
 Downstream scripts 对 parent-child packages 支持 `--granularity child|parent|all`：
 
 ```powershell
@@ -85,3 +93,15 @@ Strict package verification 检查：
 - verifier output 已包含在 package 中。
 
 Package verification 证明 structural integrity、checksum consistency、artifact presence、parseability 和 traceability。它不代表每个 target field 都通过 strict semantic validation；该区别应查看 `validation_report.json` 和 evaluation reports。
+
+## Lineage Task Reports（MVP）
+
+`lineage_graph.json` 与 `lineage_summary.json` 当前是 task reports，不是
+Package 1.1 ZIP artifacts。Lineage graph 仍会读取最终 manifest entries，记录
+现有 package artifacts 的 path、role、media type、bytes 与 SHA-256，并连接到
+consumer contract。
+
+暂不把 lineage 自身加入 ZIP，是为了避免 graph 引用最终 manifest hash 时形成
+自引用 checksum，同时保持 required file list、strict verifier 和现有 consumer
+contracts 不变。后续若加入 ZIP，必须先定义独立的非自引用 lineage contract，
+再同步 ManifestService、PackageVerifierService 与所有 downstream contracts。

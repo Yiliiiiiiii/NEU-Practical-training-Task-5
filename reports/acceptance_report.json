@@ -3,7 +3,7 @@
     "input": "UIR is the governed input to the core conversion pipeline.",
     "llm_fallback": "LLM fallback is optional, disabled by default, and every suggestion is review-required; it cannot autonomously activate production rules.",
     "model_training": "No model training is implemented.",
-    "ocr": "No OCR or scanned-document recognition is implemented.",
+    "ocr": "No OCR or scanned-document recognition is implemented. Optional offline Docling/Unstructured entry scripts can produce External UIR from supported local files without changing the production runtime.",
     "rag": "No full RAG or vector-database implementation is included."
   },
   "checks": {
@@ -75,105 +75,105 @@
         "results": [
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_001_standard\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_001_standard\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_contract_001_standard_con001_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_002_party_alias\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_002_party_alias\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_contract_002_party_alias_con002_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_003_amount_transform\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_003_amount_transform\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_contract_003_amount_transform_con003_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_004_enum_status\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_004_enum_status\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_contract_004_enum_status_con004_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_001_standard\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_001_standard\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_general_001_standard_gen001_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_002_mixed_metadata\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_002_mixed_metadata\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_general_002_mixed_metadata_gen002_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_003_table_like_blocks\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_003_table_like_blocks\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_general_003_table_like_blocks_gen003_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_001_standard\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_001_standard\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_meeting_001_standard_met001_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_002_attendee_variants\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_002_attendee_variants\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_meeting_002_attendee_variants_met002_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_003_missing_required\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_003_missing_required\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_meeting_003_missing_required_met003_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_001_standard\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_001_standard\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_policy_001_standard_pol001_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_002_alias_variants\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_002_alias_variants\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_policy_002_alias_variants_pol002_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_003_unmapped_required\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_003_unmapped_required\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_policy_003_unmapped_required_pol003_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_004_low_confidence\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_004_low_confidence\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_policy_004_low_confidence_pol004_b001_1"
           },
           {
             "errors": [],
-            "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_005_regex_case\\standard_package.zip",
+            "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_005_regex_case\\standard_package.zip",
             "passed": true,
             "source_linked": true,
             "top_hit_chunk_id": "chunk_policy_005_regex_case_pol005_b001_1"
@@ -199,16 +199,16 @@
       "status": "passed",
       "summary": {
         "after": {
-          "auto_mapped_fields": 7,
+          "auto_mapped_fields": 8,
           "missing_required_count": 0,
-          "review_required_count": 4
+          "review_required_count": 2
         },
         "approved_candidates": 1,
         "badcase_violation_count": 0,
         "before": {
-          "auto_mapped_fields": 6,
+          "auto_mapped_fields": 7,
           "missing_required_count": 1,
-          "review_required_count": 5
+          "review_required_count": 3
         },
         "old_snapshot_unchanged": true,
         "rejected_candidates": 1
@@ -236,8 +236,8 @@
       "report_path": "reports/real_world_eval_report.json",
       "status": "passed",
       "summary": {
-        "dataset_size": 16,
-        "package_verify_pass_count": 16
+        "dataset_size": 45,
+        "package_verify_pass_count": 45
       }
     },
     "production_like_eval": {
@@ -253,105 +253,105 @@
           "results": [
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_001_standard_con001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_002_party_alias\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_002_party_alias\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_002_party_alias_con002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_003_amount_transform\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_003_amount_transform\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_003_amount_transform_con003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_004_enum_status\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_004_enum_status\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_004_enum_status_con004_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_general_001_standard_gen001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_002_mixed_metadata\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_002_mixed_metadata\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_general_002_mixed_metadata_gen002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_003_table_like_blocks\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_003_table_like_blocks\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_general_003_table_like_blocks_gen003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_meeting_001_standard_met001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_002_attendee_variants\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_002_attendee_variants\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_meeting_002_attendee_variants_met002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_003_missing_required\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_003_missing_required\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_meeting_003_missing_required_met003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_001_standard_pol001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_002_alias_variants\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_002_alias_variants\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_002_alias_variants_pol002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_003_unmapped_required\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_003_unmapped_required\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_003_unmapped_required_pol003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_004_low_confidence\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_004_low_confidence\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_004_low_confidence_pol004_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_005_regex_case\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_005_regex_case\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_005_regex_case_pol005_b001_1"
@@ -359,15 +359,15 @@
           ]
         },
         "evaluation": {
-          "auto_mapped_fields": 71,
-          "auto_mapping_rate": 0.6228,
+          "auto_mapped_fields": 76,
+          "auto_mapping_rate": 0.3551,
           "badcase_pass_rate": 1.0,
           "badcase_violation_count": 0,
-          "candidates_approved": 39,
+          "candidates_approved": 30,
           "candidates_by_type": {
-            "alias": 56,
-            "exact": 15,
-            "fuzzy": 25
+            "alias": 60,
+            "exact": 16,
+            "fuzzy": 21
           },
           "cases_by_domain": {
             "contract_doc": 4,
@@ -377,30 +377,30 @@
           },
           "confidence_bucket_accuracy": "not_available",
           "effective_template_pack_resolution_count": 15,
-          "failed_mapping_fields": 7,
-          "failed_mapping_rate": 0.0614,
+          "failed_mapping_fields": 4,
+          "failed_mapping_rate": 0.0187,
           "gold_case_pass_rate": 1.0,
-          "knowledge_candidates_generated": 25,
-          "mapping_total_fields": 114,
+          "knowledge_candidates_generated": 21,
+          "mapping_total_fields": 214,
           "package_success_rate": 1.0,
           "packs_activated": 1,
           "packs_created": 1,
-          "review_required_fields": 25,
-          "review_required_rate": 0.2193,
+          "review_required_fields": 21,
+          "review_required_rate": 0.0981,
           "schema_validation_pass_rate": 0.7333,
           "total_cases": 15,
-          "unmapped_required_fields": 7
+          "unmapped_required_fields": 4
         },
         "phase_a": {
-          "auto_mapped_fields": 58,
-          "auto_mapping_rate": 0.5088,
+          "auto_mapped_fields": 65,
+          "auto_mapping_rate": 0.3037,
           "badcase_pass_rate": 1.0,
           "badcase_violation_count": 0,
           "candidates_approved": 0,
           "candidates_by_type": {
-            "alias": 43,
-            "exact": 15,
-            "fuzzy": 39
+            "alias": 49,
+            "exact": 16,
+            "fuzzy": 30
           },
           "cases_by_domain": {
             "contract_doc": 4,
@@ -410,30 +410,30 @@
           },
           "confidence_bucket_accuracy": "not_available",
           "effective_template_pack_resolution_count": 0,
-          "failed_mapping_fields": 16,
-          "failed_mapping_rate": 0.1404,
+          "failed_mapping_fields": 11,
+          "failed_mapping_rate": 0.0514,
           "gold_case_pass_rate": 0.48,
-          "knowledge_candidates_generated": 39,
-          "mapping_total_fields": 114,
+          "knowledge_candidates_generated": 30,
+          "mapping_total_fields": 214,
           "package_success_rate": 1.0,
           "packs_activated": 0,
           "packs_created": 0,
-          "review_required_fields": 39,
-          "review_required_rate": 0.3421,
-          "schema_validation_pass_rate": 0.4,
+          "review_required_fields": 30,
+          "review_required_rate": 0.1402,
+          "schema_validation_pass_rate": 0.5333,
           "total_cases": 15,
-          "unmapped_required_fields": 16
+          "unmapped_required_fields": 11
         },
         "phase_b": {
-          "auto_mapped_fields": 71,
-          "auto_mapping_rate": 0.6228,
+          "auto_mapped_fields": 76,
+          "auto_mapping_rate": 0.3551,
           "badcase_pass_rate": 1.0,
           "badcase_violation_count": 0,
-          "candidates_approved": 39,
+          "candidates_approved": 30,
           "candidates_by_type": {
-            "alias": 56,
-            "exact": 15,
-            "fuzzy": 25
+            "alias": 60,
+            "exact": 16,
+            "fuzzy": 21
           },
           "cases_by_domain": {
             "contract_doc": 4,
@@ -443,22 +443,22 @@
           },
           "confidence_bucket_accuracy": "not_available",
           "effective_template_pack_resolution_count": 15,
-          "failed_mapping_fields": 7,
-          "failed_mapping_rate": 0.0614,
+          "failed_mapping_fields": 4,
+          "failed_mapping_rate": 0.0187,
           "gold_case_pass_rate": 1.0,
-          "knowledge_candidates_generated": 25,
-          "mapping_total_fields": 114,
+          "knowledge_candidates_generated": 21,
+          "mapping_total_fields": 214,
           "package_success_rate": 1.0,
           "packs_activated": 1,
           "packs_created": 1,
-          "review_required_fields": 25,
-          "review_required_rate": 0.2193,
+          "review_required_fields": 21,
+          "review_required_rate": 0.0981,
           "schema_validation_pass_rate": 0.7333,
           "total_cases": 15,
-          "unmapped_required_fields": 7
+          "unmapped_required_fields": 4
         },
         "remaining_issues": [
-          "Authentication, authorization, tenancy, audit logging, hosted model operations, and production access controls are not implemented."
+          "Enterprise SSO, tenant-aware authorization, TLS termination, managed secret storage, hosted credential provisioning, and model/provider monitoring are not implemented."
         ]
       }
     },
@@ -480,54 +480,61 @@
       "status": "passed",
       "summary": {
         "by_doc_type": {
-          "general_doc": 3,
-          "meeting_doc": 3,
-          "policy_doc": 5,
-          "procurement_doc": 5
+          "general_doc": 10,
+          "meeting_doc": 10,
+          "policy_doc": 15,
+          "procurement_doc": 10
         },
-        "dataset_size": 16,
+        "dataset_size": 45,
         "high_risk_mapping_count": 0,
-        "import_pass_count": 16,
-        "mapping_review_required_count": 65,
-        "package_verify_pass_count": 16,
-        "task_execute_pass_count": 16,
+        "import_pass_count": 45,
+        "mapping_review_required_count": 102,
+        "package_verify_pass_count": 45,
+        "task_execute_pass_count": 45,
         "typical_failure_cases": [
           {
-            "doc_id": "real_general_001_notary_service_guide",
-            "doc_type": "general_doc",
+            "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+            "doc_type": "meeting_doc",
             "error": "",
             "stage": "validation"
           },
           {
-            "doc_id": "real_general_002_biomed_project_guide",
-            "doc_type": "general_doc",
+            "doc_id": "real_meeting_006_shandan_minutes",
+            "doc_type": "meeting_doc",
             "error": "",
             "stage": "validation"
           },
           {
-            "doc_id": "real_general_003_textile_application_flow",
-            "doc_type": "general_doc",
+            "doc_id": "real_meeting_007_zhenping_49_minutes",
+            "doc_type": "meeting_doc",
             "error": "",
             "stage": "validation"
           }
         ],
         "typical_success_cases": [
-          "real_procurement_001_broadcast_security_supervision",
-          "real_procurement_002_special_equipment_bid",
-          "real_procurement_003_radiation_monitoring_award"
-        ],
-        "validation_failed_cases": [
           "real_general_001_notary_service_guide",
           "real_general_002_biomed_project_guide",
-          "real_general_003_textile_application_flow",
-          "real_meeting_001_changning_executive_minutes",
-          "real_meeting_002_shaxian_executive_minutes",
-          "real_meeting_003_miluo_executive_minutes",
+          "real_general_003_textile_application_flow"
+        ],
+        "validation_failed_cases": [
+          "real_meeting_004_shandan_2025_11_minutes",
+          "real_meeting_006_shandan_minutes",
+          "real_meeting_007_zhenping_49_minutes",
           "real_policy_001_training_platform_rules",
           "real_policy_002_equipment_renewal",
           "real_policy_003_science_education_guide",
           "real_policy_004_student_loan_relief",
-          "real_policy_005_ai_industry_guide"
+          "real_policy_005_ai_industry_guide",
+          "real_policy_006_technology_incubator_rules",
+          "real_policy_007_one_thing_list",
+          "real_policy_008_sme_leader_training",
+          "real_policy_009_network_safety_work",
+          "real_policy_010_auto_ota_management",
+          "real_policy_011_battery_recycling_rules",
+          "real_policy_012_sme_gradient_rules",
+          "real_policy_013_minor_platform_rules",
+          "real_policy_014_digital_aging_campaign",
+          "real_policy_015_ai_ethics_rules"
         ]
       }
     }
@@ -595,8 +602,8 @@
         "report_path": "docs/final_handoff_status.md",
         "status": "present",
         "summary": {
-          "line_count": 140,
-          "title": "SchemaPack Agent Final Handoff Status"
+          "line_count": 171,
+          "title": "SchemaPack Agent 最终交接状态"
         }
       },
       "package_spec": {
@@ -604,8 +611,8 @@
         "report_path": "docs/package_spec.md",
         "status": "present",
         "summary": {
-          "line_count": 116,
-          "title": "SchemaPack Package Spec"
+          "line_count": 95,
+          "title": "SchemaPack Package 规范"
         }
       },
       "requirement_mapping": {
@@ -613,8 +620,8 @@
         "report_path": "docs/requirement_mapping.md",
         "status": "present",
         "summary": {
-          "line_count": 65,
-          "title": "Topic 5 Requirement Mapping"
+          "line_count": 90,
+          "title": "课题 5 需求映射"
         }
       }
     },
@@ -625,16 +632,16 @@
       "status": "passed",
       "summary": {
         "after": {
-          "auto_mapped_fields": 7,
+          "auto_mapped_fields": 8,
           "missing_required_count": 0,
-          "review_required_count": 4
+          "review_required_count": 2
         },
         "approved_candidates": 1,
         "badcase_violation_count": 0,
         "before": {
-          "auto_mapped_fields": 6,
+          "auto_mapped_fields": 7,
           "missing_required_count": 1,
-          "review_required_count": 5
+          "review_required_count": 3
         },
         "old_snapshot_unchanged": true,
         "rejected_candidates": 1
@@ -669,105 +676,105 @@
           "results": [
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_001_standard_con001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_002_party_alias\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_002_party_alias\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_002_party_alias_con002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_003_amount_transform\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_003_amount_transform\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_003_amount_transform_con003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_contract_004_enum_status\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_contract_004_enum_status\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_contract_004_enum_status_con004_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_general_001_standard_gen001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_002_mixed_metadata\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_002_mixed_metadata\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_general_002_mixed_metadata_gen002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_general_003_table_like_blocks\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_general_003_table_like_blocks\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_general_003_table_like_blocks_gen003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_meeting_001_standard_met001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_002_attendee_variants\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_002_attendee_variants\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_meeting_002_attendee_variants_met002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_meeting_003_missing_required\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_meeting_003_missing_required\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_meeting_003_missing_required_met003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_001_standard\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_001_standard\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_001_standard_pol001_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_002_alias_variants\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_002_alias_variants\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_002_alias_variants_pol002_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_003_unmapped_required\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_003_unmapped_required\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_003_unmapped_required_pol003_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_004_low_confidence\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_004_low_confidence\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_004_low_confidence_pol004_b001_1"
             },
             {
               "errors": [],
-              "package": "F:\\p2\\reports\\packages\\phase_b\\packages\\pkg_eval_policy_005_regex_case\\standard_package.zip",
+              "package": "reports\\packages\\phase_b\\packages\\pkg_eval_policy_005_regex_case\\standard_package.zip",
               "passed": true,
               "source_linked": true,
               "top_hit_chunk_id": "chunk_policy_005_regex_case_pol005_b001_1"
@@ -775,15 +782,15 @@
           ]
         },
         "evaluation": {
-          "auto_mapped_fields": 71,
-          "auto_mapping_rate": 0.6228,
+          "auto_mapped_fields": 76,
+          "auto_mapping_rate": 0.3551,
           "badcase_pass_rate": 1.0,
           "badcase_violation_count": 0,
-          "candidates_approved": 39,
+          "candidates_approved": 30,
           "candidates_by_type": {
-            "alias": 56,
-            "exact": 15,
-            "fuzzy": 25
+            "alias": 60,
+            "exact": 16,
+            "fuzzy": 21
           },
           "cases_by_domain": {
             "contract_doc": 4,
@@ -793,30 +800,30 @@
           },
           "confidence_bucket_accuracy": "not_available",
           "effective_template_pack_resolution_count": 15,
-          "failed_mapping_fields": 7,
-          "failed_mapping_rate": 0.0614,
+          "failed_mapping_fields": 4,
+          "failed_mapping_rate": 0.0187,
           "gold_case_pass_rate": 1.0,
-          "knowledge_candidates_generated": 25,
-          "mapping_total_fields": 114,
+          "knowledge_candidates_generated": 21,
+          "mapping_total_fields": 214,
           "package_success_rate": 1.0,
           "packs_activated": 1,
           "packs_created": 1,
-          "review_required_fields": 25,
-          "review_required_rate": 0.2193,
+          "review_required_fields": 21,
+          "review_required_rate": 0.0981,
           "schema_validation_pass_rate": 0.7333,
           "total_cases": 15,
-          "unmapped_required_fields": 7
+          "unmapped_required_fields": 4
         },
         "phase_a": {
-          "auto_mapped_fields": 58,
-          "auto_mapping_rate": 0.5088,
+          "auto_mapped_fields": 65,
+          "auto_mapping_rate": 0.3037,
           "badcase_pass_rate": 1.0,
           "badcase_violation_count": 0,
           "candidates_approved": 0,
           "candidates_by_type": {
-            "alias": 43,
-            "exact": 15,
-            "fuzzy": 39
+            "alias": 49,
+            "exact": 16,
+            "fuzzy": 30
           },
           "cases_by_domain": {
             "contract_doc": 4,
@@ -826,30 +833,30 @@
           },
           "confidence_bucket_accuracy": "not_available",
           "effective_template_pack_resolution_count": 0,
-          "failed_mapping_fields": 16,
-          "failed_mapping_rate": 0.1404,
+          "failed_mapping_fields": 11,
+          "failed_mapping_rate": 0.0514,
           "gold_case_pass_rate": 0.48,
-          "knowledge_candidates_generated": 39,
-          "mapping_total_fields": 114,
+          "knowledge_candidates_generated": 30,
+          "mapping_total_fields": 214,
           "package_success_rate": 1.0,
           "packs_activated": 0,
           "packs_created": 0,
-          "review_required_fields": 39,
-          "review_required_rate": 0.3421,
-          "schema_validation_pass_rate": 0.4,
+          "review_required_fields": 30,
+          "review_required_rate": 0.1402,
+          "schema_validation_pass_rate": 0.5333,
           "total_cases": 15,
-          "unmapped_required_fields": 16
+          "unmapped_required_fields": 11
         },
         "phase_b": {
-          "auto_mapped_fields": 71,
-          "auto_mapping_rate": 0.6228,
+          "auto_mapped_fields": 76,
+          "auto_mapping_rate": 0.3551,
           "badcase_pass_rate": 1.0,
           "badcase_violation_count": 0,
-          "candidates_approved": 39,
+          "candidates_approved": 30,
           "candidates_by_type": {
-            "alias": 56,
-            "exact": 15,
-            "fuzzy": 25
+            "alias": 60,
+            "exact": 16,
+            "fuzzy": 21
           },
           "cases_by_domain": {
             "contract_doc": 4,
@@ -859,22 +866,22 @@
           },
           "confidence_bucket_accuracy": "not_available",
           "effective_template_pack_resolution_count": 15,
-          "failed_mapping_fields": 7,
-          "failed_mapping_rate": 0.0614,
+          "failed_mapping_fields": 4,
+          "failed_mapping_rate": 0.0187,
           "gold_case_pass_rate": 1.0,
-          "knowledge_candidates_generated": 25,
-          "mapping_total_fields": 114,
+          "knowledge_candidates_generated": 21,
+          "mapping_total_fields": 214,
           "package_success_rate": 1.0,
           "packs_activated": 1,
           "packs_created": 1,
-          "review_required_fields": 25,
-          "review_required_rate": 0.2193,
+          "review_required_fields": 21,
+          "review_required_rate": 0.0981,
           "schema_validation_pass_rate": 0.7333,
           "total_cases": 15,
-          "unmapped_required_fields": 7
+          "unmapped_required_fields": 4
         },
         "remaining_issues": [
-          "Authentication, authorization, tenancy, audit logging, hosted model operations, and production access controls are not implemented."
+          "Enterprise SSO, tenant-aware authorization, TLS termination, managed secret storage, hosted credential provisioning, and model/provider monitoring are not implemented."
         ]
       }
     },
@@ -885,54 +892,61 @@
       "status": "passed",
       "summary": {
         "by_doc_type": {
-          "general_doc": 3,
-          "meeting_doc": 3,
-          "policy_doc": 5,
-          "procurement_doc": 5
+          "general_doc": 10,
+          "meeting_doc": 10,
+          "policy_doc": 15,
+          "procurement_doc": 10
         },
-        "dataset_size": 16,
+        "dataset_size": 45,
         "high_risk_mapping_count": 0,
-        "import_pass_count": 16,
-        "mapping_review_required_count": 65,
-        "package_verify_pass_count": 16,
-        "task_execute_pass_count": 16,
+        "import_pass_count": 45,
+        "mapping_review_required_count": 102,
+        "package_verify_pass_count": 45,
+        "task_execute_pass_count": 45,
         "typical_failure_cases": [
           {
-            "doc_id": "real_general_001_notary_service_guide",
-            "doc_type": "general_doc",
+            "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+            "doc_type": "meeting_doc",
             "error": "",
             "stage": "validation"
           },
           {
-            "doc_id": "real_general_002_biomed_project_guide",
-            "doc_type": "general_doc",
+            "doc_id": "real_meeting_006_shandan_minutes",
+            "doc_type": "meeting_doc",
             "error": "",
             "stage": "validation"
           },
           {
-            "doc_id": "real_general_003_textile_application_flow",
-            "doc_type": "general_doc",
+            "doc_id": "real_meeting_007_zhenping_49_minutes",
+            "doc_type": "meeting_doc",
             "error": "",
             "stage": "validation"
           }
         ],
         "typical_success_cases": [
-          "real_procurement_001_broadcast_security_supervision",
-          "real_procurement_002_special_equipment_bid",
-          "real_procurement_003_radiation_monitoring_award"
-        ],
-        "validation_failed_cases": [
           "real_general_001_notary_service_guide",
           "real_general_002_biomed_project_guide",
-          "real_general_003_textile_application_flow",
-          "real_meeting_001_changning_executive_minutes",
-          "real_meeting_002_shaxian_executive_minutes",
-          "real_meeting_003_miluo_executive_minutes",
+          "real_general_003_textile_application_flow"
+        ],
+        "validation_failed_cases": [
+          "real_meeting_004_shandan_2025_11_minutes",
+          "real_meeting_006_shandan_minutes",
+          "real_meeting_007_zhenping_49_minutes",
           "real_policy_001_training_platform_rules",
           "real_policy_002_equipment_renewal",
           "real_policy_003_science_education_guide",
           "real_policy_004_student_loan_relief",
-          "real_policy_005_ai_industry_guide"
+          "real_policy_005_ai_industry_guide",
+          "real_policy_006_technology_incubator_rules",
+          "real_policy_007_one_thing_list",
+          "real_policy_008_sme_leader_training",
+          "real_policy_009_network_safety_work",
+          "real_policy_010_auto_ota_management",
+          "real_policy_011_battery_recycling_rules",
+          "real_policy_012_sme_gradient_rules",
+          "real_policy_013_minor_platform_rules",
+          "real_policy_014_digital_aging_campaign",
+          "real_policy_015_ai_ethics_rules"
         ]
       }
     },
@@ -943,19 +957,19 @@
       "status": "present",
       "summary": {
         "by_format": {
-          "html": 13,
-          "pdf": 3
+          "html": 40,
+          "pdf": 5
         },
         "collection_totals": {
-          "downloaded": 16,
+          "downloaded": 45,
           "failed": 0,
           "skipped": 0
         },
         "totals": {
-          "extracted": 16,
+          "extracted": 1,
           "rejected": 0,
           "skipped": 0,
-          "sources": 16
+          "sources": 1
         }
       }
     },
@@ -970,15 +984,15 @@
           "failed": 0,
           "missing_fields": 0,
           "mojibake": 0,
-          "passed": 16,
+          "passed": 45,
           "sensitive": 0,
-          "total": 16
+          "total": 45
         }
       }
     }
   },
-  "generated_at": "2026-06-30T07:53:20.254376+00:00",
-  "pipeline": "UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP",
+  "generated_at": "2026-07-04T12:08:57.090359+00:00",
+  "pipeline": "UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Content Organization -> Validate -> Manifest -> ZIP -> Package Verification",
   "project": "SchemaPack Agent",
   "topic": "课题 5：文档内容智能化转换与组织"
 }
