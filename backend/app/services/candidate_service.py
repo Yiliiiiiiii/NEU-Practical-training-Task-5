@@ -97,6 +97,22 @@ class CandidateService:
         "通知名称",
     }
     MEETING_DATE_LABELS = {"会议日期", "会议时间", "召开日期", "召开时间"}
+    MEETING_DATE_FORBIDDEN_LABELS = {
+        "发布日期",
+        "发布时间",
+        "成文日期",
+        "印发日期",
+        "网页抓取时间",
+        "retrieved_at",
+    }
+    MEETING_TOPIC_SECTION_NAMES = {
+        "议题",
+        "会议议题",
+        "议程",
+        "审议事项",
+        "会议内容",
+    }
+    GENERAL_CONDITION_NAMES = {"申请条件", "受理条件", "办理条件", "申报条件"}
     FULL_DATE_PATTERN = (
         r"(?:\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
         r"|[二〇○零一二三四五六七八九十]{4}\s*年\s*"
@@ -149,6 +165,7 @@ class CandidateService:
     )
     POLICY_ISSUER_SOURCE_NAMES = {
         "issuer",
+        "issuingbody",
         "发文机关",
         "发布单位",
         "颁布机构",
@@ -157,6 +174,8 @@ class CandidateService:
     }
     POLICY_PUBLISH_DATE_SOURCE_NAMES = {
         "publishdate",
+        "publicationdate",
+        "publishedat",
         "发布日期",
         "发文日期",
         "印发日期",
@@ -172,7 +191,11 @@ class CandidateService:
         for key, value in uir.metadata.items():
             if key in self.CONTROL_METADATA_KEYS:
                 continue
-            display_name = (
+            semantic = self._metadata_candidate_options(
+                str(uir.metadata.get("domain") or ""),
+                key,
+            )
+            display_name = semantic["display_name"] or (
                 "attendees"
                 if uir.metadata.get("domain") == "meeting_doc"
                 and self.normalize_name(key) == "出席"
@@ -189,6 +212,10 @@ class CandidateService:
                     source_kind="metadata",
                     seen_names=seen_names,
                     display_name=display_name,
+                    confidence=semantic["confidence"],
+                    target_hints=semantic["target_hints"],
+                    evidence_type=semantic["evidence_type"],
+                    quality_flags=semantic["quality_flags"],
                 )
             )
 
@@ -277,13 +304,62 @@ class CandidateService:
                     )
                 )
             candidates.extend(self._meeting_opening_candidates(task_id, uir, seen_names))
+            candidates.extend(self._meeting_topic_candidates(task_id, uir, seen_names))
         elif uir.metadata.get("domain") == "policy_doc":
             candidates.extend(
                 self._policy_document_candidates(task_id, uir, seen_names, candidates)
             )
+        elif uir.metadata.get("domain") == "general_doc":
+            candidates.extend(self._general_semantic_candidates(task_id, uir, seen_names))
 
         self._add_traceable_block_candidates(task_id, uir, candidates, seen_names)
         return candidates
+
+    @classmethod
+    def _metadata_candidate_options(
+        cls,
+        domain: str,
+        key: str,
+    ) -> dict[str, Any]:
+        normalized = cls.normalize_name(key)
+        options: dict[str, Any] = {
+            "display_name": None,
+            "confidence": 0.8,
+            "target_hints": [],
+            "evidence_type": "metadata",
+            "quality_flags": [],
+        }
+        if domain != "policy_doc":
+            return options
+        if normalized in {"issuer", "issuingbody"}:
+            options.update(
+                {
+                    "display_name": "issuer",
+                    "confidence": 0.9,
+                    "target_hints": ["issuer"],
+                    "evidence_type": "official_issuer_metadata",
+                }
+            )
+        elif normalized == "发布机构":
+            options.update(
+                {
+                    "display_name": None,
+                    "confidence": 0.65,
+                    "target_hints": ["issuer"],
+                    "evidence_type": "page_publisher_metadata",
+                    "quality_flags": ["medium_risk_issuer"],
+                }
+            )
+        elif normalized in {"publishdate", "publicationdate", "publishedat"}:
+            options.update(
+                {
+                    "display_name": "publish_date",
+                    "confidence": 0.9,
+                    "target_hints": ["publish_date"],
+                    "evidence_type": "official_publication_metadata",
+                }
+            )
+        return options
 
     def _add_traceable_block_candidates(
         self,
@@ -641,21 +717,62 @@ class CandidateService:
             re.compile(r"[二〇○零一二三四五六七八九十]{4}\s*年\s*[一二三四五六七八九十]{1,3}\s*月\s*[一二三四五六七八九十]{1,3}\s*日"),
             re.compile(r"\d{1,2}\s*月\s*\d{1,2}\s*日"),
         ]
-        matches: list[tuple[int, int, str, str]] = []
+        matches: list[tuple[int, int, str, str, float, str]] = []
         for index, block in enumerate(uir.blocks):
             text = block.text or ""
-            if not text or "生成日期" in text:
+            if not text or any(
+                forbidden in text for forbidden in self.MEETING_DATE_FORBIDDEN_LABELS
+            ):
                 continue
             for pattern in patterns:
                 match = pattern.search(text)
                 if match is None:
                     continue
-                score = 3 if "主持召开" in text else 2 if "日期" in text else 1
-                matches.append((score, -index, match.group(0), block.block_id))
+                explicit = any(label in text for label in self.MEETING_DATE_LABELS)
+                generic_labeled = bool(re.search(r"(?:^|\s)日期\s*[:：]", text))
+                meeting_context = any(
+                    marker in text
+                    for marker in (
+                        "会议于",
+                        "会议召开",
+                        "主持召开",
+                        "会议研究",
+                        "会议听取",
+                        "会议审议",
+                        "会议原则同意",
+                    )
+                )
+                if not explicit and not generic_labeled and not meeting_context:
+                    continue
+                score = 5 if explicit else 4 if "主持召开" in text else 3 if meeting_context else 2
+                confidence = (
+                    0.9
+                    if explicit or "主持召开" in text
+                    else 0.8
+                    if generic_labeled
+                    else 0.75
+                )
+                evidence_type = (
+                    "explicit_meeting_date"
+                    if explicit
+                    else "generic_labeled_meeting_date"
+                    if generic_labeled
+                    else "meeting_opening_date"
+                )
+                matches.append(
+                    (
+                        score,
+                        -index,
+                        match.group(0),
+                        block.block_id,
+                        confidence,
+                        evidence_type,
+                    )
+                )
                 break
         if not matches:
             return None
-        _score, _index, value, block_id = max(matches)
+        _score, _index, value, block_id, confidence, evidence_type = max(matches)
         value = re.sub(r"\s+", "", value)
         return self._candidate(
             task_id=task_id,
@@ -667,6 +784,9 @@ class CandidateService:
             source_kind="derived_meeting_date",
             seen_names=seen_names,
             display_name="meeting_date",
+            confidence=confidence,
+            target_hints=["meeting_date"],
+            evidence_type=evidence_type,
         )
 
     def _meeting_opening_candidates(
@@ -676,7 +796,11 @@ class CandidateService:
         seen_names: dict[str, int],
     ) -> list[FieldCandidate]:
         candidates: list[FieldCandidate] = []
-        number_pattern = re.compile(r"第\s*(\d+)\s*次(?:常务|专题|全体)?会议")
+        number_patterns = (
+            (re.compile(r"第\s*(\d+)\s*次(?:常务|专题|全体)?会议"), "次"),
+            (re.compile(r"会议纪要第\s*(\d+)\s*期"), "期"),
+            (re.compile(r"第\s*(\d+)\s*号会议纪要"), "号"),
+        )
         chair_pattern = re.compile(
             r"(?:县委副书记、代县长|区政府党组书记、区长|市委副书记、市长|"
             r"县委副书记、县长|县长|区长|市长)?"
@@ -687,11 +811,17 @@ class CandidateService:
             text = block.text if isinstance(block.text, str) else ""
             if not text:
                 continue
-            number_match = number_pattern.search(text)
+            number_match: re.Match[str] | None = None
+            number_suffix = ""
+            for pattern, suffix in number_patterns:
+                number_match = pattern.search(text)
+                if number_match is not None:
+                    number_suffix = suffix
+                    break
             if number_match is not None and not any(
                 item.display_name == "meeting_number" for item in candidates
             ):
-                number = f"第{number_match.group(1)}次"
+                number = f"第{number_match.group(1)}{number_suffix}"
                 number_path = f"$.blocks.{block.block_id}.text#meeting_number"
                 candidates.append(
                     self._candidate(
@@ -705,6 +835,8 @@ class CandidateService:
                         seen_names=seen_names,
                         confidence=0.9,
                         display_name="meeting_number",
+                        target_hints=["meeting_number"],
+                        evidence_type="meeting_number_pattern",
                     )
                 )
                 candidates.append(
@@ -760,6 +892,172 @@ class CandidateService:
                 break
         return candidates
 
+    def _meeting_topic_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+    ) -> list[FieldCandidate]:
+        candidates: list[FieldCandidate] = []
+        opening_pattern = re.compile(
+            r"会议(?:研究了|审议通过|听取了|原则同意)(?P<topic>[^。；;]{2,500})"
+        )
+        numbered_pattern = re.compile(
+            r"^\s*(?:[一二三四五六七八九十]+|\d+)[、.．]\s*"
+            r"(?P<topic>关于[^。；;]{2,500})"
+        )
+        for index, block in enumerate(uir.blocks):
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            if not text:
+                continue
+            if text in self.MEETING_TOPIC_SECTION_NAMES:
+                body_text: list[str] = []
+                body_blocks: list[str] = []
+                for child in uir.blocks[index + 1 :]:
+                    if self._heading_level(child) is not None:
+                        break
+                    value = self._block_text(child.text, child.attributes)
+                    if value:
+                        body_text.append(value)
+                        body_blocks.append(child.block_id)
+                if body_text:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.section",
+                            source_name=text,
+                            value="\n".join(body_text),
+                            source_blocks=[block.block_id, *body_blocks],
+                            source_kind="agenda_section",
+                            seen_names=seen_names,
+                            confidence=0.85,
+                            display_name="topics",
+                            target_hints=["topics"],
+                            evidence_type="agenda_section",
+                            inferred_type="list_like",
+                        )
+                    )
+            opening = opening_pattern.search(text)
+            if opening is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#topics",
+                        source_name="会议内容",
+                        value=opening.group("topic").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening_sentence",
+                        seen_names=seen_names,
+                        confidence=0.75,
+                        display_name="topics",
+                        target_hints=["topics"],
+                        evidence_type="meeting_opening_sentence",
+                    )
+                )
+            numbered = numbered_pattern.search(text)
+            if numbered is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#topics",
+                        source_name="审议事项",
+                        value=numbered.group("topic").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind="numbered_agenda_heading",
+                        seen_names=seen_names,
+                        confidence=0.78,
+                        display_name="topics",
+                        target_hints=["topics"],
+                        evidence_type="numbered_agenda_heading",
+                    )
+                )
+        return candidates
+
+    def _general_semantic_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+    ) -> list[FieldCandidate]:
+        candidates: list[FieldCandidate] = []
+        service_object_pattern = re.compile(
+            r"^\s*(?:面向|适用于)\s*(?P<value>[^。；;]{2,500})[。；;]?\s*$"
+        )
+        condition_sentence_pattern = re.compile(
+            r"(?P<value>(?:申请[^。；;]{0,30}应具备|符合以下条件)[^。]{2,800})"
+        )
+        for index, block in enumerate(uir.blocks):
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            if text in self.GENERAL_CONDITION_NAMES and index + 1 < len(uir.blocks):
+                child = uir.blocks[index + 1]
+                value = self._block_text(child.text, child.attributes)
+                if value:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{child.block_id}.attributes.items"
+                            if child.type.lower() == "list"
+                            else f"$.blocks.{child.block_id}.text",
+                            source_name=text,
+                            value=value,
+                            source_blocks=[block.block_id, child.block_id],
+                            source_kind="application_conditions_section",
+                            seen_names=seen_names,
+                            confidence=0.85,
+                            display_name="application_conditions",
+                            target_hints=["application_conditions"],
+                            evidence_type="application_conditions_section",
+                            inferred_type=(
+                                "list_like"
+                                if child.type.lower() == "list" or "\n" in value
+                                else None
+                            ),
+                        )
+                    )
+            service_object = service_object_pattern.search(text)
+            if service_object is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#service_object",
+                        source_name="适用对象",
+                        value=service_object.group("value").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind="service_object_sentence",
+                        seen_names=seen_names,
+                        confidence=0.8,
+                        display_name="service_object",
+                        target_hints=["service_object"],
+                        evidence_type="service_object_sentence",
+                    )
+                )
+            condition_sentence = condition_sentence_pattern.search(text)
+            if condition_sentence is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=(
+                            f"$.blocks.{block.block_id}.text#application_conditions"
+                        ),
+                        source_name="申请条件",
+                        value=condition_sentence.group("value").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind="application_conditions_sentence",
+                        seen_names=seen_names,
+                        confidence=0.72,
+                        display_name="application_conditions",
+                        target_hints=["application_conditions"],
+                        evidence_type="application_conditions_sentence",
+                    )
+                )
+        return candidates
+
     def _policy_document_candidates(
         self,
         task_id: str,
@@ -772,6 +1070,29 @@ class CandidateService:
         existing_names = {
             self.normalize_name(candidate.source_name) for candidate in existing_candidates
         }
+
+        for block in blocks:
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            match = re.fullmatch(r"发布机构\s*[:：]\s*(?P<value>[^，。；;\n]{2,100})", text)
+            if match is None:
+                continue
+            candidates.append(
+                self._candidate(
+                    task_id=task_id,
+                    uir=uir,
+                    source_path=f"$.blocks.{block.block_id}.text#issuer",
+                    source_name="page_publisher.organization",
+                    value=match.group("value").strip(),
+                    source_blocks=[block.block_id],
+                    source_kind="page_publisher_field",
+                    seen_names=seen_names,
+                    confidence=0.65,
+                    display_name="发布机构",
+                    target_hints=["issuer"],
+                    evidence_type="page_publisher_field",
+                    quality_flags=["medium_risk_issuer"],
+                )
+            )
 
         has_issuer = bool(existing_names.intersection(self.POLICY_ISSUER_SOURCE_NAMES))
         if not has_issuer:
@@ -792,6 +1113,8 @@ class CandidateService:
                             seen_names=seen_names,
                             confidence=0.9,
                             display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_title_issuer",
                         )
                     )
                     candidates.append(
@@ -806,6 +1129,8 @@ class CandidateService:
                             seen_names=seen_names,
                             confidence=0.9,
                             display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_title_issuer",
                         )
                     )
                     has_issuer = True
@@ -842,6 +1167,8 @@ class CandidateService:
                             source_kind="policy_signature",
                             seen_names=seen_names,
                             confidence=0.9,
+                            target_hints=["issuer"],
+                            evidence_type="policy_signature",
                         )
                     )
                     break
@@ -880,6 +1207,8 @@ class CandidateService:
                         seen_names=seen_names,
                         confidence=0.9,
                         display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="official_publication_url",
                     )
                 )
                 candidates.append(
@@ -894,6 +1223,8 @@ class CandidateService:
                         seen_names=seen_names,
                         confidence=0.9,
                         display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="official_publication_url",
                     )
                 )
 
@@ -922,6 +1253,8 @@ class CandidateService:
                         seen_names=seen_names,
                         confidence=0.9,
                         display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="official_page_banner",
                     )
                 )
                 candidates.append(
@@ -936,6 +1269,8 @@ class CandidateService:
                         seen_names=seen_names,
                         confidence=0.9,
                         display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="official_page_banner",
                     )
                 )
                 break
@@ -983,6 +1318,10 @@ class CandidateService:
         seen_names: dict[str, int],
         confidence: float = 0.8,
         display_name: str | None = None,
+        target_hints: list[str] | None = None,
+        evidence_type: str | None = None,
+        quality_flags: list[str] | None = None,
+        inferred_type: str | None = None,
     ) -> FieldCandidate:
         candidate_base = self.sanitize(source_name)
         seen_names[candidate_base] = seen_names.get(candidate_base, 0) + 1
@@ -995,10 +1334,14 @@ class CandidateService:
             source_name=source_name,
             display_name=display_name or source_name,
             value_sample=value,
-            inferred_type=self.infer_type(value),
+            inferred_type=inferred_type or self.infer_type(value),
             source_blocks=source_blocks,
             confidence=confidence,
             evidence=[f"extracted from {source_kind}"],
+            target_hints=target_hints or [],
+            evidence_type=evidence_type or source_kind,
+            confidence_hint=confidence,
+            quality_flags=quality_flags or [],
         )
 
     @staticmethod

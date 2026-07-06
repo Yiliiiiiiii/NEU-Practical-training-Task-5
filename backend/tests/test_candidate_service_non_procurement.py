@@ -794,3 +794,218 @@ def test_new_candidate_samples_and_regex_matches_are_bounded():
     assert len(title_path.value_sample) == 1000
     assert len(materials.value_sample) == 1000
     assert len(date_candidates) == 10
+
+
+def test_meeting_topics_candidates_are_traceable_and_exclude_noise_sections() -> None:
+    uir = make_uir(
+        [
+            {"block_id": "agenda", "type": "heading", "level": 2, "text": "会议议题"},
+            {
+                "block_id": "agenda_item",
+                "type": "paragraph",
+                "text": "一、关于推进城市更新工作的事项",
+            },
+            {
+                "block_id": "opening",
+                "type": "paragraph",
+                "text": "会议研究了生态环境治理工作。",
+            },
+            {"block_id": "requirements", "type": "heading", "level": 2, "text": "会议要求"},
+            {
+                "block_id": "requirement_body",
+                "type": "paragraph",
+                "text": "各部门抓好落实。",
+            },
+            {
+                "block_id": "time",
+                "type": "paragraph",
+                "text": "会议时间：2025年6月1日",
+            },
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_topics", uir)
+    topics = [item for item in candidates if "topics" in item.target_hints]
+
+    assert {item.evidence_type for item in topics} >= {
+        "agenda_section",
+        "meeting_opening_sentence",
+    }
+    assert any("关于推进城市更新工作" in str(item.value_sample) for item in topics)
+    assert any("生态环境治理" in str(item.value_sample) for item in topics)
+    assert all(item.source_path and item.source_blocks for item in topics)
+    assert not any(
+        "会议要求" in str(item.value_sample) or "会议时间" in str(item.value_sample)
+        for item in topics
+    )
+
+
+def test_meeting_date_prefers_meeting_context_and_rejects_publication_context() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "publication",
+                "type": "paragraph",
+                "text": "发布日期：2025年5月30日",
+            },
+            {
+                "block_id": "meeting",
+                "type": "paragraph",
+                "text": "2025年6月1日下午，会议听取了专项工作汇报。",
+            },
+        ],
+        metadata={"domain": "meeting_doc", "retrieved_at": "2025-06-02T10:00:00Z"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_date_safe", uir)
+    dates = [item for item in candidates if "meeting_date" in item.target_hints]
+
+    assert dates
+    assert dates[0].value_sample == "2025年6月1日"
+    assert dates[0].source_blocks == ["meeting"]
+    assert dates[0].confidence_hint <= 0.8
+    assert not any(item.source_blocks == ["publication"] for item in dates)
+
+    forbidden_only = CandidateService().extract_candidates(
+        "task_meeting_date_forbidden",
+        make_uir(
+            [
+                {
+                    "block_id": "issue",
+                    "type": "paragraph",
+                    "text": "成文日期：2025年6月1日",
+                }
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+    assert not any("meeting_date" in item.target_hints for item in forbidden_only)
+
+
+def test_meeting_number_supports_minutes_issue_patterns() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "number",
+                "type": "paragraph",
+                "text": "市政府会议纪要第12期",
+            }
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_number", uir)
+    number = next(item for item in candidates if "meeting_number" in item.target_hints)
+
+    assert number.value_sample == "第12期"
+    assert number.source_blocks == ["number"]
+    assert number.evidence_type == "meeting_number_pattern"
+
+
+def test_generic_labeled_meeting_date_keeps_existing_traceable_behavior() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_generic_meeting_date",
+        make_uir(
+            [
+                {
+                    "block_id": "date",
+                    "type": "paragraph",
+                    "text": "日期：2026-06-16 08:28",
+                }
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    date = next(item for item in candidates if "meeting_date" in item.target_hints)
+    assert date.value_sample == "2026-06-16"
+    assert date.source_blocks == ["date"]
+    assert date.evidence_type == "generic_labeled_meeting_date"
+
+
+def test_policy_semantic_candidates_preserve_issuer_and_publication_risk() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "publisher",
+                "type": "paragraph",
+                "text": "发布机构：市发展改革委",
+            },
+            {
+                "block_id": "interpreter",
+                "type": "paragraph",
+                "text": "解读机构：市政策研究室",
+            },
+            {
+                "block_id": "issue_date",
+                "type": "paragraph",
+                "text": "成文日期：2025年5月30日",
+            },
+        ],
+        metadata={
+            "domain": "policy_doc",
+            "issuing_body": "市人民政府办公厅",
+            "publication_date": "2025-06-01",
+            "retrieved_at": "2025-06-02T10:00:00Z",
+        },
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_semantics", uir)
+    issuers = [item for item in candidates if "issuer" in item.target_hints]
+    publish_dates = [item for item in candidates if "publish_date" in item.target_hints]
+
+    assert any(
+        item.value_sample == "市人民政府办公厅" and item.confidence_hint >= 0.82
+        for item in issuers
+    )
+    assert any(
+        item.value_sample == "市发展改革委"
+        and item.confidence_hint <= 0.65
+        and "medium_risk_issuer" in item.quality_flags
+        and item.display_name == "发布机构"
+        for item in issuers
+    )
+    assert not any(item.value_sample == "市政策研究室" for item in issuers)
+    assert [item.value_sample for item in publish_dates] == ["2025-06-01"]
+    assert publish_dates[0].evidence_type == "official_publication_metadata"
+    assert not any(item.source_blocks == ["issue_date"] for item in publish_dates)
+
+
+def test_general_conditions_and_service_object_emit_list_aware_hints() -> None:
+    uir = make_uir(
+        [
+            {"block_id": "conditions", "type": "heading", "level": 2, "text": "申请条件"},
+            {
+                "block_id": "condition_list",
+                "type": "list",
+                "attributes": {"items": ["依法登记", "信用良好"]},
+            },
+            {
+                "block_id": "object",
+                "type": "paragraph",
+                "text": "适用于本市科技型中小企业。",
+            },
+            {
+                "block_id": "contact",
+                "type": "paragraph",
+                "text": "联系人：张三",
+            },
+        ],
+        metadata={"domain": "general_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_general_semantics", uir)
+    conditions = [
+        item for item in candidates if "application_conditions" in item.target_hints
+    ]
+    service_objects = [
+        item for item in candidates if "service_object" in item.target_hints
+    ]
+
+    assert conditions[0].value_sample == "依法登记\n信用良好"
+    assert conditions[0].inferred_type == "list_like"
+    assert conditions[0].source_blocks == ["conditions", "condition_list"]
+    assert service_objects[0].value_sample == "本市科技型中小企业"
+    assert service_objects[0].source_blocks == ["object"]
+    assert not any(item.value_sample == "张三" for item in service_objects)

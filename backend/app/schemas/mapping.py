@@ -17,6 +17,10 @@ class FieldCandidate(StrictBaseModel):
     source_blocks: list[str] = Field(default_factory=list)
     confidence: float
     evidence: list[str] = Field(default_factory=list)
+    target_hints: list[str] = Field(default_factory=list)
+    evidence_type: str | None = None
+    confidence_hint: float | None = None
+    quality_flags: list[str] = Field(default_factory=list)
 
 
 class SourceField(StrictBaseModel):
