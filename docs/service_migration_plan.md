@@ -2,7 +2,7 @@
 
 > **Historical migration record:** Detailed module gaps and “later” steps below
 > describe earlier checkpoints. The current implementation has progressed
-> through the maturity roadmap; use [`project_status.md`](project_status.md) for
+> through the maturity roadmap; use [`project_status.md`](交接/project_status.md) for
 > current capabilities and boundaries.
 
 ## 1. Purpose

@@ -1,6 +1,6 @@
 # SchemaPack Agent 四项深化设计
 
-> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 ## 目标
 
@@ -193,8 +193,8 @@ gold source block ID、标题路径和答案关键词只用于判断返回结果
 ## 文档更新
 
 更新 `README.md`、`docs/real_world_uir_dataset.md`、
-`docs/requirement_mapping.md`、`docs/final_demo_script.md` 和
-`docs/final_handoff_status.md`，说明四项能力、运行命令、报告路径、真实指标和已知
+`docs/交接/requirement_mapping.md`、`docs/交接/final_demo_script.md` 和
+`docs/交接/final_handoff_status.md`，说明四项能力、运行命令、报告路径、真实指标和已知
 限制。前端可选增强不在本次范围内。
 
 ## 验收标准

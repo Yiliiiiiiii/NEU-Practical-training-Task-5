@@ -1,7 +1,7 @@
 # SchemaPack Agent 最终交接状态
 
 > 本文保留各阶段交接历史。当前统一交接入口为
-> [`交接/README.md`](交接/README.md)。
+> [`README.md`](README.md)。
 
 ## 集成仓库状态
 
@@ -12,7 +12,7 @@
 - Ruff: clean.
 - Frontend production build: successful.
 - Frontend tests: 24 passed.
-- OpenAPI export: 63 paths written to [`docs/openapi.json`](openapi.json).
+- OpenAPI export: 63 paths written to [`docs/openapi.json`](../openapi.json).
 - 核心生产边界：UIR input 到 schema-driven package output。
 
 当前处理链路：
@@ -26,25 +26,25 @@ UIR -> Schema -> Mapping -> Transform -> Canonical -> Render
 
 | Area | 当前能力 | Evidence |
 | --- | --- | --- |
-| Schema/template catalogs | Catalog/governance 覆盖 schemas、schema versions、mapping templates、template versions 和 effective knowledge-pack selection，并支持 status transitions、referenced-version protection 和 immutable task snapshots。 | [`docs/developer_guide.md`](developer_guide.md) |
-| Document and task APIs | UIR import、document list/detail、task create/list/detail、explicit execution、report retrieval、package metadata 和 package download。 | [`docs/openapi.json`](openapi.json) |
-| Mapping and transform | 确定性 field candidate extraction、exact/alias/regex/type/fuzzy matching、evidence、confidence tiers、risk flags、review-required reasons、badcase filtering、projection、normalization、enum maps 和 defaults。 | [`reports/real_world_mapping_eval_report.md`](../reports/real_world_mapping_eval_report.md) |
-| Rendering and packages | Canonical model build、JSON/Markdown/chunk rendering、deterministic content organization、validation、manifest generation、ZIP creation 和 strict package verification。 | [`docs/package_spec.md`](package_spec.md) |
-| Human review and knowledge | Review approval/rejection、knowledge candidates、draft/active/archived packs、effective-template resolution、metrics、snapshot preservation 和 badcase protections。 | [`reports/knowledge_loop_eval_report.md`](../reports/knowledge_loop_eval_report.md) |
-| Optional LLM fallback | 默认关闭，支持 deterministic stub 与 OpenAI-compatible modes；suggestions 仅 Review；具备 bounded retries/timeouts、suggestion caps、redacted reports、provider warning handling 和 strict-mode override。 | [`reports/llm_fallback_eval_report.md`](../reports/llm_fallback_eval_report.md) |
-| Frontend workbench | Import、task creation、execution、mapping evidence、validation、content organization controls、chunk preview、raw reports、review/knowledge actions、audit panel 和 package download。 | [`docs/demo_workflow.md`](demo_workflow.md) |
-| Deployment | Backend/frontend Dockerfiles、Nginx proxy、Docker Compose volumes、startup database initialization、API-key auth option、audit logs 和 retention cleanup。 | [`docs/deployment.md`](deployment.md) |
-| External UIR and routing | Adapter registry、自动检测、block-list/section-tree、trace evidence、Router v2、API/UI 和 report-only DeepSeek suggestion。 | [`docs/external_uir_integration.md`](external_uir_integration.md) |
-| Draft and review governance | Schema/Template Draft Lab、Review Workbench、impact preview、batch safety、负知识、knowledge diff/impact/rollback。 | [`docs/project_status.md`](project_status.md) |
-| Evaluation Center | Dataset/run/metric/scorecard API、四分区前端、风险说明、报告读取和 8/8 regression gates。 | [`reports/evaluation_center`](../reports/evaluation_center) |
-| SchemaPack-Lineage | 字段/block/chunk/artifact lineage、五个查询 API、前端可信链路 panel、评测与四项 hard gates。 | [`docs/lineage.md`](lineage.md) |
-| Downstream consumption | Package 1.1、RAG/training/CSV contracts、ZIP/directory verifier 和 exporters。 | [`docs/package_spec.md`](package_spec.md) |
-| Integration ecosystem | Unified CLI、Python SDK 和 inert Adapter scaffold。Webhook 未实现。 | [`sdk/python/README.md`](../sdk/python/README.md) |
-| Optional raw upstream | 离线 Docling/Unstructured entry scripts，惰性依赖，输出 External UIR；无 OCR。 | [`examples/raw_upstream/README.md`](../examples/raw_upstream/README.md) |
+| Schema/template catalogs | Catalog/governance 覆盖 schemas、schema versions、mapping templates、template versions 和 effective knowledge-pack selection，并支持 status transitions、referenced-version protection 和 immutable task snapshots。 | [`docs/developer_guide.md`](../developer_guide.md) |
+| Document and task APIs | UIR import、document list/detail、task create/list/detail、explicit execution、report retrieval、package metadata 和 package download。 | [`docs/openapi.json`](../openapi.json) |
+| Mapping and transform | 确定性 field candidate extraction、exact/alias/regex/type/fuzzy matching、evidence、confidence tiers、risk flags、review-required reasons、badcase filtering、projection、normalization、enum maps 和 defaults。 | [`reports/real_world_mapping_eval_report.md`](../../reports/real_world_mapping_eval_report.md) |
+| Rendering and packages | Canonical model build、JSON/Markdown/chunk rendering、deterministic content organization、validation、manifest generation、ZIP creation 和 strict package verification。 | [`docs/package_spec.md`](../package_spec.md) |
+| Human review and knowledge | Review approval/rejection、knowledge candidates、draft/active/archived packs、effective-template resolution、metrics、snapshot preservation 和 badcase protections。 | [`reports/knowledge_loop_eval_report.md`](../../reports/knowledge_loop_eval_report.md) |
+| Optional LLM fallback | 默认关闭，支持 deterministic stub 与 OpenAI-compatible modes；suggestions 仅 Review；具备 bounded retries/timeouts、suggestion caps、redacted reports、provider warning handling 和 strict-mode override。 | [`reports/llm_fallback_eval_report.md`](../../reports/llm_fallback_eval_report.md) |
+| Frontend workbench | Import、task creation、execution、mapping evidence、validation、content organization controls、chunk preview、raw reports、review/knowledge actions、audit panel 和 package download。 | [`docs/demo_workflow.md`](../demo_workflow.md) |
+| Deployment | Backend/frontend Dockerfiles、Nginx proxy、Docker Compose volumes、startup database initialization、API-key auth option、audit logs 和 retention cleanup。 | [`docs/deployment.md`](../deployment.md) |
+| External UIR and routing | Adapter registry、自动检测、block-list/section-tree、trace evidence、Router v2、API/UI 和 report-only DeepSeek suggestion。 | [`docs/external_uir_integration.md`](../external_uir_integration.md) |
+| Draft and review governance | Schema/Template Draft Lab、Review Workbench、impact preview、batch safety、负知识、knowledge diff/impact/rollback。 | [`docs/交接/project_status.md`](project_status.md) |
+| Evaluation Center | Dataset/run/metric/scorecard API、四分区前端、风险说明、报告读取和 8/8 regression gates。 | [`reports/evaluation_center`](../../reports/evaluation_center) |
+| SchemaPack-Lineage | 字段/block/chunk/artifact lineage、五个查询 API、前端可信链路 panel、评测与四项 hard gates。 | [`docs/lineage.md`](../lineage.md) |
+| Downstream consumption | Package 1.1、RAG/training/CSV contracts、ZIP/directory verifier 和 exporters。 | [`docs/package_spec.md`](../package_spec.md) |
+| Integration ecosystem | Unified CLI、Python SDK 和 inert Adapter scaffold。Webhook 未实现。 | [`sdk/python/README.md`](../../sdk/python/README.md) |
+| Optional raw upstream | 离线 Docling/Unstructured entry scripts，惰性依赖，输出 External UIR；无 OCR。 | [`examples/raw_upstream/README.md`](../../examples/raw_upstream/README.md) |
 
 ## API 与 Frontend Surface
 
-- OpenAPI snapshot 在 [`docs/openapi.json`](openapi.json) 中导出 63 个 paths。API inventory 以该文件和 [`docs/openapi_workflow.md`](openapi_workflow.md) 为准。
+- OpenAPI snapshot 在 [`docs/openapi.json`](../openapi.json) 中导出 63 个 paths。API inventory 以该文件和 [`docs/openapi_workflow.md`](../openapi_workflow.md) 为准。
 - Frontend 是 React/Vite workbench，覆盖 demo path：sample UIR import、task creation、execution、report inspection、review decisions、knowledge activation、content organization settings、enriched chunk preview 和 package download。
 - 本地 frontend development server 默认将 `/api` 代理到
   `http://127.0.0.1:8000`；可用 `VITE_API_PROXY_TARGET` 覆盖本地验收目标。
@@ -202,4 +202,4 @@ Safety posture:
 - `reports/lineage_eval_report.*` 与 `reports/lineage_demo_report.*` 均由脚本
   生成，不是手工指标。
 - Package 1.1 未加入 lineage 自身文件，原因与后续 contract 要求记录在
-  [`package_spec.md`](package_spec.md) 和 [`lineage.md`](lineage.md)。
+  [`package_spec.md`](../package_spec.md) 和 [`lineage.md`](../lineage.md)。

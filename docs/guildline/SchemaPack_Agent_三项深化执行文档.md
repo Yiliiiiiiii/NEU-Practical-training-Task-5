@@ -1,6 +1,6 @@
 # SchemaPack Agent 深化执行文档：非采购质量、Human Review/Knowledge Pack、真实 UIR 数据集增强
 
-> **历史执行文档**：本文保留实施目标与当时指标；当前实现与最新评测见 [`../project_status.md`](../project_status.md)。
+> **历史执行文档**：本文保留实施目标与当时指标；当前实现与最新评测见 [`../project_status.md`](../交接/project_status.md)。
 
 > 交付对象：Codex  
 > 适用项目：SchemaPack Agent  
@@ -1125,10 +1125,10 @@ README.md
 docs/real_world_uir_dataset.md
 docs/non_procurement_mapping_improvement_plan.md
 docs/real_world_knowledge_loop.md
-docs/badcase_analysis.md
-docs/requirement_mapping.md
-docs/final_handoff_status.md
-docs/final_demo_script.md
+docs/交接/badcase_analysis.md
+docs/交接/requirement_mapping.md
+docs/交接/final_handoff_status.md
+docs/交接/final_demo_script.md
 reports/non_procurement_acceptance_report.md
 ```
 
@@ -1274,10 +1274,10 @@ README.md
 docs/real_world_uir_dataset.md
 docs/non_procurement_mapping_improvement_plan.md
 docs/real_world_knowledge_loop.md
-docs/badcase_analysis.md
-docs/requirement_mapping.md
-docs/final_handoff_status.md
-docs/final_demo_script.md
+docs/交接/badcase_analysis.md
+docs/交接/requirement_mapping.md
+docs/交接/final_handoff_status.md
+docs/交接/final_demo_script.md
 ```
 
 ---

@@ -1290,9 +1290,9 @@ docs/developer_guide.md
 docs/package_spec.md
 docs/api_usage_examples.md
 docs/demo_workflow.md
-docs/final_demo_script.md
-docs/project_status.md
-docs/final_handoff_status.md
+docs/交接/final_demo_script.md
+docs/交接/project_status.md
+docs/交接/final_handoff_status.md
 README.md
 ```
 
@@ -1479,7 +1479,7 @@ retrieved_at -> effective_date
     backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
     Push-Location frontend; npm.cmd test; npm run build; Pop-Location
     backend\.venv\Scripts\python.exe scripts\check_regression_gates.py --metrics reports\evaluation_center\current_metrics.json --gates reports\evaluation_center\regression_gates.json --out reports\evaluation_center\regression_gate_report.json
-18. 更新 docs/developer_guide.md、docs/package_spec.md、docs/api_usage_examples.md、docs/demo_workflow.md、docs/final_demo_script.md、docs/project_status.md、docs/final_handoff_status.md、README.md，并新增 docs/lineage.md。
+18. 更新 docs/developer_guide.md、docs/package_spec.md、docs/api_usage_examples.md、docs/demo_workflow.md、docs/交接/final_demo_script.md、docs/交接/project_status.md、docs/交接/final_handoff_status.md、README.md，并新增 docs/lineage.md。
 19. 不要手工伪造指标；所有 reports/*.json 和 reports/*.md 必须由脚本生成或明确说明是静态文档。
 20. 保持当前项目安全指标：badcase violations = 0，LLM auto accepted = 0，package verification = 1.0。
 ```

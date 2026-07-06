@@ -464,9 +464,9 @@ def test_handoff_docs_reference_all_four_reports() -> None:
         for path in (
             "README.md",
             "docs/real_world_uir_dataset.md",
-            "docs/requirement_mapping.md",
-            "docs/final_demo_script.md",
-            "docs/final_handoff_status.md",
+            "docs/交接/requirement_mapping.md",
+            "docs/交接/final_demo_script.md",
+            "docs/交接/final_handoff_status.md",
         )
     )
 

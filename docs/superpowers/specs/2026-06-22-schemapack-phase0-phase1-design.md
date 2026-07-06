@@ -1,6 +1,6 @@
 # SchemaPack Phase 0-1 Design
 
-> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 **Source blueprint:** `SchemaPack_Agent_项目实施文档_修订版.md`
 

@@ -114,18 +114,18 @@ backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 
 ## 文档地图
 
-- 当前实施状态与文档口径：[`docs/project_status.md`](docs/project_status.md)、[`docs/README.md`](docs/README.md)
+- 当前实施状态与文档口径：[`docs/交接/project_status.md`](docs/交接/project_status.md)、[`docs/README.md`](docs/README.md)
 - 网页工作台新手使用教程：[`docs/user_web_workbench_guide.md`](docs/user_web_workbench_guide.md)
 - 当前交接入口：[`docs/交接/README.md`](docs/交接/README.md)
-- 历史交接汇总：[`docs/final_handoff_status.md`](docs/final_handoff_status.md)
+- 历史交接汇总：[`docs/交接/final_handoff_status.md`](docs/交接/final_handoff_status.md)
 - Demo workflow：[`docs/demo_workflow.md`](docs/demo_workflow.md)
-- Final demo script：[`docs/final_demo_script.md`](docs/final_demo_script.md)
+- Final demo script：[`docs/交接/final_demo_script.md`](docs/交接/final_demo_script.md)
 - Developer guide：[`docs/developer_guide.md`](docs/developer_guide.md)
 - Deployment guide：[`docs/deployment.md`](docs/deployment.md)
 - API workflow 与 snapshot：[`docs/openapi_workflow.md`](docs/openapi_workflow.md)、[`docs/openapi.json`](docs/openapi.json)
 - API examples：[`docs/api_usage_examples.md`](docs/api_usage_examples.md)
-- Requirement mapping：[`docs/requirement_mapping.md`](docs/requirement_mapping.md)
-- Badcase analysis：[`docs/badcase_analysis.md`](docs/badcase_analysis.md)
+- Requirement mapping：[`docs/交接/requirement_mapping.md`](docs/交接/requirement_mapping.md)
+- Badcase analysis：[`docs/交接/badcase_analysis.md`](docs/交接/badcase_analysis.md)
 - Package specification：[`docs/package_spec.md`](docs/package_spec.md)
 - Real-world UIR dataset guide：[`docs/real_world_uir_dataset.md`](docs/real_world_uir_dataset.md)
 - Real-world knowledge-loop guide：[`docs/real_world_knowledge_loop.md`](docs/real_world_knowledge_loop.md)

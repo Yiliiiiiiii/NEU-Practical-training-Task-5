@@ -1,6 +1,6 @@
 # Project Docs Chinese Copy Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. See [`../../project_status.md`](../../project_status.md) for current implementation status.
+> **Historical plan:** Preserved as an execution record. See [`../../project_status.md`](../../交接/project_status.md) for current implementation status.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use nbl.subagent-driven-development (recommended) or nbl.executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -25,7 +25,7 @@
 - Modify: `docs/developer_guide.md`
 - Modify: `docs/deployment.md`
 - Modify: `docs/demo_workflow.md`
-- Modify: `docs/final_demo_script.md`
+- Modify: `docs/交接/final_demo_script.md`
 
 - [ ] Translate ordinary prose into Chinese.
 - [ ] Preserve commands, paths, endpoint names, and professional terms.
@@ -39,11 +39,11 @@
 **Parallelizable:** No
 
 **Files:**
-- Modify: `docs/final_handoff_status.md`
-- Modify: `docs/requirement_mapping.md`
+- Modify: `docs/交接/final_handoff_status.md`
+- Modify: `docs/交接/requirement_mapping.md`
 - Modify: `docs/package_spec.md`
 - Modify: `docs/real_world_uir_dataset.md`
-- Modify: `docs/badcase_analysis.md`
+- Modify: `docs/交接/badcase_analysis.md`
 
 - [ ] Translate review-facing explanations and status notes.
 - [ ] Keep metric values and evidence links unchanged.

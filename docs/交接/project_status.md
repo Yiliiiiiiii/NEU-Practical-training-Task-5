@@ -2,8 +2,8 @@
 
 > 最后同步：2026-07-06。本文档是项目能力、验证基线和边界的统一状态入口。
 > 历史需求、规格和实施计划保留当时语境；发生冲突时，以本文档、
-> [`交接/README.md`](交接/README.md) 和
-> [`openapi.json`](openapi.json) 为准。
+> [`README.md`](README.md) 和
+> [`../openapi.json`](../openapi.json) 为准。
 
 ## 验证基线
 

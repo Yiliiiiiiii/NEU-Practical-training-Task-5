@@ -1,6 +1,6 @@
 # SchemaPack Agent 成熟化与创新发展路线执行文档
 
-> **实施状态（2026-07-04）**：Phase 1-6、Phase 8 已完成；Phase 7 的 CLI、Python SDK 与 Adapter scaffold 已完成，Webhook 作为可选项未实现。详见 [`../project_status.md`](../project_status.md)。
+> **实施状态（2026-07-04）**：Phase 1-6、Phase 8 已完成；Phase 7 的 CLI、Python SDK 与 Adapter scaffold 已完成，Webhook 作为可选项未实现。详见 [`../project_status.md`](../交接/project_status.md)。
 
 > 交付对象：Codex / 开发执行模型  
 > 适用项目：SchemaPack Agent（课题 5：数据格式标准化转换智能体）  

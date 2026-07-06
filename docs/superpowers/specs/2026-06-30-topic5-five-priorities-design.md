@@ -1,6 +1,6 @@
 # SchemaPack Agent 五优先级深化设计
 
-> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 ## 目标
 

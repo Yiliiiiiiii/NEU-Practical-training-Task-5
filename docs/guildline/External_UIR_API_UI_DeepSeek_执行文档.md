@@ -1,6 +1,6 @@
 # External UIR Adapter API/UI + DeepSeek 辅助适配执行文档
 
-> **历史执行文档**：本文保留 API/UI 与 DeepSeek 接入前的基线描述。相关能力现已实现且保持 report-only 安全边界；当前状态见 [`../project_status.md`](../project_status.md)。
+> **历史执行文档**：本文保留 API/UI 与 DeepSeek 接入前的基线描述。相关能力现已实现且保持 report-only 安全边界；当前状态见 [`../project_status.md`](../交接/project_status.md)。
 
 ## 0. 文档目的
 
@@ -786,10 +786,10 @@ docs/external_uir_integration.md
 docs/api_usage_examples.md
 docs/user_web_workbench_guide.md
 docs/demo_workflow.md
-docs/final_demo_script.md
+docs/交接/final_demo_script.md
 docs/developer_guide.md
-docs/requirement_mapping.md
-docs/final_handoff_status.md
+docs/交接/requirement_mapping.md
+docs/交接/final_handoff_status.md
 README.md
 ```
 
@@ -1151,10 +1151,10 @@ docs/external_uir_integration.md
 docs/api_usage_examples.md
 docs/user_web_workbench_guide.md
 docs/demo_workflow.md
-docs/final_demo_script.md
+docs/交接/final_demo_script.md
 docs/developer_guide.md
-docs/requirement_mapping.md
-docs/final_handoff_status.md
+docs/交接/requirement_mapping.md
+docs/交接/final_handoff_status.md
 README.md
 ```
 

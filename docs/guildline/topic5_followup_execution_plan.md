@@ -1,6 +1,6 @@
 # SchemaPack Agent 课题 5 后续深化执行文档（不含答辩验收事项）
 
-> **历史执行文档**：本文保留当时的深化计划；当前实现与验证基线见 [`../project_status.md`](../project_status.md)。
+> **历史执行文档**：本文保留当时的深化计划；当前实现与验证基线见 [`../project_status.md`](../交接/project_status.md)。
 
 > 适用对象：Codex / 代码执行模型  
 > 项目边界：继续深化课题 5「数据格式标准化转换智能体」，不横向实现课题 2/3/4/6/11 的完整能力。  
@@ -16,12 +16,12 @@
 ```text
 README.md
 docs/service_migration_plan.md
-docs/requirement_mapping.md
-docs/badcase_analysis.md
+docs/交接/requirement_mapping.md
+docs/交接/badcase_analysis.md
 docs/demo_workflow.md
 docs/deployment.md
 docs/api_usage_examples.md
-docs/final_handoff_status.md
+docs/交接/final_handoff_status.md
 ```
 
 执行时必须遵守：
@@ -1394,7 +1394,7 @@ docs/package_spec.md
 docs/openapi_workflow.md
 docs/deployment.md
 docs/api_usage_examples.md
-docs/badcase_analysis.md
+docs/交接/badcase_analysis.md
 docs/demo_workflow.md
 ```
 
@@ -1745,5 +1745,5 @@ python scripts\verify_all.py --include-evaluator --check-openapi
 可以把下面这段直接交给 Codex：
 
 ```text
-请按照 docs/topic5_followup_execution_plan.md 执行本轮开发。先阅读 README.md、docs/service_migration_plan.md、docs/requirement_mapping.md、docs/badcase_analysis.md、docs/demo_workflow.md、docs/deployment.md、docs/api_usage_examples.md、docs/final_handoff_status.md，确认当前项目结构与服务命名。然后从 Phase 23 开始逐阶段实施，每个 Phase 完成后运行对应测试，不要破坏现有 UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP 主链路。默认不启用 LLM，不实现原始文件解析、完整 RAG 或其他课题能力。每次修改要保持向后兼容，更新必要文档和 OpenAPI。
+请按照 docs/topic5_followup_execution_plan.md 执行本轮开发。先阅读 README.md、docs/service_migration_plan.md、docs/交接/requirement_mapping.md、docs/交接/badcase_analysis.md、docs/demo_workflow.md、docs/deployment.md、docs/api_usage_examples.md、docs/交接/final_handoff_status.md，确认当前项目结构与服务命名。然后从 Phase 23 开始逐阶段实施，每个 Phase 完成后运行对应测试，不要破坏现有 UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Validate -> Manifest -> ZIP 主链路。默认不启用 LLM，不实现原始文件解析、完整 RAG 或其他课题能力。每次修改要保持向后兼容，更新必要文档和 OpenAPI。
 ```

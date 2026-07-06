@@ -1,6 +1,6 @@
 # Phase 8 Optional Raw Upstream Implementation Plan
 
-> **Historical plan:** Phase 8 is implemented. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Phase 8 is implemented. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -52,7 +52,7 @@
 - Modify: `README.md`
 - Modify: `docs/developer_guide.md`
 - Modify: `docs/api_usage_examples.md`
-- Modify: `docs/final_handoff_status.md`
+- Modify: `docs/交接/final_handoff_status.md`
 
 - [ ] Document optional installation, no-OCR behavior, offline-only boundary, and the existing External UIR handoff.
 - [ ] Run the optional-upstream focused tests with provider packages absent.

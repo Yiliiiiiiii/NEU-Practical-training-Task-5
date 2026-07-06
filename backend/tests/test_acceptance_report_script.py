@@ -71,7 +71,7 @@ def test_minimal_production_report_generates_json_and_markdown_outputs(
 
     json_path = tmp_path / "reports" / "acceptance_report.json"
     report_markdown_path = tmp_path / "reports" / "acceptance_report.md"
-    docs_markdown_path = tmp_path / "docs" / "acceptance_report.md"
+    docs_markdown_path = tmp_path / "docs" / "交接" / "acceptance_report.md"
     assert json_path.is_file()
     assert report_markdown_path.is_file()
     assert docs_markdown_path.is_file()
@@ -132,16 +132,16 @@ def test_source_evidence_is_reduced_to_core_summaries(tmp_path: Path) -> None:
 
 def test_current_handoff_verification_markers_are_recognized(tmp_path: Path) -> None:
     report_module = load_report_module()
-    handoff_path = tmp_path / "docs" / "final_handoff_status.md"
+    handoff_path = tmp_path / "docs" / "交接" / "final_handoff_status.md"
     handoff_path.parent.mkdir(parents=True)
     handoff_path.write_text(
         "\n".join(
             [
                 "# SchemaPack Agent Final Handoff Status",
-                "- Backend pytest: 491 passed.",
+                "- Backend pytest: 567 passed.",
                 "- Ruff: clean.",
                 "- Frontend production build: successful.",
-                "- OpenAPI export: 58 paths written to `docs/openapi.json`.",
+                "- OpenAPI export: 63 paths written to `docs/openapi.json`.",
             ]
         ),
         encoding="utf-8",

@@ -184,7 +184,7 @@
     "frontend_build": {
       "reason": "final handoff records the frontend production build as successful",
       "recommended_command": "cd frontend; npm run build",
-      "report_path": "docs/final_handoff_status.md",
+      "report_path": "docs/交接/final_handoff_status.md",
       "status": "passed",
       "summary": {
         "documented_command": true,
@@ -465,7 +465,7 @@
     "pytest": {
       "reason": "final handoff records the backend pytest, ruff, and OpenAPI verification gate as passed",
       "recommended_command": "cd backend; python -m pytest -q",
-      "report_path": "docs/final_handoff_status.md",
+      "report_path": "docs/交接/final_handoff_status.md",
       "status": "passed",
       "summary": {
         "documented_command": true,
@@ -488,7 +488,7 @@
         "dataset_size": 45,
         "high_risk_mapping_count": 0,
         "import_pass_count": 45,
-        "mapping_review_required_count": 102,
+        "mapping_review_required_count": 91,
         "package_verify_pass_count": 45,
         "task_execute_pass_count": 45,
         "typical_failure_cases": [
@@ -599,10 +599,10 @@
     "documents": {
       "final_handoff_status": {
         "reason": "document loaded",
-        "report_path": "docs/final_handoff_status.md",
+        "report_path": "docs/交接/final_handoff_status.md",
         "status": "present",
         "summary": {
-          "line_count": 171,
+          "line_count": 205,
           "title": "SchemaPack Agent 最终交接状态"
         }
       },
@@ -611,16 +611,16 @@
         "report_path": "docs/package_spec.md",
         "status": "present",
         "summary": {
-          "line_count": 95,
+          "line_count": 107,
           "title": "SchemaPack Package 规范"
         }
       },
       "requirement_mapping": {
         "reason": "document loaded",
-        "report_path": "docs/requirement_mapping.md",
+        "report_path": "docs/交接/requirement_mapping.md",
         "status": "present",
         "summary": {
-          "line_count": 90,
+          "line_count": 93,
           "title": "课题 5 需求映射"
         }
       }
@@ -900,7 +900,7 @@
         "dataset_size": 45,
         "high_risk_mapping_count": 0,
         "import_pass_count": 45,
-        "mapping_review_required_count": 102,
+        "mapping_review_required_count": 91,
         "package_verify_pass_count": 45,
         "task_execute_pass_count": 45,
         "typical_failure_cases": [
@@ -991,7 +991,7 @@
       }
     }
   },
-  "generated_at": "2026-07-04T12:08:57.090359+00:00",
+  "generated_at": "2026-07-06T01:59:44.416364+00:00",
   "pipeline": "UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Content Organization -> Validate -> Manifest -> ZIP -> Package Verification",
   "project": "SchemaPack Agent",
   "topic": "课题 5：文档内容智能化转换与组织"

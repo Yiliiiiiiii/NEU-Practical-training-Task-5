@@ -306,9 +306,9 @@ Expected: tests PASS，报告由脚本生成。
 - Modify: `docs/package_spec.md`
 - Modify: `docs/api_usage_examples.md`
 - Modify: `docs/demo_workflow.md`
-- Modify: `docs/final_demo_script.md`
-- Modify: `docs/project_status.md`
-- Modify: `docs/final_handoff_status.md`
+- Modify: `docs/交接/final_demo_script.md`
+- Modify: `docs/交接/project_status.md`
+- Modify: `docs/交接/final_handoff_status.md`
 - Modify: `README.md`
 
 - [ ] **Step 1: 更新文档**

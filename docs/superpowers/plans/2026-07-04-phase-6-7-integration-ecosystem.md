@@ -1,6 +1,6 @@
 # Phase 6-7 Integration Ecosystem Implementation Plan
 
-> **Historical plan:** CLI, Python SDK, Adapter scaffold, and consumer contracts are implemented; Webhook remains an optional non-implemented item. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** CLI, Python SDK, Adapter scaffold, and consumer contracts are implemented; Webhook remains an optional non-implemented item. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 

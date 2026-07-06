@@ -1,7 +1,7 @@
 
 # SchemaPack Agent 真实文档采集与真实 UIR 构建实施文档
 
-> **历史执行文档**：本文保留数据集构建过程。当前 manifest 为 45 documents，最新状态见 [`../project_status.md`](../project_status.md)。
+> **历史执行文档**：本文保留数据集构建过程。当前 manifest 为 45 documents，最新状态见 [`../project_status.md`](../交接/project_status.md)。
 
 ## 1. 任务背景
 

@@ -1,6 +1,6 @@
 # SchemaPack Agent 外部 UIR 适配与 Schema Router 执行文档
 
-> **历史执行文档**：本文的“当前缺口”和阶段描述记录实施前状态。Adapter Framework、Router v2、API/UI 与 Draft Generator 均已落地；当前状态见 [`../project_status.md`](../project_status.md)。
+> **历史执行文档**：本文的“当前缺口”和阶段描述记录实施前状态。Adapter Framework、Router v2、API/UI 与 Draft Generator 均已落地；当前状态见 [`../project_status.md`](../交接/project_status.md)。
 
 > 面向 Codex 的实施指导文档  
 > 目标：在不破坏当前 SchemaPack Agent 主链路的前提下，为来自课题 11 或其他上游系统的“外部 UIR 方言”增加适配能力，使其能够规范化为当前项目的标准 UIRDocument，并路由到现有 Schema/Template；当现有 Schema 不适配时，仅生成 draft schema/template 供人工审核，不自动激活生产规则。
@@ -1280,9 +1280,9 @@ backend\.venv\Scripts\python.exe scripts\export_openapi.py
 docs/external_uir_integration.md
 docs/api_usage_examples.md
 docs/developer_guide.md
-docs/requirement_mapping.md
-docs/final_demo_script.md
-docs/final_handoff_status.md
+docs/交接/requirement_mapping.md
+docs/交接/final_demo_script.md
+docs/交接/final_handoff_status.md
 README.md
 ```
 

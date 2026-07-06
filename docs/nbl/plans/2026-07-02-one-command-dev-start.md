@@ -1,6 +1,6 @@
 # One-command Dev Start Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. See [`../../project_status.md`](../../project_status.md) for current implementation status.
+> **Historical plan:** Preserved as an execution record. See [`../../project_status.md`](../../交接/project_status.md) for current implementation status.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use nbl.subagent-driven-development (recommended) or nbl.executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 

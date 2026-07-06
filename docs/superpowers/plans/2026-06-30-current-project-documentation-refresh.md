@@ -1,6 +1,6 @@
 # Current Project Documentation Refresh Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -112,7 +112,7 @@ Do not commit in this task; these facts are inputs to the following edits.
 
 **Files:**
 - Modify: `README.md`
-- Modify: `docs/final_handoff_status.md`
+- Modify: `docs/交接/final_handoff_status.md`
 
 - [ ] **Step 1: Replace the README status narrative**
 
@@ -173,7 +173,7 @@ branch-specific delivery state.
 Run:
 
 ```powershell
-rg -n "codex/guideline-2026-06-29|160 passed|Final Verification On 2026-06-29" README.md docs\final_handoff_status.md
+rg -n "codex/guideline-2026-06-29|160 passed|Final Verification On 2026-06-29" README.md docs\交接\final_handoff_status.md
 ```
 
 Expected: no matches.
@@ -183,8 +183,8 @@ Expected: no matches.
 Run:
 
 ```powershell
-git diff --check -- README.md docs\final_handoff_status.md
-git add README.md docs\final_handoff_status.md
+git diff --check -- README.md docs\交接\final_handoff_status.md
+git add README.md docs\交接\final_handoff_status.md
 git commit -m "docs: refresh project status and handoff"
 ```
 
@@ -285,8 +285,8 @@ Expected: all required paths exist and the commit succeeds.
 ### Task 4: Align Demo, Requirements, Package, And Dataset Guides
 
 **Files:**
-- Modify: `docs/final_demo_script.md`
-- Modify: `docs/requirement_mapping.md`
+- Modify: `docs/交接/final_demo_script.md`
+- Modify: `docs/交接/requirement_mapping.md`
 - Modify: `docs/package_spec.md`
 - Modify: `docs/real_world_uir_dataset.md`
 
@@ -365,8 +365,8 @@ if ($real.package_verify_pass_count -ne 16) { throw 'Unexpected package pass cou
 if ($mapping.summary.badcase_violation_count -ne 0) { throw 'Unexpected badcase violation' }
 if ($proc.procurement_doc.required_coverage -ne 1.0) { throw 'Unexpected procurement coverage' }
 if ($retrieval.summary.'Recall@3' -ne 1.0) { throw 'Unexpected Recall@3' }
-git diff --check -- docs\final_demo_script.md docs\requirement_mapping.md docs\package_spec.md docs\real_world_uir_dataset.md
-git add docs\final_demo_script.md docs\requirement_mapping.md docs\package_spec.md docs\real_world_uir_dataset.md
+git diff --check -- docs\交接\final_demo_script.md docs\交接\requirement_mapping.md docs\package_spec.md docs\real_world_uir_dataset.md
+git add docs\交接\final_demo_script.md docs\交接\requirement_mapping.md docs\package_spec.md docs\real_world_uir_dataset.md
 git commit -m "docs: align demo requirements package and dataset guides"
 ```
 
@@ -375,7 +375,7 @@ Expected: all metric assertions and the commit succeed.
 ### Task 5: Regenerate Acceptance Evidence
 
 **Files:**
-- Modify: `docs/acceptance_report.md`
+- Modify: `docs/交接/acceptance_report.md`
 - Modify: `reports/acceptance_report.json`
 - Modify: `reports/acceptance_report.md`
 
@@ -392,7 +392,7 @@ Expected:
 ```text
 reports/acceptance_report.json
 reports/acceptance_report.md
-docs/acceptance_report.md
+docs/交接/acceptance_report.md
 ```
 
 - [ ] **Step 2: Confirm report copies agree**
@@ -400,7 +400,7 @@ docs/acceptance_report.md
 Run:
 
 ```powershell
-$docsHash = (Get-FileHash docs\acceptance_report.md -Algorithm SHA256).Hash
+$docsHash = (Get-FileHash docs\交接\acceptance_report.md -Algorithm SHA256).Hash
 $reportHash = (Get-FileHash reports\acceptance_report.md -Algorithm SHA256).Hash
 if ($docsHash -ne $reportHash) { throw 'Acceptance Markdown copies differ' }
 $report = Get-Content -Raw -Encoding UTF8 reports\acceptance_report.json | ConvertFrom-Json
@@ -415,8 +415,8 @@ Expected: exit code 0.
 Run:
 
 ```powershell
-git diff --check -- docs\acceptance_report.md reports\acceptance_report.json reports\acceptance_report.md
-git add docs\acceptance_report.md reports\acceptance_report.json reports\acceptance_report.md
+git diff --check -- docs\交接\acceptance_report.md reports\acceptance_report.json reports\acceptance_report.md
+git add docs\交接\acceptance_report.md reports\acceptance_report.json reports\acceptance_report.md
 git commit -m "docs: regenerate current acceptance evidence"
 ```
 
@@ -426,15 +426,15 @@ Expected: a generated-evidence commit.
 
 **Files:**
 - Verify: `README.md`
-- Verify: `docs/final_handoff_status.md`
+- Verify: `docs/交接/final_handoff_status.md`
 - Verify: `docs/developer_guide.md`
 - Verify: `docs/api_usage_examples.md`
 - Verify: `docs/deployment.md`
-- Verify: `docs/final_demo_script.md`
-- Verify: `docs/requirement_mapping.md`
+- Verify: `docs/交接/final_demo_script.md`
+- Verify: `docs/交接/requirement_mapping.md`
 - Verify: `docs/package_spec.md`
 - Verify: `docs/real_world_uir_dataset.md`
-- Verify: `docs/acceptance_report.md`
+- Verify: `docs/交接/acceptance_report.md`
 - Verify: `reports/acceptance_report.json`
 - Verify: `reports/acceptance_report.md`
 
@@ -445,12 +445,12 @@ Run:
 ```powershell
 $canonical = @(
   'README.md',
-  'docs/final_handoff_status.md',
+  'docs/交接/final_handoff_status.md',
   'docs/developer_guide.md',
   'docs/api_usage_examples.md',
   'docs/deployment.md',
-  'docs/final_demo_script.md',
-  'docs/requirement_mapping.md',
+  'docs/交接/final_demo_script.md',
+  'docs/交接/requirement_mapping.md',
   'docs/package_spec.md',
   'docs/real_world_uir_dataset.md'
 )
@@ -465,7 +465,7 @@ Expected: no matches.
 Run:
 
 ```powershell
-$handoff = Get-Content -Raw -Encoding UTF8 docs\final_handoff_status.md
+$handoff = Get-Content -Raw -Encoding UTF8 docs\交接\final_handoff_status.md
 foreach ($marker in @('main', '202 passed', '32', '16/16', '2026-06-30')) {
   if (-not $handoff.Contains($marker)) { throw "Missing handoff marker: $marker" }
 }

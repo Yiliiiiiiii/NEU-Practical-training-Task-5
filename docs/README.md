@@ -1,8 +1,8 @@
 # 项目文档导航
 
-当前状态先阅读 [`project_status.md`](project_status.md)，当前交接统一从
+当前状态先阅读 [`交接/project_status.md`](交接/project_status.md)，当前交接统一从
 [`交接/README.md`](交接/README.md) 进入；历史阶段交接见
-[`final_handoff_status.md`](final_handoff_status.md)。API 以
+[`交接/final_handoff_status.md`](交接/final_handoff_status.md)。API 以
 [`openapi.json`](openapi.json) 为准。
 
 ## 使用与开发
@@ -18,14 +18,14 @@
 
 ## 状态与证据
 
-- [`requirement_mapping.md`](requirement_mapping.md)：需求到实现与证据。
-- [`acceptance_report.md`](acceptance_report.md)：可再生验收报告。
+- [`交接/requirement_mapping.md`](交接/requirement_mapping.md)：需求到实现与证据。
+- [`交接/acceptance_report.md`](交接/acceptance_report.md)：可再生验收报告。
 - [`交接/README.md`](交接/README.md)：当前交接入口与文档索引。
-- [`final_handoff_status.md`](final_handoff_status.md)：历史阶段交接汇总。
+- [`交接/final_handoff_status.md`](交接/final_handoff_status.md)：历史阶段交接汇总。
 - [`../reports`](../reports)：评测 JSON/Markdown 证据。
 
 ## 历史资料
 
 `guildline/`、`nbl/` 和 `superpowers/` 下的需求、规格和计划记录当时目标及
 决策，不持续改写为当前状态。其未勾选步骤或“尚未实现”描述不代表当前项目仍
-缺失该能力；以 [`project_status.md`](project_status.md) 为准。
+缺失该能力；以 [`交接/project_status.md`](交接/project_status.md) 为准。

@@ -1,6 +1,6 @@
 # SchemaPack Agent 四项深化 Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -584,9 +584,9 @@ git commit -m "docs: add topic 5 evaluation evidence"
 **Files:**
 - Modify: `README.md`
 - Modify: `docs/real_world_uir_dataset.md`
-- Modify: `docs/requirement_mapping.md`
-- Modify: `docs/final_demo_script.md`
-- Modify: `docs/final_handoff_status.md`
+- Modify: `docs/交接/requirement_mapping.md`
+- Modify: `docs/交接/final_demo_script.md`
+- Modify: `docs/交接/final_handoff_status.md`
 
 - [ ] **Step 1: 写文档引用测试**
 
@@ -605,9 +605,9 @@ def test_handoff_docs_reference_all_four_reports() -> None:
         for path in (
             "README.md",
             "docs/real_world_uir_dataset.md",
-            "docs/requirement_mapping.md",
-            "docs/final_demo_script.md",
-            "docs/final_handoff_status.md",
+            "docs/交接/requirement_mapping.md",
+            "docs/交接/final_demo_script.md",
+            "docs/交接/final_handoff_status.md",
         )
     )
     assert required <= {item for item in required if item in text}
@@ -640,7 +640,7 @@ Expected: PASS.
 - [ ] **Step 5: 提交文档**
 
 ```powershell
-git add README.md docs/real_world_uir_dataset.md docs/requirement_mapping.md docs/final_demo_script.md docs/final_handoff_status.md backend/tests/test_real_world_mapping_eval.py
+git add README.md docs/real_world_uir_dataset.md docs/交接/requirement_mapping.md docs/交接/final_demo_script.md docs/交接/final_handoff_status.md backend/tests/test_real_world_mapping_eval.py
 git commit -m "docs: document topic 5 evaluation deepening"
 ```
 

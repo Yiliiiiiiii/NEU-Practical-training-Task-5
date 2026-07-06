@@ -1,6 +1,6 @@
 # SchemaPack Phase 2 Documents And Tasks Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 

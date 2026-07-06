@@ -496,8 +496,8 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
         name: _document_evidence(root, path)
         for name, path in {
             "package_spec": "docs/package_spec.md",
-            "requirement_mapping": "docs/requirement_mapping.md",
-            "final_handoff_status": "docs/final_handoff_status.md",
+            "requirement_mapping": "docs/交接/requirement_mapping.md",
+            "final_handoff_status": "docs/交接/final_handoff_status.md",
         }.items()
     }
     final_handoff = docs["final_handoff_status"]
@@ -507,9 +507,9 @@ def build_acceptance_report(root: Path) -> dict[str, Any]:
             final_handoff,
             command=COMMANDS["pytest"],
             markers=(
-                "Backend pytest: 491 passed.",
+                "Backend pytest: 567 passed.",
                 "Ruff: clean.",
-                "OpenAPI export: 58 paths",
+                "OpenAPI export: 63 paths",
             ),
             passed_reason=(
                 "final handoff records the backend pytest, ruff, and OpenAPI "
@@ -657,7 +657,7 @@ SchemaPack Agent 面向已经进入 UIR 的文档内容，提供受 Schema 和 M
 
 课题 5 要求覆盖 UIR 治理输入、Schema 驱动转换、映射模板、人审知识增长、
 结构化与可读输出、成果包验证及下游消费。对应关系以
-`docs/requirement_mapping.md` 为主证据，其读取状态为
+`docs/交接/requirement_mapping.md` 为主证据，其读取状态为
 `{evidence["documents"]["requirement_mapping"]["status"]}`。
 
 ## 3. 当前实现能力总览
@@ -756,7 +756,7 @@ def write_reports(root: Path, report: dict[str, Any]) -> list[Path]:
     root = Path(root)
     json_path = root / "reports" / "acceptance_report.json"
     report_markdown_path = root / "reports" / "acceptance_report.md"
-    docs_markdown_path = root / "docs" / "acceptance_report.md"
+    docs_markdown_path = root / "docs" / "交接" / "acceptance_report.md"
     json_path.parent.mkdir(parents=True, exist_ok=True)
     docs_markdown_path.parent.mkdir(parents=True, exist_ok=True)
 

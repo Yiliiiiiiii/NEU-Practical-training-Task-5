@@ -1,6 +1,6 @@
 # SchemaPack Agent Topic 5 Phases 0–5 Design
 
-> **Historical specification:** Preserved for design rationale. See [`../../project_status.md`](../../project_status.md) for current implementation status.
+> **Historical specification:** Preserved for design rationale. See [`../../project_status.md`](../../交接/project_status.md) for current implementation status.
 
 ## 1. Purpose
 
@@ -120,7 +120,7 @@ normalizes their core metrics, and writes:
 
 - `reports/acceptance_report.json`
 - `reports/acceptance_report.md`
-- `docs/acceptance_report.md`
+- `docs/交接/acceptance_report.md`
 
 The Markdown document follows the fourteen guideline sections and distinguishes
 observed evidence, missing evidence, boundaries, and recommended reproduction

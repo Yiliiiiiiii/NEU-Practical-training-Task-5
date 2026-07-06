@@ -1,6 +1,6 @@
 # SchemaPack Agent 五优先级深化 Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -1095,12 +1095,12 @@ git commit -m "feat: display five-priority evaluation evidence"
 - Modify: `scripts/build_acceptance_report.py`
 - Modify: `backend/tests/test_acceptance_report_script.py`
 - Modify: `README.md`
-- Modify: `docs/requirement_mapping.md`
+- Modify: `docs/交接/requirement_mapping.md`
 - Modify: `docs/real_world_uir_dataset.md`
 - Modify: `docs/real_world_knowledge_loop.md`
 - Modify: `docs/demo_workflow.md`
-- Modify: `docs/final_demo_script.md`
-- Modify: `docs/final_handoff_status.md`
+- Modify: `docs/交接/final_demo_script.md`
+- Modify: `docs/交接/final_handoff_status.md`
 - Modify: `docs/api_usage_examples.md`
 - Modify: `docs/package_spec.md` only if package shape changed
 
@@ -1155,7 +1155,7 @@ backend\.venv\Scripts\python.exe scripts\build_acceptance_report.py
 - [ ] **Step 6: 提交文档**
 
 ```powershell
-git add scripts/build_acceptance_report.py backend/tests/test_acceptance_report_script.py README.md docs/requirement_mapping.md docs/real_world_uir_dataset.md docs/real_world_knowledge_loop.md docs/demo_workflow.md docs/final_demo_script.md docs/final_handoff_status.md docs/api_usage_examples.md docs/package_spec.md reports/acceptance_report.json reports/acceptance_report.md
+git add scripts/build_acceptance_report.py backend/tests/test_acceptance_report_script.py README.md docs/交接/requirement_mapping.md docs/real_world_uir_dataset.md docs/real_world_knowledge_loop.md docs/demo_workflow.md docs/交接/final_demo_script.md docs/交接/final_handoff_status.md docs/api_usage_examples.md docs/package_spec.md reports/acceptance_report.json reports/acceptance_report.md
 git commit -m "docs: hand off five-priority deepening"
 ```
 
@@ -1235,7 +1235,7 @@ rejected candidate activated = 0
 - [ ] **Step 6: 提交最终真实证据**
 
 ```powershell
-git add examples/production_like examples/real_world reports docs/requirement_mapping.md docs/real_world_uir_dataset.md docs/real_world_knowledge_loop.md docs/demo_workflow.md docs/final_demo_script.md docs/final_handoff_status.md docs/api_usage_examples.md docs/package_spec.md
+git add examples/production_like examples/real_world reports docs/交接/requirement_mapping.md docs/real_world_uir_dataset.md docs/real_world_knowledge_loop.md docs/demo_workflow.md docs/交接/final_demo_script.md docs/交接/final_handoff_status.md docs/api_usage_examples.md docs/package_spec.md
 git commit -m "test: regenerate five-priority evaluation evidence"
 ```
 
@@ -1293,7 +1293,7 @@ Expected: exit 0; pytest、Ruff、frontend build 和 OpenAPI 均通过。
 
 读取八组新报告、真实映射、采购、LLM fallback 和 acceptance JSON，逐项核对指导文档
 17 条 Definition of Done。任何未满足项必须在最终回复和
-`docs/final_handoff_status.md` 中列为未完成，不用“基本完成”掩盖。
+`docs/交接/final_handoff_status.md` 中列为未完成，不用“基本完成”掩盖。
 
 - [ ] **Step 6: 检查工作树与提交范围**
 

@@ -1178,14 +1178,14 @@ Markdown 模板：
 只更新当前状态入口和直接相关文档：
 
 ```text
-docs/project_status.md
+docs/交接/project_status.md
 README.md
-docs/final_handoff_status.md
+docs/交接/final_handoff_status.md
 docs/user_web_workbench_guide.md
 docs/developer_guide.md
 docs/external_uir_integration.md
 docs/demo_workflow.md
-docs/final_demo_script.md
+docs/交接/final_demo_script.md
 ```
 
 不要改写历史资料目录：

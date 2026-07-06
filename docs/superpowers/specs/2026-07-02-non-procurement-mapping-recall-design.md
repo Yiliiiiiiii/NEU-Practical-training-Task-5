@@ -1,6 +1,6 @@
 # Non-procurement Mapping Recall Improvement Design
 
-> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 ## Context
 

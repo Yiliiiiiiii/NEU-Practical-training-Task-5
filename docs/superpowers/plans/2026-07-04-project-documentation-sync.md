@@ -1,6 +1,6 @@
 # Project Documentation Sync Implementation Plan
 
-> **Execution record:** The synchronized result is summarized in [`../../project_status.md`](../../project_status.md).
+> **Execution record:** The synchronized result is summarized in [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -30,16 +30,16 @@
 
 **Files:**
 - Modify: `README.md`
-- Modify: `docs/acceptance_report.md`
+- Modify: `docs/交接/acceptance_report.md`
 - Modify: `docs/api_usage_examples.md`
 - Modify: `docs/demo_workflow.md`
 - Modify: `docs/deployment.md`
 - Modify: `docs/developer_guide.md`
 - Modify: `docs/external_uir_integration.md`
-- Modify: `docs/final_demo_script.md`
-- Modify: `docs/final_handoff_status.md`
+- Modify: `docs/交接/final_demo_script.md`
+- Modify: `docs/交接/final_handoff_status.md`
 - Modify: `docs/openapi_workflow.md`
-- Modify: `docs/requirement_mapping.md`
+- Modify: `docs/交接/requirement_mapping.md`
 - Modify: `docs/user_web_workbench_guide.md`
 - Review and update other living documents only where the audit finds a factual mismatch.
 
@@ -56,7 +56,7 @@
 - Modify where needed: `docs/superpowers/{plans,specs}/*.md`
 
 - [x] Add a short status notice to historical documents that contain now-obsolete “current state” claims.
-- [x] Link status notices to `README.md` and `docs/final_handoff_status.md`.
+- [x] Link status notices to `README.md` and `docs/交接/final_handoff_status.md`.
 - [x] Preserve original requirements, proposed APIs, acceptance targets, and unchecked implementation checklists as historical records.
 
 ### Task 4: Validate Generated Reports And Auxiliary READMEs

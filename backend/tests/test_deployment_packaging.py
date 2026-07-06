@@ -28,9 +28,9 @@ def test_deployment_files_are_present():
         "frontend/nginx.conf",
         "docker-compose.yml",
         "docs/deployment.md",
-        "docs/final_demo_script.md",
-        "docs/requirement_mapping.md",
-        "docs/badcase_analysis.md",
+        "docs/交接/final_demo_script.md",
+        "docs/交接/requirement_mapping.md",
+        "docs/交接/badcase_analysis.md",
         "docs/api_usage_examples.md",
     ]
 

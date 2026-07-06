@@ -1,6 +1,6 @@
 # SchemaPack Three-Track Deepening Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -193,10 +193,10 @@ test_knowledge_metrics_report_counts
 - Modify `docs/real_world_uir_dataset.md`
 - Modify `docs/non_procurement_mapping_improvement_plan.md`
 - Modify `docs/real_world_knowledge_loop.md`
-- Modify `docs/badcase_analysis.md`
-- Modify `docs/requirement_mapping.md`
-- Modify `docs/final_handoff_status.md`
-- Modify `docs/final_demo_script.md`
+- Modify `docs/交接/badcase_analysis.md`
+- Modify `docs/交接/requirement_mapping.md`
+- Modify `docs/交接/final_handoff_status.md`
+- Modify `docs/交接/final_demo_script.md`
 - Create or modify `reports/non_procurement_acceptance_report.md`
 
 - [ ] Derive every stated metric from the fresh JSON reports.

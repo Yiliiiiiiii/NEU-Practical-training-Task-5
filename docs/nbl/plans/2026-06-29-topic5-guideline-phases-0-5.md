@@ -1,6 +1,6 @@
 # Topic 5 Guideline Phases 0–5 Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. See [`../../project_status.md`](../../project_status.md) for current implementation status.
+> **Historical plan:** Preserved as an execution record. See [`../../project_status.md`](../../交接/project_status.md) for current implementation status.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use nbl.subagent-driven-development (recommended) or nbl.executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -167,7 +167,7 @@ git commit -m "fix: make clean checkout verification reproducible"
 - Modify: `.gitignore`
 - Generate: `reports/acceptance_report.json`
 - Generate: `reports/acceptance_report.md`
-- Generate: `docs/acceptance_report.md`
+- Generate: `docs/交接/acceptance_report.md`
 
 - [x] **Step 1: Write failing report tests**
 
@@ -280,7 +280,7 @@ knowledge-loop, retrieval, and LLM JSON/Markdown reports.
 Run backend pytest and Ruff, then:
 
 ```powershell
-git add .gitignore scripts/build_acceptance_report.py backend/tests/test_acceptance_report_script.py reports/acceptance_report.json reports/acceptance_report.md docs/acceptance_report.md
+git add .gitignore scripts/build_acceptance_report.py backend/tests/test_acceptance_report_script.py reports/acceptance_report.json reports/acceptance_report.md docs/交接/acceptance_report.md
 git commit -m "feat: generate topic 5 acceptance evidence report"
 ```
 
@@ -923,9 +923,9 @@ explicitly supplied for that invocation.
 - Modify: `README.md`
 - Modify: `docs/developer_guide.md`
 - Modify: `docs/real_world_uir_dataset.md`
-- Modify: `docs/final_handoff_status.md`
-- Modify: `docs/requirement_mapping.md`
-- Modify: `docs/acceptance_report.md`
+- Modify: `docs/交接/final_handoff_status.md`
+- Modify: `docs/交接/requirement_mapping.md`
+- Modify: `docs/交接/acceptance_report.md`
 - Modify: `reports/acceptance_report.json`
 - Modify: `reports/acceptance_report.md`
 
@@ -979,7 +979,7 @@ process is stopped cleanly.
 - [x] **Step 6: Audit acceptance criteria**
 
 Read the guideline checklist line by line and record the actual state in
-`docs/acceptance_report.md`. Required assertions:
+`docs/交接/acceptance_report.md`. Required assertions:
 
 ```text
 badcase_violation_count = 0

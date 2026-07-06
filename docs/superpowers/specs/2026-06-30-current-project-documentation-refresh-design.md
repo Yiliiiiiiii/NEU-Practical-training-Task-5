@@ -1,6 +1,6 @@
 # Current Project Documentation Refresh Design
 
-> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical specification:** Preserved for design rationale. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 ## Goal
 
@@ -59,7 +59,7 @@ evaluation detail.
 
 ### Final Handoff
 
-`docs/final_handoff_status.md` becomes the authoritative current-state handoff:
+`docs/交接/final_handoff_status.md` becomes the authoritative current-state handoff:
 
 - integrated branch and verification baseline;
 - implemented capabilities by subsystem;
@@ -78,17 +78,17 @@ Historical statements about the removed
   representative workflows rather than duplicating the whole OpenAPI document.
 - `docs/deployment.md` documents local and Docker Compose deployment,
   persistence, environment profiles, and production boundaries.
-- `docs/final_demo_script.md` provides a reproducible reviewer-oriented demo
+- `docs/交接/final_demo_script.md` provides a reproducible reviewer-oriented demo
   sequence based on current commands and reports.
 
 ### Acceptance And Domain Guides
 
-- `docs/requirement_mapping.md` maps Topic 5 requirements to current code,
+- `docs/交接/requirement_mapping.md` maps Topic 5 requirements to current code,
   APIs, datasets, and evidence.
 - `docs/package_spec.md` describes the package contract and verifier behavior.
 - `docs/real_world_uir_dataset.md` records the current 16-document distribution,
   source/reproduction flow, evaluation labels, and limitations.
-- `docs/acceptance_report.md` remains generated acceptance evidence; it is
+- `docs/交接/acceptance_report.md` remains generated acceptance evidence; it is
   regenerated from current report inputs instead of manually rewritten.
 
 ### Historical Material
@@ -122,15 +122,15 @@ branch names or historical test counts as present state.
 ## Files To Update
 
 - `README.md`
-- `docs/final_handoff_status.md`
+- `docs/交接/final_handoff_status.md`
 - `docs/developer_guide.md`
 - `docs/api_usage_examples.md`
 - `docs/deployment.md`
-- `docs/final_demo_script.md`
-- `docs/requirement_mapping.md`
+- `docs/交接/final_demo_script.md`
+- `docs/交接/requirement_mapping.md`
 - `docs/package_spec.md`
 - `docs/real_world_uir_dataset.md`
-- generated `docs/acceptance_report.md`
+- generated `docs/交接/acceptance_report.md`
 - generated `reports/acceptance_report.json`
 - generated `reports/acceptance_report.md`
 

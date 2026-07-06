@@ -1,6 +1,6 @@
 # SchemaPack Agent 非采购类 Mapping Recall 提升执行文档
 
-> **历史执行文档**：本文保留优化前基线与目标。最新非采购结果为 35/35 packages、average recall `0.5677551020408163`；当前状态见 [`../project_status.md`](../project_status.md)。
+> **历史执行文档**：本文保留优化前基线与目标。最新非采购结果为 35/35 packages、average recall `0.5677551020408163`；当前状态见 [`../project_status.md`](../交接/project_status.md)。
 
 > 交给 Codex 执行。任务重点：继续攻 `non-procurement mapping recall`，优先处理当前扩展数据集中 `review-required 145` 里出现频率最高的字段别名、缺失候选、低置信映射和 Schema 不适配问题。  
 > 当前基线：扩展后非采购类 `strict pass = 4/20`，`required missing = 18`，`review-required = 145`，`average recall = 0.349`。  
@@ -1447,10 +1447,10 @@ backend\.venv\Scripts\python.exe scripts\eval_non_procurement_mapping.py `
 
 ```text
 README.md
-docs/final_handoff_status.md
-docs/requirement_mapping.md
+docs/交接/final_handoff_status.md
+docs/交接/requirement_mapping.md
 docs/real_world_uir_dataset.md
-docs/badcase_analysis.md
+docs/交接/badcase_analysis.md
 docs/developer_guide.md
 ```
 

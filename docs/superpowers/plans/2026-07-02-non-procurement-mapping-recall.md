@@ -1,6 +1,6 @@
 # Non-procurement Mapping Recall Implementation Plan
 
-> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../project_status.md).
+> **Historical plan:** Preserved as an execution record. Current status: [`../../project_status.md`](../../交接/project_status.md).
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -34,7 +34,7 @@
 - Generate `reports/non_procurement_gap_analysis.json` and `.md`.
 - Generate `reports/non_procurement_mapping_eval_report.json` and `.md`.
 - Create `reports/non_procurement_acceptance_report.md`: threshold-by-threshold result.
-- Update `README.md`, `docs/final_handoff_status.md`, `docs/requirement_mapping.md`, `docs/real_world_uir_dataset.md`, `docs/badcase_analysis.md`, and `docs/developer_guide.md`.
+- Update `README.md`, `docs/交接/final_handoff_status.md`, `docs/交接/requirement_mapping.md`, `docs/real_world_uir_dataset.md`, `docs/交接/badcase_analysis.md`, and `docs/developer_guide.md`.
 
 ### Task 1: Freeze the Verified Baseline
 
@@ -1516,10 +1516,10 @@ git commit -m "feat: apply evidence-backed mapping recall fixes"
 **Files:**
 - Create: `reports/non_procurement_acceptance_report.md`
 - Modify: `README.md`
-- Modify: `docs/final_handoff_status.md`
-- Modify: `docs/requirement_mapping.md`
+- Modify: `docs/交接/final_handoff_status.md`
+- Modify: `docs/交接/requirement_mapping.md`
 - Modify: `docs/real_world_uir_dataset.md`
-- Modify: `docs/badcase_analysis.md`
+- Modify: `docs/交接/badcase_analysis.md`
 - Modify: `docs/developer_guide.md`
 
 - [ ] **Step 1: Build the acceptance table from fresh report values**
@@ -1558,7 +1558,7 @@ List the top remaining candidate, alias, regex, transform, and schema gaps from 
 Add compact sections that link to the baseline, gap analysis, evaluation, and
 acceptance reports. State whether phase one is met. Include the evaluator and
 analyzer commands in `docs/developer_guide.md`. Record the added badcase
-categories in `docs/badcase_analysis.md`. Record the 20-document type split
+categories in `docs/交接/badcase_analysis.md`. Record the 20-document type split
 and report paths in `docs/real_world_uir_dataset.md`.
 
 - [ ] **Step 3: Check documentation for unsupported success language**
@@ -1574,7 +1574,7 @@ Expected: no matches unless the fresh reports literally prove the statement.
 - [ ] **Step 4: Commit documentation**
 
 ```powershell
-git add README.md docs/final_handoff_status.md docs/requirement_mapping.md docs/real_world_uir_dataset.md docs/badcase_analysis.md docs/developer_guide.md reports/non_procurement_acceptance_report.md
+git add README.md docs/交接/final_handoff_status.md docs/交接/requirement_mapping.md docs/real_world_uir_dataset.md docs/交接/badcase_analysis.md docs/developer_guide.md reports/non_procurement_acceptance_report.md
 git commit -m "docs: report non-procurement recall results"
 ```
 

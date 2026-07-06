@@ -2,7 +2,7 @@
 
 > 基于当前可读取证据，已通过检查：chunk_retrieval、downstream_smoke、frontend_build、knowledge_loop、llm_fallback、package_verification、production_like_eval、pytest、real_world_eval。尚未形成完整通过证据：无。本报告不会把缺失、未运行或部分通过的检查表述为已完成。
 
-- 生成时间（UTC）：`2026-07-04T12:08:57.090359+00:00`
+- 生成时间（UTC）：`2026-07-06T01:59:44.416364+00:00`
 - 核心链路：`UIR -> Schema -> Mapping -> Transform -> Canonical -> Render -> Content Organization -> Validate -> Manifest -> ZIP -> Package Verification`
 
 ## 1. 项目定位
@@ -15,7 +15,7 @@ SchemaPack Agent 面向已经进入 UIR 的文档内容，提供受 Schema 和 M
 
 课题 5 要求覆盖 UIR 治理输入、Schema 驱动转换、映射模板、人审知识增长、
 结构化与可读输出、成果包验证及下游消费。对应关系以
-`docs/requirement_mapping.md` 为主证据，其读取状态为
+`docs/交接/requirement_mapping.md` 为主证据，其读取状态为
 `present`。
 
 ## 3. 当前实现能力总览
@@ -291,7 +291,7 @@ ZIP 下载，以及 React/Vite 工作台。本文只记录文档证据状态
     "dataset_size": 45,
     "high_risk_mapping_count": 0,
     "import_pass_count": 45,
-    "mapping_review_required_count": 102,
+    "mapping_review_required_count": 91,
     "package_verify_pass_count": 45,
     "task_execute_pass_count": 45,
     "typical_failure_cases": [
