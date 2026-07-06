@@ -11,6 +11,9 @@ class ReportIssue(StrictBaseModel):
     field_id: str | None = None
     path: str | None = None
     code: str | None = None
+    failure_type: str | None = None
+    source_value: Any | None = None
+    suggested_normalized_value: Any | None = None
 
 
 class MappingReport(StrictBaseModel):
@@ -26,6 +29,8 @@ class ValidationReport(StrictBaseModel):
     task_id: str
     schema_id: str
     passed: bool
+    schema_valid: bool | None = None
+    strict_semantic_valid: bool | None = None
     summary: dict[str, Any]
     issues: list[ReportIssue] = Field(default_factory=list)
 

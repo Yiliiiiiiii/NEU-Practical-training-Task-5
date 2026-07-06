@@ -17,7 +17,9 @@ class TransformResult:
 
 class TransformService:
     SPLIT_ARRAY_FIELDS = {
+        "application_conditions",
         "attendees",
+        "applicable_scope",
         "departments",
         "participants",
         "responsible_departments",
@@ -27,6 +29,26 @@ class TransformService:
         "process_steps",
         "topics",
         "decisions",
+    }
+    ORGANIZATION_FIELDS = {
+        "applicant",
+        "issuer",
+        "issuing_body",
+        "service_object",
+    }
+    CHINESE_DIGITS = {
+        "零": 0,
+        "〇": 0,
+        "○": 0,
+        "一": 1,
+        "二": 2,
+        "三": 3,
+        "四": 4,
+        "五": 5,
+        "六": 6,
+        "七": 7,
+        "八": 8,
+        "九": 9,
     }
 
     def transform(
@@ -56,14 +78,27 @@ class TransformService:
                 errors.append(error)
                 continue
             data[field.field_id] = value
-            traces.append(
-                {
-                    "target_field_id": field.field_id,
-                    "source_field": mapping["source_field"],
-                    "operation": self._operation_for(field),
-                    "status": "ok",
-                }
-            )
+            trace = {
+                "target_field_id": field.field_id,
+                "source_field": mapping["source_field"],
+                "operation": self._operation_for(field),
+                "status": "ok",
+            }
+            if value != raw_value:
+                trace.update(
+                    {
+                        "source_value": raw_value,
+                        "normalized_value": value,
+                        "normalizer": self._normalizer_for(field),
+                    }
+                )
+            if (
+                isinstance(raw_value, str)
+                and field.type == "array[string]"
+                and field.field_id in self.SPLIT_ARRAY_FIELDS
+            ):
+                trace["quality_flags"] = self._list_quality_flags(raw_value, value)
+            traces.append(trace)
 
         for target_field, default_value in template.defaults.items():
             if target_field not in data and target_field in fields_by_id:
@@ -139,6 +174,8 @@ class TransformService:
             return [value], None
         if field.field_id == "contact" and isinstance(value, str):
             return self._normalize_contact(value), None
+        if field.field_id in self.ORGANIZATION_FIELDS and isinstance(value, str):
+            return self._clean_organization(value), None
         return value, None
 
     @staticmethod
@@ -151,8 +188,33 @@ class TransformService:
                 "message": "Date field value is not a string.",
             }
         stripped = value.strip()
+        chinese_match = re.fullmatch(
+            r"(?P<year>[二〇○零一二三四五六七八九]{4})年"
+            r"(?P<month>[一二三四五六七八九十]{1,3})月"
+            r"(?P<day>[一二三四五六七八九十]{1,3})日"
+            r"(?:上午|下午|中午|晚上|凌晨)?",
+            stripped,
+        )
+        if chinese_match:
+            year = "".join(
+                str(TransformService.CHINESE_DIGITS[character])
+                for character in chinese_match.group("year")
+            )
+            month = TransformService._chinese_cardinal(
+                chinese_match.group("month")
+            )
+            day = TransformService._chinese_cardinal(chinese_match.group("day"))
+            if month is not None and day is not None:
+                return TransformService._format_date(
+                    value,
+                    field,
+                    year,
+                    str(month),
+                    str(day),
+                )
         match = re.fullmatch(
-            r"(\d{4})\s*(?:[-/.]|年)\s*(\d{1,2})\s*(?:[-/.]|月)\s*(\d{1,2})\s*(?:日)?",
+            r"(\d{4})\s*(?:[-/.]|年)\s*(\d{1,2})\s*(?:[-/.]|月)\s*"
+            r"(\d{1,2})\s*(?:日)?(?:上午|下午|中午|晚上|凌晨)?",
             stripped,
         )
         if match:
@@ -256,13 +318,80 @@ class TransformService:
             return "enum_map"
         return "rename"
 
-    @staticmethod
-    def _split_array_string(value: str) -> list[str]:
-        return [
-            item.strip()
-            for item in re.split(r"[、,，;；\n]+", value)
+    @classmethod
+    def _split_array_string(cls, value: str) -> list[str]:
+        cleaned = re.sub(
+            r"(?m)^\s*(?:\d+|[一二三四五六七八九十]+)\s*[.．、)、]\s*",
+            "",
+            value.replace("\r", ""),
+        )
+        cleaned = re.sub(
+            r"^\s*(?:申请条件|受理条件|办理条件|申报条件|申请材料|"
+            r"会议议题|参会人员|适用范围)\s*[:：]\s*",
+            "",
+            cleaned,
+        )
+        items = [
+            item.strip().rstrip("。")
+            for item in re.split(r"[、,，;；\n]+", cleaned)
             if item.strip()
         ]
+        return [item for item in items if not cls._is_list_noise(item)]
+
+    @staticmethod
+    def _is_list_noise(value: str) -> bool:
+        return bool(
+            re.fullmatch(r"第\s*\d+\s*页(?:\s*/\s*共\s*\d+\s*页)?", value)
+            or re.match(r"^(?:责任编辑|编辑|来源)\s*[:：]", value)
+        )
+
+    @staticmethod
+    def _list_quality_flags(
+        source_value: str,
+        normalized_value: Any,
+    ) -> list[str]:
+        if (
+            isinstance(normalized_value, list)
+            and len(normalized_value) == 1
+            and "和" in source_value
+            and not re.search(r"[、,，;；\n]|\d+\s*[.．、)]", source_value)
+        ):
+            return ["list_split_review_required"]
+        return []
+
+    @classmethod
+    def _clean_organization(cls, value: str) -> str:
+        cleaned = re.sub(
+            r"^\s*(?:发布机构|发文机关|来源)\s*[:：]\s*",
+            "",
+            value,
+        ).strip()
+        return re.sub(
+            r"(?:网站|栏目|责任编辑)\s*(?:[:：].*)?$",
+            "",
+            cleaned,
+        ).strip()
+
+    @classmethod
+    def _chinese_cardinal(cls, value: str) -> int | None:
+        if "十" not in value:
+            if len(value) == 1 and value in cls.CHINESE_DIGITS:
+                return cls.CHINESE_DIGITS[value]
+            return None
+        left, _, right = value.partition("十")
+        tens = cls.CHINESE_DIGITS.get(left, 1) if left else 1
+        ones = cls.CHINESE_DIGITS.get(right, 0) if right else 0
+        return tens * 10 + ones
+
+    @classmethod
+    def _normalizer_for(cls, field: TargetField) -> str:
+        if field.type == "date":
+            return "zh_date_normalizer_v2"
+        if field.type == "array[string]" and field.field_id in cls.SPLIT_ARRAY_FIELDS:
+            return "list_field_normalizer_v2"
+        if field.field_id in cls.ORGANIZATION_FIELDS:
+            return "organization_field_cleaner_v1"
+        return cls._operation_for(field)
 
     @staticmethod
     def _normalize_contact(value: str) -> str:

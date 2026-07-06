@@ -14,6 +14,36 @@ REPORT_NAMES = (
     "transform_report.json",
     "validation_report.json",
 )
+FAILURE_TYPE_BY_CODE = {
+    "required_field_missing": "missing_required",
+    "required_field_unmapped": "missing_required",
+    "field_type_invalid": "wrong_type",
+    "date_type_error": "wrong_type",
+    "number_type_error": "wrong_type",
+    "date_format_error": "date_format_invalid",
+    "date_format_invalid": "date_format_invalid",
+    "datetime_format_error": "date_format_invalid",
+    "datetime_format_invalid": "date_format_invalid",
+    "array_item_invalid": "array_item_invalid",
+    "enum_value_invalid": "enum_invalid",
+}
+
+
+def report_issues(report: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        issue
+        for key in ("issues", "errors", "warnings")
+        for issue in report.get(key, [])
+        if isinstance(issue, dict)
+    ]
+
+
+def failure_type(issue: dict[str, Any]) -> str | None:
+    explicit = issue.get("failure_type")
+    if explicit:
+        return str(explicit)
+    code = issue.get("code")
+    return FAILURE_TYPE_BY_CODE.get(str(code), str(code)) if code else None
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -122,16 +152,12 @@ def analyze(
         )
         for report in (validation, transform):
             failure_categories.update(
-                str(issue["code"])
-                for issue in report.get("issues", [])
-                if isinstance(issue, dict) and issue.get("code")
+                category
+                for issue in report_issues(report)
+                if (category := failure_type(issue)) is not None
             )
-        failure_categories.update(
-            flag
-            for item in review_items
-            for flag in item.get("risk_flags", [])
-            if isinstance(flag, str)
-        )
+        if review_items:
+            failure_categories["semantic_review_required"] += len(review_items)
 
         items.append(
             {
@@ -150,11 +176,16 @@ def analyze(
                 ),
                 "failure_categories": sorted(
                     {
-                        str(issue["code"])
+                        category
                         for report in (validation, transform)
-                        for issue in report.get("issues", [])
-                        if isinstance(issue, dict) and issue.get("code")
+                        for issue in report_issues(report)
+                        if (category := failure_type(issue)) is not None
                     }
+                    | ({"semantic_review_required"} if review_items else set())
+                ),
+                "schema_valid": bool(validation.get("schema_valid", passed)),
+                "strict_semantic_valid": bool(
+                    validation.get("strict_semantic_valid", passed)
                 ),
             }
         )
