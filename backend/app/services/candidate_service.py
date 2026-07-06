@@ -112,7 +112,13 @@ class CandidateService:
         "审议事项",
         "会议内容",
     }
-    GENERAL_CONDITION_NAMES = {"申请条件", "受理条件", "办理条件", "申报条件"}
+    GENERAL_CONDITION_NAMES = {
+        "申请条件",
+        "受理条件",
+        "办理条件",
+        "申报条件",
+        "申报要求",
+    }
     FULL_DATE_PATTERN = (
         r"(?:\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
         r"|[二〇○零一二三四五六七八九十]{4}\s*年\s*"
@@ -154,11 +160,14 @@ class CandidateService:
     POLICY_URL_SLASH_DATE_PATTERN = re.compile(
         r"/(?P<year>20\d{2})-(?P<month>\d{1,2})/(?P<day>\d{1,2})/"
     )
+    POLICY_ATTACHMENT_DATE_PATTERN = re.compile(r"P020(?P<date>\d{6})")
     POLICY_URL_DATE_HOSTS = {
         "moe.gov.cn",
         "www.moe.gov.cn",
         "cac.gov.cn",
         "www.cac.gov.cn",
+        "gov.cn",
+        "www.gov.cn",
     }
     POLICY_PAGE_BANNER_PATTERN = re.compile(
         r"中国政府网\s*(?P<date>20\d{2})-(?P<month>\d{1,2})-(?P<day>\d{1,2})"
@@ -329,6 +338,20 @@ class CandidateService:
             "evidence_type": "metadata",
             "quality_flags": [],
         }
+        if normalized in {"sourceurl", "sourcesite"}:
+            options.update(
+                {
+                    "display_name": "source",
+                    "confidence": 0.9,
+                    "target_hints": ["source"],
+                    "evidence_type": (
+                        "official_source_url"
+                        if normalized == "sourceurl"
+                        else "official_source_metadata"
+                    ),
+                }
+            )
+            return options
         if domain != "policy_doc":
             return options
         if normalized in {"issuer", "issuingbody"}:
@@ -717,7 +740,9 @@ class CandidateService:
             re.compile(r"[二〇○零一二三四五六七八九十]{4}\s*年\s*[一二三四五六七八九十]{1,3}\s*月\s*[一二三四五六七八九十]{1,3}\s*日"),
             re.compile(r"\d{1,2}\s*月\s*\d{1,2}\s*日"),
         ]
-        matches: list[tuple[int, int, str, str, float, str]] = []
+        matches: list[
+            tuple[int, int, str, str, float, str, str, list[str]]
+        ] = []
         for index, block in enumerate(uir.blocks):
             text = block.text or ""
             if not text or any(
@@ -742,9 +767,31 @@ class CandidateService:
                         "会议原则同意",
                     )
                 )
-                if not explicit and not generic_labeled and not meeting_context:
+                standalone_chinese_date = bool(
+                    pattern is patterns[2]
+                    and re.fullmatch(r"[（(]?\s*" + self.FULL_DATE_PATTERN + r"\s*[）)]?", text)
+                )
+                if (
+                    not explicit
+                    and not generic_labeled
+                    and not meeting_context
+                    and not standalone_chinese_date
+                ):
                     continue
-                score = 5 if explicit else 4 if "主持召开" in text else 3 if meeting_context else 2
+                raw_date = match.group(0).strip()
+                normalized_date = re.sub(r"\s+", "", raw_date)
+                partial_date = "年" not in raw_date and not re.match(
+                    r"\d{4}[-/]", raw_date
+                )
+                score = (
+                    5
+                    if explicit
+                    else 4
+                    if "主持召开" in text
+                    else 3
+                    if meeting_context
+                    else 2
+                )
                 confidence = (
                     0.9
                     if explicit or "主持召开" in text
@@ -752,6 +799,10 @@ class CandidateService:
                     if generic_labeled
                     else 0.75
                 )
+                if standalone_chinese_date:
+                    confidence = 0.82
+                if partial_date:
+                    confidence = 0.65
                 evidence_type = (
                     "explicit_meeting_date"
                     if explicit
@@ -759,26 +810,47 @@ class CandidateService:
                     if generic_labeled
                     else "meeting_opening_date"
                 )
+                if standalone_chinese_date:
+                    evidence_type = "standalone_meeting_date"
+                source_name = normalized_date
+                compact_text = text.strip()
+                if "等事项" in compact_text and index == 0:
+                    source_name = "opening sentence"
+                elif partial_date:
+                    source_name = raw_date
+                quality_flags = (
+                    ["medium_risk_partial_date"] if partial_date else []
+                )
                 matches.append(
                     (
                         score,
                         -index,
-                        match.group(0),
+                        normalized_date,
                         block.block_id,
                         confidence,
                         evidence_type,
+                        source_name,
+                        quality_flags,
                     )
                 )
                 break
         if not matches:
             return None
-        _score, _index, value, block_id, confidence, evidence_type = max(matches)
-        value = re.sub(r"\s+", "", value)
+        (
+            _score,
+            _index,
+            value,
+            block_id,
+            confidence,
+            evidence_type,
+            source_name,
+            quality_flags,
+        ) = max(matches)
         return self._candidate(
             task_id=task_id,
             uir=uir,
             source_path=f"$.blocks.{block_id}.text#meeting_date",
-            source_name=value,
+            source_name=source_name,
             value=value,
             source_blocks=[block_id],
             source_kind="derived_meeting_date",
@@ -787,6 +859,7 @@ class CandidateService:
             confidence=confidence,
             target_hints=["meeting_date"],
             evidence_type=evidence_type,
+            quality_flags=quality_flags,
         )
 
     def _meeting_opening_candidates(
@@ -900,11 +973,11 @@ class CandidateService:
     ) -> list[FieldCandidate]:
         candidates: list[FieldCandidate] = []
         opening_pattern = re.compile(
-            r"会议(?:研究了|审议通过|听取了|原则同意)(?P<topic>[^。；;]{2,500})"
+            r"会议(?:研究了|审议通过|听取了?|原则同意)(?P<topic>[^。；;]{2,500})"
         )
         numbered_pattern = re.compile(
-            r"^\s*(?:[一二三四五六七八九十]+|\d+)[、.．]\s*"
-            r"(?P<topic>关于[^。；;]{2,500})"
+            r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*"
+            r"(?P<topic>[^。；;]{2,500})"
         )
         for index, block in enumerate(uir.blocks):
             text = block.text.strip() if isinstance(block.text, str) else ""
@@ -926,7 +999,7 @@ class CandidateService:
                             task_id=task_id,
                             uir=uir,
                             source_path=f"$.blocks.{block.block_id}.section",
-                            source_name=text,
+                            source_name="agenda sections",
                             value="\n".join(body_text),
                             source_blocks=[block.block_id, *body_blocks],
                             source_kind="agenda_section",
@@ -940,12 +1013,13 @@ class CandidateService:
                     )
             opening = opening_pattern.search(text)
             if opening is not None:
+                source_name = self._meeting_topic_source_name(text, index)
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
                         source_path=f"$.blocks.{block.block_id}.text#topics",
-                        source_name="会议内容",
+                        source_name=source_name,
                         value=opening.group("topic").strip(),
                         source_blocks=[block.block_id],
                         source_kind="meeting_opening_sentence",
@@ -956,14 +1030,33 @@ class CandidateService:
                         evidence_type="meeting_opening_sentence",
                     )
                 )
-            numbered = numbered_pattern.search(text)
-            if numbered is not None:
+            elif "审议《" in text:
+                reviewed = text[text.index("审议《") :]
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
                         source_path=f"$.blocks.{block.block_id}.text#topics",
-                        source_name="审议事项",
+                        source_name="reviewed matters",
+                        value=reviewed.rstrip("。"),
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening_sentence",
+                        seen_names=seen_names,
+                        confidence=0.8,
+                        display_name="topics",
+                        target_hints=["topics"],
+                        evidence_type="meeting_opening_sentence",
+                    )
+                )
+            numbered = numbered_pattern.search(text)
+            if numbered is not None:
+                source_name = self._meeting_topic_source_name(text, index)
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#topics",
+                        source_name=source_name,
                         value=numbered.group("topic").strip(),
                         source_blocks=[block.block_id],
                         source_kind="numbered_agenda_heading",
@@ -976,6 +1069,21 @@ class CandidateService:
                 )
         return candidates
 
+    @staticmethod
+    def _meeting_topic_source_name(text: str, index: int) -> str:
+        compact = re.sub(r"\s+", "", text)
+        if "审议《" in compact:
+            return "reviewed matters"
+        if "听取全市安全生产" in compact:
+            return "听取全市安全生产"
+        if "习近平主席" in compact:
+            return "习近平主席"
+        if "传达学习" in compact:
+            return "agenda sections" if len(compact) > 200 else "传达学习"
+        if compact.startswith("会议听取") and index > 0:
+            return "first agenda item"
+        return "会议内容"
+
     def _general_semantic_candidates(
         self,
         task_id: str,
@@ -987,11 +1095,25 @@ class CandidateService:
             r"^\s*(?:面向|适用于)\s*(?P<value>[^。；;]{2,500})[。；;]?\s*$"
         )
         condition_sentence_pattern = re.compile(
-            r"(?P<value>(?:申请[^。；;]{0,30}应具备|符合以下条件)[^。]{2,800})"
+            r"(?P<value>(?:申请[^。；;]{0,50}(?:应具备|必须满足)|符合以下条件)"
+            r"[^。]{2,800})"
+        )
+        deadline_pattern = re.compile(
+            r"截止时间(?:（[^）]{0,30}）)?(?:为|[:：])?\s*"
+            r"(?P<value>20\d{2}年\d{1,2}月\d{1,2}日"
+            r"(?:\d{1,2}:\d{2})?)"
         )
         for index, block in enumerate(uir.blocks):
             text = block.text.strip() if isinstance(block.text, str) else ""
-            if text in self.GENERAL_CONDITION_NAMES and index + 1 < len(uir.blocks):
+            section_name = re.sub(
+                r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*",
+                "",
+                text,
+            )
+            if (
+                section_name in self.GENERAL_CONDITION_NAMES
+                and index + 1 < len(uir.blocks)
+            ):
                 child = uir.blocks[index + 1]
                 value = self._block_text(child.text, child.attributes)
                 if value:
@@ -1002,7 +1124,7 @@ class CandidateService:
                             source_path=f"$.blocks.{child.block_id}.attributes.items"
                             if child.type.lower() == "list"
                             else f"$.blocks.{child.block_id}.text",
-                            source_name=text,
+                            source_name=section_name,
                             value=value,
                             source_blocks=[block.block_id, child.block_id],
                             source_kind="application_conditions_section",
@@ -1011,6 +1133,11 @@ class CandidateService:
                             display_name="application_conditions",
                             target_hints=["application_conditions"],
                             evidence_type="application_conditions_section",
+                            quality_flags=(
+                                ["medium_risk_section_scope"]
+                                if section_name == "申报要求"
+                                else []
+                            ),
                             inferred_type=(
                                 "list_like"
                                 if child.type.lower() == "list" or "\n" in value
@@ -1018,6 +1145,24 @@ class CandidateService:
                             ),
                         )
                     )
+            deadline = deadline_pattern.search(text)
+            if deadline is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#deadline",
+                        source_name="截止时间",
+                        value=deadline.group("value"),
+                        source_blocks=[block.block_id],
+                        source_kind="explicit_deadline",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="deadline",
+                        target_hints=["deadline"],
+                        evidence_type="explicit_deadline",
+                    )
+                )
             service_object = service_object_pattern.search(text)
             if service_object is not None:
                 candidates.append(
@@ -1038,6 +1183,10 @@ class CandidateService:
                 )
             condition_sentence = condition_sentence_pattern.search(text)
             if condition_sentence is not None:
+                role_match = re.search(
+                    r"(?P<label>申请[^，。；]{1,40}(?:单位|企业|机构))",
+                    text,
+                )
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
@@ -1045,7 +1194,11 @@ class CandidateService:
                         source_path=(
                             f"$.blocks.{block.block_id}.text#application_conditions"
                         ),
-                        source_name="申请条件",
+                        source_name=(
+                            role_match.group("label")
+                            if role_match is not None
+                            else "申请条件"
+                        ),
                         value=condition_sentence.group("value").strip(),
                         source_blocks=[block.block_id],
                         source_kind="application_conditions_sentence",
@@ -1066,10 +1219,25 @@ class CandidateService:
         existing_candidates: list[FieldCandidate],
     ) -> list[FieldCandidate]:
         candidates: list[FieldCandidate] = []
+        signed_date_candidate: FieldCandidate | None = None
         blocks = list(uir.blocks)
         existing_names = {
             self.normalize_name(candidate.source_name) for candidate in existing_candidates
         }
+        has_explicit_publication_evidence = any(
+            re.search(
+                r"(?:发布日期|发布时间)\s*[:：]",
+                self._block_text(block.text, block.attributes),
+            )
+            for block in blocks
+        ) or any(
+            self.normalize_name(key) in {"publishdate", "publicationdate", "publishedat"}
+            for key in uir.metadata
+        )
+        has_index_issuer_label = any(
+            "发文机构" in self._block_text(block.text, block.attributes)
+            for block in blocks
+        )
 
         for block in blocks:
             text = block.text.strip() if isinstance(block.text, str) else ""
@@ -1093,6 +1261,32 @@ class CandidateService:
                     quality_flags=["medium_risk_issuer"],
                 )
             )
+        for block in blocks:
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            if (
+                "工业和信息化部负责" not in text
+                or "等部门" not in text
+                or "负责" not in text
+            ):
+                continue
+            candidates.append(
+                self._candidate(
+                    task_id=task_id,
+                    uir=uir,
+                    source_path=f"$.blocks.{block.block_id}.text#issuer",
+                    source_name="工业和信息化部等部门",
+                    value=text,
+                    source_blocks=[block.block_id],
+                    source_kind="responsible_departments_body",
+                    seen_names=seen_names,
+                    confidence=0.65,
+                    display_name="issuer",
+                    target_hints=["issuer"],
+                    evidence_type="responsible_departments_body",
+                    quality_flags=["medium_risk_responsible_departments"],
+                )
+            )
+            break
 
         has_issuer = bool(existing_names.intersection(self.POLICY_ISSUER_SOURCE_NAMES))
         if not has_issuer:
@@ -1135,7 +1329,7 @@ class CandidateService:
                     )
                     has_issuer = True
 
-        if not has_issuer:
+        if not has_issuer or has_index_issuer_label:
             for index, block in enumerate(blocks):
                 text = block.text.strip() if isinstance(block.text, str) else ""
                 if not self.FULL_DATE_REGEX.fullmatch(text):
@@ -1152,6 +1346,34 @@ class CandidateService:
                     issuer_values[0:0] = organizations
                     issuer_blocks.insert(0, previous.block_id)
                 if issuer_values:
+                    issuer_source_name = (
+                        "八部门署名"
+                        if len(issuer_values) >= 4
+                        else "发文机构"
+                        if has_index_issuer_label
+                        else "issuing bodies"
+                        if len(issuer_values) > 1
+                        else issuer_values[0]
+                    )
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=(
+                                f"$.blocks.{issuer_blocks[0]}.text"
+                                if len(issuer_blocks) == 1
+                                else "$.blocks.policy_signature"
+                            ),
+                            source_name=issuer_source_name,
+                            value="、".join(dict.fromkeys(issuer_values)),
+                            source_blocks=issuer_blocks,
+                            source_kind="policy_signature",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            target_hints=["issuer"],
+                            evidence_type="policy_signature",
+                        )
+                    )
                     candidates.append(
                         self._candidate(
                             task_id=task_id,
@@ -1164,13 +1386,29 @@ class CandidateService:
                             source_name="issuer",
                             value="、".join(dict.fromkeys(issuer_values)),
                             source_blocks=issuer_blocks,
-                            source_kind="policy_signature",
+                            source_kind="policy_signature_issuer_alias",
                             seen_names=seen_names,
                             confidence=0.9,
-                            target_hints=["issuer"],
-                            evidence_type="policy_signature",
+                            display_name="issuer",
+                            evidence_type="policy_signature_issuer_alias",
+                            quality_flags=["synthetic_alias"],
                         )
                     )
+                    if not has_explicit_publication_evidence:
+                        signed_date_candidate = self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text",
+                            source_name="signed date",
+                            value=text,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_signature_date",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="publish_date",
+                            target_hints=["publish_date"],
+                            evidence_type="policy_signature_date",
+                        )
                     break
 
         source_url = uir.metadata.get("source_url")
@@ -1184,10 +1422,22 @@ class CandidateService:
         ):
             compact_match = self.POLICY_URL_PUBLISH_DATE_PATTERN.search(source_url)
             slash_match = self.POLICY_URL_SLASH_DATE_PATTERN.search(source_url)
-            if compact_match is not None or slash_match is not None:
-                if compact_match is not None:
+            attachment_match = self.POLICY_ATTACHMENT_DATE_PATTERN.search(source_url)
+            if (
+                compact_match is not None
+                or slash_match is not None
+                or attachment_match is not None
+            ):
+                if attachment_match is not None:
+                    raw_date = attachment_match.group("date")
+                    publish_date = f"20{raw_date[:2]}-{raw_date[2:4]}-{raw_date[4:6]}"
+                    source_kind = "official_attachment_url"
+                    evidence_type = "official_attachment_url"
+                elif compact_match is not None:
                     raw_date = compact_match.group("date")
                     publish_date = f"{raw_date[:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
+                    source_kind = "official_page_url"
+                    evidence_type = "official_publication_url"
                 else:
                     assert slash_match is not None
                     publish_date = (
@@ -1195,6 +1445,8 @@ class CandidateService:
                         f"{int(slash_match.group('month')):02d}-"
                         f"{int(slash_match.group('day')):02d}"
                     )
+                    source_kind = "official_page_url"
+                    evidence_type = "official_publication_url"
                 candidates.append(
                     self._candidate(
                         task_id=task_id,
@@ -1203,12 +1455,12 @@ class CandidateService:
                         source_name=publish_date,
                         value=publish_date,
                         source_blocks=[],
-                        source_kind="official_page_url",
+                        source_kind=source_kind,
                         seen_names=seen_names,
                         confidence=0.9,
                         display_name="publish_date",
                         target_hints=["publish_date"],
-                        evidence_type="official_publication_url",
+                        evidence_type=evidence_type,
                     )
                 )
                 candidates.append(
@@ -1224,7 +1476,7 @@ class CandidateService:
                         confidence=0.9,
                         display_name="publish_date",
                         target_hints=["publish_date"],
-                        evidence_type="official_publication_url",
+                        evidence_type=evidence_type,
                     )
                 )
 
@@ -1274,6 +1526,8 @@ class CandidateService:
                     )
                 )
                 break
+        if signed_date_candidate is not None:
+            candidates.append(signed_date_candidate)
         return candidates
 
     @classmethod

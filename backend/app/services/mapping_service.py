@@ -15,12 +15,34 @@ from app.services.llm_fallback_service import LLMFallbackService
 class MappingService:
     REVIEW_CONFIDENCE = 0.62
     MIN_FUZZY_REVIEW_SCORE = 0.55
+    AUTO_ACCEPT_SCORE = 0.82
+    MIN_EVIDENCE_REVIEW_SCORE = 0.55
+    NO_FUZZY_WITHOUT_HINT_TARGETS = {
+        "agenda_items",
+        "created_date",
+        "deadline",
+        "deadlines",
+        "document_subtype",
+    }
+    FORBIDDEN_PAIRS = {
+        ("成文日期", "publish_date"): "forbidden_issue_date_to_publish_date",
+        ("发布日期", "effective_date"): "forbidden_publish_date_to_effective_date",
+        ("retrieved_at", "effective_date"): "forbidden_retrieval_time_to_effective_date",
+        ("主持人", "attendees"): "forbidden_chairperson_to_attendees",
+        ("联系人", "attendees"): "forbidden_contact_to_attendees",
+        ("联系人", "service_object"): "forbidden_contact_to_service_object",
+        ("承办单位", "issuer"): "forbidden_organizer_to_issuer",
+        ("解读机构", "issuer"): "forbidden_interpreter_to_issuer",
+        ("预算金额", "award_amount"): "forbidden_budget_to_award",
+        ("控制价", "award_amount"): "forbidden_control_price_to_award",
+    }
     SAFE_DISPLAY_ALIAS_EVIDENCE = {
         "extracted from metadata",
         "extracted from key_value",
         "extracted from derived_meeting_date",
         "extracted from meeting_opening",
         "extracted from policy_title_issuer",
+        "extracted from policy_signature_date",
         "extracted from official_page_url",
         "extracted from official_page_banner",
     }
@@ -28,6 +50,7 @@ class MappingService:
         "extracted from derived_meeting_date_alias",
         "extracted from meeting_opening_alias",
         "extracted from policy_title_issuer_alias",
+        "extracted from policy_signature_issuer_alias",
         "extracted from official_page_url_alias",
         "extracted from official_page_banner_alias",
     }
@@ -64,6 +87,13 @@ class MappingService:
             if mapping is None:
                 mapping = self._find_regex(task_id, field, template, uir)
             if mapping is None:
+                mapping = self._find_evidence_ranked(
+                    task_id,
+                    field,
+                    candidates,
+                    used_source_paths,
+                )
+            if mapping is None:
                 mapping = self._find_type(task_id, field, candidates, used_source_paths)
 
             if mapping is not None:
@@ -74,8 +104,6 @@ class MappingService:
                     mappings.append(mapping.model_dump(mode="json"))
                     source_path = mapping.source_field.source_path
                     used_source_paths.add(source_path)
-                    if source_path.startswith("$.metadata.source_url#"):
-                        used_source_paths.add(source_path.partition("#")[0])
                 strategy_counts[mapping.method] += 1
                 continue
 
@@ -118,6 +146,13 @@ class MappingService:
                         )
 
         mapped_targets = {mapping["target_field_id"] for mapping in mappings}
+        review_supported_targets = {
+            item["target_field_id"]
+            for item in review_required
+            if item.get("status") == "review_required"
+            and item.get("method") not in {"fuzzy", "llm_fallback"}
+        }
+        resolved_targets = mapped_targets | review_supported_targets
         unmapped = [
             {
                 "target_field_id": field.field_id,
@@ -140,7 +175,7 @@ class MappingService:
                 "badcase_filter": {"checked": False, "blocked": False, "reason": None},
             }
             for field in schema.fields
-            if field.required and field.field_id not in mapped_targets
+            if field.required and field.field_id not in resolved_targets
         ]
         confidences = [
             item["confidence"]
@@ -197,6 +232,7 @@ class MappingService:
             self.normalize_name(field.field_id),
             self.normalize_name(field.name),
         }
+        matched: list[FieldCandidate] = []
         for candidate in candidates:
             if candidate.source_path in used_source_paths:
                 continue
@@ -206,8 +242,24 @@ class MappingService:
             ):
                 continue
             if self.normalize_name(candidate.source_name) in target_names:
-                return self._mapping(task_id, candidate, field, "exact", 1.0, False)
-        return None
+                matched.append(candidate)
+        if not matched:
+            return None
+        selected, trace, rejected = self._rank_candidates(
+            matched,
+            field,
+            label_matched=True,
+        )
+        return self._mapping(
+            task_id,
+            selected,
+            field,
+            "exact",
+            1.0,
+            False,
+            ranking_trace=trace,
+            rejected_candidates=rejected,
+        )
 
     def _find_alias(
         self,
@@ -221,6 +273,7 @@ class MappingService:
         aliases.update(field.aliases)
         aliases.add(field.display_name)
         normalized_aliases = {self.normalize_name(alias) for alias in aliases}
+        matched: list[FieldCandidate] = []
         for candidate in candidates:
             if candidate.source_path in used_source_paths:
                 continue
@@ -233,16 +286,89 @@ class MappingService:
                     self.normalize_name(candidate.display_name or "")
                 )
             if candidate_names & normalized_aliases:
-                return self._mapping(
-                    task_id,
-                    candidate,
-                    field,
-                    "alias",
-                    0.96,
-                    False,
-                    evidence=[f"alias matched target {field.field_id}"],
+                matched.append(candidate)
+        matched_ids = {candidate.candidate_id for candidate in matched}
+        matched.extend(
+            candidate
+            for candidate in candidates
+            if candidate.candidate_id not in matched_ids
+            and candidate.source_path not in used_source_paths
+            and field.field_id in candidate.target_hints
+        )
+        if not matched:
+            return None
+        selected, trace, rejected = self._rank_candidates(
+            matched,
+            field,
+            label_matched=True,
+        )
+        return self._mapping(
+            task_id,
+            selected,
+            field,
+            "alias",
+            0.96,
+            False,
+            evidence=[f"alias matched target {field.field_id}"],
+            ranking_trace=trace,
+            rejected_candidates=rejected,
+        )
+
+    def _find_evidence_ranked(
+        self,
+        task_id: str,
+        field: TargetField,
+        candidates: list[FieldCandidate],
+        used_source_paths: set[str],
+    ) -> FieldMapping | None:
+        eligible = [
+            candidate
+            for candidate in candidates
+            if candidate.source_path not in used_source_paths
+            and (
+                field.field_id in candidate.target_hints
+                or (
+                    candidate.evidence_type == "paragraph_regex"
+                    and self.normalize_name(candidate.display_name or "")
+                    == self.normalize_name(field.field_id)
                 )
-        return None
+            )
+        ]
+        if not eligible:
+            return None
+        selected, trace, rejected = self._rank_candidates(eligible, field)
+        final_score = trace["final_score"]
+        if final_score < self.MIN_EVIDENCE_REVIEW_SCORE:
+            return None
+        need_review = (
+            final_score < self.AUTO_ACCEPT_SCORE
+            or bool(selected.quality_flags)
+            or self._builtin_forbidden_reason(
+                selected.source_name,
+                field.field_id,
+            )
+            is not None
+        )
+        return self._mapping(
+            task_id,
+            selected,
+            field,
+            "evidence_ranked",
+            final_score,
+            need_review,
+            evidence=[
+                {
+                    "type": "evidence_ranked",
+                    "message": (
+                        f"evidence-aware score {final_score:.3f} for "
+                        f"target {field.field_id}"
+                    ),
+                    "weight": final_score,
+                }
+            ],
+            ranking_trace=trace,
+            rejected_candidates=rejected,
+        )
 
     def _find_regex(
         self,
@@ -323,11 +449,27 @@ class MappingService:
         candidates: list[FieldCandidate],
         used_source_paths: set[str],
     ) -> FieldMapping | None:
+        if field.field_id in self.NO_FUZZY_WITHOUT_HINT_TARGETS:
+            return None
         best_candidate: FieldCandidate | None = None
         best_score = 0.0
         field_terms = [field.field_id, field.name, field.display_name, *field.aliases]
         for candidate in candidates:
             if candidate.source_path in used_source_paths:
+                continue
+            forbidden_reason = self._builtin_forbidden_reason(
+                candidate.source_name,
+                field.field_id,
+            )
+            if (
+                forbidden_reason
+                and self.normalize_name(candidate.source_name) == "retrievedat"
+                and field.field_id == "effective_date"
+            ):
+                continue
+            if field.field_id == "issuer" and not self._issuer_like_source(
+                candidate.source_name
+            ):
                 continue
             score = max(
                 self._similarity(candidate.source_name, term)
@@ -351,6 +493,204 @@ class MappingService:
             evidence=[f"fuzzy score {best_score:.2f} requires review"],
         )
 
+    @classmethod
+    def _issuer_like_source(cls, source_name: str) -> bool:
+        normalized = cls.normalize_name(source_name)
+        return any(
+            marker in normalized
+            for marker in (
+                "issuer",
+                "主体",
+                "机关",
+                "机构",
+                "单位",
+                "部门",
+            )
+        )
+
+    def _rank_candidates(
+        self,
+        candidates: list[FieldCandidate],
+        field: TargetField,
+        *,
+        label_matched: bool = False,
+    ) -> tuple[FieldCandidate, dict[str, float], list[dict[str, Any]]]:
+        ranked = [
+            (self._ranking_trace(candidate, field, label_matched=label_matched), index, candidate)
+            for index, candidate in enumerate(candidates)
+        ]
+        ranked.sort(
+            key=lambda item: (
+                -item[0]["final_score"],
+                -float(item[2].confidence_hint or item[2].confidence),
+                item[1],
+            )
+        )
+        selected_trace, _selected_index, selected = ranked[0]
+        rejected = [
+            {
+                "candidate_id": candidate.candidate_id,
+                "source_name": candidate.source_name,
+                "target_field": field.field_id,
+                "reason": "lower_evidence_score",
+                "final_score": trace["final_score"],
+            }
+            for trace, _index, candidate in ranked[1:]
+        ]
+        return selected, selected_trace, rejected
+
+    def _ranking_trace(
+        self,
+        candidate: FieldCandidate,
+        field: TargetField,
+        *,
+        label_matched: bool = False,
+    ) -> dict[str, float]:
+        terms = [
+            field.field_id,
+            field.name,
+            field.display_name,
+            *field.aliases,
+        ]
+        labels = [candidate.source_name, candidate.display_name or ""]
+        label_score = max(
+            (
+                self._similarity(label, term)
+                for label in labels
+                for term in terms
+                if label and term
+            ),
+            default=0.0,
+        )
+        if field.field_id in candidate.target_hints:
+            label_score = 1.0
+        if label_matched:
+            label_score = 1.0
+
+        evidence_type = candidate.evidence_type or ""
+        evidence_score = {
+            "official_issuer_metadata": 1.0,
+            "official_publication_metadata": 1.0,
+            "official_source_url": 1.0,
+            "official_source_metadata": 0.85,
+            "official_publication_url": 0.95,
+            "official_attachment_url": 0.95,
+            "official_page_banner": 0.95,
+            "policy_signature": 0.95,
+            "policy_signature_date": 1.0,
+            "policy_signature_issuer_alias": 0.35,
+            "service_object_section": 0.95,
+            "application_conditions_section": 0.95,
+            "agenda_section": 0.9,
+            "explicit_meeting_date": 0.95,
+            "meeting_number_pattern": 0.9,
+            "meeting_opening": 0.9,
+            "meeting_opening_alias": 0.4,
+            "policy_title_issuer": 0.9,
+            "policy_title_issuer_alias": 0.4,
+            "official_page_url_alias": 0.4,
+            "official_page_banner_alias": 0.4,
+            "derived_meeting_date_alias": 0.4,
+            "aggregate_blocks": 1.0,
+            "key_value": 0.85,
+            "table": 0.9,
+            "metadata": 0.8,
+            "page_publisher_field": 0.45,
+            "page_publisher_metadata": 0.45,
+            "page_column": 0.4,
+            "paragraph_regex": 0.9,
+        }.get(evidence_type, 0.7 if candidate.source_blocks else 0.6)
+
+        normalized_path = self.normalize_name(candidate.source_path)
+        normalized_target = self.normalize_name(field.field_id)
+        if field.field_id in candidate.target_hints:
+            context_score = 0.95
+        elif normalized_target and normalized_target in normalized_path:
+            context_score = 0.85
+        elif candidate.source_blocks:
+            context_score = 0.7
+        elif candidate.source_path.startswith("$.metadata."):
+            context_score = 0.75
+        else:
+            context_score = 0.5
+
+        type_score = self._type_score(candidate.inferred_type, field.type)
+        if candidate.source_blocks and candidate.source_path:
+            source_quality_score = 0.95
+        elif candidate.source_path.startswith("$.metadata."):
+            source_quality_score = 0.85
+        elif candidate.source_path:
+            source_quality_score = 0.6
+        else:
+            source_quality_score = 0.0
+
+        risk_penalty = self._risk_penalty(candidate, field.field_id)
+        final_score = (
+            label_score * 0.35
+            + evidence_score * 0.30
+            + context_score * 0.20
+            + type_score * 0.10
+            + source_quality_score * 0.05
+            - risk_penalty
+        )
+        return {
+            "label_score": round(label_score, 4),
+            "evidence_score": round(evidence_score, 4),
+            "context_score": round(context_score, 4),
+            "type_score": round(type_score, 4),
+            "source_quality_score": round(source_quality_score, 4),
+            "risk_penalty": round(risk_penalty, 4),
+            "final_score": round(max(0.0, min(final_score, 1.0)), 4),
+        }
+
+    @staticmethod
+    def _type_score(candidate_type: str, field_type: str) -> float:
+        if candidate_type == field_type:
+            return 1.0
+        if field_type in {"string", "text"} and candidate_type in {
+            "string",
+            "text",
+            "organization",
+            "date",
+        }:
+            return 0.9
+        if field_type.startswith("array") and candidate_type in {
+            "array",
+            "list",
+            "list_like",
+        }:
+            return 1.0
+        if field_type.startswith("array") and candidate_type in {"string", "text"}:
+            return 0.6
+        if field_type in {"date", "datetime"} and candidate_type in {
+            "date",
+            "datetime",
+            "string",
+        }:
+            return 0.85
+        if field_type == "number" and candidate_type in {"number", "integer"}:
+            return 1.0
+        return 0.4
+
+    def _risk_penalty(
+        self,
+        candidate: FieldCandidate,
+        target_field_id: str,
+    ) -> float:
+        if self._builtin_forbidden_reason(candidate.source_name, target_field_id):
+            return 1.0
+        flags = set(candidate.quality_flags)
+        penalty = 0.0
+        if any("high" in flag for flag in flags):
+            penalty += 0.5
+        if any("medium" in flag for flag in flags):
+            penalty += 0.2
+        if "weak_evidence" in flags:
+            penalty += 0.25
+        if not candidate.source_path:
+            penalty += 0.4
+        return min(penalty, 1.0)
+
     def _mapping(
         self,
         task_id: str,
@@ -360,6 +700,8 @@ class MappingService:
         confidence: float,
         need_review: bool,
         evidence: list[Any] | None = None,
+        ranking_trace: dict[str, float] | None = None,
+        rejected_candidates: list[dict[str, Any]] | None = None,
     ) -> FieldMapping:
         evidence_items, evidence_text = self._normalize_evidence(
             evidence or [f"{method} mapping to {field.field_id}"],
@@ -371,6 +713,7 @@ class MappingService:
             need_review=need_review,
             value_sample=candidate.value_sample,
         )
+        risk_flags = sorted({*risk_flags, *candidate.quality_flags})
         status = "review_required" if need_review else "accepted"
         review_required_reason = self.review_reason_for_mapping(
             risk_flags=risk_flags,
@@ -402,6 +745,8 @@ class MappingService:
             risk_flags=risk_flags,
             badcase_filter={"checked": False, "blocked": False, "reason": None},
             review_required_reason=review_required_reason,
+            ranking_trace=ranking_trace or self._ranking_trace(candidate, field),
+            rejected_candidates=rejected_candidates or [],
         )
 
     def _with_decision_context(
@@ -414,15 +759,28 @@ class MappingService:
             mapping.target_field_id,
             badcases,
         )
+        forbidden_reason = self._builtin_forbidden_reason(
+            mapping.source_field.source_name,
+            mapping.target_field_id,
+        )
+        if forbidden_reason is not None:
+            badcase_filter = {
+                "checked": True,
+                "blocked": True,
+                "reason": forbidden_reason,
+            }
         risk_flags = set(mapping.risk_flags)
         if badcase_filter["blocked"]:
             risk_flags.add("badcase_blocked")
+        if forbidden_reason is not None:
+            risk_flags.add("forbidden_pair")
         if mapping.method == "llm_fallback":
             risk_flags.add("llm_suggestion")
         need_review = (
             mapping.need_review
             or badcase_filter["blocked"]
             or mapping.method == "llm_fallback"
+            or self._requires_review_for_risk(risk_flags)
         )
         review_reason = self.review_reason_for_mapping(
             risk_flags=sorted(risk_flags),
@@ -444,7 +802,13 @@ class MappingService:
             evidence_text.append(message)
         return mapping.model_copy(
             update={
-                "status": "review_required" if need_review else "accepted",
+                "status": (
+                    "blocked"
+                    if badcase_filter["blocked"]
+                    else "review_required"
+                    if need_review
+                    else "accepted"
+                ),
                 "need_review": need_review,
                 "risk_flags": sorted(risk_flags),
                 "badcase_filter": badcase_filter,
@@ -452,6 +816,13 @@ class MappingService:
                 "evidence": evidence,
                 "evidence_text": evidence_text,
             }
+        )
+
+    @staticmethod
+    def _requires_review_for_risk(risk_flags: set[str]) -> bool:
+        return any(
+            "medium" in flag or "high" in flag or flag == "weak_evidence"
+            for flag in risk_flags
         )
 
     @staticmethod
@@ -496,6 +867,8 @@ class MappingService:
     ) -> str | None:
         if "badcase_blocked" in risk_flags:
             return "Known badcase blocks automatic acceptance."
+        if any("medium" in flag or "high" in flag for flag in risk_flags):
+            return "Mapping evidence has semantic risk and requires human review."
         if "llm_suggestion" in risk_flags:
             return "LLM suggestions always require human review."
         if "fuzzy_match" in risk_flags:
@@ -560,6 +933,21 @@ class MappingService:
                     ),
                 }
         return {"checked": True, "blocked": False, "reason": None}
+
+    @classmethod
+    def _builtin_forbidden_reason(
+        cls,
+        source_name: str,
+        target_field_id: str,
+    ) -> str | None:
+        normalized_source = cls.normalize_name(source_name)
+        for (source, target), reason in cls.FORBIDDEN_PAIRS.items():
+            if (
+                target == target_field_id
+                and cls.normalize_name(source) == normalized_source
+            ):
+                return reason
+        return None
 
     @staticmethod
     def normalize_name(value: str) -> str:

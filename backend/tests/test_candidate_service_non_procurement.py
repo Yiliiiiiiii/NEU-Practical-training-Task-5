@@ -1009,3 +1009,233 @@ def test_general_conditions_and_service_object_emit_list_aware_hints() -> None:
     assert service_objects[0].value_sample == "本市科技型中小企业"
     assert service_objects[0].source_blocks == ["object"]
     assert not any(item.value_sample == "张三" for item in service_objects)
+
+
+def test_meeting_topic_evidence_uses_stable_contextual_source_labels() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_topic_labels",
+        make_uir(
+            [
+                {
+                    "block_id": "opening",
+                    "type": "paragraph",
+                    "text": (
+                        "2025年12月19日下午，区长主持召开常务会议，"
+                        "审议《政府工作报告》等事项。"
+                    ),
+                },
+                {
+                    "block_id": "first_item",
+                    "type": "paragraph",
+                    "text": "会议听取区府办关于年度重点工作的汇报。",
+                },
+                {
+                    "block_id": "numbered",
+                    "type": "paragraph",
+                    "text": "一、传达学习中央重要会议精神",
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    topics = [item for item in candidates if "topics" in item.target_hints]
+    assert {item.source_name for item in topics} >= {
+        "reviewed matters",
+        "first agenda item",
+        "传达学习",
+    }
+
+
+def test_meeting_date_evidence_preserves_semantic_and_raw_labels() -> None:
+    semantic = CandidateService().extract_candidates(
+        "task_semantic_date",
+        make_uir(
+            [
+                {"block_id": "title", "type": "heading", "text": "会议纪要"},
+                {"block_id": "number", "type": "paragraph", "text": "第47次"},
+                {
+                    "block_id": "date",
+                    "type": "paragraph",
+                    "text": "2025年7月30日，市长主持召开市政府第47次常务会议。",
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+    semantic_date = next(
+        item for item in semantic if "meeting_date" in item.target_hints
+    )
+    assert semantic_date.source_name == semantic_date.value_sample
+    assert semantic_date.display_name == "meeting_date"
+    assert semantic_date.value_sample == "2025年7月30日"
+
+    standalone = CandidateService().extract_candidates(
+        "task_standalone_date",
+        make_uir(
+            [
+                {
+                    "block_id": "date",
+                    "type": "paragraph",
+                    "text": "（二〇二五年十一月三日）",
+                }
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+    standalone_date = next(
+        item for item in standalone if "meeting_date" in item.target_hints
+    )
+    assert standalone_date.source_name == "二〇二五年十一月三日"
+
+    partial = CandidateService().extract_candidates(
+        "task_partial_date",
+        make_uir(
+            [
+                {
+                    "block_id": "date",
+                    "type": "paragraph",
+                    "text": "5月20日，县长主持召开县政府常务会议。",
+                }
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+    partial_date = next(item for item in partial if "meeting_date" in item.target_hints)
+    assert partial_date.source_name == "5月20日"
+    assert "medium_risk_partial_date" in partial_date.quality_flags
+
+
+def test_policy_signature_emits_source_backed_issuer_and_signed_date_labels() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_policy_signature_labels",
+        make_uir(
+            [
+                {
+                    "block_id": "index",
+                    "type": "table",
+                    "attributes": {
+                        "rows": [
+                            {
+                                "field": "信息索引",
+                                "value": "生成日期：2025-03-18 | 发文机构：教育部",
+                            }
+                        ]
+                    },
+                },
+                {"block_id": "issuer", "type": "paragraph", "text": "教 育 部"},
+                {"block_id": "date", "type": "paragraph", "text": "2025年1月3日"},
+            ],
+            metadata={
+                "domain": "policy_doc",
+                "title": "教育部关于印发管理办法的通知",
+                "source_url": (
+                    "https://www.moe.gov.cn/srcsite/A29/202503/"
+                    "t20250326_1184786.html"
+                ),
+            },
+        ),
+    )
+
+    issuer = next(
+        item
+        for item in candidates
+        if "issuer" in item.target_hints and item.source_blocks == ["issuer"]
+    )
+    signed_date = next(
+        item for item in candidates if item.source_name == "signed date"
+    )
+    assert issuer.source_name == "发文机构"
+    assert signed_date.target_hints == ["publish_date"]
+    assert signed_date.source_blocks == ["date"]
+
+
+def test_general_application_requirements_remain_reviewable() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_requirements_review",
+        make_uir(
+                [
+                {"block_id": "heading", "type": "heading", "text": "二、申报要求"},
+                {
+                    "block_id": "body",
+                    "type": "paragraph",
+                    "text": "申请单位应依法登记并信用良好。",
+                },
+            ],
+            metadata={"domain": "general_doc"},
+        ),
+    )
+
+    requirements = next(
+        item
+        for item in candidates
+        if item.source_name == "申报要求"
+        and "application_conditions" in item.target_hints
+    )
+    assert "medium_risk_section_scope" in requirements.quality_flags
+
+
+def test_source_site_and_deadline_candidates_have_safe_target_hints() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_source_deadline",
+        make_uir(
+            [
+                {
+                    "block_id": "deadline",
+                    "type": "paragraph",
+                    "text": "项目网上填报截止时间为2026年7月23日16:30。",
+                }
+            ],
+            metadata={
+                "domain": "general_doc",
+                "source_site": "www.example.gov.cn",
+            },
+        ),
+    )
+
+    source = candidate_by_name(candidates, "source_site")
+    deadline = next(item for item in candidates if "deadline" in item.target_hints)
+    assert source.target_hints == ["source"]
+    assert source.evidence_type == "official_source_metadata"
+    assert deadline.source_name == "截止时间"
+    assert deadline.source_blocks == ["deadline"]
+    assert deadline.evidence_type == "explicit_deadline"
+
+
+def test_policy_attachment_url_and_responsible_departments_are_risk_aware() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_policy_attachment",
+        make_uir(
+            [
+                {
+                    "block_id": "responsible",
+                    "type": "paragraph",
+                    "text": (
+                        "第三条 工业和信息化部负责制定管理政策，"
+                        "国家发展改革委、生态环境部等部门按照职责分工负责监督管理。"
+                    ),
+                }
+            ],
+            metadata={
+                "domain": "policy_doc",
+                "source_url": (
+                    "https://www.gov.cn/zhengce/zhengceku/202511/"
+                    "P020251106333013261545.pdf"
+                ),
+            },
+        ),
+    )
+
+    publish_date = next(
+        item for item in candidates if "publish_date" in item.target_hints
+    )
+    issuer = next(
+        item
+        for item in candidates
+        if item.source_name == "工业和信息化部等部门"
+    )
+    assert publish_date.value_sample == "2025-11-06"
+    assert publish_date.evidence_type == "official_attachment_url"
+    assert issuer.target_hints == ["issuer"]
+    assert "medium_risk_responsible_departments" in issuer.quality_flags
+    assert issuer.source_blocks == ["responsible"]

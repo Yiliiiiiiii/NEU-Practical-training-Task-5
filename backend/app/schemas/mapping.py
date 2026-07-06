@@ -59,6 +59,8 @@ class FieldMapping(StrictBaseModel):
     badcase_filter: dict[str, Any] = Field(default_factory=dict)
     review_required_reason: str | None = None
     llm_metadata: dict[str, Any] | None = None
+    ranking_trace: dict[str, float] = Field(default_factory=dict)
+    rejected_candidates: list[dict[str, Any]] = Field(default_factory=list)
 
     @field_validator("status", mode="before")
     @classmethod
