@@ -1,5 +1,8 @@
 # SchemaPack Agent 最终交接状态
 
+> 本文保留各阶段交接历史。当前统一交接入口为
+> [`交接/README.md`](交接/README.md)。
+
 ## 集成仓库状态
 
 - 当前质量打磨分支：`codex/quality-polish`。
