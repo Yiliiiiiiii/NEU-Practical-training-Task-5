@@ -122,6 +122,31 @@ def test_analyzer_aggregates_failures_by_doc_type_and_field(tmp_path: Path) -> N
     assert report["items"][1]["doc_id"] == "policy-1"
 
 
+def test_analyzer_does_not_double_count_directory_with_archive(
+    tmp_path: Path,
+) -> None:
+    module = load_module()
+    packages = tmp_path / "packages"
+    package_dir = packages / "pkg_policy"
+    package_dir.mkdir(parents=True)
+    write_package(
+        package_dir / "package.zip",
+        doc_id="policy-1",
+        schema_id="policy_doc",
+        passed=False,
+        required_missing=["issuer"],
+        review_targets=["effective_date"],
+    )
+    with ZipFile(package_dir / "package.zip") as archive:
+        archive.extractall(package_dir)
+
+    report = module.analyze(packages_root=packages)
+
+    assert report["summary"]["package_count"] == 1
+    assert report["summary"]["required_missing_count"] == 1
+    assert report["summary"]["review_required_count"] == 1
+
+
 def test_analyzer_writes_json_and_markdown(tmp_path: Path) -> None:
     module = load_module()
     packages = tmp_path / "packages"

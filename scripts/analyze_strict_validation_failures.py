@@ -67,11 +67,16 @@ def read_jsonl(path: Path | None) -> list[dict[str, Any]]:
 
 
 def package_paths(packages_root: Path) -> list[Path]:
-    archives = sorted(packages_root.rglob("*.zip"))
     directories = sorted(
         path.parent
         for path in packages_root.rglob("validation_report.json")
         if path.is_file()
+    )
+    directory_set = {path.resolve() for path in directories}
+    archives = sorted(
+        path
+        for path in packages_root.rglob("*.zip")
+        if path.parent.resolve() not in directory_set
     )
     return [*archives, *directories]
 

@@ -139,6 +139,12 @@ def _source_values(uir: dict[str, Any], label: str) -> list[Any]:
                 for row in rows
                 if isinstance(row, dict) and row.get("field") == label
             )
+    if not values:
+        values.extend(
+            block.get("text")
+            for block in uir.get("blocks", [])
+            if isinstance(block, dict) and block.get("text")
+        )
     return values
 
 
