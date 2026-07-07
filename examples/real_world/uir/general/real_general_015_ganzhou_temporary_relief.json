@@ -1,0 +1,327 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、事项名称",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "临时救助申请",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、 申请条件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "临时救助是指对遭遇突发事件、意外伤害、重大疾病或其他特殊原因导致基本生活陷入困境，其他社会救助制度暂时无法覆盖或救助之后基本生活暂时仍有严重困难的家庭或个人，由政府给予的应急性、过渡性救助。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、 申请材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.申请人的身份证或户口簿原件；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.因特殊原因无法电子授权的，应填写《江西省社会救助申请及核对书》《个人委托授权及法律责任声明书》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "四 、办理基本流程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.申请受理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "临时救助分为依申请受理和主动发现受理 。凡认为符合临时救助条件的城乡居民家庭或个人可以向户籍所在地或实际居住地的乡镇（街道）提出申请，社会救助经办机构对相关材料当场进行审查并提出意见，无正当理由的，不得拒绝受理。申请材料不齐备的，应当一次性告知补齐所有规定的材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.调查评估",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "急难型临时救助。 乡镇（街道） 自 收 到申请后 2个工作日 内组织 不少于 2名调查人员通过入户调查、邻里访问、现场核验、信函索证、电话询问等方式，完成对申请人实际生活状况、致困原因等调查核实 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "支出型临时救助和特别救助采取实地调查和信息核对相结合的方式。 乡镇（街道） 在受理当日向 区级 民政 部门 申请信息核对 ， 自受理申请后 5个工作日内 组织 不少于 2名调查人员对申请人实际生活状况，致困原因等调查核实。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "3. 公示",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请急难型临时救助的，在受理阶段可不予公示。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请支出型临时救助、特别救助的，应于受理申请的次日起，在申请人所在的村（居）委会社会救助公示栏或者当地网络平台公示申请情况，公示期为 5个工作日。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.民主评议",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请急难型临时救助的，可不组织民主评议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请支出型临时救助、特别救助的，受理公示期间，群众提出重大异议且能够提供有效证明材料或者提出合理理由的，收到异议的乡镇（街道）应当在公示结束后 5个工作日内，围绕争议的内容组织民主评议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "5.审核确认",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请急难型临时救助的，乡镇（街道）应当于 调查核实等程序结束后 2个 工作 日内完成审核确认 ，其中小金额先行救助的应当于受理当日完成审核确认。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请 支出型 临时救助 、特别救助 的，乡镇（街道）应当于 调查核实、公示、家庭经济 状况 核对、民政评议等程序结束后 2个工作日内提出初审意见后报 区级民政部门 审核确认。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "五 、办公 地点、联系电话 及时间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.办公地点及 联系电话 ：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "赣州蓉江新区民政局： 赣州蓉江新区行政服务中心四号楼一楼， 0797-8 165223；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "潭东镇便民服务中心： 潭东镇东坑村桐孜塘 1号， 0797- 6580201；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "潭口镇便民服务中心 ：潭口大道 246号， 0797-6652350；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "潭东镇高校园区工作组便民服务中心：章贡区薄荷路与水仙路交叉口南 60米 、 0797-8370269。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_015_ganzhou_temporary_relief_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "2. 办公时间：工作日 ， 8 : 30 -12:00；14: 30 -17: 30。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_015_ganzhou_temporary_relief",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 29,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:36:42.819121+00:00",
+    "source_format": "html",
+    "source_sha256": "37300056405e1a5da183fcf8db9f695174a867762aeca2a7d56b87892676a48c",
+    "source_site": "rjxq.ganzhou.gov.cn",
+    "source_url": "https://rjxq.ganzhou.gov.cn/rjxqxxgk/shjzu/202605/082a606829de46418420fdc8f63d4215.shtml",
+    "title": "临时救助申请办理指南 | 蓉江新区管委会信息公开",
+    "标题": "临时救助申请办理指南 | 蓉江新区管委会信息公开"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "37300056405e1a5da183fcf8db9f695174a867762aeca2a7d56b87892676a48c"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_015_ganzhou_temporary_relief",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

@@ -73,6 +73,22 @@ def read_jsonl(path: Path | None) -> list[dict[str, Any]]:
     return rows
 
 
+def read_doc_ids_from_report(path: Path | None) -> set[str] | None:
+    if path is None:
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"), strict=False)
+    if not isinstance(payload, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    doc_ids = {
+        str(item["doc_id"])
+        for item in payload.get("documents", [])
+        if isinstance(item, dict) and isinstance(item.get("doc_id"), str)
+    }
+    if not doc_ids:
+        raise ValueError(f"{path} does not contain documents[].doc_id entries")
+    return doc_ids
+
+
 def package_paths(packages_root: Path) -> list[Path]:
     directories = sorted(
         path.parent
@@ -111,6 +127,7 @@ def analyze(
     *,
     packages_root: str | Path,
     gold_path: str | Path | None = None,
+    allowed_doc_ids: set[str] | None = None,
 ) -> dict[str, Any]:
     root = Path(packages_root)
     failures_by_doc_type: Counter[str] = Counter()
@@ -118,6 +135,7 @@ def analyze(
     review_required_by_field: Counter[str] = Counter()
     failure_categories: Counter[str] = Counter()
     items: list[dict[str, Any]] = []
+    seen_doc_ids: set[str] = set()
 
     for package_path in package_paths(root):
         reports = read_package_reports(package_path)
@@ -126,6 +144,11 @@ def analyze(
         transform = reports.get("transform_report.json", {})
         validation = reports.get("validation_report.json", {})
         doc_id = str(metadata.get("doc_id") or package_path.stem)
+        if allowed_doc_ids is not None and doc_id not in allowed_doc_ids:
+            continue
+        if allowed_doc_ids is not None and doc_id in seen_doc_ids:
+            continue
+        seen_doc_ids.add(doc_id)
         doc_type = str(
             metadata.get("schema_id")
             or validation.get("schema_id")
@@ -308,11 +331,24 @@ def run(
     *,
     packages_root: str | Path,
     gold_path: str | Path | None,
+    doc_ids_from_report: str | Path | None = None,
     out_path: str | Path,
     markdown_path: str | Path,
 ) -> dict[str, Any]:
-    report = analyze(packages_root=packages_root, gold_path=gold_path)
-    attach_run_metadata(report, packages_root=packages_root, gold_path=gold_path)
+    report = analyze(
+        packages_root=packages_root,
+        gold_path=gold_path,
+        allowed_doc_ids=read_doc_ids_from_report(
+            Path(doc_ids_from_report) if doc_ids_from_report is not None else None
+        ),
+    )
+    attach_run_metadata(
+        report,
+        packages_root=packages_root,
+        gold_path=gold_path,
+    )
+    if doc_ids_from_report is not None:
+        report["run_metadata"]["doc_ids_from_report"] = str(doc_ids_from_report)
     write_json(Path(out_path), report)
     markdown = Path(markdown_path)
     markdown.parent.mkdir(parents=True, exist_ok=True)
@@ -324,6 +360,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packages-root", required=True)
     parser.add_argument("--gold")
+    parser.add_argument(
+        "--doc-ids-from-report",
+        help="Restrict analysis to documents listed in an evaluator report.",
+    )
     parser.add_argument("--out", required=True)
     parser.add_argument("--markdown", required=True)
     return parser
@@ -334,6 +374,7 @@ def main(argv: list[str] | None = None) -> int:
     report = run(
         packages_root=args.packages_root,
         gold_path=args.gold,
+        doc_ids_from_report=args.doc_ids_from_report,
         out_path=args.out,
         markdown_path=args.markdown,
     )

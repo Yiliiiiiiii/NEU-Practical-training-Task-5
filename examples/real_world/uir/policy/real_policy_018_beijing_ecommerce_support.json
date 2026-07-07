@@ -1,0 +1,481 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "设为首页 加入收藏 繁体 服务承诺 网站无障碍 访问我的专属空间 移动版 智能问答",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政务公开",
+          "政务服务",
+          "政民互动"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政务公开",
+          "政务服务",
+          "政民互动"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "[主题分类] 商贸、海关、旅游/国内贸易（含供销）",
+          "[制发单位] 北京市商务局",
+          "[实施日期] 2026-03-27",
+          "[成文日期] 2026-03-27",
+          "[发文序号] 京商电商字〔2026〕8号",
+          "[发布日期] 2026-03-30",
+          "[有效性] 现行有效",
+          "[失效日期]"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b005",
+      "level": 3,
+      "source_anchor": null,
+      "text": "关于申报2026年促进电子商务高质量发展支持政策的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "各区商务局、北京经济技术开发区商务金融局、各有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "为鼓励平台企业、电商服务企业积极发挥赋能带动作用，支持企业进一步拓展网络销售渠道、加快数字化转型，拟对2026年符合条件的相关企业给予支持。有关事项通知如下：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、支持范围 在京合法经营且从事以下经营活动的单位，包括： （一）为消费者提供商品、餐饮第三方交易服务的互联网平台企业。 （二）通过网络平台开展商品或餐饮自营销售业务的企业。 （三）提供直播电商或代运营等服务的电商服务企业。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、支持内容及标准 （一）支持平台企业发挥赋能带动作用 为消费者提供商品、餐饮第三方交易服务的互联网平台企业， 2026年 每培育1家实际成交额（注释 ① ） 不低于 2000万元 且增速不低于 50 %的企业 （注释 ② ） ，给予不超过5万元支持，单个平台企业最高支持不超过500万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）支持电商服务企业加大服务支持力度 对2026年带动10家（含）以上企业 （注释 ③ ） 累计实际成交额不低于2000万元的电商服务企业 ，按照不超过实际成交额的0.5%给予支持，单个服务企业最高支持不超过100万元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）支持企业加快数字化转型 1.支持企业搭建线上营销体系。支持企业通过入驻第三方电商平台、搭建商城网站、建设APP或小程序等方式开展线上营销，加快布局电商业务，推进数字化转型。 2.支持企业数字化运营能力提升。支持企业开发经营管理软件服务系统，打通选品、备货、营销、售后等链路环节，实现线上线下、公域私域、运营流程一体化管理，提升选品精细化、备货柔性化、营销精准化、交付体系化、库存协同化、售后标准化 等水平，有效提高运营服务能力，实现数字化运营能力升级。 3.支持企业数字化场景应用。支持企业创新迭代电子商务新模式，发展直播电商、即时零售等新业态。支持企业搭建专业或独立的网络直播场景，升级直播带货技术手段，提高直播领域服务能力和运营能力；鼓励企业运用大数据、XR、人工智能、数字孪生、高清影像、数字人等新兴技术，打造数字人导购、智能客服、虚拟场景制作等沉浸式、体验式、互动式消费新场景，提升服务质量和数字消费体验。 对企业符合以上方向的软硬件设备购置及升级改造等投资，按照不超过审定实际投资总额的 50%予以支持，单家企业最高不超过100万元。资金支付、发票开具时间均在2025年1月1日（含）以后。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、支持条件 （一）有下列情形的不予支持：列入《北京市新增产业的禁止和限制目录》禁止类和限制类范围的；纳入全市联合惩戒 “黑名单”的；纳入商务局信用主体信用信息核查黑名单，存在“较重不良信用记录”的；近三年内发生较大及以上安全生产事故、火灾事故或拒绝整改风险隐患造成严重不良影响、受到监管和执法部门处罚的；同一申报单位同一内容的项目已获得中央财政资金支持或其他市级财政资金支持的不得重复申报；经审议其他不予支持的。 （二）申报“支持内容及标准（三）”的企业 若为提供第三方交易服务的互联网平台， 2025年 平台交易额 （注释 ④ ） 应不低于 1亿元；若为自营网络零售企业，2025年网络零售额 （注释 ⑤ ） 应不低于1000万元。同时应满足：项目 已完工（分阶段实施的，应完成所申报阶段的阶段性目标）、审定实际投资总额不低于审定计划投资总额（符合支持方向的本阶段合同投资总额）的70%、申报项目完工后运营时间已达3个月（含）以上。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、申报材料 项目需通过登录北京市人民政府门户网站“政策兑现”频道（https://zhengce.beijing.gov.cn）进行网上申报， 同时申报材料纸质版 一式两份，应按顺序装订成册（胶装，不要使用非纸类封皮和夹套），并加盖单位公章。项目申报材料不予退回。 （一） 资金 申请表 （附件1） 。 （二） 申报单位简介。包括申报单位基本情况、 营业执照（副本）复印件、申报单位信用报告 等有关材料 。 （三）项目支撑材料。 1.申报“支持内容及标准（一）”的，需提供申报单位与申报平台合法运营关系、赋能带动成效（带动数量、实际成交额、增速）等相关佐证材料（如图片、视频资料等）。 2.申报“支持内容及标准（二）”的，需提供申报单位相关资质（入驻平台认证）、服务支持成效（服务合同、实际成交额、结算单据）等相关佐证材料（如图片、视频资料等）。 3. 申报“支持内容及标准（ 三 ）” 的，需提供申报单位平台交易额或网络零售额证明材料（如平台后台数据、图片、视频资料等）；与投资额相对应的支出合同、支出凭证、发票及银行回单等材料；涉及房屋的，需提供房屋产权证明或房屋使用相关合同协议；项目完工时间、运营时间、绩效等相关佐证材料（如合同、图片、视频资料等）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、申报流程 （一）政策申报 申报企业应在时限内进行线上申报，并按隶属关系将纸质版申报材料一并提交至属地商务局、北京经济技术开发区商务金融局，逾期不予受理。具体要求如下： 1.申报“支持内容及标准（一）（二）”，2026年年内符合本《通知》申报条件的 企业，2026年11月27日前完成项目申报；2026年年度符合本《通知》申报条件的企业，2027年3月1日前完成项目申报。 2.申报“支持内容及标准（三）”，各企业于政策出台之日起、截至2026年11月27日前完成项目申报。 （二）审核及公示 1.对申报“支持内容及标准（一）（二）”的，属地商务局、北京经济技术开发区商务金融局根据企业申报批次，于2026年12月11日前、2027年3月12日前对申报材料进行线上线下初审后，填写对应的项目初审情况汇总表（附件2）报送市商务局。由市商务局委托第三方机构进行核定，对符合条件且公示后无异议的企业给予支持。 2.对申报“支持内容及标准（三）”的，属地商务局、北京经济技术开发区商务金融局在申报企业提交材料后10个工作日内进行线上线下初审后，填写对应的项目初审情况汇总表（附件2）报送市商务局，最晚一批于2026年12月11日前上报。由 市商务局委托第三方机构进行评审，评审通过后会同相关区商务局、北京经济技术开发区商务金融局履行验收程序，对符合条件且公示后无异议的企业给予支持。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、工作要求 （一） 各 申报企业 应确保申报材料真实、准确、完整、有效， 涉及项目建设的需手 续合规、按时间进度推进。对于伪造、提供虚假材料的项目申报单位，按《北京市商务领域不良信用记录名单管理办法（试行）》规定进行处理。 （ 二 ）各初审单位应积极组织项目申报，切实做好指导与审核，严格把关，按照规定程序做好相关工作。应加强对已支持项目的后续指导和跟踪监管，确保项目实施效果，充分发挥财政资金使用效益。 （ 三 ）获得财政资金支持的项目单位应积极配合相关监督检查、审计等工作。项目单位收到财政资金后，应按照《财政部关于印发修订<企业会计准则第16号——政府补助>的通知》（财会〔2017〕15号）相关规定进行账务办理，相关法律法规另有规定的从其规定。 （ 四 ）对于截留、挪用、骗取财政资金等违法行为，依照《财政违法行为处罚处分条例》（国务院令第427号，根据2011年国务院令第588号修订）等有关规定进行处理处罚。构成犯罪的，依法移交司法机关追究其刑事责任。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "注释： ① 本《通知》中的“成交额”均指与商品性消费有关的实物商品或餐饮网上自营销售金额。 ②本方向所指“企业”应满足本《通知》“支持范围（二）”，分公司应纳入总公司计算。 ③本方向所指“企业”应满足本《通知》“支持范围（二）”，分公司应纳入总公司计算。 ④“平台交易额”指平台企业完成的商品和餐饮服务交易总和。 ⑤“网络零售额”指企业（单位）通过公共网络交易平台（包括自建网站和第三方平台）取得订单，售给个人、社会集团非生产、非经营用的实物商品（含餐饮）金额。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "本文件由市商务局负责解释，自发布之日起生效 ，有效期至政策实施结束 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "北京市商务局 2026年3月27日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b019",
+      "level": 3,
+      "source_anchor": null,
+      "text": "相关解读：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b020",
+      "level": 3,
+      "source_anchor": null,
+      "text": "相关政策：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "items": [
+          "商务部网站",
+          "国家发改委",
+          "财政部",
+          "工信部",
+          "国家统计局",
+          "国家税务总局",
+          "国家海关总署",
+          "天津市商务局",
+          "河北省商务厅",
+          "重庆市商业委员会",
+          "上海市商务委"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "市政府办公厅",
+          "市发展改革委",
+          "市教委",
+          "市科委",
+          "市经济和信息化局",
+          "市民族宗教委",
+          "市公安局",
+          "市监察局",
+          "市民政局",
+          "市司法局",
+          "市财政局",
+          "市人力资源社会保障局",
+          "市规划自然资源委",
+          "市生态环境局",
+          "市住房城乡建设委",
+          "市城市管理委",
+          "市交通委",
+          "市水务局",
+          "市农业农村局",
+          "市商务局",
+          "市文化和旅游局",
+          "市卫生健康委",
+          "市退役军人事务局",
+          "市应急局",
+          "市市场监管局",
+          "市审计局",
+          "市政府外办",
+          "市国资委",
+          "市广电局",
+          "市文物局",
+          "市体育局",
+          "市统计局",
+          "市园林绿化局",
+          "市金融监管局",
+          "市政务服务和数据管理局",
+          "市机关事务局",
+          "市国信办",
+          "市信访办",
+          "市知识产权局",
+          "市医保局",
+          "市政府参事室"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "东城区",
+          "西城区",
+          "丰台区",
+          "朝阳区",
+          "海淀区",
+          "昌平区",
+          "石景山区",
+          "顺义区",
+          "房山区",
+          "门头沟区",
+          "通州区",
+          "平谷区",
+          "大兴区",
+          "怀柔区",
+          "延庆区",
+          "密云区"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "关于我们",
+          "法律声明",
+          "站点地图",
+          "建议征集"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "联系我们",
+          "政务服务热线：12345"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "微信公众号",
+          "政务微博"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "主办：北京市商务局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "承办：北京市商务局综合事务中心",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府网站标识码：1100000019",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "京公网安备 11011202002118号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "京ICP备20001671号-5",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "您访问的链接即将离开“北京市商务局”门户网站 是否继续？",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "微信公众号",
+          "政务微博"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_018_beijing_ecommerce_support_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    }
+  ],
+  "doc_id": "real_policy_018_beijing_ecommerce_support",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 33,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:30:15.307052+00:00",
+    "source_format": "html",
+    "source_sha256": "d7582463b0f2ed26341d6dd18b87b54be20a8224c24a33da60957466744d26b6",
+    "source_site": "sw.beijing.gov.cn",
+    "source_url": "https://sw.beijing.gov.cn/zwxx/2024zcwj/202603/t20260330_4569435.html",
+    "title": "关于申报2026年促进电子商务高质量发展支持政策的通知",
+    "标题": "关于申报2026年促进电子商务高质量发展支持政策的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "d7582463b0f2ed26341d6dd18b87b54be20a8224c24a33da60957466744d26b6"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_018_beijing_ecommerce_support",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

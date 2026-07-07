@@ -2,20 +2,23 @@
 
 | Metric | Count |
 | --- | ---: |
-| Sources | 1 |
-| Extracted | 1 |
+| Sources | 4 |
+| Extracted | 4 |
 | Rejected | 0 |
 | Skipped | 0 |
-| Downloaded | 45 |
+| Downloaded | 60 |
 | Collection failed | 0 |
 
 ## Source formats
 
 | Format | Count |
 | --- | ---: |
-| html | 40 |
+| html | 55 |
 | pdf | 5 |
 
 | Source ID | Format | Status | Reason |
 | --- | --- | --- | --- |
-| real_policy_015_ai_ethics_rules | html | extracted |  |
+| real_general_012_tongguan_food_license | html | extracted |  |
+| real_general_013_zhongshan_import_export_guide | html | extracted |  |
+| real_general_014_ningguo_food_license | html | extracted |  |
+| real_general_015_ganzhou_temporary_relief | html | extracted |  |

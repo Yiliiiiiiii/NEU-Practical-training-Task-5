@@ -1,0 +1,780 @@
+{
+  "summary": {
+    "package_count": 50,
+    "validation_pass_count": 39,
+    "validation_fail_count": 11,
+    "required_missing_count": 14,
+    "review_required_count": 22
+  },
+  "gold_case_count": 60,
+  "failures_by_doc_type": {
+    "meeting_doc": 1,
+    "policy_doc": 10
+  },
+  "required_missing_by_field": {
+    "issuer": 9,
+    "meeting_date": 1,
+    "publish_date": 4
+  },
+  "review_required_by_field": {
+    "application_conditions": 6,
+    "attendees": 2,
+    "category": 3,
+    "issuer": 7,
+    "publish_date": 2,
+    "service_object": 1,
+    "summary": 1
+  },
+  "failure_categories": {
+    "date_format_invalid": 12,
+    "missing_required": 18,
+    "semantic_review_required": 22
+  },
+  "items": [
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_001_notary_service_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "category"
+      ],
+      "failure_categories": [
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_002_biomed_project_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "category"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "package": "real_general_003_textile_application_flow.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "category"
+      ],
+      "failure_categories": [
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_004_tianhe_service_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_005_eldercare_technology_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "application_conditions"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_006_soft_science_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_006_soft_science_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "application_conditions"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_007_domestic_cooperation_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "application_conditions"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_008_science_communication_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_008_science_communication_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "application_conditions"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_009_food_technology_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "application_conditions"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_010_cell_gene_therapy_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "application_conditions"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "package": "real_general_011_shanghai_branch_registration.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 2,
+      "review_required_fields": [
+        "service_object",
+        "summary"
+      ],
+      "failure_categories": [
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_012_tongguan_food_license",
+      "doc_type": "general_doc",
+      "package": "real_general_012_tongguan_food_license.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "package": "real_general_013_zhongshan_import_export_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_014_ningguo_food_license",
+      "doc_type": "general_doc",
+      "package": "real_general_014_ningguo_food_license.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_general_015_ganzhou_temporary_relief",
+      "doc_type": "general_doc",
+      "package": "real_general_015_ganzhou_temporary_relief.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_001_changning_executive_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_002_shaxian_executive_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_003_miluo_executive_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_004_shandan_2025_11_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_005_miluo_2026_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_006_shandan_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "attendees"
+      ],
+      "failure_categories": [
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_007_zhenping_49_minutes.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "meeting_date"
+      ],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [
+        "date_format_invalid",
+        "missing_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_008_wlmqx_2026_01_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_009_kundulun_2026_01_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_010_zhangjiagang_64_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "attendees"
+      ],
+      "failure_categories": [
+        "semantic_review_required"
+      ],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_011_haibowan_2026_02_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_012_wlmqx_2026_02_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_013_shawan_2026_03_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_014_shcn_2026_142_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "package": "real_meeting_015_changshu_2026_62_minutes.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "package": "real_policy_001_training_platform_rules.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "package": "real_policy_002_equipment_renewal.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "package": "real_policy_003_science_education_guide.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "package": "real_policy_004_student_loan_relief.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "package": "real_policy_005_ai_industry_guide.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [
+        "missing_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "package": "real_policy_006_technology_incubator_rules.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "issuer"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "package": "real_policy_007_one_thing_list.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "publish_date"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "publish_date"
+      ],
+      "failure_categories": [
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "package": "real_policy_008_sme_leader_training.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "package": "real_policy_009_network_safety_work.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "package": "real_policy_010_auto_ota_management.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "package": "real_policy_011_battery_recycling_rules.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "issuer"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "package": "real_policy_012_sme_gradient_rules.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "issuer"
+      ],
+      "failure_categories": [
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_013_minor_platform_rules",
+      "doc_type": "policy_doc",
+      "package": "real_policy_013_minor_platform_rules.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "issuer"
+      ],
+      "failure_categories": [
+        "date_format_invalid",
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_014_digital_aging_campaign",
+      "doc_type": "policy_doc",
+      "package": "real_policy_014_digital_aging_campaign.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "package": "real_policy_015_ai_ethics_rules.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "issuer"
+      ],
+      "failure_categories": [
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "package": "real_policy_016_caac_civil_aviation_law.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [
+        "date_format_invalid",
+        "missing_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "package": "real_policy_017_xinhua_investment_management.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_required_count": 2,
+      "review_required_fields": [
+        "issuer",
+        "publish_date"
+      ],
+      "failure_categories": [
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "package": "real_policy_018_beijing_ecommerce_support.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    },
+    {
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "package": "real_policy_019_mof_vat_transition.zip",
+      "validation_passed": false,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 1,
+      "review_required_fields": [
+        "issuer"
+      ],
+      "failure_categories": [
+        "missing_required",
+        "semantic_review_required"
+      ],
+      "schema_valid": false,
+      "strict_semantic_valid": false
+    },
+    {
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "package": "real_policy_020_customs_foreign_investment_catalog.zip",
+      "validation_passed": true,
+      "required_missing": [],
+      "review_required_count": 0,
+      "review_required_fields": [],
+      "failure_categories": [],
+      "schema_valid": true,
+      "strict_semantic_valid": true
+    }
+  ],
+  "run_metadata": {
+    "run_id": "phase_c_20260707T071518",
+    "generated_at": "2026-07-07T07:15:18.152709+00:00",
+    "git_branch": "codex/phase-c-strict-semantic-template-dataset",
+    "git_commit": "8cbff466",
+    "packages_root": "reports\\real_world_packages",
+    "gold_path": "examples\\real_world\\gold\\mapping_gold.jsonl",
+    "badcases_path": null,
+    "dataset_size": 50,
+    "report_version": "phase_c_v1",
+    "doc_ids_from_report": "reports\\phase_c_sprint4_non_procurement_mapping_eval_report.json"
+  }
+}

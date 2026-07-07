@@ -1,0 +1,704 @@
+{
+  "documents": [
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 1,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.5714285714285714,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_006_soft_science_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.7142857142857143,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.8571428571428571,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.625,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 1,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_014_digital_aging_campaign",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.625,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.5714285714285714,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "mapping_recall": 1.0,
+      "review_required_count": 1,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_008_science_communication_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_013_minor_platform_rules",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.875,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "mapping_recall": 1.0,
+      "review_required_count": 1,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 1.0,
+      "review_required_count": 1,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 1.0,
+      "review_required_count": 1,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.875,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.8333333333333334,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.5714285714285714,
+      "review_required_count": 2,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_012_tongguan_food_license",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.625,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_014_ningguo_food_license",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_general_015_ganzhou_temporary_relief",
+      "doc_type": "general_doc",
+      "mapping_recall": 0.75,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": true
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.5555555555555556,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.625,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.625,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "mapping_recall": 0.5555555555555556,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.6666666666666666,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.5,
+      "review_required_count": 2,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.5,
+      "review_required_count": 0,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.375,
+      "review_required_count": 1,
+      "strict_passed": false
+    },
+    {
+      "badcase_violations": 0,
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "mapping_recall": 0.4444444444444444,
+      "review_required_count": 0,
+      "strict_passed": false
+    }
+  ],
+  "gaps_by_doc_type": {
+    "general_doc": 27,
+    "meeting_doc": 35,
+    "policy_doc": 48
+  },
+  "gaps_by_gap_type": {
+    "candidate_extracted_but_not_ranked": 8,
+    "candidate_not_extracted": 100,
+    "schema_requirement_mismatch": 2
+  },
+  "gaps_by_target_field": {
+    "action_items": 2,
+    "application_conditions": 11,
+    "application_materials": 1,
+    "attendees": 6,
+    "contact": 6,
+    "decisions": 3,
+    "document_number": 3,
+    "effective_date": 6,
+    "issuer": 6,
+    "meeting_date": 4,
+    "meeting_number": 7,
+    "organizer": 6,
+    "policy_measures": 7,
+    "process_steps": 2,
+    "publish_date": 16,
+    "service_object": 6,
+    "summary": 1,
+    "target_audience": 6,
+    "title": 1,
+    "topics": 7,
+    "valid_until": 3
+  },
+  "gold_label_suspicions": [],
+  "ranked_fixes": [
+    {
+      "count": 15,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce publish_date candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 1,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "publish_date"
+    },
+    {
+      "count": 7,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce meeting_number candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 2,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "meeting_number"
+    },
+    {
+      "count": 7,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce topics candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 3,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "topics"
+    },
+    {
+      "count": 7,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce policy_measures candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 4,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "policy_measures"
+    },
+    {
+      "count": 6,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce application_conditions candidate_extracted_but_not_ranked gaps",
+      "gap_type": "candidate_extracted_but_not_ranked",
+      "rank": 5,
+      "recommended_action": "improve_evidence_ranking",
+      "risk": "medium",
+      "target_field": "application_conditions"
+    },
+    {
+      "count": 6,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce contact candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 6,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "contact"
+    },
+    {
+      "count": 6,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce service_object candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 7,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "service_object"
+    },
+    {
+      "count": 6,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce organizer candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 8,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "organizer"
+    },
+    {
+      "count": 6,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce target_audience candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 9,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "target_audience"
+    },
+    {
+      "count": 5,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce application_conditions candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 10,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "application_conditions"
+    },
+    {
+      "count": 5,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce attendees candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 11,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "attendees"
+    },
+    {
+      "count": 5,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce effective_date candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 12,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "effective_date"
+    },
+    {
+      "count": 5,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce issuer candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 13,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "issuer"
+    },
+    {
+      "count": 4,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce meeting_date candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 14,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "meeting_date"
+    },
+    {
+      "count": 3,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce decisions candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 15,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "decisions"
+    },
+    {
+      "count": 3,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce document_number candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 16,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "document_number"
+    },
+    {
+      "count": 3,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce valid_until candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 17,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "valid_until"
+    },
+    {
+      "count": 2,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce process_steps candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 18,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "process_steps"
+    },
+    {
+      "count": 2,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce action_items candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 19,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "action_items"
+    },
+    {
+      "count": 1,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce application_materials candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 20,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "application_materials"
+    },
+    {
+      "count": 1,
+      "doc_type": "general_doc",
+      "expected_gain": "reduce title candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 21,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "title"
+    },
+    {
+      "count": 1,
+      "doc_type": "meeting_doc",
+      "expected_gain": "reduce attendees candidate_extracted_but_not_ranked gaps",
+      "gap_type": "candidate_extracted_but_not_ranked",
+      "rank": 22,
+      "recommended_action": "improve_evidence_ranking",
+      "risk": "medium",
+      "target_field": "attendees"
+    },
+    {
+      "count": 1,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce effective_date candidate_extracted_but_not_ranked gaps",
+      "gap_type": "candidate_extracted_but_not_ranked",
+      "rank": 23,
+      "recommended_action": "improve_evidence_ranking",
+      "risk": "medium",
+      "target_field": "effective_date"
+    },
+    {
+      "count": 1,
+      "doc_type": "policy_doc",
+      "expected_gain": "reduce summary candidate_not_extracted gaps",
+      "gap_type": "candidate_not_extracted",
+      "rank": 24,
+      "recommended_action": "enhance_candidate_extraction",
+      "risk": "low",
+      "target_field": "summary"
+    }
+  ],
+  "run_metadata": {
+    "badcases_path": "examples\\real_world\\gold\\real_world_badcases.jsonl",
+    "dataset_size": 50,
+    "doc_ids_from_report": "reports\\phase_c_sprint4_non_procurement_mapping_eval_report.json",
+    "generated_at": "2026-07-07T07:15:17.859908+00:00",
+    "git_branch": "codex/phase-c-strict-semantic-template-dataset",
+    "git_commit": "8cbff466",
+    "gold_path": "examples\\real_world\\gold\\mapping_gold.jsonl",
+    "packages_root": "reports\\real_world_packages",
+    "report_version": "phase_c_v1",
+    "run_id": "phase_c_20260707T071517"
+  },
+  "strict_validation_failures": [],
+  "summary": {
+    "average_recall": 0.7184920634920635,
+    "badcase_violations": 0,
+    "dataset_size": 50,
+    "llm_auto_accepted_count": 0,
+    "required_missing_count": 4,
+    "review_required_count": 11,
+    "strict_pass_count": 34,
+    "strict_total": 50
+  },
+  "unsafe_candidates": []
+}

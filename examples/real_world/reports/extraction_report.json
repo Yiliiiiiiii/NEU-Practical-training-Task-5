@@ -1,28 +1,52 @@
 {
   "by_format": {
-    "html": 40,
+    "html": 55,
     "pdf": 5
   },
   "collection_totals": {
-    "downloaded": 45,
+    "downloaded": 60,
     "failed": 0,
     "skipped": 0
   },
-  "generated_at": "2026-07-03T01:21:24.062180+00:00",
+  "generated_at": "2026-07-07T06:36:47.891471+00:00",
   "items": [
     {
-      "block_count": 22,
+      "block_count": 46,
       "reason": "",
       "source_format": "html",
-      "source_id": "real_policy_015_ai_ethics_rules",
+      "source_id": "real_general_012_tongguan_food_license",
       "status": "extracted",
-      "uir_path": "uir/policy/real_policy_015_ai_ethics_rules.json"
+      "uir_path": "uir/general/real_general_012_tongguan_food_license.json"
+    },
+    {
+      "block_count": 47,
+      "reason": "",
+      "source_format": "html",
+      "source_id": "real_general_013_zhongshan_import_export_guide",
+      "status": "extracted",
+      "uir_path": "uir/general/real_general_013_zhongshan_import_export_guide.json"
+    },
+    {
+      "block_count": 36,
+      "reason": "",
+      "source_format": "html",
+      "source_id": "real_general_014_ningguo_food_license",
+      "status": "extracted",
+      "uir_path": "uir/general/real_general_014_ningguo_food_license.json"
+    },
+    {
+      "block_count": 29,
+      "reason": "",
+      "source_format": "html",
+      "source_id": "real_general_015_ganzhou_temporary_relief",
+      "status": "extracted",
+      "uir_path": "uir/general/real_general_015_ganzhou_temporary_relief.json"
     }
   ],
   "totals": {
-    "extracted": 1,
+    "extracted": 4,
     "rejected": 0,
     "skipped": 0,
-    "sources": 1
+    "sources": 4
   }
 }

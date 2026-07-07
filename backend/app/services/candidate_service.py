@@ -32,8 +32,10 @@ class CandidateService:
         "guide_title",
     )
     HEADED_LIST_NAMES = {
+        "申请材料目录",
         "申请材料",
         "办理材料",
+        "办理基本流程",
         "办理流程",
         "申报流程",
         "会议决定",
@@ -119,6 +121,23 @@ class CandidateService:
         "申报条件",
         "申报要求",
     }
+    GENERAL_SECTION_TARGETS = {
+        "适用范围": ("service_object", "service_object_section"),
+        "服务对象": ("service_object", "service_object_section"),
+        "申报主体": ("service_object", "service_object_section"),
+        "申报主体要求": ("service_object", "service_object_section"),
+        "项目负责人要求": ("service_object", "service_object_section"),
+        "申请材料目录": ("application_materials", "application_materials_section"),
+        "申请材料": ("application_materials", "application_materials_section"),
+        "申报材料": ("application_materials", "application_materials_section"),
+        "办理基本流程": ("process_steps", "process_steps_section"),
+        "办理流程": ("process_steps", "process_steps_section"),
+        "申报方式": ("process_steps", "process_steps_section"),
+        "申报流程": ("process_steps", "process_steps_section"),
+        "服务电话": ("contact", "contact_section"),
+        "咨询电话": ("contact", "contact_section"),
+        "联系方式": ("contact", "contact_section"),
+    }
     FULL_DATE_PATTERN = (
         r"(?:\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
         r"|[二〇○零一二三四五六七八九十]{4}\s*年\s*"
@@ -154,7 +173,7 @@ class CandidateService:
     POLICY_ORGANIZATION_PATTERN = re.compile(
         r"[\u4e00-\u9fff]{2,30}?"
         r"(?:国家互联网信息办公室|办公厅|办公室|委员会|监管总局|总局|改革委|"
-        r"人民银行|管理局|部|署|厅|委|局)"
+        r"人民政府|人民银行|管理局|部|署|厅|委|局)"
     )
     POLICY_URL_PUBLISH_DATE_PATTERN = re.compile(r"/t(?P<date>20\d{6})(?:_|[/.])")
     POLICY_URL_SLASH_DATE_PATTERN = re.compile(
@@ -168,6 +187,9 @@ class CandidateService:
         "www.cac.gov.cn",
         "gov.cn",
         "www.gov.cn",
+        "mof.gov.cn",
+        "www.mof.gov.cn",
+        "sw.beijing.gov.cn",
     }
     POLICY_PAGE_BANNER_PATTERN = re.compile(
         r"中国政府网\s*(?P<date>20\d{2})-(?P<month>\d{1,2})-(?P<day>\d{1,2})"
@@ -370,6 +392,16 @@ class CandidateService:
                     "confidence": 0.65,
                     "target_hints": ["issuer"],
                     "evidence_type": "page_publisher_metadata",
+                    "quality_flags": ["medium_risk_issuer"],
+                }
+            )
+        elif normalized in {"制定主体", "发布主体", "责任主体"}:
+            options.update(
+                {
+                    "display_name": "issuer",
+                    "confidence": 0.65,
+                    "target_hints": ["issuer"],
+                    "evidence_type": "policy_role_body",
                     "quality_flags": ["medium_risk_issuer"],
                 }
             )
@@ -1328,6 +1360,13 @@ class CandidateService:
             r"(?P<value>(?:申请[^。；;]{0,50}(?:应具备|必须满足)|符合以下条件)"
             r"[^。]{2,800})"
         )
+        labeled_general_pattern = re.compile(
+            r"^\s*(?P<label>申报主体要求|申报主体|项目负责人要求|申报方式|申报流程)"
+            r"\s*[:：]\s*(?P<value>.{2,1000})\s*$"
+        )
+        process_method_pattern = re.compile(
+            r"(?P<value>项目申报采用[^。；;]{0,100}申报方式[^。；;]{0,800})"
+        )
         deadline_pattern = re.compile(
             r"截止时间(?:（[^）]{0,30}）)?(?:为|[:：])?\s*"
             r"(?P<value>20\d{2}年\d{1,2}月\d{1,2}日"
@@ -1340,8 +1379,9 @@ class CandidateService:
                 "",
                 text,
             )
+            section_lookup = re.sub(r"[（(].*?[）)]", "", section_name).strip()
             if (
-                section_name in self.GENERAL_CONDITION_NAMES
+                section_lookup in self.GENERAL_CONDITION_NAMES
                 and index + 1 < len(uir.blocks)
             ):
                 child = uir.blocks[index + 1]
@@ -1354,7 +1394,7 @@ class CandidateService:
                             source_path=f"$.blocks.{child.block_id}.attributes.items"
                             if child.type.lower() == "list"
                             else f"$.blocks.{child.block_id}.text",
-                            source_name=section_name,
+                            source_name=section_lookup,
                             value=value,
                             source_blocks=[block.block_id, child.block_id],
                             source_kind="application_conditions_section",
@@ -1365,12 +1405,53 @@ class CandidateService:
                             evidence_type="application_conditions_section",
                             quality_flags=(
                                 ["medium_risk_section_scope"]
-                                if section_name == "申报要求"
+                                if section_lookup == "申报要求"
                                 else []
                             ),
                             inferred_type=(
                                 "list_like"
                                 if child.type.lower() == "list" or "\n" in value
+                                else None
+                            ),
+                        )
+                    )
+            section_target = self.GENERAL_SECTION_TARGETS.get(section_lookup)
+            if section_target is not None and index + 1 < len(uir.blocks):
+                target_field, evidence_type = section_target
+                body_blocks: list[str] = []
+                body_text: list[str] = []
+                for child in uir.blocks[index + 1 : index + 8]:
+                    child_text = child.text.strip() if isinstance(child.text, str) else ""
+                    if re.fullmatch(
+                        r"^\s*[一二三四五六七八九十]+\s*[、.．]\s*"
+                        r"[^。；]{2,30}\s*$",
+                        child_text,
+                    ):
+                        break
+                    value = self._block_text(child.text, child.attributes)
+                    if value:
+                        body_blocks.append(child.block_id)
+                        body_text.append(value)
+                    if target_field in {"contact", "service_object"} and body_text:
+                        break
+                if body_text:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{uir.blocks[index].block_id}.section",
+                            source_name=section_lookup,
+                            value="\n".join(body_text),
+                            source_blocks=[block.block_id, *body_blocks],
+                            source_kind=evidence_type,
+                            seen_names=seen_names,
+                            confidence=0.86,
+                            display_name=target_field,
+                            target_hints=[target_field],
+                            evidence_type=evidence_type,
+                            inferred_type=(
+                                "list_like"
+                                if target_field in {"application_materials", "process_steps"}
                                 else None
                             ),
                         )
@@ -1409,6 +1490,102 @@ class CandidateService:
                         display_name="service_object",
                         target_hints=["service_object"],
                         evidence_type="service_object_sentence",
+                    )
+                )
+            labeled_general = labeled_general_pattern.search(text)
+            if labeled_general is not None:
+                label = labeled_general.group("label")
+                target_field = (
+                    "process_steps"
+                    if label in {"申报方式", "申报流程"}
+                    else "service_object"
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#{target_field}",
+                        source_name=label,
+                        value=labeled_general.group("value").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind=f"{target_field}_labeled_sentence",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name=target_field,
+                        target_hints=[target_field],
+                        evidence_type=f"{target_field}_labeled_sentence",
+                    )
+                )
+            process_method = process_method_pattern.search(text)
+            if process_method is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#process_steps",
+                        source_name="申报方式",
+                        value=process_method.group("value").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind="process_steps_sentence",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="process_steps",
+                        target_hints=["process_steps"],
+                        evidence_type="process_steps_sentence",
+                    )
+                )
+            business_service = re.search(r"拟申请(?P<value>[^，。；]{2,80}的企业)", text)
+            if business_service is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#service_object",
+                        source_name="拟申请企业",
+                        value=business_service.group("value").strip(),
+                        source_blocks=[block.block_id],
+                        source_kind="service_object_sentence",
+                        seen_names=seen_names,
+                        confidence=0.82,
+                        display_name="service_object",
+                        target_hints=["service_object"],
+                        evidence_type="service_object_sentence",
+                    )
+                )
+            if "具体办理流程如下" in text and ("五步" in text or "办理流程" in text):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#process_steps",
+                        source_name="五步走办理流程",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="process_steps_overview",
+                        seen_names=seen_names,
+                        confidence=0.84,
+                        display_name="process_steps",
+                        target_hints=["process_steps"],
+                        evidence_type="process_steps_overview",
+                    )
+                )
+            if "经营范围中需含" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=(
+                            f"$.blocks.{block.block_id}.text#application_conditions"
+                        ),
+                        source_name="经营范围中需含货物进出口",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="application_conditions_sentence",
+                        seen_names=seen_names,
+                        confidence=0.8,
+                        display_name="application_conditions",
+                        target_hints=["application_conditions"],
+                        evidence_type="application_conditions_sentence",
                     )
                 )
             condition_sentence = condition_sentence_pattern.search(text)
@@ -1662,6 +1839,141 @@ class CandidateService:
                     quality_flags=["medium_risk_issuer"],
                 )
             )
+
+        for block in blocks[:30]:
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            if not text:
+                continue
+            if re.fullmatch(r"[\u4e00-\u9fff\s]{2,40}", text):
+                organizations = self._policy_organizations(text)
+                if len(organizations) == 1 and organizations[0] == text:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#issuer",
+                            source_name=text,
+                            value=text,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_standalone_issuer",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_standalone_issuer",
+                        )
+                    )
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#issuer",
+                            source_name="issuer",
+                            value=text,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_standalone_issuer_alias",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_standalone_issuer",
+                            quality_flags=["synthetic_alias"],
+                        )
+                    )
+                    break
+
+            header_match = re.fullmatch(
+                r"(?P<issuer>[\u4e00-\u9fff\s]{2,40}?)"
+                r"(?:公告|令)?\s*20\d{2}\s*年第\s*\d+\s*号",
+                text,
+            )
+            if header_match is not None:
+                issuer = re.sub(r"\s+", " ", header_match.group("issuer")).strip()
+                if self._policy_organizations(issuer):
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#issuer",
+                            source_name=issuer,
+                            value=issuer,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_announcement_header_issuer",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_announcement_header_issuer",
+                        )
+                    )
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#issuer",
+                            source_name="issuer",
+                            value=issuer,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_announcement_header_issuer_alias",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_announcement_header_issuer",
+                            quality_flags=["synthetic_alias"],
+                        )
+                    )
+                    break
+
+        for block in blocks:
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            match = re.fullmatch(
+                rf"(?P<issuer>[\u4e00-\u9fff\s]{{2,40}}?)\s+"
+                rf"(?P<date>{self.FULL_DATE_PATTERN})",
+                text,
+            )
+            if match is None:
+                continue
+            issuer = re.sub(r"\s+", " ", match.group("issuer")).strip()
+            if not self._policy_organizations(issuer):
+                continue
+            date_value = re.sub(r"\s+", "", match.group("date"))
+            candidates.append(
+                self._candidate(
+                    task_id=task_id,
+                    uir=uir,
+                    source_path=f"$.blocks.{block.block_id}.text#issuer",
+                    source_name=issuer,
+                    value=issuer,
+                    source_blocks=[block.block_id],
+                    source_kind="policy_signature_line_issuer",
+                    seen_names=seen_names,
+                    confidence=0.9,
+                    display_name="issuer",
+                    target_hints=["issuer"],
+                    evidence_type="policy_signature_line",
+                )
+            )
+            if not has_explicit_publication_evidence:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                        source_name="signed date",
+                        value=date_value,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_signature_line_date",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="policy_signature_date",
+                        quality_flags=["medium_risk_signature_date"],
+                    )
+                )
+            break
+
         for block in blocks:
             text = block.text.strip() if isinstance(block.text, str) else ""
             if (

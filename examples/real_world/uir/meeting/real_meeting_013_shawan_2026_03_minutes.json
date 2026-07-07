@@ -1,0 +1,107 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "昆都仑区人民政府",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "202 6 年第 5 次 常务 会议 纪要",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "202 6 年 3 月 24 日 下 午，区政府党组书记、区长于占江主持召开区人民政府 2026 年第 5 次常务会议，现纪要如下。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议传达学习了全国 两会 精神 以及全国安全生产和森林草原防灭火视频会议精神和《国务院安委会关于 2025 年度省级党委和政府安全生产考核巡查情况的通报》，书面传达学习 3 月 13 日国务院常务会议精神及国务院第十一次全体会议精神 。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议指出， 全区上下要深入学习贯彻习近平总书记重要讲话精神、全国 两会 精神 ，认真组织学习 国家 “ 十五五 ” 规划纲要，按照自治区党委 “1571” 工作部署和市委八个方面工作要求，聚焦落实 “ 十五五 ” 和年度目标任务，突出抓好一季度经济运行、重大项目开复工、 “ 三在三找 ” 、城市更新等各项重点工作，深入开展好树立和践行正确政绩观学习教育，以过硬作风和实干实绩确保 “ 十五五 ” 开好局起好步。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议强调，各单位各部门要深入学习贯彻习近平总书记关于安全生产的重要论述，严格落实 “党政同责、一岗双责、齐抓共管、失职追责”和“三管三必须”工作要求，以“时时放心不下”的责任感抓实抓细安全生产各项工作。要深入推进安全生产治本攻坚三年行动，紧盯建筑工地、冶金工贸、高层建筑、电动自行车全链条整治等重点领域隐患排查，突出抓好养老院、学校、医院等特殊场所安全防范，全力保障人民群众生命和财产安全。要扎实做好森林草原防灭火各项工作，强化野外火源管控力度，严防死守重点区域、重要进山卡口，特别是在清明、五一等重点时段，要持续强化隐患排查整治，确保全力保障节日期间森林草原防灭火形势稳定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_013_shawan_2026_03_minutes_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议还研究了其他事项。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 7,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:31:07.745693+00:00",
+    "source_format": "html",
+    "source_sha256": "2b2ea92083ba42ec408933d65df4f7129e6fc15d5d245553b4f36706f72ae374",
+    "source_site": "www.kdl.gov.cn",
+    "source_url": "https://www.kdl.gov.cn/zfxxgk/fdzdgknr/jcxxgk/zdhyxx/cwhy/202605/t20260522_911628.html",
+    "title": "2026年第5次常务会议纪要_昆都仑区人民政府",
+    "标题": "2026年第5次常务会议纪要_昆都仑区人民政府"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "2b2ea92083ba42ec408933d65df4f7129e6fc15d5d245553b4f36706f72ae374"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_013_shawan_2026_03_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T06:45:29.216918+00:00",
+  "generated_at": "2026-07-07T07:16:44.409061+00:00",
   "items": [
     {
       "findings": [],
@@ -53,6 +53,31 @@
     },
     {
       "findings": [],
+      "path": "general/real_general_011_shanghai_branch_registration.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_012_tongguan_food_license.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_013_zhongshan_import_export_guide.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_014_ningguo_food_license.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "general/real_general_015_ganzhou_temporary_relief.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
       "path": "meeting/real_meeting_001_changning_executive_minutes.json",
       "status": "passed"
     },
@@ -99,6 +124,31 @@
     {
       "findings": [],
       "path": "meeting/real_meeting_010_zhangjiagang_64_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_011_haibowan_2026_02_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_012_wlmqx_2026_02_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_013_shawan_2026_03_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_014_shcn_2026_142_minutes.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "meeting/real_meeting_015_changshu_2026_62_minutes.json",
       "status": "passed"
     },
     {
@@ -178,6 +228,31 @@
     },
     {
       "findings": [],
+      "path": "policy/real_policy_016_caac_civil_aviation_law.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_017_xinhua_investment_management.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_018_beijing_ecommerce_support.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_019_mof_vat_transition.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
+      "path": "policy/real_policy_020_customs_foreign_investment_catalog.json",
+      "status": "passed"
+    },
+    {
+      "findings": [],
       "path": "procurement/real_procurement_001_broadcast_security_supervision.json",
       "status": "passed"
     },
@@ -232,8 +307,8 @@
     "failed": 0,
     "missing_fields": 0,
     "mojibake": 0,
-    "passed": 45,
+    "passed": 60,
     "sensitive": 0,
-    "total": 45
+    "total": 60
   }
 }

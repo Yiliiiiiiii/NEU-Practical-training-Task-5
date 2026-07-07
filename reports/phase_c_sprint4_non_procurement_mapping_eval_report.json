@@ -1,0 +1,3878 @@
+{
+  "by_doc_type": {
+    "general_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 15,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.8242063492063492,
+      "package_valid_count": 15,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 0,
+      "review_required_count": 11,
+      "strict_pass_count": 13,
+      "strict_pass_rate": 0.8666666666666667
+    },
+    "meeting_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 15,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.6916666666666667,
+      "package_valid_count": 15,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 0,
+      "review_required_count": 2,
+      "strict_pass_count": 9,
+      "strict_pass_rate": 0.6
+    },
+    "policy_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 20,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.6544642857142857,
+      "package_valid_count": 20,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 4,
+      "review_required_count": 9,
+      "strict_pass_count": 9,
+      "strict_pass_rate": 0.45
+    }
+  },
+  "by_field": {
+    "application_conditions": {
+      "mapped_or_review_count": 14,
+      "missing_required_count": 0
+    },
+    "application_materials": {
+      "mapped_or_review_count": 8,
+      "missing_required_count": 0
+    },
+    "attendees": {
+      "mapped_or_review_count": 5,
+      "missing_required_count": 0
+    },
+    "category": {
+      "mapped_or_review_count": 3,
+      "missing_required_count": 0
+    },
+    "chairperson": {
+      "mapped_or_review_count": 14,
+      "missing_required_count": 0
+    },
+    "contact": {
+      "mapped_or_review_count": 10,
+      "missing_required_count": 0
+    },
+    "content": {
+      "mapped_or_review_count": 50,
+      "missing_required_count": 0
+    },
+    "deadline": {
+      "mapped_or_review_count": 7,
+      "missing_required_count": 0
+    },
+    "decisions": {
+      "mapped_or_review_count": 3,
+      "missing_required_count": 0
+    },
+    "doc_type": {
+      "mapped_or_review_count": 20,
+      "missing_required_count": 0
+    },
+    "document_number": {
+      "mapped_or_review_count": 16,
+      "missing_required_count": 0
+    },
+    "effective_date": {
+      "mapped_or_review_count": 4,
+      "missing_required_count": 0
+    },
+    "issuer": {
+      "mapped_or_review_count": 18,
+      "missing_required_count": 2
+    },
+    "meeting_date": {
+      "mapped_or_review_count": 15,
+      "missing_required_count": 0
+    },
+    "meeting_location": {
+      "mapped_or_review_count": 2,
+      "missing_required_count": 0
+    },
+    "meeting_number": {
+      "mapped_or_review_count": 12,
+      "missing_required_count": 0
+    },
+    "meeting_title": {
+      "mapped_or_review_count": 15,
+      "missing_required_count": 0
+    },
+    "policy_measures": {
+      "mapped_or_review_count": 5,
+      "missing_required_count": 0
+    },
+    "process_steps": {
+      "mapped_or_review_count": 14,
+      "missing_required_count": 0
+    },
+    "publish_date": {
+      "mapped_or_review_count": 18,
+      "missing_required_count": 2
+    },
+    "responsible_departments": {
+      "mapped_or_review_count": 1,
+      "missing_required_count": 0
+    },
+    "service_object": {
+      "mapped_or_review_count": 14,
+      "missing_required_count": 0
+    },
+    "source": {
+      "mapped_or_review_count": 50,
+      "missing_required_count": 0
+    },
+    "summary": {
+      "mapped_or_review_count": 1,
+      "missing_required_count": 0
+    },
+    "target_audience": {
+      "mapped_or_review_count": 1,
+      "missing_required_count": 0
+    },
+    "title": {
+      "mapped_or_review_count": 35,
+      "missing_required_count": 0
+    },
+    "topics": {
+      "mapped_or_review_count": 13,
+      "missing_required_count": 0
+    }
+  },
+  "delta": {
+    "average_recall": 0.367,
+    "required_missing_count": -14,
+    "review_required_count": -123,
+    "strict_pass_count": 27
+  },
+  "documents": [
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_001_training_platform_rules",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 2,
+        "mapping_recall": 0.625,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_c6e3f7cc2d44",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_002_equipment_renewal",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8571428571428571,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_f2929e64a0b2",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_003_science_education_guide",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.7142857142857143,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_1b6cf2e0119b",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_004_student_loan_relief",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5714285714285714,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_f9c743e94054",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_005_ai_industry_guide",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5714285714285714,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer"
+      ],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_68c5844d18f2",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_001_changning_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_465b93963ee1",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_location",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_002_shaxian_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_aeb5e5700c64",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "attendees",
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_003_miluo_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_4acff651eece",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "category",
+        "contact",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_001_notary_service_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4168d269f263_办理事项及证明材料清单_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4168d269f263_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "generic_category_review_required",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_001_notary_service_guide_b004"
+          ],
+          "source_field": {
+            "source_name": "办理事项及证明材料清单",
+            "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category"
+          },
+          "source_field_name": "办理事项及证明材料清单",
+          "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_4168d269f263",
+          "value_sample": "办理事项及证明材料清单"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_4168d269f263",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "category",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_002_biomed_project_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 1.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_ccb19a951f79_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_ccb19a951f79_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "generic_category_review_required",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_002_biomed_project_guide_b010"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_ccb19a951f79",
+          "value_sample": "沪科指南〔2025〕3号\n各有关单位：\n为深入实施创新驱动发展战略，加快建设具有全球影响力的科技创新中心，根据《上海市建设具有全球影响力的科技创新中心“十四五”规划》，上海市科学技术委员会特发布2025年度科技产业高质量发展计划“生物医药创新发展”项目申报指南。\n一、 征集范围\n专题一、生物、化学新药研发\n新药临床研究\n研究目标：完成创新药物（药品注册分类1类）I、II或III期临床试验（其中细胞与基因治疗1类新药需完成早期临床试验或确证性临床试验）并取得临床试验总结报告。\n研究内容：根据国家药品监督管理局许可的创新药物临床试验方案，开展I、II或III期临床试验（早期临床试验或确证性临床试验）。\n执行期限：2025年5月1日至2028年4月30日。\n经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。\n申报主体要求：本市企业。申报时须扫描上传临床试验批准通知书、伦理批件及其他相关证明文件。申报Ⅱ、III期以及确证性临床试验的项目还须扫描上传前一期临床试验总结报告摘要、相关结论意见等重要内容。每个单位申报项目不超过2项。\n专题二、中药创新与传承"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_ccb19a951f79",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "category",
+        "content",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_003_textile_application_flow",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 1.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f5176a7d7876_建设推广工作网上申报流程说明_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f5176a7d7876_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "generic_category_review_required",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_003_textile_application_flow_b004"
+          ],
+          "source_field": {
+            "source_name": "建设推广工作网上申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category"
+          },
+          "source_field_name": "建设推广工作网上申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_f5176a7d7876",
+          "value_sample": "建设推广工作网上申报流程说明"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_f5176a7d7876",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_006_technology_incubator_rules",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_c87423d5e458_issuer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to issuer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_c87423d5e458_issuer_exact",
+          "method": "exact",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "review_required",
+            "synthetic_alias"
+          ],
+          "source_blocks": [
+            "real_policy_006_technology_incubator_rules_b012"
+          ],
+          "source_field": {
+            "source_name": "issuer",
+            "source_path": "$.blocks.real_policy_006_technology_incubator_rules_b012.text#issuer"
+          },
+          "source_field_name": "issuer",
+          "source_path": "$.blocks.real_policy_006_technology_incubator_rules_b012.text#issuer",
+          "status": "review_required",
+          "strategy": "exact",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_c87423d5e458",
+          "value_sample": "工业和信息化部"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_c87423d5e458",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_007_one_thing_list",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_cfe7b0a853d4_signed_date_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target publish_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target publish_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_cfe7b0a853d4_publish_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 1.0,
+            "final_score": 0.7725,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_signature_date",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_007_one_thing_list_b007"
+          ],
+          "source_field": {
+            "source_name": "signed date",
+            "source_path": "$.blocks.real_policy_007_one_thing_list_b007.text#publish_date"
+          },
+          "source_field_name": "signed date",
+          "source_path": "$.blocks.real_policy_007_one_thing_list_b007.text#publish_date",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "publish_date",
+          "target_field_name": "publish_date",
+          "task_id": "task_cfe7b0a853d4",
+          "value_sample": "2025年1月13日"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_cfe7b0a853d4",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_008_sme_leader_training",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_3f72b3e0fa47",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_009_network_safety_work",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_4e204bd14549",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "attendees",
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_6456159f0b5f",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "meeting_date",
+        "meeting_title",
+        "source"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_005_miluo_2026_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_b19eb46341a9",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "attendees",
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_006_shandan_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8e798e11d39d_出席会议_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8e798e11d39d_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_mixed_attendee_roles",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_006_shandan_minutes_b010"
+          ],
+          "source_field": {
+            "source_name": "出席会议",
+            "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees"
+          },
+          "source_field_name": "出席会议",
+          "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_8e798e11d39d",
+          "value_sample": "出席会议，各乡镇、县直有关部门、企事业及省市驻丹有关单位"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_8e798e11d39d",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_004_tianhe_service_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_41fa3274bcf8",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_010_auto_ota_management",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_adee71a420ca",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_005_eldercare_technology_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.875,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_197e07b11d8c_申报要求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target application_conditions",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target application_conditions"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_197e07b11d8c_application_conditions_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.7325,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [
+            {
+              "candidate_id": "cand_task_197e07b11d8c_申报要求_2",
+              "final_score": 0.6575,
+              "reason": "lower_evidence_score",
+              "source_name": "申报要求",
+              "target_field": "application_conditions"
+            }
+          ],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_section_scope",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_005_eldercare_technology_guide_b043",
+            "real_general_005_eldercare_technology_guide_b044"
+          ],
+          "source_field": {
+            "source_name": "申报要求",
+            "source_path": "$.blocks.real_general_005_eldercare_technology_guide_b044.text"
+          },
+          "source_field_name": "申报要求",
+          "source_path": "$.blocks.real_general_005_eldercare_technology_guide_b044.text",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_197e07b11d8c",
+          "value_sample": "除满足前述相应条件外，还须遵循以下要求："
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_197e07b11d8c",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_006_soft_science_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_006_soft_science_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.875,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_5d0e35f07b44_申报要求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target application_conditions",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target application_conditions"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_5d0e35f07b44_application_conditions_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.7325,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [
+            {
+              "candidate_id": "cand_task_5d0e35f07b44_申报要求_2",
+              "final_score": 0.6575,
+              "reason": "lower_evidence_score",
+              "source_name": "申报要求",
+              "target_field": "application_conditions"
+            }
+          ],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_section_scope",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_006_soft_science_guide_b072",
+            "real_general_006_soft_science_guide_b073"
+          ],
+          "source_field": {
+            "source_name": "申报要求",
+            "source_path": "$.blocks.real_general_006_soft_science_guide_b073.text"
+          },
+          "source_field_name": "申报要求",
+          "source_path": "$.blocks.real_general_006_soft_science_guide_b073.text",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_5d0e35f07b44",
+          "value_sample": "除满足前述相应条件外，还须遵循以下要求："
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_5d0e35f07b44",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 7,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_007_domestic_cooperation_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 1.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_a2fe3ea51887_申报要求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target application_conditions",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target application_conditions"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_a2fe3ea51887_application_conditions_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.7325,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [
+            {
+              "candidate_id": "cand_task_a2fe3ea51887_申报要求_2",
+              "final_score": 0.6575,
+              "reason": "lower_evidence_score",
+              "source_name": "申报要求",
+              "target_field": "application_conditions"
+            }
+          ],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_section_scope",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_007_domestic_cooperation_guide_b031",
+            "real_general_007_domestic_cooperation_guide_b032"
+          ],
+          "source_field": {
+            "source_name": "申报要求",
+            "source_path": "$.blocks.real_general_007_domestic_cooperation_guide_b032.text"
+          },
+          "source_field_name": "申报要求",
+          "source_path": "$.blocks.real_general_007_domestic_cooperation_guide_b032.text",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_a2fe3ea51887",
+          "value_sample": "除满足前述相应条件外，还须遵循以下要求："
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_a2fe3ea51887",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_008_science_communication_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_008_science_communication_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.875,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_637684478110_申报要求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target application_conditions",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target application_conditions"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_637684478110_application_conditions_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.7325,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [
+            {
+              "candidate_id": "cand_task_637684478110_申报要求_2",
+              "final_score": 0.6575,
+              "reason": "lower_evidence_score",
+              "source_name": "申报要求",
+              "target_field": "application_conditions"
+            }
+          ],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_section_scope",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_008_science_communication_guide_b096",
+            "real_general_008_science_communication_guide_b097"
+          ],
+          "source_field": {
+            "source_name": "申报要求",
+            "source_path": "$.blocks.real_general_008_science_communication_guide_b097.text"
+          },
+          "source_field_name": "申报要求",
+          "source_path": "$.blocks.real_general_008_science_communication_guide_b097.text",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_637684478110",
+          "value_sample": "除满足前述相应条件外，还须遵循以下要求："
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_637684478110",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 7,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_009_food_technology_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 1.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_1f6182b9eefe_申报要求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target application_conditions",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target application_conditions"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_1f6182b9eefe_application_conditions_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.7325,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [
+            {
+              "candidate_id": "cand_task_1f6182b9eefe_申报要求_2",
+              "final_score": 0.6575,
+              "reason": "lower_evidence_score",
+              "source_name": "申报要求",
+              "target_field": "application_conditions"
+            }
+          ],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_section_scope",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_009_food_technology_guide_b052",
+            "real_general_009_food_technology_guide_b053"
+          ],
+          "source_field": {
+            "source_name": "申报要求",
+            "source_path": "$.blocks.real_general_009_food_technology_guide_b053.text"
+          },
+          "source_field_name": "申报要求",
+          "source_path": "$.blocks.real_general_009_food_technology_guide_b053.text",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_1f6182b9eefe",
+          "value_sample": "除满足前述相应条件外，还须遵循以下要求："
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_1f6182b9eefe",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_010_cell_gene_therapy_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.875,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_ec2f27db6237_申报要求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target application_conditions",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target application_conditions"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_ec2f27db6237_application_conditions_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.7325,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [
+            {
+              "candidate_id": "cand_task_ec2f27db6237_申报要求_2",
+              "final_score": 0.6575,
+              "reason": "lower_evidence_score",
+              "source_name": "申报要求",
+              "target_field": "application_conditions"
+            }
+          ],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_section_scope",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_010_cell_gene_therapy_guide_b066",
+            "real_general_010_cell_gene_therapy_guide_b067"
+          ],
+          "source_field": {
+            "source_name": "申报要求",
+            "source_path": "$.blocks.real_general_010_cell_gene_therapy_guide_b067.text"
+          },
+          "source_field_name": "申报要求",
+          "source_path": "$.blocks.real_general_010_cell_gene_therapy_guide_b067.text",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "application_conditions",
+          "target_field_name": "application_conditions",
+          "task_id": "task_ec2f27db6237",
+          "value_sample": "除满足前述相应条件外，还须遵循以下要求："
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_ec2f27db6237",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_007_zhenping_49_minutes",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.625,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_63518a5e61b4",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_7028a32e3725",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_99d9e53b288d",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "attendees",
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_location",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 9,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+        "gold_mapping_count": 9,
+        "gold_review_required_count": 1,
+        "mapping_recall": 1.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6f6df5a16e45_出席会议_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6f6df5a16e45_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_mixed_attendee_roles",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_010_zhangjiagang_64_minutes_b001"
+          ],
+          "source_field": {
+            "source_name": "出席会议",
+            "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees"
+          },
+          "source_field_name": "出席会议",
+          "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_6f6df5a16e45",
+          "value_sample": "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生态文明建设规划（2025-2035）》。会议议定以下意见："
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_6f6df5a16e45",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "effective_date",
+        "issuer",
+        "policy_measures",
+        "responsible_departments",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_011_battery_recycling_rules",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 1.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [
+        "publish_date"
+      ],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_17539a51f41a_工业和信息化部等部门_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target issuer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_17539a51f41a_issuer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_responsible_departments",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_011_battery_recycling_rules_b005"
+          ],
+          "source_field": {
+            "source_name": "工业和信息化部等部门",
+            "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer"
+          },
+          "source_field_name": "工业和信息化部等部门",
+          "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_17539a51f41a",
+          "value_sample": "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_17539a51f41a",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_012_sme_gradient_rules",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.625,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_881065837881_issuer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to issuer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_881065837881_issuer_exact",
+          "method": "exact",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "review_required",
+            "synthetic_alias"
+          ],
+          "source_blocks": [
+            "real_policy_012_sme_gradient_rules_b012"
+          ],
+          "source_field": {
+            "source_name": "issuer",
+            "source_path": "$.blocks.real_policy_012_sme_gradient_rules_b012.text#issuer"
+          },
+          "source_field_name": "issuer",
+          "source_path": "$.blocks.real_policy_012_sme_gradient_rules_b012.text#issuer",
+          "status": "review_required",
+          "strategy": "exact",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_881065837881",
+          "value_sample": "工业和信息化部"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_881065837881",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_013_minor_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_013_minor_platform_rules",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.75,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6b4c0803b48d_issuer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to issuer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6b4c0803b48d_issuer_exact",
+          "method": "exact",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "review_required",
+            "synthetic_alias"
+          ],
+          "source_blocks": [
+            "real_policy_013_minor_platform_rules_b008"
+          ],
+          "source_field": {
+            "source_name": "issuer",
+            "source_path": "$.blocks.real_policy_013_minor_platform_rules_b008.text#issuer"
+          },
+          "source_field_name": "issuer",
+          "source_path": "$.blocks.real_policy_013_minor_platform_rules_b008.text#issuer",
+          "status": "review_required",
+          "strategy": "exact",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_6b4c0803b48d",
+          "value_sample": "国家互联网信息办公室"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_6b4c0803b48d",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_014_digital_aging_campaign",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_014_digital_aging_campaign",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_9379fee60d50",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_015_ai_ethics_rules",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5555555555555556,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_d554cbde21d2_issuer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to issuer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_d554cbde21d2_issuer_exact",
+          "method": "exact",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "review_required",
+            "synthetic_alias"
+          ],
+          "source_blocks": [
+            "real_policy_015_ai_ethics_rules_b012"
+          ],
+          "source_field": {
+            "source_name": "issuer",
+            "source_path": "$.blocks.real_policy_015_ai_ethics_rules_b012.text#issuer"
+          },
+          "source_field_name": "issuer",
+          "source_path": "$.blocks.real_policy_015_ai_ethics_rules_b012.text#issuer",
+          "status": "review_required",
+          "strategy": "exact",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_d554cbde21d2",
+          "value_sample": "工业和信息化部"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_d554cbde21d2",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_materials",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "summary",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_011_shanghai_branch_registration",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5714285714285714,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4648b795028c_内容_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4648b795028c_summary_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.9,
+            "final_score": 0.7908,
+            "label_score": 0.6667,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [
+            "real_general_011_shanghai_branch_registration_b044"
+          ],
+          "source_field": {
+            "source_name": "内容",
+            "source_path": "$.blocks.real_general_011_shanghai_branch_registration_b044.rows.2"
+          },
+          "source_field_name": "内容",
+          "source_path": "$.blocks.real_general_011_shanghai_branch_registration_b044.rows.2",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "summary",
+          "target_field_name": "summary",
+          "task_id": "task_4648b795028c",
+          "value_sample": "第三十七条 外商投资企业的登记注册，由国务院市场监督管理部门或者其授权的地方人民政府市场监督管理部门依法办理。国务院市场监督管理部门应当公布其授权的市场监督管理部门名单。"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4648b795028c_受理_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.67 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.67 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4648b795028c_service_object_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.9,
+            "final_score": 0.7908,
+            "label_score": 0.6667,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Fuzzy mapping requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence"
+          ],
+          "source_blocks": [
+            "real_general_011_shanghai_branch_registration_b029"
+          ],
+          "source_field": {
+            "source_name": "受理",
+            "source_path": "$.blocks.real_general_011_shanghai_branch_registration_b029.rows.2"
+          },
+          "source_field_name": "受理",
+          "source_path": "$.blocks.real_general_011_shanghai_branch_registration_b029.rows.2",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "service_object",
+          "target_field_name": "service_object",
+          "task_id": "task_4648b795028c",
+          "value_sample": "0 | 受理人员 | 申请材料齐全，形式符合要求，具体见申请材料目录"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "task_id": "task_4648b795028c",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_012_tongguan_food_license",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_012_tongguan_food_license",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.75,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_eb8f36ae7cb6",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_013_zhongshan_import_export_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.625,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": false,
+      "task_id": "task_e5a814c1ec68",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_014_ningguo_food_license",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_014_ningguo_food_license",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_f94b1bd0015a",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_015_ganzhou_temporary_relief",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "content",
+        "process_steps",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 6,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_015_ganzhou_temporary_relief",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.75,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_40b94cc0d5ac",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "attendees",
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5555555555555556,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_cf63bbb3e84e",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5555555555555556,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_821ad549bcc6",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.625,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_acb0029fb36e",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.625,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_cdf03629c555",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 5,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5555555555555556,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": false,
+      "task_id": "task_ecaaf9e9b8b2",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "effective_date",
+        "policy_measures",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 3,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_016_caac_civil_aviation_law",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_a409476cff55",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 3,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_017_xinhua_investment_management",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5,
+        "missing_gold_mappings": 4,
+        "review_required_correct": 1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_df5b61f1a6d5_issuer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to issuer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_df5b61f1a6d5_issuer_exact",
+          "method": "exact",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "review_required",
+            "synthetic_alias"
+          ],
+          "source_blocks": [
+            "real_policy_017_xinhua_investment_management_b010"
+          ],
+          "source_field": {
+            "source_name": "issuer",
+            "source_path": "$.blocks.real_policy_017_xinhua_investment_management_b010.text#issuer"
+          },
+          "source_field_name": "issuer",
+          "source_path": "$.blocks.real_policy_017_xinhua_investment_management_b010.text#issuer",
+          "status": "review_required",
+          "strategy": "exact",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_df5b61f1a6d5",
+          "value_sample": "新化县人民政府"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_df5b61f1a6d5_2026年2月2日_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target publish_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target publish_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_df5b61f1a6d5_publish_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_signature_date",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_017_xinhua_investment_management_b027"
+          ],
+          "source_field": {
+            "source_name": "2026年2月2日",
+            "source_path": "$.blocks.real_policy_017_xinhua_investment_management_b027.text#publish_date"
+          },
+          "source_field_name": "2026年2月2日",
+          "source_path": "$.blocks.real_policy_017_xinhua_investment_management_b027.text#publish_date",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "publish_date",
+          "target_field_name": "publish_date",
+          "task_id": "task_df5b61f1a6d5",
+          "value_sample": "2026年2月2日"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_df5b61f1a6d5",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_018_beijing_ecommerce_support",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.5,
+        "missing_gold_mappings": 3,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_a901bf9ff251",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 3,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_019_mof_vat_transition",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.375,
+        "missing_gold_mappings": 4,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_fa5dedf8520d_issuer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to issuer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_fa5dedf8520d_issuer_exact",
+          "method": "exact",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "review_required",
+            "synthetic_alias"
+          ],
+          "source_blocks": [
+            "real_policy_019_mof_vat_transition_b001"
+          ],
+          "source_field": {
+            "source_name": "issuer",
+            "source_path": "$.blocks.real_policy_019_mof_vat_transition_b001.text#issuer"
+          },
+          "source_field_name": "issuer",
+          "source_path": "$.blocks.real_policy_019_mof_vat_transition_b001.text#issuer",
+          "status": "review_required",
+          "strategy": "exact",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_fa5dedf8520d",
+          "value_sample": "财政部 税务总局"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_fa5dedf8520d",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "auto_accepted_correct": 4,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "mapping_recall": 0.4444444444444444,
+        "missing_gold_mappings": 4,
+        "review_required_correct": 0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_705fdac06fe6",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    }
+  ],
+  "failed_cases": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields"
+      ]
+    },
+    {
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    },
+    {
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-07T07:12:25.840629+00:00",
+  "remaining_gaps": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields"
+      ],
+      "required_missing": [
+        "publish_date"
+      ],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 2
+    },
+    {
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [
+        "issuer",
+        "publish_date"
+      ],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 2
+    },
+    {
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    }
+  ],
+  "run_metadata": {
+    "badcases_path": null,
+    "dataset_size": 50,
+    "generated_at": "2026-07-07T07:12:25.840657+00:00",
+    "git_branch": "codex/phase-c-strict-semantic-template-dataset",
+    "git_commit": "8cbff466",
+    "gold_path": "F:\\p2\\examples\\real_world\\gold\\mapping_gold.jsonl",
+    "packages_root": null,
+    "report_version": "phase_c_v1",
+    "run_id": "phase_c_20260707T071225"
+  },
+  "summary": {
+    "average_recall": 0.716547619047619,
+    "badcase_violation_count": 0,
+    "dataset_size": 50,
+    "package_verify_pass_count": 50,
+    "required_missing_count": 4,
+    "review_required_count": 22,
+    "strict_pass_count": 31,
+    "strict_pass_rate": 0.62
+  },
+  "typical_improvements": []
+}

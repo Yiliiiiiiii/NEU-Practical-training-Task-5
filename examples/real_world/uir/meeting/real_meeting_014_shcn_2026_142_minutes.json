@@ -1,0 +1,87 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_014_shcn_2026_142_minutes_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年6月26日上午，区长刘平主持召开区政府第142次常务会议。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_014_shcn_2026_142_minutes_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议传达市政府常务会议精神。会议指出，要全力以赴冲刺半年目标，紧扣“三个聚力”要求，巩固权重行业向好势头，推动承压行业企稳回升，全力以赴完成上半年稳增长目标。要持续激发内生动力，对标全国统一大市场建设要求，坚持监管规范与服务保障并重，精准落实惠企政策，稳定市场预期、提振企业信心。深化文商旅体展绿深度联动，凸显长宁特色办好重大活动，持续释放消费潜能。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_014_shcn_2026_142_minutes_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议听取区发展改革委关于1-5月我区经济运行情况的汇报。会议指出，一季度以来长宁区经济运行主要指标回升向好，要着力巩固良好态势，奋力完成半年增长目标。要坚持辩证思维，精准把握经济运行特点和趋势，从大类行业、细分行业、不同区域等方面着手进一步细化分析颗粒度，坚持不懈拉长板、补短板，着力推动多增少降。要坚持实干攻坚，增强条块联动，提升经济工作实效。要持续做实企业服务，统筹做好基本服务和高价值服务，在为经营主体提供普惠服务基础上，精细排摸了解个性化需求，有针对性地供给产业链对接、平台打造、场景开放等高价值服务，进一步解难题、提信心、稳预期。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_014_shcn_2026_142_minutes_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议听取区文化旅游局关于《长宁区打造特色入境游目的地行动方案》及重点工作清单的情况汇报。会议指出，要充分发挥区位优势、国际化优势、配套优势、产业优势等禀赋特质，在全市大局中找准定位，打造特色入境游目的地，更好服务上海打造中国入境旅游第一站。要坚持“场景创新、服务升级”双轮驱动，以区内国家级夜间文化和旅游消费集聚区、旅游休闲街区为重点，聚焦短板问题，以点带面完善多语种标识、无障碍通行等公共设施，进一步提升游客便利度和体验感。要突出“百年街巷、烟火长宁”，整合“吃住行游购娱”资源，精心开发定制旅游线路，加强国际化宣传推介，塑造富有特色的旅游品牌。要认真实施行动方案，逐条逐项推进落实，确保特色入境游目的地建设不断取得成效。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_meeting_014_shcn_2026_142_minutes_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "会议还研究了其他事项。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+  "metadata": {
+    "doc_type": "meeting_doc",
+    "domain": "meeting_doc",
+    "extracted_block_count": 5,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:30:11.787476+00:00",
+    "source_format": "html",
+    "source_sha256": "d5cc263b88d7124f920b862f60cecc2d73bff27c12ef6f6e714f4b96c25a999b",
+    "source_site": "zwgk.shcn.gov.cn",
+    "source_url": "https://zwgk.shcn.gov.cn/xxgk/zfhy-zw/2026/188/81870.html",
+    "title": "2026年6月26日区政府召开第142次常务会议-上海长宁",
+    "标题": "2026年6月26日区政府召开第142次常务会议-上海长宁"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "d5cc263b88d7124f920b862f60cecc2d73bff27c12ef6f6e714f4b96c25a999b"
+    }
+  ],
+  "source": {
+    "source_name": "real_meeting_014_shcn_2026_142_minutes",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

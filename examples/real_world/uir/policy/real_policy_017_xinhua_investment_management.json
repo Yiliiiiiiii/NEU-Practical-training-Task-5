@@ -1,0 +1,1916 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "h2"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b001",
+      "level": 2,
+      "source_anchor": null,
+      "text": "新化县人民政府关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b002",
+      "level": 3,
+      "source_anchor": null,
+      "text": "相关文件",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "items": [
+          "新化县发展和改革局关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知政策解读"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "【图解】新化县发展和改革局关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知政策解读"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "【AI解读】新化县发展和改革局关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知政策解读"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "【H5】新化县发展和改革局关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知政策解读"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "索引号：xinhua-2026-02-157443",
+          "公开责任部门：县政府办",
+          "文号：新政发〔2026〕1号",
+          "统一登记号：XHDR-2026-00001",
+          "发布日期：2026-02-02",
+          "成文日期：2026-02-02",
+          "登记日期：2026-02-02",
+          "印发日期：2026-02-02",
+          "生效日期：2026-02-02",
+          "失效日期：2031-02-02",
+          "公开形式：政府网站",
+          "公开范围：全部公开",
+          "公布形态：首次公布",
+          "所属机构：新化县人民政府",
+          "起草单位：新化县发改局"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "XHDR-2026-00001",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "新政发〔2026〕1号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "新化县人民政府",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "各乡、镇人民政府，各街道办事处，新化高新区管委会，国有林场，县直有关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "根据《政府投资条例》（国务院令第712号）、《湖南省人民政府办公厅关于印发〈进一步规范政府性投资项目决策和立项防范政府债务风险的管理办法〉的通知》（湘政办发〔2022〕26号）及《娄底市人民政府关于印发〈娄底市政府性投资项目管理办法〉的通知》（娄政发〔2023〕7号）等有关法律法规和文件精神，结合我县实际，现对《新化县县本级政府性投资项目管理办法》（新政发〔2024〕10号）部分条款予以修订，具体如下：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、将第四条第（二）项“安排年度项目支出预算（含资金追加及资金来源审核）、审核资金拨付，开展项目预结算评审、结算审批、决算审核及财政资金使用绩效评估等”修订为“安排年度项目支出预算（含资金追加及资金来源审核）、审核资金拨付，开展项目财政资金使用绩效评估等”，其余内容不变。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、将第四条第（三）项“县审计局负责对政府性投资项目预算执行、工程结算、竣工决算和EPC项目招标控制价进行审计监督”修订为“县审计局负责对政府性投资项目预算执行、工程结算、竣工决算进行审计监督”，其余内容不变。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、将第二十条第（五）项“项目完工后，项目单位按程序将工程费报财政部门评审后支付”修订为“项目完工后，项目单位按照《湖南省建设工程造价管理办法》（省政府令第192号）要求，全部使用国有资金投资或者以国有资金投资为主的建筑安装工程竣工结算，应当委托工程造价咨询机构审核竣工结算文件后，按相关规定进行支付”。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、将第二十四条“批复的初步设计概算是财政评审、竣工决（结）算的最高限额，财政评审的预算额度是招投标、合同文件的最高限额”修订为“批复的初步设计概算是财政预算评审、竣工决（结）算的最高限额”。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、将第三十二条修订为“积极推行项目代建制，严格执行省政府325号令，财政性资金占项目总投资50%以上且总投资3000万元以上的下列非经营性政府投资项目，应当实行代建制：（一)机关及其所属单位、事业单位、人民团体的办公业务用房等建设项目；（二）科研、教育、文化、卫生、体育、民政及社会福利等社会事业项目；（三）县级以上人民政府确定的其他公共领域项目。生态环境治理、交通运输、农林水利、市政设施等领域的项目以及其他非经营性政府投资项目，鼓励实行代建制。在可行性研究报告批复中应当予以明确，其代建服务费单列，取费标准由价格主管部门核定。”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、将第三十四条修订为“加强项目预算评审管理。县级财政评审机构对拟纳入县本级实施的预算项目（包括上级转移支付、地方政府债券资金等纳入财政管理的资金）开展预算评审。预算评审结果作为安排预算的重要依据。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "县本级政府采购限额（含）以上的工程项目（含与工程相关的货物、服务）和信息化项目（含与项目相关的货物、服务），项目单位应按照相关要求编制项目细化预算后，在招标（采购）之前开展预算评审。”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、删除第三十五条第（一）项“正式合同文本应报县财政、审计等部门备案。县财政、审计等部门应对合同文本实行专人管理。”“合同文本作为财政结算评审和审计的依据。”表述；删除第三十五条第（一）项第2目“财政结算评审后，支付至财政评审价的90%”的表述。删除第三十五条第（二）项第2目“及时向县财政局报送相关资料和照片，县财政局根据资料和照片在2个工作日内决定是否见证。如县财政局不见证，项目单位应对以上过程进行记录”的表述。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "八、将第三十六条修订为“政府性投资项目实行竣工验收和交接制度。项目建成后，由相应行业主管部门牵头组织项目建设单位及相关部门进行竣工（联合）验收。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目竣工验收合格后，达到维护管理移交条件的，应及时按规定组织相关单位进行建设项目移交。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "县审计局对政府投资项目依法开展审计监督，主要采取跟踪审计、竣工决算审计、投资绩效审计、单项工程结算审计、专项审计调查等方式。不受其他行政机关、社会团体和个人的干涉。县审计局在对政府投资项目审计时，被审计单位应当按照审计机关的要求及时提供审计所需的资料，不得拒绝、阻碍、拖延。被审计单位的主要负责人或者审计调查对象对提供资料的真实性和完整性负责。”",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "九、将第四十一条增加“财政部门加强对项目的财会监督，采取日常监督与专项监督相结合的方式，对项目财务行为实施全过程监督管理；财政部门对项目单位自主实施最高投标限价、结算、决算项目，落实财政、财务、会计等法律法规及规章制度的情况实施日常监督。财政监督部门采取抽查监督与重点监督相结合的方式对项目单位自主实施最高投标限价、结算、决算进行财会监督，并加强监督结果应用。”的表述。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "附件：新化县县本级政府性投资项目管理办法",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "2026年2月2日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "新化县县本级政府性投资项目管理办法",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一章 总则",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一条 为充分发挥政府性投资作用，提高政府性投资效益，规范政府投资行为，激发社会投资活力，根据《政府投资条例》(国务院令第712号)、《湖南省人民政府办公厅关于印发〈进一步规范政府性投资项目决策和立项防范政府债务风险的管理办法〉的通知》(湘政办发〔2022〕26号)、《娄底市政府性投资项目管理办法》(娄政办发〔2023〕7号)等规定，结合新化实际，制定本办法。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二条 本办法所称政府性投资项目，是指县本级由县政府安排政府性资金（含县级财政预算资金、国省市投资补助、县级政府性专项建设资金、主权外债资金，以及以县财政性资金为还款来源的借贷资金）为主体进行的以下固定资产投资建设活动，包括新建、改扩建、技术改造等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "(一)党政机关、各类事业单位建设的固定资产投资项目；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "(二)国有投融资公司投资建设的非经营性固定资产投资项目；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "(三)国有投融资公司投资建设的经营性固定资产投资项目。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "上述第(一)(二)种情形的重大政府性投资项目，必须使用财政资金、政府债券资金，不得违规使用市场化融资新增政府隐性债务，实行审批制管理；第(三)种情形的重大项目，实行核准或备案制管理。所称国有投融资公司，是指纳入名录管理的县属融资平台公司和国有投融资企业。严禁为规避项目审批监管而新成立融资平台公司等来开展政府性投资项目建设。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三条 政府性投资项目建设应遵循的原则：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）符合县委、县政府决策决定，符合国家产业政策、国民经济和社会发展规划、国土空间规划和有关建设标准、规范。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）政府性投资资金应当投向市场不能有效配置资源的社会公益服务、公共基础设施、农业农村、生态环境保护和修复、重大科技进步、社会管理、国家安全等公共领域的项目，以非经营性项目为主。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）政府性投资资金按项目安排，以直接投资方式为主，对确需支持的经营性项目，主要采取资本金注入方式，也可以适当采取投资补助、贷款贴息等方式。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）政府性投资项目实行计划管理，年度投资计划编制及执行情况依法接受同级人民代表大会及其常务委员会的监督。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）严格执行用地规划许可、建设工程规划许可、施工许可、竣工验收等基本建设程序，强化项目全生命周期成本控制。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "（六）对经济社会发展全局、社会公众利益有重大影响的政府性投资项目，按相关规定落实中介服务机构评估、公众参与、专家评议、风险评估、合法性审查等制度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "（七）政府性投资项目除涉及国家秘密的项目外，行政审批事项必须依托“投资项目在线审批监管平台”办理，严格执行项目代码制度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "（八）县发改部门和其他有关部门应当通过在线平台列明与政府投资有关的规划、产业政策等，公开政府投资建设项目审批的办理流程、办理时限等，并为项目建设单位提供相关咨询服务。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四条 建立政府牵头、部门联动、信息共享的运行机制。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）县发改局为政府性投资主管部门，负责政府性投资项目储备库组织管理、年度政府投资计划编制、可行性研究报告和投资概算审批、招投标核准、代建管理、评估督导及投资后评价等工作。牵头组织经营类重大政府性投资项目投资联审工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）县财政局为政府性投资资金管理部门，负责政府性投资项目建设资金的全过程监管；安排年度项目支出预算（含资金追加及资金来源审核）、审核资金拨付，开展项目财政资金使用绩效评估等；监管融资项目债务风险并对经营性投资项目进行协调监管；牵头组织政府性投资项目资金来源审核和评估论证工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）县审计局负责对政府性投资项目预算执行、工程结算、竣工决算进行审计监督，对县本级重大项目及县人民政府交办的项目进行全过程跟踪审计监督，对政府投融资平台公司资产负债损益情况进行审计监督。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）县政府其他部门依照本办法和职责分工，加快项目审批效率，履行相应的政府性投资管理职责。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b050",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二章 投资决策",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b051",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五条 建立政府性投资项目储备机制。县发改部门负责项目前期工作的统筹、重大项目前期工作经费安排，县住建、交通运输、水利、财政等行业主管部门负责相应项目的策划和建设方案研究等前期工作，建立分级分类的政府性投资项目储备库。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b052",
+      "level": null,
+      "source_anchor": null,
+      "text": "第六条 编制政府投资年度计划。年度投资计划应与本级预算相衔接，行业主管部门根据本级财政年度预算控制额度，提出本领域政府投资年度建议计划，由县发改部门商同级财政等部门统筹提出政府投资年度建议计划，经县人民政府常务会议、县委常委会议研究同意后，报县人大常委会审议批准。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "因特殊情况需要调整年度投资计划的，在中期调整时由项目主管部门提出申请，由县发改部门会同县财政等有关部门提出调整方案，按原决策程序调整。除应急抢险救灾工程外，未列入计划的项目原则上不安排资金和用地指标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b054",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府投资年度计划应明确项目名称、建设内容及规模、建设工期、项目总投资、年度投资额及资金来源等事项。项目实施情况作为来年财政资金安排的重要依据。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b055",
+      "level": null,
+      "source_anchor": null,
+      "text": "第七条 列入政府投资年度计划的项目应当符合以下条件：①资金来源已明确，已由财政部门对资金来源进行审核或评估论证。②采取直接投资方式、资本金注入方式的项目（统称政府性投资项目），已批复可行性研究报告。棚改等征拆类土地整理项目已由行业主管部门纳入专项计划或者征收补偿方案已经相关部门批准。③采取投资补助、贷款贴息等方式的项目，已经按照上级有关规定办理手续。④县人民政府提出的其他要求。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b056",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三章 投资前期管理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b057",
+      "level": null,
+      "source_anchor": null,
+      "text": "第八条 政府性投资项目，项目单位应当编制项目建议书、可行性研究报告，初步设计，且保证前期工作的深度达到规定要求，按政府投资管理权限及程序，报投资主管部门或其他有关部门审批，并对报审资料的真实性负责。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b058",
+      "level": null,
+      "source_anchor": null,
+      "text": "第九条 项目建议书由项目单位（附主管部门意见）或主管部门按规定程序报县发改部门审批，并附有关建设标准或建设依据文件、财政部门资金安排或资金来源审核意见，及按规定应当提交的其他文件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b059",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十条 符合下列情形之一的不再审批项目建议书：已列入县级及以上国民经济和社会发展规划、专项规划的；项目总投资额在300万元以下且不新增建设用地的；已纳入本级政府投资计划的；已经县委常委会或县政府常务会、县委书记办公会或县长办公会研究同意的项目。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b060",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十一条 总投资额500万元及以上的政府性投资项目履行立项手续前，必须由县政府常务会议研究决策，加强资金来源审核和风险评估论证。总投资额500万元以下的政府性投资项目报分管副县长同意、常务副县长批准。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b061",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十二条 实行审批制管理、总投资额1亿元以上3亿元以下的政府性投资项目，在县政府常务会议研究决策前，须报市财政部门会同投资主管及行业主管部门开展资金来源评估论证；总投资额3亿元及以上(或实施项目后政府债务率大于300%、总投资额1亿元及以上)的投资项目，在完成市评估论证程序后，须报省联审机制进行评估论证复核。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b062",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十三条 政府性投资项目审批，须同步提供的附件资料：①政府常务会议决议书(总投资额500万元及以上的项目)；②同级财政部门出具的资金来源审核意见或上级财政部门出具的资金来源评估论证意见；③履行政府性投资项目审批所需建设项目用地预审与选址意见书（涉及划拨土地的需提供）、行业审查意见等。④根据法律法规要求及县委、县政府有关规定需要提交的其他文件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b063",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十四条 年综合能源消耗量1000吨标准以上、年电力消耗量500万千瓦时以上的项目须提供生态环境部门出具的环境影响评价审批文件；项目的实施可能对社会稳定、公共安全造成不利影响的，需提供风险评估报告；涉密项目须提供县机要局审核意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b064",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十五条 政府性投资项目核准或备案，须同步提供的附件资料：①政府常务会议决议书(总投资额500万元及以上的项目)；②联审机制出具的经营性项目投资联审意见（总投资额1亿元及以上的项目需提供上级联审机制出具的经营性项目投资联审意见）。③建设项目用地预审与选址意见书。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b065",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十六条 投资主管部门或者其他有关部门对政府性投资项目不予批准的，应当书面通知项目单位并说明理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b066",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十七条 可行性研究报告编制格式、内容、深度应达到国家规定要求，包含节能评价、招标事项、安全生产、代建管理等内容，并对项目资金等主要建设条件落实情况进行说明。政府性投资项目可行性研究报告审批一般应当委托县政府投资评审中心评审并出具评审意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b067",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十八条 经批准的可行性研究报告是投资项目建设的依据。可研批复文件须明确项目建设工期，可以规定有效期。项目单位依据可研批复文件，按规定向自然资源、生态环境等部门申请办理用地、环评等手续，并委托具有相应资质的设计单位编制建设工程方案和初步设计。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b068",
+      "level": null,
+      "source_anchor": null,
+      "text": "第十九条 对于建设内容单一、投资规模较小、技术方案简单且不需要新增建设用地的政府性投资项目，优化审批流程。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b069",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）总投资额100万元（不含100万元）以下，已明确资金来源且原则上在部门经费核算总额范围内统筹解决建设资金的项目，可按政府采购有关规定执行。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b070",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）总投资额100万元以上1000万元及以下、使用技术单一的建设项目，可实行“一阶段设计”(初步设计与施工图设计合一)，可不编报批初步设计和概算。可行性研究报告重点阐述项目建设必要性、建设依据、建设内容及规模、建设方案、招标事项、投资估算和资金来源等，其建设投资按可行性研究报告批复的投资估算额进行控制。其中总投资额200万元以下的项目，可由建设单位自行编制可行性研究报告。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b071",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十条 规范应急抢险救灾工程审批管理。应急抢险救灾工程是指本级行政区域内突发事件，必须迅速采取紧急措施的工程。主要包括因自然灾害和其它不可抗力引起的地质灾害、环境保护及防洪、排涝、防火等抢险排险、修复加固工程；房屋建筑和市政、环境卫生、交通运输、水利、供电等公共设施的抢险修复工程；因事故灾难、公共卫生事件、社会安全事件发生后需及时采取应急措施的应急抢险救灾工程。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b072",
+      "level": null,
+      "source_anchor": null,
+      "text": "(一)应急抢险救灾工程的认定及其建设主体、建设范围、建设内容、资金来源等，由行业主管部门报县人民政府研究确定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b073",
+      "level": null,
+      "source_anchor": null,
+      "text": "(二)相关部门应当在职责范围内对规划、立项、设计、用地、施工许可等相关行政审批(许可)程序予以简化，加快办理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b074",
+      "level": null,
+      "source_anchor": null,
+      "text": "(三)如不采取紧急措施将发生严重危害或者危害结果进一步扩大、需要立即开工的项目，行业主管部门可立即处险并将设计方案、投资规模同时报告分管副县长同意，如需县本级财政追加资金的应急抢险救灾工程须分管副县长同意并报常务副县长批准后，送县财政局备案,事后按要求完善相关行政审批手续并提供影像等佐证资料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b075",
+      "level": null,
+      "source_anchor": null,
+      "text": "(四)项目单位在行业主管部门的监督下，可先采取直接委托或邀请招标方式选取具备相应资质的勘察、设计、监理、施工单位，签订合同后组织实施。确因情况紧急未签订合同的，应当自工程实施之日起15个工作日内补签。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b076",
+      "level": null,
+      "source_anchor": null,
+      "text": "(五)工程除险后，按照县人民政府认定的责任划分，由责任方按比例承担相应费用。超出已认定应急抢险范围自行建设其他内容的，超出部分费用由项目单位自行承担。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b077",
+      "level": null,
+      "source_anchor": null,
+      "text": "(六)对需使用财政性资金支付预付款的，经县人民政府常务副县长批准，由县财政局按一定比例支付预付款。项目完工后，项目单位按照《湖南省建设工程造价管理办法》（省政府令第192号）要求，全部使用国有资金投资或者以国有资金投资为主的建筑安装工程竣工结算，应当委托工程造价咨询机构审核竣工结算文件后，按相关规定进行支付。勘察、设计、监理、非工程抢险措施等其他费用按相关规定办理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b078",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四章 投资控制",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b079",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十一条 政府性投资项目应遵循“估算控制概算、概算控制预算、预算控制结算”的原则，规范概算审批和调整，实行全过程造价控制。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b080",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十二条 项目单位按照批准的投资估算开展限额设计，初步设计编制应当符合国家有关规定，按可行性研究报告批复内容及要求进行设计，并同步编制投资概算书（项目单位具备相应能力的，可自行编制概算书），分别报行业主管部门和概算审批部门审批。投资概算应包括国家规定的项目建设所需的工程建设费、工程建设其他费（其中征地拆迁补偿费、管线迁改费分别单列）、预备费等全部费用以及建设期利息。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b081",
+      "level": null,
+      "source_anchor": null,
+      "text": "一般房屋类建设项目装修标准，参照有关规定，不得超过主体工程建安费的35%；特殊用途房屋类建设项目装修费用，按相关建设标准或参照其他县市同类项目的中等水平核定控制标准，国家另有规定的，从其规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b082",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十三条 项目单位向县发改部门报审概算需提供的资料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b083",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）发改部门出具的可行性研究报告批复；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b084",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）行业主管部门出具的初步设计批复；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b085",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）概算书；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b086",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）政府投资评审中心出具的评审意见（总投资额1000万元及以上的项目）；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b087",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）项目单位法定代表人概算管理承诺书（法定代表人发生变化的，应及时签署法定代表人变更责任移交书，并报投资主管部门备案）；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b088",
+      "level": null,
+      "source_anchor": null,
+      "text": "（六）按照法律法规及县政府有关规定需提交的其他文件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b089",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十四条 批复的初步设计概算是财政预算评审、竣工决（结）算的最高限额。各部门应按职责分工加强对政府性投资建设项目概算的监管，确保项目总投资控制在批复概算以内。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b090",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）概算审批部门必须严格落实政府性投资项目的概算审批、调整及监督检查职责。对发现的违规超概行为责令整改，并书面通知县财政部门暂停付款。对违规超概项目，先行追责问责到位，再严格按程序履行评估论证、重新决策、调整概算等手续后，方可继续实施。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b091",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）项目主管部门应当督促项目各有关责任主体，严格按照审定的施工图设计文件实施，加强设计变更审查，及时制止和纠正违规超概算行为，并将可能引起超概算的变化情况书面告知县发改、财政、审计等部门。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b092",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）县财政部门根据批复或核定的投资概预算、审查批准的设计变更、行业主管部门核定的项目资金申请，按工程进度拨付财政资金。对于超概算批复的项目，未经批复调整，不得受理预算评审、不得拨付财政资金。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b093",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）项目单位对概算控制负直接责任，承担超概算的相关责任。造价咨询、招标代理、勘察、设计、施工、监理、设备材料供应商等参建单位依据法律法规和合同约定，履行相应的概算控制责任。按规定实行代建制的政府性投资项目，代建方依据法律法规和代建合同约定履行项目概算控制的相关权利义务。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b094",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十五条 项目建设单位应遵循“估算控制概算”原则开展初步设计及概算书编制。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b095",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）概算超过批复估算10%以内的（不含征地拆迁补偿费和管线迁改费），项目单位落实增加部分资金来源并经财政部门认可后，由概算审批部门批复；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b096",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）概算超过批复估算10%以上的（不含征地拆迁补偿费和管线迁改费），或建设性质、地点、规模、技术方案等发生重大变更，项目建设单位或项目实施机构须及时报告并重新编报可行性研究报告，或调减建设规模或内容、降低装修标准、重新开展初步设计、重新编报概算。住建、交通运输、水利等行业主管部门须根据县发改部门的审核意见，对项目初步设计方案重新审查并出具批复意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b097",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十六条 项目单位应按批准的初步设计及概算进行施工图设计，按规定完成施工图审查后，报行业主管部门确认（备案）。建设项目施工图预算不得超过批复概算中工程建设费及其基本预备费之和。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b098",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十七条 严格控制工程变更。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b099",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）政府性投资建设项目应当严格按照批准的设计文件和概算进行施工建设。任何部门和单位不得无故擅自变更，应遵循“先批准，后实施”原则，实行分类管理、分级审批，按行业主管部门工程变更管理相关细则要求办理。同时项目单位应当在查明原因和责任后主动提出，由设计单位出具变更设计施工图或相关处理方案，监理、施工单位签署书面意见，报行业主管部门和纪委监委核查后提出处理意见，按以下程序报批：1.累计变更金额在10万元以内（含10万元）的，报项目单位法人代表审批；2.累计变更金额超过10万元、不超过50万元（含50万元）的，每次变更时须报分管副县长审批；3.累计变更金额超过50万元的，每次变更时须报常务副县长审批；4.累计变更金额超过200万元的，每次变更时须报县长审批；5.累计变更金额超过400万元（含400万元）的，须报县政府常务会议研究决定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b100",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）因变更增加合同规定以外的内容，需按国家现行招投标法律、法规执行。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b101",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）未经批准擅自实施工程变更的，由项目建设单位或项目实施单位承担全部责任，并不予支付变更增加的费用。对于“正负零”或地面以上等建设条件简单、明晰的分部工程，不得以工程变更名义增加投资规模；对于经批准的负向工程变更，应核减投资规模。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b102",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十八条 投资概算批复后应严格执行，不得擅自调整。项目建设过程中，因国家政策调整、价格上涨（增加投资不作为计算其他费用的取费基数）、地质条件发生重大变化、自然灾害等不可抗力因素不能满足工程实际需要的，或经批准的工程变更导致超原批复概算确需调整的，项目单位必须事前向投资主管部门正式申报，经严格论证并按程序批准同意后方可实施。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b103",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）政府性投资项目申请调增投资概算幅度未超过原核定概算10%（不含10%;不含征地拆迁补偿费和管线迁改费），或虽超过10%但超概算额度在300万元以内（含300万元），但可以使用预备费解决的，不予调整；对于确需调整投资概算的，由县发改局委托评审后进行调整核定，其中，需县财政追加资金安排的，须由县财政局出具审核意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b104",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）政府性投资项目申请调增投资概算幅度超过原核定概算10%且超概算额度300万元以上的，根据项目进度执行不同的调整概算程序：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b105",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目启动招标程序前需调整概算的，项目单位向县发改局书面申报，经县发改局同意启动调整概算程序后，行业主管部门重新审批初步设计，县发改局重新组织审查后提出初审意见报县人民政府审定。其中，需县财政追加资金安排的，须由县财政局出具审核意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b106",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.项目建设过程中需调整概算的，由项目单位事前向县发改局书面申报，经县发改局同意启动调整概算程序后，由县发改局商县纪委监委、县财政局、行业主管部门及设计、施工、监理、评审等单位，提出初审意见，报县人民政府审定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b107",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目调整概算期间，项目单位应停止与调整概算相关的建设内容，按法定程序批准同意后，再按批准内容继续实施。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b108",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.项目已建成的原则上不调整概算，由于价格上涨确需调整概算的，由项目单位向县发改局书面申报，经同意启动调整概算程序后，县发改局重新组织审查，提出初审意见，报县人民政府审定。其中，需县财政追加资金安排的，须由县财政局出具审核意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b109",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二十九条 政府投资项目申请调整投资概算的，需向县发改部门提交以下资料：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b110",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）项目单位向行业主管部门提出调整概算的书面申请材料。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b111",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）项目行业主管部门出具的项目调概核查意见，附按要求编制的调整概算书（含调整概算与原核定概算比对表，并分类定量说明调概的原因、依据、工程量清单和计算方法等）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b112",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）县财政部门出具的超概算资金来源审核意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b113",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）县政府领导批准意见或县政府常务会议纪要。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b114",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）其他附件资料：原初步设计及概算批复或核定文件、与调整概算有关的招标及合同文件、施工图设计（含装修设计）及预算文件、已发生费用的支付依据、合同文书等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b115",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十条 政府性投资项目有下列情形之一的，原则上不予重新审批或者调整审批，由县审计部门进行专项审计，并按有关规定追究相关责任单位和责任人责任后，再进行工程结算。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b116",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）项目已基本建设完成。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b117",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）项目建设单位在建设过程中擅自改变建设内容、建设规模、建设标准。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b118",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）项目实施过程中其他违法违规行为造成重大社会影响的。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b119",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五章 管理监督",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b120",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十一条 政府性投资项目严格执行项目法人责任制、招标投标制、合同管理制、工程监理制、安全生产责任制、工程质量终身负责制和重大项目跟踪审计制等相关制度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b121",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十二条 积极推行项目代建制，严格执行省政府325号令，财政性资金占项目总投资50%以上且总投资3000万元以上的下列非经营性政府投资项目，应当实行代建制：（一)机关及其所属单位、事业单位、人民团体的办公业务用房等建设项目；（二）科研、教育、文化、卫生、体育、民政及社会福利等社会事业项目；（三）县级以上人民政府确定的其他公共领域项目。生态环境治理、交通运输、农林水利、市政设施等领域的项目以及其他非经营性政府投资项目，鼓励实行代建制。在可行性研究报告批复中应当予以明确，其代建服务费单列，取费标准由价格主管部门核定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b122",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十三条 政府性投资项目开工建设，应当完成本办法规定的审批决策程序，并符合法律、行政法规规定的建设条件，所需资金应当按照国家有关规定落实到位。按规定应当审批开工报告的，办理开工报告审批手续后方可开工建设。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b123",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府性投资项目不得由施工单位垫资建设，不得强制或者变相强制要求以国家审计结果作为工程结算依据。项目单位应督促施工单位将已拨付或已落实资金优先保障农民工工资。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b124",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十四条 加强项目预算评审管理。县级财政评审机构对拟纳入县本级实施的预算项目（包括上级转移支付、地方政府债券资金等纳入财政管理的资金）开展预算评审。预算评审结果作为安排预算的重要依据。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b125",
+      "level": null,
+      "source_anchor": null,
+      "text": "县本级政府采购限额（含）以上的工程项目（含与工程相关的货物、服务）和信息化项目（含与项目相关的货物、服务），项目单位应按照相关要求编制项目细化预算后，在招标（采购）之前开展预算评审。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b126",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十五条 政府性投资项目实行项目招投标制。项目单位应当按照核准的招标事项，依法组织开展招投标或政府采购，招标公告应当在指定媒介发布。行业主管部门对招投标活动实施监督检查。法律法规规定可邀请招标、不进行招标情形的，由项目审批部门会同有关行业主管部门认定。严禁违法分包、转包。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b127",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）加强招投标和合同管理",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b128",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府性投资项目的招标，项目单位负主体责任，必须按照相关法律、法规及政策实施，不得将必须进行招标的项目化整为零或者以其他任何方式（如以前期准备不足、时间迫近、工期倒逼等）规避招标。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b129",
+      "level": null,
+      "source_anchor": null,
+      "text": "行业行政监督部门主要负责人是规范招标文件执行的直接责任人，项目单位及代理机构按照行业行政监督部门提供的招标文件范本，结合相关法律法规及项目实际情况编制招标文件，经行业行政监督部门备案后报分管副县长审批，招标金额500万元以上（含500万元）1000万元以下的项目报常务副县长审批后实施，1000万元以上（含1000万元）的项目报县长审批后实施。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b130",
+      "level": null,
+      "source_anchor": null,
+      "text": "县纪委监委、县公管委采取定期和不定期的方式，对项目标后监管工作进行督查。所有政府性投资项目招标投标活动必须进入公共资源交易中心公开进行。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b131",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府性投资项目必须实行合同管理制。其勘察、设计、施工、设备材料采购和工程监理以及代建、项目法人招标等都要依法签订合同。不得违背招投标文件实质性内容签订合同。项目单位根据招标文件、中标单位投标文件及有关规定，参照标准合同文本，起草政府性投资项目建设合同（草案），将合同（草案）电子文档、招标文件电子文档、中标单位投标文件（商务标部分）电子照片报送至县财政局和行业行政监督部门指定的电子邮箱。相关单位在3个工作日内向项目单位提出建议，逾期视同无异议。项目单位采纳所有的合理化建议后，形成正式合同文本。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b132",
+      "level": null,
+      "source_anchor": null,
+      "text": "项目单位作为县人民政府管理项目的受托单位，除在受托责任范围内（项目的预算、项目资金计划或额度）行使权利和承担义务外，还应在招标文件专用合同条款中明确以下内容：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b133",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.政府性投资项目的相关单位有按本办法的规定接受监督管理的义务。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b134",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.政府性投资项目（不含另定付款方式的政府回购项目、PPP项目）投资额在100万元以上（含100万元）的，支付进度款不得超过签约合同价的80%，项目余款按相关规定进行支付。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b135",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.勘察、设计费的支付比例在勘察、设计成果通过专家评审并交付不得高于60%。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b136",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）加强施工过程管理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b137",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.项目单位应严格做好项目前期的勘察和设计工作，实施过程中按图施工，不得擅自变更。如有必要变更和新增，应严格控制在项目预算评审金额之内,同时遵循第二十七条的相关规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b138",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.原始地貌复测、暂估及暂定项目的确定（包括土石方比例及类别的划分、无相关发布价格的材料询价等）、隐蔽工程、变更项目及新增工程，项目单位报主管部门审核存档后，留存相关资料（含影像资料、电子邮件等）备审。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b139",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十六条 政府性投资项目实行竣工验收和交接制度。项目建成后，由相应行业主管部门牵头组织项目建设单位及相关部门进行竣工（联合）验收。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b140",
+      "level": null,
+      "source_anchor": null,
+      "text": "县审计局对政府投资项目依法开展审计监督，主要采取跟踪审计、竣工决算审计、投资绩效审计、单项工程结算审计、专项审计调查等方式。不受其他行政机关、社会团体和个人的干涉。县审计局在对政府投资项目审计时，被审计单位应当按照审计机关的要求及时提供审计所需的资料，不得拒绝、阻碍、拖延。被审计单位的主要负责人或者审计调查对象对提供资料的真实性和完整性负责。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b141",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十七条 政府性投资项目应当在竣工验收备案后30日内办理产权登记手续，依法办理公共资产登记，纳入公共资产监督管理的范围。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b142",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十八条 政府性投资项目单位必须按照基本建设财务制度和会计制度进行核算，实行单独建账、单独核算、专款专用，不得改变政府性资金的使用方式和用途。政府性投资项目结余的财政资金，应当按照国家有关规定缴回国库。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b143",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三十九条 投资主管部门或其他有关部门应当按照国家有关规定选择有代表性的已建成政府性投资项目，委托中介服务机构开展后评价，对项目进行全面评价并提出明确意见。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b144",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府与社会资本合作项目、专项建设基金项目等有特别规定的，按照有关规定严格管理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b145",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十条 县发改部门和依法对政府性投资项目负有监督管理职责的其他部门应当依据各自职责，采取在线监测、现场核查等方式，加强对政府性投资项目实施情况和资金使用情况的事中事后监管。监督管理的主要内容包括：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b146",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）项目单位是否通过在线审批平台如实、及时报送项目实施基本信息；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b147",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）需要变更建设地点或者对已批准建设规模、建设内容等作较大变更的，是否按照规定办理变更手续；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b148",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）是否按照批准的建设地点、建设规模、建设内容等进行建设；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b149",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）项目建设资金是否按照规定用途使用；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b150",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）其他需要监督检查的事项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b151",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十一条 行业主管部门负责本行业内政府性投资项目的行业监管和统筹调度，及时指导新开工项目单位通过所在地统计联网直报平台申报固定资产投资入库入统，及时向县人民政府及有关部门报告项目实施过程中出现的问题。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b152",
+      "level": null,
+      "source_anchor": null,
+      "text": "财政部门加强对项目的财会监督，采取日常监督与专项监督相结合的方式，对项目财务行为实施全过程监督管理；财政部门对项目单位自主实施最高投标限价、结算、决算项目，落实财政、财务、会计等法律法规及规章制度的情况实施日常监督。财政监督部门采取抽查监督与重点监督相结合的方式对项目单位自主实施最高投标限价、结算、决算进行财会监督，并加强监督结果应用。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b153",
+      "level": null,
+      "source_anchor": null,
+      "text": "投资主管部门和其他有关部门应当建立政府性投资项目信息共享机制，通过在线审批平台实现信息共享。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b154",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十二条 项目建设单位应当通过在线平台如实报送进展情况，按照国家有关规定加强项目档案管理，将项目审批和实施过程中的有关文件、资料存档备查，并落实信息报送制度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b155",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十三条 凡不涉及国家安全、国家秘密和法律法规未禁止公开的政府性投资项目，项目审批和实施以及监督检查信息应当依法公开，接受社会各界监督。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b156",
+      "level": null,
+      "source_anchor": null,
+      "text": "第六章 责任追究",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b157",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十四条 投资及行业主管部门有下列行为之一的，责令改正，对负有责任的领导人员和直接责任人员依法予以处分;存在违纪违法或者犯罪行为的，移交纪检监察机关或司法机关处置。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b158",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）超越审批权限审批的；对不符合规定的政府性投资项目予以批准的，未按照规定核定或者调整政府性投资项目投资概算的；在必要文件缺失情况下予以立项的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b159",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）为不符合规定的项目安排投资补助、贷款贴息等政府性投资资金的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b160",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）资金来源评估论证文件等必要文件弄虚作假的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b161",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）违反本办法规定程序批准和调整项目建议书、可行性研究报告、初步设计及投资概算的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b162",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）违法违规举借债务筹措政府性投资资金的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b163",
+      "level": null,
+      "source_anchor": null,
+      "text": "（六）转移、侵占或者挪用建设资金的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b164",
+      "level": null,
+      "source_anchor": null,
+      "text": "（七）其他违反法律、法规和本办法规定的行为。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b165",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十五条 项目单位有下列情形之一的，责令改正，根据具体情况，暂停、停止拨付资金或者收回已拨付的资金，暂停或者停止建设活动，对负有责任的领导人员和直接责任人员依法给予处分：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b166",
+      "level": null,
+      "source_anchor": null,
+      "text": "（一）未经批准或者在不符合规定的建设条件下开工建设政府性投资项目的;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b167",
+      "level": null,
+      "source_anchor": null,
+      "text": "（二）弄虚作假骗取政府性投资项目审批或者投资补助、贷款贴息等政府性投资资金的;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b168",
+      "level": null,
+      "source_anchor": null,
+      "text": "（三）未经批准擅自变更政府性投资项目的建设地点或者对建设规模、建设内容等作较大变更及擅自增加投资概算的;",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b169",
+      "level": null,
+      "source_anchor": null,
+      "text": "（四）要求施工单位对政府性投资项目垫资建设的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b170",
+      "level": null,
+      "source_anchor": null,
+      "text": "（五）无正当理由不实施或者不按照建设工期实施已批准的政府性投资项目的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b171",
+      "level": null,
+      "source_anchor": null,
+      "text": "（六）未按规定将政府性投资项目立项和实施过程中的有关文件、资料存档备查，或者转移、隐匿、篡改、毁弃项目有关文件、资料的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b172",
+      "level": null,
+      "source_anchor": null,
+      "text": "（七）人为压低投资规模或拆分项目，规避决策程序的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b173",
+      "level": null,
+      "source_anchor": null,
+      "text": "（八）未按规定实行代建制的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b174",
+      "level": null,
+      "source_anchor": null,
+      "text": "（九）未及时办理竣工验收手续、未经竣工验收或者验收不合格即交付使用的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b175",
+      "level": null,
+      "source_anchor": null,
+      "text": "（十）不按国家、省或市有关规定履行招投标程序的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b176",
+      "level": null,
+      "source_anchor": null,
+      "text": "（十一）未按规定编制项目竣工决算或项目竣工决算未经审计部门审计的；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b177",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十六条 承担政府性投资建设项目相关业务的参建单位及其从业人员进行串通违规操作、弄虚作假的，出具的成果报告或审查结论严重失实的，或造成项目质量低劣的，根据情节轻重，将其不良行为记入信用档案或列入黑名单予以公布；因主观过错造成超概算的，相关单位应按合同约定条款承担相应责任；造成经济损失的，依法承担赔偿责任；涉嫌犯罪的移送有权机关处理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b178",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十七条 严格违规超概算项目责任追究。对存在第四十五条第（一）至（五）款情形导致违规超概算的，政府性投资项目管理单位和人员或项目建设参建相关单位为责任追究对象。项目单位因上述原因违规超概算10%及以上且超概算金额300万元以上，依据2021年11月25日湖南省发改委等五部门印发的《关于政府投资工程项目建设违规超概算问题责任追究的指导意见》追责，完成违规超概算问题整改和责任追究后，报县人民政府常务会议审定后办理概算调整手续。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b179",
+      "level": null,
+      "source_anchor": null,
+      "text": "对因中介成果出现漏项、缺项等因素导致违规超概算的，由相关部门按规定进行处置，处置结果抄送县发改部门。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b180",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十八条 政府性投资项目发生重大质量安全事故的，按照国家有关规定依法依规追究有关部门、单位及相关人员责任。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b181",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四十九条 严禁违规使用财政资金新建、扩建、购置楼堂馆所和搞豪华装修，严禁以技术业务用房名义变相建设楼堂馆所，严禁擅自改变技术业务用房的用途，严禁以“学院”“中心”等名义建设楼堂馆所，严禁以危房改造等名义改扩建楼堂馆所，严禁借企业名义搞任何形式的合作建设、集资建设或者专项建设。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b182",
+      "level": null,
+      "source_anchor": null,
+      "text": "第七章 附则",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b183",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五十条 本办法涉及行业管理未尽事宜，行业主管部门应当按照本办法规定制定实施细则。法律、法规、规章以及上级规范性文件另有规定的，从其规定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b184",
+      "level": null,
+      "source_anchor": null,
+      "text": "第五十一条 本办法自发布之日起施行，有效期5年。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_017_xinhua_investment_management_b185",
+      "level": 3,
+      "source_anchor": null,
+      "text": "扫码浏览",
+      "type": "heading"
+    }
+  ],
+  "doc_id": "real_policy_017_xinhua_investment_management",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 185,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:30:14.781439+00:00",
+    "source_format": "html",
+    "source_sha256": "e552d6e8d5536d81bc65a12b6a6fffa4ba6ade7299b9f7a7b3feaae7fc546fad",
+    "source_site": "www.xinhua.gov.cn",
+    "source_url": "https://www.xinhua.gov.cn/xinhua/xrmzfgfxwj/202602/509a0482bd5b4c65a7ead374c510983d.shtml",
+    "title": "新化县人民政府关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知",
+    "标题": "新化县人民政府关于修订《新化县县本级政府性投资项目管理办法》部分条款的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "e552d6e8d5536d81bc65a12b6a6fffa4ba6ade7299b9f7a7b3feaae7fc546fad"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_017_xinhua_investment_management",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

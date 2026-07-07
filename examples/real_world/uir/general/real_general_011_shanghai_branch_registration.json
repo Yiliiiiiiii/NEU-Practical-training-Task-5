@@ -1,0 +1,825 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "公司登记注册（省级权限）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b002",
+      "level": 4,
+      "source_anchor": null,
+      "text": "分公司设立登记注册（省级权限）",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "到现场次数",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "0 次",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "法定办结时限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "6 （工作日）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "承诺办结时限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "当场办结",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "指南下载"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "基本信息",
+          "申请材料",
+          "办理流程",
+          "审批收费",
+          "审批结果",
+          "数量限制",
+          "中介服务",
+          "告知承诺",
+          "设定依据",
+          "常见问题"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "实施主体",
+          "上海市市场监督管理局",
+          "日常用语",
+          "分公司设立；办理营业执照",
+          "实施主体性质",
+          "法定机关",
+          "联办机构",
+          "无",
+          "办件类型",
+          "即办件",
+          "服务对象",
+          "企业法人",
+          "法定办结时限",
+          "6 （工作日）",
+          "承诺办结时限",
+          "当场办结",
+          "法定办结时限说明",
+          "申请材料齐全、符合法定形式的，登记机关予以确认，并当场登记，出具登记通知书，并及时制发营业执照。不予当场登记的，登记机关应当向申请人出具接收申请材料凭证，并在3个工作日内对申请材料进行审查；情形复杂的，经登记机关负责人批准，可以再延长3个工作日，并书面告知申请人。",
+          "承诺办结时限说明",
+          "申请材料齐全、符合法定形式的，登记机关予以确认，并当场登记，出具登记通知书，并及时制发营业执照。",
+          "办理地点",
+          "上海市徐汇区斜土路街道肇嘉浜路301号政务服务大厅4-10号窗口",
+          "办理时间",
+          "当年6月15日至当年9月15日星期一至星期五，上午09:00至11:30，下午14:00至16:30（法定节假日除外）当年9月16日至次年6月14日星期一至星期五，上午09:00至11:30，下午13:30至16:30（法定节假日除外）",
+          "咨询方式",
+          "电话咨询： (021)64220000-5446（上海市市场监督管理局）；其他详见http://scjgj.sh.gov.cn/5001/ 网上咨询： http://fw.scjgj.sh.gov.cn/shaic/consult!toQuestion.action 窗口咨询： 上海市徐汇区肇嘉浜路301号政务服务大厅（上海市市场监督管理局）；其他详见http://scjgj.sh.gov.cn/5001/",
+          "其他业务办理项",
+          "增发、补发公司及分公司营业执照（省级权限） 分公司变更登记注册（省级权限） 分公司注销登记注册（省级权限） 公司设立登记注册（省级权限） 公司注销登记注册（省级权限） 公司变更登记注册（省级权限）"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b012",
+      "level": 4,
+      "source_anchor": null,
+      "text": "基本信息 BASIC INFORMATION",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "items": [
+          "事项类型",
+          "行政许可",
+          "基本编码",
+          "000131127002",
+          "实施编码",
+          "11310000MB2F3067XN2000131127002",
+          "业务办理项编码",
+          "11310000MB2F3067XN2000131127002A2",
+          "实施主体编码",
+          "11310000MB2F3067XN",
+          "审批对象",
+          "依法可以设立分公司的公司。",
+          "适用范围",
+          "本指南适用于上海市行政区域内企业及分支机构营业许可（内资公司及分公司）的申请和办理。",
+          "受理条件",
+          "申请材料齐全，形式符合要求，具体见申请材料目录",
+          "准予行政许可的条件",
+          "登记机关应当对申请材料进行形式审查。对申请材料齐全、符合法定形式的予以确认并当场登记。不能当场登记的，应当在3个工作日内予以登记；情形复杂的，经登记机关负责人批准，可以再延长3个工作日。 申请材料不齐全或者不符合法定形式的，登记机关应当一次性告知申请人需要补正的材料。",
+          "审核内容",
+          "分公司设立登记。",
+          "权限划分",
+          "内资：1．上海市市场监督管理局负责下列内资公司的登记： ①市国有资产监督管理机构履行出资人职责的国有独资公司； ②股份有限公司； ③国家市场监督管理总局授权登记的公司； ④市市场监督管理局规定应当由其登记的其他公司。 2．区市场监督管理局负责下列内资公司的登记： ①国家市场监督管理总局、市市场监督管理局登记公司以外的其他公司； ②国家市场监督管理总局授权登记的公司； ③市市场监督管理局授权登记的公司； ④营业场所属于本行政区域内的分公司，但经市市场监督管理局指定由母公司登记机关统一受理的除外。 外资：上海市市场监督管理局：主要负责登记负面清单内及金融类的外商投资企业及其分支机构、国家市场监管局授权的外商投资企业登记以及其他上海市市场监督管理局认为应由其登记的外商投资企业及其分支机构。 浦东新区市场监督管理局（自贸试验区市场监管局）主要负责登记浦东新区行政区域内（自贸试验区行政区域内）负面清单外的外商投资企业及分支机构。 其他区市场监督管理局受上海市市场监督管理局委托，负责登记各区行政区域内除由上海市市场监督管理局登记以外的外商投资企业及分支机构。",
+          "是否通办",
+          "否",
+          "行使层级",
+          "市级",
+          "办理形式",
+          "窗口办理、网上办理",
+          "事项分类",
+          "设立变更",
+          "是否支持网上支付",
+          "不支持",
+          "是否支持自助终端办理",
+          "支持",
+          "是否支持预约办理",
+          "支持",
+          "是否支持物流快递",
+          "不支持",
+          "权力来源",
+          "法定本级行使",
+          "计算机端是否对接单点登录",
+          "是",
+          "事项办理深度",
+          "全程网办",
+          "网上办理深度",
+          "网上咨询,网上收件,网上预审,网上受理,网上办理,网上办理结果信息反馈,网上电子证照反馈",
+          "法律责任",
+          "根据《中华人民共和国市场主体登记管理条例》：第四十三条 未经设立登记从事经营活动的，由登记机关责令改正，没收违法所得；拒不改正的，处1万元以上10万元以下的罚款；情节严重的，依法责令关闭停业，并处10万元以上50万元以下的罚款。第四十四条 提交虚假材料或者采取其他欺诈手段隐瞒重要事实取得市场主体登记的，由登记机关责令改正，没收违法所得，并处5万元以上20万元以下的罚款；情节严重的，处20万元以上100万元以下的罚款，吊销营业执照。第四十五条 实行注册资本实缴登记制的市场主体虚报注册资本取得市场主体登记的，由登记机关责令改正，处虚报注册资本金额5%以上15%以下的罚款；情节严重的，吊销营业执照。实行注册资本实缴登记制的市场主体的发起人、股东虚假出资，未交付或者未按期交付作为出资的货币或者非货币财产的，或者在市场主体成立后抽逃出资的，由登记机关责令改正，处虚假出资金额5%以上15%以下的罚款。第四十六条 市场主体未依照本条例办理变更登记的，由登记机关责令改正；拒不改正的，处1万元以上10万元以下的罚款；情节严重的，吊销营业执照。第四十七条 市场主体未依照本条例办理备案的，由登记机关责令改正；拒不改正的，处5万元以下的罚款。第四十八条 市场主体未依照本条例将营业执照置于住所或者主要经营场所醒目位置的，由登记机关责令改正；拒不改正的，处3万元以下的罚款。从事电子商务经营的市场主体未在其首页显著位置持续公示营业执照信息或者相关链接标识的，由登记机关依照《中华人民共和国电子商务法》处罚。市场主体伪造、涂改、出租、出借、转让营业执照的，由登记机关没收违法所得，处10万元以下的罚款；情节严重的，处10万元以上50万元以下的罚款，吊销营业执照。第四十九条 违反本条例规定的，登记机关确定罚款金额时，应当综合考虑市场主体的类型、规模、违法情节等因素。第五十条 登记机关及其工作人员违反本条例规定未履行职责或者履行职责不当的，对直接负责的主管人员和其他直接责任人员依法给予处分。第五十一条 违反本条例规定，构成犯罪的，依法追究刑事责任。第五十二条 法律、行政法规对市场主体登记管理违法行为处罚另有规定的，从其规定。",
+          "申请期限",
+          "无限制"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "申请材料",
+          "办理流程",
+          "审批收费",
+          "审批结果",
+          "数量限制",
+          "中介服务",
+          "告知承诺",
+          "设定依据",
+          "常见问题"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b015",
+      "level": 4,
+      "source_anchor": null,
+      "text": "申请材料 APPLICATION MATERIALS",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "填报须知",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.依照《公司法》、《外商投资法》、《市场主体登记管理条例》设立的公司申请分公司设立登记适用本规范。 2.提交的登记申请文书与其它申请材料应当使用A4型白色纸张。依本表打印生成的，使用黑色或蓝色墨水钢笔或签字笔签字；手工填写的，使用黑色或蓝色墨水钢笔或签字笔工整填写、签字。 3.对于现场窗口提交材料的，未注明提交复印件的，应当提交原件（未注明复印件的即为原件）；提交复印件的，应当注明“与原件一致”并由申请人签署，或者由其指定的代表或共同委托的代理人签字。 4.通过全程电子化方式申请登记注册的，主体资格证明、身份证明、批准证书、章程、决议等文件可通过全程电子化登记系统提交原件影像（印）件，或通过登记业务系统设置的申请文书格式规范生成相关材料并使用。 5. 提交材料涉及签署，自然人由本人签字，法人和其他组织由法定代表人、负责人或有权签字人签字，并加盖公章（外国（地区）法人和其他组织无需加盖公章）。涉及代签文书的，需提交授权人委托他人签字的授权委托书，授权委托书应为原件，且授权人应亲笔签字。 6.提交材料、公证认证文书为外文的，应附加盖翻译单位公章的中文翻译件，由翻译单位注明“翻译准确”，并提交翻译单位主体资格证明复印件。 7.提交经营场所使用相关文件。根据《上海市企业住所登记管理办法》提交经营场所使用证明 8.管辖地登记机关和其他政府部门已共享身份认证信息、清税信息或电子证照等数据信息，且可以在线核验、存档的，无需申请人另行提交纸质材料。 9. 在办理登记、备案事项时，申请人应当配合登记机关通过实名认证系统，采用人脸识别等方式对相关人员进行实名验证。因特殊原因，当事人无法通过实名认证系统核验身份信息的，可以提交经依法公证的自然人身份证明文件，或者由本人持身份证件到现场办理。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "形式标准",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 申报资料按本办事指南申请表载明的顺序排列；2. 申请材料的复印件应清晰；3. 申请材料应当使用A4型纸，需要填写或签字的应当用黑色或蓝黑色钢笔、毛笔或签字笔书写，请勿使用圆珠笔。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请材料目录",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "材料名称",
+            "value": "来源渠道 | 来源渠道说明 | 材料类型 | 纸质材料份数 | 材料形式 | 材料必要性 | 备注"
+          },
+          {
+            "field": "《分支机构登记（备案）申请书》 示例样表 空白表格",
+            "value": "申请人自备 | 按国家市场监管总局模板 | 原件 | 1 | 纸质 | 必要"
+          },
+          {
+            "field": "经营场所使用相关文件",
+            "value": "申请人自备 | 原件 | 1 | 纸质 | 必要 | 查看详情"
+          },
+          {
+            "field": "分公司负责人的任职信息及身份证件复印件",
+            "value": "申请人自备 | 原件 | 1 | 纸质 | 非必要 | 查看详情"
+          },
+          {
+            "field": "隶属公司的营业执照复印件",
+            "value": "政府部门核发 | 市场监管部门 | 复印件 | 1 | 纸质 | 必要 | 查看详情"
+          },
+          {
+            "field": "提交申请材料的人员（经办人）的自然人身份证明复印件",
+            "value": "申请人自备 | 复印件 | 1 | 纸质 | 必要"
+          },
+          {
+            "field": "法律、行政法规和国务院决定规定设立分公司必须报经批准的，或分公司申请登记的经营范围中有法律、行政法规和国务院决定规定在登记前依法须经批准的项目的，提交有关批准文件或许可证件的复印件",
+            "value": "政府部门核发 | 相关审批部门 | 复印件 | 1 | 纸质 | 非必要 | 查看详情"
+          }
+        ]
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "注：本市政府部门核发材料可通过电子证照、数据核验等方式免提交，具体以实际办理情况为准。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b023",
+      "level": 4,
+      "source_anchor": null,
+      "text": "权利义务 RIGHTS AND OBLIGATIONS",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请人依法享有以下权利：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "1．符合法定条件、标准的，申请人有依法取得行政许可的平等权利。 2．对登记机关实施行政许可，享有陈述权、申辩权。 3．有权依法申请行政复议或者提起行政诉讼。 4．其合法权益因登记机关违法实施行政许可受到损害的，有权依法要求赔偿。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请人依法履行以下义务：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "申请人申请行政许可，应当如实向市场监管机关提交有关材料和反映真实情况，并对其申请材料实质内容的真实性负责。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b028",
+      "level": 4,
+      "source_anchor": null,
+      "text": "办理流程 HANDLING PROCEDURES",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "办理步骤",
+            "value": "办理时限（工作日） | 办理人员 | 审查标准"
+          },
+          {
+            "field": "收件",
+            "value": "0 | 收件人员 | 申请材料齐全，形式符合要求"
+          },
+          {
+            "field": "受理",
+            "value": "0 | 受理人员 | 申请材料齐全，形式符合要求，具体见申请材料目录"
+          }
+        ]
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "办理步骤",
+            "value": "办理时限（工作日） | 办理人员 | 审查标准"
+          },
+          {
+            "field": "审查",
+            "value": "当场办结 | 审查人员 | 登记机关应当对申请材料进行形式审查。对申请材料齐全、符合法定形式的予以确认并当场登记。不能当场登记的，应当在3个工作日内予以登记；情形复杂的，经登记机关负责人批准，可以再延长3个工作日。 申请材料不齐全或者不符合法定形式的，登记机关应当一次性告知申请人需要补正的材料。"
+          },
+          {
+            "field": "决定",
+            "value": "当场办结 | 部门负责人 | 登记机关应当对申请材料进行形式审查。对申请材料齐全、符合法定形式的予以确认并当场登记。不能当场登记的，应当在3个工作日内予以登记；情形复杂的，经登记机关负责人批准，可以再延长3个工作日。 申请材料不齐全或者不符合法定形式的，登记机关应当一次性告知申请人需要补正的材料。"
+          }
+        ]
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "办理步骤",
+            "value": "办理时限（工作日） | 办理人员 | 结果名称 | 送达方式"
+          },
+          {
+            "field": "颁证与送达",
+            "value": "0 | 发证人员 | 营业执照 | 直接送达"
+          }
+        ]
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "特别程序",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b033",
+      "level": 4,
+      "source_anchor": null,
+      "text": "审批收费 CHARGES",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "是否收费：否",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b035",
+      "level": 4,
+      "source_anchor": null,
+      "text": "审批证件 APPROVED DOCUMENTS",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "审批结果名称",
+            "value": "审批结果类型 | 审批结果的有效期限 | 审批结果样本 | 送达方式 | 送达期限（工作日）"
+          },
+          {
+            "field": "营业执照",
+            "value": "证照 | 无限期 | 点击下载 | 直接送达 | 0"
+          }
+        ]
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b037",
+      "level": 4,
+      "source_anchor": null,
+      "text": "数量限制 QUANTITATIVE RESTRICTION",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "有无行政许可数量限制：否",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b039",
+      "level": 4,
+      "source_anchor": null,
+      "text": "中介服务 QUANTITATIVE RESTRICTION",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "有无法定中介服务事项：否",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b041",
+      "level": 4,
+      "source_anchor": null,
+      "text": "告知承诺 COMMITMENT TO INFORM",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "是否实施告知承诺：否",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b043",
+      "level": 4,
+      "source_anchor": null,
+      "text": "设立依据 BASIS OF ESTABLISHMENT",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "rows": [
+          {
+            "field": "1",
+            "value": "依据名称 | 中华人民共和国外商投资法实施条例"
+          },
+          {
+            "field": "条款",
+            "value": ""
+          },
+          {
+            "field": "内容",
+            "value": "第三十七条 外商投资企业的登记注册，由国务院市场监督管理部门或者其授权的地方人民政府市场监督管理部门依法办理。国务院市场监督管理部门应当公布其授权的市场监督管理部门名单。"
+          },
+          {
+            "field": "2",
+            "value": "依据名称 | 市场主体登记管理条例实施细则"
+          },
+          {
+            "field": "条款",
+            "value": ""
+          },
+          {
+            "field": "内容",
+            "value": "第三条 国家市场监督管理总局主管全国市场主体统一登记管理工作，制定市场主体登记管理的制度措施，推进登记全程电子化，规范登记行为，指导地方登记机关依法有序开展登记管理工作。县级以上地方市场监督管理部门主管本辖区市场主体登记管理工作，加强对辖区内市场主体登记管理工作的统筹指导和监督管理，提升登记管理水平。县级市场监督管理部门的派出机构可以依法承担个体工商户等市场主体的登记管理职责。各级登记机关依法履行登记管理职责，执行全国统一的登记管理政策文件和规范要求，使用统一的登记材料、文书格式，以及省级统一的市场主体登记管理系统，优化登记办理流程，推行网上办理等便捷方式，健全数据安全管理制度，提供规范化、标准化登记管理服务。第四条 省级以上人民政府或者其授权的国有资产监督管理机构履行出资人职责的公司，以及该公司投资设立并持有50%以上股权或者股份的公司的登记管理由省级登记机关负责；股份有限公司的登记管理由地市级以上地方登记机关负责。除前款规定的情形外，省级市场监督管理部门依法对本辖区登记管辖作出统一规定；上级登记机关在特定情形下，可以依法将部分市场主体登记管理工作交由下级登记机关承担，或者承担下级登记机关的部分登记管理工作。外商投资企业登记管理由国家市场监督管理总局或者其授权的地方市场监督管理部门负责。"
+          },
+          {
+            "field": "3",
+            "value": "依据名称 | 市场主体登记管理条例"
+          },
+          {
+            "field": "条款",
+            "value": ""
+          },
+          {
+            "field": "内容",
+            "value": "第一条 为了规范市场主体登记管理行为，推进法治化市场建设，维护良好市场秩序和市场主体合法权益，优化营商环境，制定本条例。 第二条 本条例所称市场主体，是指在中华人民共和国境内以营利为目的从事经营活动的下列自然人、法人及非法人组织： （一）公司、非公司企业法人及其分支机构； （二）个人独资企业、合伙企业及其分支机构； （三）农民专业合作社（联合社）及其分支机构； （四）个体工商户； （五）外国公司分支机构； （六）法律、行政法规规定的其他市场主体。 第三条 市场主体应当依照本条例办理登记。未经登记，不得以市场主体名义从事经营活动。法律、行政法规规定无需办理登记的除外。 市场主体登记包括设立登记、变更登记和注销登记。"
+          },
+          {
+            "field": "4",
+            "value": "依据名称 | 中华人民共和国外商投资法"
+          },
+          {
+            "field": "条款",
+            "value": ""
+          },
+          {
+            "field": "内容",
+            "value": "第二条 ……本法所称外商投资企业，是指全部或者部分由外国投资者投资，依照中国法律在中国境内经登记注册设立的企业。"
+          },
+          {
+            "field": "5",
+            "value": "依据名称 | 中华人民共和国公司法"
+          },
+          {
+            "field": "条款",
+            "value": ""
+          },
+          {
+            "field": "内容",
+            "value": "《中华人民共和国公司法》第六条 设立公司，应当依法向公司登记机关申请设立登记。……第七条 ……公司营业执照记载的事项发生变更的，公司应当依法办理变更登记，由公司登记机关换发营业执照。第十四条 公司可以设立分公司。设立分公司，应当向公司登记机关申请登记，领取营业执照。……第一百七十九条 公司合并或者分立，登记事项发生变更的，应当依法向公司登记机关办理变更登记；公司解散的，应当依法办理公司注销登记；设立新公司的，应当依法办理公司设立登记。公司增加或者减少注册资本，应当依法向公司登记机关办理变更登记。……第一百八十八条 公司清算结束后，清算组应当制作清算报告，报股东会、股东大会或者人民法院确认，并报送公司登记机关，申请注销公司登记，公告公司终止"
+          }
+        ]
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b045",
+      "level": 4,
+      "source_anchor": null,
+      "text": "常见问题 FAQ",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "常见错误示例",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b047",
+      "level": null,
+      "source_anchor": null,
+      "text": "1. 常见错误：分公司设立时，所申请的经营范围中包含前置许可项目的，但未取得批准文件或许可证明。 正确做法：分公司设立时，所申请的经营范围中包含法律、行政法规和国务院决定规定必须在登记前报经批准的项目，需提交有关的批准文件或者许可证书复印件或许可证明，并提供原件供核对。 2. 常见错误：分公司设立时，申请人为分公司负责人。 正确做法：分公司设立时，申请人应为公司。 3. 常见错误：分公司设立提交的租赁合同承租方为分公司。 正确做法：分公司设立提交的租赁合同承租方为公司，加盖公司公章。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "0.5",
+          "1",
+          "1.5",
+          "2"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b048",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b049",
+      "level": null,
+      "source_anchor": null,
+      "text": "PC_QYYCT",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b050",
+      "level": 4,
+      "source_anchor": null,
+      "text": "请选择需要查看的办事指南",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b051",
+      "level": 4,
+      "source_anchor": null,
+      "text": "请选择需要查询的业务情形",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b052",
+      "level": 4,
+      "source_anchor": null,
+      "text": "您即将跳转至部委平台申报页面",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b053",
+      "level": null,
+      "source_anchor": null,
+      "text": "立即前往",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h4"
+      },
+      "block_id": "real_general_011_shanghai_branch_registration_b054",
+      "level": 4,
+      "source_anchor": null,
+      "text": "请选择材料情形",
+      "type": "heading"
+    }
+  ],
+  "doc_id": "real_general_011_shanghai_branch_registration",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 54,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:30:08.273207+00:00",
+    "source_format": "html",
+    "source_sha256": "cef99f71399937a310687daa4eb246dd4e8a89bbf9cc1e8e09f95eb82e7ef638",
+    "source_site": "zwdt.sh.gov.cn",
+    "source_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/item/a42d4820-5067-48d5-8089-3844dd7aac74",
+    "title": "分公司设立登记注册（省级权限）",
+    "标题": "分公司设立登记注册（省级权限）"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "cef99f71399937a310687daa4eb246dd4e8a89bbf9cc1e8e09f95eb82e7ef638"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_011_shanghai_branch_registration",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

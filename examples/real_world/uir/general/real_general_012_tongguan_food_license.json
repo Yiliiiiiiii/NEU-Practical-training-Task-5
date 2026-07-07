@@ -1,0 +1,497 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "一、适用范围",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": "本指南规定了食品经营企业食品经营许可证核发事项审查类型、审批依据、受理机构、决定机构、数量限制、申请条件、禁止性要求、申请材料目录、办理基本流程、办结时限、收费依据及标准等。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": "本指南适用于食品经营企业食品经营许可证核发服务事项。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": "二、事项审查类型",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b005",
+      "level": null,
+      "source_anchor": null,
+      "text": "前审后批",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "三、审批依据",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "审批依据：《中华人民共和国食品安全法》（ 2015年4月24日主席令第二十一号）第三十五条：国家对食品生产经营实行许可制度。从事食品生产、食品销售、餐饮服务，应当依法取得许可。但是，销售食用农产品，不需要取得许可。县级以上地方人民政府食品药品监督管理部门应当依照《中华人民共和国行政许可法》的规定，审核申请人提交的本法第三十三条第一款第一项至第四项规定要求的相关资料，必要时对申请人的生产经营场所进行现场核查；对符合规定条件的，准予许可；对不符合规定条件的，不予许可并书面说明理由。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "四、受理机构",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "铜陵市铜官区市场监管局辖区内各市场监管所",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "五、申请条件（禁止性要求）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.申请食品经营许可，应当先行取得营业执照等合法主体资格。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.具有与经营的食品品种、数量相适应的食品原料处理和食品加工、销售、贮存等场所，保持该场所环境整洁，并与有毒、有害场所以及其他污染源保持规定的距离。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.具有与经营的食品品种、数量相适应的经营设备或者设施。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.有专职或者兼职的食品安全管理人员和保证食品安全的规章制度。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "5.具有合理的设备布局和工艺流程，防止待加工食品与直接入口食品、原料与成品交叉污染，避免食品接触有毒物、不洁物。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "6.符合《安徽省餐饮业环境污染防治管理暂行规定》。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b017",
+      "level": null,
+      "source_anchor": null,
+      "text": "7.新建、改扩建学校食堂的图纸设计应经当地食品药品监管部门事前审查。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b018",
+      "level": null,
+      "source_anchor": null,
+      "text": "8.法律、法规规定的其他条件。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": "六、申请材料目录",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.《食品经营许可证》申请书（含委托人、负责人身份证信息）",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.与食品经营相适应的主要设备设施布局、操作流程等文件",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.具有保证食品安全的管理制度目录",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.利用自动售货设备从事食品销售的，申请人还应当提交自动售货设备的产品合格证明、具体放置地点，经营者名称、住所、联系方式、食品经营许可证的公示方法材料",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": "七、申请接收",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "办公地址：铜陵市铜官区市场监管局辖区内各市场监管所",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "网 址：安徽政务服务网",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "八、办理基本流程",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.受理：公示应当提交的材料，一次性告知补正材料，依法受理或不予受理（不予受理应当告知理由）。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.审查：对书面申请材料进行审查，组织审查组对申请人的资料和场所进行核查。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "3.决定：作出行政许可或者不予行政许可决定。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": "4.送达：准予许可的制发送达许可证，在法定时限内将许可决定及相应证书送达申请人。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b032",
+      "level": null,
+      "source_anchor": null,
+      "text": "九、办结时限",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b033",
+      "level": null,
+      "source_anchor": null,
+      "text": "20个工作日。因特殊原因需要延长期限的，经本行政机关负责人批准，可以延长10个工作日，并应当将延长期限的理由告知申请人。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b034",
+      "level": null,
+      "source_anchor": null,
+      "text": "十、收费依据及标准",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b035",
+      "level": null,
+      "source_anchor": null,
+      "text": "不收费",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b036",
+      "level": null,
+      "source_anchor": null,
+      "text": "十一、结果送达",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b037",
+      "level": null,
+      "source_anchor": null,
+      "text": "自取或邮寄",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b038",
+      "level": null,
+      "source_anchor": null,
+      "text": "十二、行政相对人权利和义务",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b039",
+      "level": null,
+      "source_anchor": null,
+      "text": "1.行政相对人的权利有：申请权；参与权；了解权（知情权）；批评、建议权；申诉、控告、检举权；陈述、申辩权；申请复议权；提起行政诉讼权；请求行政赔偿权；抵制违法行政行为权；",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b040",
+      "level": null,
+      "source_anchor": null,
+      "text": "2.行政相对人的义务有：服从行政管理的义务；协助公务的义务；维护公益的义务；接受行政监督的义务；提供真实信息的义务。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b041",
+      "level": null,
+      "source_anchor": null,
+      "text": "十三、咨询途径",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b042",
+      "level": null,
+      "source_anchor": null,
+      "text": "窗口咨询：铜陵铜官区市场监管局辖区内各市场监管所",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b043",
+      "level": null,
+      "source_anchor": null,
+      "text": "十四、监督投诉渠道",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b044",
+      "level": null,
+      "source_anchor": null,
+      "text": "监督投诉电话： 0562-2199210",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b045",
+      "level": null,
+      "source_anchor": null,
+      "text": "十五、办公地址和时间",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_general_012_tongguan_food_license_b046",
+      "level": null,
+      "source_anchor": null,
+      "text": "工作时间：法定工作日 8：00-12：00；14：30-17：30。",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "real_general_012_tongguan_food_license",
+  "metadata": {
+    "doc_type": "general_doc",
+    "domain": "general_doc",
+    "extracted_block_count": 46,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:36:39.832792+00:00",
+    "source_format": "html",
+    "source_sha256": "3c729504ab444e3754c1c3be4d31b1f26a6608d2275355b37a8da19e3cbfd0ee",
+    "source_site": "www.tltg.gov.cn",
+    "source_url": "https://www.tltg.gov.cn/openness/OpennessContent/show/1014501.html",
+    "title": "食品经营许可服务指南（2026年）-铜官区人民政府",
+    "标题": "食品经营许可服务指南（2026年）-铜官区人民政府"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "3c729504ab444e3754c1c3be4d31b1f26a6608d2275355b37a8da19e3cbfd0ee"
+    }
+  ],
+  "source": {
+    "source_name": "real_general_012_tongguan_food_license",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

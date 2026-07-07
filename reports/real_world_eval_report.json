@@ -1,44 +1,44 @@
 {
   "by_doc_type": {
-    "general_doc": 10,
-    "meeting_doc": 10,
-    "policy_doc": 15,
+    "general_doc": 15,
+    "meeting_doc": 15,
+    "policy_doc": 20,
     "procurement_doc": 10
   },
   "by_doc_type_metrics": {
     "general_doc": {
-      "dataset_size": 10,
-      "import_pass_count": 10,
-      "package_verify_pass_count": 10,
-      "task_execute_pass_count": 10,
-      "validation_pass_count": 10
-    },
-    "meeting_doc": {
-      "dataset_size": 10,
-      "import_pass_count": 10,
-      "package_verify_pass_count": 10,
-      "task_execute_pass_count": 10,
-      "validation_pass_count": 7
-    },
-    "policy_doc": {
       "dataset_size": 15,
       "import_pass_count": 15,
       "package_verify_pass_count": 15,
       "task_execute_pass_count": 15,
-      "validation_pass_count": 0
+      "validation_pass_count": 15
+    },
+    "meeting_doc": {
+      "dataset_size": 15,
+      "import_pass_count": 15,
+      "package_verify_pass_count": 15,
+      "task_execute_pass_count": 15,
+      "validation_pass_count": 14
+    },
+    "policy_doc": {
+      "dataset_size": 20,
+      "import_pass_count": 20,
+      "package_verify_pass_count": 20,
+      "task_execute_pass_count": 20,
+      "validation_pass_count": 10
     },
     "procurement_doc": {
       "dataset_size": 10,
       "import_pass_count": 10,
       "package_verify_pass_count": 10,
       "task_execute_pass_count": 10,
-      "validation_pass_count": 10
+      "validation_pass_count": 1
     }
   },
-  "dataset_size": 45,
-  "generated_at": "2026-07-05T11:29:21.320768+00:00",
+  "dataset_size": 60,
+  "generated_at": "2026-07-07T07:11:31.540709+00:00",
   "high_risk_mapping_count": 0,
-  "import_pass_count": 45,
+  "import_pass_count": 60,
   "improvement_recommendations": [
     "Review failed cases by stage and add a regression fixture before changing behavior.",
     "Preserve source evidence and human review for ambiguous field mappings.",
@@ -54,9 +54,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_001_notary_service_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_001_notary_service_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_6484fa202134",
+      "task_id": "task_112d47859527",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -69,9 +69,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_002_biomed_project_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_002_biomed_project_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_9195511ec7c2",
+      "task_id": "task_59459be5e877",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -84,9 +84,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_003_textile_application_flow.zip",
       "package_verify_passed": true,
       "path": "general/real_general_003_textile_application_flow.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_68f39491b4e6",
+      "task_id": "task_343dd33be91e",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -99,10 +99,10 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_004_tianhe_service_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_004_tianhe_service_guide.json",
-      "review_required_count": 4,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_9b356675e517",
-      "task_status": "review_required",
+      "task_id": "task_12d1e6d90023",
+      "task_status": "completed",
       "validation_passed": true
     },
     {
@@ -114,9 +114,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_005_eldercare_technology_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_005_eldercare_technology_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_dac8729f8583",
+      "task_id": "task_4aea1ff7cc4e",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -129,9 +129,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_006_soft_science_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_006_soft_science_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_2c8132b21851",
+      "task_id": "task_64191abf5660",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -144,9 +144,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_007_domestic_cooperation_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_007_domestic_cooperation_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_9240220ca77e",
+      "task_id": "task_ccaa6942ac03",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -159,9 +159,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_008_science_communication_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_008_science_communication_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_9ea3dd052f75",
+      "task_id": "task_7f708cd6bcb1",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -174,9 +174,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_009_food_technology_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_009_food_technology_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_e10b90dc225e",
+      "task_id": "task_cc6363053dec",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -189,10 +189,85 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_010_cell_gene_therapy_guide.zip",
       "package_verify_passed": true,
       "path": "general/real_general_010_cell_gene_therapy_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_d4d0be2ae16b",
+      "task_id": "task_af6459abe6da",
       "task_status": "review_required",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_011_shanghai_branch_registration.zip",
+      "package_verify_passed": true,
+      "path": "general/real_general_011_shanghai_branch_registration.json",
+      "review_required_count": 2,
+      "task_execute_passed": true,
+      "task_id": "task_159690d4af9e",
+      "task_status": "review_required",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_general_012_tongguan_food_license",
+      "doc_type": "general_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_012_tongguan_food_license.zip",
+      "package_verify_passed": true,
+      "path": "general/real_general_012_tongguan_food_license.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_1c334ec66846",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_013_zhongshan_import_export_guide.zip",
+      "package_verify_passed": true,
+      "path": "general/real_general_013_zhongshan_import_export_guide.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_1bda6b7bdfc7",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_general_014_ningguo_food_license",
+      "doc_type": "general_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_014_ningguo_food_license.zip",
+      "package_verify_passed": true,
+      "path": "general/real_general_014_ningguo_food_license.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_d5ac79870247",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_general_015_ganzhou_temporary_relief",
+      "doc_type": "general_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_general_015_ganzhou_temporary_relief.zip",
+      "package_verify_passed": true,
+      "path": "general/real_general_015_ganzhou_temporary_relief.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_c6ef5555821d",
+      "task_status": "completed",
       "validation_passed": true
     },
     {
@@ -204,10 +279,10 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_001_changning_executive_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_001_changning_executive_minutes.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_cac09d9d3d3a",
-      "task_status": "review_required",
+      "task_id": "task_92910fd86aa0",
+      "task_status": "completed",
       "validation_passed": true
     },
     {
@@ -221,7 +296,7 @@
       "path": "meeting/real_meeting_002_shaxian_executive_minutes.json",
       "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_cc59c72217bf",
+      "task_id": "task_1b75bb7656d4",
       "task_status": "completed",
       "validation_passed": true
     },
@@ -236,7 +311,7 @@
       "path": "meeting/real_meeting_003_miluo_executive_minutes.json",
       "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_e6396563f7b6",
+      "task_id": "task_2f30fc1c6e49",
       "task_status": "completed",
       "validation_passed": true
     },
@@ -249,11 +324,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_004_shandan_2025_11_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_004_shandan_2025_11_minutes.json",
-      "review_required_count": 2,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_1f86c00ed247",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_65bfb283000a",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -264,10 +339,10 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_005_miluo_2026_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_005_miluo_2026_minutes.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_344cd883f09c",
-      "task_status": "review_required",
+      "task_id": "task_13eb8c917ac4",
+      "task_status": "completed",
       "validation_passed": true
     },
     {
@@ -281,9 +356,9 @@
       "path": "meeting/real_meeting_006_shandan_minutes.json",
       "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_48a30de86c1e",
+      "task_id": "task_0f865841a843",
       "task_status": "review_required",
-      "validation_passed": false
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -296,7 +371,7 @@
       "path": "meeting/real_meeting_007_zhenping_49_minutes.json",
       "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_a47dd1ac5273",
+      "task_id": "task_4d7065086677",
       "task_status": "completed",
       "validation_passed": false
     },
@@ -309,10 +384,10 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_008_wlmqx_2026_01_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_008_wlmqx_2026_01_minutes.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_60fb633cb6b0",
-      "task_status": "review_required",
+      "task_id": "task_cfd45e27a866",
+      "task_status": "completed",
       "validation_passed": true
     },
     {
@@ -326,7 +401,7 @@
       "path": "meeting/real_meeting_009_kundulun_2026_01_minutes.json",
       "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_dc5be8f9f064",
+      "task_id": "task_118551d4939c",
       "task_status": "completed",
       "validation_passed": true
     },
@@ -339,9 +414,84 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_010_zhangjiagang_64_minutes.zip",
       "package_verify_passed": true,
       "path": "meeting/real_meeting_010_zhangjiagang_64_minutes.json",
+      "review_required_count": 1,
+      "task_execute_passed": true,
+      "task_id": "task_9989f6a125d4",
+      "task_status": "review_required",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_011_haibowan_2026_02_minutes.zip",
+      "package_verify_passed": true,
+      "path": "meeting/real_meeting_011_haibowan_2026_02_minutes.json",
       "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_dc7a2d999aec",
+      "task_id": "task_d7a78eb0bef4",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_012_wlmqx_2026_02_minutes.zip",
+      "package_verify_passed": true,
+      "path": "meeting/real_meeting_012_wlmqx_2026_02_minutes.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_78ce92142421",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_013_shawan_2026_03_minutes.zip",
+      "package_verify_passed": true,
+      "path": "meeting/real_meeting_013_shawan_2026_03_minutes.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_8cebaf3d6bea",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_014_shcn_2026_142_minutes.zip",
+      "package_verify_passed": true,
+      "path": "meeting/real_meeting_014_shcn_2026_142_minutes.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_d130b0bc13f5",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_meeting_015_changshu_2026_62_minutes.zip",
+      "package_verify_passed": true,
+      "path": "meeting/real_meeting_015_changshu_2026_62_minutes.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_d831fcd469dc",
       "task_status": "completed",
       "validation_passed": true
     },
@@ -354,11 +504,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_001_training_platform_rules.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_001_training_platform_rules.json",
-      "review_required_count": 3,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_058a0a779ce7",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_ac34388687f5",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -369,11 +519,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_002_equipment_renewal.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_002_equipment_renewal.json",
-      "review_required_count": 2,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_4731ff7b5770",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_9f8a5fc1aee7",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -384,11 +534,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_003_science_education_guide.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_003_science_education_guide.json",
-      "review_required_count": 3,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_bfbb54b468b9",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_ad8c8f107466",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -399,11 +549,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_004_student_loan_relief.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_004_student_loan_relief.json",
-      "review_required_count": 2,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_b3e767ddc6df",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_e122eb46980e",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -414,9 +564,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_005_ai_industry_guide.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_005_ai_industry_guide.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_74e506baf850",
+      "task_id": "task_5ad6d0505afa",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -429,10 +579,10 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_006_technology_incubator_rules.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_006_technology_incubator_rules.json",
-      "review_required_count": 0,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_c527c82e3468",
-      "task_status": "completed",
+      "task_id": "task_dd997a2788c8",
+      "task_status": "review_required",
       "validation_passed": false
     },
     {
@@ -444,9 +594,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_007_one_thing_list.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_007_one_thing_list.json",
-      "review_required_count": 2,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_4c1070ea11f1",
+      "task_id": "task_c3ae4118bc1c",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -459,11 +609,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_008_sme_leader_training.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_008_sme_leader_training.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_903f66e96d23",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_194b66a234e8",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -474,11 +624,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_009_network_safety_work.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_009_network_safety_work.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_d3dcbadc57ab",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_a23faf7f1e74",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -489,11 +639,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_010_auto_ota_management.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_010_auto_ota_management.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_cf0bd0183a68",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_7d05bee86296",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -506,7 +656,7 @@
       "path": "policy/real_policy_011_battery_recycling_rules.json",
       "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_b64845b980c3",
+      "task_id": "task_0a9ef6ea4a26",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -521,7 +671,7 @@
       "path": "policy/real_policy_012_sme_gradient_rules.json",
       "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_edbf31378df1",
+      "task_id": "task_c194f73c6008",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -534,9 +684,9 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_013_minor_platform_rules.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_013_minor_platform_rules.json",
-      "review_required_count": 2,
+      "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_265a18eb5708",
+      "task_id": "task_2dc4aca240d6",
       "task_status": "review_required",
       "validation_passed": false
     },
@@ -549,11 +699,11 @@
       "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_014_digital_aging_campaign.zip",
       "package_verify_passed": true,
       "path": "policy/real_policy_014_digital_aging_campaign.json",
-      "review_required_count": 1,
+      "review_required_count": 0,
       "task_execute_passed": true,
-      "task_id": "task_aedf715031f2",
-      "task_status": "review_required",
-      "validation_passed": false
+      "task_id": "task_62699e6642b5",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -566,9 +716,84 @@
       "path": "policy/real_policy_015_ai_ethics_rules.json",
       "review_required_count": 1,
       "task_execute_passed": true,
-      "task_id": "task_cebbc4356bec",
+      "task_id": "task_6456b1182c39",
       "task_status": "review_required",
       "validation_passed": false
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_016_caac_civil_aviation_law.zip",
+      "package_verify_passed": true,
+      "path": "policy/real_policy_016_caac_civil_aviation_law.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_7d870ee48c9b",
+      "task_status": "review_required",
+      "validation_passed": false
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_017_xinhua_investment_management.zip",
+      "package_verify_passed": true,
+      "path": "policy/real_policy_017_xinhua_investment_management.json",
+      "review_required_count": 2,
+      "task_execute_passed": true,
+      "task_id": "task_cd0a0fa3e8ea",
+      "task_status": "review_required",
+      "validation_passed": false
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_018_beijing_ecommerce_support.zip",
+      "package_verify_passed": true,
+      "path": "policy/real_policy_018_beijing_ecommerce_support.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_903b8e336840",
+      "task_status": "completed",
+      "validation_passed": true
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_019_mof_vat_transition.zip",
+      "package_verify_passed": true,
+      "path": "policy/real_policy_019_mof_vat_transition.json",
+      "review_required_count": 1,
+      "task_execute_passed": true,
+      "task_id": "task_c5a486dcb8fd",
+      "task_status": "review_required",
+      "validation_passed": false
+    },
+    {
+      "catalog_status": "available",
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "high_risk_mapping_count": 0,
+      "import_passed": true,
+      "package_path": "F:\\p2\\reports\\real_world_packages\\real_policy_020_customs_foreign_investment_catalog.zip",
+      "package_verify_passed": true,
+      "path": "policy/real_policy_020_customs_foreign_investment_catalog.json",
+      "review_required_count": 0,
+      "task_execute_passed": true,
+      "task_id": "task_d8cca464e81c",
+      "task_status": "completed",
+      "validation_passed": true
     },
     {
       "catalog_status": "available",
@@ -581,9 +806,9 @@
       "path": "procurement/real_procurement_001_broadcast_security_supervision.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_cbf29bf12187",
+      "task_id": "task_765f7be61aa5",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -596,7 +821,7 @@
       "path": "procurement/real_procurement_002_special_equipment_bid.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_118fb8b0e2fe",
+      "task_id": "task_2e0e1c22ac71",
       "task_status": "review_required",
       "validation_passed": true
     },
@@ -611,9 +836,9 @@
       "path": "procurement/real_procurement_003_radiation_monitoring_award.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_18801da15889",
+      "task_id": "task_22d067e0b9b3",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -626,9 +851,9 @@
       "path": "procurement/real_procurement_004_veterinary_platform_award.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_383ed4aa1bb6",
+      "task_id": "task_e89ec1d246f5",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -641,9 +866,9 @@
       "path": "procurement/real_procurement_005_rehabilitation_equipment_award.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_ae8d8b1e2ea1",
+      "task_id": "task_ecb987fbc114",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -656,9 +881,9 @@
       "path": "procurement/real_procurement_006_vaccine_tender.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_9178f9eec3df",
+      "task_id": "task_9277d951945f",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -671,9 +896,9 @@
       "path": "procurement/real_procurement_007_testing_equipment_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_eeeae1574b1e",
+      "task_id": "task_879761e7f8d2",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -686,9 +911,9 @@
       "path": "procurement/real_procurement_008_desktop_award.json",
       "review_required_count": 2,
       "task_execute_passed": true,
-      "task_id": "task_a49afbcd7a80",
+      "task_id": "task_534bd2a5b217",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -701,9 +926,9 @@
       "path": "procurement/real_procurement_009_pollutant_monitoring_award.json",
       "review_required_count": 3,
       "task_execute_passed": true,
-      "task_id": "task_4c141d843610",
+      "task_id": "task_7d2349a54e12",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     },
     {
       "catalog_status": "available",
@@ -716,32 +941,32 @@
       "path": "procurement/real_procurement_010_ultrasound_award.json",
       "review_required_count": 4,
       "task_execute_passed": true,
-      "task_id": "task_fe7b22d15400",
+      "task_id": "task_ed64996f4da5",
       "task_status": "review_required",
-      "validation_passed": true
+      "validation_passed": false
     }
   ],
-  "mapping_review_required_count": 91,
+  "mapping_review_required_count": 54,
   "notes": [],
-  "package_verify_pass_count": 45,
+  "package_verify_pass_count": 60,
   "skipped_cases": [],
-  "task_execute_pass_count": 45,
+  "task_execute_pass_count": 60,
   "typical_failure_cases": [
-    {
-      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
-      "doc_type": "meeting_doc",
-      "error": "",
-      "stage": "validation"
-    },
-    {
-      "doc_id": "real_meeting_006_shandan_minutes",
-      "doc_type": "meeting_doc",
-      "error": "",
-      "stage": "validation"
-    },
     {
       "doc_id": "real_meeting_007_zhenping_49_minutes",
       "doc_type": "meeting_doc",
+      "error": "",
+      "stage": "validation"
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "error": "",
+      "stage": "validation"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
       "error": "",
       "stage": "validation"
     }
@@ -752,23 +977,25 @@
     "real_general_003_textile_application_flow"
   ],
   "validation_failed_cases": [
-    "real_meeting_004_shandan_2025_11_minutes",
-    "real_meeting_006_shandan_minutes",
     "real_meeting_007_zhenping_49_minutes",
-    "real_policy_001_training_platform_rules",
-    "real_policy_002_equipment_renewal",
-    "real_policy_003_science_education_guide",
-    "real_policy_004_student_loan_relief",
     "real_policy_005_ai_industry_guide",
     "real_policy_006_technology_incubator_rules",
     "real_policy_007_one_thing_list",
-    "real_policy_008_sme_leader_training",
-    "real_policy_009_network_safety_work",
-    "real_policy_010_auto_ota_management",
     "real_policy_011_battery_recycling_rules",
     "real_policy_012_sme_gradient_rules",
     "real_policy_013_minor_platform_rules",
-    "real_policy_014_digital_aging_campaign",
-    "real_policy_015_ai_ethics_rules"
+    "real_policy_015_ai_ethics_rules",
+    "real_policy_016_caac_civil_aviation_law",
+    "real_policy_017_xinhua_investment_management",
+    "real_policy_019_mof_vat_transition",
+    "real_procurement_001_broadcast_security_supervision",
+    "real_procurement_003_radiation_monitoring_award",
+    "real_procurement_004_veterinary_platform_award",
+    "real_procurement_005_rehabilitation_equipment_award",
+    "real_procurement_006_vaccine_tender",
+    "real_procurement_007_testing_equipment_award",
+    "real_procurement_008_desktop_award",
+    "real_procurement_009_pollutant_monitoring_award",
+    "real_procurement_010_ultrasound_award"
   ]
 }

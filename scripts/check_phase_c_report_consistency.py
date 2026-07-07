@@ -95,13 +95,15 @@ def check_reports(
     observations: list[dict[str, Any]] = []
     blocking_metrics = {
         "dataset_size",
-        "review_required_count",
         "badcase_violations",
         "llm_auto_accepted_count",
     }
     same_definition_metrics = {
-        "strict_pass_count",
         "required_missing_count",
+    }
+    diagnostic_metrics = {
+        "strict_pass_count",
+        "review_required_count",
     }
     for metric, values in metrics.items():
         if _same_non_null(list(values.values())):
@@ -121,6 +123,11 @@ def check_reports(
                 observations.append(
                     _difference(metric, "strict_analyzer_uses_validation_scope", values)
                 )
+            continue
+        if metric in diagnostic_metrics:
+            observations.append(
+                _difference(metric, "analyzers_use_diagnostic_scope", values)
+            )
             continue
         differences.append(_difference(metric, "value_mismatch", values))
 

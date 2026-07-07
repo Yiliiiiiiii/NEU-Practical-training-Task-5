@@ -1050,6 +1050,63 @@ def test_general_conditions_and_service_object_emit_list_aware_hints() -> None:
     assert not any(item.value_sample == "张三" for item in service_objects)
 
 
+def test_general_application_guides_emit_labeled_role_and_process_hints() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_general_application_guide",
+        make_uir(
+            [
+                {
+                    "block_id": "role",
+                    "type": "paragraph",
+                    "text": "申报主体要求：本市企业，须与本市养老机构联合申报。",
+                },
+                {
+                    "block_id": "leader",
+                    "type": "paragraph",
+                    "text": "项目负责人要求：申请者年龄应未满35周岁。",
+                },
+                {
+                    "block_id": "online",
+                    "type": "paragraph",
+                    "text": "1.项目申报采用网上申报方式，无需送交纸质材料。",
+                },
+                {
+                    "block_id": "overview",
+                    "type": "paragraph",
+                    "text": "拟申请进出口权的企业，需做好以下五步。具体办理流程如下。",
+                },
+                {
+                    "block_id": "condition",
+                    "type": "paragraph",
+                    "text": "企业查看营业执照，经营范围中需含“货物进出口”等表述。",
+                },
+            ],
+            metadata={"domain": "general_doc"},
+        ),
+    )
+
+    service_objects = [
+        item for item in candidates if "service_object" in item.target_hints
+    ]
+    process_steps = [item for item in candidates if "process_steps" in item.target_hints]
+    conditions = [
+        item for item in candidates if "application_conditions" in item.target_hints
+    ]
+
+    assert {item.source_name for item in service_objects} >= {
+        "申报主体要求",
+        "项目负责人要求",
+        "拟申请企业",
+    }
+    assert {item.source_name for item in process_steps} >= {
+        "申报方式",
+        "五步走办理流程",
+    }
+    assert any(
+        item.source_name == "经营范围中需含货物进出口" for item in conditions
+    )
+
+
 def test_meeting_topic_evidence_uses_stable_contextual_source_labels() -> None:
     candidates = CandidateService().extract_candidates(
         "task_topic_labels",

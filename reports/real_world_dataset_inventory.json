@@ -1,31 +1,31 @@
 {
   "badcases_by_doc_type": {
-    "general_doc": 4,
-    "meeting_doc": 6,
-    "policy_doc": 10,
-    "procurement_doc": 10
+    "general_doc": 16,
+    "meeting_doc": 17,
+    "policy_doc": 21,
+    "procurement_doc": 12
   },
   "by_doc_type": {
-    "general_doc": 4,
-    "meeting_doc": 6,
-    "policy_doc": 10,
+    "general_doc": 15,
+    "meeting_doc": 15,
+    "policy_doc": 20,
     "procurement_doc": 10
   },
   "field_density": {
     "general_doc": {
-      "avg_expected_mappings": 5.0,
+      "avg_expected_mappings": 6.47,
       "avg_retrieval_queries": 2.0,
-      "documents": 4
+      "documents": 15
     },
     "meeting_doc": {
-      "avg_expected_mappings": 5.0,
+      "avg_expected_mappings": 6.67,
       "avg_retrieval_queries": 2.0,
-      "documents": 6
+      "documents": 15
     },
     "policy_doc": {
-      "avg_expected_mappings": 5.5,
+      "avg_expected_mappings": 6.25,
       "avg_retrieval_queries": 2.0,
-      "documents": 10
+      "documents": 20
     },
     "procurement_doc": {
       "avg_expected_mappings": 8.1,
@@ -35,15 +35,15 @@
   },
   "issues": [],
   "summary": {
-    "badcase_count": 30,
+    "badcase_count": 66,
     "duplicate_ids": 0,
     "insufficient_retrieval_queries": 0,
     "invalid_badcase_references": 0,
     "invalid_block_references": 0,
     "invalid_query_references": 0,
     "invalid_source_path_references": 0,
-    "manifest_count": 30,
-    "mapping_gold_count": 30,
+    "manifest_count": 60,
+    "mapping_gold_count": 60,
     "missing_mapping_gold": 0,
     "missing_retrieval_queries": 0,
     "missing_uirs": 0,
@@ -51,8 +51,8 @@
     "orphan_mapping_gold": 0,
     "orphan_retrieval_queries": 0,
     "orphan_uirs": 0,
-    "retrieval_query_count": 60,
-    "uir_count": 30,
-    "valid_retrieval_query_count": 60
+    "retrieval_query_count": 120,
+    "uir_count": 60,
+    "valid_retrieval_query_count": 120
   }
 }

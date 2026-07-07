@@ -4,12 +4,12 @@
 
 | Metric | Value |
 | --- | ---: |
-| manifest_count | 30 |
-| uir_count | 30 |
-| mapping_gold_count | 30 |
-| retrieval_query_count | 60 |
-| valid_retrieval_query_count | 60 |
-| badcase_count | 30 |
+| manifest_count | 60 |
+| uir_count | 60 |
+| mapping_gold_count | 60 |
+| retrieval_query_count | 120 |
+| valid_retrieval_query_count | 120 |
+| badcase_count | 66 |
 | missing_uirs | 0 |
 | orphan_uirs | 0 |
 | missing_mapping_gold | 0 |
@@ -28,18 +28,18 @@
 
 | Doc type | Documents | Badcases |
 | --- | ---: | ---: |
-| general_doc | 4 | 4 |
-| meeting_doc | 6 | 6 |
-| policy_doc | 10 | 10 |
-| procurement_doc | 10 | 10 |
+| general_doc | 15 | 16 |
+| meeting_doc | 15 | 17 |
+| policy_doc | 20 | 21 |
+| procurement_doc | 10 | 12 |
 
 ## Field Density
 
 | Doc type | Documents | Avg expected mappings | Avg retrieval queries |
 | --- | ---: | ---: | ---: |
-| general_doc | 4 | 5.0 | 2.0 |
-| meeting_doc | 6 | 5.0 | 2.0 |
-| policy_doc | 10 | 5.5 | 2.0 |
+| general_doc | 15 | 6.47 | 2.0 |
+| meeting_doc | 15 | 6.67 | 2.0 |
+| policy_doc | 20 | 6.25 | 2.0 |
 | procurement_doc | 10 | 8.1 | 2.0 |
 
 ## Issues

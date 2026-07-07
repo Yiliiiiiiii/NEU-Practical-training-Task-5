@@ -1,0 +1,461 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b001",
+      "level": null,
+      "source_anchor": null,
+      "text": "设为首页 加入收藏 繁体 服务承诺 网站无障碍 访问我的专属空间 移动版 智能问答",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政务公开",
+          "政务服务",
+          "政民互动"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b002",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "首页",
+          "政务公开",
+          "政务服务",
+          "政民互动"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b003",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "[主题分类] 商贸、海关、旅游/国内贸易（含供销）",
+          "[制发单位] 北京市商务局",
+          "[实施日期] 2026-02-06",
+          "[成文日期] 2026-02-06",
+          "[发文序号] ​京商函字〔2026〕125号",
+          "[发布日期] 2026-02-06",
+          "[有效性] 现行有效",
+          "[失效日期]"
+        ],
+        "ordered": true
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b004",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b005",
+      "level": 3,
+      "source_anchor": null,
+      "text": "北京市商务局关于印发《北京市2026年家电以旧换新、数码和智能产品购新补贴实施细则》的通知",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b006",
+      "level": null,
+      "source_anchor": null,
+      "text": "各相关单位：",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b007",
+      "level": null,
+      "source_anchor": null,
+      "text": "为贯彻落实中央经济工作会议关于“优化‘两新’政策实施”的决策部署，根据《国家发展改革委 财政部关于2026年实施大规模设备更新和消费品以旧换新政策的通知》（发改环资〔2025〕1745号）、《商务部等7部门关于提质增效实施2026年消费品以旧换新政策的通知》（商消费函〔2025〕697号）、《商务部等5部门办公厅（室）关于做好2026年家电以旧换新、数码和智能产品购新补贴工作的通知》（商办流通函〔2025〕469号）等文件要求，接续做好家电以旧换新、数码和智能产品购新补贴工作。特制定此实施细则，现予印发。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b008",
+      "level": null,
+      "source_anchor": null,
+      "text": "北京市商务局 2026年2月6日",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b009",
+      "level": null,
+      "source_anchor": null,
+      "text": "北京市 2026 年 家电以旧换新、数码 和智能产品购新补贴实施细则",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b010",
+      "level": null,
+      "source_anchor": null,
+      "text": "为贯彻落实中央经济工作会议关于“优化‘两新’政策实施”的决策部署，根据《国家发展改革委 财政部关于2026年实施大规模设备更新和消费品以旧换新政策的通知》（发改环资〔2025〕1745号）、《商务部等7部门关于提质增效实施2026年消费品以旧换新政策的通知》（商消费函〔2025〕697号）、《商务部等5部门办公厅（室）关于做好2026年家电以旧换新、数码和智能产品购新补贴工作的通知》（商办流通函〔2025〕469号）等文件要求，接续做好家电以旧换新、数码和智能产品购新补贴工作。特制定此实施细则。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b011",
+      "level": null,
+      "source_anchor": null,
+      "text": "第一章 补贴范围和标准 第一条 补贴范围 。 按照全国统一的品类和标准， 对在京个人消费者购买1级能效或水效标准的冰箱、洗衣机、电视、空调、热水器、电脑6类家电产品，以及单件销售价格不超过6000元的手机、平板、智能手表（手环）、智能眼镜4类数码和智能产品给予补贴。 第二条 补贴标准 。 补贴标准为上述产品扣除各环节优惠后最终销售价格的15%，每人每类可补贴1件，其中，家电产品每件补贴不超过1500元，数码和智能产品每件补贴不超过500元。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b012",
+      "level": null,
+      "source_anchor": null,
+      "text": "第二章 补贴方式及 资格设置 第 三 条 补贴方式 。 本着“ 总额控制、均衡使用、 先购先得、 用完即止 ”的原则， 按照“资格领取、资格绑定、购买商品、补贴立减”的方式实施。在本市领取补贴资格的个人消费者本人通过政策参与企业购买符合补贴适用产品时，补贴资格经商品购买渠道的资格认证系统绑定后，可通过实体门店的收款设备，或在线上平台选择可核实付款人身份的支付渠道完成付款，于订单支付环节享受立减补贴，线上线下消费享受同等补贴力度。 补贴资格申领人、付款人、收货人须保持一致。 享受补贴 的电脑、数码和智能产品 须 拆封、激活，核验与销售订单商品一致 ， 消费者应配合拍摄相应照片 ‌ 。 第四条 资格 设置 。 按照支持实体零售发展、引导线上渠道向农村地区倾斜等要求，以 消费支付场景区分线上、线下模式， 分设补贴资格。 线上资格和线下资格独立发放，不能混用。 已在 京外地区 领用过同类 商品 补贴的消费者，无法在本市领取补贴资格。消费者可按需领用单独品类补贴资格，补贴资格使用后自动失效 。 第 五 条 资格领取 。 个人消费者须通过“京通” 移动端完成 实 人 认证 后，进入消费品以旧换新页面领取。同一品类限领一个资格，线上、线下不可重复领取 。 补贴资格于 每日 10 时开放领取，领完即止。线上资格有效期为当日 24 时截止；线下资格有效期为当周周日 24 时截止，逾期未使用‌自动失效。失效后仍可重新领取资格，但逾期未使用某品类线上或线下资格 4 次，在政策实施期内，不可再领取相应品类线上或线下资格（领取规则如有调整，将另行通知）。 第 六 条 退货处理 。 消费者购买补贴适用商品，经与销售企业协商一致 按原购买渠道 退货后，于退货流程结束次日 内 恢复补贴资格。恢复后的补贴资格，尚在有效期内的可继续使用，有效期不变。 第 七 条 资格解绑 。 如 消费者 已于某参与企业 绑定补贴资格，在未使用的情况下，可自愿更换其他参与企业，需在原绑定 企业 解绑补贴资格后，重新选择使用渠道。 参与企业不得无故锁定补贴资格。 第 八 条 资格注销 。 如 消费者在本市领取补贴资格，在未使用的情况下，需 通过 “京通” 移动端 注销资格后，自愿更换其他省市 领取资格 。补贴资格已绑定的，需先解绑、再注销。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b013",
+      "level": null,
+      "source_anchor": null,
+      "text": "第三章 政策参与企业 第 九 条 参与企业确定 。 以旧换新 补贴政策参与企业范围，按程序通过征集、评议 、公示 等确定。公示范围内企业，根据企业意愿和能力，参与政策实施。 第 十 条 参与企业责任 。 政策参与 企业 要诚信守法、规范经营，切实保障消费者合法权益。 鼓励大型商超、品牌专卖店、专业店等下沉农村市场的经营主体，采取流动“大篷车”下乡、农村市集、现场展销等方式将服务网络延伸至农村偏远地区，保障好农村地区居民特别是偏远地区农村居民参与补贴政策，提高农村地区消费便利度。 1. 参与企业可自主实施促销举措，提供让利优惠。应按照政策补贴范围报送拟补贴商品“白名单”，经第三方 审核 机构核验通过后，严格按照备案商品进行销售，不得搭售或捆绑售卖套装商品。 2. 按要求接入 市 级信息平台，及时准确报送补贴政策实施情况及相关数据 ， 不得无故停止、延期报送、采用离线数据包报送或间歇性大量补传数据，以确保补贴数据归集的连续性、稳定性和规律性，实现交易数据实时上传、闭环可追溯，积极配合跨部门 监督 核查。 3. 如实申报商品 序列号（ SN 码 ） ，已激活SN码的设备不得再次销售，严禁“一机多卖”。认真履行价格承诺，如实 报备销售价格 ，不得虚报价格，不得“先涨后补”、变相涨价，不得使用虚假或易产生误解的价格手段诱导交易，不得通过虚假折价、减价等方式销售补贴产品。商品销售价格波动应符合市场规律，如遇特殊情况 上 调售价，应提前5个工作日 报备并提供佐证材料 。 4. 自主加强风险防范，有 效 防止骗补、套补行为，及时准确报送销售订单、商品SN码等数据。加强商品销售监测，做好异常收货地址管控，及时核查处理补贴产品收货地址大量重复或 包 含异常字符等 情况 ，严防“黄牛”囤货与套补骗补行为。 5. 规范 开具发票 ，发票抬头为消费者个人实名，单张发票对应单件补贴商品，并列明补贴产品 初始 销售价格、享受补贴资金数额、实际支付金额、商品SN码等必要信息，发票金额需包含“国补”金额全额开票。 6. 利用信息技术、核验身份证件信息等手段严格履行消费者身份真实性核验，确保补贴资格领取、使用为同一人。不得非法使用、泄露或篡改消费者收货地址、联系方式、App账号或其他个人信息。不得虚构订单、以次充好、以旧充新、低价高开、拆分发票等，不得冒用政府补贴名义进行虚假宣传。 7. 鼓励家电销售企业联合生产、回收企业开展以旧换新促销活动，对消费者购新并交旧给予适当优惠。 8. 开展分众化、多维度宣传，提高以旧换新政策公众知晓率。及时妥善处理消费者投诉。 第十一条 参与企业 监管 。 政策实施期间，市商务局综合评估企业情况，及时补充、动态调整参与企业范围。对符合征集条件的企业，经履行评议程序后，纳入政策参与范围。发生较大及以上安全生产事故的，立即终止并取消该企业及其关联企业、通过其申报的相关企业参与资格，进行资金清算 。 对存在以下情形的，将视情采取 风险提示、 约谈、暂停政策参与资格责令限期整改、追缴已发放补贴资金、取消政策参与资格等方式 严肃处理 ， 涉嫌违法行为的将移交司法机关追究法律责任 ： 1. 违反政策规定，不完全履行或无正当理由拒绝履行价格承诺，存在虚假折价、减价、价格比较等行为的 。 2. 虚假销售、篡改数据、伪造证明材料等套取补贴资金的 。 3. 未尽职履行风险防控责任，未按要求及时准确报送补贴政策实施情况及相关数据的 。 4. 对存在补贴资金管理安全风险、突破补贴政策品类及标准规定、违反补贴数据上传要求或存在其他违规行为的 。 第十 二 条 参与企业退出 。 参与企业自愿退出政策实施，应向市商务局提出书面申请，市商务局终止其参与资格，清算资金。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b014",
+      "level": null,
+      "source_anchor": null,
+      "text": "第四章 资金结算 第十 三 条 资金额度管理 。 为保障以旧换新政策有序实施，以旧换新补贴资金按照年度专项资金总量控制、逐月均衡使用的原则执行。 第十 四 条 补贴资金兑现 。 参与实施 以旧换新 补贴 政策 企业 ，向符合条件的消费者 按补贴标准实施 “立减补贴”。 第十 五 条 补贴资金核销 。 参 与企业将符合政策要求的补贴订单信息，通过系统传输方式，按照时间要求报送至市商务局委托的第三方审核机构。市商务局在政策实施期间预先开展滚动核销，依据预核验结果向参与企业预拨付政府应承担的财政资金，政策结束后，根据实际情况进行补贴资金清算。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b015",
+      "level": null,
+      "source_anchor": null,
+      "text": "第 五 章 责任分工 第十 六 条 市商务局牵头制定 北京市 以旧换新补贴实施细则并组织实施； 负责与国家层面做好沟通对接；负责委托 审核 服务机构对参与企业 兑现的 补贴资金 订单 进行核 验 ；负责监督 管理 补贴政策实施 ，强化工作情况和资金使用动态分析研判； 负责政策咨询、政策宣传和消费者问题解答。 第十 七 条 市发展改革委、市财政局负责按照国家政策及市政府有关工作要求，统筹工作推进， 负责政策资金保障，安排必要的工作经费，确保工作顺利开展。 第十 八 条 市公安局负责补贴发放期间防范违法恶意刷单或套现等行为，打击违法犯罪人员，确保财政资金安全。 第十 九 条 市市场监管局负责加强产品质量监督抽查，严厉打击假冒伪劣等行为；依法查处市场监管领域价格欺诈等违法行为。 第 二十 条 市 政务和数据 局负责在“京通” 移动端 上建设申领补贴资格界面，便利市民获得补贴资格。 第 二十 一 条 市邮政管理局负责督促邮政企业、快递企业加强邮政、快递从业人员工作提醒和教育管理，配合做好异常收货地址管控，及时做好收货信息核实采集，防范虚假签收等行为。 第 二十 二 条 市市民热线服务中心 负责依照北京市支持以旧换新补贴答复口径做好相关解答工作。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b016",
+      "level": null,
+      "source_anchor": null,
+      "text": "第 六 章 附则 第二十 三 条 本实施细则于2月9日生效，实施至补贴资金使用完毕截止。2026年1月1日起接续期补贴措施（包括但不限于领取资格有效期）与本实施细则不一致的，按本细则执行。如消费者在政策接续期内申领的补贴因未使用而导致失效，在本细则实施后，消费者可再次申领相同品类的补贴资格，且不计入本细则第五条规定的逾期次数内。本实施细则由市商务局负责解释，并结合具体情况适时调整。",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b017",
+      "level": 3,
+      "source_anchor": null,
+      "text": "相关解读：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "html_tag": "h3"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b018",
+      "level": 3,
+      "source_anchor": null,
+      "text": "相关政策：",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "items": [
+          "商务部网站",
+          "国家发改委",
+          "财政部",
+          "工信部",
+          "国家统计局",
+          "国家税务总局",
+          "国家海关总署",
+          "天津市商务局",
+          "河北省商务厅",
+          "重庆市商业委员会",
+          "上海市商务委"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b019",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "市政府办公厅",
+          "市发展改革委",
+          "市教委",
+          "市科委",
+          "市经济和信息化局",
+          "市民族宗教委",
+          "市公安局",
+          "市监察局",
+          "市民政局",
+          "市司法局",
+          "市财政局",
+          "市人力资源社会保障局",
+          "市规划自然资源委",
+          "市生态环境局",
+          "市住房城乡建设委",
+          "市城市管理委",
+          "市交通委",
+          "市水务局",
+          "市农业农村局",
+          "市商务局",
+          "市文化和旅游局",
+          "市卫生健康委",
+          "市退役军人事务局",
+          "市应急局",
+          "市市场监管局",
+          "市审计局",
+          "市政府外办",
+          "市国资委",
+          "市广电局",
+          "市文物局",
+          "市体育局",
+          "市统计局",
+          "市园林绿化局",
+          "市金融监管局",
+          "市政务服务和数据管理局",
+          "市机关事务局",
+          "市国信办",
+          "市信访办",
+          "市知识产权局",
+          "市医保局",
+          "市政府参事室"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b020",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "东城区",
+          "西城区",
+          "丰台区",
+          "朝阳区",
+          "海淀区",
+          "昌平区",
+          "石景山区",
+          "顺义区",
+          "房山区",
+          "门头沟区",
+          "通州区",
+          "平谷区",
+          "大兴区",
+          "怀柔区",
+          "延庆区",
+          "密云区"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b021",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "关于我们",
+          "法律声明",
+          "站点地图",
+          "建议征集"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b022",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "联系我们",
+          "政务服务热线：12345"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b023",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "items": [
+          "微信公众号",
+          "政务微博"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b024",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b025",
+      "level": null,
+      "source_anchor": null,
+      "text": "主办：北京市商务局",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b026",
+      "level": null,
+      "source_anchor": null,
+      "text": "承办：北京市商务局综合事务中心",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b027",
+      "level": null,
+      "source_anchor": null,
+      "text": "政府网站标识码：1100000019",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b028",
+      "level": null,
+      "source_anchor": null,
+      "text": "京公网安备 11011202002118号",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b029",
+      "level": null,
+      "source_anchor": null,
+      "text": "京ICP备20001671号-5",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "html_tag": "p"
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b030",
+      "level": null,
+      "source_anchor": null,
+      "text": "您访问的链接即将离开“北京市商务局”门户网站 是否继续？",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "items": [
+          "微信公众号",
+          "政务微博"
+        ],
+        "ordered": false
+      },
+      "block_id": "real_policy_020_customs_foreign_investment_catalog_b031",
+      "level": null,
+      "source_anchor": null,
+      "text": null,
+      "type": "list"
+    }
+  ],
+  "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+  "metadata": {
+    "doc_type": "policy_doc",
+    "domain": "policy_doc",
+    "extracted_block_count": 31,
+    "extraction_method": "beautifulsoup_lxml",
+    "extraction_truncated": false,
+    "extraction_version": "0.1.0",
+    "language": "zh-CN",
+    "retrieved_at": "2026-07-07T06:31:08.250168+00:00",
+    "source_format": "html",
+    "source_sha256": "7c53bba1900ebc028e32e043a59e38b927d0a3b6b48e24f150495b9e9442f616",
+    "source_site": "sw.beijing.gov.cn",
+    "source_url": "https://sw.beijing.gov.cn/zwxx/2024zcwj/202602/t20260206_4496652.html",
+    "title": "北京市商务局关于印发《北京市2026年家电以旧换新、数码和智能产品购新补贴实施细则》的通知",
+    "标题": "北京市商务局关于印发《北京市2026年家电以旧换新、数码和智能产品购新补贴实施细则》的通知"
+  },
+  "normalization_records": [
+    {
+      "method": "beautifulsoup_lxml",
+      "normalized": true,
+      "source_sha256": "7c53bba1900ebc028e32e043a59e38b927d0a3b6b48e24f150495b9e9442f616"
+    }
+  ],
+  "source": {
+    "source_name": "real_policy_020_customs_foreign_investment_catalog",
+    "source_type": "real_world_public_document",
+    "upstream_agents": [
+      "real_world_uir_builder"
+    ]
+  },
+  "uir_version": "1.0"
+}

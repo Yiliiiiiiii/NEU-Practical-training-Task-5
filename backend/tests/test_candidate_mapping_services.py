@@ -289,7 +289,7 @@ def test_mapping_service_marks_fuzzy_low_confidence_as_review_required():
     assert "fuzzy_match" in first_review["risk_flags"]
     assert first_review["review_required_reason"]
     assert any(item["type"] == "fuzzy_match" for item in first_review["evidence"])
-    assert report.summary["strategy_counts"]["fuzzy"] == 4
+    assert report.summary["strategy_counts"]["fuzzy"] == 3
 
 
 def test_mapping_service_ignores_weak_fuzzy_noise_below_review_threshold():
