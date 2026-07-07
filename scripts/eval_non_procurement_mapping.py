@@ -4,19 +4,30 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from eval_non_procurement_doc import (
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from eval_non_procurement_doc import (  # noqa: E402
     CATALOGS,
     _aggregate,
     _document,
     non_procurement_rows,
 )
-from eval_real_world_mapping import evaluate_rows
-from eval_support import EvaluationHttpClient, load_jsonl, write_json, write_markdown
+from eval_real_world_mapping import evaluate_rows  # noqa: E402
+from eval_support import (  # noqa: E402
+    EvaluationHttpClient,
+    load_jsonl,
+    write_json,
+    write_markdown,
+)
+from phase_c_report_metadata import attach_run_metadata  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_GOLD = ROOT / "examples" / "real_world" / "gold" / "mapping_gold.jsonl"
@@ -268,6 +279,7 @@ def main() -> None:
     )
     items = evaluate_rows(rows, client=client, uir_dir=args.uir_dir)
     report = build_evaluation_report(items, load_baseline(args.baseline))
+    attach_run_metadata(report, gold_path=args.gold, dataset_size=len(rows))
     write_json(_resolve_output(args.out, args.out_json, DEFAULT_JSON), report)
     write_markdown(
         _resolve_output(args.markdown, args.out_md, DEFAULT_MD),

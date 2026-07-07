@@ -5,10 +5,17 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 from zipfile import ZipFile
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from phase_c_report_metadata import attach_run_metadata  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -623,6 +630,12 @@ def run(
         packages_root=packages_root,
         gold_rows=load_jsonl(gold_path),
         badcase_rows=load_jsonl(badcases_path),
+    )
+    attach_run_metadata(
+        report,
+        packages_root=packages_root,
+        gold_path=gold_path,
+        badcases_path=badcases_path,
     )
     if out_path is not None:
         path = Path(out_path)

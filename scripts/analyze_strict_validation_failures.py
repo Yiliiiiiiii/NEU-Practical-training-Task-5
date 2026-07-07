@@ -2,10 +2,17 @@
 
 import argparse
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 from zipfile import ZipFile
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from phase_c_report_metadata import attach_run_metadata  # noqa: E402
 
 
 REPORT_NAMES = (
@@ -305,6 +312,7 @@ def run(
     markdown_path: str | Path,
 ) -> dict[str, Any]:
     report = analyze(packages_root=packages_root, gold_path=gold_path)
+    attach_run_metadata(report, packages_root=packages_root, gold_path=gold_path)
     write_json(Path(out_path), report)
     markdown = Path(markdown_path)
     markdown.parent.mkdir(parents=True, exist_ok=True)
