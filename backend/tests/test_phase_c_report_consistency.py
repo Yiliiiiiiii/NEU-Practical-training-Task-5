@@ -131,8 +131,68 @@ def test_phase_c_consistency_reports_actionable_differences(
         for item in report["differences"]
     } >= {
         ("dataset_size", "value_mismatch"),
-        ("required_missing_count", "value_mismatch"),
         ("badcase_violations", "semantic_safety_gate_failed"),
+    }
+
+
+def test_phase_c_consistency_records_strict_analyzer_scope_observation(
+    tmp_path: Path,
+) -> None:
+    module = load_module()
+    mapping = tmp_path / "mapping.json"
+    semantic = tmp_path / "semantic.json"
+    strict = tmp_path / "strict.json"
+    write_json(
+        mapping,
+        {
+            "summary": {
+                "dataset_size": 35,
+                "strict_pass_count": 30,
+                "required_missing_count": 2,
+                "review_required_count": 6,
+                "badcase_violation_count": 0,
+            }
+        },
+    )
+    write_json(
+        semantic,
+        {
+            "summary": {
+                "dataset_size": 35,
+                "strict_pass_count": 30,
+                "required_missing_count": 2,
+                "review_required_count": 6,
+                "badcase_violations": 0,
+                "llm_auto_accepted_count": 0,
+            }
+        },
+    )
+    write_json(
+        strict,
+        {
+            "summary": {
+                "package_count": 35,
+                "validation_pass_count": 32,
+                "required_missing_count": 4,
+                "review_required_count": 6,
+            }
+        },
+    )
+
+    report = module.check_reports(
+        mapping_path=mapping,
+        semantic_path=semantic,
+        strict_path=strict,
+    )
+
+    assert report["passed"] is True
+    assert report["differences"] == []
+    assert {
+        (item["metric"], item["reason"])
+        for item in report["observations"]
+    } == {
+        ("strict_pass_count", "strict_analyzer_uses_validation_scope"),
+        ("required_missing_count", "strict_analyzer_uses_validation_scope"),
     }
 
 

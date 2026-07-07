@@ -92,9 +92,37 @@ def check_reports(
     }
 
     differences: list[dict[str, Any]] = []
+    observations: list[dict[str, Any]] = []
+    blocking_metrics = {
+        "dataset_size",
+        "review_required_count",
+        "badcase_violations",
+        "llm_auto_accepted_count",
+    }
+    same_definition_metrics = {
+        "strict_pass_count",
+        "required_missing_count",
+    }
     for metric, values in metrics.items():
-        if not _same_non_null(list(values.values())):
+        if _same_non_null(list(values.values())):
+            continue
+        if metric in blocking_metrics:
             differences.append(_difference(metric, "value_mismatch", values))
+            continue
+        if metric in same_definition_metrics:
+            mapping_semantic = {
+                key: values[key] for key in ("mapping", "semantic")
+            }
+            if not _same_non_null(list(mapping_semantic.values())):
+                differences.append(
+                    _difference(metric, "mapping_semantic_value_mismatch", values)
+                )
+            else:
+                observations.append(
+                    _difference(metric, "strict_analyzer_uses_validation_scope", values)
+                )
+            continue
+        differences.append(_difference(metric, "value_mismatch", values))
 
     for metric in ("badcase_violations", "llm_auto_accepted_count"):
         values = metrics[metric]
@@ -107,6 +135,7 @@ def check_reports(
         "generated_at": datetime.now(UTC).isoformat(),
         "passed": not differences,
         "differences": differences,
+        "observations": observations,
         "metrics": metrics,
         "inputs": {
             "mapping_path": str(mapping_path),
@@ -136,6 +165,15 @@ def render_markdown(report: dict[str, Any]) -> str:
     lines.extend(["", "## Differences", ""])
     if report["differences"]:
         for item in report["differences"]:
+            lines.append(
+                f"- {item['metric']}: {item['reason']} "
+                f"({json.dumps(item['values'], ensure_ascii=False, sort_keys=True)})"
+            )
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Observations", ""])
+    if report.get("observations"):
+        for item in report["observations"]:
             lines.append(
                 f"- {item['metric']}: {item['reason']} "
                 f"({json.dumps(item['values'], ensure_ascii=False, sort_keys=True)})"
