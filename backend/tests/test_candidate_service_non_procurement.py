@@ -155,6 +155,45 @@ def test_policy_government_page_banner_emits_publication_date() -> None:
     assert publish_date.source_path == "$.blocks.page_banner.text#publish_date"
 
 
+def test_policy_metadata_publish_date_uses_only_safe_publication_labels() -> None:
+    uir = make_uir(
+        [],
+        metadata={
+            "domain": "policy_doc",
+            "发布日期": "2025-06-01",
+            "成文日期": "2025-05-20",
+        },
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_publish_metadata", uir)
+
+    publish_date = candidate_by_name(candidates, "发布日期")
+    assert publish_date.target_hints == ["publish_date"]
+    assert publish_date.evidence_type == "metadata_publish_date"
+    signed_date = candidate_by_name(candidates, "成文日期")
+    assert "publish_date" not in signed_date.target_hints
+    assert "forbidden_publish_date" in signed_date.quality_flags
+
+
+def test_policy_metadata_effective_date_uses_only_safe_effective_labels() -> None:
+    uir = make_uir(
+        [],
+        metadata={
+            "domain": "policy_doc",
+            "生效日期": "2025-07-01",
+            "发布日期": "2025-06-01",
+        },
+    )
+
+    candidates = CandidateService().extract_candidates("task_policy_effective_metadata", uir)
+
+    effective_date = candidate_by_name(candidates, "生效日期")
+    assert effective_date.target_hints == ["effective_date"]
+    assert effective_date.evidence_type == "metadata_effective_date"
+    publish_date = candidate_by_name(candidates, "发布日期")
+    assert "effective_date" not in publish_date.target_hints
+
+
 def test_policy_signature_date_is_not_treated_as_publication_date() -> None:
     uir = make_uir(
         [
@@ -1104,6 +1143,57 @@ def test_meeting_date_evidence_preserves_semantic_and_raw_labels() -> None:
     partial_date = next(item for item in partial if "meeting_date" in item.target_hints)
     assert partial_date.source_name == "5月20日"
     assert "medium_risk_partial_date" in partial_date.quality_flags
+
+
+def test_meeting_partial_date_from_source_url_stays_review_required() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_partial_year",
+        make_uir(
+            [
+                {
+                    "block_id": "opening",
+                    "type": "paragraph",
+                    "text": (
+                        "5月20日，县委副书记、代县长李靖主持召开"
+                        "县十六届政府第49次常务（扩大）会议。"
+                    ),
+                }
+            ],
+            metadata={
+                "domain": "meeting_doc",
+                "source_url": "https://www.zhenping.gov.cn/2026/06-15/1412478.html",
+            },
+        ),
+    )
+
+    meeting_date = next(item for item in candidates if item.display_name == "meeting_date")
+
+    assert meeting_date.value_sample == "5月20日"
+    assert meeting_date.evidence_type == "meeting_opening_date"
+    assert "medium_risk_partial_date" in meeting_date.quality_flags
+    assert "year_inferred_from_metadata" not in meeting_date.quality_flags
+
+
+def test_meeting_standalone_full_date_beats_partial_opening_date() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_full_date",
+        make_uir(
+            [
+                {"block_id": "date", "type": "paragraph", "text": "（二〇二五年十一月三日）"},
+                {
+                    "block_id": "opening",
+                    "type": "paragraph",
+                    "text": "11 月3 日，县委副书记、县长黄国杰主持召开十九届县政府第97次常务会议。",
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    meeting_date = next(item for item in candidates if item.display_name == "meeting_date")
+
+    assert meeting_date.value_sample == "二〇二五年十一月三日"
+    assert meeting_date.source_blocks == ["date"]
 
 
 def test_policy_signature_emits_source_backed_issuer_and_signed_date_labels() -> None:

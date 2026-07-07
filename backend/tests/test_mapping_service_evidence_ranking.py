@@ -159,6 +159,33 @@ def test_high_evidence_application_conditions_candidate_is_accepted() -> None:
     assert report.mappings[0]["ranking_trace"]["final_score"] >= 0.82
 
 
+def test_alias_mapping_with_quality_flags_requires_review() -> None:
+    risky = candidate(
+        candidate_id="risky_category",
+        source_name="category",
+        source_path="$.blocks.amount.text#category",
+        value="multiple grant amounts",
+        target_hint="category",
+        evidence_type="generic_category_review",
+        confidence=0.9,
+        quality_flags=["generic_category_review_required"],
+        source_blocks=["amount"],
+    )
+
+    report = MappingService().map_fields(
+        "task-ranking",
+        make_uir(),
+        make_schema("category"),
+        make_template("category", ["category"]),
+        [risky],
+    )
+
+    assert report.mappings == []
+    assert report.review_required_items[0]["candidate_id"] == "risky_category"
+    assert report.review_required_items[0]["status"] == "review_required"
+    assert report.review_required_items[0]["need_review"] is True
+
+
 def test_medium_page_publisher_issuer_stays_review_required() -> None:
     publisher = candidate(
         candidate_id="publisher",

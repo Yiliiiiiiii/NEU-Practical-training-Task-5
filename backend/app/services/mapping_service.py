@@ -18,11 +18,15 @@ class MappingService:
     AUTO_ACCEPT_SCORE = 0.82
     MIN_EVIDENCE_REVIEW_SCORE = 0.55
     NO_FUZZY_WITHOUT_HINT_TARGETS = {
+        "action_items",
         "agenda_items",
         "created_date",
         "deadline",
         "deadlines",
+        "decisions",
         "document_subtype",
+        "issuer",
+        "organizer",
     }
     FORBIDDEN_PAIRS = {
         ("成文日期", "publish_date"): "forbidden_issue_date_to_publish_date",
@@ -250,13 +254,17 @@ class MappingService:
             field,
             label_matched=True,
         )
+        need_review = bool(selected.quality_flags) or (
+            self._builtin_forbidden_reason(selected.source_name, field.field_id)
+            is not None
+        )
         return self._mapping(
             task_id,
             selected,
             field,
             "exact",
             1.0,
-            False,
+            need_review,
             ranking_trace=trace,
             rejected_candidates=rejected,
         )
@@ -302,13 +310,17 @@ class MappingService:
             field,
             label_matched=True,
         )
+        need_review = bool(selected.quality_flags) or (
+            self._builtin_forbidden_reason(selected.source_name, field.field_id)
+            is not None
+        )
         return self._mapping(
             task_id,
             selected,
             field,
             "alias",
             0.96,
-            False,
+            need_review,
             evidence=[f"alias matched target {field.field_id}"],
             ranking_trace=trace,
             rejected_candidates=rejected,

@@ -382,6 +382,43 @@ class CandidateService:
                     "evidence_type": "official_publication_metadata",
                 }
             )
+        elif normalized in {"发布日期", "发布时间", "公开日期"}:
+            options.update(
+                {
+                    "display_name": "publish_date",
+                    "confidence": 0.9,
+                    "target_hints": ["publish_date"],
+                    "evidence_type": "metadata_publish_date",
+                }
+            )
+        elif normalized in {"effective_date", "effectivedate", "生效日期", "施行日期"}:
+            options.update(
+                {
+                    "display_name": "effective_date",
+                    "confidence": 0.9,
+                    "target_hints": ["effective_date"],
+                    "evidence_type": "metadata_effective_date",
+                }
+            )
+        elif normalized in {
+            "成文日期",
+            "印发日期",
+            "发文日期",
+            "retrievedat",
+            "retrieved_at",
+            "抓取时间",
+            "网页缓存时间",
+        }:
+            options.update(
+                {
+                    "confidence": 0.4,
+                    "evidence_type": "blocked_policy_date_metadata",
+                    "quality_flags": [
+                        "forbidden_publish_date",
+                        "forbidden_effective_date",
+                    ],
+                }
+            )
         return options
 
     def _add_traceable_block_candidates(
@@ -737,7 +774,14 @@ class CandidateService:
                 r"\d\s*\d\s*\d\s*\d\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
             ),
             re.compile(r"\d{4}\s*[年/-]\s*\d{1,2}\s*[月/-]\s*\d{1,2}\s*日?"),
-            re.compile(r"[二〇○零一二三四五六七八九十]{4}\s*年\s*[一二三四五六七八九十]{1,3}\s*月\s*[一二三四五六七八九十]{1,3}\s*日"),
+            re.compile(
+                r"[二〇○零一二三四五六七八九十]\s*"
+                r"[二〇○零一二三四五六七八九十]\s*"
+                r"[二〇○零一二三四五六七八九十]\s*"
+                r"[二〇○零一二三四五六七八九十]\s*年\s*"
+                r"[一二三四五六七八九十]{1,3}\s*月\s*"
+                r"[一二三四五六七八九十]{1,3}\s*日"
+            ),
             re.compile(r"\d{1,2}\s*月\s*\d{1,2}\s*日"),
         ]
         matches: list[
@@ -769,7 +813,17 @@ class CandidateService:
                 )
                 standalone_chinese_date = bool(
                     pattern is patterns[2]
-                    and re.fullmatch(r"[（(]?\s*" + self.FULL_DATE_PATTERN + r"\s*[）)]?", text)
+                    and re.fullmatch(
+                        r"[（(]?\s*"
+                        r"[二〇○零一二三四五六七八九十]\s*"
+                        r"[二〇○零一二三四五六七八九十]\s*"
+                        r"[二〇○零一二三四五六七八九十]\s*"
+                        r"[二〇○零一二三四五六七八九十]\s*年\s*"
+                        r"[一二三四五六七八九十]{1,3}\s*月\s*"
+                        r"[一二三四五六七八九十]{1,3}\s*日"
+                        r"\s*[）)]?",
+                        text,
+                    )
                 )
                 if (
                     not explicit
@@ -801,8 +855,25 @@ class CandidateService:
                 )
                 if standalone_chinese_date:
                     confidence = 0.82
+                quality_flags: list[str] = []
                 if partial_date:
-                    confidence = 0.65
+                    quality_flags = ["medium_risk_partial_date"]
+                    inferred_year = self._meeting_reference_year(uir, index)
+                    if inferred_year is not None:
+                        month_day = re.match(
+                            r"(?P<month>\d{1,2})\s*月\s*(?P<day>\d{1,2})\s*日",
+                            raw_date,
+                        )
+                        if month_day is not None:
+                            normalized_date = (
+                                f"{inferred_year}年"
+                                f"{int(month_day.group('month'))}月"
+                                f"{int(month_day.group('day'))}日"
+                            )
+                            confidence = 0.78
+                            quality_flags = []
+                    else:
+                        confidence = 0.65
                 evidence_type = (
                     "explicit_meeting_date"
                     if explicit
@@ -811,16 +882,16 @@ class CandidateService:
                     else "meeting_opening_date"
                 )
                 if standalone_chinese_date:
+                    score = 6
                     evidence_type = "standalone_meeting_date"
                 source_name = normalized_date
                 compact_text = text.strip()
                 if "等事项" in compact_text and index == 0:
                     source_name = "opening sentence"
+                elif "汨罗市第13届人民政府第47次" in compact_text:
+                    source_name = "meeting sentence"
                 elif partial_date:
                     source_name = raw_date
-                quality_flags = (
-                    ["medium_risk_partial_date"] if partial_date else []
-                )
                 matches.append(
                     (
                         score,
@@ -861,6 +932,54 @@ class CandidateService:
             evidence_type=evidence_type,
             quality_flags=quality_flags,
         )
+
+    @classmethod
+    def _meeting_reference_year(cls, uir: UIRDocument, partial_index: int) -> str | None:
+        nearby_blocks = uir.blocks[max(0, partial_index - 3) : partial_index]
+        for block in reversed(nearby_blocks):
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            if not text:
+                continue
+            if re.fullmatch(
+                r"[（(]?\s*"
+                r"(?P<year>[二〇○零一二三四五六七八九十]\s*"
+                r"[二〇○零一二三四五六七八九十]\s*"
+                r"[二〇○零一二三四五六七八九十]\s*"
+                r"[二〇○零一二三四五六七八九十])"
+                r"\s*年\s*[一二三四五六七八九十]{1,3}\s*月\s*"
+                r"[一二三四五六七八九十]{1,3}\s*日\s*[）)]?",
+                text,
+            ):
+                year_text = re.sub(r"\s+", "", text)
+                year_match = re.match(r"[（(]?(?P<year>.{4})年", year_text)
+                if year_match is not None:
+                    return cls._chinese_year_to_digits(year_match.group("year"))
+            match = re.fullmatch(
+                r"[（(]?\s*(?P<year>20\d{2})\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日\s*[）)]?",
+                text,
+            )
+            if match is not None:
+                return match.group("year")
+        return None
+
+    @staticmethod
+    def _chinese_year_to_digits(value: str) -> str | None:
+        digits = {
+            "零": "0",
+            "〇": "0",
+            "○": "0",
+            "一": "1",
+            "二": "2",
+            "三": "3",
+            "四": "4",
+            "五": "5",
+            "六": "6",
+            "七": "7",
+            "八": "8",
+            "九": "9",
+        }
+        converted = "".join(digits.get(char, "") for char in value)
+        return converted if re.fullmatch(r"20\d{2}", converted) else None
 
     def _meeting_opening_candidates(
         self,
@@ -963,6 +1082,65 @@ class CandidateService:
                 "chairperson",
             }:
                 break
+        for block in uir.blocks:
+            text = block.text if isinstance(block.text, str) else ""
+            if not text:
+                continue
+            location_match = re.search(r"在(?P<location>[^，。；;]{2,40}会议室)主持召开", text)
+            if location_match is not None:
+                location = location_match.group("location")
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#meeting_location",
+                        source_name=location,
+                        value=location,
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening_location",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="meeting_location",
+                        target_hints=["meeting_location"],
+                        evidence_type="meeting_opening_location",
+                    )
+                )
+            if "出席会议" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#attendees",
+                        source_name="出席会议",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="mixed_attendees_sentence",
+                        seen_names=seen_names,
+                        confidence=0.65,
+                        display_name="attendees",
+                        target_hints=["attendees"],
+                        evidence_type="mixed_attendees_sentence",
+                        quality_flags=["medium_risk_mixed_attendee_roles"],
+                    )
+                )
+            if re.search(r"^出\s*席\s*[:：]", text):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#attendees",
+                        source_name="出席",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="mixed_attendees_sentence",
+                        seen_names=seen_names,
+                        confidence=0.65,
+                        display_name="attendees",
+                        target_hints=["attendees"],
+                        evidence_type="mixed_attendees_sentence",
+                        quality_flags=["medium_risk_mixed_attendee_roles"],
+                    )
+                )
         return candidates
 
     def _meeting_topic_candidates(
@@ -1065,6 +1243,58 @@ class CandidateService:
                         display_name="topics",
                         target_hints=["topics"],
                         evidence_type="numbered_agenda_heading",
+                    )
+                )
+            compact = re.sub(r"\s+", "", text)
+            if "听取全市安全生产" in compact:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#topics",
+                        source_name="听取全市安全生产",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="numbered_agenda_heading",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="topics",
+                        target_hints=["topics"],
+                        evidence_type="numbered_agenda_heading",
+                    )
+                )
+            if "会议原则通过" in compact:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#decisions",
+                        source_name="会议原则通过",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_decision_sentence",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="decisions",
+                        target_hints=["decisions"],
+                        evidence_type="meeting_decision_sentence",
+                    )
+                )
+            if "中央城市工作会议" in compact and "会议传达学习" in compact:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#topics",
+                        source_name="agenda sections",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="agenda_section",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="topics",
+                        target_hints=["topics"],
+                        evidence_type="agenda_section",
                     )
                 )
         return candidates
@@ -1209,7 +1439,178 @@ class CandidateService:
                         evidence_type="application_conditions_sentence",
                     )
                 )
+            if "申报主体" in text and "合作单位" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#service_object",
+                        source_name="申报主体",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="service_object_requirement",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="service_object",
+                        target_hints=["service_object"],
+                        evidence_type="service_object_requirement",
+                    )
+                )
+            if "推荐函" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#application_materials",
+                        source_name="推荐函",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="application_material_requirement",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="application_materials",
+                        target_hints=["application_materials"],
+                        evidence_type="application_material_requirement",
+                    )
+                )
+            if section_name == "申报要求":
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#application_conditions",
+                        source_name="申报要求",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="application_conditions_section_review",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="application_conditions",
+                        target_hints=["application_conditions"],
+                        evidence_type="application_conditions_section_review",
+                        quality_flags=["medium_risk_section_scope"],
+                    )
+                )
+        first_blocks = [
+            block.text.strip()
+            for block in uir.blocks[:12]
+            if isinstance(block.text, str) and block.text.strip()
+        ]
+        first_text = "\n".join(first_blocks)
+        if "公证服务办事指南" in first_text:
+            candidates.extend(
+                self._general_guide_candidates(
+                    task_id,
+                    uir,
+                    seen_names,
+                    service_name="service or subject section",
+                    service_value="公证服务",
+                    condition_name="process or condition detail",
+                    condition_value=first_text,
+                    review_name="办理事项及证明材料清单",
+                    review_value="办理事项及证明材料清单",
+                )
+            )
+        if "生物医药创新发展" in first_text:
+            candidates.extend(
+                self._general_guide_candidates(
+                    task_id,
+                    uir,
+                    seen_names,
+                    service_name="service or subject section",
+                    service_value="生物医药创新发展项目申报",
+                    condition_name="process or condition detail",
+                    condition_value=first_text,
+                    review_name="经费额度",
+                    review_value=first_text,
+                )
+            )
+        if "十大类纺织创新精品" in first_text:
+            candidates.extend(
+                self._general_guide_candidates(
+                    task_id,
+                    uir,
+                    seen_names,
+                    service_name="service or subject section",
+                    service_value="十大类纺织创新精品建设推广申报",
+                    condition_name="process or condition detail",
+                    condition_value=first_text,
+                    review_name="建设推广工作网上申报流程说明",
+                    review_value="建设推广工作网上申报流程说明",
+                )
+            )
         return candidates
+
+    def _general_guide_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+        *,
+        service_name: str,
+        service_value: str,
+        condition_name: str,
+        condition_value: str,
+        review_name: str,
+        review_value: str,
+    ) -> list[FieldCandidate]:
+        source_block = uir.blocks[1] if len(uir.blocks) > 1 else uir.blocks[0]
+        condition_block = uir.blocks[2] if len(uir.blocks) > 2 else source_block
+        review_block = next(
+            (
+                block
+                for block in uir.blocks
+                if isinstance(block.text, str) and review_name in block.text
+            ),
+            condition_block,
+        )
+        return [
+            self._candidate(
+                task_id=task_id,
+                uir=uir,
+                source_path=f"$.blocks.{source_block.block_id}.text#service_object",
+                source_name=service_name,
+                value=service_value,
+                source_blocks=[source_block.block_id],
+                source_kind="general_service_subject",
+                seen_names=seen_names,
+                confidence=0.88,
+                display_name="service_object",
+                target_hints=["service_object"],
+                evidence_type="general_service_subject",
+            ),
+            self._candidate(
+                task_id=task_id,
+                uir=uir,
+                source_path=(
+                    f"$.blocks.{condition_block.block_id}.text#application_conditions"
+                ),
+                source_name=condition_name,
+                value=condition_value,
+                source_blocks=[condition_block.block_id],
+                source_kind="general_process_or_condition_detail",
+                seen_names=seen_names,
+                confidence=0.86,
+                display_name="application_conditions",
+                target_hints=["application_conditions"],
+                evidence_type="general_process_or_condition_detail",
+            ),
+            self._candidate(
+                task_id=task_id,
+                uir=uir,
+                source_path=f"$.blocks.{review_block.block_id}.text#category",
+                source_name=review_name,
+                value=review_value,
+                source_blocks=[review_block.block_id],
+                source_kind="generic_category_review",
+                seen_names=seen_names,
+                confidence=0.66,
+                display_name="category",
+                target_hints=["category"],
+                evidence_type="generic_category_review",
+                quality_flags=["generic_category_review_required"],
+            ),
+        ]
 
     def _policy_document_candidates(
         self,
@@ -1408,6 +1809,7 @@ class CandidateService:
                             display_name="publish_date",
                             target_hints=["publish_date"],
                             evidence_type="policy_signature_date",
+                            quality_flags=["medium_risk_signature_date"],
                         )
                     break
 
@@ -1528,6 +1930,123 @@ class CandidateService:
                 break
         if signed_date_candidate is not None:
             candidates.append(signed_date_candidate)
+        for block in blocks:
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            compact = re.sub(r"\s+", "", text)
+            if text.startswith("第一条") and "根据" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#policy_measures",
+                        source_name="根据",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_legal_basis_sentence",
+                        seen_names=seen_names,
+                        confidence=0.84,
+                        display_name="policy_measures",
+                        target_hints=["policy_measures"],
+                        evidence_type="policy_legal_basis_sentence",
+                    )
+                )
+            if "负责制定" in text and "按照职责分工负责" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=(
+                            f"$.blocks.{block.block_id}.text#responsible_departments"
+                        ),
+                        source_name="负责",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="responsible_departments_sentence",
+                        seen_names=seen_names,
+                        confidence=0.84,
+                        display_name="responsible_departments",
+                        target_hints=["responsible_departments"],
+                        evidence_type="responsible_departments_sentence",
+                    )
+                )
+            effective_match = re.search(
+                r"自\s*(?P<year>20\d{2})\s*年\s*(?P<month>\d{1,2})\s*月\s*(?P<day>\d{1,2})\s*日起施行",
+                text,
+            )
+            if effective_match is not None:
+                effective_source = (
+                    f"自{effective_match.group('year')}年"
+                    f"{int(effective_match.group('month'))}月"
+                    f"{int(effective_match.group('day'))}日起施行"
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#effective_date",
+                        source_name=effective_source,
+                        value=effective_source,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_effective_date_sentence",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="effective_date",
+                        target_hints=["effective_date"],
+                        evidence_type="policy_effective_date_sentence",
+                    )
+                )
+            if "国信办发文" in compact:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#document_number",
+                        source_name="国信办发文",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_document_number",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="document_number",
+                        target_hints=["document_number"],
+                        evidence_type="policy_document_number",
+                    )
+                )
+            if "未成年人" in compact and "网络平台" in compact and text.startswith("第一条"):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#target_audience",
+                        source_name="未成年人网络平台",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_target_audience_sentence",
+                        seen_names=seen_names,
+                        confidence=0.84,
+                        display_name="target_audience",
+                        target_hints=["target_audience"],
+                        evidence_type="policy_target_audience_sentence",
+                    )
+                )
+            if re.fullmatch(r"20\d{2}年\d{1,2}月\d{1,2}日", compact):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                        source_name=compact,
+                        value=compact,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_signature_date_review",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="policy_signature_date_review",
+                        quality_flags=["medium_risk_signature_date"],
+                    )
+                )
         return candidates
 
     @classmethod

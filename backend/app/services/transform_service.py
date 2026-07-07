@@ -16,6 +16,17 @@ class TransformResult:
 
 
 class TransformService:
+    DOC_TYPE_ENUM_MAP = {
+        "政策": "policy",
+        "政策文件": "policy",
+        "政策通知": "policy",
+        "通知": "policy",
+        "办法": "policy",
+        "规则": "policy",
+        "指南": "policy",
+        "policy": "policy",
+        "policy_doc": "policy",
+    }
     SPLIT_ARRAY_FIELDS = {
         "application_conditions",
         "attendees",
@@ -76,7 +87,8 @@ class TransformService:
             )
             if error is not None:
                 errors.append(error)
-                continue
+                if error.get("level") != "warning":
+                    continue
             data[field.field_id] = value
             trace = {
                 "target_field_id": field.field_id,
@@ -150,6 +162,18 @@ class TransformService:
         if value is None:
             return None, None
         if field.type == "enum":
+            if field.field_id == "doc_type" and isinstance(value, str):
+                normalized = self.DOC_TYPE_ENUM_MAP.get(value.strip())
+                if normalized is not None:
+                    return normalized, None
+                return value, {
+                    "code": "enum_normalization_warning",
+                    "failure_type": "enum_invalid",
+                    "level": "warning",
+                    "field_id": field.field_id,
+                    "source_value": value,
+                    "message": f"Unrecognized doc_type enum value: {value}",
+                }
             if isinstance(value, str) and value in enum_map:
                 return enum_map[value], None
             allowed = field.constraints.get("enum", [])
