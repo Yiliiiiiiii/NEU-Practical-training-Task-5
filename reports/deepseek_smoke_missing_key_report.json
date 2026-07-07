@@ -1,0 +1,14 @@
+{
+  "base_url": "https://api.deepseek.com",
+  "error": "DEEPSEEK_API_KEY is not configured",
+  "error_type": "LLMNotConfiguredError",
+  "generated_at": "2026-07-07T11:55:44.283774+00:00",
+  "model": "deepseek-v4-flash",
+  "must_not_activate_catalog": true,
+  "must_not_auto_accept_mapping": true,
+  "provider": "deepseek",
+  "secret_leak_detected": false,
+  "status": "failed",
+  "suggestion_count": 0,
+  "warning_count": 0
+}

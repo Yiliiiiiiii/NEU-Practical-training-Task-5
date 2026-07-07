@@ -162,6 +162,8 @@ class TransformService:
         if value is None:
             return None, None
         if field.type == "enum":
+            if isinstance(value, str) and value in enum_map:
+                return enum_map[value], None
             if field.field_id == "doc_type" and isinstance(value, str):
                 normalized = self.DOC_TYPE_ENUM_MAP.get(value.strip())
                 if normalized is not None:
@@ -174,8 +176,6 @@ class TransformService:
                     "source_value": value,
                     "message": f"Unrecognized doc_type enum value: {value}",
                 }
-            if isinstance(value, str) and value in enum_map:
-                return enum_map[value], None
             allowed = field.constraints.get("enum", [])
             if isinstance(value, str) and value in allowed:
                 return value, None

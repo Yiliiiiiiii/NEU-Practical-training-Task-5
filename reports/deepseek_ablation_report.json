@@ -1,0 +1,17 @@
+{
+  "auto_accepted_count": 0,
+  "badcase_violations": 0,
+  "baseline_average_recall": 0.7426031746031747,
+  "baseline_report": "reports/phase_d_non_procurement_mapping_eval_report.json",
+  "dataset_size": 50,
+  "deepseek_assisted_average_recall": null,
+  "deepseek_provider_smoke_report": "reports/deepseek_provider_smoke_report.json",
+  "generated_at": "2026-07-07T12:46:18.573528+00:00",
+  "llm_auto_accepted_count": 0,
+  "measurable_contribution": 0.0,
+  "must_not_auto_accept_mapping": true,
+  "reason": "DeepSeek was exercised only by provider smoke / suggestion safety path in this sprint; no DeepSeek suggestion was applied to accepted mappings.",
+  "secret_leaks": 0,
+  "status": "report_only_not_applied",
+  "suggestion_count": 2
+}

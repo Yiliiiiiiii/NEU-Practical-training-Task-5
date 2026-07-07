@@ -1,0 +1,465 @@
+{
+  "failures_by_doc_type": {
+    "general_doc": 2,
+    "policy_doc": 9
+  },
+  "generated_at": "2026-07-07T12:46:18.572094+00:00",
+  "items": [
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_006_soft_science_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_008_science_communication_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_012_tongguan_food_license",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_014_ningguo_food_license",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_general_015_ganzhou_temporary_relief",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [
+        "issuer"
+      ],
+      "strict_passed": false,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields"
+      ],
+      "required_missing": [
+        "publish_date"
+      ],
+      "strict_passed": false,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_013_minor_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_014_digital_aging_campaign",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "required_missing": [],
+      "strict_passed": true,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    },
+    {
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": false
+    },
+    {
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "strict_passed": false,
+      "validation_passed": true
+    }
+  ],
+  "notes": [
+    "Scoped to evaluator strict_pass semantics."
+  ],
+  "required_missing_by_field": {
+    "issuer": 1,
+    "publish_date": 1
+  },
+  "source_report": "reports/phase_d_non_procurement_mapping_eval_report.json",
+  "summary": {
+    "badcase_violation_count": 0,
+    "dataset_size": 50,
+    "llm_auto_accepted_count": 0,
+    "package_count": 50,
+    "required_missing_count": 2,
+    "review_required_count": 21,
+    "strict_fail_count": 11,
+    "strict_pass_count": 39
+  }
+}

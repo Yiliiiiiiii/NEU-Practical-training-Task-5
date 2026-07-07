@@ -1,0 +1,42 @@
+{
+  "differences": [],
+  "generated_at": "2026-07-07T12:46:18.572829+00:00",
+  "inputs": {
+    "mapping_path": "reports/phase_d_non_procurement_mapping_eval_report.json",
+    "semantic_path": "reports/phase_d_semantic_mapping_quality_report.json",
+    "strict_path": "reports/phase_d_strict_validation_failure_analysis.json"
+  },
+  "metrics": {
+    "badcase_violations": {
+      "mapping": 0,
+      "semantic": 0,
+      "strict": 0
+    },
+    "dataset_size": {
+      "mapping": 50,
+      "semantic": 50,
+      "strict": 50
+    },
+    "llm_auto_accepted_count": {
+      "mapping": 0,
+      "semantic": 0,
+      "strict": 0
+    },
+    "required_missing_count": {
+      "mapping": 2,
+      "semantic": 2,
+      "strict": 2
+    },
+    "review_required_count": {
+      "mapping": 21,
+      "semantic": 21,
+      "strict": 21
+    },
+    "strict_pass_count": {
+      "mapping": 39,
+      "semantic": 39,
+      "strict": 39
+    }
+  },
+  "passed": true
+}

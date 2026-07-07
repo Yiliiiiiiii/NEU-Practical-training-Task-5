@@ -1,0 +1,8 @@
+{
+  "average_recall": null,
+  "badcase_violations": 0,
+  "generated_at": "2026-07-07T12:38:21.078552+00:00",
+  "llm_auto_accepted_count": 0,
+  "reason": "No independent production shadow/blind UIR corpus with gold labels is present in this workspace.",
+  "status": "not_run"
+}

@@ -1,0 +1,12 @@
+{
+  "base_url": "https://api.deepseek.com",
+  "generated_at": "2026-07-07T11:56:02.863012+00:00",
+  "model": "deepseek-v4-flash",
+  "must_not_activate_catalog": true,
+  "must_not_auto_accept_mapping": true,
+  "provider": "deepseek",
+  "secret_leak_detected": false,
+  "status": "passed",
+  "suggestion_count": 2,
+  "warning_count": 0
+}

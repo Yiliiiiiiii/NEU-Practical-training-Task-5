@@ -1,0 +1,1585 @@
+{
+  "reports": [
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_001_notary_service_guide.json",
+      "quality_score": 0.3067,
+      "schema_route_confidence": 0.4667,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_002_biomed_project_guide.json",
+      "quality_score": 0.42,
+      "schema_route_confidence": 0.5,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_003_textile_application_flow.json",
+      "quality_score": 0.0,
+      "schema_route_confidence": 0.1,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_004_tianhe_service_guide.json",
+      "quality_score": 0.4367,
+      "schema_route_confidence": 0.5167,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_005_eldercare_technology_guide.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_006_soft_science_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_006_soft_science_guide.json",
+      "quality_score": 0.4533,
+      "schema_route_confidence": 0.5333,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_007_domestic_cooperation_guide.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_008_science_communication_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_008_science_communication_guide.json",
+      "quality_score": 0.42,
+      "schema_route_confidence": 0.5,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_general_009_food_technology_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_009_food_technology_guide.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_010_cell_gene_therapy_guide.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_011_shanghai_branch_registration.json",
+      "quality_score": 0.1067,
+      "schema_route_confidence": 0.2667,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_012_tongguan_food_license",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_012_tongguan_food_license.json",
+      "quality_score": 0.2567,
+      "schema_route_confidence": 0.4167,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_013_zhongshan_import_export_guide.json",
+      "quality_score": 0.0233,
+      "schema_route_confidence": 0.1833,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_014_ningguo_food_license",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_014_ningguo_food_license.json",
+      "quality_score": 0.3067,
+      "schema_route_confidence": 0.4667,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_general_015_ganzhou_temporary_relief",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\general\\real_general_015_ganzhou_temporary_relief.json",
+      "quality_score": 0.04,
+      "schema_route_confidence": 0.2,
+      "selected_schema_id": "general_doc",
+      "selected_template_id": "general_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "general_doc"
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_001_changning_executive_minutes.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_002_shaxian_executive_minutes.json",
+      "quality_score": 0.09,
+      "schema_route_confidence": 0.25,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_003_miluo_executive_minutes.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_004_shandan_2025_11_minutes.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_005_miluo_2026_minutes.json",
+      "quality_score": 0.04,
+      "schema_route_confidence": 0.2,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_006_shandan_minutes.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_007_zhenping_49_minutes.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_008_wlmqx_2026_01_minutes.json",
+      "quality_score": 0.29,
+      "schema_route_confidence": 0.45,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_009_kundulun_2026_01_minutes.json",
+      "quality_score": 0.29,
+      "schema_route_confidence": 0.45,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_010_zhangjiagang_64_minutes.json",
+      "quality_score": 0.4533,
+      "schema_route_confidence": 0.5333,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_011_haibowan_2026_02_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_011_haibowan_2026_02_minutes.json",
+      "quality_score": 0.42,
+      "schema_route_confidence": 0.5,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_012_wlmqx_2026_02_minutes.json",
+      "quality_score": 0.14,
+      "schema_route_confidence": 0.3,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_013_shawan_2026_03_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_013_shawan_2026_03_minutes.json",
+      "quality_score": 0.24,
+      "schema_route_confidence": 0.4,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_014_shcn_2026_142_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_014_shcn_2026_142_minutes.json",
+      "quality_score": 0.04,
+      "schema_route_confidence": 0.2,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_meeting_015_changshu_2026_62_minutes",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\meeting\\real_meeting_015_changshu_2026_62_minutes.json",
+      "quality_score": 0.29,
+      "schema_route_confidence": 0.45,
+      "selected_schema_id": "meeting_doc",
+      "selected_template_id": "meeting_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "meeting_doc"
+    },
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_001_training_platform_rules.json",
+      "quality_score": 0.47,
+      "schema_route_confidence": 0.55,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_002_equipment_renewal.json",
+      "quality_score": 0.42,
+      "schema_route_confidence": 0.5,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_003_science_education_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_003_science_education_guide.json",
+      "quality_score": 0.47,
+      "schema_route_confidence": 0.55,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_004_student_loan_relief.json",
+      "quality_score": 0.09,
+      "schema_route_confidence": 0.25,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_005_ai_industry_guide.json",
+      "quality_score": 0.0,
+      "schema_route_confidence": 0.1,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_006_technology_incubator_rules.json",
+      "quality_score": 0.8,
+      "schema_route_confidence": 0.8,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_007_one_thing_list.json",
+      "quality_score": 0.04,
+      "schema_route_confidence": 0.2,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_008_sme_leader_training.json",
+      "quality_score": 0.57,
+      "schema_route_confidence": 0.65,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_009_network_safety_work.json",
+      "quality_score": 0.57,
+      "schema_route_confidence": 0.65,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_010_auto_ota_management.json",
+      "quality_score": 0.57,
+      "schema_route_confidence": 0.65,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_011_battery_recycling_rules.json",
+      "quality_score": 0.14,
+      "schema_route_confidence": 0.3,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_012_sme_gradient_rules.json",
+      "quality_score": 0.8,
+      "schema_route_confidence": 0.8,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_013_minor_platform_rules",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_013_minor_platform_rules.json",
+      "quality_score": 0.29,
+      "schema_route_confidence": 0.45,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_014_digital_aging_campaign",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_014_digital_aging_campaign.json",
+      "quality_score": 0.57,
+      "schema_route_confidence": 0.65,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_015_ai_ethics_rules.json",
+      "quality_score": 0.8,
+      "schema_route_confidence": 0.8,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_016_caac_civil_aviation_law.json",
+      "quality_score": 0.34,
+      "schema_route_confidence": 0.5,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_017_xinhua_investment_management.json",
+      "quality_score": 0.5533,
+      "schema_route_confidence": 0.6333,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_018_beijing_ecommerce_support.json",
+      "quality_score": 0.5033,
+      "schema_route_confidence": 0.5833,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_019_mof_vat_transition.json",
+      "quality_score": 0.14,
+      "schema_route_confidence": 0.3,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "issues": [
+        {
+          "action": "review",
+          "code": "metadata_schema_fallback",
+          "message": "Schema route fell below threshold; metadata doc_type was used as a review-only fallback.",
+          "path": null,
+          "severity": "warning"
+        },
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\policy\\real_policy_020_customs_foreign_investment_catalog.json",
+      "quality_score": 0.2233,
+      "schema_route_confidence": 0.3833,
+      "selected_schema_id": "policy_doc",
+      "selected_template_id": "policy_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "policy_doc"
+    },
+    {
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_001_broadcast_security_supervision.json",
+      "quality_score": 0.8667,
+      "schema_route_confidence": 0.8667,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "issues": [
+        {
+          "action": "review",
+          "code": "low_route_confidence",
+          "message": "Schema routing selected a supported family but did not reach auto confidence.",
+          "path": null,
+          "severity": "warning"
+        }
+      ],
+      "mapping_policy": {
+        "allow_auto_accept": false,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_002_special_equipment_bid.json",
+      "quality_score": 0.6367,
+      "schema_route_confidence": 0.7167,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "review",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_003_radiation_monitoring_award.json",
+      "quality_score": 0.9,
+      "schema_route_confidence": 0.9,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_004_veterinary_platform_award.json",
+      "quality_score": 0.75,
+      "schema_route_confidence": 0.75,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_005_rehabilitation_equipment_award.json",
+      "quality_score": 0.75,
+      "schema_route_confidence": 0.75,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_006_vaccine_tender",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_006_vaccine_tender.json",
+      "quality_score": 0.8667,
+      "schema_route_confidence": 0.8667,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_007_testing_equipment_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_007_testing_equipment_award.json",
+      "quality_score": 0.75,
+      "schema_route_confidence": 0.75,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_008_desktop_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_008_desktop_award.json",
+      "quality_score": 0.8667,
+      "schema_route_confidence": 0.8667,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_009_pollutant_monitoring_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_009_pollutant_monitoring_award.json",
+      "quality_score": 0.9,
+      "schema_route_confidence": 0.9,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    },
+    {
+      "doc_id": "real_procurement_010_ultrasound_award",
+      "issues": [],
+      "mapping_policy": {
+        "allow_auto_accept": true,
+        "allow_llm_suggestions": true,
+        "require_review_for_high_risk_fields": true
+      },
+      "path": "examples\\real_world\\uir\\procurement\\real_procurement_010_ultrasound_award.json",
+      "quality_score": 0.75,
+      "schema_route_confidence": 0.75,
+      "selected_schema_id": "procurement_doc",
+      "selected_template_id": "procurement_doc_base_v1",
+      "status": "pass",
+      "supported_doc_type": "procurement_doc"
+    }
+  ],
+  "summary": {
+    "allow_auto_accept_count": 12,
+    "average_quality_score": 0.3937,
+    "issue_counts": {
+      "low_route_confidence": 48,
+      "metadata_schema_fallback": 32
+    },
+    "pass": 12,
+    "reject": 0,
+    "review": 48,
+    "total": 60,
+    "unsupported": 0
+  }
+}

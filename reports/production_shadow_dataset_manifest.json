@@ -1,0 +1,8 @@
+{
+  "blind_count": 0,
+  "can_claim_blind_0_85": false,
+  "generated_at": "2026-07-07T12:38:21.077985+00:00",
+  "reason": "No independent production shadow/blind UIR corpus with gold labels is present in this workspace.",
+  "status": "planned_not_populated",
+  "warmup_count": 0
+}

@@ -125,6 +125,17 @@ def check_reports(
                 )
             continue
         if metric in diagnostic_metrics:
+            if metric == "strict_pass_count":
+                mapping_semantic = {
+                    key: values[key] for key in ("mapping", "semantic")
+                }
+                reason = (
+                    "strict_analyzer_uses_validation_scope"
+                    if _same_non_null(list(mapping_semantic.values()))
+                    else "analyzers_use_diagnostic_scope"
+                )
+                observations.append(_difference(metric, reason, values))
+                continue
             observations.append(
                 _difference(metric, "analyzers_use_diagnostic_scope", values)
             )

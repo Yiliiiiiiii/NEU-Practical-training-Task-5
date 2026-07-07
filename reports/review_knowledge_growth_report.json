@@ -1,44 +1,42 @@
 {
   "activated_aliases": {
-    "organizer": [
-      "发布机构"
+    "service_object": [
+      "受理"
     ]
   },
   "active_pack_effect": true,
   "after": {
-    "auto_mapped_fields": 9,
+    "auto_mapped_fields": 6,
     "mapping_recall": 1.0,
     "required_coverage": 1.0,
-    "review_required_count": 2,
+    "review_required_count": 1,
     "strict_pass_count": 1
   },
   "after_mapping_counts": {
-    "auto_mapped_fields": 9,
+    "auto_mapped_fields": 6,
     "mapping_recall": 1.0,
     "required_coverage": 1.0,
-    "review_required_count": 2,
+    "review_required_count": 1,
     "strict_pass_count": 1
   },
-  "badcase_blocked_count": 1,
+  "badcase_blocked_count": 0,
   "badcase_controls": {
-    "blocked_aliases": [
-      "agenda sections"
-    ],
+    "blocked_aliases": [],
     "violation_count": 0
   },
   "badcase_violations": 0,
   "before": {
-    "auto_mapped_fields": 8,
+    "auto_mapped_fields": 5,
     "mapping_recall": 0.0,
     "required_coverage": 1.0,
-    "review_required_count": 3,
+    "review_required_count": 2,
     "strict_pass_count": 1
   },
   "before_mapping_counts": {
-    "auto_mapped_fields": 8,
+    "auto_mapped_fields": 5,
     "mapping_recall": 0.0,
     "required_coverage": 1.0,
-    "review_required_count": 3,
+    "review_required_count": 2,
     "strict_pass_count": 1
   },
   "boundaries": [
@@ -51,25 +49,17 @@
       "badcase_hit": false,
       "candidate_status": "pending",
       "decision": "approved",
-      "reason": "The publishing-agency metadata label is an acceptable organizer alias for this controlled growth fixture.",
-      "source_label": "发布机构",
-      "target_field": "organizer"
+      "reason": "Controlled fixture: the acceptance row is a reusable service_object signal after review.",
+      "source_label": "受理",
+      "target_field": "service_object"
     },
     {
       "badcase_hit": false,
       "candidate_status": null,
       "decision": "rejected",
-      "reason": "Agenda narrative should not be accepted as the meeting decisions field by default.",
-      "source_label": "agenda sections",
-      "target_field": "decisions"
-    },
-    {
-      "badcase_hit": true,
-      "candidate_status": "blocked",
-      "decision": "approved",
-      "reason": "Control case: a badcase-blocked agenda mapping must not become an active alias.",
-      "source_label": "agenda sections",
-      "target_field": "action_items"
+      "reason": "The generic legal basis content row should not become a summary alias by default.",
+      "source_label": "内容",
+      "target_field": "summary"
     }
   ],
   "draft_pack_evidence": {
@@ -79,10 +69,10 @@
   },
   "draft_pack_no_effect": true,
   "fixture": {
-    "decision_count": 3,
-    "doc_id": "real_meeting_004_shandan_2025_11_minutes",
-    "doc_type": "meeting_doc",
-    "real_uir_path": "examples/real_world/uir/meeting/real_meeting_004_shandan_2025_11_minutes.json"
+    "decision_count": 2,
+    "doc_id": "real_general_011_shanghai_branch_registration",
+    "doc_type": "general_doc",
+    "real_uir_path": "examples/real_world/uir/general/real_general_011_shanghai_branch_registration.json"
   },
   "old_snapshot_unchanged": true,
   "old_task_invariant": {
@@ -115,13 +105,13 @@
     {
       "activated": false,
       "candidate_created": false,
-      "reason": "Agenda narrative should not be accepted as the meeting decisions field by default.",
-      "source_label": "agenda sections",
-      "target_field": "decisions"
+      "reason": "The generic legal basis content row should not become a summary alias by default.",
+      "source_label": "内容",
+      "target_field": "summary"
     }
   ],
-  "review_required_after": 2,
-  "review_required_before": 3,
+  "review_required_after": 1,
+  "review_required_before": 2,
   "summary": {
     "badcase_violation_count": 0,
     "isolated_state": true,

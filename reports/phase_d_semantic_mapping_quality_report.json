@@ -1,0 +1,185 @@
+{
+  "by_doc_type": {
+    "general_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 15,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.8242063492063492,
+      "package_valid_count": 15,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 0,
+      "review_required_count": 11,
+      "strict_pass_count": 13,
+      "strict_pass_rate": 0.8666666666666667
+    },
+    "meeting_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 15,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.7637037037037037,
+      "package_valid_count": 15,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 0,
+      "review_required_count": 2,
+      "strict_pass_count": 15,
+      "strict_pass_rate": 1.0
+    },
+    "policy_doc": {
+      "badcase_violation_count": 0,
+      "document_count": 20,
+      "high_risk_auto_accepted_count": 0,
+      "mapping_recall_average": 0.6655753968253968,
+      "package_valid_count": 20,
+      "package_valid_rate": 1.0,
+      "required_missing_count": 2,
+      "review_required_count": 8,
+      "strict_pass_count": 11,
+      "strict_pass_rate": 0.55
+    }
+  },
+  "generated_at": "2026-07-07T12:46:18.570561+00:00",
+  "notes": [
+    "Derived from current 50-document non-procurement mapping evaluator report.",
+    "No LLM/DeepSeek suggestion was auto-accepted."
+  ],
+  "ranked_gap_fields": [
+    {
+      "field": "issuer",
+      "missing_required_count": 1,
+      "review_required_count": 0
+    },
+    {
+      "field": "publish_date",
+      "missing_required_count": 1,
+      "review_required_count": 0
+    }
+  ],
+  "remaining_gaps": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [
+        "issuer"
+      ],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "missing_required_fields"
+      ],
+      "required_missing": [
+        "publish_date"
+      ],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 2
+    },
+    {
+      "doc_id": "real_general_013_zhongshan_import_export_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_016_caac_civil_aviation_law",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    },
+    {
+      "doc_id": "real_policy_019_mof_vat_transition",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 1
+    },
+    {
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "required_missing": [],
+      "review_required_count": 0
+    }
+  ],
+  "source_report": "reports/phase_d_non_procurement_mapping_eval_report.json",
+  "summary": {
+    "average_recall": 0.7426031746031747,
+    "badcase_violation_count": 0,
+    "dataset_size": 50,
+    "llm_auto_accepted_count": 0,
+    "package_verify_pass_count": 50,
+    "required_missing_count": 2,
+    "review_required_count": 21,
+    "strict_pass_count": 39
+  }
+}

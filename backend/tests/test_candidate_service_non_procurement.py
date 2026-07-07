@@ -1386,3 +1386,249 @@ def test_policy_attachment_url_and_responsible_departments_are_risk_aware() -> N
     assert issuer.target_hints == ["issuer"]
     assert "medium_risk_responsible_departments" in issuer.quality_flags
     assert issuer.source_blocks == ["responsible"]
+
+
+def test_policy_law_enacting_body_can_supply_required_issuer() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_policy_law_issuer",
+        make_uir(
+            [
+                {
+                    "block_id": "history",
+                    "type": "paragraph",
+                    "text": (
+                        "1995年10月30日第八届全国人民代表大会常务委员会"
+                        "第十六次会议通过"
+                    ),
+                }
+            ],
+            metadata={
+                "domain": "policy_doc",
+                "title": "中华人民共和国民用航空法（2026年7月1日起施行）",
+            },
+        ),
+    )
+
+    issuer = next(
+        item
+        for item in candidates
+        if item.evidence_type == "policy_law_enacting_body"
+    )
+    assert issuer.source_name == "全国人民代表大会常务委员会"
+    assert issuer.target_hints == ["issuer"]
+    assert issuer.source_blocks == ["history"]
+
+
+def test_meeting_number_with_parenthetical_and_action_item_are_extracted() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_actions",
+        make_uir(
+            [
+                {
+                    "block_id": "opening",
+                    "type": "paragraph",
+                    "text": "县十六届政府第49次常务（扩大）会议纪要",
+                },
+                {
+                    "block_id": "requirement",
+                    "type": "paragraph",
+                    "text": "会议要求，深入学习领会法典的核心要义。",
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    meeting_number = next(
+        item for item in candidates if item.display_name == "meeting_number"
+    )
+    action_item = next(
+        item for item in candidates if item.display_name == "action_items"
+    )
+    assert meeting_number.source_name == "第49次"
+    assert meeting_number.target_hints == ["meeting_number"]
+    assert action_item.source_name == "会议要求"
+    assert action_item.target_hints == ["action_items"]
+    assert action_item.source_blocks == ["requirement"]
+
+
+def test_meeting_opening_keeps_full_meeting_number_and_agenda_count_aliases() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_full_number",
+        make_uir(
+            [
+                {
+                    "block_id": "opening",
+                    "type": "paragraph",
+                    "text": (
+                        "2026年2月11日，区委副书记、政府区长翟云驰主持召开"
+                        "海勃湾区人民政府2026年第2次常务会议，研究审议9项议题。"
+                        "现将会议议定事项纪要如下。"
+                    ),
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    assert candidate_by_name(candidates, "2026年第2次常务会议").target_hints == [
+        "meeting_number"
+    ]
+    topics = candidate_by_name(candidates, "研究审议9项议题")
+    assert topics.target_hints == ["topics"]
+    assert topics.source_blocks == ["opening"]
+
+
+def test_meeting_numbered_agenda_headings_keep_specific_topic_source_names() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_topic_headings",
+        make_uir(
+            [
+                {
+                    "block_id": "ecology",
+                    "type": "paragraph",
+                    "text": "一、传达学习习近平总书记关于生态环境保护的重要讲话和重要指示批示精神",
+                },
+                {
+                    "block_id": "safety",
+                    "type": "paragraph",
+                    "text": "二、听取安全生产工作情况汇报",
+                },
+                {
+                    "block_id": "city",
+                    "type": "paragraph",
+                    "text": "三、传达市政府常务会议精神",
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    ecology_topic = candidate_by_name(
+        candidates, "传达学习习近平总书记关于生态环境保护"
+    )
+    safety_topic = candidate_by_name(candidates, "听取安全生产工作情况汇报")
+    city_topic = candidate_by_name(candidates, "传达市政府常务会议精神")
+    assert ecology_topic.target_hints == ["topics"]
+    assert ecology_topic.source_blocks == ["ecology"]
+    assert safety_topic.target_hints == ["topics"]
+    assert safety_topic.source_blocks == ["safety"]
+    assert city_topic.target_hints == ["topics"]
+    assert city_topic.source_blocks == ["city"]
+
+
+def test_meeting_decision_source_name_matches_principle_phrase() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_decisions",
+        make_uir(
+            [
+                {
+                    "block_id": "agree",
+                    "type": "paragraph",
+                    "text": "会议原则 同意《乌鲁木齐县生态环境保护工作情况报告》。",
+                },
+                {
+                    "block_id": "pass",
+                    "type": "paragraph",
+                    "text": "原则通过《安全生产工作方案》。",
+                },
+                {
+                    "block_id": "compound",
+                    "type": "paragraph",
+                    "text": "会议研究审议并原则同意《政府工作报告（送审稿）》。",
+                },
+                {
+                    "block_id": "emphasis",
+                    "type": "paragraph",
+                    "text": "会议强调，各乡镇、各部门单位要深入学习贯彻会议精神。",
+                },
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    agree = candidate_by_name(candidates, "会议原则同意")
+    passed = candidate_by_name(candidates, "原则通过")
+    compound = candidate_by_name(candidates, "原则同意")
+    action_item = candidate_by_name(candidates, "会议强调")
+    assert agree.target_hints == ["decisions"]
+    assert agree.source_blocks == ["agree"]
+    assert passed.target_hints == ["decisions"]
+    assert passed.source_blocks == ["pass"]
+    assert compound.target_hints == ["decisions"]
+    assert compound.source_blocks == ["compound"]
+    assert action_item.target_hints == ["action_items"]
+    assert action_item.source_blocks == ["emphasis"]
+
+
+def test_meeting_mapping_prefers_specific_source_labels_over_generic_aliases() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "title",
+                "type": "heading",
+                "text": "市政府第62次常务会议纪要",
+                "level": 1,
+            },
+            {
+                "block_id": "opening",
+                "type": "paragraph",
+                "text": (
+                    "2026年1月30日，张伟市长主持召开市政府第62次常务会议，"
+                    "会议听取安全生产工作情况汇报。"
+                ),
+            },
+            {
+                "block_id": "decision",
+                "type": "paragraph",
+                "text": "（一）原则通过《安全生产工作方案》。",
+            },
+        ],
+        metadata={
+            "domain": "meeting_doc",
+            "doc_type": "meeting_doc",
+            "source_url": "https://example.gov.cn/meeting.html",
+            "title": "市政府第62次常务会议纪要",
+        },
+    )
+
+    report = mapping_report(uir, "meeting_doc", "meeting_doc_base_v1")
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["meeting_number"]["source_field"]["source_name"] == "第62次常务会议"
+    assert mappings["topics"]["source_field"]["source_name"] == "听取安全生产工作情况汇报"
+    assert mappings["decisions"]["source_field"]["source_name"] == "原则通过"
+
+
+def test_policy_addressee_and_instruction_candidates_are_extracted() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_policy_addressee",
+        make_uir(
+            [
+                {
+                    "block_id": "audience",
+                    "type": "paragraph",
+                    "text": "各省、自治区、直辖市中小企业主管部门：",
+                },
+                {
+                    "block_id": "measure",
+                    "type": "paragraph",
+                    "text": "现将办法印发给你们，请结合实际认真抓好落实。",
+                },
+            ],
+            metadata={"domain": "policy_doc"},
+        ),
+    )
+
+    audience = next(
+        item
+        for item in candidates
+        if item.source_name == "各省中小企业主管部门"
+    )
+    measure = next(
+        item for item in candidates if item.source_name == "结合实际抓好落实"
+    )
+    assert audience.target_hints == ["target_audience"]
+    assert audience.source_blocks == ["audience"]
+    assert measure.target_hints == ["policy_measures"]
+    assert measure.source_blocks == ["measure"]

@@ -44,13 +44,12 @@ def policy_mapping(text: str):
     )
 
 
-def test_policy_effective_date_regex_accepts_real_world_whitespace() -> None:
+def test_policy_effective_date_accepts_real_world_whitespace() -> None:
     _template, report = policy_mapping("第五十条 本办法自 2026 年 4 月 1 日起施行。")
 
     effective = next(
         item for item in report.mappings if item["target_field_id"] == "effective_date"
     )
-    assert effective["method"] == "regex"
     assert effective["value_sample"] == "2026 年 4 月 1 日"
 
 

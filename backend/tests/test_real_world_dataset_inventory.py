@@ -169,9 +169,9 @@ def test_inventory_reports_doc_type_distribution_and_field_density() -> None:
     )
 
     assert inventory["by_doc_type"] == {
-        "general_doc": 10,
-        "meeting_doc": 10,
-        "policy_doc": 15,
+        "general_doc": 15,
+        "meeting_doc": 15,
+        "policy_doc": 20,
         "procurement_doc": 10,
     }
     for doc_type, density in inventory["field_density"].items():
