@@ -1,76 +1,139 @@
 # SchemaPack Agent
 
-## 当前状态
+SchemaPack Agent 是课题 5「数据格式标准化转换智能体」的工程实现。它面向已经进入 UIR / External UIR JSON 的治理后文档，把上游结构化中间表示转换为受 Schema 和 Mapping 约束、可校验、可追溯、可下游消费的标准成果包。
 
-当前已验证基线（2026-07-05）：513 个后端测试与 18 个前端测试通过，Ruff clean，前端生产构建成功，并导出 58 个 OpenAPI paths。
+当前 GitHub 仓库：
 
-SchemaPack Agent 是一个以 UIR 为起点的系统，用于把规范化文档结构转换为受 Schema 约束、经过 Verifier 检查的输出 Package。已验证的生产边界从 UIR 输入开始，到 Package ZIP 输出结束。
+```text
+https://github.com/Yiliiiiiiii/NEU-Practical-training-Task-5
+```
+
+## 当前结论
+
+项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。它覆盖 Schema 驱动转换、字段映射、结构化 JSON 与 Markdown 双形态输出、内容组织、Package 1.1、下游契约、人工复核、知识沉淀、Lineage 和安全受控的 LLM suggestion。
+
+需要注意：当前不能宣称生产盲测 recall 达到 0.85。非采购语义专项已经提升到 average recall `0.8063730159`，但尚未达到 0.85；仓库中也没有独立 production shadow / blind gold corpus。
+
+## 核心链路
+
+```text
+UIR / External UIR JSON
+-> Adapter / Schema Router
+-> Schema/Template Snapshot
+-> Candidate Extraction
+-> Mapping + Review / Knowledge
+-> Transform + Canonical
+-> Render + Content Organization
+-> Validate
+-> Manifest + ZIP
+-> Verify + Consumer Contract
+```
+
+生产运行时边界从 UIR 或 External UIR JSON 输入开始，到标准成果包输出结束。PDF、Word、Excel、图片、扫描件和 OCR 不属于默认生产运行时能力；可选 raw upstream 脚本只作为离线入口。
 
 ## 已实现能力
 
-当前处理链路为：
+- **Schema 驱动转换**：支持 schema/template 快照、字段候选抽取、确定性映射、字段转换、canonical model 和 strict validation。
+- **字段映射与复核**：支持 exact、alias、regex、type、fuzzy 等策略，输出 confidence、source evidence、risk flags、review-required reason 和 badcase filter。
+- **内容组织**：生成 chunks、摘要、关键词、content/management/quality tags、source links，并保留 table/list/code 等受保护内容结构。
+- **双形态成果包**：输出机器可读 JSON / JSONL / reports，以及人读 Markdown；Package 包含 manifest、checksum 和 verifier report。
+- **External UIR 兼容**：支持 block-list 与 section-tree 两类外部 UIR 方言，通过 adapter trace 和 schema router 转换到标准 UIR。
+- **Review / Knowledge 治理**：支持 review records、candidate decisions、draft/active/archived knowledge packs、impact preview、rollback 和 snapshot protection。
+- **Schema / Template Draft Lab**：支持字段发现、草案生成、风险检查、校验和显式导出；draft 不自动激活。
+- **Evaluation Center**：包含 dataset、run、metric、scorecard、regression gate 和报告读取能力。
+- **下游集成**：提供 Package 1.1、RAG/training/CSV consumer contracts、统一 CLI、Python SDK 和 adapter scaffold。
+- **SchemaPack-Lineage**：记录 field、block、chunk、artifact 的可信链路，并提供后端 API 与前端面板。
+- **DeepSeek / LLM suggestion**：默认关闭或 report-only，不自动接受 mapping，不激活 schema/template，不创建或执行 task。
 
-```text
-UIR -> Schema -> Mapping -> Transform -> Canonical -> Render
--> Content Organization -> Validate -> Manifest -> ZIP -> Package Verification
-```
+## 最新验证
 
-- Catalog 治理：覆盖 schemas、schema versions、mapping templates、template versions，以及 effective knowledge-pack 选择。
-- 已内置文档 Catalog 家族：`contract_doc`、`general_doc`、`meeting_doc`、`policy_doc`、`procurement_doc`。
-- UIR 文档导入、Task 创建/列表/详情、显式执行、报告读取、Package 元数据和 Package 下载 API。
-- 确定性 Mapping：支持 exact、alias、regex、type、fuzzy 策略；输出 confidence tier、source evidence、risk flags、review-required reason、badcase filter，以及可选的仅 Review LLM suggestion。
-- Transform、Canonical Model、结构化 JSON、Markdown、Chunk 渲染、Validation、Manifest 生成、Package ZIP 创建和严格 Package Verification。
-- Human Review 与 Knowledge-loop：支持待审 Review、candidate decision、draft/active/archived knowledge packs、effective template resolution、metrics、snapshot preservation 和 badcase protection。
-- React/Vite 工作台：支持导入、创建 Task、执行、查看 Mapping evidence、Validation、Content Organization、Knowledge actions、原始报告和 Package 下载。
-- 本地容器部署：包含 backend/frontend Dockerfile、Nginx API proxy、持久卷、启动时数据库初始化、可选 API-key auth、audit logs 和 retention cleanup。
-- 下游 Package smoke check 与 training-corpus JSONL 导出工具。
-- External UIR 兼容层：支持 block-list 与 section-tree 两种上游 UIR JSON 方言，转换为标准 `UIRDocument`，并通过 Schema Router 推荐到现有 5 类 schema/template。
-- Schema/Template Draft Lab、Review Workbench、Knowledge Pack diff/impact/rollback 与 Evaluation Center。
-- 版本化 consumer contracts、统一 CLI、Python SDK、Adapter scaffold，以及可选离线 Docling/Unstructured 上游。
-
-## 已验证证据
-
-- 统一验证记录：`backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` 产生 513 个后端测试通过、Ruff clean、前端生产构建成功，并把 58 个 OpenAPI paths 导出到 [`docs/openapi.json`](docs/openapi.json)；前端独立测试为 18/18。API 清单请以 [`docs/openapi_workflow.md`](docs/openapi_workflow.md) 和 [`docs/openapi.json`](docs/openapi.json) 为准。
-- Real-world pipeline 记录 45/45 文档导入、45/45 Task 执行完成、45/45 Package verification 通过。见 [`reports/real_world_eval_report.md`](reports/real_world_eval_report.md) 和 [`reports/real_world_eval_report.json`](reports/real_world_eval_report.json)。
-- Real-world mapping 报告记录 package pass rate 为 1.000，mapping recall 为 `0.6023391812865497`，validation pass 27/45，badcase violations 为 0。见 [`reports/real_world_mapping_eval_report.md`](reports/real_world_mapping_eval_report.md) 和 [`reports/real_world_mapping_eval_report.json`](reports/real_world_mapping_eval_report.json)。
-- Procurement comparison 记录 `procurement_doc` required coverage 为 1.000，而通用 `general_doc` schema 为 0.333。见 [`reports/procurement_doc_eval_report.md`](reports/procurement_doc_eval_report.md) 和 [`reports/procurement_doc_eval_report.json`](reports/procurement_doc_eval_report.json)。
-- 32-query retrieval 报告记录 `Recall@3 = 1.000`。见 [`reports/content_organization_retrieval_eval.md`](reports/content_organization_retrieval_eval.md) 和 [`reports/content_organization_retrieval_eval.json`](reports/content_organization_retrieval_eval.json)。
-- 两个 Knowledge-loop 报告均保持 snapshot preservation，并记录 badcase violations 为 0。见 [`reports/real_world_knowledge_loop_report.md`](reports/real_world_knowledge_loop_report.md)、[`reports/real_world_knowledge_loop_report.json`](reports/real_world_knowledge_loop_report.json)、[`reports/knowledge_loop_eval_report.md`](reports/knowledge_loop_eval_report.md) 和 [`reports/knowledge_loop_eval_report.json`](reports/knowledge_loop_eval_report.json)。
-- LLM fallback 报告记录 `auto_accepted_count = 0`、secret redaction 成功，并产生两个 review-required suggestions。见 [`reports/llm_fallback_eval_report.md`](reports/llm_fallback_eval_report.md) 和 [`reports/llm_fallback_eval_report.json`](reports/llm_fallback_eval_report.json)。
-- External UIR adapter 报告记录 18/18 curated fixtures 转换和 UIR validation 通过、trace coverage 与 schema router top-1 accuracy 均为 1.0、LLM auto accepted 与 secret leaks 均为 0。见 [`docs/external_uir_integration.md`](docs/external_uir_integration.md)、[`reports/external_uir_adapter_eval_report.md`](reports/external_uir_adapter_eval_report.md) 和 [`reports/external_uir_adapter_eval_report.json`](reports/external_uir_adapter_eval_report.json)。
-- 非采购 strict validation 工作有独立证据：[`reports/strict_validation_improvement_report.md`](reports/strict_validation_improvement_report.md) 和 [`reports/non_procurement_mapping_eval_report.md`](reports/non_procurement_mapping_eval_report.md)。最新 evaluator 记录 35/35 packages 通过、average recall `0.6096598639455783`、review-required 59、required missing 4、strict pass 17/35、badcase violations 0。
-
-## 快速开始
-
-从仓库根目录运行统一验证：
+最近一次完整本地验证命令：
 
 ```powershell
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
+Push-Location frontend
+npm.cmd test
+Pop-Location
 ```
 
-一键启动本地开发环境：
+已知结果：
+
+- Backend pytest：`713 passed`
+- Backend Ruff：`clean`
+- Frontend production build：`successful`
+- Frontend tests：`24 passed / 8 files`
+- OpenAPI export：`63 paths` 写入 [`docs/openapi.json`](docs/openapi.json)
+
+## 评测证据
+
+### Real-world corpus
+
+- 数据集：60 个 UIR，覆盖 general、meeting、policy、procurement 四类真实样例。
+- 全链路：60/60 import，60/60 task execution，60/60 package verification。
+- Mapping：overall recall `0.6831896552`，validation pass 40/60，badcase violations 0。
+- 证据文件：
+  - [`reports/real_world_eval_report.json`](reports/real_world_eval_report.json)
+  - [`reports/real_world_mapping_eval_report.json`](reports/real_world_mapping_eval_report.json)
+
+### 非采购语义专项
+
+当前 Phase I 记录：
+
+- Dataset size：50
+- Average recall：`0.8063730159`
+- Strict pass：47/50
+- Required missing：2
+- Review-required：16
+- Package verification：50/50
+- Badcase violations：0
+
+主要剩余缺口集中在 `policy_doc` 的 issuer / publish_date 和少数长尾字段。详见 [`reports/phase_i_non_procurement_mapping_eval_report.json`](reports/phase_i_non_procurement_mapping_eval_report.json)。
+
+### Lineage 与下游契约
+
+- Lineage report：status `passed`，field/chunk/artifact coverage 均为 1.0，broken edges 0，secret leaks 0，LLM auto accepted 0。
+- Downstream contract：45/45 packages passed，0 failures。
+- 证据文件：
+  - [`reports/lineage_eval_report.json`](reports/lineage_eval_report.json)
+  - [`reports/downstream_contract_eval_report.json`](reports/downstream_contract_eval_report.json)
+
+### 安全与治理
+
+- UIR Quality Gate：60 total，12 pass，48 review，0 reject，0 unsupported。
+- DeepSeek provider smoke：passed，suggestion_count 2，secret leaks 0。
+- Review judge dry-run / safe apply：不自动 approve，不自动写入生产规则。
+- Secret redaction audit：passed。
+
+## 快速开始
+
+### 一键启动本地开发环境
 
 ```powershell
 .\scripts\start_dev.ps1
 ```
 
-该脚本会打开两个 PowerShell 窗口：一个运行 backend API，另一个运行 frontend workbench，并自动打开 `http://127.0.0.1:5173/`。停止时关闭两个新窗口，或分别按 `Ctrl+C`。
+默认会启动：
 
-常用选项：
+- Backend API：`http://127.0.0.1:8000`
+- Frontend workbench：`http://127.0.0.1:5173`
+
+常用参数：
 
 ```powershell
 .\scripts\start_dev.ps1 -NoBrowser
 .\scripts\start_dev.ps1 -BackendPort 8000 -FrontendPort 5173
 ```
 
-手动启动后端的备用方式：
+### 手动启动
+
+后端：
 
 ```powershell
 cd backend
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-另开一个终端启动前端：
+前端：
 
 ```powershell
 cd frontend
@@ -78,95 +141,44 @@ npm ci
 npm run dev
 ```
 
-打开本地工作台：
-
-```text
-http://127.0.0.1:5173/
-```
-
-容器方式：
+### 容器启动
 
 ```powershell
 docker compose up --build
 ```
 
-打开容器化工作台：
+容器化工作台默认地址：
 
 ```text
 http://127.0.0.1:8080/
 ```
 
-## 统一验证
+## 常用验证命令
 
-权威验证命令为：
+仓库级验证：
 
 ```powershell
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-2026-07-06 已验证基线：
-
-- Backend pytest：567 passed。
-- Ruff：clean。
-- Frontend tests：24 passed。
-- Frontend production build：successful。
-- OpenAPI export：63 paths 写入 [`docs/openapi.json`](docs/openapi.json)。
-
-## 文档地图
-
-- 当前实施状态与文档口径：[`docs/交接/project_status.md`](docs/交接/project_status.md)、[`docs/README.md`](docs/README.md)
-- 网页工作台新手使用教程：[`docs/user_web_workbench_guide.md`](docs/user_web_workbench_guide.md)
-- 当前交接入口：[`docs/交接/README.md`](docs/交接/README.md)
-- 历史交接汇总：[`docs/交接/final_handoff_status.md`](docs/交接/final_handoff_status.md)
-- Demo workflow：[`docs/demo_workflow.md`](docs/demo_workflow.md)
-- Final demo script：[`docs/交接/final_demo_script.md`](docs/交接/final_demo_script.md)
-- Developer guide：[`docs/developer_guide.md`](docs/developer_guide.md)
-- Deployment guide：[`docs/deployment.md`](docs/deployment.md)
-- API workflow 与 snapshot：[`docs/openapi_workflow.md`](docs/openapi_workflow.md)、[`docs/openapi.json`](docs/openapi.json)
-- API examples：[`docs/api_usage_examples.md`](docs/api_usage_examples.md)
-- Requirement mapping：[`docs/交接/requirement_mapping.md`](docs/交接/requirement_mapping.md)
-- Badcase analysis：[`docs/交接/badcase_analysis.md`](docs/交接/badcase_analysis.md)
-- Package specification：[`docs/package_spec.md`](docs/package_spec.md)
-- Real-world UIR dataset guide：[`docs/real_world_uir_dataset.md`](docs/real_world_uir_dataset.md)
-- Real-world knowledge-loop guide：[`docs/real_world_knowledge_loop.md`](docs/real_world_knowledge_loop.md)
-- 非采购 recall 计划与验收证据：[`docs/non_procurement_mapping_improvement_plan.md`](docs/non_procurement_mapping_improvement_plan.md)、[`reports/non_procurement_acceptance_report.md`](reports/non_procurement_acceptance_report.md)
-
-## 生产边界
-
-- 生产输入是 UIR。Raw PDF、Word、Excel、image、scan 和 OCR parsing 不在生产运行时边界内。
-- Real-world source collection 与 UIR-building scripts 是离线数据集工具，不是运行时 ingestion service。
-- 非采购 real-world 样本可以产生 verifier-passing packages，但仍需 Review，不能声明 strict field validity。
-- 可选 LLM fallback 仅作为 suggestion source。它不会自动接受 mapping；provider failure 会变成 warning/review item，除非显式请求 strict failure。
-- Retrieval 与 Mapping evaluations 是确定性项目证据，不是完整 RAG service、model-training pipeline、hosted credential service、SSO/TLS stack、tenant system 或 enterprise model-monitoring platform。
-
-## 五项深化证据
-
-- Real-world UIR dataset：45 个 public-source documents；45/45 import、execution 和 package verification。
-- 非采购 mapping：35 个 general/meeting/policy documents；average recall `0.6097`，strict pass 17/35，review-required 59，required missing 4，badcase violations 0，package verification 35/35。
-- Content organization：5 种 chunk strategies，以及 summary-faithfulness 和 tag-quality reports。
-- Knowledge growth：可复现的 review -> candidate -> draft -> active loop；review-required 5 -> 4，old snapshot unchanged，badcase/reject activation 0。
-- Downstream consumption：structured CSV 和 RAG JSONL exporters；45/45 packages 通过 consumer contract。
+前端测试：
 
 ```powershell
-backend\.venv\Scripts\python.exe scripts\eval_review_knowledge_growth.py
-backend\.venv\Scripts\python.exe scripts\eval_content_strategy_comparison.py
-backend\.venv\Scripts\python.exe scripts\eval_summary_faithfulness.py
-backend\.venv\Scripts\python.exe scripts\eval_content_tag_quality.py
-backend\.venv\Scripts\python.exe scripts\verify_downstream_contract.py --packages-root reports\real_world_packages --out reports\downstream_contract_eval_report.json --markdown reports\downstream_contract_eval_report.md
+Push-Location frontend
+npm.cmd test
+Pop-Location
 ```
 
-## Consumer Contracts 与集成工具
-
-`contracts/` 提供 RAG corpus、training corpus、structured CSV 与 package
-`1.1` 四份版本化契约。统一 verifier 可校验单个 ZIP 或递归批量校验：
+下游契约验证示例：
 
 ```powershell
-backend\.venv\Scripts\python.exe scripts\verify_consumer_contract.py `
-  --package reports\integration\standard_package.zip `
-  --contract contracts\rag_corpus_contract_v1.json `
-  --out reports\consumer_contract_report.json `
-  --markdown reports\consumer_contract_report.md
+backend\.venv\Scripts\python.exe scripts\verify_downstream_contract.py `
+  --packages-root reports\real_world_packages `
+  --out reports\downstream_contract_eval_report.json `
+  --markdown reports\downstream_contract_eval_report.md
 ```
+
+## CLI 与 SDK
 
 统一 CLI 可串联 External UIR 到 Package：
 
@@ -178,62 +190,28 @@ backend\.venv\Scripts\python.exe scripts\schemapack_cli.py execute-task --task-i
 backend\.venv\Scripts\python.exe scripts\schemapack_cli.py download-package --task-id TASK_ID --out standard_package.zip
 ```
 
-Python SDK 位于 [`sdk/python`](sdk/python)，Adapter scaffold 位于
-[`templates/adapter_plugin`](templates/adapter_plugin)。脚手架不会自动注册或执行
-adapter；生成代码必须补充 fixtures、badcases 与评测后再人工接入 registry。
-## External UIR API/UI MVP
+Python SDK 位于 [`sdk/python`](sdk/python)。Adapter scaffold 位于 [`templates/adapter_plugin`](templates/adapter_plugin)。
 
-The project includes an External UIR Adapter path for upstream systems that
-already emit External UIR JSON. The flow is intentionally manual:
+## 文档地图
 
-```text
-External UIR JSON -> convert & route -> preview -> import standard UIR -> create task -> execute existing pipeline
-```
+- 当前状态入口：[`docs/交接/project_status.md`](docs/交接/project_status.md)
+- 课题 5 需求映射：[`docs/交接/requirement_mapping.md`](docs/交接/requirement_mapping.md)
+- 当前验收报告：[`docs/交接/acceptance_report.md`](docs/交接/acceptance_report.md)
+- 最终演示脚本：[`docs/交接/final_demo_script.md`](docs/交接/final_demo_script.md)
+- 工作台使用指南：[`docs/user_web_workbench_guide.md`](docs/user_web_workbench_guide.md)
+- API 示例：[`docs/api_usage_examples.md`](docs/api_usage_examples.md)
+- OpenAPI：[`docs/openapi.json`](docs/openapi.json)
+- Package 规范：[`docs/package_spec.md`](docs/package_spec.md)
+- External UIR 集成：[`docs/external_uir_integration.md`](docs/external_uir_integration.md)
+- Lineage：[`docs/lineage.md`](docs/lineage.md)
+- 部署说明：[`docs/deployment.md`](docs/deployment.md)
 
-Backend endpoints:
+## 项目边界
 
-- `POST /api/v1/external-uir/convert`
-- `POST /api/v1/external-uir/import`
-- `POST /api/v1/external-uir/create-task`
-
-The frontend workbench includes an `External UIR Adapter` panel for paste/upload,
-conversion preview, import, and task creation. DeepSeek assistance is disabled
-by default and only records adapter suggestions; it does not auto-accept
-mappings, activate schemas/templates, create tasks, or execute tasks.
-
-## Optional Raw Document Upstream
-
-Phase 8 adds offline, opt-in entry scripts for Docling and Unstructured. The
-providers are imported lazily and are not part of the backend runtime
-requirements:
-
-```powershell
-backend\.venv\Scripts\python.exe scripts\upstream_docling_to_external_uir.py `
-  examples\raw_upstream\sample_policy.pdf `
-  --out examples\raw_upstream\sample_policy_external_uir.json `
-  --report reports\raw_upstream\sample_policy_report.json
-```
-
-If an optional provider is absent, supported text-layer PDF, DOCX, and HTML
-inputs can use the existing deterministic extractors. Scanned PDFs remain
-unsupported: no OCR is installed or invoked. Output is block-list External UIR
-and must continue through Convert -> Preview -> Import -> Create Task.
-
-## SchemaPack-Lineage
-
-Task execution now emits field/block/chunk/artifact trace graphs by default
-(`enable_lineage=true`, `strict_lineage=false`). The frontend “可信链路” panel
-queries the full graph or bounded field/chunk/artifact subgraphs and displays
-accepted, review-required and badcase-blocked states with explicit text labels.
-
-Lineage is report-only and never changes mapping or package results. The MVP
-keeps `lineage_graph.json` and `lineage_summary.json` as task reports instead of
-ZIP members, avoiding manifest checksum self-reference while preserving the
-Package 1.1 contract. See [docs/lineage.md](docs/lineage.md).
-
-Generated evidence:
-
-- `reports/lineage_eval_report.json` / `.md`
-- `reports/lineage_demo_report.json` / `.md`
-- Evaluation Center lineage gates: parse `1.0`, broken edges `0`, secret leaks
-  `0`, field coverage `>= 0.90`
+- 不提供生产级 raw PDF / Word / Excel / image upload API。
+- 不实现 OCR 或扫描件识别。
+- 不包含完整 RAG / vector database。
+- 不包含模型训练或 fine-tuning。
+- 不实现企业级 SSO、tenant-aware authorization、TLS termination、managed secret storage、hosted credential provisioning 或企业级 model/provider monitoring。
+- Package Verification 证明包结构、hash、required artifacts、parseability 和 traceability，不等同于每个字段语义都完全正确。
+- Gold labels 与 badcases 是课程项目规模评测资产，不是企业级 benchmark。
