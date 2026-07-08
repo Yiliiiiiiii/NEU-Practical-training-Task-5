@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Annotated
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Query
@@ -41,8 +42,33 @@ def get_review_workbench_service(
 def list_reviews(
     service: Annotated[ReviewKnowledgeWorkflowService, Depends(get_review_workflow_service)],
     status: Annotated[str | None, Query()] = None,
+    run_id: Annotated[str | None, Query()] = None,
+    dataset_id: Annotated[str | None, Query()] = None,
+    dataset_split: Annotated[str | None, Query()] = None,
+    task_batch_id: Annotated[str | None, Query()] = None,
+    doc_ids: Annotated[list[str] | None, Query()] = None,
+    doc_type: Annotated[str | None, Query()] = None,
+    schema_id: Annotated[str | None, Query()] = None,
+    created_after: Annotated[datetime | None, Query()] = None,
+    created_before: Annotated[datetime | None, Query()] = None,
+    include_historical: Annotated[bool, Query()] = True,
 ) -> ReviewListResponse:
-    records = service.list_reviews(status=status)
+    try:
+        records = service.list_reviews(
+            status=status,
+            run_id=run_id,
+            dataset_id=dataset_id,
+            dataset_split=dataset_split,
+            task_batch_id=task_batch_id,
+            doc_ids=doc_ids,
+            doc_type=doc_type,
+            schema_id=schema_id,
+            created_after=created_after,
+            created_before=created_before,
+            include_historical=include_historical,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     return ReviewListResponse(
         items=[review_response(record) for record in records],
         total=len(records),

@@ -138,6 +138,72 @@ class CandidateService:
         "咨询电话": ("contact", "contact_section"),
         "联系方式": ("contact", "contact_section"),
     }
+    GENERAL_CONTACT_LABELS = {
+        "咨询电话",
+        "联系电话",
+        "咨询方式",
+        "办理窗口电话",
+        "服务热线",
+        "服务电话",
+        "电话",
+    }
+    GENERAL_SERVICE_OBJECT_LABELS = {
+        "服务对象",
+        "适用对象",
+        "申请对象",
+        "办理对象",
+        "面向对象",
+        "申报主体",
+        "可申请主体",
+    }
+    GENERAL_PROCESS_LABELS = {
+        "办理流程",
+        "申请流程",
+        "申报流程",
+        "流程步骤",
+        "申报方式",
+    }
+    POLICY_PUBLISH_LABELS = {"发布时间", "发布日期", "公开日期"}
+    POLICY_ISSUER_LABELS = {
+        "发文机关",
+        "发布机关",
+        "印发机关",
+        "联合发布机构",
+        "制定机关",
+    }
+    POLICY_TARGET_AUDIENCE_LABELS = {
+        "适用对象",
+        "支持对象",
+        "服务对象",
+        "面向对象",
+        "申报主体",
+        "实施对象",
+        "受益群体",
+        "补贴对象",
+    }
+    POLICY_MEASURE_SECTION_NAMES = {
+        "支持措施",
+        "政策措施",
+        "主要措施",
+        "重点任务",
+        "支持内容及标准",
+        "补贴范围和标准",
+        "免征增值税项目",
+        "奖励标准",
+        "扶持条款",
+        "主要内容",
+        "修订条款",
+        "活动内容",
+    }
+    POLICY_SECTION_BOUNDARY_NAMES = {
+        *POLICY_MEASURE_SECTION_NAMES,
+        "申报材料",
+        "申请材料",
+        "监督管理",
+        "附则",
+        "联系方式",
+        "适用简易计税方法项目",
+    }
     FULL_DATE_PATTERN = (
         r"(?:\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
         r"|[二〇○零一二三四五六七八九十]{4}\s*年\s*"
@@ -1033,6 +1099,9 @@ class CandidateService:
             (re.compile(r"会议纪要第\s*(\d+)\s*期"), "期"),
             (re.compile(r"第\s*(\d+)\s*号会议纪要"), "号"),
         )
+        document_number_pattern = re.compile(
+            r"(?P<value>[\u4e00-\u9fff]{1,12}〔20\d{2}〕\s*\d+\s*号)"
+        )
         chair_pattern = re.compile(
             r"(?:县委副书记、代县长|区政府党组书记、区长|市委副书记、市长|"
             r"县委副书记、县长|县长|区长|市长)?"
@@ -1078,7 +1147,13 @@ class CandidateService:
                             source_blocks=[block.block_id],
                             source_kind="meeting_opening_full_number_alias",
                             seen_names=seen_names,
-                            confidence=0.91 if title_contains_full_number else 0.89,
+                            confidence=(
+                                0.88
+                                if re.search(r"20\d{2}年", full_number)
+                                else 0.91
+                                if title_contains_full_number
+                                else 0.89
+                            ),
                             target_hints=["meeting_number"],
                             evidence_type="meeting_number_pattern",
                         )
@@ -1112,6 +1187,28 @@ class CandidateService:
                         confidence=0.9,
                     )
                 )
+            if not any(item.display_name == "meeting_number" for item in candidates):
+                document_number_match = document_number_pattern.search(text)
+                if document_number_match is not None:
+                    document_number = re.sub(
+                        r"\s+", "", document_number_match.group("value")
+                    )
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#meeting_number",
+                            source_name=document_number,
+                            value=document_number,
+                            source_blocks=[block.block_id],
+                            source_kind="meeting_document_number_pattern",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="meeting_number",
+                            target_hints=["meeting_number"],
+                            evidence_type="meeting_number_pattern",
+                        )
+                    )
             chair_match = chair_pattern.search(text)
             if chair_match is not None and not any(
                 item.display_name == "chairperson" for item in candidates
@@ -1207,6 +1304,52 @@ class CandidateService:
                         target_hints=["attendees"],
                         evidence_type="mixed_attendees_sentence",
                         quality_flags=["medium_risk_mixed_attendee_roles"],
+                    )
+                )
+            department_attendees_match = re.search(
+                r"(?P<attendees>各乡镇、各部门单位)",
+                text,
+            )
+            if department_attendees_match is not None:
+                attendees = department_attendees_match.group("attendees")
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#attendees",
+                        source_name=attendees,
+                        value=attendees,
+                        source_blocks=[block.block_id],
+                        source_kind="department_attendees_sentence",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="attendees",
+                        target_hints=["attendees"],
+                        evidence_type="mixed_attendees_sentence",
+                        quality_flags=["medium_risk_department_attendees"],
+                    )
+                )
+            source_match = re.fullmatch(
+                r"来源\s*[:：]\s*(?P<organizer>[^，。；;\n]{2,80})",
+                text,
+            )
+            if source_match is not None:
+                organizer = source_match.group("organizer").strip()
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#organizer",
+                        source_name=organizer,
+                        value=organizer,
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_source_organizer",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="organizer",
+                        target_hints=["organizer"],
+                        evidence_type="meeting_source_organizer",
+                        quality_flags=["medium_risk_source_organizer"],
                     )
                 )
         return candidates
@@ -1482,6 +1625,12 @@ class CandidateService:
             r"(?P<value>20\d{2}年\d{1,2}月\d{1,2}日"
             r"(?:\d{1,2}:\d{2})?)"
         )
+        labeled_field_pattern = re.compile(
+            r"^\s*(?P<label>咨询电话|联系电话|咨询方式|办理窗口电话|服务热线|服务电话|电话|"
+            r"服务对象|适用对象|申请对象|办理对象|面向对象|申报主体|可申请主体|"
+            r"办理流程|申请流程|申报流程|流程步骤|申报方式)"
+            r"\s*[:：]\s*(?P<value>.{1,1000})\s*$"
+        )
         for index, block in enumerate(uir.blocks):
             text = block.text.strip() if isinstance(block.text, str) else ""
             section_name = re.sub(
@@ -1562,6 +1711,72 @@ class CandidateService:
                             inferred_type=(
                                 "list_like"
                                 if target_field in {"application_materials", "process_steps"}
+                                else None
+                            ),
+                    )
+                )
+            labeled_field = labeled_field_pattern.search(text)
+            if labeled_field is not None:
+                label = labeled_field.group("label")
+                value = labeled_field.group("value").strip()
+                if label in self.GENERAL_CONTACT_LABELS:
+                    quality_flags = (
+                        ["medium_risk_garbled_contact"]
+                        if "?" in value or "？" in value
+                        else []
+                    )
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#contact",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="general_contact_label",
+                            seen_names=seen_names,
+                            confidence=0.86 if not quality_flags else 0.62,
+                            display_name="contact",
+                            target_hints=["contact"],
+                            evidence_type="general_contact_label",
+                            quality_flags=quality_flags,
+                        )
+                    )
+                elif label in self.GENERAL_SERVICE_OBJECT_LABELS:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#service_object",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="service_object_labeled_sentence",
+                            seen_names=seen_names,
+                            confidence=0.86,
+                            display_name="service_object",
+                            target_hints=["service_object"],
+                            evidence_type="service_object_labeled_sentence",
+                        )
+                    )
+                elif label in self.GENERAL_PROCESS_LABELS:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#process_steps",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="process_steps_labeled_sentence",
+                            seen_names=seen_names,
+                            confidence=0.86,
+                            display_name="process_steps",
+                            target_hints=["process_steps"],
+                            evidence_type="process_steps_labeled_sentence",
+                            inferred_type=(
+                                "list_like"
+                                if "→" in value or "；" in value or ";" in value
                                 else None
                             ),
                         )
@@ -1913,13 +2128,14 @@ class CandidateService:
             self.normalize_name(candidate.source_name) for candidate in existing_candidates
         }
         has_issuer = bool(existing_names.intersection(self.POLICY_ISSUER_SOURCE_NAMES))
-        has_explicit_publication_evidence = any(
+        has_explicit_publication_block_evidence = any(
             re.search(
                 r"(?:发布日期|发布时间)\s*[:：]",
                 self._block_text(block.text, block.attributes),
             )
             for block in blocks
-        ) or any(
+        )
+        has_explicit_publication_evidence = has_explicit_publication_block_evidence or any(
             self.normalize_name(key)
             in {
                 "publishdate",
@@ -2042,6 +2258,87 @@ class CandidateService:
 
         for block in blocks:
             text = block.text.strip() if isinstance(block.text, str) else ""
+            label_value_match = re.fullmatch(
+                r"(?P<label>[\u4e00-\u9fffA-Za-z0-9（）()]{2,20})"
+                r"\s*[:：]\s*(?P<value>.{1,1000})",
+                text,
+            )
+            if label_value_match is not None:
+                label = label_value_match.group("label")
+                value = label_value_match.group("value").strip().rstrip("。；;")
+                if label in self.POLICY_PUBLISH_LABELS:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_publish_date_label",
+                            seen_names=seen_names,
+                            confidence=0.9,
+                            display_name="publish_date",
+                            target_hints=["publish_date"],
+                            evidence_type="policy_publish_date_label",
+                        )
+                    )
+                elif (
+                    label in {"成文日期", "印发日期", "发文日期"}
+                    and not has_explicit_publication_block_evidence
+                ):
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_issue_date_review",
+                            seen_names=seen_names,
+                            confidence=0.66,
+                            display_name="publish_date",
+                            target_hints=["publish_date"],
+                            evidence_type="policy_signature_date_review",
+                            quality_flags=["medium_risk_issue_date_for_publish"],
+                        )
+                    )
+                elif label in self.POLICY_ISSUER_LABELS:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#issuer",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_issuer_label",
+                            seen_names=seen_names,
+                            confidence=0.88,
+                            display_name="issuer",
+                            target_hints=["issuer"],
+                            evidence_type="policy_issuer_label",
+                        )
+                    )
+                    has_issuer = True
+                elif label in self.POLICY_TARGET_AUDIENCE_LABELS:
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#target_audience",
+                            source_name=label,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_target_audience_label",
+                            seen_names=seen_names,
+                            confidence=0.88,
+                            display_name="target_audience",
+                            target_hints=["target_audience"],
+                            evidence_type="policy_target_audience_label",
+                        )
+                    )
             match = re.fullmatch(r"发布机构\s*[:：]\s*(?P<value>[^，。；;\n]{2,100})", text)
             if match is None:
                 continue
@@ -2113,6 +2410,10 @@ class CandidateService:
             if header_match is not None:
                 issuer = re.sub(r"\s+", " ", header_match.group("issuer")).strip()
                 if self._policy_organizations(issuer):
+                    number_match = re.search(
+                        r"(?P<number>(?:公告|令)\s*20\d{2}\s*年第\s*\d+\s*号)",
+                        text,
+                    )
                     candidates.append(
                         self._candidate(
                             task_id=task_id,
@@ -2146,6 +2447,24 @@ class CandidateService:
                             quality_flags=["synthetic_alias"],
                         )
                     )
+                    if number_match is not None:
+                        number = re.sub(r"\s+", "", number_match.group("number"))
+                        candidates.append(
+                            self._candidate(
+                                task_id=task_id,
+                                uir=uir,
+                                source_path=f"$.blocks.{block.block_id}.text#document_number",
+                                source_name=number,
+                                value=number,
+                                source_blocks=[block.block_id],
+                                source_kind="policy_announcement_header_number",
+                                seen_names=seen_names,
+                                confidence=0.9,
+                                display_name="document_number",
+                                target_hints=["document_number"],
+                                evidence_type="policy_document_number",
+                            )
+                        )
                     break
 
         for block in blocks:
@@ -2192,9 +2511,26 @@ class CandidateService:
                         display_name="publish_date",
                         target_hints=["publish_date"],
                         evidence_type="policy_signature_date",
-                        quality_flags=["medium_risk_signature_date"],
                     )
                 )
+                title = uir.metadata.get("title")
+                if isinstance(title, str) and title.strip():
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                            source_name=date_value,
+                            value=date_value,
+                            source_blocks=[block.block_id],
+                            source_kind="policy_signature_date_named",
+                            seen_names=seen_names,
+                            confidence=0.91,
+                            display_name="publish_date",
+                            target_hints=["publish_date"],
+                            evidence_type="policy_signature_date",
+                        )
+                    )
             break
 
         for block in blocks:
@@ -2223,6 +2559,74 @@ class CandidateService:
                 )
             )
             break
+
+        for index, block in enumerate(blocks):
+            text = block.text.strip() if isinstance(block.text, str) else ""
+            section_name = re.sub(
+                r"^\s*第[一二三四五六七八九十\d]+[章节条]\s*", "", text
+            ).strip()
+            section_name = re.split(
+                r"\s+第[一二三四五六七八九十\d]+条", section_name, maxsplit=1
+            )[0].strip()
+            section_name = re.sub(
+                r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*",
+                "",
+                section_name,
+            ).strip()
+            section_name = re.sub(r"[（(].*?[）)]", "", section_name).strip()
+            section_name = section_name.replace("的项目", "项目")
+            if section_name not in self.POLICY_MEASURE_SECTION_NAMES:
+                continue
+            body_blocks: list[str] = []
+            body_text: list[str] = []
+            for child in blocks[index + 1 : index + 12]:
+                child_text = (
+                    child.text.strip() if isinstance(child.text, str) else ""
+                )
+                child_section = re.sub(
+                    r"^\s*第[一二三四五六七八九十\d]+[章节条]\s*", "",
+                    child_text,
+                ).strip()
+                child_section = re.sub(
+                    r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*",
+                    "",
+                    child_section,
+                ).strip()
+                child_section = child_section.replace("的项目", "项目")
+                if (
+                    child.type.lower() in {"heading", "title"}
+                    and child_section in self.POLICY_SECTION_BOUNDARY_NAMES
+                ):
+                    break
+                if child_section in self.POLICY_SECTION_BOUNDARY_NAMES:
+                    break
+                if child.type.lower() in {"heading", "title"} and body_text:
+                    break
+                value = self._block_text(child.text, child.attributes)
+                if value:
+                    body_blocks.append(child.block_id)
+                    body_text.append(value)
+            if body_text or block.type.lower() == "paragraph":
+                section_value = "\n".join(body_text) if body_text else text
+                section_blocks = [block.block_id, *body_blocks]
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.section#policy_measures",
+                        source_name=section_name,
+                        value=section_value,
+                        source_blocks=section_blocks,
+                        source_kind="policy_measures_section",
+                        seen_names=seen_names,
+                        confidence=0.88,
+                        display_name="policy_measures",
+                        target_hints=["policy_measures"],
+                        evidence_type="policy_measures_section",
+                        inferred_type="list_like",
+                    )
+                )
+                break
 
         if not has_issuer:
             title = uir.metadata.get("title")
@@ -2343,7 +2747,6 @@ class CandidateService:
                             display_name="publish_date",
                             target_hints=["publish_date"],
                             evidence_type="policy_signature_date",
-                            quality_flags=["medium_risk_signature_date"],
                         )
                     break
 
@@ -2484,6 +2887,84 @@ class CandidateService:
                         evidence_type="policy_legal_basis_sentence",
                     )
                 )
+            if text.startswith("第一条") and "制定本法" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#policy_measures",
+                        source_name="制定本法",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_measure_enactment_purpose",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="policy_measures",
+                        target_hints=["policy_measures"],
+                        evidence_type="policy_measures_section",
+                    )
+                )
+            support_match = re.match(
+                r"(?:[一二三四五六七八九十]+[、.．]\s*)?(支持内容及标准)\b",
+                text,
+            )
+            if support_match is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#policy_measures",
+                        source_name=support_match.group(1),
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_support_content_section",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="policy_measures",
+                        target_hints=["policy_measures"],
+                        evidence_type="policy_measures_section",
+                    )
+                )
+            if "部分条款" in text and "修订" in text and "具体如下" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#policy_measures",
+                        source_name="修订条款",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_revision_terms",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="policy_measures",
+                        target_hints=["policy_measures"],
+                        evidence_type="policy_measures_section",
+                    )
+                )
+            revision_history_match = re.search(
+                rf"(?P<date>{self.FULL_DATE_PATTERN})[^。；;]{{0,40}}?通过",
+                text,
+            )
+            if revision_history_match is not None:
+                date_value = re.sub(r"\s+", "", revision_history_match.group("date"))
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                        source_name=f"{date_value}通过",
+                        value=date_value,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_revision_history_date",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="policy_signature_date_review",
+                        quality_flags=["medium_risk_revision_history_date"],
+                    )
+                )
             if "负责制定" in text and "按照职责分工负责" in text:
                 candidates.append(
                     self._candidate(
@@ -2504,14 +2985,16 @@ class CandidateService:
                     )
                 )
             effective_match = re.search(
-                r"自\s*(?P<year>20\d{2})\s*年\s*(?P<month>\d{1,2})\s*月\s*(?P<day>\d{1,2})\s*日起施行",
+                r"自\s*(?P<year>20\d{2})\s*年\s*(?P<month>\d{1,2})\s*月\s*(?P<day>\d{1,2})\s*日"
+                r"\s*起\s*(?P<verb>施行|执行|生效)",
                 text,
             )
             if effective_match is not None:
                 effective_source = (
                     f"自{effective_match.group('year')}年"
                     f"{int(effective_match.group('month'))}月"
-                    f"{int(effective_match.group('day'))}日起施行"
+                    f"{int(effective_match.group('day'))}日起"
+                    f"{effective_match.group('verb')}"
                 )
                 effective_value = (
                     f"{effective_match.group('year')} 年 "
@@ -2532,6 +3015,213 @@ class CandidateService:
                         display_name="effective_date",
                         target_hints=["effective_date"],
                         evidence_type="policy_effective_date_sentence",
+                    )
+                )
+            effective_period_match = re.search(
+                r"自\s*(?P<start_year>20\d{2})\s*年\s*(?P<start_month>\d{1,2})\s*月\s*(?P<start_day>\d{1,2})\s*日"
+                r"\s*至\s*(?P<end_year>20\d{2})\s*年\s*(?P<end_month>\d{1,2})\s*月\s*(?P<end_day>\d{1,2})\s*日",
+                text,
+            )
+            if effective_period_match is not None:
+                source_name = (
+                    f"自{effective_period_match.group('start_year')}年"
+                    f"{int(effective_period_match.group('start_month'))}月"
+                    f"{int(effective_period_match.group('start_day'))}日至"
+                    f"{effective_period_match.group('end_year')}年"
+                    f"{int(effective_period_match.group('end_month'))}月"
+                    f"{int(effective_period_match.group('end_day'))}日"
+                )
+                start_date = (
+                    f"{effective_period_match.group('start_year')}年"
+                    f"{int(effective_period_match.group('start_month'))}月"
+                    f"{int(effective_period_match.group('start_day'))}日"
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#effective_date",
+                        source_name=source_name,
+                        value=source_name,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_effective_period_sentence",
+                        seen_names=seen_names,
+                        confidence=0.9,
+                        display_name="effective_date",
+                        target_hints=["effective_date"],
+                        evidence_type="policy_effective_date_sentence",
+                    )
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#publish_date",
+                        source_name=start_date,
+                        value=start_date,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_effective_period_start_review",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="publish_date",
+                        target_hints=["publish_date"],
+                        evidence_type="policy_signature_date_review",
+                        quality_flags=["medium_risk_effective_period_start_for_publish"],
+                    )
+                )
+            partial_effective_match = re.search(
+                r"(?P<month>\d{1,2})\s*月\s*(?P<day>\d{1,2})\s*日\s*(?P<verb>生效|施行|执行)",
+                text,
+            )
+            if partial_effective_match is not None:
+                source_name = (
+                    f"{int(partial_effective_match.group('month'))}月"
+                    f"{int(partial_effective_match.group('day'))}日"
+                    f"{partial_effective_match.group('verb')}"
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#effective_date",
+                        source_name=source_name,
+                        value=source_name,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_partial_effective_date_sentence",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="effective_date",
+                        target_hints=["effective_date"],
+                        evidence_type="policy_effective_date_sentence",
+                    )
+                )
+            relative_effective_match = re.search(
+                r"自(?:发布|印发|公布)之日起(?:施行|执行|生效)",
+                text,
+            )
+            if relative_effective_match is not None:
+                source_name = relative_effective_match.group(0)
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#effective_date",
+                        source_name=source_name,
+                        value=source_name,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_relative_effective_date_sentence",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="effective_date",
+                        target_hints=["effective_date"],
+                        evidence_type="policy_effective_date_sentence",
+                        quality_flags=["relative_effective_date_requires_review"],
+                    )
+                )
+            valid_until_match = re.search(
+                r"(?:有效期至|执行至|实施至)\s*"
+                r"(?P<year>20\d{2})\s*年\s*(?P<month>\d{1,2})\s*月\s*(?P<day>\d{1,2})\s*日",
+                text,
+            )
+            if valid_until_match is not None:
+                valid_until_value = (
+                    f"{valid_until_match.group('year')}年"
+                    f"{int(valid_until_match.group('month'))}月"
+                    f"{int(valid_until_match.group('day'))}日"
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#valid_until",
+                        source_name="有效期至",
+                        value=valid_until_value,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_valid_until_sentence",
+                        seen_names=seen_names,
+                        confidence=0.88,
+                        display_name="valid_until",
+                        target_hints=["valid_until"],
+                        evidence_type="policy_valid_until_sentence",
+                    )
+                )
+            open_valid_until_match = re.search(
+                r"实施至[^，。；;\n]{2,40}?截止",
+                text,
+            )
+            if open_valid_until_match is not None:
+                source_name = open_valid_until_match.group(0)
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#valid_until",
+                        source_name=source_name,
+                        value=source_name,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_open_valid_until_sentence",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="valid_until",
+                        target_hints=["valid_until"],
+                        evidence_type="policy_valid_until_sentence",
+                        quality_flags=["open_ended_valid_until_requires_review"],
+                    )
+                )
+            notice_addressee_match = re.fullmatch(
+                r"(?P<value>各有关单位|各有关部门|各单位|各部门)\s*[:：].*",
+                text,
+            )
+            if notice_addressee_match is not None:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#target_audience",
+                        source_name=notice_addressee_match.group("value"),
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_notice_addressee",
+                        seen_names=seen_names,
+                        confidence=0.62,
+                        display_name="target_audience",
+                        target_hints=["target_audience"],
+                        evidence_type="policy_notice_addressee",
+                        quality_flags=["medium_risk_notice_addressee"],
+                    )
+                )
+            if not text.startswith("各有关单位") and re.match(r".*各有关单位\s*[:：].*", text):
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#target_audience",
+                        source_name="各有关单位",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_mixed_notice_addressee",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="target_audience",
+                        target_hints=["target_audience"],
+                        evidence_type="policy_addressee_sentence",
+                    )
+                )
+            if "乡" in text and "镇人民政府" in text and "县直有关单位" in text:
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#target_audience",
+                        source_name="各乡镇人民政府等",
+                        value=text,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_county_notice_addressee",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="target_audience",
+                        target_hints=["target_audience"],
+                        evidence_type="policy_addressee_sentence",
                     )
                 )
             if "国信办发文" in compact:
@@ -2566,6 +3256,28 @@ class CandidateService:
                         display_name="target_audience",
                         target_hints=["target_audience"],
                         evidence_type="policy_addressee_sentence",
+                    )
+                )
+            subsidy_scope_match = re.search(
+                r"对(?P<audience>在京个人消费者|个人消费者|中小企业|小微企业)[^。；;]{0,300}?(?:给予|予以|享受|发放)补贴",
+                text,
+            )
+            if subsidy_scope_match is not None:
+                audience = subsidy_scope_match.group("audience")
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#target_audience",
+                        source_name=audience,
+                        value=audience,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_subsidy_scope_audience",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="target_audience",
+                        target_hints=["target_audience"],
+                        evidence_type="policy_target_audience_label",
                     )
                 )
             if text.startswith("各省") and "主管部门" in text and "有关单位" in text:

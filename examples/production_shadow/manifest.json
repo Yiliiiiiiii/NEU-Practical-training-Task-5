@@ -1,0 +1,12 @@
+﻿{
+  "dataset_id": "production_shadow_v1",
+  "split": "blind",
+  "frozen_at": null,
+  "docs": [],
+  "dedupe_against": ["examples/real_world"],
+  "gold_policy": {
+    "requires_two_pass_labeling": true,
+    "allows_runtime_use": false,
+    "used_only_for_evaluation": true
+  }
+}

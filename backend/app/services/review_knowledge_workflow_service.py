@@ -74,11 +74,65 @@ class ReviewKnowledgeWorkflowService:
         self.db.flush()
         return records
 
-    def list_reviews(self, status: str | None = None) -> list[ReviewRecord]:
+    def list_reviews(
+        self,
+        status: str | None = None,
+        *,
+        run_id: str | None = None,
+        dataset_id: str | None = None,
+        dataset_split: str | None = None,
+        task_batch_id: str | None = None,
+        doc_ids: list[str] | None = None,
+        doc_type: str | None = None,
+        schema_id: str | None = None,
+        created_after: datetime | None = None,
+        created_before: datetime | None = None,
+        include_historical: bool = True,
+    ) -> list[ReviewRecord]:
+        explicit_scope = any(
+            [
+                run_id,
+                dataset_id,
+                dataset_split,
+                task_batch_id,
+                doc_ids,
+                doc_type,
+                schema_id,
+                created_after,
+                created_before,
+            ]
+        )
+        if not include_historical and not explicit_scope:
+            raise ValueError(
+                "include_historical=false requires an explicit review scope "
+                "(run_id, dataset_id, doc_ids, doc_type, schema_id, or time window)"
+            )
         statement = select(ReviewRecord).order_by(ReviewRecord.created_at.desc())
         if status:
             statement = statement.where(ReviewRecord.status == status)
-        return list(self.db.scalars(statement))
+        if schema_id:
+            statement = statement.where(ReviewRecord.schema_id == schema_id)
+        if doc_ids:
+            statement = statement.where(ReviewRecord.doc_id.in_(doc_ids))
+        if created_after:
+            statement = statement.where(ReviewRecord.created_at >= created_after)
+        if created_before:
+            statement = statement.where(ReviewRecord.created_at <= created_before)
+        records = list(self.db.scalars(statement))
+        if any([run_id, dataset_id, dataset_split, task_batch_id, doc_type]):
+            records = [
+                record
+                for record in records
+                if self._matches_review_scope(
+                    record,
+                    run_id=run_id,
+                    dataset_id=dataset_id,
+                    dataset_split=dataset_split,
+                    task_batch_id=task_batch_id,
+                    doc_type=doc_type,
+                )
+            ]
+        return records
 
     def get_review(self, review_id: str) -> ReviewRecord:
         record = self.db.get(ReviewRecord, review_id)
@@ -258,6 +312,54 @@ class ReviewKnowledgeWorkflowService:
             "active_packs": sum(1 for pack in packs if pack.status == "active"),
             "archived_packs": sum(1 for pack in packs if pack.status == "archived"),
         }
+
+    def _matches_review_scope(
+        self,
+        record: ReviewRecord,
+        *,
+        run_id: str | None,
+        dataset_id: str | None,
+        dataset_split: str | None,
+        task_batch_id: str | None,
+        doc_type: str | None,
+    ) -> bool:
+        task = self.db.get(ConversionTask, record.task_id)
+        options = self._task_options(task)
+        if run_id and options.get("run_id") != run_id:
+            return False
+        if dataset_id and options.get("dataset_id") != dataset_id:
+            return False
+        if dataset_split and options.get("dataset_split") != dataset_split:
+            return False
+        if task_batch_id and options.get("task_batch_id") != task_batch_id:
+            return False
+        if doc_type and not self._matches_doc_type_scope(record, task, options, doc_type):
+            return False
+        return True
+
+    @staticmethod
+    def _task_options(task: ConversionTask | None) -> dict[str, Any]:
+        if task is None:
+            return {}
+        try:
+            value = json.loads(task.options_json or "{}")
+        except json.JSONDecodeError:
+            return {}
+        return value if isinstance(value, dict) else {}
+
+    @staticmethod
+    def _matches_doc_type_scope(
+        record: ReviewRecord,
+        task: ConversionTask | None,
+        options: dict[str, Any],
+        doc_type: str,
+    ) -> bool:
+        record_schema = record.schema_id or (task.schema_id if task is not None else None)
+        option_doc_type = options.get("doc_type")
+        normalized_scope = doc_type.strip()
+        if normalized_scope == "non_procurement":
+            return record_schema != "procurement_doc" and option_doc_type != "procurement_doc"
+        return option_doc_type == normalized_scope or record_schema == normalized_scope
 
     def pack_items(self, pack_id: str) -> list[KnowledgePackItemRecord]:
         return list(

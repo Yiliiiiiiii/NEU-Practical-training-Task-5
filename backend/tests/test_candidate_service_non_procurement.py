@@ -942,6 +942,80 @@ def test_meeting_number_supports_minutes_issue_patterns() -> None:
     assert number.evidence_type == "meeting_number_pattern"
 
 
+def test_meeting_number_supports_document_number_style_minutes() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "number",
+                "type": "paragraph",
+                "text": "汨政办发〔2026〕8号（关于废止相关文件的通知）",
+            }
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_doc_number", uir)
+    number = next(item for item in candidates if "meeting_number" in item.target_hints)
+
+    assert number.source_name == "汨政办发〔2026〕8号"
+    assert number.value_sample == "汨政办发〔2026〕8号"
+    assert number.source_blocks == ["number"]
+
+
+def test_meeting_number_keeps_short_ordinal_candidate() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "opening",
+                "type": "paragraph",
+                "text": "2026年1月7日，县长主持召开县人民政府2026年第1次常务会议。",
+            }
+        ],
+        metadata={"domain": "meeting_doc", "title": "2026年第1次常务会议"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_short_number", uir)
+    number = next(item for item in candidates if item.source_name == "第1次")
+    assert number.value_sample == "第1次"
+    assert number.target_hints == ["meeting_number"]
+
+
+def test_meeting_topic_preserves_learning_prefix() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "topic",
+                "type": "paragraph",
+                "text": "一、传达学习中央经济工作会议精神和中央农村工作会议精神",
+            }
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_topic_prefix", uir)
+    topic = next(item for item in candidates if item.source_name == "传达学习")
+    assert topic.target_hints == ["topics"]
+    assert topic.source_blocks == ["topic"]
+
+
+def test_meeting_department_attendees_stay_review_required() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "attendees",
+                "type": "paragraph",
+                "text": "会议强调，各乡镇、各部门单位要深入学习贯彻会议精神。",
+            }
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_meeting_dept_attendees", uir)
+    attendees = next(item for item in candidates if item.source_name == "各乡镇、各部门单位")
+    assert attendees.target_hints == ["attendees"]
+    assert "medium_risk_department_attendees" in attendees.quality_flags
+
+
 def test_generic_labeled_meeting_date_keeps_existing_traceable_behavior() -> None:
     candidates = CandidateService().extract_candidates(
         "task_generic_meeting_date",
@@ -961,6 +1035,28 @@ def test_generic_labeled_meeting_date_keeps_existing_traceable_behavior() -> Non
     assert date.value_sample == "2026-06-16"
     assert date.source_blocks == ["date"]
     assert date.evidence_type == "generic_labeled_meeting_date"
+
+
+def test_meeting_source_line_can_support_organizer_review() -> None:
+    candidates = CandidateService().extract_candidates(
+        "task_meeting_source_organizer",
+        make_uir(
+            [
+                {
+                    "block_id": "source",
+                    "type": "paragraph",
+                    "text": "来源：汨罗市人民政府办公室",
+                }
+            ],
+            metadata={"domain": "meeting_doc"},
+        ),
+    )
+
+    organizer = next(item for item in candidates if "organizer" in item.target_hints)
+    assert organizer.source_name == "汨罗市人民政府办公室"
+    assert organizer.value_sample == "汨罗市人民政府办公室"
+    assert organizer.source_blocks == ["source"]
+    assert "medium_risk_source_organizer" in organizer.quality_flags
 
 
 def test_policy_semantic_candidates_preserve_issuer_and_publication_risk() -> None:
@@ -1006,9 +1102,17 @@ def test_policy_semantic_candidates_preserve_issuer_and_publication_risk() -> No
         for item in issuers
     )
     assert not any(item.value_sample == "市政策研究室" for item in issuers)
-    assert [item.value_sample for item in publish_dates] == ["2025-06-01"]
+    authoritative_dates = [
+        item for item in publish_dates if not item.quality_flags
+    ]
+    issue_dates = [
+        item for item in publish_dates if item.source_name == "成文日期"
+    ]
+    assert [item.value_sample for item in authoritative_dates] == ["2025-06-01"]
+    assert issue_dates
+    assert "medium_risk_issue_date_for_publish" in issue_dates[0].quality_flags
+    assert issue_dates[0].source_blocks == ["issue_date"]
     assert publish_dates[0].evidence_type == "official_publication_metadata"
-    assert not any(item.source_blocks == ["issue_date"] for item in publish_dates)
 
 
 def test_general_conditions_and_service_object_emit_list_aware_hints() -> None:
@@ -1632,3 +1736,31 @@ def test_policy_addressee_and_instruction_candidates_are_extracted() -> None:
     assert audience.source_blocks == ["audience"]
     assert measure.target_hints == ["policy_measures"]
     assert measure.source_blocks == ["measure"]
+
+
+def test_policy_mapping_prefers_explicit_issuer_label_over_standalone_body() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "issuer_label",
+                "type": "paragraph",
+                "text": "发文机关：工业和信息化部",
+            },
+            {
+                "block_id": "issuer_signature",
+                "type": "paragraph",
+                "text": "工业和信息化部",
+            },
+        ],
+        metadata={
+            "domain": "policy_doc",
+            "doc_type": "policy_doc",
+            "title": "工业和信息化部关于印发政策的通知",
+            "source_url": "https://example.gov.cn/policy.html",
+        },
+    )
+
+    report = mapping_report(uir, "policy_doc", "policy_doc_base_v1")
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["issuer"]["source_field"]["source_name"] == "发文机关"

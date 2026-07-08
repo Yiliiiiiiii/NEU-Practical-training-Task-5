@@ -54,7 +54,9 @@ class MappingService:
         "extracted from derived_meeting_date_alias",
         "extracted from meeting_opening_alias",
         "extracted from policy_title_issuer_alias",
+        "extracted from policy_standalone_issuer_alias",
         "extracted from policy_signature_issuer_alias",
+        "extracted from policy_announcement_header_issuer_alias",
         "extracted from official_page_url_alias",
         "extracted from official_page_banner_alias",
     }
@@ -585,13 +587,24 @@ class MappingService:
             "official_publication_metadata": 1.0,
             "official_source_url": 1.0,
             "official_source_metadata": 0.85,
-            "official_publication_url": 0.95,
+            "official_publication_url": 0.9,
             "official_attachment_url": 0.95,
             "official_page_banner": 0.95,
             "policy_signature": 0.95,
             "policy_signature_date": 1.0,
             "policy_signature_issuer_alias": 0.35,
+            "policy_publish_date_label": 0.95,
+            "policy_issuer_label": 0.9,
+            "policy_effective_date_sentence": 0.95,
+            "policy_valid_until_sentence": 0.95,
+            "policy_measures_section": 0.95,
+            "policy_document_number": 0.95,
+            "policy_target_audience_label": 0.95,
+            "policy_notice_addressee": 0.5,
             "service_object_section": 0.95,
+            "service_object_labeled_sentence": 0.95,
+            "general_contact_label": 0.95,
+            "process_steps_labeled_sentence": 0.95,
             "application_conditions_section": 0.95,
             "agenda_section": 0.9,
             "explicit_meeting_date": 0.95,
@@ -699,6 +712,8 @@ class MappingService:
             penalty += 0.2
         if "weak_evidence" in flags:
             penalty += 0.25
+        if "synthetic_alias" in flags:
+            penalty += 0.15
         if not candidate.source_path:
             penalty += 0.4
         return min(penalty, 1.0)

@@ -219,7 +219,7 @@ Get-Content reports\non_procurement_acceptance_report.md -Encoding UTF8
 明确说明：
 
 - 当前 production input 是 UIR；raw PDF、Word、Excel、image、scan 和 OCR parsing 在 runtime boundary 之外；
-- real-world package generation 已覆盖 import、execution 与 package verification；
+- real-world package generation 已覆盖 60/60 import、execution 与 package verification；
 - strict semantic validation 与 package verification 是不同概念；
 - 非采购样本仍需持续减少 review-required 和 missing fields；
 - optional LLM fallback 默认关闭、仅 Review、不会 auto-accept mappings；
@@ -231,7 +231,7 @@ Get-Content reports\non_procurement_acceptance_report.md -Encoding UTF8
 1. 打开 **下游就绪度** 面板，展示 CSV、RAG 和 contract status。
 2. 对 ZIP 或 package directory 运行 `export_structured_csv.py`。
 3. 运行 `export_rag_corpus.py --granularity child`。
-4. 展示 `downstream_contract_eval_report` 中 45/45 packages 和 0 failures 的结果。
+4. 展示 `downstream_contract_eval_report` 中 45/45 packages 和 0 failures 的结果；同时说明 real-world pipeline 当前 package verification 为 60/60。
 ## External UIR Adapter Segment
 
 Show the External UIR Adapter API/UI MVP:
@@ -250,14 +250,17 @@ Show the External UIR Adapter API/UI MVP:
 2. 在 `Review Workbench` 中展示分组、影响预览、批量安全和负知识。
 3. 展示 Knowledge Pack conflict、diff、impact 与 rollback。
 4. 在 `Evaluation Center` 中展示 dataset、run、metric、scorecard 和 8/8 gates。
-5. 展示质量打磨结果：strict pass `13/35 -> 17/35`、review-required
-   `69 -> 59`、required missing `6 -> 4`；Adapter fixtures `4 -> 18`，
-   trace coverage 与 router top-1 accuracy 均为 `1.0`。
+5. 展示质量打磨后的当前非采购语义评测结果：non-procurement 50 samples，
+   average recall `0.8063730159`，strict pass 47/50，review-required 16，
+   required missing 2，package verification 50/50，badcase violations 0；
+   Adapter fixtures `4 -> 18`，trace coverage 与 router top-1 accuracy 均为 `1.0`。
 6. 强调 package verification 只证明结构完整、hash/manifest/JSON/JSONL
    可解析和 traceability，不代表每个字段都通过 strict semantic validation。
 7. 用统一 CLI 或 Python SDK 完成一次集成调用，并用版本化 consumer contract
    校验成果包。
 8. 展示可选 raw-upstream 样例，说明其是离线入口，不是 OCR 或生产上传 API。
+9. 明确说明当前不能宣称 production blind recall 0.85：blind/shadow reports 为
+   `not_run`，原因是缺少独立 production shadow/blind gold corpus。
 
 ## 11. 展示 SchemaPack-Lineage
 

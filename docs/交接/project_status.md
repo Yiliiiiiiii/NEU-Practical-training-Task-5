@@ -1,50 +1,49 @@
 # SchemaPack Agent 当前实施状态
 
-> 最后同步：2026-07-06。本文档是项目能力、验证基线和边界的统一状态入口。
+> 最后同步：2026-07-08。本文档是项目能力、验证基线、评测证据和边界的统一状态入口。
+> 当前分支：`codex/phase-i-0-85-semantic-mapping`；当前状态：项目主链路已可复现，非采购语义评测继续作为质量提升专项跟踪。
 > 历史需求、规格和实施计划保留当时语境；发生冲突时，以本文档、
-> [`README.md`](README.md) 和
-> [`../openapi.json`](../openapi.json) 为准。
+> [`README.md`](README.md) 和 [`../openapi.json`](../openapi.json) 为准。
 
 ## 验证基线
 
-- Backend：567 tests passed。
-- Static checks：Ruff clean。
-- Frontend：24 tests passed，production build successful。
-- API：63 OpenAPI paths。
-- Regression gates：8/8 passed。
-- Current metrics：badcase violations 0、LLM auto accepted 0、package
-  verification rate 1.0、adapter trace coverage 1.0、downstream contract pass
-  rate 1.0、lineage parse pass 1.0、lineage field coverage 1.0、
-  lineage broken edges 0、lineage secret leaks 0。
-
-权威复现命令：
+上一轮完整仓库级验证：
 
 ```powershell
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 Push-Location frontend
 npm.cmd test
 Pop-Location
-backend\.venv\Scripts\python.exe scripts\check_regression_gates.py `
-  --metrics reports\evaluation_center\current_metrics.json `
-  --gates reports\evaluation_center\regression_gates.json `
-  --out reports\evaluation_center\regression_gate_report.json
 ```
+
+已知结果：
+
+- Backend pytest：上一完整基线 662 passed。
+- Backend Ruff：上一完整基线 clean。
+- Frontend production build：上一完整基线 successful。
+- Frontend tests：上一完整基线 24 passed，8 test files passed。
+- API：上一完整基线 63 OpenAPI paths exported to [`../openapi.json`](../openapi.json)。
+- Regression gates：上一完整基线 8/8 passed。
+- 非采购语义评测 targeted regression：94 passed。
+
+质量专项收尾前仍需重跑完整仓库级验证和前端测试。
 
 ## 已实施能力
 
-| 阶段 | 状态 | 当前实现 |
+| 阶段/能力 | 状态 | 当前实现 |
 | --- | --- | --- |
-| Phase 1 | 已完成 | 可插拔 External UIR adapter registry、能力声明、自动检测与 trace evidence |
-| Phase 2 | 已完成 | Schema Router v2、多候选、证据、风险标记与人工确认 |
-| Phase 3 | 已完成 | Schema/Template Draft Generator、字段发现、风险检查、校验与导出 |
-| Phase 4 | 已完成 | Review Workbench、影响预览、批量安全、人审负知识、知识包 diff/impact/rollback |
-| Phase 5 | 已完成 | Evaluation Center、dataset/run/metric/scorecard API、回归门禁 |
-| Phase 6 | 已完成 | Package 1.1、RAG/training/CSV consumer contracts 与统一 verifier |
-| Phase 7 | 已完成（Webhook 除外） | 统一 CLI、Python SDK、Adapter scaffold；Webhook 是可选项，未实现 |
-| Phase 8 | 已完成 | 可选 Docling/Unstructured 离线上游，惰性依赖，输出 External UIR |
-| SchemaPack-Lineage | 已完成（MVP） | 字段/block/chunk/artifact lineage、五个查询 API、前端 panel、评测与回归门 |
+| Core pipeline | 已完成 | UIR/External UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping -> Transform -> Canonical -> Render -> Content Organization -> Validate -> Manifest -> ZIP -> Verify |
+| Catalog governance | 已完成 | schema/template versions、effective template resolution、knowledge-pack draft/active/archive、历史 task snapshot 保护 |
+| External UIR | 已完成 | block-list 与 section-tree adapter、adapter trace、router v2、convert/import/create-task API、前端面板 |
+| Schema/Template Draft Lab | 已完成 | 字段发现、draft 生成、风险检查、校验与显式导出；draft 不自动激活 |
+| Review Workbench | 已完成 | review grouping、impact preview、batch safety、负知识、knowledge diff/impact/rollback |
+| Evaluation Center | 已完成 | dataset/run/metric/scorecard API、报告读取、regression gates |
+| Package 1.1 / downstream | 已完成 | manifest、hash、strict package verifier、RAG/training/CSV consumer contracts、CLI、Python SDK、adapter scaffold |
+| Optional raw upstream | 离线可选 | Docling/Unstructured entry scripts 惰性依赖，输出 External UIR；不进入 backend runtime 默认依赖 |
+| SchemaPack-Lineage | 已完成（MVP） | 字段/block/chunk/artifact lineage、五个查询 API、前端 panel、evaluator 与 hard gates |
+| DeepSeek / LLM | 安全受控 | provider smoke 与 report-only suggestions；不自动接受 mapping，不激活 schema/template，不创建或执行 task |
 
-核心生产链路保持不变：
+核心生产链路保持：
 
 ```text
 UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
@@ -54,50 +53,51 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 
 ## 评测证据
 
-- Real-world UIR：45 documents；45/45 import、execute、package verify。
-- Real-world mapping：recall `0.6023391812865497`，package pass 45/45，
-  badcase violations 0，validation pass 27/45。
-- Non-procurement：35 documents；average recall `0.6096598639455783`，
-  package verify 35/35，strict pass 17/35，review-required 59，
-  required missing 4，badcase violations 0。
-- Adapter Framework：2 adapters、18 fixtures，selection/validation/router/trace
-  coverage 均为 1.0，LLM auto accepted 0。
-- External UIR API：18/18 convert、import、UIR validation 通过，secret leaks 0。
-- Downstream consumer contract：45/45 packages passed。
+### Real-world corpus
 
-## 明确边界
+- Inventory：60 UIR、60 mapping gold、120 retrieval queries、66 badcases。
+- 文档类型：general 15、meeting 15、policy 20、procurement 10。
+- `reports/real_world_eval_report.json`：60/60 import、60/60 execution、60/60 package verify。
+- `reports/real_world_mapping_eval_report.json`：overall mapping recall `0.6831896552`，package pass 60/60，validation pass 40/60，badcase violations 0。
 
-- 生产 API 从 UIR 或 External UIR JSON 开始，不提供 raw-document upload API。
-- Docling/Unstructured 仅是离线可选入口，不进入 backend 默认依赖。
-- 扫描件 OCR 未实现；无可用文本层的 PDF 返回
-  `unsupported_scanned_pdf`。
-- DeepSeek 和其他 LLM 仅能提供 report-only suggestion，不自动接受 mapping、
-  激活 schema/template、创建或执行 task。
-- 未实现 Webhook、SSO、tenant-aware authorization、TLS termination、managed
-  secret storage、hosted credential provisioning、完整 RAG、模型训练或企业级
-  model/provider monitoring。
+### Non-procurement semantic mapping sprint
 
-## 文档口径
+- Phase C sprint4：50 samples，average recall `0.7165476190`，strict pass 31/50，required missing 4，review-required 22，package 50/50，badcase violations 0。
+- Phase D：50 samples，average recall `0.7426031746`，strict pass 39/50，required missing 2，review-required 21，package 50/50，badcase violations 0。
+- 当前非采购语义评测记录：50 samples，average recall `0.8063730159`，strict pass 47/50，required missing 2，review-required 16，package 50/50，badcase violations 0。
+- 当前非采购语义评测 by doc type：
+  - general_doc：15 docs，recall `0.7714285714`，strict pass 14/15；
+  - meeting_doc：15 docs，recall `0.8072222222`，strict pass 15/15；
+  - policy_doc：20 docs，recall `0.8319444444`，strict pass 18/20。
+- 当前最大瓶颈转为 source-name exact recall 与少数 required gaps：`real_policy_005_ai_industry_guide` 缺 issuer、`real_policy_011_battery_recycling_rules` 缺 publish_date、`real_general_011_shanghai_branch_registration` recall/strict 未过。
+- 当前不能宣称 average recall 达到 0.85，也不能宣称生产盲测 0.85。
 
-- 当前使用文档：`README.md`、`docs/交接/`、`docs/` 根目录指南、本状态页、
-  SDK/模板/示例 README。
-- 历史文档：`docs/guildline/`、`docs/nbl/`、`docs/superpowers/` 下带日期的
-  requirements/specs/plans；保留原始设计，不作为当前状态声明。
-- 生成报告：`reports/*.md` 与对应 JSON 是特定评测时点的证据，不应手工改写
-  指标；需要更新时运行其生成脚本。
+### UIR Quality Gate、DeepSeek 与 Review Judge
 
-## SchemaPack-Lineage 状态（2026-07-06）
+- UIR Quality Gate：60 total，12 pass，48 review，0 reject，0 unsupported，allow-auto-accept 12。
+- DeepSeek provider smoke：passed；suggestion_count 2；warning_count 0；secret_leak_detected false。
+- DeepSeek ablation：report-only not applied；measurable contribution 0.0；LLM auto accepted 0。
+- Review judge dry-run：pending 979，suggest reject 26，suggest approve 0，unsafe skipped 953，errors 0。
+- Safe apply：applied approve 0，applied reject 0，kept pending 979。
+- Secret redaction audit：passed；exact secret file hits 0；secret leaks 0。
 
-- 已实现 Lineage 1.0 schema、graph builder、field/chunk/artifact query service。
-- Task 默认生成 `lineage_graph.json` 与 `lineage_summary.json`；non-strict
-  失败不破坏原 task。
-- External UIR create-task 会保留 adapter report；Review、Knowledge、
-  canonical、chunk、manifest 与 consumer contract 均可进入图。
-- 前端已提供 summary cards、三类查询、分层 ledger、节点详情以及
-  review-required/blocked 显式状态。
-- `eval_lineage_graph.py` 生成 JSON/Markdown，并把四项 lineage hard gates
-  合并进 Evaluation Center；当前回归报告为 8/8。
-- 真实 demo graph 的 field/chunk/artifact coverage 均为 `1.0`，broken edge、
-  secret leak、LLM auto-accept 均为 `0`。
-- MVP lineage 文件只作为 task reports，不进入 ZIP；这是为避免 manifest hash
-  自引用并保持 Package 1.1 contract 不变。
+### Lineage 与 downstream
+
+- Lineage parse/field/chunk/artifact coverage 均为 1.0，broken edges 0，secret leaks 0，LLM auto accepted 0。
+- Evaluation Center 当前 regression gate reports 为 8/8 passed。
+- Downstream consumer contract report：45/45 packages passed。
+
+## 当前暂停点
+
+- 已停止本轮本地 backend 进程；恢复评测前需要重新启动 backend。
+- Phase I 最新报告：`reports/phase_i_non_procurement_mapping_eval_report.json` 与 `.md`。
+- 本轮新增/修改了 policy/general/meeting semantic mapping 相关抽取和排序逻辑；工作区存在大量未提交改动，不应回滚无关文件。
+- 后续优先处理低风险 source-name 修复：document number 具体文号、meeting number 完整会议号、policy_005 issuer、general service_object/process_steps 精确来源。
+
+## 项目边界
+
+- 当前系统面向已进入 UIR / External UIR JSON 的结构化内容，不承诺生产 OCR。
+- Optional raw upstream 是离线入口，不进入 backend runtime 默认依赖。
+- Package Verification 只证明结构与包契约有效，不等同于字段语义完全正确。
+- DeepSeek/LLM suggestion 只能 report-only 或进入人工 Review，不得自动 accepted、激活 catalog 或写入生产规则。
+- 当前没有独立 production shadow/blind gold corpus；不能宣称生产盲测 recall 0.85。
