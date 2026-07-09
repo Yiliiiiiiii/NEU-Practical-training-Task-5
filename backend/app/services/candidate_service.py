@@ -1029,7 +1029,7 @@ class CandidateService:
                 compact_text = text.strip()
                 if "等事项" in compact_text and index == 0:
                     source_name = "opening sentence"
-                elif "汨罗市第13届人民政府第47次" in compact_text:
+                elif self._looks_like_government_meeting_opening(compact_text):
                     source_name = "meeting sentence"
                 elif partial_date:
                     source_name = raw_date
@@ -1072,6 +1072,15 @@ class CandidateService:
             target_hints=["meeting_date"],
             evidence_type=evidence_type,
             quality_flags=quality_flags,
+        )
+
+    @staticmethod
+    def _looks_like_government_meeting_opening(text: str) -> bool:
+        compact = re.sub(r"\s+", "", text)
+        return bool(
+            re.search(r"第\d+届.*?第\d+次", compact)
+            and "会议" in compact
+            and any(marker in compact for marker in ("召开", "主持", "研究", "审议", "听取"))
         )
 
     @classmethod
@@ -2077,54 +2086,97 @@ class CandidateService:
                         quality_flags=["medium_risk_section_scope"],
                     )
                 )
-        first_blocks = [
-            block.text.strip()
+        candidates.extend(
+            self._generic_front_matter_guide_candidates(task_id, uir, seen_names)
+        )
+        return candidates
+
+    def _generic_front_matter_guide_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        seen_names: dict[str, int],
+    ) -> list[FieldCandidate]:
+        early_blocks = [
+            block
             for block in uir.blocks[:12]
             if isinstance(block.text, str) and block.text.strip()
         ]
-        first_text = "\n".join(first_blocks)
-        if "公证服务办事指南" in first_text:
-            candidates.extend(
-                self._general_guide_candidates(
-                    task_id,
-                    uir,
-                    seen_names,
-                    service_name="service or subject section",
-                    service_value="公证服务",
-                    condition_name="process or condition detail",
-                    condition_value=first_text,
-                    review_name="办理事项及证明材料清单",
-                    review_value="办理事项及证明材料清单",
+        if len(early_blocks) < 3:
+            return []
+        early_text = "\n".join(block.text.strip() for block in early_blocks)
+        has_explicit_service_label = any(
+            re.search(r"(服务对象|适用对象|申报对象|申请对象|办理对象)[:：]", block.text or "")
+            for block in early_blocks
+        )
+        front_matter_like = bool(
+            "办事指南" in early_text
+            or "申报指南" in early_text
+            or "申报流程说明" in early_text
+            or ("各有关单位" in early_text and "项目申报指南" in early_text)
+        )
+        if not front_matter_like or has_explicit_service_label:
+            return []
+        source_block = early_blocks[1] if len(early_blocks) > 1 else early_blocks[0]
+        condition_block = early_blocks[2] if len(early_blocks) > 2 else source_block
+        candidates = [
+            self._candidate(
+                task_id=task_id,
+                uir=uir,
+                source_path=f"$.blocks.{source_block.block_id}.text#service_object",
+                source_name="service or subject section",
+                value=source_block.text or "",
+                source_blocks=[source_block.block_id],
+                source_kind="general_front_matter_service_subject",
+                seen_names=seen_names,
+                confidence=0.84,
+                display_name="service_object",
+                target_hints=["service_object"],
+                evidence_type="general_front_matter_service_subject",
+            ),
+            self._candidate(
+                task_id=task_id,
+                uir=uir,
+                source_path=f"$.blocks.{condition_block.block_id}.text#application_conditions",
+                source_name="process or condition detail",
+                value=condition_block.text or "",
+                source_blocks=[condition_block.block_id],
+                source_kind="general_front_matter_process_or_condition",
+                seen_names=seen_names,
+                confidence=0.8,
+                display_name="application_conditions",
+                target_hints=["application_conditions"],
+                evidence_type="general_front_matter_process_or_condition",
+            ),
+        ]
+        review_markers = (
+            "办理事项及证明材料清单",
+            "经费额度",
+            "申报流程说明",
+        )
+        for block in early_blocks:
+            text = block.text or ""
+            marker = next((item for item in review_markers if item in text), None)
+            if marker is None:
+                continue
+            candidates.append(
+                self._candidate(
+                    task_id=task_id,
+                    uir=uir,
+                    source_path=f"$.blocks.{block.block_id}.text#category_review",
+                    source_name=marker,
+                    value=text,
+                    source_blocks=[block.block_id],
+                    source_kind="general_front_matter_category_review",
+                    seen_names=seen_names,
+                    confidence=0.66,
+                    display_name="category",
+                    target_hints=["category"],
+                    evidence_type="general_front_matter_category_review",
+                    quality_flags=["review_required", "medium_risk_schema_overload"],
                 )
             )
-        if "生物医药创新发展" in first_text:
-            candidates.extend(
-                self._general_guide_candidates(
-                    task_id,
-                    uir,
-                    seen_names,
-                    service_name="service or subject section",
-                    service_value="生物医药创新发展项目申报",
-                    condition_name="process or condition detail",
-                    condition_value=first_text,
-                    review_name="经费额度",
-                    review_value=first_text,
-                )
-            )
-        if "十大类纺织创新精品" in first_text:
-            candidates.extend(
-                self._general_guide_candidates(
-                    task_id,
-                    uir,
-                    seen_names,
-                    service_name="service or subject section",
-                    service_value="十大类纺织创新精品建设推广申报",
-                    condition_name="process or condition detail",
-                    condition_value=first_text,
-                    review_name="建设推广工作网上申报流程说明",
-                    review_value="建设推广工作网上申报流程说明",
-                )
-            )
+            break
         return candidates
 
     def _general_guide_candidates(

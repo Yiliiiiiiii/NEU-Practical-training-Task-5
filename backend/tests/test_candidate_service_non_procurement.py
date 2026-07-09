@@ -87,6 +87,29 @@ def test_general_numbered_sections_emit_bounded_semantic_candidates() -> None:
     assert process.source_blocks == ["process", "process_body"]
 
 
+def test_general_front_matter_guide_emits_generic_review_safe_candidates() -> None:
+    uir = make_uir(
+        [
+            {"block_id": "title", "type": "heading", "level": 1, "text": "某市公共服务办事指南"},
+            {"block_id": "subtitle", "type": "paragraph", "text": "某市公共服务办事指南"},
+            {"block_id": "version", "type": "paragraph", "text": "（2026版）"},
+            {"block_id": "items", "type": "paragraph", "text": "一、办理事项及证明材料清单"},
+        ],
+        metadata={"domain": "general_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_front_matter", uir)
+
+    service = candidate_by_name(candidates, "service or subject section")
+    assert service.display_name == "service_object"
+    assert service.target_hints == ["service_object"]
+    condition = candidate_by_name(candidates, "process or condition detail")
+    assert condition.display_name == "application_conditions"
+    category = candidate_by_name(candidates, "办理事项及证明材料清单")
+    assert category.display_name == "category"
+    assert "review_required" in category.quality_flags
+
+
 def test_meeting_opening_sentence_emits_date_number_and_chairperson() -> None:
     uir = make_uir(
         [
@@ -105,6 +128,29 @@ def test_meeting_opening_sentence_emits_date_number_and_chairperson() -> None:
     assert by_display_name["meeting_date"].value_sample == "2026年1月7日"
     assert by_display_name["meeting_number"].value_sample == "第1次"
     assert by_display_name["chairperson"].value_sample == "马建国"
+
+
+def test_government_meeting_opening_source_name_is_generic() -> None:
+    uir = make_uir(
+        [
+            {
+                "block_id": "opening",
+                "type": "paragraph",
+                "text": (
+                    "2026年2月5日，县长李明主持召开"
+                    "青河县第15届人民政府第23次常务会议，研究民生项目建设工作。"
+                ),
+            }
+        ],
+        metadata={"domain": "meeting_doc"},
+    )
+
+    candidates = CandidateService().extract_candidates("task_generic_meeting", uir)
+
+    meeting_date = next(
+        item for item in candidates if item.display_name == "meeting_date"
+    )
+    assert meeting_date.source_name == "meeting sentence"
 
 
 def test_policy_signature_and_official_page_url_emit_traceable_candidates() -> None:
