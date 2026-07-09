@@ -7,7 +7,7 @@
 | Standardization | UIR import、schema/template snapshots、deterministic mapping、transform、canonical model、structured JSON、Markdown 和 package output。 | `mapping_report.json`、`transform_report.json`、`canonical.json`、`content.json`、`content.md`、[`docs/package_spec.md`](../package_spec.md) |
 | Intelligent organization | 确定性 chunk strategies、summaries、keywords、content/management/quality tags、受保护 table/list/code chunks、parent-child metadata 和 source links。 | `content_organization_report.json`、`chunks.jsonl`、[`reports/content_organization_retrieval_eval.md`](../../reports/content_organization_retrieval_eval.md) |
 | Specialized conversion | 5 个 seeded document catalog families，包括 `procurement_doc`、`general_doc`、`meeting_doc`、`policy_doc`、`contract_doc`。 | [`reports/procurement_doc_eval_report.md`](../../reports/procurement_doc_eval_report.md)、[`reports/real_world_dataset_inventory.json`](../../reports/real_world_dataset_inventory.json) |
-| Evaluation | Production-like evaluator、60-document real-world corpus、Phase C/D non-procurement evaluators、Evaluation Center、metric registry、scorecard 与 regression gates。 | [`reports/real_world_eval_report.json`](../../reports/real_world_eval_report.json)、[`reports/phase_d_non_procurement_mapping_eval_report.json`](../../reports/phase_d_non_procurement_mapping_eval_report.json)、[`reports/evaluation_center`](../../reports/evaluation_center) |
+| Evaluation | Production-like evaluator、60-document real-world corpus、Phase C/D non-procurement evaluators、Evaluation Center、metric registry、scorecard、regression gates，以及当前 0.85 sprint 的 auto/assisted recall 拆分、dev/test/blind split、gap analysis 和 overfit risk gate。 | [`reports/real_world_eval_report.json`](../../reports/real_world_eval_report.json)、[`reports/phase_d_non_procurement_mapping_eval_report.json`](../../reports/phase_d_non_procurement_mapping_eval_report.json)、[`reports/mapping_metric_baseline_snapshot.md`](../../reports/mapping_metric_baseline_snapshot.md)、[`reports/mapping_splits/summary.md`](../../reports/mapping_splits/summary.md)、[`reports/mapping_overfit_risk_report.md`](../../reports/mapping_overfit_risk_report.md) |
 | Continuous improvement | Review records、review-derived knowledge candidates、accepted/rejected candidate states、draft/active/archived knowledge packs 和 effective-template resolution。 | [`reports/review_knowledge_growth_report.json`](../../reports/review_knowledge_growth_report.json)、Review 与 Knowledge APIs |
 | Safety and traceability | Mapping evidence、confidence tiers、review-required reasons、badcase filters、immutable task snapshots、SchemaPack-Lineage、manifest hashes、package verifier output、可选 API-key auth、audit logs 和 secret redaction。 | [`docs/api_usage_examples.md`](../api_usage_examples.md)、[`docs/lineage.md`](../lineage.md)、[`reports/secret_redaction_audit_report.json`](../../reports/secret_redaction_audit_report.json) |
 | External UIR compatibility | block-list 与 section-tree 外部 UIR adapter，先转换为标准 `UIRDocument`，再由 Schema Router 推荐到现有 schema/template。 | [`docs/external_uir_integration.md`](../external_uir_integration.md)、[`reports/external_uir_adapter_eval_report.md`](../../reports/external_uir_adapter_eval_report.md) |
@@ -17,6 +17,8 @@
 | Optional raw upstream | Docling/Unstructured 离线可选入口输出 External UIR；默认不安装 provider，不提供 OCR 或 raw-document API。 | [`examples/raw_upstream/README.md`](../../examples/raw_upstream/README.md)、[`docs/交接/project_status.md`](project_status.md) |
 | LLM/DeepSeek safety | DeepSeek provider smoke 与 ablation 只进入 report-only/suggestion path；不自动接受 mapping，不激活 catalog，不产生生产规则。 | [`reports/deepseek_provider_smoke_report.json`](../../reports/deepseek_provider_smoke_report.json)、[`reports/deepseek_ablation_report.json`](../../reports/deepseek_ablation_report.json) |
 
+0.85 guarded sprint 的可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](mapping_recall_085_guarded_sprint.md)。该文档同步记录了 baseline、split summary、quality gate 失败原因、overfit scan 结果和下一轮修复优先级。
+
 ## 当前证据摘要
 
 - Unified verification：`backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` 通过，包含 662 backend tests、Ruff clean、frontend production build success 和 63 OpenAPI paths。
@@ -24,7 +26,7 @@
 - Real-world corpus：60 UIR、60 mapping gold、120 retrieval queries、66 badcases。
 - Real-world pipeline：60/60 imports、60/60 executions、60/60 verifier-passing packages。
 - Real-world mapping：overall recall `0.6831896552`、validation pass 40/60、package pass 60/60、badcase violations 0。
-- Non-procurement semantic sprint：当前记录 50 samples，average recall `0.8063730159`，strict pass 47/50，required missing 2，review-required 16，package 50/50，badcase violations 0。
+- Non-procurement semantic sprint：历史记录 50 samples，average recall `0.8063730159`，strict pass 47/50，required missing 2，review-required 16，package 50/50，badcase violations 0。当前 0.85 guarded sprint 将旧 `average_recall` 明确为 assisted recall 兼容口径，并新增 `auto_mapping_recall`、`assisted_mapping_recall`、`review_required_rate`、split summary、gap analysis、overfit risk report 和 quality gate。
 - UIR Quality Gate：60 total，12 pass，48 review，0 reject/unsupported。
 - DeepSeek：provider smoke passed，suggestion_count 2，auto accepted 0，secret leaks 0。
 - Review judge：979 pending reviewed in dry-run/apply-safe，suggest reject 26，suggest approve 0，applied 0。
@@ -56,6 +58,7 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 - Retrieval evaluator 是确定性轻量证据，用于说明 chunk organization，不是 production RAG system。
 - Gold labels 和 badcases 是 coursework-scale evaluation assets，不是 enterprise benchmark。
 - 当前无独立 production shadow/blind gold corpus，因此不能宣称生产盲测 recall 0.85。
+- 当前 mapping 指标会同时报告 auto recall 与 assisted recall；如果 assisted recall 达标但 auto recall 较低，应按报告中的 review-required rate 诚实说明人工辅助比例。
 
 ## 五项深化补充
 

@@ -31,7 +31,19 @@ def test_build_report_uses_required_contract_and_baseline_delta() -> None:
             "required_missing": [],
             "review_evidence": [],
             "high_risk_auto_accepted": [],
-            "metrics": {"mapping_recall": 0.75, "badcase_violation_count": 0},
+            "metrics": {
+                "mapping_recall": 0.75,
+                "auto_mapping_recall": 0.5,
+                "assisted_mapping_recall": 0.75,
+                "review_required_rate": 0.25,
+                "gold_signal_count": 4,
+                "gold_mapping_count": 4,
+                "auto_accepted_correct": 2,
+                "review_required_correct": 1,
+                "accepted_item_count": 3,
+                "review_required_item_count": 1,
+                "badcase_violation_count": 0,
+            },
             "mapped_or_review_targets": ["title", "content"],
         }
     ]
@@ -47,6 +59,9 @@ def test_build_report_uses_required_contract_and_baseline_delta() -> None:
     assert report["summary"]["dataset_size"] == 1
     assert report["summary"]["strict_pass_count"] == 1
     assert report["summary"]["average_recall"] == 0.75
+    assert report["summary"]["auto_mapping_recall"] == 0.5
+    assert report["summary"]["assisted_mapping_recall"] == 0.75
+    assert report["summary"]["review_required_rate"] == 0.25
     assert report["summary"]["package_verify_pass_count"] == 1
     assert report["delta"]["average_recall"] == 0.401
     assert set(report) >= {

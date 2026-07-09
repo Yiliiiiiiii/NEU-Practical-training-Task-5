@@ -206,18 +206,31 @@ def score_mapping_report(
                 break
 
     gold_signal_count = len(expected_mappings) + len(expected_reviews)
+    assisted_correct = accepted_correct + review_correct
+    accepted_item_count = len(accepted)
+    review_item_count = len(review_items)
     return {
         "doc_id": gold.get("doc_id"),
         "gold_mapping_count": len(expected_mappings),
         "gold_review_required_count": len(expected_reviews),
+        "gold_signal_count": gold_signal_count,
+        "accepted_item_count": accepted_item_count,
+        "review_required_item_count": review_item_count,
         "auto_accepted_correct": accepted_correct,
         "review_required_correct": review_correct,
         "missing_gold_mappings": missing_gold_mappings,
+        "missing_gold_mapping_rate": safe_ratio(
+            missing_gold_mappings, len(expected_mappings)
+        ),
         "badcase_violation_count": len(badcase_violations),
         "badcase_violations": badcase_violations,
-        "mapping_recall": safe_ratio(
-            accepted_correct + review_correct, gold_signal_count
+        "auto_mapping_recall": safe_ratio(accepted_correct, gold_signal_count),
+        "assisted_mapping_recall": safe_ratio(assisted_correct, gold_signal_count),
+        "review_required_recall": safe_ratio(review_correct, gold_signal_count),
+        "review_required_rate": safe_ratio(
+            review_item_count, accepted_item_count + review_item_count
         ),
+        "mapping_recall": safe_ratio(assisted_correct, gold_signal_count),
     }
 
 
@@ -230,6 +243,8 @@ def aggregate_mapping_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "review_required_correct": 0,
         "missing_gold_mappings": 0,
         "badcase_violation_count": 0,
+        "accepted_item_count": 0,
+        "review_required_item_count": 0,
     }
     for row in rows:
         for key in (
@@ -239,15 +254,30 @@ def aggregate_mapping_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "review_required_correct",
             "missing_gold_mappings",
             "badcase_violation_count",
+            "accepted_item_count",
+            "review_required_item_count",
         ):
             value = row.get(key, 0)
             if isinstance(value, int | float):
                 totals[key] += value
     denominator = totals["gold_mapping_count"] + totals["gold_review_required_count"]
-    totals["mapping_recall"] = safe_ratio(
-        totals["auto_accepted_correct"] + totals["review_required_correct"],
-        denominator,
+    assisted_correct = totals["auto_accepted_correct"] + totals["review_required_correct"]
+    candidate_total = totals["accepted_item_count"] + totals["review_required_item_count"]
+    totals["gold_signal_count"] = denominator
+    totals["auto_mapping_recall"] = safe_ratio(
+        totals["auto_accepted_correct"], denominator
     )
+    totals["assisted_mapping_recall"] = safe_ratio(assisted_correct, denominator)
+    totals["review_required_recall"] = safe_ratio(
+        totals["review_required_correct"], denominator
+    )
+    totals["review_required_rate"] = safe_ratio(
+        totals["review_required_item_count"], candidate_total
+    )
+    totals["missing_gold_mapping_rate"] = safe_ratio(
+        totals["missing_gold_mappings"], totals["gold_mapping_count"]
+    )
+    totals["mapping_recall"] = totals["assisted_mapping_recall"]
     totals["badcase_pass_rate"] = 1.0 if totals["badcase_violation_count"] == 0 else 0.0
     return totals
 

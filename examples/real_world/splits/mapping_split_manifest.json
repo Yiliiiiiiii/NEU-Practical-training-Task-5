@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "created_for": "mapping_recall_085_guarded_sprint",
+  "split_policy": "document_level_split_no_doc_id_specific_rules",
+  "random_seed": 20260708,
+  "dev": {
+    "doc_count": 18,
+    "source": "existing_non_procurement_and_real_world_gold",
+    "doc_ids": [
+      "real_policy_001_training_platform_rules",
+      "real_policy_002_equipment_renewal",
+      "real_policy_003_science_education_guide",
+      "real_policy_004_student_loan_relief",
+      "real_policy_005_ai_industry_guide",
+      "real_meeting_001_changning_executive_minutes",
+      "real_meeting_002_shaxian_executive_minutes",
+      "real_meeting_003_miluo_executive_minutes",
+      "real_general_001_notary_service_guide",
+      "real_general_002_biomed_project_guide",
+      "real_general_003_textile_application_flow",
+      "real_policy_006_technology_incubator_rules",
+      "real_policy_007_one_thing_list",
+      "real_policy_008_sme_leader_training",
+      "real_policy_009_network_safety_work",
+      "real_meeting_004_shandan_2025_11_minutes",
+      "real_meeting_005_miluo_2026_minutes",
+      "real_meeting_006_shandan_minutes"
+    ]
+  },
+  "test": {
+    "doc_count": 9,
+    "source": "held_out_existing_real_world_uir",
+    "doc_ids": [
+      "real_general_004_tianhe_service_guide",
+      "real_policy_010_auto_ota_management",
+      "real_general_005_eldercare_technology_guide",
+      "real_general_006_soft_science_guide",
+      "real_general_007_domestic_cooperation_guide",
+      "real_general_008_science_communication_guide",
+      "real_general_009_food_technology_guide",
+      "real_general_010_cell_gene_therapy_guide",
+      "real_meeting_007_zhenping_49_minutes"
+    ]
+  },
+  "blind": {
+    "doc_count": 8,
+    "source": "held_out_existing_real_world_uir_for_final_metrics",
+    "gold_visibility": "final_evaluation_only",
+    "doc_ids": [
+      "real_meeting_008_wlmqx_2026_01_minutes",
+      "real_meeting_009_kundulun_2026_01_minutes",
+      "real_meeting_010_zhangjiagang_64_minutes",
+      "real_policy_011_battery_recycling_rules",
+      "real_policy_012_sme_gradient_rules",
+      "real_policy_013_minor_platform_rules",
+      "real_policy_014_digital_aging_campaign",
+      "real_policy_015_ai_ethics_rules"
+    ]
+  },
+  "leakage_rules": [
+    "same doc_id cannot appear in multiple splits",
+    "same source_path cannot appear in multiple splits",
+    "rules must not branch on doc_id",
+    "gold labels must not be read by runtime mapping code"
+  ]
+}

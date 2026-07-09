@@ -4,7 +4,7 @@
   "name": "通用文档基础映射模板",
   "version": "1.0.0",
   "aliases": {
-    "title": ["title", "标题", "文档标题", "document_title", "guide_title", "事项名称", "服务事项", "办事事项", "项目名称", "通知标题", "指南名称", "业务名称"],
+    "title": ["title", "标题", "文档标题", "一级标题", "document_title", "guide_title", "事项名称", "服务事项", "办事事项", "项目名称", "通知标题", "指南名称", "业务名称"],
     "source": ["source", "来源", "出处", "source_url"],
     "created_date": ["created_date", "创建日期", "形成日期"],
     "category": ["category", "类别", "分类"],
@@ -18,8 +18,8 @@
     "application_conditions": ["application_conditions", "申请条件", "申报条件", "办理条件", "受理条件", "资格条件", "基本条件", "申报要求"],
     "application_materials": ["application_materials", "申请材料", "申报材料", "办理材料", "所需材料", "提交材料", "材料清单"],
     "process_steps": ["process_steps", "办理流程", "申报流程", "办理步骤", "流程步骤", "办理程序", "申请流程", "办事流程", "操作流程", "流程说明", "申报方式"],
-    "deadline": ["deadline", "截止时间", "截止日期", "申报截止日期"],
-    "contact": ["contact", "联系方式", "联系电话", "咨询电话", "联系地址", "服务热线"],
+    "deadline": ["deadline", "截止时间", "截止日期", "申报截止日期", "申报截止", "报名截止", "提交截止", "办理期限", "受理时间"],
+    "contact": ["contact", "联系方式", "联系电话", "咨询电话", "邮箱", "联系地址", "服务热线"],
     "attachments": ["attachments", "附件", "附件清单", "下载材料"]
   },
   "regex_rules": [

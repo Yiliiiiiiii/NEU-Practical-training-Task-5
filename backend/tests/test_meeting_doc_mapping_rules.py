@@ -122,6 +122,24 @@ def test_meeting_decision_item_alias_does_not_collide_with_agenda_items() -> Non
     )
 
 
+def test_meeting_long_tail_aliases_map_decisions_and_actions() -> None:
+    _, _, report = map_meeting(
+        meeting_uir(
+            {
+                "meeting_title": "重点工作会议",
+                "meeting_date": "2026-06-30",
+                "content": "会议形成工作安排。",
+                "审议通过": ["项目方案"],
+                "责任分工": ["由产业科负责"],
+            }
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["decisions"]["source_field_name"] == "审议通过"
+    assert mappings["action_items"]["source_field_name"] == "责任分工"
+
+
 def test_meeting_numbers_headers_and_ambiguous_roles_are_not_auto_titles() -> None:
     _, _, report = map_meeting(
         meeting_uir(

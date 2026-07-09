@@ -107,6 +107,33 @@ def test_policy_aliases_support_printing_agency_but_keep_authored_date_for_revie
     )
 
 
+def test_policy_aliases_cover_guarded_priority_fields() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "数字经济支持办法",
+                "发布单位": "市商务局",
+                "签发日期": "2026-03-27",
+                "公告编号": "公告2026年第12号",
+                "支持对象": "本市企业",
+                "支持内容": ["资金补贴", "公共服务"],
+                "content": "政策正文。",
+            }
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["issuer"]["source_field_name"] == "发布单位"
+    assert mappings["document_number"]["source_field_name"] == "公告编号"
+    assert mappings["target_audience"]["source_field_name"] == "支持对象"
+    assert mappings["policy_measures"]["source_field_name"] == "支持内容"
+    assert not any(
+        item["source_field_name"] == "签发日期"
+        and item["target_field_id"] == "effective_date"
+        for item in report.mappings
+    )
+
+
 def test_policy_interpretation_citation_and_attachment_dates_require_review() -> None:
     _, _, report = map_policy(
         policy_uir(

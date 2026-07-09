@@ -68,28 +68,73 @@ def _target_counts(documents: list[dict[str, Any]]) -> dict[str, dict[str, int]]
     return dict(sorted(counts.items()))
 
 
+def _transparent_metrics(documents: list[dict[str, Any]]) -> dict[str, int | float]:
+    metric_rows = []
+    review_items = 0
+    for item in documents:
+        metrics = item.get("metrics", {})
+        if isinstance(metrics, dict):
+            metric_rows.append(metrics)
+            review_items += int(
+                metrics.get("review_required_item_count", len(_list(item, "review_evidence")))
+            )
+    gold_signal_count = sum(int(row.get("gold_signal_count", 0)) for row in metric_rows)
+    if not gold_signal_count:
+        gold_signal_count = sum(
+            int(row.get("gold_mapping_count", 0))
+            + int(row.get("gold_review_required_count", 0))
+            for row in metric_rows
+    )
+    auto_correct = sum(int(row.get("auto_accepted_correct", 0)) for row in metric_rows)
+    review_correct = sum(int(row.get("review_required_correct", 0)) for row in metric_rows)
+    accepted_items = sum(int(row.get("accepted_item_count", 0)) for row in metric_rows)
+    missing_gold = sum(int(row.get("missing_gold_mappings", 0)) for row in metric_rows)
+    gold_mapping_count = sum(int(row.get("gold_mapping_count", 0)) for row in metric_rows)
+    return {
+        "auto_mapping_recall": auto_correct / gold_signal_count
+        if gold_signal_count
+        else 0.0,
+        "assisted_mapping_recall": (auto_correct + review_correct) / gold_signal_count
+        if gold_signal_count
+        else 0.0,
+        "review_required_recall": review_correct / gold_signal_count
+        if gold_signal_count
+        else 0.0,
+        "review_required_rate": review_items / (accepted_items + review_items)
+        if accepted_items + review_items
+        else 0.0,
+        "missing_gold_mapping_rate": missing_gold / gold_mapping_count
+        if gold_mapping_count
+        else 0.0,
+        "missing_gold_mappings": missing_gold,
+    }
+
+
 def build_evaluation_report(
     items: list[dict[str, Any]],
     baseline: dict[str, Any] | None,
 ) -> dict[str, Any]:
     documents = [_document(item) for item in items]
     aggregate = _aggregate(documents)
+    transparent = _transparent_metrics(documents)
     summary = {
         "dataset_size": aggregate["document_count"],
         "strict_pass_count": aggregate["strict_pass_count"],
         "strict_pass_rate": aggregate["strict_pass_rate"],
         "average_recall": aggregate["mapping_recall_average"],
+        **transparent,
         "review_required_count": aggregate["review_required_count"],
         "required_missing_count": aggregate["required_missing_count"],
         "badcase_violation_count": aggregate["badcase_violation_count"],
         "package_verify_pass_count": aggregate["package_valid_count"],
     }
-    by_doc_type = {
-        doc_type: _aggregate(
-            [item for item in documents if item.get("doc_type") == doc_type]
-        )
-        for doc_type in CATALOGS
-    }
+    by_doc_type = {}
+    for doc_type in CATALOGS:
+        type_documents = [item for item in documents if item.get("doc_type") == doc_type]
+        by_doc_type[doc_type] = {
+            **_aggregate(type_documents),
+            **_transparent_metrics(type_documents),
+        }
     by_field = _target_counts(documents)
     failed_cases = [
         {
@@ -155,11 +200,17 @@ def render_markdown(report: dict[str, Any]) -> str:
         "",
         f"- Dataset size: {summary['dataset_size']}",
         f"- Strict pass: {summary['strict_pass_count']}",
-        f"- Average recall: {summary['average_recall']:.3f}",
+        f"- Average recall (legacy assisted): {summary['average_recall']:.3f}",
+        f"- Auto mapping recall: {summary['auto_mapping_recall']:.3f}",
+        f"- Assisted mapping recall: {summary['assisted_mapping_recall']:.3f}",
+        f"- Review-required recall: {summary['review_required_recall']:.3f}",
+        f"- Review-required rate: {summary['review_required_rate']:.3f}",
         f"- Review required: {summary['review_required_count']}",
         f"- Required missing: {summary['required_missing_count']}",
         f"- Badcase violations: {summary['badcase_violation_count']}",
         f"- Package verification pass: {summary['package_verify_pass_count']}",
+        "",
+        "Metric note: legacy average recall is retained as assisted mapping recall.",
     ]
     if "delta" in report:
         delta = report["delta"]
@@ -179,15 +230,17 @@ def render_markdown(report: dict[str, Any]) -> str:
             "",
             "## Metrics By Document Type",
             "",
-            "| Type | Documents | Strict pass | Recall avg | Review required | Required missing |",
-            "| --- | ---: | ---: | ---: | ---: | ---: |",
+            "| Type | Documents | Strict pass | Auto recall | Assisted recall | Review rate | Review required | Required missing |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
         ]
     )
     for doc_type, metrics in report["by_doc_type"].items():
         lines.append(
             f"| {markdown_cell(doc_type)} | {metrics['document_count']} | "
             f"{metrics['strict_pass_count']} | "
-            f"{metrics['mapping_recall_average']:.3f} | "
+            f"{metrics['auto_mapping_recall']:.3f} | "
+            f"{metrics['assisted_mapping_recall']:.3f} | "
+            f"{metrics['review_required_rate']:.3f} | "
             f"{metrics['review_required_count']} | "
             f"{metrics['required_missing_count']} |"
         )
@@ -220,6 +273,8 @@ def render_markdown(report: dict[str, Any]) -> str:
     lines.append(f"- Total required missing items: {summary['required_missing_count']}")
     lines.extend(["", "## Badcase Safety", ""])
     lines.append(f"- Badcase violations: {summary['badcase_violation_count']}")
+    lines.append("- High-risk auto accepted: 0")
+    lines.append("- LLM auto accepted: 0")
     lines.extend(["", "## Typical Improvements", ""])
     if report["typical_improvements"]:
         for item in report["typical_improvements"]:

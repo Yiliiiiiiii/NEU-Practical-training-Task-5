@@ -263,19 +263,30 @@ def render_markdown(report: dict[str, Any]) -> str:
         "## Summary",
         "",
         f"- Documents: {summary['document_count']}",
-        f"- Mapping recall: {summary['mapping_recall']:.3f}",
+        f"- Auto mapping recall: {summary.get('auto_mapping_recall', 0.0):.3f}",
+        f"- Assisted mapping recall: {summary.get('assisted_mapping_recall', summary['mapping_recall']):.3f}",
+        f"- Review-required recall: {summary.get('review_required_recall', 0.0):.3f}",
+        f"- Review-required rate: {summary.get('review_required_rate', 0.0):.3f}",
+        f"- Required missing: {summary.get('missing_gold_mappings', 0)}",
         f"- Package pass rate: {summary['package_pass_rate']:.3f}",
         f"- Badcase violations: {summary['badcase_violation_count']}",
         "",
+        "Metric note: legacy `mapping_recall` is retained as assisted mapping recall.",
+        "",
         "## Per Document Type",
         "",
-        "| Document type | Documents | Mapping recall | Package pass rate |",
-        "| --- | ---: | ---: | ---: |",
+        "| Document type | Documents | Auto recall | Assisted recall | Review rate | Required missing | Badcases | Package pass rate |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for doc_type, metrics in report["per_document_type"].items():
         lines.append(
             f"| {markdown_cell(doc_type)} | {metrics['document_count']} | "
-            f"{metrics['mapping_recall']:.3f} | {metrics['package_pass_rate']:.3f} |"
+            f"{metrics.get('auto_mapping_recall', 0.0):.3f} | "
+            f"{metrics.get('assisted_mapping_recall', metrics['mapping_recall']):.3f} | "
+            f"{metrics.get('review_required_rate', 0.0):.3f} | "
+            f"{metrics.get('missing_gold_mappings', 0)} | "
+            f"{metrics['badcase_violation_count']} | "
+            f"{metrics['package_pass_rate']:.3f} |"
         )
     lines.extend(
         [

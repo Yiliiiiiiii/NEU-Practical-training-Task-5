@@ -112,3 +112,21 @@ def test_general_process_and_amount_labels_never_auto_map_to_category() -> None:
         and item["status"] == "accepted"
         for item in report.mappings
     )
+
+
+def test_general_long_tail_aliases_map_deadline_contact_and_title() -> None:
+    _, _, report = map_general(
+        general_uir(
+            {
+                "一级标题": "科技项目申报指南",
+                "content": "申报说明。",
+                "报名截止": "2026-08-01",
+                "邮箱": "service@example.com",
+            }
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["title"]["source_field_name"] == "一级标题"
+    assert mappings["deadline"]["source_field_name"] == "报名截止"
+    assert mappings["contact"]["source_field_name"] == "邮箱"

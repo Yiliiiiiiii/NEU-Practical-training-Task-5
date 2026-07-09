@@ -12,7 +12,7 @@ https://github.com/Yiliiiiiiii/NEU-Practical-training-Task-5
 
 项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。它覆盖 Schema 驱动转换、字段映射、结构化 JSON 与 Markdown 双形态输出、内容组织、Package 1.1、下游契约、人工复核、知识沉淀、Lineage 和安全受控的 LLM suggestion。
 
-需要注意：当前不能宣称生产盲测 recall 达到 0.85。非采购语义专项已经提升到 average recall `0.8063730159`，但尚未达到 0.85；仓库中也没有独立 production shadow / blind gold corpus。
+需要注意：当前不能宣称生产盲测 recall 达到 0.85。历史报告中的 `average_recall` / `mapping_recall` 属于 assisted recall 口径，即自动 accepted 正确项加 review-required 正确候选；新一轮评测会同时报告 `auto_mapping_recall`、`assisted_mapping_recall` 和 `review_required_rate`。非采购语义专项历史记录曾提升到 average recall `0.8063730159`，但尚未达到 0.85；仓库中也没有独立 production shadow / blind gold corpus。
 
 ## 核心链路
 
@@ -89,6 +89,8 @@ Pop-Location
 
 主要剩余缺口集中在 `policy_doc` 的 issuer / publish_date 和少数长尾字段。详见 [`reports/phase_i_non_procurement_mapping_eval_report.json`](reports/phase_i_non_procurement_mapping_eval_report.json)。
 
+当前 0.85 guarded sprint 使用 [`reports/mapping_metric_baseline_snapshot.md`](reports/mapping_metric_baseline_snapshot.md) 统一基线口径，并通过 [`examples/real_world/splits/mapping_split_manifest.json`](examples/real_world/splits/mapping_split_manifest.json)、`scripts/eval_mapping_splits.py`、`scripts/analyze_mapping_gaps.py`、`scripts/check_mapping_overfit_risk.py` 和 `scripts/check_mapping_quality_gate.py` 固化 dev/test/blind、gap analysis、防过拟合扫描和质量门禁。可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](docs/交接/mapping_recall_085_guarded_sprint.md)。
+
 ### Lineage 与下游契约
 
 - Lineage report：status `passed`，field/chunk/artifact coverage 均为 1.0，broken edges 0，secret leaks 0，LLM auto accepted 0。
@@ -96,6 +98,7 @@ Pop-Location
 - 证据文件：
   - [`reports/lineage_eval_report.json`](reports/lineage_eval_report.json)
   - [`reports/downstream_contract_eval_report.json`](reports/downstream_contract_eval_report.json)
+  - [`reports/knowledge_loop_eval_report.md`](reports/knowledge_loop_eval_report.md)
 
 ### 安全与治理
 

@@ -359,6 +359,10 @@ def test_mapping_metrics_count_accepted_review_missing_and_badcases() -> None:
     assert metrics["missing_gold_mappings"] == 1
     assert metrics["badcase_violation_count"] == 0
     assert metrics["mapping_recall"] == pytest.approx(2 / 3)
+    assert metrics["auto_mapping_recall"] == pytest.approx(1 / 3)
+    assert metrics["assisted_mapping_recall"] == pytest.approx(2 / 3)
+    assert metrics["review_required_recall"] == pytest.approx(1 / 3)
+    assert metrics["review_required_rate"] == pytest.approx(0.5)
 
 
 def test_mapping_metrics_count_badcase_violation_for_forbidden_acceptance() -> None:
@@ -421,7 +425,11 @@ def test_mapping_eval_generates_required_json_and_markdown_sections() -> None:
     assert report["summary"]["document_count"] == 1
     assert report["summary"]["package_pass_rate"] == 1.0
     assert report["summary"]["badcase_violation_count"] == 0
+    assert report["summary"]["auto_mapping_recall"] == pytest.approx(2 / 3)
+    assert report["summary"]["assisted_mapping_recall"] == 1.0
     assert "## Per Document Type" in markdown
+    assert "Auto mapping recall" in markdown
+    assert "Assisted mapping recall" in markdown
     assert "## Badcase Violations" in markdown
     assert "## Package Verification Summary" in markdown
 
@@ -450,6 +458,110 @@ def test_mapping_eval_treats_malformed_base_url_as_fatal() -> None:
     assert evaluator._is_fatal_http_error(
         httpx.UnsupportedProtocol("missing scheme")
     )
+
+
+def test_split_evaluator_builds_generalization_summary() -> None:
+    split_eval = load_script("eval_mapping_splits")
+    source_report = {
+        "documents": [
+            {
+                "doc_id": "dev_doc",
+                "doc_type": "policy_doc",
+                "metrics": {
+                    "gold_signal_count": 2,
+                    "gold_mapping_count": 2,
+                    "auto_accepted_correct": 1,
+                    "review_required_correct": 1,
+                    "accepted_item_count": 1,
+                    "review_required_item_count": 1,
+                    "missing_gold_mappings": 0,
+                    "badcase_violation_count": 0,
+                    "badcase_violations": [],
+                },
+                "package_passed": True,
+                "validation_passed": True,
+                "review_evidence": [],
+            },
+            {
+                "doc_id": "test_doc",
+                "doc_type": "policy_doc",
+                "metrics": {
+                    "gold_signal_count": 2,
+                    "gold_mapping_count": 2,
+                    "auto_accepted_correct": 1,
+                    "review_required_correct": 1,
+                    "accepted_item_count": 1,
+                    "review_required_item_count": 1,
+                    "missing_gold_mappings": 0,
+                    "badcase_violation_count": 0,
+                    "badcase_violations": [],
+                },
+                "package_passed": True,
+                "validation_passed": True,
+                "review_evidence": [],
+            },
+            {
+                "doc_id": "blind_doc",
+                "doc_type": "policy_doc",
+                "metrics": {
+                    "gold_signal_count": 2,
+                    "gold_mapping_count": 2,
+                    "auto_accepted_correct": 1,
+                    "review_required_correct": 1,
+                    "accepted_item_count": 1,
+                    "review_required_item_count": 1,
+                    "missing_gold_mappings": 0,
+                    "badcase_violation_count": 0,
+                    "badcase_violations": [],
+                },
+                "package_passed": True,
+                "validation_passed": True,
+                "review_evidence": [],
+            },
+        ]
+    }
+    manifest = {
+        "version": "test",
+        "dev": {"doc_ids": ["dev_doc"]},
+        "test": {"doc_ids": ["test_doc"]},
+        "blind": {"doc_ids": ["blind_doc"]},
+    }
+
+    summary = split_eval.build_split_reports(
+        manifest=manifest,
+        source_report=source_report,
+    )
+
+    assert [row["split"] for row in summary["splits"]] == ["dev", "test", "blind"]
+    assert summary["generalization_gap"]["conclusion"] == "pass"
+
+
+def test_quality_gate_reports_threshold_failures() -> None:
+    gate = load_script("check_mapping_quality_gate")
+    result = gate.check_report(
+        {
+            "splits": [
+                {
+                    "split": "dev",
+                    "assisted_mapping_recall": 0.7,
+                    "badcase_violations": 1,
+                    "required_missing": 2,
+                }
+            ],
+            "generalization_gap": {
+                "dev_vs_test_assisted_recall": 0.2,
+                "test_vs_blind_assisted_recall": 0.0,
+            },
+        },
+        min_assisted_recall=0.85,
+        max_badcase_violations=0,
+        max_required_missing=0,
+        max_dev_test_gap=0.05,
+        max_test_blind_gap=0.05,
+    )
+
+    assert not result["passed"]
+    assert result["failure_count"] == 4
 
 
 def test_handoff_docs_reference_all_four_reports() -> None:
