@@ -1,7 +1,7 @@
 # SchemaPack Agent 当前实施状态
 
-> 最后同步：2026-07-08。本文档是项目能力、验证基线、评测证据和边界的统一状态入口。
-> 当前分支：`codex/phase-i-0-85-semantic-mapping`；当前状态：项目主链路已可复现，非采购语义评测继续作为质量提升专项跟踪。
+> 最后同步：2026-07-09。本文档是项目能力、验证基线、评测证据和边界的统一状态入口。
+> 当前分支：`codex/basic-topic5-complete-evidence`；当前状态：项目主链路已可复现，basic-stage evidence pack 已生成，mapping 0.85 gate 仍为 partial。
 > 历史需求、规格和实施计划保留当时语境；发生冲突时，以本文档、
 > [`README.md`](README.md) 和 [`../openapi.json`](../openapi.json) 为准。
 
@@ -18,15 +18,15 @@ Pop-Location
 
 已知结果：
 
-- Backend pytest：上一完整基线 662 passed。
-- Backend Ruff：上一完整基线 clean。
-- Frontend production build：上一完整基线 successful。
-- Frontend tests：上一完整基线 24 passed，8 test files passed。
-- API：上一完整基线 63 OpenAPI paths exported to [`../openapi.json`](../openapi.json)。
+- Backend pytest：当前 basic-stage 验证 733 passed。
+- Backend Ruff：当前 basic-stage 验证 clean。
+- Frontend production build：当前 basic-stage 验证 successful。
+- Frontend tests：当前 basic-stage 验证 24 passed，8 test files passed。
+- API：当前 basic-stage 验证 63 OpenAPI paths exported to [`../openapi.json`](../openapi.json)。
 - Regression gates：上一完整基线 8/8 passed。
-- 非采购语义评测 targeted regression：94 passed。
+- Basic-stage 一键复现：`.\scripts\run_basic_stage_verification.ps1` 已生成 `docs/交接/evidence/basic_stage/`。
 
-质量专项收尾前仍需重跑完整仓库级验证和前端测试。
+质量专项当前结论：仓库级验证与 evidence pack 可复现；mapping quality gate 未通过，失败报告已保留。
 
 ## 已实施能力
 
@@ -64,18 +64,19 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 
 - Phase C sprint4：50 samples，average recall `0.7165476190`，strict pass 31/50，required missing 4，review-required 22，package 50/50，badcase violations 0。
 - Phase D：50 samples，average recall `0.7426031746`，strict pass 39/50，required missing 2，review-required 21，package 50/50，badcase violations 0。
-- 当前 0.85 guarded sprint 评测记录：50 samples，auto mapping recall `0.7774798928`，assisted mapping recall `0.8096514745`，strict pass 48/50，required missing 0，review-required 18，review-required rate `0.0435835351`，package 50/50，badcase violations 0。
+- 当前 basic-stage 评测记录：50 samples，auto mapping recall `0.777`，assisted mapping recall `0.807`，strict pass 48/50，required missing 0，review-required 24，review-required rate `0.057`，package 50/50，badcase violations 0。
 - 当前非采购语义评测 by doc type：
   - general_doc：15 docs，recall `0.7714285714`，strict pass 14/15；
   - meeting_doc：15 docs，recall `0.8072222222`，strict pass 15/15；
   - policy_doc：20 docs，recall `0.8319444444`，strict pass 18/20。
-- 当前最大瓶颈转为 dev/test assisted recall 不足和 source-name exact recall：required gaps 已清零，但 dev assisted recall `0.807`、test assisted recall `0.794`，仍不能宣称 0.85 gate 通过。
+- 当前最大瓶颈转为 dev/test/blind assisted recall 不足和 source-name exact recall：required gaps 已清零，但 dev assisted recall `0.798`、test assisted recall `0.794`、blind assisted recall `0.826`，仍不能宣称 0.85 gate 通过。
 - 当前不能宣称 assisted recall 达到 0.85，也不能宣称生产盲测 0.85。
 
 ### UIR Quality Gate、DeepSeek 与 Review Judge
 
 - UIR Quality Gate：60 total，12 pass，48 review，0 reject，0 unsupported，allow-auto-accept 12。
-- DeepSeek provider smoke：passed；suggestion_count 2；warning_count 0；secret_leak_detected false。
+- DeepSeek provider smoke：passed；basic-stage suggestion eval report-only，suggestion_count 20，LLM auto accepted 0，secret leaks 0。
+- Codex review subagent dry-run：reviewed_items 23，unsafe approve 0，applied_count 0。
 - DeepSeek ablation：report-only not applied；measurable contribution 0.0；LLM auto accepted 0。
 - Review judge dry-run：pending 979，suggest reject 26，suggest approve 0，unsafe skipped 953，errors 0。
 - Safe apply：applied approve 0，applied reject 0，kept pending 979。

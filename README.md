@@ -12,7 +12,7 @@ https://github.com/Yiliiiiiiii/NEU-Practical-training-Task-5
 
 项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。它覆盖 Schema 驱动转换、字段映射、结构化 JSON 与 Markdown 双形态输出、内容组织、Package 1.1、下游契约、人工复核、知识沉淀、Lineage 和安全受控的 LLM suggestion。
 
-需要注意：当前不能宣称生产盲测 recall 达到 0.85。历史报告中的 `average_recall` / `mapping_recall` 属于 assisted recall 口径，即自动 accepted 正确项加 review-required 正确候选；新一轮评测会同时报告 `auto_mapping_recall`、`assisted_mapping_recall` 和 `review_required_rate`。本轮 0.85 guarded sprint 已将 required missing 清零，并把 assisted recall 提升到 `0.8096514745`，但 dev/test split 仍低于 0.85；仓库中也没有独立 production shadow / blind gold corpus。
+需要注意：当前不能宣称生产盲测 recall 达到 0.85。历史报告中的 `average_recall` / `mapping_recall` 属于 legacy assisted recall 口径；基本阶段评测同时报告 `auto_mapping_recall`、`assisted_mapping_recall` 和 `review_required_rate`。本轮 basic-stage evidence pack 已将 required missing 清零，并保持 badcase violations 为 0、package verification 为 50/50；但 assisted recall 仍为 partial，dev/test/blind split 尚未全部达到 0.85。
 
 ## 核心链路
 
@@ -56,13 +56,20 @@ npm.cmd test
 Pop-Location
 ```
 
-已知结果：
+基本阶段一键复现命令：
 
-- Backend pytest：`730 passed`
+```powershell
+.\scripts\run_basic_stage_verification.ps1
+```
+
+最新 basic-stage 已知结果：
+
+- Backend pytest：`733 passed`
 - Backend Ruff：`clean`
 - Frontend production build：`successful`
 - Frontend tests：`24 passed / 8 files`
 - OpenAPI export：`63 paths` 写入 [`docs/openapi.json`](docs/openapi.json)
+- Mapping quality gate：未通过，失败原因已记录在 [`docs/交接/evidence/basic_stage/mapping/mapping_quality_gate_result.md`](docs/交接/evidence/basic_stage/mapping/mapping_quality_gate_result.md)
 
 ## 评测证据
 
@@ -77,18 +84,22 @@ Pop-Location
 
 ### 非采购语义专项
 
-当前 0.85 guarded sprint 记录：
+当前 basic-stage 记录：
 
 - Dataset size：50
-- Auto mapping recall：`0.7774798928`
-- Assisted mapping recall：`0.8096514745`
-- Review-required rate：`0.0435835351`
+- Auto mapping recall：`0.777`
+- Assisted mapping recall：`0.807`
+- Review-required rate：`0.057`
 - Strict pass：48/50
 - Required missing：0
-- Review-required：18
+- Review-required：24
 - Package verification：50/50
 - Badcase violations：0
-- Quality gate：未通过，原因是 dev assisted recall `0.807 < 0.850`、test assisted recall `0.794 < 0.850`
+- Split assisted recall：dev `0.798`、test `0.794`、blind `0.826`
+- Quality gate：未通过，原因是 dev/test/blind assisted recall 均低于 `0.850`
+- DeepSeek suggestion eval：report-only，suggestion_count 20，LLM auto accepted 0
+- Codex review subagent：dry-run，reviewed_items 23，applied_count 0
+- Content tag/summary quality 与 package consistency 已输出到 [`docs/交接/evidence/basic_stage/`](docs/交接/evidence/basic_stage/)
 
 主要剩余缺口集中在 source-name exact recall、general_doc 长尾字段和少数 meeting/policy evidence alignment。详见 [`docs/交接/evidence/mapping_gap_analysis.md`](docs/交接/evidence/mapping_gap_analysis.md)。
 

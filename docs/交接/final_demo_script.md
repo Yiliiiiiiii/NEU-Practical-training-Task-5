@@ -2,6 +2,25 @@
 
 本脚本面向在 `F:\p2` 中使用 PowerShell 的评审者，演示从真实采购 UIR input 到 schema-governed、verifier-checked package output 的当前已验证路径。
 
+## 0. Basic-stage Evidence Pack
+
+先运行基本阶段一键复现：
+
+```powershell
+.\scripts\run_basic_stage_verification.ps1
+```
+
+演示口径：
+
+1. 展示 UIR / External UIR 输入。
+2. 展示 mapping report 中的 confidence、review-required、evidence、badcase safety。
+3. 展示 DeepSeek suggestion report：report-only，不自动接受，不写规则。
+4. 展示 Codex review subagent dry-run：`applied_count = 0`。
+5. 展示 package consistency：JSON + Markdown + manifest + checksum + downstream parseability。
+6. 展示 [`evidence/basic_stage/final/basic_stage_acceptance_matrix.md`](evidence/basic_stage/final/basic_stage_acceptance_matrix.md)：`passed` 与 `partial` 分开说明。
+
+当前基本阶段 mapping gate 为 `partial`：dev/test/blind assisted recall 分别为 `0.798`、`0.794`、`0.826`，不能宣称 0.85 已达成。
+
 ## 1. 运行统一验证 Gate
 
 ```powershell

@@ -1,6 +1,6 @@
 # 课题 5 需求映射
 
-本文档把课题 5 要求映射到当前 SchemaPack Agent 的实现和已提交证据。当前口径同步到 `main@7fd38c77`。
+本文档把课题 5 要求映射到当前 SchemaPack Agent 的实现和已提交证据。当前 basic-stage 口径同步到 2026-07-09 的 `codex/basic-topic5-complete-evidence` 本地验证。
 
 | Requirement | 当前实现 | 证据 |
 | --- | --- | --- |
@@ -16,17 +16,20 @@
 | Integration ecosystem | Package 1.1、RAG/training/CSV contracts、统一 CLI、Python SDK 与人工注册的 Adapter scaffold。 | [`contracts`](../../contracts)、[`sdk/python/README.md`](../../sdk/python/README.md)、[`templates/adapter_plugin/README.md`](../../templates/adapter_plugin/README.md) |
 | Optional raw upstream | Docling/Unstructured 离线可选入口输出 External UIR；默认不安装 provider，不提供 OCR 或 raw-document API。 | [`examples/raw_upstream/README.md`](../../examples/raw_upstream/README.md)、[`docs/交接/project_status.md`](project_status.md) |
 | LLM/DeepSeek safety | DeepSeek provider smoke 与 ablation 只进入 report-only/suggestion path；不自动接受 mapping，不激活 catalog，不产生生产规则。 | [`reports/deepseek_provider_smoke_report.json`](../../reports/deepseek_provider_smoke_report.json)、[`reports/deepseek_ablation_report.json`](../../reports/deepseek_ablation_report.json) |
+| DeepSeek suggestion evaluation | 基本阶段新增 report-only suggestion packaging；输出 suggestion/confidence/rationale/risk_flags，`llm_auto_accepted_count = 0`。 | [`docs/交接/evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md`](evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md) |
+| Codex review subagent | 基本阶段新增 dry-run human-like review；输出 approve/reject/uncertain，`applied_count = 0`，不写 production rules。 | [`docs/交接/evidence/basic_stage/review/codex_review_subagent_report.md`](evidence/basic_stage/review/codex_review_subagent_report.md) |
+| Content tag / summary faithfulness | 基本阶段新增 tag quality + summary faithfulness 汇总评测。 | [`docs/交接/evidence/basic_stage/content/content_tag_summary_quality_report.md`](evidence/basic_stage/content/content_tag_summary_quality_report.md) |
 
 0.85 guarded sprint 的可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](mapping_recall_085_guarded_sprint.md)。该文档同步记录了 baseline、split summary、quality gate 失败原因、overfit scan 结果和下一轮修复优先级。
 
 ## 当前证据摘要
 
-- Unified verification：`backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` 通过，包含 730 backend tests、Ruff clean、frontend production build success 和 63 OpenAPI paths。
+- Unified verification：`backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` 通过，包含 733 backend tests、Ruff clean、frontend production build success 和 63 OpenAPI paths。
 - Frontend tests：24/24 passed。
 - Real-world corpus：60 UIR、60 mapping gold、120 retrieval queries、66 badcases。
 - Real-world pipeline：60/60 imports、60/60 executions、60/60 verifier-passing packages。
 - Real-world mapping：overall recall `0.6831896552`、validation pass 40/60、package pass 60/60、badcase violations 0。
-- Non-procurement semantic sprint：当前 50 samples，auto mapping recall `0.7774798928`，assisted mapping recall `0.8096514745`，strict pass 48/50，required missing 0，review-required 18，review-required rate `0.0435835351`，package 50/50，badcase violations 0。Quality gate 仍未通过，原因是 dev/test assisted recall 低于 0.85。
+- Non-procurement semantic sprint：当前 50 samples，auto mapping recall `0.777`，assisted mapping recall `0.807`，strict pass 48/50，required missing 0，review-required 24，review-required rate `0.057`，package 50/50，badcase violations 0。Quality gate 仍未通过，原因是 dev/test/blind assisted recall 低于 0.85。
 - UIR Quality Gate：60 total，12 pass，48 review，0 reject/unsupported。
 - DeepSeek：provider smoke passed，suggestion_count 2，auto accepted 0，secret leaks 0。
 - Review judge：979 pending reviewed in dry-run/apply-safe，suggest reject 26，suggest approve 0，applied 0。

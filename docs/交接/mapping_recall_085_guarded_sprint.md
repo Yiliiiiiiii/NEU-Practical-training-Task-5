@@ -1,6 +1,6 @@
 # Mapping Recall 0.85 Guarded Sprint
 
-本文档记录字段映射 0.85 冲刺的本轮落地结果。当前结论必须如实表述：本轮已清零 required missing，并保持 badcase safety、package verification 和 overfit scan 通过；但 dev/test assisted recall 仍未达到 0.85，不能宣称 0.85 gate 已通过。
+本文档记录字段映射 0.85 冲刺和 basic-stage evidence pack 的落地结果。当前结论必须如实表述：本轮已清零 required missing，并保持 badcase safety、package verification 和 overfit scan 通过；但 dev/test/blind assisted recall 仍未全部达到 0.85，不能宣称 0.85 gate 已通过。
 
 ## 1. 执行约束
 
@@ -26,47 +26,48 @@
 
 ## 3. Final Sprint Result
 
-最终评测时间：2026-07-09 09:33（Asia/Shanghai）
+最终评测时间：2026-07-09 basic-stage run（Asia/Shanghai）
 
 | Metric | Value |
 | --- | ---: |
 | Dataset size | 50 |
-| Dev assisted recall | 0.807 |
+| Dev assisted recall | 0.798 |
 | Test assisted recall | 0.794 |
-| Blind assisted recall | 0.855 |
-| Auto mapping recall overall | 0.7774798927613941 |
-| Assisted mapping recall overall | 0.8096514745308311 |
-| Review-required rate | 0.043583535108958835 |
-| Review-required count | 18 |
+| Blind assisted recall | 0.826 |
+| Auto mapping recall overall | 0.777 |
+| Assisted mapping recall overall | 0.807 |
+| Review-required rate | 0.057 |
+| Review-required count | 24 |
 | Required missing | 0 |
 | Badcase violations | 0 |
 | Package pass rate | 1.000 |
 | Strict pass | 48/50 |
 | Overfit scan | Pass |
 | Quality gate | Failed |
-| verify_all | 730 passed; Ruff passed; frontend build passed; OpenAPI 63 paths |
+| verify_all | 733 passed; Ruff passed; frontend build passed; OpenAPI 63 paths |
 | frontend tests | 24 passed / 8 files |
 
 ### Split Summary
 
 | Split | Docs | Auto Recall | Assisted Recall | Review Rate | Required Missing | Badcase Violations | Package Pass |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| dev | 18 | 0.763 | 0.807 | 0.050 | 0 | 0 | 1.000 |
-| test | 9 | 0.779 | 0.794 | 0.013 | 0 | 0 | 1.000 |
-| blind | 8 | 0.812 | 0.855 | 0.056 | 0 | 0 | 1.000 |
+| dev | 18 | 0.763 | 0.798 | 0.057 | 0 | 0 | 1.000 |
+| test | 9 | 0.779 | 0.794 | 0.074 | 0 | 0 | 1.000 |
+| blind | 8 | 0.783 | 0.826 | 0.056 | 0 | 0 | 1.000 |
 
 Generalization gap:
 
-- dev vs test assisted recall gap: 0.013
-- test vs blind assisted recall gap: -0.061
+- dev vs test assisted recall gap: 0.004
+- test vs blind assisted recall gap: -0.032
 - conclusion: pass
 
 ### Quality Gate Result
 
 质量门禁未通过，失败原因：
 
-- dev assisted recall 0.807 < 0.850
+- dev assisted recall 0.798 < 0.850
 - test assisted recall 0.794 < 0.850
+- blind assisted recall 0.826 < 0.850
 
 本轮是否达到 0.85：否。
 
@@ -78,6 +79,11 @@ Generalization gap:
 - [`docs/交接/evidence/mapping_splits/summary.md`](evidence/mapping_splits/summary.md)
 - [`docs/交接/evidence/mapping_gap_analysis.md`](evidence/mapping_gap_analysis.md)
 - [`docs/交接/evidence/mapping_overfit_risk_report.md`](evidence/mapping_overfit_risk_report.md)
+- [`docs/交接/evidence/basic_stage/final/basic_stage_acceptance_matrix.md`](evidence/basic_stage/final/basic_stage_acceptance_matrix.md)
+- [`docs/交接/evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md`](evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md)
+- [`docs/交接/evidence/basic_stage/review/codex_review_subagent_report.md`](evidence/basic_stage/review/codex_review_subagent_report.md)
+- [`docs/交接/evidence/basic_stage/content/content_tag_summary_quality_report.md`](evidence/basic_stage/content/content_tag_summary_quality_report.md)
+- [`docs/交接/evidence/basic_stage/package/package_consistency_report.md`](evidence/basic_stage/package/package_consistency_report.md)
 - [`docs/交接/evidence/mapping_quality_gate_result.md`](evidence/mapping_quality_gate_result.md)
 - [`reports/non_procurement_mapping_eval_report.md`](../../reports/non_procurement_mapping_eval_report.md)
 

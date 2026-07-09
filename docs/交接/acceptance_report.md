@@ -1,6 +1,6 @@
 # SchemaPack Agent 课题 5 当前验收报告
 
-> 同步时间：2026-07-07
+> 同步时间：2026-07-09
 > 基线 commit：`7fd38c77 feat: add phase D/E/F review safety reports`
 > 本报告只陈述当前可复现证据；未运行、缺失或部分达标的检查不会被表述为完成。
 
@@ -28,12 +28,13 @@ UIR / External UIR JSON
 
 | 检查 | 当前结果 | 复现命令 |
 | --- | --- | --- |
-| backend pytest | 662 passed | `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` |
+| backend pytest | 733 passed | `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi` |
 | backend ruff | clean | 同上 |
 | frontend build | successful | 同上 |
 | OpenAPI export/check | 63 paths | 同上 |
 | frontend tests | 24 passed / 8 files | `Push-Location frontend; npm.cmd test; Pop-Location` |
 | regression gates | 8/8 passed | `scripts\check_regression_gates.py` |
+| basic-stage evidence pack | generated, mapping gate partial | `.\scripts\run_basic_stage_verification.ps1` |
 
 ## 4. 当前实现能力总览
 
@@ -69,14 +70,16 @@ UIR / External UIR JSON
 | 指标 | Phase C sprint4 | Phase D | 当前记录 |
 | --- | ---: | ---: | ---: |
 | dataset size | 50 | 50 | 50 |
-| assisted recall | `0.7165476190` | `0.7426031746` | `0.8096514745` |
-| auto recall | - | - | `0.7774798928` |
+| assisted recall | `0.7165476190` | `0.7426031746` | `0.807` |
+| auto recall | - | - | `0.777` |
 | strict pass | 31/50 | 39/50 | 48/50 |
 | required missing | 4 | 2 | 0 |
-| review-required | 22 | 21 | 18 |
-| review-required rate | - | - | `0.0435835351` |
+| review-required | 22 | 21 | 24 |
+| review-required rate | - | - | `0.057` |
 | package verify | 50/50 | 50/50 | 50/50 |
 | badcase violations | 0 | 0 | 0 |
+
+Basic-stage split assisted recall: dev `0.798`、test `0.794`、blind `0.826`。Quality gate 未通过，失败原因已记录于 `docs/交接/evidence/basic_stage/mapping/mapping_quality_gate_result.md`；不得宣称 0.85 已达成。
 
 当前记录达成：strict pass ≥ 43/50、required missing = 0、badcase violations = 0、package verification = 50/50、overfit scan pass。
 
