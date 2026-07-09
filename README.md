@@ -1,6 +1,12 @@
-# SchemaPack Agent
+# SchemaPack Agent / Topic 5 Conversion Agent
 
-SchemaPack Agent 是课题 5「数据格式标准化转换智能体」的工程实现。它面向已经进入 UIR / External UIR JSON 的治理后文档，把上游结构化中间表示转换为受 Schema 和 Mapping 约束、可校验、可追溯、可下游消费的标准成果包。
+本项目实现课题 5“数据格式标准化转换智能体”。系统接收归一后的结构化中间表示 UIR、目标 Schema/元数据模板/映射规则和内容组织参数，完成字段映射、字段重命名/合并/拆分、Schema 校验、面向 RAG 的分段打标摘要，并封装为人读 Markdown 与机读 JSON/chunks 的标准成果包。
+
+输入为 UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config。
+
+仓库内置的 policy_doc、meeting_doc、procurement_doc、contract_doc、general_doc 等 SchemaPack 只是示例配置与评测基准，用于证明系统支持多目标结构转换；它们不是系统能力边界。新增目标结构应优先通过新增 SchemaPack 配置完成，而不是修改后端代码。
+
+SchemaPack 只是示例配置与评测基准，不是系统能力边界。
 
 当前 GitHub 仓库：
 
@@ -10,18 +16,21 @@ https://github.com/Yiliiiiiiii/NEU-Practical-training-Task-5
 
 ## 当前结论
 
-项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。它覆盖 Schema 驱动转换、字段映射、结构化 JSON 与 Markdown 双形态输出、内容组织、Package 1.1、下游契约、人工复核、知识沉淀、Lineage 和安全受控的 LLM suggestion。
+项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。当前新增 Topic 5 标准接口 `POST /api/v1/topic5/convert` 与 `POST /api/v1/topic5/convert/package`，可直接接收 inline UIR、目标 Schema、元数据模板、映射模板和内容组织参数；原有 Schema Router、Review/Knowledge、Lineage、Evaluation Center 和 DeepSeek suggestion 均作为增强能力保留。
 
 强化阶段最新结论：课程规模 50-sample non-procurement split 的 dev/test/blind assisted mapping recall 已全部达到 0.85 以上，required missing = 0，badcase violations = 0，package verification = 50/50，overfit scan pass。最终综合门禁为 `conditional_pass`：mapping/package/overfit/operation/schema 已通过；DeepSeek 进行了 15 次 live report-only 调用但存在 unsafe suggestion，需要保持人工复核；Codex review 当前为 dry-run（未声明 live subagent）；content tag / summary quality 仍为 partial。不能宣称生产级盲测 recall，也不能宣称 LLM 或 Codex 自动写入生产规则。
 
 ## 核心链路
 
 ```text
-UIR / External UIR JSON
--> Adapter / Schema Router
--> Schema/Template Snapshot
--> Candidate Extraction
--> Mapping + Review / Knowledge
+标准 UIRDocument
++ Target Schema
++ Metadata Template
++ Mapping Rules
++ Content Organization Config
+-> Config Validation
+-> Generic Candidate Extraction
+-> Schema-aware Mapping
 -> Transform + Canonical
 -> Render + Content Organization
 -> Validate

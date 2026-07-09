@@ -1,0 +1,23 @@
+schema_id: announcement_doc
+template_id: announcement_doc_base_v1
+version: 1.0.0
+keywords:
+  - 公告
+  - 通知
+  - 公示
+field_labels:
+  - 公告标题
+  - 发布单位
+  - 发布日期
+  - 正文
+risks:
+  抓取时间: retrieved_at_not_publish_date
+scoring:
+  metadata: 0.30
+  keyword: 0.25
+  field_hint: 0.25
+  table_label: 0.10
+  adapter_hint: 0.10
+thresholds:
+  auto: 0.75
+  review: 0.50

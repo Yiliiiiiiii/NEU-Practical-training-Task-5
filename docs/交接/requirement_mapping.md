@@ -6,14 +6,14 @@
 | --- | --- | --- |
 | Standardization | UIR import、schema/template snapshots、deterministic mapping、transform、canonical model、structured JSON、Markdown 和 package output。 | `mapping_report.json`、`transform_report.json`、`canonical.json`、`content.json`、`content.md`、[`docs/package_spec.md`](../package_spec.md) |
 | Intelligent organization | 确定性 chunk strategies、summaries、keywords、content/management/quality tags、受保护 table/list/code chunks、parent-child metadata 和 source links。 | `content_organization_report.json`、`chunks.jsonl`、[`reports/content_organization_retrieval_eval.md`](../../reports/content_organization_retrieval_eval.md) |
-| Specialized conversion | 5 个 seeded document catalog families，包括 `procurement_doc`、`general_doc`、`meeting_doc`、`policy_doc`、`contract_doc`。 | [`reports/procurement_doc_eval_report.md`](../../reports/procurement_doc_eval_report.md)、[`reports/real_world_dataset_inventory.json`](../../reports/real_world_dataset_inventory.json) |
+| Specialized conversion | 仓库提供 `procurement_doc`、`general_doc`、`meeting_doc`、`policy_doc`、`contract_doc` 等示例 SchemaPack；系统主能力是配置化目标 Schema 转换，不以五类示例作为能力边界。 | [`reports/procurement_doc_eval_report.md`](../../reports/procurement_doc_eval_report.md)、[`reports/real_world_dataset_inventory.json`](../../reports/real_world_dataset_inventory.json) |
 | Evaluation | Production-like evaluator、60-document real-world corpus、Phase C/D non-procurement evaluators、Evaluation Center、metric registry、scorecard、regression gates，以及当前 0.85 sprint 的 auto/assisted recall 拆分、dev/test/blind split、gap analysis 和 overfit risk gate。 | [`reports/real_world_eval_report.json`](../../reports/real_world_eval_report.json)、[`reports/phase_d_non_procurement_mapping_eval_report.json`](../../reports/phase_d_non_procurement_mapping_eval_report.json)、[`docs/交接/evidence/mapping_metric_baseline_snapshot.md`](evidence/mapping_metric_baseline_snapshot.md)、[`docs/交接/evidence/mapping_splits/summary.md`](evidence/mapping_splits/summary.md)、[`docs/交接/evidence/mapping_overfit_risk_report.md`](evidence/mapping_overfit_risk_report.md) |
 | Continuous improvement | Review records、review-derived knowledge candidates、accepted/rejected candidate states、draft/active/archived knowledge packs 和 effective-template resolution。 | [`reports/review_knowledge_growth_report.json`](../../reports/review_knowledge_growth_report.json)、Review 与 Knowledge APIs |
 | Safety and traceability | Mapping evidence、confidence tiers、review-required reasons、badcase filters、immutable task snapshots、SchemaPack-Lineage、manifest hashes、package verifier output、可选 API-key auth、audit logs 和 secret redaction。 | [`docs/api_usage_examples.md`](../api_usage_examples.md)、[`docs/lineage.md`](../lineage.md)、[`reports/secret_redaction_audit_report.json`](../../reports/secret_redaction_audit_report.json) |
 | External UIR compatibility | block-list 与 section-tree 外部 UIR adapter，先转换为标准 `UIRDocument`，再由 Schema Router 推荐到现有 schema/template。 | [`docs/external_uir_integration.md`](../external_uir_integration.md)、[`reports/external_uir_adapter_eval_report.md`](../../reports/external_uir_adapter_eval_report.md) |
-| Schema evolution | Field discovery、schema/template draft generation、风险检查、校验与显式导出；draft 不自动激活。 | [`reports/evaluation_center/schema_drafts.md`](../../reports/evaluation_center/schema_drafts.md)、[`docs/交接/project_status.md`](project_status.md) |
+| Schema evolution | 新增目标结构优先通过 SchemaPack 配置接入；Field discovery 与 schema/template draft generation 是增强能力，draft 不自动激活。 | [`reports/evaluation_center/schema_drafts.md`](../../reports/evaluation_center/schema_drafts.md)、[`docs/交接/project_status.md`](project_status.md) |
 | Review governance | Review summary/grouping/impact preview、批量审批安全、负知识、knowledge pack conflict/diff/impact/rollback。 | [`docs/api_usage_examples.md`](../api_usage_examples.md)、[`docs/user_web_workbench_guide.md`](../user_web_workbench_guide.md) |
-| Integration ecosystem | Package 1.1、RAG/training/CSV contracts、统一 CLI、Python SDK 与人工注册的 Adapter scaffold。 | [`contracts`](../../contracts)、[`sdk/python/README.md`](../../sdk/python/README.md)、[`templates/adapter_plugin/README.md`](../../templates/adapter_plugin/README.md) |
+| Integration ecosystem | Topic 5 inline API/CLI、Package 1.1、RAG/training/CSV contracts、Python SDK 与人工注册的 Adapter scaffold。 | [`contracts`](../../contracts)、[`sdk/python/README.md`](../../sdk/python/README.md)、[`templates/adapter_plugin/README.md`](../../templates/adapter_plugin/README.md) |
 | Optional raw upstream | Docling/Unstructured 离线可选入口输出 External UIR；默认不安装 provider，不提供 OCR 或 raw-document API。 | [`examples/raw_upstream/README.md`](../../examples/raw_upstream/README.md)、[`docs/交接/project_status.md`](project_status.md) |
 | LLM/DeepSeek safety | DeepSeek provider smoke 与 ablation 只进入 report-only/suggestion path；不自动接受 mapping，不激活 catalog，不产生生产规则。 | [`reports/deepseek_provider_smoke_report.json`](../../reports/deepseek_provider_smoke_report.json)、[`reports/deepseek_ablation_report.json`](../../reports/deepseek_ablation_report.json) |
 | DeepSeek suggestion evaluation | 基本阶段新增 report-only suggestion packaging；输出 suggestion/confidence/rationale/risk_flags，`llm_auto_accepted_count = 0`。 | [`docs/交接/evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md`](evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md) |
@@ -22,6 +22,20 @@
 | Strengthen-stage final gate | 强化阶段新增 mapping split gate、DeepSeek live report-only、Codex review dry-run、content quality、package consistency、field operation、schema localization 和综合 final gate。 | [`docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`](evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md) |
 
 0.85 guarded sprint 的可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](mapping_recall_085_guarded_sprint.md)。该文档同步记录了 baseline、split summary、quality gate 失败原因、overfit scan 结果和下一轮修复优先级。
+
+## 课题 5 输入模型纠偏说明
+
+任务书要求课题 5 的输入为：归一后的结构化中间表示、目标数据结构 Schema/元数据模板与映射规则、内容组织参数。为避免把项目误解为固定 5 类业务模板转换器，当前项目将 SchemaPack 明确调整为外部配置资产。
+
+输入为 UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config。
+
+- Topic 5 标准接口支持 inline 输入：UIR + target_schema + metadata_template + mapping_rules + content_organization。
+- 已注册 SchemaPack 仅作为复用方式。
+- examples 下的五类历史 SchemaPack 与 announcement_doc 均为示例配置和评测基准，不代表系统能力边界。
+- Router 仅用于推荐 schema/template；用户显式传入目标 Schema 时不需要 Router。
+- MappingRules 是运行时配置，不应依赖写死在业务代码中的字段答案。
+
+SchemaPack 只是示例配置与评测基准，不是系统能力边界。
 
 ## 当前证据摘要
 

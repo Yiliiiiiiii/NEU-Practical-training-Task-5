@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Topic 5 SchemaPack Contract",
+  "type": "object",
+  "required": [
+    "target_schema",
+    "metadata_template",
+    "mapping_rules",
+    "content_org"
+  ],
+  "properties": {
+    "target_schema": {
+      "type": "object",
+      "required": ["schema_id", "version", "name", "fields"]
+    },
+    "metadata_template": {
+      "type": "object",
+      "required": ["template_id", "schema_id", "version"]
+    },
+    "mapping_rules": {
+      "type": "object",
+      "properties": {
+        "aliases": {"type": "object"},
+        "regex_rules": {"type": "array"},
+        "negative_pairs": {"type": "array"},
+        "transform_rules": {"type": "array"},
+        "defaults": {"type": "object"},
+        "thresholds": {"type": "object"},
+        "candidate_hints": {"type": "object"}
+      }
+    },
+    "content_org": {
+      "type": "object"
+    },
+    "router_rules": {
+      "type": "object"
+    }
+  }
+}

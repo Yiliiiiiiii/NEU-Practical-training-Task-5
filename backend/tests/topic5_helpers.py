@@ -1,0 +1,172 @@
+from __future__ import annotations
+
+
+def announcement_uir() -> dict:
+    return {
+        "uir_version": "1.0",
+        "doc_id": "uir_announcement_001",
+        "metadata": {
+            "source": "example",
+            "language": "zh-CN",
+            "document_title": "关于开展系统维护的公告",
+        },
+        "blocks": [
+            {
+                "block_id": "b1",
+                "type": "heading",
+                "level": 1,
+                "text": "关于开展系统维护的公告",
+                "attributes": {},
+            },
+            {
+                "block_id": "b2",
+                "type": "paragraph",
+                "text": "发布单位：信息化办公室",
+                "attributes": {},
+            },
+            {
+                "block_id": "b3",
+                "type": "paragraph",
+                "text": "发布日期：2026-07-09",
+                "attributes": {},
+            },
+            {
+                "block_id": "b4",
+                "type": "paragraph",
+                "text": (
+                    "为提升系统稳定性，平台将于本周六凌晨进行维护。"
+                    "维护期间部分服务可能短暂不可用。"
+                ),
+                "attributes": {"field_name": "正文"},
+            },
+        ],
+        "assets": [],
+        "normalization_records": [],
+    }
+
+
+def announcement_schema() -> dict:
+    return {
+        "schema_id": "announcement_doc",
+        "version": "1.0.0",
+        "name": "Announcement Document",
+        "description": "Example target schema for no-code SchemaPack onboarding.",
+        "fields": [
+            {
+                "field_id": "title",
+                "name": "title",
+                "display_name": "公告标题",
+                "type": "string",
+                "required": True,
+                "aliases": ["标题", "公告名称", "通知标题"],
+                "constraints": {},
+            },
+            {
+                "field_id": "issuer",
+                "name": "issuer",
+                "display_name": "发布单位",
+                "type": "string",
+                "required": False,
+                "aliases": ["发布单位", "发布机构", "公告单位"],
+                "constraints": {},
+            },
+            {
+                "field_id": "publish_date",
+                "name": "publish_date",
+                "display_name": "发布日期",
+                "type": "date",
+                "required": False,
+                "aliases": ["发布日期", "发布时间", "公开日期"],
+                "constraints": {},
+            },
+            {
+                "field_id": "body",
+                "name": "body",
+                "display_name": "正文",
+                "type": "text",
+                "required": True,
+                "aliases": ["正文", "内容", "公告内容"],
+                "constraints": {},
+            },
+        ],
+    }
+
+
+def announcement_mapping_template() -> dict:
+    return {
+        "template_id": "announcement_doc_base_v1",
+        "schema_id": "announcement_doc",
+        "name": "Announcement Document Base Template",
+        "version": "1.0.0",
+        "aliases": {
+            "title": ["标题", "公告标题", "通知标题", "document_title"],
+            "issuer": ["发布单位", "发布机构", "公告单位"],
+            "publish_date": ["发布日期", "发布时间", "公开日期"],
+            "body": ["正文", "内容", "公告内容"],
+        },
+        "regex_rules": [
+            {
+                "target_field_id": "publish_date",
+                "pattern": (
+                    "(?:发布日期|发布时间|公开日期)\\s*[:：]\\s*"
+                    "(\\d{4}[-/.年]\\d{1,2}[-/.月]\\d{1,2})"
+                ),
+                "group": 1,
+            }
+        ],
+        "transform_rules": [
+            {
+                "rule_id": "normalize_publish_date",
+                "operation": "normalize_date",
+                "target_field_id": "publish_date",
+            },
+            {"rule_id": "trim_title", "operation": "trim", "target_field_id": "title"},
+            {"rule_id": "trim_issuer", "operation": "trim", "target_field_id": "issuer"},
+        ],
+        "defaults": {},
+        "enum_maps": {},
+    }
+
+
+def announcement_content_organization() -> dict:
+    return {
+        "chunk_strategy": "source_block_aware",
+        "target_tokens": 1200,
+        "min_tokens": 1,
+        "max_tokens": 1400,
+        "overlap_tokens": 0,
+        "protect_tables": True,
+        "protect_lists": True,
+        "protect_code_blocks": True,
+        "enable_parent_child": False,
+    }
+
+
+def announcement_convert_request() -> dict:
+    return {
+        "uir": announcement_uir(),
+        "target_schema": announcement_schema(),
+        "mapping_template": announcement_mapping_template(),
+        "metadata_template": {
+            "template_id": "announcement_doc_base_v1",
+            "schema_id": "announcement_doc",
+            "version": "1.0.0",
+            "metadata_fields": [
+                {"field_id": "source", "required": False, "default": None},
+                {"field_id": "language", "required": False, "default": "zh-CN"},
+            ],
+        },
+        "content_organization": announcement_content_organization(),
+        "options": {
+            "enable_llm_fallback": False,
+            "negative_pairs": [
+                {
+                    "source_pattern": "抓取时间|retrieved_at",
+                    "target_field_id": "publish_date",
+                    "reason": "网页抓取时间不是发布日期",
+                    "severity": "block",
+                }
+            ],
+            "thresholds": {"auto_accept": 0.82, "review_required": 0.62},
+        },
+    }

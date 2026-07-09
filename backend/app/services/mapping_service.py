@@ -76,6 +76,8 @@ class MappingService:
         options = options or {}
         badcases = options.get("badcases", [])
         badcases = badcases if isinstance(badcases, list) else []
+        negative_pairs = options.get("negative_pairs", [])
+        negative_pairs = negative_pairs if isinstance(negative_pairs, list) else []
         mappings: list[dict[str, Any]] = []
         review_required: list[dict[str, Any]] = []
         llm_warnings: list[dict[str, str]] = []
@@ -103,7 +105,7 @@ class MappingService:
                 mapping = self._find_type(task_id, field, candidates, used_source_paths)
 
             if mapping is not None:
-                mapping = self._with_decision_context(mapping, badcases)
+                mapping = self._with_decision_context(mapping, badcases, negative_pairs)
                 if mapping.need_review:
                     review_required.append(mapping.model_dump(mode="json"))
                 else:
@@ -134,7 +136,7 @@ class MappingService:
                 )
 
             if review_item is not None:
-                review_item = self._with_decision_context(review_item, badcases)
+                review_item = self._with_decision_context(review_item, badcases, negative_pairs)
                 review_data = review_item.model_dump(mode="json")
                 review_required.append(review_data)
                 strategy_counts[review_item.method] += 1
@@ -221,6 +223,7 @@ class MappingService:
                 "llm_suggestion_count": risk_flag_counts.get("llm_suggestion", 0),
                 "warnings": llm_warnings,
                 "methods": {key: value for key, value in strategy_counts.items() if value},
+                "thresholds": options.get("thresholds", {}),
             },
             mappings=mappings,
             unmapped=unmapped,
@@ -780,6 +783,7 @@ class MappingService:
         self,
         mapping: FieldMapping,
         badcases: list[dict[str, Any]],
+        negative_pairs: list[dict[str, Any]] | None = None,
     ) -> FieldMapping:
         badcase_filter = self._badcase_filter(
             mapping.source_field.source_name,
@@ -790,15 +794,30 @@ class MappingService:
             mapping.source_field.source_name,
             mapping.target_field_id,
         )
+        configured_reason = self._configured_forbidden_reason(
+            mapping.source_field.source_name,
+            mapping.target_field_id,
+            negative_pairs or [],
+        )
+        if configured_reason is not None:
+            badcase_filter = {
+                "checked": True,
+                "blocked": True,
+                "reason": configured_reason,
+                "source": "configured_rules",
+            }
         if forbidden_reason is not None:
             badcase_filter = {
                 "checked": True,
                 "blocked": True,
                 "reason": forbidden_reason,
+                "source": "builtin_rules",
             }
         risk_flags = set(mapping.risk_flags)
         if badcase_filter["blocked"]:
             risk_flags.add("badcase_blocked")
+        if configured_reason is not None:
+            risk_flags.add("configured_negative_pair")
         if forbidden_reason is not None:
             risk_flags.add("forbidden_pair")
         if mapping.method == "llm_fallback":
@@ -823,7 +842,7 @@ class MappingService:
                     type="badcase_filter",
                     message=message,
                     weight=1.0,
-                    source="badcase",
+                    source=str(badcase_filter.get("source") or "badcase"),
                 )
             )
             evidence_text.append(message)
@@ -844,6 +863,25 @@ class MappingService:
                 "evidence_text": evidence_text,
             }
         )
+
+    @staticmethod
+    def _configured_forbidden_reason(
+        source_name: str,
+        target_field_id: str,
+        negative_pairs: list[dict[str, Any]],
+    ) -> str | None:
+        for item in negative_pairs:
+            if not isinstance(item, dict):
+                continue
+            pattern = item.get("source_pattern")
+            target = item.get("target_field_id")
+            if (
+                target == target_field_id
+                and isinstance(pattern, str)
+                and re.search(pattern, source_name)
+            ):
+                return str(item.get("reason") or "configured_negative_pair")
+        return None
 
     @staticmethod
     def _requires_review_for_risk(risk_flags: set[str]) -> bool:

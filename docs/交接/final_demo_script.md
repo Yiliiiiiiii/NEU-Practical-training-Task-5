@@ -1,8 +1,32 @@
 # SchemaPack Agent 最终 Demo 脚本
 
-本脚本面向在 `F:\p2` 中使用 PowerShell 的评审者，演示从真实采购 UIR input 到 schema-governed、verifier-checked package output 的当前已验证路径。
+本脚本面向在 `F:\p2` 中使用 PowerShell 的评审者，优先演示课题 5 标准输入输出：UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config -> schema-governed、verifier-checked package output。
 
-## 0. Basic-stage Evidence Pack
+## 0. Topic 5 标准接口与 no-code SchemaPack 演示
+
+演示顺序：
+
+1. 展示任务书课题 5 输入输出。
+2. 展示 Topic 5 标准接口请求体：UIR + Schema + Rules + ContentConfig。
+3. 运行 announcement_doc inline convert。
+4. 展示 mapping_report：字段映射、置信度、证据、review_required。
+5. 展示 validation_report：类型/必填/值域定位。
+6. 展示 content.json、content.md、chunks.jsonl。
+7. 展示 manifest 和 verifier_report。
+8. 最后补充：已有 5 类 SchemaPack 是示例配置；External UIR、Review、Lineage 是增强能力。
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\run_topic5_inline_convert.py `
+  --request examples\topic5_inline\announcement_convert_request.json `
+  --out reports\topic5_inline_announcement_result.json `
+  --create-package
+
+backend\.venv\Scripts\python.exe scripts\check_topic5_alignment_gate.py
+```
+
+SchemaPack 只是示例配置与评测基准，不是系统能力边界。
+
+## 0.1 Basic-stage Evidence Pack
 
 先运行基本阶段一键复现：
 
@@ -21,7 +45,7 @@
 
 当前基本阶段 mapping gate 为 `partial`：dev/test/blind assisted recall 分别为 `0.798`、`0.794`、`0.826`，不能宣称 0.85 已达成。
 
-## 0.1 Strengthen-stage Evidence Pack
+## 0.2 Strengthen-stage Evidence Pack
 
 运行强化阶段一键复现：
 

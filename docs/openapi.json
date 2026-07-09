@@ -635,6 +635,68 @@
         "title": "BatchReviewResponse",
         "type": "object"
       },
+      "ContentOrganizationConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "chunk_strategy": {
+            "default": "source_block_aware",
+            "title": "Chunk Strategy",
+            "type": "string"
+          },
+          "enable_parent_child": {
+            "default": false,
+            "title": "Enable Parent Child",
+            "type": "boolean"
+          },
+          "keyword_mode": {
+            "default": "deterministic",
+            "title": "Keyword Mode",
+            "type": "string"
+          },
+          "max_tokens": {
+            "default": 1400,
+            "title": "Max Tokens",
+            "type": "integer"
+          },
+          "min_tokens": {
+            "default": 1,
+            "title": "Min Tokens",
+            "type": "integer"
+          },
+          "overlap_tokens": {
+            "default": 0,
+            "title": "Overlap Tokens",
+            "type": "integer"
+          },
+          "protect_code_blocks": {
+            "default": true,
+            "title": "Protect Code Blocks",
+            "type": "boolean"
+          },
+          "protect_lists": {
+            "default": true,
+            "title": "Protect Lists",
+            "type": "boolean"
+          },
+          "protect_tables": {
+            "default": true,
+            "title": "Protect Tables",
+            "type": "boolean"
+          },
+          "summary_mode": {
+            "default": "deterministic",
+            "title": "Summary Mode",
+            "type": "string"
+          },
+          "target_tokens": {
+            "default": 1200,
+            "title": "Target Tokens",
+            "type": "integer"
+          }
+        },
+        "title": "ContentOrganizationConfig",
+        "type": "object"
+      },
       "DatasetRegistryItem": {
         "additionalProperties": false,
         "properties": {
@@ -2856,6 +2918,37 @@
         "title": "MappingTemplate",
         "type": "object"
       },
+      "MetadataTemplateConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "metadata_fields": {
+            "items": {
+              "type": "object"
+            },
+            "title": "Metadata Fields",
+            "type": "array"
+          },
+          "schema_id": {
+            "title": "Schema Id",
+            "type": "string"
+          },
+          "template_id": {
+            "title": "Template Id",
+            "type": "string"
+          },
+          "version": {
+            "default": "1.0.0",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "template_id",
+          "schema_id"
+        ],
+        "title": "MetadataTemplateConfig",
+        "type": "object"
+      },
       "MetricDefinition": {
         "additionalProperties": false,
         "properties": {
@@ -3755,6 +3848,11 @@
             "title": "Schema Id",
             "type": "string"
           },
+          "source": {
+            "default": "builtin_signals",
+            "title": "Source",
+            "type": "string"
+          },
           "template_id": {
             "title": "Template Id",
             "type": "string"
@@ -4445,6 +4543,155 @@
           "status"
         ],
         "title": "TemplateStatusResponse",
+        "type": "object"
+      },
+      "Topic5ConvertRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "content_organization": {
+            "$ref": "#/components/schemas/ContentOrganizationConfig"
+          },
+          "mapping_template": {
+            "$ref": "#/components/schemas/MappingTemplate"
+          },
+          "metadata_template": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MetadataTemplateConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "options": {
+            "title": "Options",
+            "type": "object"
+          },
+          "target_schema": {
+            "$ref": "#/components/schemas/TargetSchema"
+          },
+          "uir": {
+            "$ref": "#/components/schemas/UIRDocument-Input"
+          }
+        },
+        "required": [
+          "uir",
+          "target_schema",
+          "mapping_template"
+        ],
+        "title": "Topic5ConvertRequest",
+        "type": "object"
+      },
+      "Topic5ConvertResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "chunks": {
+            "items": {
+              "type": "object"
+            },
+            "title": "Chunks",
+            "type": "array"
+          },
+          "content_json": {
+            "title": "Content Json",
+            "type": "object"
+          },
+          "content_markdown": {
+            "title": "Content Markdown",
+            "type": "string"
+          },
+          "content_organization_report": {
+            "title": "Content Organization Report",
+            "type": "object"
+          },
+          "manifest": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Manifest"
+          },
+          "mapping_report": {
+            "title": "Mapping Report",
+            "type": "object"
+          },
+          "package_metadata": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Package Metadata"
+          },
+          "package_zip_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Package Zip Path"
+          },
+          "schema_id": {
+            "title": "Schema Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "task_id": {
+            "title": "Task Id",
+            "type": "string"
+          },
+          "template_id": {
+            "title": "Template Id",
+            "type": "string"
+          },
+          "transform_report": {
+            "title": "Transform Report",
+            "type": "object"
+          },
+          "validation_report": {
+            "title": "Validation Report",
+            "type": "object"
+          },
+          "verifier_report": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verifier Report"
+          }
+        },
+        "required": [
+          "task_id",
+          "status",
+          "schema_id",
+          "template_id",
+          "content_json",
+          "content_markdown",
+          "chunks",
+          "mapping_report",
+          "transform_report",
+          "validation_report",
+          "content_organization_report"
+        ],
+        "title": "Topic5ConvertResponse",
         "type": "object"
       },
       "TransformRule": {
@@ -7828,6 +8075,88 @@
         "summary": "Archive Template",
         "tags": [
           "templates"
+        ]
+      }
+    },
+    "/api/v1/topic5/convert": {
+      "post": {
+        "operationId": "convert_topic5_api_v1_topic5_convert_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Topic5ConvertRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic5ConvertResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Convert Topic5",
+        "tags": [
+          "topic5"
+        ]
+      }
+    },
+    "/api/v1/topic5/convert/package": {
+      "post": {
+        "operationId": "convert_topic5_package_api_v1_topic5_convert_package_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Topic5ConvertRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Topic5ConvertResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Convert Topic5 Package",
+        "tags": [
+          "topic5"
         ]
       }
     },

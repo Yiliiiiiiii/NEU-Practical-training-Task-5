@@ -308,9 +308,19 @@ class CandidateService:
     )
     FULL_DATE_REGEX = re.compile(FULL_DATE_PATTERN)
 
-    def extract_candidates(self, task_id: str, uir: UIRDocument) -> list[FieldCandidate]:
+    def extract_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        *,
+        candidate_profile: dict[str, Any] | None = None,
+        enable_legacy_domain_rules: bool | None = None,
+    ) -> list[FieldCandidate]:
         candidates: list[FieldCandidate] = []
         seen_names: dict[str, int] = {}
+        use_legacy_domain_rules = (
+            True if enable_legacy_domain_rules is None else enable_legacy_domain_rules
+        )
 
         for key, value in uir.metadata.items():
             if key in self.CONTROL_METADATA_KEYS:
@@ -410,7 +420,7 @@ class CandidateService:
                     )
                 )
 
-        if uir.metadata.get("domain") == "meeting_doc":
+        if use_legacy_domain_rules and uir.metadata.get("domain") == "meeting_doc":
             meeting_date = self._meeting_date_candidate(task_id, uir, seen_names)
             if meeting_date is not None:
                 candidates.append(meeting_date)
@@ -429,15 +439,65 @@ class CandidateService:
                 )
             candidates.extend(self._meeting_opening_candidates(task_id, uir, seen_names))
             candidates.extend(self._meeting_topic_candidates(task_id, uir, seen_names))
-        elif uir.metadata.get("domain") == "policy_doc":
+        elif use_legacy_domain_rules and uir.metadata.get("domain") == "policy_doc":
             candidates.extend(
                 self._policy_document_candidates(task_id, uir, seen_names, candidates)
             )
-        elif uir.metadata.get("domain") == "general_doc":
+        elif use_legacy_domain_rules and uir.metadata.get("domain") == "general_doc":
             candidates.extend(self._general_semantic_candidates(task_id, uir, seen_names))
 
         self._add_traceable_block_candidates(task_id, uir, candidates, seen_names)
+        if candidate_profile:
+            self._add_profile_candidates(task_id, uir, candidates, seen_names, candidate_profile)
         return candidates
+
+    def _add_profile_candidates(
+        self,
+        task_id: str,
+        uir: UIRDocument,
+        candidates: list[FieldCandidate],
+        seen_names: dict[str, int],
+        candidate_profile: dict[str, Any],
+    ) -> None:
+        labeled_values = candidate_profile.get("labeled_values", {})
+        if not isinstance(labeled_values, dict):
+            return
+        labels_by_target = {
+            str(target): [str(label) for label in labels if isinstance(label, str)]
+            for target, labels in labeled_values.items()
+            if isinstance(labels, list)
+        }
+        for block in uir.blocks:
+            text = block.text if isinstance(block.text, str) else ""
+            if not text:
+                continue
+            for target_field, labels in labels_by_target.items():
+                for label in labels:
+                    match = re.search(
+                        rf"{re.escape(label)}\s*[:：]\s*(?P<value>[^\n。；;]+)",
+                        text,
+                    )
+                    if match is None:
+                        continue
+                    value = match.group("value").strip()
+                    if not value:
+                        continue
+                    candidates.append(
+                        self._candidate(
+                            task_id=task_id,
+                            uir=uir,
+                            source_path=f"$.blocks.{block.block_id}.text",
+                            source_name=target_field,
+                            value=value,
+                            source_blocks=[block.block_id],
+                            source_kind="candidate_profile",
+                            seen_names=seen_names,
+                            confidence=0.86,
+                            display_name=target_field,
+                            target_hints=[target_field],
+                            evidence_type="candidate_profile",
+                        )
+                    )
 
     @classmethod
     def _metadata_candidate_options(

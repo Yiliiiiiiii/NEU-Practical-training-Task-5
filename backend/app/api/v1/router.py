@@ -12,6 +12,7 @@ from app.api.v1.schema_drafts import router as schema_drafts_router
 from app.api.v1.schemas import router as schemas_router
 from app.api.v1.tasks import router as tasks_router
 from app.api.v1.templates import router as templates_router
+from app.api.v1.topic5 import router as topic5_router
 
 api_router = APIRouter()
 api_router.include_router(audit_logs_router)
@@ -26,3 +27,4 @@ api_router.include_router(schema_drafts_router)
 api_router.include_router(schemas_router)
 api_router.include_router(tasks_router)
 api_router.include_router(templates_router)
+api_router.include_router(topic5_router)

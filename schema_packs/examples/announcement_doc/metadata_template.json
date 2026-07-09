@@ -1,0 +1,17 @@
+{
+  "template_id": "announcement_doc_base_v1",
+  "schema_id": "announcement_doc",
+  "version": "1.0.0",
+  "metadata_fields": [
+    {
+      "field_id": "source",
+      "required": false,
+      "default": null
+    },
+    {
+      "field_id": "language",
+      "required": false,
+      "default": "zh-CN"
+    }
+  ]
+}

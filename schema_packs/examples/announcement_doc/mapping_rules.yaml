@@ -1,0 +1,61 @@
+schema_id: announcement_doc
+template_id: announcement_doc_base_v1
+version: 1.0.0
+
+aliases:
+  title:
+    - 标题
+    - 公告标题
+    - 通知标题
+    - document_title
+  issuer:
+    - 发布单位
+    - 发布机构
+    - 公告单位
+  publish_date:
+    - 发布日期
+    - 发布时间
+    - 公开日期
+  body:
+    - 正文
+    - 内容
+    - 公告内容
+
+regex_rules:
+  - target_field_id: publish_date
+    pattern: "(?:发布日期|发布时间|公开日期)\\s*[:：]\\s*(\\d{4}[-/.年]\\d{1,2}[-/.月]\\d{1,2})"
+    group: 1
+    confidence: 0.85
+
+negative_pairs:
+  - source_pattern: "抓取时间|retrieved_at"
+    target_field_id: publish_date
+    reason: "网页抓取时间不是发布日期"
+    severity: block
+
+transform_rules:
+  - rule_id: normalize_publish_date
+    operation: normalize_date
+    target_field_id: publish_date
+  - rule_id: trim_title
+    operation: trim
+    target_field_id: title
+  - rule_id: trim_issuer
+    operation: trim
+    target_field_id: issuer
+
+defaults:
+  body: ""
+
+thresholds:
+  auto_accept: 0.82
+  review_required: 0.62
+
+candidate_hints:
+  labeled_values:
+    issuer:
+      - 发布单位
+      - 发布机构
+    publish_date:
+      - 发布日期
+      - 发布时间

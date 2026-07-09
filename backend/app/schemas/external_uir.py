@@ -94,6 +94,7 @@ class SchemaRouteCandidate(StrictBaseModel):
     reasons: list[str] = Field(default_factory=list)
     evidence: list[RouteEvidence] = Field(default_factory=list)
     risk_flags: list[str] = Field(default_factory=list)
+    source: str = "builtin_signals"
 
 
 class SchemaRouteDecision(StrictBaseModel):

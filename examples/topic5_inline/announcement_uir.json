@@ -1,0 +1,40 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "uir_announcement_001",
+  "metadata": {
+    "source": "example",
+    "language": "zh-CN",
+    "document_title": "关于开展系统维护的公告"
+  },
+  "blocks": [
+    {
+      "block_id": "b1",
+      "type": "heading",
+      "level": 1,
+      "text": "关于开展系统维护的公告",
+      "attributes": {}
+    },
+    {
+      "block_id": "b2",
+      "type": "paragraph",
+      "text": "发布单位：信息化办公室",
+      "attributes": {}
+    },
+    {
+      "block_id": "b3",
+      "type": "paragraph",
+      "text": "发布日期：2026-07-09",
+      "attributes": {}
+    },
+    {
+      "block_id": "b4",
+      "type": "paragraph",
+      "text": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。",
+      "attributes": {
+        "field_name": "正文"
+      }
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

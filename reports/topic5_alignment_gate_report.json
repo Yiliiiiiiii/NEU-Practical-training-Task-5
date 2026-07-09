@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "announcement_inline_convert_passed": true,
+    "no_code_schema_pack_demo": true,
+    "no_false_production_blind_claim": true,
+    "readme_positioning_corrected": true,
+    "requirement_mapping_corrected": true,
+    "schema_pack_contract": true,
+    "standard_convert_api": true
+  },
+  "failed_checks": [],
+  "status": "passed",
+  "warnings": []
+}

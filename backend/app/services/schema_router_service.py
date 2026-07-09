@@ -7,6 +7,7 @@ from app.schemas.external_uir import (
     SchemaRouteDecision,
 )
 from app.schemas.uir import UIRDocument
+from app.services.schema_pack_service import SchemaPackService
 
 
 class SchemaRouterService:
@@ -121,6 +122,9 @@ class SchemaRouterService:
         },
     }
 
+    def __init__(self, schema_pack_service: SchemaPackService | None = None) -> None:
+        self.schema_pack_service = schema_pack_service or SchemaPackService()
+
     def route(
         self,
         uir: UIRDocument,
@@ -135,10 +139,12 @@ class SchemaRouterService:
                     keywords=list(config["keywords"]),
                     field_labels=list(config["field_labels"]),
                     risks=dict(config["risks"]),
+                    source=str(config.get("source") or "builtin_signals"),
+                    scoring=dict(config.get("scoring", {})),
                     uir=uir,
                     adapter_report=adapter_report,
                 )
-                for schema_id, config in self.SIGNALS.items()
+                for schema_id, config in self._signals().items()
             ),
             key=lambda item: item.confidence,
             reverse=True,
@@ -169,6 +175,7 @@ class SchemaRouterService:
                 ],
                 "reasons": candidate.reasons,
                 "risk_flags": candidate.risk_flags,
+                "source": candidate.source,
             }
             for candidate in candidates
         ]
@@ -192,6 +199,8 @@ class SchemaRouterService:
         keywords: list[str],
         field_labels: list[str],
         risks: dict[str, str],
+        source: str,
+        scoring: dict[str, Any],
         uir: UIRDocument,
         adapter_report: AdapterReport | None,
     ) -> SchemaRouteCandidate:
@@ -226,6 +235,13 @@ class SchemaRouterService:
             "table_label": 0.10,
             "adapter_hint": 0.10,
         }
+        component_weights.update(
+            {
+                key: float(value)
+                for key, value in scoring.items()
+                if key in component_weights and isinstance(value, int | float)
+            }
+        )
         confidence = round(
             sum(
                 component_scores[name] * component_weights[name]
@@ -257,7 +273,16 @@ class SchemaRouterService:
             reasons=reasons,
             evidence=evidence,
             risk_flags=risk_flags,
+            source=source,
         )
+
+    def _signals(self) -> dict[str, dict[str, Any]]:
+        loaded = self.schema_pack_service.load_router_rules()
+        if not loaded:
+            return self.SIGNALS
+        merged = dict(self.SIGNALS)
+        merged.update(loaded)
+        return merged
 
     def _evidence(
         self,

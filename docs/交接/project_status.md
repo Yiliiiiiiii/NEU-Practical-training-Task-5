@@ -33,6 +33,7 @@ Pop-Location
 
 | 阶段/能力 | 状态 | 当前实现 |
 | --- | --- | --- |
+| Topic 5 standard inline conversion | 已完成 | `/api/v1/topic5/convert` 与 `/api/v1/topic5/convert/package` 支持 UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config |
 | Core pipeline | 已完成 | UIR/External UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping -> Transform -> Canonical -> Render -> Content Organization -> Validate -> Manifest -> ZIP -> Verify |
 | Catalog governance | 已完成 | schema/template versions、effective template resolution、knowledge-pack draft/active/archive、历史 task snapshot 保护 |
 | External UIR | 已完成 | block-list 与 section-tree adapter、adapter trace、router v2、convert/import/create-task API、前端面板 |
@@ -47,10 +48,13 @@ Pop-Location
 核心生产链路保持：
 
 ```text
-UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
+UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config
+-> Config Validation -> Generic Candidate Extraction -> Schema-aware Mapping
 -> Transform -> Canonical -> Render -> Content Organization
 -> Validate -> Manifest -> ZIP -> Verify
 ```
+
+SchemaPack 只是示例配置与评测基准，不是系统能力边界。
 
 ## 评测证据
 

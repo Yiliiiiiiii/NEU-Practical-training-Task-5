@@ -1,0 +1,44 @@
+{
+  "schema_id": "announcement_doc",
+  "version": "1.0.0",
+  "name": "Announcement Document",
+  "description": "Example target schema for no-code SchemaPack onboarding.",
+  "fields": [
+    {
+      "field_id": "title",
+      "name": "title",
+      "display_name": "公告标题",
+      "type": "string",
+      "required": true,
+      "aliases": ["标题", "公告名称", "通知标题"],
+      "constraints": {}
+    },
+    {
+      "field_id": "issuer",
+      "name": "issuer",
+      "display_name": "发布单位",
+      "type": "string",
+      "required": false,
+      "aliases": ["发布单位", "发布机构", "公告单位"],
+      "constraints": {}
+    },
+    {
+      "field_id": "publish_date",
+      "name": "publish_date",
+      "display_name": "发布日期",
+      "type": "date",
+      "required": false,
+      "aliases": ["发布日期", "发布时间", "公开日期"],
+      "constraints": {}
+    },
+    {
+      "field_id": "body",
+      "name": "body",
+      "display_name": "正文",
+      "type": "text",
+      "required": true,
+      "aliases": ["正文", "内容", "公告内容"],
+      "constraints": {}
+    }
+  ]
+}
