@@ -1,0 +1,950 @@
+{
+  "badcase_violations": [],
+  "generated_at": "2026-07-09T07:37:46.492101+00:00",
+  "missing_or_ambiguous": [
+    {
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "required_missing": [],
+      "review_evidence_count": 2
+    }
+  ],
+  "package_summary": {
+    "failed": 0,
+    "passed": 8
+  },
+  "per_document": [
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "attendees",
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.8888888888888888,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.7777777777777778,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 9,
+        "mapping_recall": 0.8888888888888888,
+        "missing_gold_mapping_rate": 0.125,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
+        "review_required_recall": 0.1111111111111111
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_3a10ea3e9f47_各乡镇_各部门单位_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_3a10ea3e9f47_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_department_attendees",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_008_wlmqx_2026_01_minutes_b007"
+          ],
+          "source_field": {
+            "source_name": "各乡镇、各部门单位",
+            "source_path": "$.blocks.real_meeting_008_wlmqx_2026_01_minutes_b007.text#attendees"
+          },
+          "source_field_name": "各乡镇、各部门单位",
+          "source_path": "$.blocks.real_meeting_008_wlmqx_2026_01_minutes_b007.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_3a10ea3e9f47",
+          "value_sample": "各乡镇、各部门单位"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_3a10ea3e9f47",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.7777777777777778,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.7777777777777778,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_009_kundulun_2026_01_minutes",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 9,
+        "mapping_recall": 0.7777777777777778,
+        "missing_gold_mapping_rate": 0.125,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_7e76d86c37e8",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "attendees",
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_location",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.9,
+        "auto_accepted_correct": 8,
+        "auto_mapping_recall": 0.8,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+        "gold_mapping_count": 9,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 10,
+        "mapping_recall": 0.9,
+        "missing_gold_mapping_rate": 0.1111111111111111,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1,
+        "review_required_recall": 0.1
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_62e7a13e6d7f_出席会议_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_62e7a13e6d7f_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_mixed_attendee_roles",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_010_zhangjiagang_64_minutes_b001"
+          ],
+          "source_field": {
+            "source_name": "出席会议",
+            "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees"
+          },
+          "source_field_name": "出席会议",
+          "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_62e7a13e6d7f",
+          "value_sample": "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生态文明建设规划（2025-2035）》。会议议定以下意见："
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_62e7a13e6d7f",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "effective_date",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "responsible_departments",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.8571428571428571,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_011_battery_recycling_rules",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 7,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 2,
+        "review_required_rate": 0.2222222222222222,
+        "review_required_recall": 0.14285714285714285
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_51f874bcd244_工业和信息化部等部门_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target issuer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_51f874bcd244_issuer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_responsible_departments",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_011_battery_recycling_rules_b005"
+          ],
+          "source_field": {
+            "source_name": "工业和信息化部等部门",
+            "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer"
+          },
+          "source_field_name": "工业和信息化部等部门",
+          "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_51f874bcd244",
+          "value_sample": "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_51f874bcd244_publication_year_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target publish_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target publish_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_51f874bcd244_publish_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.6,
+            "final_score": 0.3525,
+            "label_score": 1.0,
+            "risk_penalty": 0.45,
+            "source_quality_score": 0.85,
+            "type_score": 0.4
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_publication_year_only",
+            "review_required",
+            "weak_evidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "publication year",
+            "source_path": "$.metadata.source_url#publish_year"
+          },
+          "source_field_name": "publication year",
+          "source_path": "$.metadata.source_url#publish_year",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "publish_date",
+          "target_field_name": "publish_date",
+          "task_id": "task_51f874bcd244",
+          "value_sample": "2026"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_51f874bcd244",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_012_sme_gradient_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.875,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.875,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_012_sme_gradient_rules",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.875,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_0eb7a8a9f55a",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_013_minor_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 10,
+        "assisted_mapping_recall": 0.875,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.875,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_013_minor_platform_rules",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.875,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_016208d6bb79",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_014_digital_aging_campaign",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.7777777777777778,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.7777777777777778,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_014_digital_aging_campaign",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 9,
+        "mapping_recall": 0.7777777777777778,
+        "missing_gold_mapping_rate": 0.125,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_40ce89a954ec",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_015_ai_ethics_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.7777777777777778,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.7777777777777778,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_015_ai_ethics_rules",
+        "gold_mapping_count": 8,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 9,
+        "mapping_recall": 0.7777777777777778,
+        "missing_gold_mapping_rate": 0.125,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_03ed0034bf5e",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    }
+  ],
+  "per_document_type": {
+    "meeting_doc": {
+      "accepted_item_count": 25,
+      "assisted_mapping_recall": 0.8571428571428571,
+      "auto_accepted_correct": 22,
+      "auto_mapping_recall": 0.7857142857142857,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 3,
+      "gold_mapping_count": 25,
+      "gold_review_required_count": 3,
+      "gold_signal_count": 28,
+      "mapping_recall": 0.8571428571428571,
+      "missing_gold_mapping_rate": 0.12,
+      "missing_gold_mappings": 3,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 2,
+      "review_required_item_count": 2,
+      "review_required_rate": 0.07407407407407407,
+      "review_required_recall": 0.07142857142857142
+    },
+    "policy_doc": {
+      "accepted_item_count": 43,
+      "assisted_mapping_recall": 0.8536585365853658,
+      "auto_accepted_correct": 34,
+      "auto_mapping_recall": 0.8292682926829268,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 5,
+      "gold_mapping_count": 36,
+      "gold_review_required_count": 5,
+      "gold_signal_count": 41,
+      "mapping_recall": 0.8536585365853658,
+      "missing_gold_mapping_rate": 0.05555555555555555,
+      "missing_gold_mappings": 2,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 1,
+      "review_required_item_count": 2,
+      "review_required_rate": 0.044444444444444446,
+      "review_required_recall": 0.024390243902439025
+    }
+  },
+  "per_field": {},
+  "review_evidence": [
+    {
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_3a10ea3e9f47_各乡镇_各部门单位_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_3a10ea3e9f47_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_department_attendees",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_008_wlmqx_2026_01_minutes_b007"
+          ],
+          "source_field": {
+            "source_name": "各乡镇、各部门单位",
+            "source_path": "$.blocks.real_meeting_008_wlmqx_2026_01_minutes_b007.text#attendees"
+          },
+          "source_field_name": "各乡镇、各部门单位",
+          "source_path": "$.blocks.real_meeting_008_wlmqx_2026_01_minutes_b007.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_3a10ea3e9f47",
+          "value_sample": "各乡镇、各部门单位"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_62e7a13e6d7f_出席会议_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_62e7a13e6d7f_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_mixed_attendee_roles",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_010_zhangjiagang_64_minutes_b001"
+          ],
+          "source_field": {
+            "source_name": "出席会议",
+            "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees"
+          },
+          "source_field_name": "出席会议",
+          "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_62e7a13e6d7f",
+          "value_sample": "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生态文明建设规划（2025-2035）》。会议议定以下意见："
+        }
+      ]
+    },
+    {
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_51f874bcd244_工业和信息化部等部门_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target issuer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_51f874bcd244_issuer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_responsible_departments",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_011_battery_recycling_rules_b005"
+          ],
+          "source_field": {
+            "source_name": "工业和信息化部等部门",
+            "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer"
+          },
+          "source_field_name": "工业和信息化部等部门",
+          "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_51f874bcd244",
+          "value_sample": "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_51f874bcd244_publication_year_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target publish_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target publish_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_51f874bcd244_publish_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.6,
+            "final_score": 0.3525,
+            "label_score": 1.0,
+            "risk_penalty": 0.45,
+            "source_quality_score": 0.85,
+            "type_score": 0.4
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_publication_year_only",
+            "review_required",
+            "weak_evidence"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "publication year",
+            "source_path": "$.metadata.source_url#publish_year"
+          },
+          "source_field_name": "publication year",
+          "source_path": "$.metadata.source_url#publish_year",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "publish_date",
+          "target_field_name": "publish_date",
+          "task_id": "task_51f874bcd244",
+          "value_sample": "2026"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "accepted_item_count": 68,
+    "assisted_mapping_recall": 0.855072463768116,
+    "auto_accepted_correct": 56,
+    "auto_mapping_recall": 0.8115942028985508,
+    "badcase_pass_rate": 1.0,
+    "badcase_violation_count": 0,
+    "document_count": 8,
+    "gold_mapping_count": 61,
+    "gold_review_required_count": 8,
+    "gold_signal_count": 69,
+    "mapping_recall": 0.855072463768116,
+    "missing_gold_mapping_rate": 0.08196721311475409,
+    "missing_gold_mappings": 5,
+    "package_pass_count": 8,
+    "package_pass_rate": 1.0,
+    "review_required_correct": 3,
+    "review_required_item_count": 4,
+    "review_required_rate": 0.05555555555555555,
+    "review_required_recall": 0.043478260869565216,
+    "validation_pass_count": 6
+  }
+}

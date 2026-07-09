@@ -1,20 +1,20 @@
 {
   "by_doc_type": {
     "general_doc": {
-      "assisted_mapping_recall": 0.7678571428571429,
+      "assisted_mapping_recall": 0.7589285714285714,
       "auto_mapping_recall": 0.7410714285714286,
       "badcase_violation_count": 0,
       "document_count": 15,
       "high_risk_auto_accepted_count": 0,
-      "mapping_recall_average": 0.7714285714285715,
+      "mapping_recall_average": 0.7603174603174604,
       "missing_gold_mapping_rate": 0.14432989690721648,
       "missing_gold_mappings": 14,
       "package_valid_count": 15,
       "package_valid_rate": 1.0,
       "required_missing_count": 0,
-      "review_required_count": 5,
-      "review_required_rate": 0.04310344827586207,
-      "review_required_recall": 0.026785714285714284,
+      "review_required_count": 11,
+      "review_required_rate": 0.08943089430894309,
+      "review_required_recall": 0.017857142857142856,
       "strict_pass_count": 14,
       "strict_pass_rate": 0.9333333333333333
     },
@@ -73,7 +73,7 @@
       "missing_required_count": 0
     },
     "category": {
-      "mapped_or_review_count": 3,
+      "mapped_or_review_count": 8,
       "missing_required_count": 0
     },
     "chairperson": {
@@ -109,7 +109,7 @@
       "missing_required_count": 0
     },
     "issuer": {
-      "mapped_or_review_count": 20,
+      "mapped_or_review_count": 21,
       "missing_required_count": 0
     },
     "meeting_date": {
@@ -137,7 +137,7 @@
       "missing_required_count": 0
     },
     "process_steps": {
-      "mapped_or_review_count": 14,
+      "mapped_or_review_count": 15,
       "missing_required_count": 0
     },
     "publish_date": {
@@ -178,9 +178,9 @@
     }
   },
   "delta": {
-    "average_recall": 0.459,
+    "average_recall": 0.456,
     "required_missing_count": -18,
-    "review_required_count": -127,
+    "review_required_count": -121,
     "strict_pass_count": 44
   },
   "documents": [
@@ -231,7 +231,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_6bff86330f1a_自印发之日起施行_1",
+          "candidate_id": "cand_task_2e7de00e99a2_自印发之日起施行_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -247,7 +247,7 @@
             "alias matched target effective_date"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_6bff86330f1a_effective_date_alias",
+          "mapping_id": "map_task_2e7de00e99a2_effective_date_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -278,13 +278,13 @@
           "strategy": "alias",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_6bff86330f1a",
+          "task_id": "task_2e7de00e99a2",
           "value_sample": "自印发之日起施行"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_6bff86330f1a",
+      "task_id": "task_2e7de00e99a2",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -332,7 +332,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_a55cdd2e14a6",
+      "task_id": "task_9cc31b9253fc",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -379,7 +379,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_1ab140c949f2",
+      "task_id": "task_db947880c293",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -425,7 +425,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_92184099355c",
+      "task_id": "task_9313769f7ca0",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -478,7 +478,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_d7c562924d88_source_site_2",
+          "candidate_id": "cand_task_53bf87aca0cc_source_site_2",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -494,7 +494,7 @@
             "alias matched target issuer"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_d7c562924d88_issuer_alias",
+          "mapping_id": "map_task_53bf87aca0cc_issuer_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -524,13 +524,13 @@
           "strategy": "alias",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_d7c562924d88",
+          "task_id": "task_53bf87aca0cc",
           "value_sample": "www.gov.cn"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": false,
-      "task_id": "task_d7c562924d88",
+      "task_id": "task_53bf87aca0cc",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -577,7 +577,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_27e12f758be5",
+      "task_id": "task_fd22f408b661",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -626,7 +626,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_f454d072630a",
+      "task_id": "task_b240a9528c5c",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -675,7 +675,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_0de75bdb8291",
+      "task_id": "task_7c5d5d2454bb",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -727,7 +727,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_8d24fa8e3a05_办理事项及证明材料清单_1",
+          "candidate_id": "cand_task_b5bac403a548_办理事项及证明材料清单_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -743,22 +743,22 @@
             "alias matched target category"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_8d24fa8e3a05_category_alias",
+          "mapping_id": "map_task_b5bac403a548_category_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
             "context_score": 0.95,
             "evidence_score": 0.7,
-            "final_score": 0.8975,
+            "final_score": 0.6975,
             "label_score": 1.0,
-            "risk_penalty": 0.0,
+            "risk_penalty": 0.2,
             "source_quality_score": 0.95,
             "type_score": 1.0
           },
           "rejected_candidates": [],
-          "review_required_reason": null,
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
           "risk_flags": [
-            "generic_category_review_required",
+            "medium_risk_schema_overload",
             "review_required"
           ],
           "source_blocks": [
@@ -766,21 +766,21 @@
           ],
           "source_field": {
             "source_name": "办理事项及证明材料清单",
-            "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category"
+            "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review"
           },
           "source_field_name": "办理事项及证明材料清单",
-          "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category",
+          "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review",
           "status": "review_required",
           "strategy": "alias",
           "target_field_id": "category",
           "target_field_name": "category",
-          "task_id": "task_8d24fa8e3a05",
-          "value_sample": "办理事项及证明材料清单"
+          "task_id": "task_b5bac403a548",
+          "value_sample": "一、办理事项及证明材料清单"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_8d24fa8e3a05",
+      "task_id": "task_b5bac403a548",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -833,7 +833,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_a9eec7078173_经费额度_1",
+          "candidate_id": "cand_task_908b2442f6fc_经费额度_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -849,22 +849,22 @@
             "alias matched target category"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_a9eec7078173_category_alias",
+          "mapping_id": "map_task_908b2442f6fc_category_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
             "context_score": 0.95,
             "evidence_score": 0.7,
-            "final_score": 0.8975,
+            "final_score": 0.6975,
             "label_score": 1.0,
-            "risk_penalty": 0.0,
+            "risk_penalty": 0.2,
             "source_quality_score": 0.95,
             "type_score": 1.0
           },
           "rejected_candidates": [],
-          "review_required_reason": null,
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
           "risk_flags": [
-            "generic_category_review_required",
+            "medium_risk_schema_overload",
             "review_required"
           ],
           "source_blocks": [
@@ -872,21 +872,21 @@
           ],
           "source_field": {
             "source_name": "经费额度",
-            "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category"
+            "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review"
           },
           "source_field_name": "经费额度",
-          "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category",
+          "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review",
           "status": "review_required",
           "strategy": "alias",
           "target_field_id": "category",
           "target_field_name": "category",
-          "task_id": "task_a9eec7078173",
-          "value_sample": "沪科指南〔2025〕3号\n各有关单位：\n为深入实施创新驱动发展战略，加快建设具有全球影响力的科技创新中心，根据《上海市建设具有全球影响力的科技创新中心“十四五”规划》，上海市科学技术委员会特发布2025年度科技产业高质量发展计划“生物医药创新发展”项目申报指南。\n一、 征集范围\n专题一、生物、化学新药研发\n新药临床研究\n研究目标：完成创新药物（药品注册分类1类）I、II或III期临床试验（其中细胞与基因治疗1类新药需完成早期临床试验或确证性临床试验）并取得临床试验总结报告。\n研究内容：根据国家药品监督管理局许可的创新药物临床试验方案，开展I、II或III期临床试验（早期临床试验或确证性临床试验）。\n执行期限：2025年5月1日至2028年4月30日。\n经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。\n申报主体要求：本市企业。申报时须扫描上传临床试验批准通知书、伦理批件及其他相关证明文件。申报Ⅱ、III期以及确证性临床试验的项目还须扫描上传前一期临床试验总结报告摘要、相关结论意见等重要内容。每个单位申报项目不超过2项。\n专题二、中药创新与传承"
+          "task_id": "task_908b2442f6fc",
+          "value_sample": "经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_a9eec7078173",
+      "task_id": "task_908b2442f6fc",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -904,13 +904,14 @@
         "application_conditions",
         "category",
         "content",
+        "process_steps",
         "service_object",
         "source",
         "title"
       ],
       "metrics": {
         "accepted_item_count": 5,
-        "assisted_mapping_recall": 1.0,
+        "assisted_mapping_recall": 0.8333333333333334,
         "auto_accepted_correct": 5,
         "auto_mapping_recall": 0.8333333333333334,
         "badcase_violation_count": 0,
@@ -919,13 +920,13 @@
         "gold_mapping_count": 5,
         "gold_review_required_count": 1,
         "gold_signal_count": 6,
-        "mapping_recall": 1.0,
+        "mapping_recall": 0.8333333333333334,
         "missing_gold_mapping_rate": 0.0,
         "missing_gold_mappings": 0,
-        "review_required_correct": 1,
-        "review_required_item_count": 1,
-        "review_required_rate": 0.16666666666666666,
-        "review_required_recall": 0.16666666666666666
+        "review_required_correct": 0,
+        "review_required_item_count": 2,
+        "review_required_rate": 0.2857142857142857,
+        "review_required_recall": 0.0
       },
       "package_passed": true,
       "required_missing": [],
@@ -936,7 +937,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_4be93030df45_建设推广工作网上申报流程说明_1",
+          "candidate_id": "cand_task_21f047803eec_申报流程说明_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -952,44 +953,102 @@
             "alias matched target category"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_4be93030df45_category_alias",
+          "mapping_id": "map_task_21f047803eec_category_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
             "context_score": 0.95,
             "evidence_score": 0.7,
-            "final_score": 0.8975,
+            "final_score": 0.6975,
             "label_score": 1.0,
-            "risk_penalty": 0.0,
+            "risk_penalty": 0.2,
             "source_quality_score": 0.95,
             "type_score": 1.0
           },
           "rejected_candidates": [],
-          "review_required_reason": null,
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
           "risk_flags": [
-            "generic_category_review_required",
+            "medium_risk_schema_overload",
             "review_required"
           ],
           "source_blocks": [
             "real_general_003_textile_application_flow_b004"
           ],
           "source_field": {
-            "source_name": "建设推广工作网上申报流程说明",
-            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category"
+            "source_name": "申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review"
           },
-          "source_field_name": "建设推广工作网上申报流程说明",
-          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category",
+          "source_field_name": "申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
           "status": "review_required",
           "strategy": "alias",
           "target_field_id": "category",
           "target_field_name": "category",
-          "task_id": "task_4be93030df45",
+          "task_id": "task_21f047803eec",
+          "value_sample": "建设推广工作网上申报流程说明"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_21f047803eec_申报流程说明_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_21f047803eec_process_steps_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.7,
+            "final_score": 0.5375,
+            "label_score": 0.8,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence",
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_003_textile_application_flow_b004"
+          ],
+          "source_field": {
+            "source_name": "申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review"
+          },
+          "source_field_name": "申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "process_steps",
+          "target_field_name": "process_steps",
+          "task_id": "task_21f047803eec",
           "value_sample": "建设推广工作网上申报流程说明"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_4be93030df45",
+      "task_id": "task_21f047803eec",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -1038,7 +1097,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_bece041b1df4",
+      "task_id": "task_a8d6bea207a2",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -1085,7 +1144,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_571775bce77d",
+      "task_id": "task_6a35981befb5",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -1133,7 +1192,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_df7f4e973233",
+      "task_id": "task_5132b5dcaf64",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -1180,7 +1239,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_4831d54235d6",
+      "task_id": "task_bbb68c2e7100",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -1230,7 +1289,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_a3c15ef8d588",
+      "task_id": "task_338a4cf4e092",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -1280,7 +1339,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_a803597aba63_汨罗市人民政府办公室_1",
+          "candidate_id": "cand_task_723bc97041e9_汨罗市人民政府办公室_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -1296,7 +1355,7 @@
             "alias matched target organizer"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_a803597aba63_organizer_alias",
+          "mapping_id": "map_task_723bc97041e9_organizer_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -1327,13 +1386,13 @@
           "strategy": "alias",
           "target_field_id": "organizer",
           "target_field_name": "organizer",
-          "task_id": "task_a803597aba63",
+          "task_id": "task_723bc97041e9",
           "value_sample": "汨罗市人民政府办公室"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_a803597aba63",
+      "task_id": "task_723bc97041e9",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -1387,7 +1446,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_efffa15b64c0_出席会议_1",
+          "candidate_id": "cand_task_3c142bb1b6ea_出席会议_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -1403,7 +1462,7 @@
             "alias matched target attendees"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_efffa15b64c0_attendees_alias",
+          "mapping_id": "map_task_3c142bb1b6ea_attendees_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -1434,13 +1493,13 @@
           "strategy": "alias",
           "target_field_id": "attendees",
           "target_field_name": "attendees",
-          "task_id": "task_efffa15b64c0",
+          "task_id": "task_3c142bb1b6ea",
           "value_sample": "出席会议，各乡镇、县直有关部门、企事业及省市驻丹有关单位"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_efffa15b64c0",
+      "task_id": "task_3c142bb1b6ea",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -1458,13 +1517,14 @@
         "application_conditions",
         "application_materials",
         "content",
+        "issuer",
         "process_steps",
         "service_object",
         "source",
         "title"
       ],
       "metrics": {
-        "accepted_item_count": 7,
+        "accepted_item_count": 8,
         "assisted_mapping_recall": 0.6666666666666666,
         "auto_accepted_correct": 4,
         "auto_mapping_recall": 0.6666666666666666,
@@ -1487,7 +1547,7 @@
       "review_evidence": [],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_ee6c83139a1c",
+      "task_id": "task_5566b2e0bbea",
       "task_status": "completed",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -1539,7 +1599,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_bc8b54bbfe2b_自印发之日起施行_1",
+          "candidate_id": "cand_task_b94d04fd6a18_自印发之日起施行_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -1555,7 +1615,7 @@
             "alias matched target effective_date"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_bc8b54bbfe2b_effective_date_alias",
+          "mapping_id": "map_task_b94d04fd6a18_effective_date_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -1586,13 +1646,13 @@
           "strategy": "alias",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_bc8b54bbfe2b",
+          "task_id": "task_b94d04fd6a18",
           "value_sample": "自印发之日起施行"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_bc8b54bbfe2b",
+      "task_id": "task_b94d04fd6a18",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -1608,6 +1668,7 @@
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
         "application_conditions",
+        "category",
         "contact",
         "content",
         "deadline",
@@ -1631,17 +1692,74 @@
         "missing_gold_mapping_rate": 0.14285714285714285,
         "missing_gold_mappings": 1,
         "review_required_correct": 0,
-        "review_required_item_count": 0,
-        "review_required_rate": 0.0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
         "review_required_recall": 0.0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_187f7f4c9902_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_187f7f4c9902_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_005_eldercare_technology_guide_b010"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_005_eldercare_technology_guide_b010.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_005_eldercare_technology_guide_b010.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_187f7f4c9902",
+          "value_sample": "经费额度：非定额资助，拟支持不超过2个项目，每个项目资助额度不超过50万元。企业自筹经费与申请资助经费的比例不低于2∶1。"
+        }
+      ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_3ac68c117360",
-      "task_status": "completed",
+      "task_id": "task_187f7f4c9902",
+      "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
     },
@@ -1656,6 +1774,7 @@
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
         "application_conditions",
+        "category",
         "contact",
         "content",
         "deadline",
@@ -1679,17 +1798,74 @@
         "missing_gold_mapping_rate": 0.14285714285714285,
         "missing_gold_mappings": 1,
         "review_required_correct": 0,
-        "review_required_item_count": 0,
-        "review_required_rate": 0.0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
         "review_required_recall": 0.0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_dbb55401eb37_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_dbb55401eb37_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_006_soft_science_guide_b011"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_006_soft_science_guide_b011.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_006_soft_science_guide_b011.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_dbb55401eb37",
+          "value_sample": "经费额度：定额资助，拟支持不超过1个项目，每项资助额度20.00万元。"
+        }
+      ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_5f686f2bf54a",
-      "task_status": "completed",
+      "task_id": "task_dbb55401eb37",
+      "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
     },
@@ -1705,6 +1881,7 @@
       "mapped_or_review_targets": [
         "application_conditions",
         "application_materials",
+        "category",
         "contact",
         "content",
         "deadline",
@@ -1728,17 +1905,74 @@
         "missing_gold_mapping_rate": 0.0,
         "missing_gold_mappings": 0,
         "review_required_correct": 0,
-        "review_required_item_count": 0,
-        "review_required_rate": 0.0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1,
         "review_required_recall": 0.0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_270d7c05886b_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_270d7c05886b_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_007_domestic_cooperation_guide_b010"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_007_domestic_cooperation_guide_b010.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_007_domestic_cooperation_guide_b010.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_270d7c05886b",
+          "value_sample": "经费额度：非定额资助，拟支持不超过1个项目，资助额度不超过100万元，企业牵头申报时，自筹经费与申请资助经费的比例不低于1:1。"
+        }
+      ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_c2e384ccd29f",
-      "task_status": "completed",
+      "task_id": "task_270d7c05886b",
+      "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
     },
@@ -1786,7 +2020,7 @@
       "review_evidence": [],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_d628b325c4d3",
+      "task_id": "task_8c233f1433b8",
       "task_status": "completed",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -1803,6 +2037,7 @@
       "mapped_or_review_targets": [
         "application_conditions",
         "application_materials",
+        "category",
         "contact",
         "content",
         "deadline",
@@ -1826,17 +2061,74 @@
         "missing_gold_mapping_rate": 0.0,
         "missing_gold_mappings": 0,
         "review_required_correct": 0,
-        "review_required_item_count": 0,
-        "review_required_rate": 0.0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1,
         "review_required_recall": 0.0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_8d0cf0c5f925_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_8d0cf0c5f925_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_009_food_technology_guide_b011"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_009_food_technology_guide_b011.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_009_food_technology_guide_b011.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_8d0cf0c5f925",
+          "value_sample": "经费额度：非定额资助，拟支持不超过1个项目，拟投入专项资助经费不超过200万元。自筹经费与申请资助经费的比例不低于2:1。立项后拨付专项资助经费60%，完成里程碑拨付专项资助经费20%，通过验收拨付专项资助经费20%。"
+        }
+      ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_d349671c594f",
-      "task_status": "completed",
+      "task_id": "task_8d0cf0c5f925",
+      "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
     },
@@ -1851,6 +2143,7 @@
       "high_risk_auto_accepted": [],
       "mapped_or_review_targets": [
         "application_conditions",
+        "category",
         "contact",
         "content",
         "deadline",
@@ -1874,17 +2167,74 @@
         "missing_gold_mapping_rate": 0.14285714285714285,
         "missing_gold_mappings": 1,
         "review_required_correct": 0,
-        "review_required_item_count": 0,
-        "review_required_rate": 0.0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
         "review_required_recall": 0.0
       },
       "package_passed": true,
       "required_missing": [],
-      "review_evidence": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f5d7668a6c99_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f5d7668a6c99_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_010_cell_gene_therapy_guide_b010"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_010_cell_gene_therapy_guide_b010.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_010_cell_gene_therapy_guide_b010.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_f5d7668a6c99",
+          "value_sample": "经费额度：非定额资助，拟支持不超过2个项目，每项资助额度不超过100万元，自筹经费与申请资助经费的比例不低于1:1。"
+        }
+      ],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_0a7baca5c7c4",
-      "task_status": "completed",
+      "task_id": "task_f5d7668a6c99",
+      "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
     },
@@ -1932,7 +2282,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_b54c56c8af9d",
+      "task_id": "task_bfdae3a8cdd9",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -1985,7 +2335,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_fbb517f93be5_各乡镇_各部门单位_1",
+          "candidate_id": "cand_task_3a10ea3e9f47_各乡镇_各部门单位_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -2001,7 +2351,7 @@
             "alias matched target attendees"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_fbb517f93be5_attendees_alias",
+          "mapping_id": "map_task_3a10ea3e9f47_attendees_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -2032,13 +2382,13 @@
           "strategy": "alias",
           "target_field_id": "attendees",
           "target_field_name": "attendees",
-          "task_id": "task_fbb517f93be5",
+          "task_id": "task_3a10ea3e9f47",
           "value_sample": "各乡镇、各部门单位"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_fbb517f93be5",
+      "task_id": "task_3a10ea3e9f47",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -2086,7 +2436,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_a9aeaffe12a6",
+      "task_id": "task_7e76d86c37e8",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -2140,7 +2490,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_e7d0e5bdb2d8_出席会议_1",
+          "candidate_id": "cand_task_62e7a13e6d7f_出席会议_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -2156,7 +2506,7 @@
             "alias matched target attendees"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_e7d0e5bdb2d8_attendees_alias",
+          "mapping_id": "map_task_62e7a13e6d7f_attendees_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -2187,13 +2537,13 @@
           "strategy": "alias",
           "target_field_id": "attendees",
           "target_field_name": "attendees",
-          "task_id": "task_e7d0e5bdb2d8",
+          "task_id": "task_62e7a13e6d7f",
           "value_sample": "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生态文明建设规划（2025-2035）》。会议议定以下意见："
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_e7d0e5bdb2d8",
+      "task_id": "task_62e7a13e6d7f",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -2246,7 +2596,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_e0c5d4f29df8_工业和信息化部等部门_1",
+          "candidate_id": "cand_task_51f874bcd244_工业和信息化部等部门_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -2262,7 +2612,7 @@
             "alias matched target issuer"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_e0c5d4f29df8_issuer_alias",
+          "mapping_id": "map_task_51f874bcd244_issuer_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -2293,7 +2643,7 @@
           "strategy": "alias",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "task_e0c5d4f29df8",
+          "task_id": "task_51f874bcd244",
           "value_sample": "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
         },
         {
@@ -2302,7 +2652,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_e0c5d4f29df8_publication_year_1",
+          "candidate_id": "cand_task_51f874bcd244_publication_year_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -2318,7 +2668,7 @@
             "alias matched target publish_date"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_e0c5d4f29df8_publish_date_alias",
+          "mapping_id": "map_task_51f874bcd244_publish_date_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -2348,13 +2698,13 @@
           "strategy": "alias",
           "target_field_id": "publish_date",
           "target_field_name": "publish_date",
-          "task_id": "task_e0c5d4f29df8",
+          "task_id": "task_51f874bcd244",
           "value_sample": "2026"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_e0c5d4f29df8",
+      "task_id": "task_51f874bcd244",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": false
@@ -2402,7 +2752,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_ed7eb34bfb1b",
+      "task_id": "task_0eb7a8a9f55a",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -2452,7 +2802,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_aeecdb63c6e8",
+      "task_id": "task_016208d6bb79",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -2501,7 +2851,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_8e2a367e55d1",
+      "task_id": "task_40ce89a954ec",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -2550,7 +2900,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_ef837b6f216d",
+      "task_id": "task_03ed0034bf5e",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -2604,7 +2954,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_0dc4480ea805_内容_1",
+          "candidate_id": "cand_task_b721155faf48_内容_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2620,7 +2970,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_0dc4480ea805_summary_fuzzy",
+          "mapping_id": "map_task_b721155faf48_summary_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "ranking_trace": {
@@ -2651,7 +3001,7 @@
           "strategy": "fuzzy",
           "target_field_id": "summary",
           "target_field_name": "summary",
-          "task_id": "task_0dc4480ea805",
+          "task_id": "task_b721155faf48",
           "value_sample": "第三十七条 外商投资企业的登记注册，由国务院市场监督管理部门或者其授权的地方人民政府市场监督管理部门依法办理。国务院市场监督管理部门应当公布其授权的市场监督管理部门名单。"
         },
         {
@@ -2660,7 +3010,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_0dc4480ea805_受理_1",
+          "candidate_id": "cand_task_b721155faf48_受理_1",
           "confidence": 0.62,
           "confidence_tier": "low",
           "evidence": [
@@ -2676,7 +3026,7 @@
             "fuzzy score 0.67 requires review"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_0dc4480ea805_service_object_fuzzy",
+          "mapping_id": "map_task_b721155faf48_service_object_fuzzy",
           "method": "fuzzy",
           "need_review": true,
           "ranking_trace": {
@@ -2707,13 +3057,13 @@
           "strategy": "fuzzy",
           "target_field_id": "service_object",
           "target_field_name": "service_object",
-          "task_id": "task_0dc4480ea805",
+          "task_id": "task_b721155faf48",
           "value_sample": "0 | 受理人员 | 申请材料齐全，形式符合要求，具体见申请材料目录"
         }
       ],
       "schema_id": "general_doc",
       "strict_passed": false,
-      "task_id": "task_0dc4480ea805",
+      "task_id": "task_b721155faf48",
       "task_status": "review_required",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -2760,7 +3110,7 @@
       "review_evidence": [],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_b29bf152d69e",
+      "task_id": "task_7c3b2410d35a",
       "task_status": "completed",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -2807,7 +3157,7 @@
       "review_evidence": [],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_c5ef68a762e1",
+      "task_id": "task_43148ea1fd34",
       "task_status": "completed",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -2855,7 +3205,7 @@
       "review_evidence": [],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_e8ef3bb7c64f",
+      "task_id": "task_937f1b64f93c",
       "task_status": "completed",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -2901,7 +3251,7 @@
       "review_evidence": [],
       "schema_id": "general_doc",
       "strict_passed": true,
-      "task_id": "task_568e0722dc0c",
+      "task_id": "task_92feda3bff46",
       "task_status": "completed",
       "template_id": "general_doc_base_v1",
       "validation_passed": true
@@ -2951,7 +3301,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_ae0be85323f2",
+      "task_id": "task_2e0dc9c7d805",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -3005,7 +3355,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_2a9a965cb7d6_各乡镇_各部门单位_1",
+          "candidate_id": "cand_task_a9cf4a9f154d_各乡镇_各部门单位_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -3021,7 +3371,7 @@
             "alias matched target attendees"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_2a9a965cb7d6_attendees_alias",
+          "mapping_id": "map_task_a9cf4a9f154d_attendees_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -3052,13 +3402,13 @@
           "strategy": "alias",
           "target_field_id": "attendees",
           "target_field_name": "attendees",
-          "task_id": "task_2a9a965cb7d6",
+          "task_id": "task_a9cf4a9f154d",
           "value_sample": "各乡镇、各部门单位"
         }
       ],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_2a9a965cb7d6",
+      "task_id": "task_a9cf4a9f154d",
       "task_status": "review_required",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -3106,7 +3456,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_b6a90f34e0b0",
+      "task_id": "task_ad8f450228df",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": false
@@ -3153,7 +3503,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_51d6e326037e",
+      "task_id": "task_cd8d7571a0a3",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -3201,7 +3551,7 @@
       "review_evidence": [],
       "schema_id": "meeting_doc",
       "strict_passed": true,
-      "task_id": "task_53e01cc837c3",
+      "task_id": "task_8c3adc0f3047",
       "task_status": "completed",
       "template_id": "meeting_doc_base_v1",
       "validation_passed": true
@@ -3249,7 +3599,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_b0b993583697",
+      "task_id": "task_e715d1b7bf17",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -3303,7 +3653,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_08734c7f2920_自发布之日起施行_1",
+          "candidate_id": "cand_task_b511456bd95f_自发布之日起施行_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -3319,7 +3669,7 @@
             "alias matched target effective_date"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_08734c7f2920_effective_date_alias",
+          "mapping_id": "map_task_b511456bd95f_effective_date_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -3350,13 +3700,13 @@
           "strategy": "alias",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_08734c7f2920",
+          "task_id": "task_b511456bd95f",
           "value_sample": "自发布之日起施行"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_08734c7f2920",
+      "task_id": "task_b511456bd95f",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -3410,7 +3760,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_1645f182951a_自发布之日起生效_1",
+          "candidate_id": "cand_task_331452444360_自发布之日起生效_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -3426,7 +3776,7 @@
             "alias matched target effective_date"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_1645f182951a_effective_date_alias",
+          "mapping_id": "map_task_331452444360_effective_date_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -3457,13 +3807,13 @@
           "strategy": "alias",
           "target_field_id": "effective_date",
           "target_field_name": "effective_date",
-          "task_id": "task_1645f182951a",
+          "task_id": "task_331452444360",
           "value_sample": "自发布之日起生效"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_1645f182951a",
+      "task_id": "task_331452444360",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -3512,7 +3862,7 @@
       "review_evidence": [],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_a4c66039926a",
+      "task_id": "task_3bd4dfd9102e",
       "task_status": "completed",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -3567,7 +3917,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_task_080624f65d2f_实施至补贴资金使用完毕截止_1",
+          "candidate_id": "cand_task_fc4062d301c0_实施至补贴资金使用完毕截止_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -3583,7 +3933,7 @@
             "alias matched target valid_until"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_task_080624f65d2f_valid_until_alias",
+          "mapping_id": "map_task_fc4062d301c0_valid_until_alias",
           "method": "alias",
           "need_review": true,
           "ranking_trace": {
@@ -3614,13 +3964,13 @@
           "strategy": "alias",
           "target_field_id": "valid_until",
           "target_field_name": "valid_until",
-          "task_id": "task_080624f65d2f",
+          "task_id": "task_fc4062d301c0",
           "value_sample": "实施至补贴资金使用完毕截止"
         }
       ],
       "schema_id": "policy_doc",
       "strict_passed": true,
-      "task_id": "task_080624f65d2f",
+      "task_id": "task_fc4062d301c0",
       "task_status": "review_required",
       "template_id": "policy_doc_base_v1",
       "validation_passed": true
@@ -3644,7 +3994,7 @@
       ]
     }
   ],
-  "generated_at": "2026-07-09T01:33:09.643685+00:00",
+  "generated_at": "2026-07-09T07:37:46.087761+00:00",
   "remaining_gaps": [
     {
       "doc_id": "real_policy_005_ai_industry_guide",
@@ -3670,27 +4020,27 @@
   "run_metadata": {
     "badcases_path": null,
     "dataset_size": 50,
-    "generated_at": "2026-07-09T01:33:09.643722+00:00",
-    "git_branch": "main",
-    "git_commit": "5c2ced02",
+    "generated_at": "2026-07-09T07:37:46.087782+00:00",
+    "git_branch": "codex/basic-topic5-complete-evidence",
+    "git_commit": "0ddbcb31",
     "gold_path": "F:\\p2\\examples\\real_world\\gold\\mapping_gold.jsonl",
     "packages_root": null,
     "report_version": "phase_c_v1",
-    "run_id": "phase_c_20260709T013309"
+    "run_id": "phase_c_20260709T073746"
   },
   "summary": {
-    "assisted_mapping_recall": 0.8096514745308311,
+    "assisted_mapping_recall": 0.806970509383378,
     "auto_mapping_recall": 0.7774798927613941,
-    "average_recall": 0.808873015873016,
+    "average_recall": 0.8055396825396826,
     "badcase_violation_count": 0,
     "dataset_size": 50,
     "missing_gold_mapping_rate": 0.09937888198757763,
     "missing_gold_mappings": 32,
     "package_verify_pass_count": 50,
     "required_missing_count": 0,
-    "review_required_count": 18,
-    "review_required_rate": 0.043583535108958835,
-    "review_required_recall": 0.032171581769437,
+    "review_required_count": 24,
+    "review_required_rate": 0.05714285714285714,
+    "review_required_recall": 0.029490616621983913,
     "strict_pass_count": 48,
     "strict_pass_rate": 0.96
   },

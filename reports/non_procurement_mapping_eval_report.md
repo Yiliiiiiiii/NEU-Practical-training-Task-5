@@ -4,12 +4,12 @@
 
 - Dataset size: 50
 - Strict pass: 48
-- Average recall (legacy assisted): 0.809
+- Average recall (legacy assisted): 0.806
 - Auto mapping recall: 0.777
-- Assisted mapping recall: 0.810
-- Review-required recall: 0.032
-- Review-required rate: 0.044
-- Review required: 18
+- Assisted mapping recall: 0.807
+- Review-required recall: 0.029
+- Review-required rate: 0.057
+- Review required: 24
 - Required missing: 0
 - Badcase violations: 0
 - Package verification pass: 50
@@ -18,8 +18,8 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 
 ## Baseline Delta
 
-- Average recall: +0.459
-- Review required: -127
+- Average recall: +0.456
+- Review required: -121
 - Required missing: -18
 - Strict pass: +44
 
@@ -27,7 +27,7 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 
 | Type | Documents | Strict pass | Auto recall | Assisted recall | Review rate | Review required | Required missing |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| general_doc | 15 | 14 | 0.741 | 0.768 | 0.043 | 5 | 0 |
+| general_doc | 15 | 14 | 0.741 | 0.759 | 0.089 | 11 | 0 |
 | meeting_doc | 15 | 15 | 0.774 | 0.809 | 0.038 | 5 | 0 |
 | policy_doc | 20 | 19 | 0.808 | 0.842 | 0.048 | 8 | 0 |
 
@@ -39,7 +39,7 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 | application_conditions | 14 | 0 |
 | application_materials | 8 | 0 |
 | attendees | 7 | 0 |
-| category | 3 | 0 |
+| category | 8 | 0 |
 | chairperson | 14 | 0 |
 | contact | 10 | 0 |
 | content | 50 | 0 |
@@ -48,14 +48,14 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 | doc_type | 20 | 0 |
 | document_number | 16 | 0 |
 | effective_date | 10 | 0 |
-| issuer | 20 | 0 |
+| issuer | 21 | 0 |
 | meeting_date | 15 | 0 |
 | meeting_location | 2 | 0 |
 | meeting_number | 15 | 0 |
 | meeting_title | 15 | 0 |
 | organizer | 1 | 0 |
 | policy_measures | 10 | 0 |
-| process_steps | 14 | 0 |
+| process_steps | 15 | 0 |
 | publish_date | 20 | 0 |
 | responsible_departments | 1 | 0 |
 | service_object | 14 | 0 |
@@ -73,7 +73,7 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 
 ## Review-required Analysis
 
-- Total review-required items: 18
+- Total review-required items: 24
 
 ## Required Missing Analysis
 

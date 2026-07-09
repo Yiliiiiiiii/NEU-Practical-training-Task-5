@@ -1,0 +1,303 @@
+{
+  "activate_rule_count": 0,
+  "evaluation_scope": "report_only",
+  "generated_at": "2026-07-09T07:37:47.163823+00:00",
+  "honesty_note": "DeepSeek is configured; suggestions remain report-only and are not auto accepted.",
+  "llm_auto_accepted_count": 0,
+  "llm_request_count": 20,
+  "mode": "report-only",
+  "provider": "deepseek",
+  "provider_configured": true,
+  "secret_leak_count": 0,
+  "suggestion_count": 20,
+  "suggestions": [
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "relative_effective_date_requires_review",
+        "review_required"
+      ],
+      "suggested_source_name": "自印发之日起施行",
+      "suggested_source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date",
+      "target_field": "effective_date",
+      "value_sample": "自印发之日起施行"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_issuer",
+        "review_required",
+        "weak_source_site"
+      ],
+      "suggested_source_name": "source_site",
+      "suggested_source_path": "$.metadata.source_site#issuer",
+      "target_field": "issuer",
+      "value_sample": "www.gov.cn"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "办理事项及证明材料清单",
+      "suggested_source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review",
+      "target_field": "category",
+      "value_sample": "一、办理事项及证明材料清单"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review",
+      "target_field": "category",
+      "value_sample": "经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "申报流程说明",
+      "suggested_source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+      "target_field": "category",
+      "value_sample": "建设推广工作网上申报流程说明"
+    },
+    {
+      "confidence": 0.62,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence",
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "申报流程说明",
+      "suggested_source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+      "target_field": "process_steps",
+      "value_sample": "建设推广工作网上申报流程说明"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_source_organizer",
+        "review_required"
+      ],
+      "suggested_source_name": "汨罗市人民政府办公室",
+      "suggested_source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer",
+      "target_field": "organizer",
+      "value_sample": "汨罗市人民政府办公室"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_mixed_attendee_roles",
+        "review_required"
+      ],
+      "suggested_source_name": "出席会议",
+      "suggested_source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees",
+      "target_field": "attendees",
+      "value_sample": "出席会议，各乡镇、县直有关部门、企事业及省市驻丹有关单位"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "relative_effective_date_requires_review",
+        "review_required"
+      ],
+      "suggested_source_name": "自印发之日起施行",
+      "suggested_source_path": "$.blocks.real_policy_010_auto_ota_management_b027.text#effective_date",
+      "target_field": "effective_date",
+      "value_sample": "自印发之日起施行"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_005_eldercare_technology_guide_b010.text#category_review",
+      "target_field": "category",
+      "value_sample": "经费额度：非定额资助，拟支持不超过2个项目，每个项目资助额度不超过50万元。企业自筹经费与申请资助经费的比例不低于2∶1。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_006_soft_science_guide_b011.text#category_review",
+      "target_field": "category",
+      "value_sample": "经费额度：定额资助，拟支持不超过1个项目，每项资助额度20.00万元。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_007_domestic_cooperation_guide_b010.text#category_review",
+      "target_field": "category",
+      "value_sample": "经费额度：非定额资助，拟支持不超过1个项目，资助额度不超过100万元，企业牵头申报时，自筹经费与申请资助经费的比例不低于1:1。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_009_food_technology_guide_b011.text#category_review",
+      "target_field": "category",
+      "value_sample": "经费额度：非定额资助，拟支持不超过1个项目，拟投入专项资助经费不超过200万元。自筹经费与申请资助经费的比例不低于2:1。立项后拨付专项资助经费60%，完成里程碑拨付专项资助经费20%，通过验收拨付专项资助经费20%。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_010_cell_gene_therapy_guide_b010.text#category_review",
+      "target_field": "category",
+      "value_sample": "经费额度：非定额资助，拟支持不超过2个项目，每项资助额度不超过100万元，自筹经费与申请资助经费的比例不低于1:1。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_department_attendees",
+        "review_required"
+      ],
+      "suggested_source_name": "各乡镇、各部门单位",
+      "suggested_source_path": "$.blocks.real_meeting_008_wlmqx_2026_01_minutes_b007.text#attendees",
+      "target_field": "attendees",
+      "value_sample": "各乡镇、各部门单位"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_mixed_attendee_roles",
+        "review_required"
+      ],
+      "suggested_source_name": "出席会议",
+      "suggested_source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees",
+      "target_field": "attendees",
+      "value_sample": "2026年3月6日下午，市委副书记、市长沈晶在市政府501会议室主持召开市政府第64次常务会议。市委副书记、副市长王莉，市委常委、常务副市长蒋鹏，副市长梁曦、万资平、刘东兴、赵瑜、孟伟言、赵冰、张顺超，市政府党组成员、市政府办公室主任巫刚出席会议。各区镇、街道和各相关部门负责人列席相关议题。会议听取了全市安全生产、森林防灭火工作 情况 汇报；传达了全省对口支援协作合作工作电视电话会议精神，听取我市相关工作情况；审议了《政府工作报告》2026年主要目标任务分工方案、《张家港市生态文明建设规划（2025-2035）》。会议议定以下意见："
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_responsible_departments",
+        "review_required"
+      ],
+      "suggested_source_name": "工业和信息化部等部门",
+      "suggested_source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer",
+      "target_field": "issuer",
+      "value_sample": "第三条 工业和信息化部负责制定废旧动力电池回收和综合利用管理政策，统筹协调全国废旧动力电池回收和综合利用体系建设和相关监督管理。国家发展改革委、生态环境部、交通运输部、商务部、市场监管总局等部门按照职责分工负责废旧动力电池回收和综合利用相关监督管理。"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "medium_risk_publication_year_only",
+        "review_required",
+        "weak_evidence"
+      ],
+      "suggested_source_name": "publication year",
+      "suggested_source_path": "$.metadata.source_url#publish_year",
+      "target_field": "publish_date",
+      "value_sample": "2026"
+    },
+    {
+      "confidence": 0.62,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence"
+      ],
+      "suggested_source_name": "内容",
+      "suggested_source_path": "$.blocks.real_general_011_shanghai_branch_registration_b044.rows.2",
+      "target_field": "summary",
+      "value_sample": "第三十七条 外商投资企业的登记注册，由国务院市场监督管理部门或者其授权的地方人民政府市场监督管理部门依法办理。国务院市场监督管理部门应当公布其授权的市场监督管理部门名单。"
+    },
+    {
+      "confidence": 0.62,
+      "decision": "suggest_review",
+      "doc_id": null,
+      "rationale": "Review-required evidence packaged for DeepSeek report-only suggestion.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence"
+      ],
+      "suggested_source_name": "受理",
+      "suggested_source_path": "$.blocks.real_general_011_shanghai_branch_registration_b029.rows.2",
+      "target_field": "service_object",
+      "value_sample": "0 | 受理人员 | 申请材料齐全，形式符合要求，具体见申请材料目录"
+    }
+  ],
+  "top1_hit_rate": null,
+  "top3_hit_rate": null,
+  "unsafe_suggestion_count": 0,
+  "write_template_count": 0
+}

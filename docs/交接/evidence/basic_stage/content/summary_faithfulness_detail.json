@@ -1,0 +1,563 @@
+{
+  "failed": 2,
+  "failures": [
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_general_004_tianhe_service_guide_0001",
+        "chunk_retrieval_heading_aware_real_general_004_tianhe_service_guide_0003"
+      ],
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "empty_summary": false,
+      "missing_must_include": [
+        "1.申报对象：人力资源服务企业",
+        "2.支付方式：后支持"
+      ],
+      "must_include_hit_rate": 0.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": false,
+      "source_block_ids": [
+        "real_general_004_tianhe_service_guide_b002",
+        "real_general_004_tianhe_service_guide_b007",
+        "real_general_004_tianhe_service_guide_b008"
+      ],
+      "summary": "天河区高端专业服务业政策兑现事项办事指南\n人力资源服务发展壮大支持 （免申即享） 一、基本信息 1.",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_meeting_004_shandan_2025_11_minutes_0000",
+        "chunk_retrieval_heading_aware_real_meeting_004_shandan_2025_11_minutes_0001"
+      ],
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": true,
+      "passed": false,
+      "source_block_ids": [
+        "real_meeting_004_shandan_2025_11_minutes_b002",
+        "real_meeting_004_shandan_2025_11_minutes_b003",
+        "real_meeting_004_shandan_2025_11_minutes_b001",
+        "real_meeting_004_shandan_2025_11_minutes_b011",
+        "real_meeting_004_shandan_2025_11_minutes_b044"
+      ],
+      "summary": "十九届县政府第97次常务会议纪要 索引号： 6207250037/2025-00278 文号： 关键词： 发布机构： 政府办 公开形式： 公开目录： 生成日期： 2025-11-14 16:31:47 有效性：\n索引号: 6207250037/2025-00278 | 发文字号 关键词: 发布机构 | 政府办 公开形式: 公开目录 生成日期: 2025-11-14 16:31:47 | 是否有效",
+      "table_number_violations": []
+    }
+  ],
+  "metrics": {
+    "changed_table_number_count": 0,
+    "empty_summary_count": 0,
+    "failed": 2,
+    "failed_count": 2,
+    "faithfulness_pass_rate": 0.9,
+    "must_include_hit_rate": 0.95,
+    "must_not_include_violation_count": 0,
+    "new_amount_violation": 0,
+    "new_amount_violation_count": 0,
+    "new_date_violation": 0,
+    "new_date_violation_count": 0,
+    "new_org_violation": 0,
+    "new_org_violation_count": 0,
+    "overlong_summary_count": 1,
+    "pass_rate": 0.9,
+    "passed": 18,
+    "passed_count": 18
+  },
+  "pass_rate": 0.9,
+  "passed": 18,
+  "sample_count": 20,
+  "samples": [
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_general_001_notary_service_guide_0000"
+      ],
+      "doc_id": "real_general_001_notary_service_guide",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_general_001_notary_service_guide_b001",
+        "real_general_001_notary_service_guide_b002",
+        "real_general_001_notary_service_guide_b005",
+        "real_general_001_notary_service_guide_b006",
+        "real_general_001_notary_service_guide_b072"
+      ],
+      "summary": "天门市公证服务办事指南（2025年版） 天门市公证服务办事指南 （ 2025 版） 一、办理事项及证明材料清单 1.",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_general_003_textile_application_flow_0001"
+      ],
+      "doc_id": "real_general_003_textile_application_flow",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_general_003_textile_application_flow_b003",
+        "real_general_003_textile_application_flow_b004",
+        "real_general_003_textile_application_flow_b006"
+      ],
+      "summary": "2025 年度十大类纺织创新精品 建设推广工作网上申报流程说明 一、登录/注册 进入2025 年度十大类纺织创新精品建设推广申报系统 （http://topten.",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_general_004_tianhe_service_guide_0001",
+        "chunk_retrieval_heading_aware_real_general_004_tianhe_service_guide_0003"
+      ],
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "empty_summary": false,
+      "missing_must_include": [
+        "1.申报对象：人力资源服务企业",
+        "2.支付方式：后支持"
+      ],
+      "must_include_hit_rate": 0.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": false,
+      "source_block_ids": [
+        "real_general_004_tianhe_service_guide_b002",
+        "real_general_004_tianhe_service_guide_b007",
+        "real_general_004_tianhe_service_guide_b008"
+      ],
+      "summary": "天河区高端专业服务业政策兑现事项办事指南\n人力资源服务发展壮大支持 （免申即享） 一、基本信息 1.",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_meeting_001_changning_executive_minutes_0000"
+      ],
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_meeting_001_changning_executive_minutes_b001",
+        "real_meeting_001_changning_executive_minutes_b002",
+        "real_meeting_001_changning_executive_minutes_b003"
+      ],
+      "summary": "区政府常务会议纪要 长府会议纪要〔2025〕2 号 2025 年1 月21 日下午，区长刘平主持召开区政府第96 次常务会议。",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_meeting_004_shandan_2025_11_minutes_0000",
+        "chunk_retrieval_heading_aware_real_meeting_004_shandan_2025_11_minutes_0001"
+      ],
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": true,
+      "passed": false,
+      "source_block_ids": [
+        "real_meeting_004_shandan_2025_11_minutes_b002",
+        "real_meeting_004_shandan_2025_11_minutes_b003",
+        "real_meeting_004_shandan_2025_11_minutes_b001",
+        "real_meeting_004_shandan_2025_11_minutes_b011",
+        "real_meeting_004_shandan_2025_11_minutes_b044"
+      ],
+      "summary": "十九届县政府第97次常务会议纪要 索引号： 6207250037/2025-00278 文号： 关键词： 发布机构： 政府办 公开形式： 公开目录： 生成日期： 2025-11-14 16:31:47 有效性：\n索引号: 6207250037/2025-00278 | 发文字号 关键词: 发布机构 | 政府办 公开形式: 公开目录 生成日期: 2025-11-14 16:31:47 | 是否有效",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_meeting_006_shandan_minutes_0001"
+      ],
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_meeting_006_shandan_minutes_b002",
+        "real_meeting_006_shandan_minutes_b003",
+        "real_meeting_006_shandan_minutes_b004"
+      ],
+      "summary": "山丹县人民政府常务会议\u0000纪要\u0001 十九届县政府第97 次 （二〇二五年十一月三日） 11 月3 日，县委副书记、县长黄国杰主持召开十九届县政 府第97 次常务会议，传达学习习近平总书记重要讲话精神，组 织学习中央和省市有关会议文件精神，专题研...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_001_training_platform_rules_0000",
+        "chunk_retrieval_heading_aware_real_policy_001_training_platform_rules_0001"
+      ],
+      "doc_id": "real_policy_001_training_platform_rules",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_001_training_platform_rules_b004",
+        "real_policy_001_training_platform_rules_b005",
+        "real_policy_001_training_platform_rules_b001",
+        "real_policy_001_training_platform_rules_b002",
+        "real_policy_001_training_platform_rules_b003"
+      ],
+      "summary": "信息名称：: 教育部关于印发《全国校外教育培训监管与服务综合平台应用管理办法》的通知 信息索引：: 360A29-05-2025-0002-1 | 生成日期： | 2025-03-18 | 发文机构： | 中华人民共和国教育部 发文字号：:...\n教育部关于印发《全国校外教育培训 监管与服务综合平台应用管理办法》的通知 教监管〔2025〕1号 各省、自治区、直辖市教育厅（教委），新疆生产建设兵团教育局： 现将《全国校外教育培训监管与服务综合平台应用管理办法》印发给你们，请结合实际认真...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_002_equipment_renewal_0000"
+      ],
+      "doc_id": "real_policy_002_equipment_renewal",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_002_equipment_renewal_b001",
+        "real_policy_002_equipment_renewal_b002",
+        "real_policy_002_equipment_renewal_b005"
+      ],
+      "summary": "关于2025年加力扩围实施大规模设备更新和消费品以旧换新政策的通知(发改环资〔2025〕13号) 发布时间：2025/01/08 来源： 环资司 国家发展改革委 财政部关于2025年 加力扩围实施大规模设备更新和消费品 以旧换新政策的通知...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_003_science_education_guide_0000",
+        "chunk_retrieval_heading_aware_real_policy_003_science_education_guide_0001"
+      ],
+      "doc_id": "real_policy_003_science_education_guide",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_003_science_education_guide_b004",
+        "real_policy_003_science_education_guide_b005",
+        "real_policy_003_science_education_guide_b001",
+        "real_policy_003_science_education_guide_b002",
+        "real_policy_003_science_education_guide_b003"
+      ],
+      "summary": "信息名称：: 教育部办公厅关于印发《中小学科学教育工作指南》的通知 信息索引：: 360A29-05-2025-0001-1 | 生成日期： | 2025-01-16 | 发文机构： | 教育部办公厅 发文字号：: 教监管厅〔2025〕1号...\n教育部办公厅关于印发 《中小学科学教育工作指南》的通知 教监管厅〔2025〕1号 各省、自治区、直辖市教育厅（教委），新疆生产建设兵团教育局： 现将《中小学科学教育工作指南》印发给你们，请认真贯彻落实，进一步提高中小学科学教育工作水平。",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_005_ai_industry_guide_0001"
+      ],
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_005_ai_industry_guide_b003",
+        "real_policy_005_ai_industry_guide_b004",
+        "real_policy_005_ai_industry_guide_b005"
+      ],
+      "summary": "2025 年人工智能产业及赋能新型工业化创新任务 揭榜挂帅申报指南 一、产业发展底座 （一）算力 1.",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_006_technology_incubator_rules_0000",
+        "chunk_retrieval_heading_aware_real_policy_006_technology_incubator_rules_0001"
+      ],
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_006_technology_incubator_rules_b008",
+        "real_policy_006_technology_incubator_rules_b001",
+        "real_policy_006_technology_incubator_rules_b002"
+      ],
+      "summary": "发文机关： 工业和信息化部 标 题： 工业和信息化部关于印发《工业和信息化部科技型企业孵化器管理办法》的通知 发文字号： 工信部科〔2025〕131号 成文日期： 2025-06-07 发布日期： 2025-06-13 发布机构： 科技司...\n工业和信息化部关于印发《工业和信息化部科技型企业孵化器管理办法》的通知 工信部科〔2025〕131号 各省、自治区、直辖市及计划单列市、新疆生产建设兵团孵化器主管部门： 现将《工业和信息化部科技型企业孵化器管理办法》印发给你们，请结合实际认...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_007_one_thing_list_0000"
+      ],
+      "doc_id": "real_policy_007_one_thing_list",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_007_one_thing_list_b001",
+        "real_policy_007_one_thing_list_b002",
+        "real_policy_007_one_thing_list_b003"
+      ],
+      "summary": "国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知 中国政府网 2025-01-16 国务院办公厅关于印发《“高效办成一件事”2025年度第一批重点事项清单》的通知 国办函〔2025〕3号 各省、自治区、直辖市人...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_008_sme_leader_training_0000",
+        "chunk_retrieval_heading_aware_real_policy_008_sme_leader_training_0001"
+      ],
+      "doc_id": "real_policy_008_sme_leader_training",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_008_sme_leader_training_b008",
+        "real_policy_008_sme_leader_training_b001",
+        "real_policy_008_sme_leader_training_b002"
+      ],
+      "summary": "发文机关： 工业和信息化部办公厅 标 题： 工业和信息化部办公厅关于做好2025年度中小企业经营管理领军人才培训工作的通知 发文字号： 工信厅企业函〔2025〕213号 成文日期： 2025-05-29 发布日期： 2025-05-30 发...\n工业和信息化部办公厅关于做好2025年度中小企业经营管理领军人才培训工作的通知 工信厅企业函〔2025〕213号 各省、自治区、直辖市及计划单列市、新疆生产建设兵团中小企业主管部门，工业和信息化部人才交流中心： 为贯彻落实党中央、国务院关于...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_009_network_safety_work_0000",
+        "chunk_retrieval_heading_aware_real_policy_009_network_safety_work_0001"
+      ],
+      "doc_id": "real_policy_009_network_safety_work",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_009_network_safety_work_b008",
+        "real_policy_009_network_safety_work_b001",
+        "real_policy_009_network_safety_work_b002"
+      ],
+      "summary": "发文机关： 工业和信息化部办公厅 标 题： 工业和信息化部办公厅关于做好2025年信息通信业安全生产和网络运行安全工作的通知 发文字号： 工信厅通信函〔2025〕82号 成文日期： 2025-03-10 发布日期： 2025-03-14 发...\n工业和信息化部办公厅关于做好2025年信息通信业安全生产和网络运行安全工作的通知 工信厅通信函〔2025〕82号 各省、自治区、直辖市通信管理局，中国电信集团有限公司、中国移动通信集团有限公司、中国联合网络通信集团有限公司、中国卫星网络集团...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_policy_010_auto_ota_management_0000",
+        "chunk_retrieval_heading_aware_real_policy_010_auto_ota_management_0001"
+      ],
+      "doc_id": "real_policy_010_auto_ota_management",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_policy_010_auto_ota_management_b008",
+        "real_policy_010_auto_ota_management_b001",
+        "real_policy_010_auto_ota_management_b002"
+      ],
+      "summary": "发文机关： 工业和信息化部 市场监管总局 标 题： 工业和信息化部 市场监管总局关于进一步加强智能网联汽车产品准入、召回及软件在线升级管理的通知 发文字号： 工信部联通装〔2025〕45号 成文日期： 2025-02-25 发布日期： 20...\n工业和信息化部 市场监管总局关于进一步加强智能网联汽车产品准入、召回及软件在线升级管理的通知 各省、自治区、直辖市及新疆生产建设兵团工业和信息化主管部门，市场监管局（厅、委），有关汽车企业和单位： 为落实《关于加强智能网联汽车生产企业及产品...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_procurement_001_broadcast_security_supervision_0000",
+        "chunk_retrieval_heading_aware_real_procurement_001_broadcast_security_supervision_0001",
+        "chunk_retrieval_heading_aware_real_procurement_001_broadcast_security_supervision_0003"
+      ],
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_procurement_001_broadcast_security_supervision_b005",
+        "real_procurement_001_broadcast_security_supervision_b001",
+        "real_procurement_001_broadcast_security_supervision_b003",
+        "real_procurement_001_broadcast_security_supervision_b008"
+      ],
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 中央公告 » 公开招标公告\n国家广播电视总局监管中心广播电视行业网络安全保护管理系统工程监理采购项目公开招标公告 2025年06月04日 16:42 来源： 【 打印 】\n公告信息： 采购项目名称: 广播电视行业网络安全保护管理系统工程监理采购项目 品目: 服务/信息技术服务/信息化工程监理服务 采购单位: 国家广播电视总局监管中心 行政区域: 北京市 | 公告时间 | 2025年06月04日 16:42 获...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_procurement_002_special_equipment_bid_0000",
+        "chunk_retrieval_heading_aware_real_procurement_002_special_equipment_bid_0001",
+        "chunk_retrieval_heading_aware_real_procurement_002_special_equipment_bid_0003"
+      ],
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_procurement_002_special_equipment_bid_b005",
+        "real_procurement_002_special_equipment_bid_b001",
+        "real_procurement_002_special_equipment_bid_b003",
+        "real_procurement_002_special_equipment_bid_b008",
+        "real_procurement_002_special_equipment_bid_b057"
+      ],
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 地方公告 » 公开招标公告\n2025年专项设备的公开招标公告 2025年06月21日 10:10 来源： 【 打印 】\n公告信息： 采购项目名称: 2025年专项设备 品目 采购单位: 上海市公共卫生临床中心 行政区域: 上海市 | 公告时间 | 2025年06月21日 10:10 获取招标文件时间: 2025年06月21日至2025年06月30日 每日上午...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_procurement_003_radiation_monitoring_award_0000",
+        "chunk_retrieval_heading_aware_real_procurement_003_radiation_monitoring_award_0001",
+        "chunk_retrieval_heading_aware_real_procurement_003_radiation_monitoring_award_0003",
+        "chunk_retrieval_heading_aware_real_procurement_003_radiation_monitoring_award_0005"
+      ],
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_procurement_003_radiation_monitoring_award_b005",
+        "real_procurement_003_radiation_monitoring_award_b001",
+        "real_procurement_003_radiation_monitoring_award_b003",
+        "real_procurement_003_radiation_monitoring_award_b008",
+        "real_procurement_003_radiation_monitoring_award_b017"
+      ],
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 地方公告 » 中标公告\n核与辐射环境应急监测能力建设项目环保监测设备采购项目中标公告 2025年04月11日 10:29 来源： 【 打印 】\n公告信息： 采购项目名称: 核与辐射环境应急监测能力建设项目环保监测设备采购项目 品目 采购单位: 北京市核与辐射安全中心 行政区域: 北京市 | 公告时间 | 2025年04月11日 10:29 评审专家名单: 郭世文、郑保义、陈宁、吴玉...\n供应商名称: 供应商地址 | 统一信用代码 | 中标金额 | 中标成交备注信息 联合光科（北京）科技有限公司: 北京市北京经济技术开发区科创十三街29号院一区2号楼13层1302-C18 | 91110108MA017GDTX5 | 400...",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_procurement_004_veterinary_platform_award_0000",
+        "chunk_retrieval_heading_aware_real_procurement_004_veterinary_platform_award_0001",
+        "chunk_retrieval_heading_aware_real_procurement_004_veterinary_platform_award_0003",
+        "chunk_retrieval_heading_aware_real_procurement_004_veterinary_platform_award_0005"
+      ],
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_procurement_004_veterinary_platform_award_b005",
+        "real_procurement_004_veterinary_platform_award_b001",
+        "real_procurement_004_veterinary_platform_award_b003",
+        "real_procurement_004_veterinary_platform_award_b008",
+        "real_procurement_004_veterinary_platform_award_b027"
+      ],
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 中央公告 » 中标公告\n中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目中标公告 2025年05月23日 20:13 来源： 【 打印 】\n公告信息： 采购项目名称: 中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目 品目: 服务/信息技术服务/运行维护服务/安全运维服务,服务/信息技术服务/运行维护服务/软件运维服务,服务/信息技术服务/运行维护服务/硬...\n序号: 供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准 1: 1包-北京安信天行科技有限公司 | 基础运维和安全运维 | 基础运维和安全运维，详见招标文件要求。",
+      "table_number_violations": []
+    },
+    {
+      "chunk_ids": [
+        "chunk_retrieval_heading_aware_real_procurement_005_rehabilitation_equipment_award_0000",
+        "chunk_retrieval_heading_aware_real_procurement_005_rehabilitation_equipment_award_0001",
+        "chunk_retrieval_heading_aware_real_procurement_005_rehabilitation_equipment_award_0003",
+        "chunk_retrieval_heading_aware_real_procurement_005_rehabilitation_equipment_award_0006"
+      ],
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "empty_summary": false,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
+      "must_not_include_violations": [],
+      "new_amount_violations": [],
+      "new_date_violations": [],
+      "new_org_violations": [],
+      "overlong_summary": false,
+      "passed": true,
+      "source_block_ids": [
+        "real_procurement_005_rehabilitation_equipment_award_b005",
+        "real_procurement_005_rehabilitation_equipment_award_b001",
+        "real_procurement_005_rehabilitation_equipment_award_b003",
+        "real_procurement_005_rehabilitation_equipment_award_b008",
+        "real_procurement_005_rehabilitation_equipment_award_b034"
+      ],
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 中央公告 » 中标公告\n中国康复研究中心设备购置及康复医疗平台建设与升级改造项目-2025年医疗设备购置项目(财政)中标公告 2025年05月27日 16:15 来源： 【 打印 】\n公告信息： 采购项目名称: 中国康复研究中心设备购置及康复医疗平台建设与升级改造项目-2025年医疗设备购置项目(财政) 品目: 货物/设备/医疗设备/临床检验设备,货物/设备/医疗设备/物理治疗、康复及体育治疗仪器设备,货物/设备/医疗设...\n序号: 供应商名称 | 货物名称 | 货物品牌 | 货物型号 | 货物数量 | 货物单价(元) 1: 北京嘉诚兴义科技发展有限公司 | 高频胸壁振动排痰机；",
+      "table_number_violations": []
+    }
+  ],
+  "status": "completed",
+  "strategy": "heading_aware"
+}

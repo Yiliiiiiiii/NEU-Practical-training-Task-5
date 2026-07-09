@@ -1,0 +1,329 @@
+{
+  "applied_count": 0,
+  "approve_count": 0,
+  "decisions": [
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_001_training_platform_rules",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "relative_effective_date_requires_review",
+        "review_required"
+      ],
+      "source_name": "自印发之日起施行",
+      "source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date",
+      "target_field": "effective_date"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_issuer",
+        "review_required",
+        "weak_source_site"
+      ],
+      "source_name": "source_site",
+      "source_path": "$.metadata.source_site#issuer",
+      "target_field": "issuer"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_001_notary_service_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "办理事项及证明材料清单",
+      "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_002_biomed_project_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "经费额度",
+      "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_003_textile_application_flow",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "申报流程说明",
+      "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.62,
+      "decision": "uncertain",
+      "doc_id": "real_general_003_textile_application_flow",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence",
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "申报流程说明",
+      "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+      "target_field": "process_steps"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_source_organizer",
+        "review_required"
+      ],
+      "source_name": "汨罗市人民政府办公室",
+      "source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer",
+      "target_field": "organizer"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_mixed_attendee_roles",
+        "review_required"
+      ],
+      "source_name": "出席会议",
+      "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees",
+      "target_field": "attendees"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_010_auto_ota_management",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "relative_effective_date_requires_review",
+        "review_required"
+      ],
+      "source_name": "自印发之日起施行",
+      "source_path": "$.blocks.real_policy_010_auto_ota_management_b027.text#effective_date",
+      "target_field": "effective_date"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "经费额度",
+      "source_path": "$.blocks.real_general_005_eldercare_technology_guide_b010.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_006_soft_science_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "经费额度",
+      "source_path": "$.blocks.real_general_006_soft_science_guide_b011.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "经费额度",
+      "source_path": "$.blocks.real_general_007_domestic_cooperation_guide_b010.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_009_food_technology_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "经费额度",
+      "source_path": "$.blocks.real_general_009_food_technology_guide_b011.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "source_name": "经费额度",
+      "source_path": "$.blocks.real_general_010_cell_gene_therapy_guide_b010.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_meeting_008_wlmqx_2026_01_minutes",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_department_attendees",
+        "review_required"
+      ],
+      "source_name": "各乡镇、各部门单位",
+      "source_path": "$.blocks.real_meeting_008_wlmqx_2026_01_minutes_b007.text#attendees",
+      "target_field": "attendees"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_meeting_010_zhangjiagang_64_minutes",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_mixed_attendee_roles",
+        "review_required"
+      ],
+      "source_name": "出席会议",
+      "source_path": "$.blocks.real_meeting_010_zhangjiagang_64_minutes_b001.text#attendees",
+      "target_field": "attendees"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_responsible_departments",
+        "review_required"
+      ],
+      "source_name": "工业和信息化部等部门",
+      "source_path": "$.blocks.real_policy_011_battery_recycling_rules_b005.text#issuer",
+      "target_field": "issuer"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_011_battery_recycling_rules",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_publication_year_only",
+        "review_required",
+        "weak_evidence"
+      ],
+      "source_name": "publication year",
+      "source_path": "$.metadata.source_url#publish_year",
+      "target_field": "publish_date"
+    },
+    {
+      "confidence": 0.62,
+      "decision": "uncertain",
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence"
+      ],
+      "source_name": "内容",
+      "source_path": "$.blocks.real_general_011_shanghai_branch_registration_b044.rows.2",
+      "target_field": "summary"
+    },
+    {
+      "confidence": 0.62,
+      "decision": "uncertain",
+      "doc_id": "real_general_011_shanghai_branch_registration",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence"
+      ],
+      "source_name": "受理",
+      "source_path": "$.blocks.real_general_011_shanghai_branch_registration_b029.rows.2",
+      "target_field": "service_object"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_meeting_012_wlmqx_2026_02_minutes",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "medium_risk_department_attendees",
+        "review_required"
+      ],
+      "source_name": "各乡镇、各部门单位",
+      "source_path": "$.blocks.real_meeting_012_wlmqx_2026_02_minutes_b012.text#attendees",
+      "target_field": "attendees"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_017_xinhua_investment_management",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "relative_effective_date_requires_review",
+        "review_required"
+      ],
+      "source_name": "自发布之日起施行",
+      "source_path": "$.blocks.real_policy_017_xinhua_investment_management_b184.text#effective_date",
+      "target_field": "effective_date"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_018_beijing_ecommerce_support",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "relative_effective_date_requires_review",
+        "review_required"
+      ],
+      "source_name": "自发布之日起生效",
+      "source_path": "$.blocks.real_policy_018_beijing_ecommerce_support_b017.text#effective_date",
+      "target_field": "effective_date"
+    },
+    {
+      "confidence": 0.96,
+      "decision": "uncertain",
+      "doc_id": "real_policy_020_customs_foreign_investment_catalog",
+      "reason": "Dry-run human-like review; no production rule is written.",
+      "risk_flags": [
+        "open_ended_valid_until_requires_review",
+        "review_required"
+      ],
+      "source_name": "实施至补贴资金使用完毕截止",
+      "source_path": "$.blocks.real_policy_020_customs_foreign_investment_catalog_b016.text#valid_until",
+      "target_field": "valid_until"
+    }
+  ],
+  "generated_at": "2026-07-09T07:37:47.275048+00:00",
+  "mode": "dry-run",
+  "production_write_count": 0,
+  "reject_count": 0,
+  "reviewed_items": 24,
+  "uncertain_count": 24,
+  "unsafe_approve_count": 0
+}
