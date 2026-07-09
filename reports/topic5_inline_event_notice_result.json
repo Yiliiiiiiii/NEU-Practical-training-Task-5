@@ -1,0 +1,1505 @@
+{
+  "conversion_status": "completed",
+  "no_code_schema_pack_onboarding": true,
+  "package_verifier_passed": true,
+  "response": {
+    "chunks": [
+      {
+        "char_count": 31,
+        "chunk_id": "chunk_topic5_9473b0a24bc9_0000",
+        "chunk_index": 0,
+        "content_tags": [
+          "event_notice"
+        ],
+        "created_by": "ChunkOrganizerService",
+        "doc_id": "uir_event_notice_001",
+        "entity_tags": [],
+        "granularity": null,
+        "index": 0,
+        "keywords": [
+          "Lecture",
+          "Network",
+          "Notice",
+          "Security"
+        ],
+        "management_tags": [
+          "chunk_index:0",
+          "doc:uir_event_notice_001",
+          "schema:event_notice_doc",
+          "schema_version:1.0.0",
+          "task:topic5_9473b0a24bc9",
+          "template:event_notice_doc_base_v1",
+          "template_version:1.0.0"
+        ],
+        "organization_trace": {
+          "keyword_strategy": "frequency_with_stopwords",
+          "protected_blocks": [],
+          "source_link_strategy": "canonical_block_anchor_or_path",
+          "split_reason": "source_block_boundary",
+          "summary_strategy": "first_sentence_or_prefix",
+          "tag_strategy": "schema_and_rule_based"
+        },
+        "parent_chunk_id": null,
+        "quality_flags": [],
+        "quality_tags": [
+          "anchor_linked",
+          "keyworded",
+          "short_chunk",
+          "source_linked",
+          "summarized",
+          "validation_passed"
+        ],
+        "source_block_ids": [
+          "e1"
+        ],
+        "source_links": [
+          {
+            "anchor_text": "Network Security Lec",
+            "bbox": null,
+            "block_id": "e1",
+            "page_no": null,
+            "source_path": "blocks[0]"
+          }
+        ],
+        "strategy": "source_block_aware",
+        "summary": "Network Security Lecture Notice",
+        "tags": {
+          "content": [
+            "event_notice"
+          ],
+          "management": [
+            "chunk_index:0",
+            "doc:uir_event_notice_001",
+            "schema:event_notice_doc",
+            "schema_version:1.0.0",
+            "task:topic5_9473b0a24bc9",
+            "template:event_notice_doc_base_v1",
+            "template_version:1.0.0"
+          ],
+          "quality": [
+            "anchor_linked",
+            "keyworded",
+            "short_chunk",
+            "source_linked",
+            "summarized",
+            "validation_passed"
+          ]
+        },
+        "task_id": "topic5_9473b0a24bc9",
+        "text": "Network Security Lecture Notice",
+        "title": "Network Security Lecture Notice",
+        "title_path": [
+          "Network Security Lecture Notice"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "char_count": 38,
+        "chunk_id": "chunk_topic5_9473b0a24bc9_0001",
+        "chunk_index": 1,
+        "content_tags": [
+          "event_notice"
+        ],
+        "created_by": "ChunkOrganizerService",
+        "doc_id": "uir_event_notice_001",
+        "entity_tags": [
+          {
+            "confidence": 0.8,
+            "entity_type": "organization",
+            "normalized_id": null,
+            "source": "schema_field",
+            "text": "Information Security School"
+          }
+        ],
+        "granularity": null,
+        "index": 1,
+        "keywords": [
+          "Security",
+          "organizer",
+          "Information",
+          "School"
+        ],
+        "management_tags": [
+          "chunk_index:1",
+          "doc:uir_event_notice_001",
+          "schema:event_notice_doc",
+          "schema_version:1.0.0",
+          "task:topic5_9473b0a24bc9",
+          "template:event_notice_doc_base_v1",
+          "template_version:1.0.0"
+        ],
+        "organization_trace": {
+          "keyword_strategy": "frequency_with_stopwords",
+          "protected_blocks": [],
+          "source_link_strategy": "canonical_block_anchor_or_path",
+          "split_reason": "source_block_boundary",
+          "summary_strategy": "first_sentence_or_prefix",
+          "tag_strategy": "schema_and_rule_based"
+        },
+        "parent_chunk_id": null,
+        "quality_flags": [],
+        "quality_tags": [
+          "anchor_linked",
+          "keyworded",
+          "short_chunk",
+          "source_linked",
+          "summarized",
+          "validation_passed"
+        ],
+        "source_block_ids": [
+          "e2"
+        ],
+        "source_links": [
+          {
+            "anchor_text": "organizer: Informati",
+            "bbox": null,
+            "block_id": "e2",
+            "page_no": null,
+            "source_path": "blocks[1]"
+          }
+        ],
+        "strategy": "source_block_aware",
+        "summary": "organizer: Information Security School",
+        "tags": {
+          "content": [
+            "event_notice"
+          ],
+          "management": [
+            "chunk_index:1",
+            "doc:uir_event_notice_001",
+            "schema:event_notice_doc",
+            "schema_version:1.0.0",
+            "task:topic5_9473b0a24bc9",
+            "template:event_notice_doc_base_v1",
+            "template_version:1.0.0"
+          ],
+          "quality": [
+            "anchor_linked",
+            "keyworded",
+            "short_chunk",
+            "source_linked",
+            "summarized",
+            "validation_passed"
+          ]
+        },
+        "task_id": "topic5_9473b0a24bc9",
+        "text": "organizer: Information Security School",
+        "title": "Network Security Lecture Notice",
+        "title_path": [
+          "Network Security Lecture Notice"
+        ],
+        "token_estimate": 9
+      },
+      {
+        "char_count": 28,
+        "chunk_id": "chunk_topic5_9473b0a24bc9_0002",
+        "chunk_index": 2,
+        "content_tags": [
+          "event_notice"
+        ],
+        "created_by": "ChunkOrganizerService",
+        "doc_id": "uir_event_notice_001",
+        "entity_tags": [],
+        "granularity": null,
+        "index": 2,
+        "keywords": [
+          "event",
+          "time"
+        ],
+        "management_tags": [
+          "chunk_index:2",
+          "doc:uir_event_notice_001",
+          "schema:event_notice_doc",
+          "schema_version:1.0.0",
+          "task:topic5_9473b0a24bc9",
+          "template:event_notice_doc_base_v1",
+          "template_version:1.0.0"
+        ],
+        "organization_trace": {
+          "keyword_strategy": "frequency_with_stopwords",
+          "protected_blocks": [],
+          "source_link_strategy": "canonical_block_anchor_or_path",
+          "split_reason": "source_block_boundary",
+          "summary_strategy": "first_sentence_or_prefix",
+          "tag_strategy": "schema_and_rule_based"
+        },
+        "parent_chunk_id": null,
+        "quality_flags": [],
+        "quality_tags": [
+          "anchor_linked",
+          "keyworded",
+          "short_chunk",
+          "source_linked",
+          "summarized",
+          "validation_passed"
+        ],
+        "source_block_ids": [
+          "e3"
+        ],
+        "source_links": [
+          {
+            "anchor_text": "event time: 2026-07-",
+            "bbox": null,
+            "block_id": "e3",
+            "page_no": null,
+            "source_path": "blocks[2]"
+          }
+        ],
+        "strategy": "source_block_aware",
+        "summary": "event time: 2026-07-12 14:00",
+        "tags": {
+          "content": [
+            "event_notice"
+          ],
+          "management": [
+            "chunk_index:2",
+            "doc:uir_event_notice_001",
+            "schema:event_notice_doc",
+            "schema_version:1.0.0",
+            "task:topic5_9473b0a24bc9",
+            "template:event_notice_doc_base_v1",
+            "template_version:1.0.0"
+          ],
+          "quality": [
+            "anchor_linked",
+            "keyworded",
+            "short_chunk",
+            "source_linked",
+            "summarized",
+            "validation_passed"
+          ]
+        },
+        "task_id": "topic5_9473b0a24bc9",
+        "text": "event time: 2026-07-12 14:00",
+        "title": "Network Security Lecture Notice",
+        "title_path": [
+          "Network Security Lecture Notice"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "char_count": 27,
+        "chunk_id": "chunk_topic5_9473b0a24bc9_0003",
+        "chunk_index": 3,
+        "content_tags": [
+          "event_notice"
+        ],
+        "created_by": "ChunkOrganizerService",
+        "doc_id": "uir_event_notice_001",
+        "entity_tags": [],
+        "granularity": null,
+        "index": 3,
+        "keywords": [
+          "location",
+          "Building",
+          "Main"
+        ],
+        "management_tags": [
+          "chunk_index:3",
+          "doc:uir_event_notice_001",
+          "schema:event_notice_doc",
+          "schema_version:1.0.0",
+          "task:topic5_9473b0a24bc9",
+          "template:event_notice_doc_base_v1",
+          "template_version:1.0.0"
+        ],
+        "organization_trace": {
+          "keyword_strategy": "frequency_with_stopwords",
+          "protected_blocks": [],
+          "source_link_strategy": "canonical_block_anchor_or_path",
+          "split_reason": "source_block_boundary",
+          "summary_strategy": "first_sentence_or_prefix",
+          "tag_strategy": "schema_and_rule_based"
+        },
+        "parent_chunk_id": null,
+        "quality_flags": [],
+        "quality_tags": [
+          "anchor_linked",
+          "keyworded",
+          "short_chunk",
+          "source_linked",
+          "summarized",
+          "validation_passed"
+        ],
+        "source_block_ids": [
+          "e4"
+        ],
+        "source_links": [
+          {
+            "anchor_text": "location: Main Build",
+            "bbox": null,
+            "block_id": "e4",
+            "page_no": null,
+            "source_path": "blocks[3]"
+          }
+        ],
+        "strategy": "source_block_aware",
+        "summary": "location: Main Building 301",
+        "tags": {
+          "content": [
+            "event_notice"
+          ],
+          "management": [
+            "chunk_index:3",
+            "doc:uir_event_notice_001",
+            "schema:event_notice_doc",
+            "schema_version:1.0.0",
+            "task:topic5_9473b0a24bc9",
+            "template:event_notice_doc_base_v1",
+            "template_version:1.0.0"
+          ],
+          "quality": [
+            "anchor_linked",
+            "keyworded",
+            "short_chunk",
+            "source_linked",
+            "summarized",
+            "validation_passed"
+          ]
+        },
+        "task_id": "topic5_9473b0a24bc9",
+        "text": "location: Main Building 301",
+        "title": "Network Security Lecture Notice",
+        "title_path": [
+          "Network Security Lecture Notice"
+        ],
+        "token_estimate": 6
+      },
+      {
+        "char_count": 43,
+        "chunk_id": "chunk_topic5_9473b0a24bc9_0004",
+        "chunk_index": 4,
+        "content_tags": [
+          "event_notice"
+        ],
+        "created_by": "ChunkOrganizerService",
+        "doc_id": "uir_event_notice_001",
+        "entity_tags": [],
+        "granularity": null,
+        "index": 4,
+        "keywords": [
+          "audience",
+          "All",
+          "information",
+          "security",
+          "students"
+        ],
+        "management_tags": [
+          "chunk_index:4",
+          "doc:uir_event_notice_001",
+          "schema:event_notice_doc",
+          "schema_version:1.0.0",
+          "task:topic5_9473b0a24bc9",
+          "template:event_notice_doc_base_v1",
+          "template_version:1.0.0"
+        ],
+        "organization_trace": {
+          "keyword_strategy": "frequency_with_stopwords",
+          "protected_blocks": [],
+          "source_link_strategy": "canonical_block_anchor_or_path",
+          "split_reason": "source_block_boundary",
+          "summary_strategy": "first_sentence_or_prefix",
+          "tag_strategy": "schema_and_rule_based"
+        },
+        "parent_chunk_id": null,
+        "quality_flags": [],
+        "quality_tags": [
+          "anchor_linked",
+          "keyworded",
+          "length_ok",
+          "source_linked",
+          "summarized",
+          "validation_passed"
+        ],
+        "source_block_ids": [
+          "e5"
+        ],
+        "source_links": [
+          {
+            "anchor_text": "audience: All inform",
+            "bbox": null,
+            "block_id": "e5",
+            "page_no": null,
+            "source_path": "blocks[4]"
+          }
+        ],
+        "strategy": "source_block_aware",
+        "summary": "audience: All information security students",
+        "tags": {
+          "content": [
+            "event_notice"
+          ],
+          "management": [
+            "chunk_index:4",
+            "doc:uir_event_notice_001",
+            "schema:event_notice_doc",
+            "schema_version:1.0.0",
+            "task:topic5_9473b0a24bc9",
+            "template:event_notice_doc_base_v1",
+            "template_version:1.0.0"
+          ],
+          "quality": [
+            "anchor_linked",
+            "keyworded",
+            "length_ok",
+            "source_linked",
+            "summarized",
+            "validation_passed"
+          ]
+        },
+        "task_id": "topic5_9473b0a24bc9",
+        "text": "audience: All information security students",
+        "title": "Network Security Lecture Notice",
+        "title_path": [
+          "Network Security Lecture Notice"
+        ],
+        "token_estimate": 10
+      },
+      {
+        "char_count": 123,
+        "chunk_id": "chunk_topic5_9473b0a24bc9_0005",
+        "chunk_index": 5,
+        "content_tags": [
+          "event_notice"
+        ],
+        "created_by": "ChunkOrganizerService",
+        "doc_id": "uir_event_notice_001",
+        "entity_tags": [],
+        "granularity": null,
+        "index": 5,
+        "keywords": [
+          "Please",
+          "arrive",
+          "cover",
+          "data",
+          "defense",
+          "early",
+          "engineering",
+          "governance"
+        ],
+        "management_tags": [
+          "chunk_index:5",
+          "doc:uir_event_notice_001",
+          "schema:event_notice_doc",
+          "schema_version:1.0.0",
+          "task:topic5_9473b0a24bc9",
+          "template:event_notice_doc_base_v1",
+          "template_version:1.0.0"
+        ],
+        "organization_trace": {
+          "keyword_strategy": "frequency_with_stopwords",
+          "protected_blocks": [],
+          "source_link_strategy": "canonical_block_anchor_or_path",
+          "split_reason": "source_block_boundary",
+          "summary_strategy": "first_sentence_or_prefix",
+          "tag_strategy": "schema_and_rule_based"
+        },
+        "parent_chunk_id": null,
+        "quality_flags": [],
+        "quality_tags": [
+          "anchor_linked",
+          "keyworded",
+          "length_ok",
+          "source_linked",
+          "summarized",
+          "validation_passed"
+        ],
+        "source_block_ids": [
+          "e6"
+        ],
+        "source_links": [
+          {
+            "anchor_text": "Please arrive ten mi",
+            "bbox": null,
+            "block_id": "e6",
+            "page_no": null,
+            "source_path": "blocks[5]"
+          }
+        ],
+        "strategy": "source_block_aware",
+        "summary": "Please arrive ten minutes early.",
+        "tags": {
+          "content": [
+            "event_notice"
+          ],
+          "management": [
+            "chunk_index:5",
+            "doc:uir_event_notice_001",
+            "schema:event_notice_doc",
+            "schema_version:1.0.0",
+            "task:topic5_9473b0a24bc9",
+            "template:event_notice_doc_base_v1",
+            "template_version:1.0.0"
+          ],
+          "quality": [
+            "anchor_linked",
+            "keyworded",
+            "length_ok",
+            "source_linked",
+            "summarized",
+            "validation_passed"
+          ]
+        },
+        "task_id": "topic5_9473b0a24bc9",
+        "text": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.",
+        "title": "Network Security Lecture Notice",
+        "title_path": [
+          "Network Security Lecture Notice"
+        ],
+        "token_estimate": 30
+      }
+    ],
+    "content_json": {
+      "assets": [],
+      "blocks": [
+        {
+          "block_id": "e1",
+          "level": 1,
+          "source_anchor": null,
+          "source_blocks": [
+            "e1"
+          ],
+          "text": "Network Security Lecture Notice",
+          "text_hash": "sha256:3bc55eba21e40b3c510a49a472c99077789ee032f80f212b14d099440d1dd98d",
+          "type": "heading"
+        },
+        {
+          "block_id": "e2",
+          "level": null,
+          "source_anchor": null,
+          "source_blocks": [
+            "e2"
+          ],
+          "text": "organizer: Information Security School",
+          "text_hash": "sha256:92406b2e011b8192fa712bc4a9ede6fe3060002e62dcad2abe50cb50499ae4af",
+          "type": "paragraph"
+        },
+        {
+          "block_id": "e3",
+          "level": null,
+          "source_anchor": null,
+          "source_blocks": [
+            "e3"
+          ],
+          "text": "event time: 2026-07-12 14:00",
+          "text_hash": "sha256:407ccb61f202fdabf72a2c5ec2fb02d25f1ba1a1d4f0862c0ffc85c69aaefc98",
+          "type": "paragraph"
+        },
+        {
+          "block_id": "e4",
+          "level": null,
+          "source_anchor": null,
+          "source_blocks": [
+            "e4"
+          ],
+          "text": "location: Main Building 301",
+          "text_hash": "sha256:41e71a030e250d8bcc024d65cdf3311aa660cd6bccd8e22185296c700d2c2ca3",
+          "type": "paragraph"
+        },
+        {
+          "block_id": "e5",
+          "level": null,
+          "source_anchor": null,
+          "source_blocks": [
+            "e5"
+          ],
+          "text": "audience: All information security students",
+          "text_hash": "sha256:b07d1720923b3dec4d16eb43885222affebf0ef0a3d39feef474d19e0b6bb40d",
+          "type": "paragraph"
+        },
+        {
+          "block_id": "e6",
+          "level": null,
+          "source_anchor": null,
+          "source_blocks": [
+            "e6"
+          ],
+          "text": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.",
+          "text_hash": "sha256:17848684e4508688944e4e11a8b6a48281501b4d1059fc637244f5597f5fe644",
+          "type": "paragraph"
+        }
+      ],
+      "data": {
+        "audience": "All information security students",
+        "body": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.",
+        "event_time": "2026-07-12T14:00:00",
+        "location": "Main Building 301",
+        "organizer": "Information Security School",
+        "title": "Network Security Lecture Notice"
+      },
+      "doc_id": "uir_event_notice_001",
+      "execution_snapshot": {
+        "doc_id": "uir_event_notice_001",
+        "input_mode": "inline_topic5_config",
+        "mapping_input_name": "mapping_rules",
+        "options": {
+          "candidate_profile": {
+            "labeled_values": {
+              "audience": [
+                "audience"
+              ],
+              "event_time": [
+                "event time"
+              ],
+              "location": [
+                "location"
+              ],
+              "organizer": [
+                "organizer"
+              ]
+            }
+          },
+          "content_organization": {
+            "chunk_strategy": "source_block_aware",
+            "enable_parent_child": false,
+            "keyword_mode": "deterministic",
+            "max_tokens": 1400,
+            "min_tokens": 1,
+            "overlap_tokens": 0,
+            "protect_code_blocks": true,
+            "protect_lists": true,
+            "protect_tables": true,
+            "summary_mode": "deterministic",
+            "target_tokens": 1200
+          },
+          "enable_lineage": false,
+          "enable_llm_fallback": false,
+          "metadata_template": {
+            "metadata_fields": [
+              {
+                "default": null,
+                "field_id": "source",
+                "required": false
+              },
+              {
+                "default": "en-US",
+                "field_id": "language",
+                "required": false
+              }
+            ],
+            "schema_id": "event_notice_doc",
+            "template_id": "event_notice_doc_base_v1",
+            "version": "1.0.0"
+          },
+          "negative_pairs": [
+            {
+              "reason": "publish or retrieved time is not event time",
+              "severity": "block",
+              "source_pattern": "publish date|retrieved_at",
+              "target_field_id": "event_time"
+            }
+          ],
+          "no_code_schema_pack_onboarding": true,
+          "thresholds": {
+            "auto_accept": 0.82,
+            "review_required": 0.62
+          },
+          "topic5_inline_config": true
+        },
+        "schema_id": "event_notice_doc",
+        "schema_version": "1.0.0",
+        "task_id": "topic5_9473b0a24bc9",
+        "template_id": "event_notice_doc_base_v1",
+        "template_version": "1.0.0"
+      },
+      "metadata": {
+        "execution_snapshot": {
+          "doc_id": "uir_event_notice_001",
+          "input_mode": "inline_topic5_config",
+          "mapping_input_name": "mapping_rules",
+          "options": {
+            "candidate_profile": {
+              "labeled_values": {
+                "audience": [
+                  "audience"
+                ],
+                "event_time": [
+                  "event time"
+                ],
+                "location": [
+                  "location"
+                ],
+                "organizer": [
+                  "organizer"
+                ]
+              }
+            },
+            "content_organization": {
+              "chunk_strategy": "source_block_aware",
+              "enable_parent_child": false,
+              "keyword_mode": "deterministic",
+              "max_tokens": 1400,
+              "min_tokens": 1,
+              "overlap_tokens": 0,
+              "protect_code_blocks": true,
+              "protect_lists": true,
+              "protect_tables": true,
+              "summary_mode": "deterministic",
+              "target_tokens": 1200
+            },
+            "enable_lineage": false,
+            "enable_llm_fallback": false,
+            "metadata_template": {
+              "metadata_fields": [
+                {
+                  "default": null,
+                  "field_id": "source",
+                  "required": false
+                },
+                {
+                  "default": "en-US",
+                  "field_id": "language",
+                  "required": false
+                }
+              ],
+              "schema_id": "event_notice_doc",
+              "template_id": "event_notice_doc_base_v1",
+              "version": "1.0.0"
+            },
+            "negative_pairs": [
+              {
+                "reason": "publish or retrieved time is not event time",
+                "severity": "block",
+                "source_pattern": "publish date|retrieved_at",
+                "target_field_id": "event_time"
+              }
+            ],
+            "no_code_schema_pack_onboarding": true,
+            "thresholds": {
+              "auto_accept": 0.82,
+              "review_required": 0.62
+            },
+            "topic5_inline_config": true
+          },
+          "schema_id": "event_notice_doc",
+          "schema_version": "1.0.0",
+          "task_id": "topic5_9473b0a24bc9",
+          "template_id": "event_notice_doc_base_v1",
+          "template_version": "1.0.0"
+        },
+        "mapping_summary": {
+          "accepted_count": 6,
+          "average_confidence": 0.9933,
+          "avg_confidence": 0.9933,
+          "badcase_blocked_count": 0,
+          "failed_count": 0,
+          "input_mode": "inline_topic5_config",
+          "llm_suggestion_count": 0,
+          "mapped_count": 6,
+          "mapped_fields": 6,
+          "mapping_input_name": "mapping_rules",
+          "methods": {
+            "alias": 1,
+            "exact": 5
+          },
+          "no_code_schema_pack_onboarding": true,
+          "required_unmapped_count": 0,
+          "review_required": 0,
+          "review_required_count": 0,
+          "risk_flag_counts": {},
+          "strategy_counts": {
+            "alias": 1,
+            "exact": 5,
+            "fuzzy": 0,
+            "llm_fallback": 0,
+            "regex": 0,
+            "type": 0
+          },
+          "target_fields": 6,
+          "template_id": "event_notice_doc_base_v1",
+          "thresholds": {
+            "auto_accept": 0.82,
+            "review_required": 0.62
+          },
+          "total_candidates": 9,
+          "total_target_fields": 6,
+          "unmapped_required_fields": 0,
+          "warnings": []
+        },
+        "metadata": {
+          "document_title": "Network Security Lecture Notice",
+          "language": "en-US",
+          "source": "example"
+        },
+        "template_id": "event_notice_doc_base_v1",
+        "transform_summary": {
+          "error_count": 0,
+          "trace_count": 6,
+          "transformed_fields": 6
+        }
+      },
+      "schema_id": "event_notice_doc",
+      "task_id": "topic5_9473b0a24bc9"
+    },
+    "content_markdown": "# Network Security Lecture Notice\n\norganizer: Information Security School\n\nevent time: 2026-07-12 14:00\n\nlocation: Main Building 301\n\naudience: All information security students\n\nPlease arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.\n",
+    "content_organization_report": {
+      "chunk_count": 6,
+      "chunks_with_content_tags": 6,
+      "chunks_with_keywords": 6,
+      "chunks_with_quality_tags": 6,
+      "chunks_with_source_links": 6,
+      "chunks_with_summary": 6,
+      "doc_id": "uir_event_notice_001",
+      "summary": {
+        "avg_token_estimate": 11.5,
+        "child_chunk_count": 6,
+        "chunk_count": 6,
+        "chunks": [
+          {
+            "chunk_id": "chunk_topic5_9473b0a24bc9_0000",
+            "quality_flags": [],
+            "source_block_ids": [
+              "e1"
+            ],
+            "token_estimate": 7
+          },
+          {
+            "chunk_id": "chunk_topic5_9473b0a24bc9_0001",
+            "quality_flags": [],
+            "source_block_ids": [
+              "e2"
+            ],
+            "token_estimate": 9
+          },
+          {
+            "chunk_id": "chunk_topic5_9473b0a24bc9_0002",
+            "quality_flags": [],
+            "source_block_ids": [
+              "e3"
+            ],
+            "token_estimate": 7
+          },
+          {
+            "chunk_id": "chunk_topic5_9473b0a24bc9_0003",
+            "quality_flags": [],
+            "source_block_ids": [
+              "e4"
+            ],
+            "token_estimate": 6
+          },
+          {
+            "chunk_id": "chunk_topic5_9473b0a24bc9_0004",
+            "quality_flags": [],
+            "source_block_ids": [
+              "e5"
+            ],
+            "token_estimate": 10
+          },
+          {
+            "chunk_id": "chunk_topic5_9473b0a24bc9_0005",
+            "quality_flags": [],
+            "source_block_ids": [
+              "e6"
+            ],
+            "token_estimate": 30
+          }
+        ],
+        "content_tag_counts": {
+          "event_notice": 6
+        },
+        "empty_chunk_count": 0,
+        "length_ok_count": 2,
+        "max_token_estimate": 30,
+        "min_token_estimate": 6,
+        "options": {
+          "chunk_strategy": "source_block_aware",
+          "enable_light_semantic_boundary": true,
+          "enable_parent_child": false,
+          "keyword_mode": "deterministic",
+          "max_tokens": 1400,
+          "min_tokens": 1,
+          "overlap_tokens": 0,
+          "protect_code_blocks": true,
+          "protect_lists": true,
+          "protect_tables": true,
+          "summary_mode": "deterministic",
+          "target_tokens": 1200
+        },
+        "oversized_count": 0,
+        "oversized_protected_blocks_count": 0,
+        "parent_chunk_count": 0,
+        "protected_blocks_count": 0,
+        "quality_flags_summary": {},
+        "quality_tag_counts": {
+          "anchor_linked": 6,
+          "keyworded": 6,
+          "length_ok": 2,
+          "short_chunk": 4,
+          "source_linked": 6,
+          "summarized": 6,
+          "validation_passed": 6
+        },
+        "schema_id": "event_notice_doc",
+        "source_linked_count": 6,
+        "strategy": "source_block_aware",
+        "template_id": "event_notice_doc_base_v1"
+      },
+      "task_id": "topic5_9473b0a24bc9",
+      "warnings": []
+    },
+    "manifest": {
+      "created_at": "2026-07-09T12:45:54.475181+00:00",
+      "doc_id": "uir_event_notice_001",
+      "files": [
+        {
+          "bytes": 7332,
+          "media_type": "application/json",
+          "path": "canonical.json",
+          "required": true,
+          "role": "canonical",
+          "sha256": "6b1f0cef9dadb2dd95ab7a8be4e2bd2c3825a77c941c6caa32619bde2db164ae"
+        },
+        {
+          "bytes": 10729,
+          "media_type": "application/jsonl",
+          "path": "chunks.jsonl",
+          "required": true,
+          "role": "chunks",
+          "sha256": "8799b9c3f811b97ca78ac0671be256ce4c15256440febff2b7a9ea626f18dd67"
+        },
+        {
+          "bytes": 8302,
+          "media_type": "application/json",
+          "path": "content.json",
+          "required": true,
+          "role": "structured_json",
+          "sha256": "8b4bbf55fb24ed5ee4397138edeedde97d7afc9fcfa96360aaa8ca7dc91fa875"
+        },
+        {
+          "bytes": 314,
+          "media_type": "text/markdown",
+          "path": "content.md",
+          "required": true,
+          "role": "markdown",
+          "sha256": "63dff3aa36ba378355a5c59c6f29abd6d9da9fc4acbe71e9f5d108b3aa3f8129"
+        },
+        {
+          "bytes": 2724,
+          "media_type": "application/json",
+          "path": "content_organization_report.json",
+          "required": true,
+          "role": "content_organization_report",
+          "sha256": "f0269507163e38ae0f620c623ff532f3522f0cbaf741a979a7b8df2eb7c94084"
+        },
+        {
+          "bytes": 10354,
+          "media_type": "application/json",
+          "path": "mapping_report.json",
+          "required": true,
+          "role": "mapping_report",
+          "sha256": "afa65712a9b2c255d51b3bfe1266aa3a77d4e3d85ff3236ea4b34d9ac98bd02f"
+        },
+        {
+          "bytes": 724,
+          "media_type": "application/json",
+          "path": "metadata.json",
+          "required": true,
+          "role": "package_metadata",
+          "sha256": "64a6997f67ef06dac1f924a60cb248ad10d55575283acdc71f78c3889089c3b1"
+        },
+        {
+          "bytes": 1784,
+          "media_type": "application/json",
+          "path": "transform_report.json",
+          "required": true,
+          "role": "transform_report",
+          "sha256": "9dc8d94e3a0507ff37ba3c7823924535c569eaec294536e8b68461e549c076b3"
+        },
+        {
+          "bytes": 272,
+          "media_type": "application/json",
+          "path": "validation_report.json",
+          "required": true,
+          "role": "validation_report",
+          "sha256": "cca4d26e57e8f26316d67d01b1f34112bfad0160c6f68a3dc5557a04855fc19c"
+        }
+      ],
+      "generator": {
+        "name": "SchemaPack Agent",
+        "schema_id": "event_notice_doc",
+        "schema_version": "1.0.0",
+        "template_id": "event_notice_doc_base_v1",
+        "version": "service-layer-0.1.0"
+      },
+      "manifest_version": "1.1",
+      "package_id": "pkg_topic5_9473b0a24bc9",
+      "package_version": "1.0.0",
+      "task_id": "topic5_9473b0a24bc9"
+    },
+    "mapping_report": {
+      "mappings": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_topic5_9473b0a24bc9_document_title_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target title",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target title"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_topic5_9473b0a24bc9_title_alias",
+          "method": "alias",
+          "need_review": false,
+          "ranking_trace": {
+            "context_score": 0.85,
+            "evidence_score": 0.8,
+            "final_score": 0.9025,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.85,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "document_title",
+            "source_path": "$.metadata.document_title"
+          },
+          "source_field_name": "document_title",
+          "source_path": "$.metadata.document_title",
+          "status": "accepted",
+          "strategy": "alias",
+          "target_field_id": "title",
+          "target_field_name": "title",
+          "task_id": "topic5_9473b0a24bc9",
+          "value_sample": "Network Security Lecture Notice"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_topic5_9473b0a24bc9_organizer_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to organizer",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_topic5_9473b0a24bc9_organizer_exact",
+          "method": "exact",
+          "need_review": false,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [],
+          "source_blocks": [
+            "e2"
+          ],
+          "source_field": {
+            "source_name": "organizer",
+            "source_path": "$.blocks.e2.text"
+          },
+          "source_field_name": "organizer",
+          "source_path": "$.blocks.e2.text",
+          "status": "accepted",
+          "strategy": "exact",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "topic5_9473b0a24bc9",
+          "value_sample": "Information Security School"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_topic5_9473b0a24bc9_event_time_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to event_time",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to event_time"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_topic5_9473b0a24bc9_event_time_exact",
+          "method": "exact",
+          "need_review": false,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8825,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [],
+          "source_blocks": [
+            "e3"
+          ],
+          "source_field": {
+            "source_name": "event_time",
+            "source_path": "$.blocks.e3.text"
+          },
+          "source_field_name": "event_time",
+          "source_path": "$.blocks.e3.text",
+          "status": "accepted",
+          "strategy": "exact",
+          "target_field_id": "event_time",
+          "target_field_name": "event_time",
+          "task_id": "topic5_9473b0a24bc9",
+          "value_sample": "2026-07-12 14:00"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_topic5_9473b0a24bc9_location_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to location",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to location"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_topic5_9473b0a24bc9_location_exact",
+          "method": "exact",
+          "need_review": false,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [],
+          "source_blocks": [
+            "e4"
+          ],
+          "source_field": {
+            "source_name": "location",
+            "source_path": "$.blocks.e4.text"
+          },
+          "source_field_name": "location",
+          "source_path": "$.blocks.e4.text",
+          "status": "accepted",
+          "strategy": "exact",
+          "target_field_id": "location",
+          "target_field_name": "location",
+          "task_id": "topic5_9473b0a24bc9",
+          "value_sample": "Main Building 301"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_topic5_9473b0a24bc9_audience_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to audience",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to audience"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_topic5_9473b0a24bc9_audience_exact",
+          "method": "exact",
+          "need_review": false,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.8975,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [],
+          "source_blocks": [
+            "e5"
+          ],
+          "source_field": {
+            "source_name": "audience",
+            "source_path": "$.blocks.e5.text"
+          },
+          "source_field_name": "audience",
+          "source_path": "$.blocks.e5.text",
+          "status": "accepted",
+          "strategy": "exact",
+          "target_field_id": "audience",
+          "target_field_name": "audience",
+          "task_id": "topic5_9473b0a24bc9",
+          "value_sample": "All information security students"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_topic5_9473b0a24bc9_body_1",
+          "confidence": 1.0,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "exact mapping to body",
+              "metadata": {},
+              "source": null,
+              "type": "exact_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "exact mapping to body"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_topic5_9473b0a24bc9_body_exact",
+          "method": "exact",
+          "need_review": false,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.7,
+            "final_score": 0.8375,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 0.9
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [],
+          "source_blocks": [
+            "e6"
+          ],
+          "source_field": {
+            "source_name": "body",
+            "source_path": "$.blocks.e6.text"
+          },
+          "source_field_name": "body",
+          "source_path": "$.blocks.e6.text",
+          "status": "accepted",
+          "strategy": "exact",
+          "target_field_id": "body",
+          "target_field_name": "body",
+          "task_id": "topic5_9473b0a24bc9",
+          "value_sample": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice."
+        }
+      ],
+      "review_required_items": [],
+      "schema_id": "event_notice_doc",
+      "summary": {
+        "accepted_count": 6,
+        "average_confidence": 0.9933,
+        "avg_confidence": 0.9933,
+        "badcase_blocked_count": 0,
+        "failed_count": 0,
+        "input_mode": "inline_topic5_config",
+        "llm_suggestion_count": 0,
+        "mapped_count": 6,
+        "mapped_fields": 6,
+        "mapping_input_name": "mapping_rules",
+        "methods": {
+          "alias": 1,
+          "exact": 5
+        },
+        "no_code_schema_pack_onboarding": true,
+        "required_unmapped_count": 0,
+        "review_required": 0,
+        "review_required_count": 0,
+        "risk_flag_counts": {},
+        "strategy_counts": {
+          "alias": 1,
+          "exact": 5,
+          "fuzzy": 0,
+          "llm_fallback": 0,
+          "regex": 0,
+          "type": 0
+        },
+        "target_fields": 6,
+        "template_id": "event_notice_doc_base_v1",
+        "thresholds": {
+          "auto_accept": 0.82,
+          "review_required": 0.62
+        },
+        "total_candidates": 9,
+        "total_target_fields": 6,
+        "unmapped_required_fields": 0,
+        "warnings": []
+      },
+      "task_id": "topic5_9473b0a24bc9",
+      "unmapped": []
+    },
+    "package_metadata": {
+      "created_at": "2026-07-09T12:45:54.475181+00:00",
+      "doc_id": "uir_event_notice_001",
+      "package_id": "pkg_topic5_9473b0a24bc9",
+      "package_version": "1.0.0",
+      "schema_id": "event_notice_doc",
+      "sha256": "baa068223a7b646c98f94988fb598d65930789ae97c1ba51b9a7085744bb82d6",
+      "status": "completed",
+      "task_id": "topic5_9473b0a24bc9",
+      "template_id": "event_notice_doc_base_v1",
+      "zip_path": "reports\\topic5_inline_event_notice_result_package\\packages\\pkg_topic5_9473b0a24bc9\\standard_package.zip"
+    },
+    "package_zip_path": "reports\\topic5_inline_event_notice_result_package\\packages\\pkg_topic5_9473b0a24bc9\\standard_package.zip",
+    "schema_id": "event_notice_doc",
+    "status": "completed",
+    "task_id": "topic5_9473b0a24bc9",
+    "template_id": "event_notice_doc_base_v1",
+    "transform_report": {
+      "doc_id": "uir_event_notice_001",
+      "errors": [],
+      "schema_id": "event_notice_doc",
+      "summary": {
+        "error_count": 0,
+        "trace_count": 6,
+        "transformed_fields": 6
+      },
+      "task_id": "topic5_9473b0a24bc9",
+      "template_id": "event_notice_doc_base_v1",
+      "traces": [
+        {
+          "operation": "rename",
+          "source_field": {
+            "source_name": "document_title",
+            "source_path": "$.metadata.document_title"
+          },
+          "status": "ok",
+          "target_field_id": "title"
+        },
+        {
+          "operation": "rename",
+          "source_field": {
+            "source_name": "organizer",
+            "source_path": "$.blocks.e2.text"
+          },
+          "status": "ok",
+          "target_field_id": "organizer"
+        },
+        {
+          "normalized_value": "2026-07-12T14:00:00",
+          "normalizer": "datetime_normalize",
+          "operation": "datetime_normalize",
+          "source_field": {
+            "source_name": "event_time",
+            "source_path": "$.blocks.e3.text"
+          },
+          "source_value": "2026-07-12 14:00",
+          "status": "ok",
+          "target_field_id": "event_time"
+        },
+        {
+          "operation": "rename",
+          "source_field": {
+            "source_name": "location",
+            "source_path": "$.blocks.e4.text"
+          },
+          "status": "ok",
+          "target_field_id": "location"
+        },
+        {
+          "operation": "rename",
+          "source_field": {
+            "source_name": "audience",
+            "source_path": "$.blocks.e5.text"
+          },
+          "status": "ok",
+          "target_field_id": "audience"
+        },
+        {
+          "operation": "rename",
+          "source_field": {
+            "source_name": "body",
+            "source_path": "$.blocks.e6.text"
+          },
+          "status": "ok",
+          "target_field_id": "body"
+        }
+      ],
+      "warnings": []
+    },
+    "validation_report": {
+      "issues": [],
+      "passed": true,
+      "schema_id": "event_notice_doc",
+      "schema_valid": true,
+      "strict_semantic_valid": true,
+      "summary": {
+        "error_count": 0,
+        "failure_type_counts": {},
+        "warning_count": 0
+      },
+      "task_id": "topic5_9473b0a24bc9"
+    },
+    "verifier_report": {
+      "checks": [],
+      "errors": [],
+      "passed": true,
+      "task_id": "topic5_9473b0a24bc9",
+      "warnings": []
+    }
+  },
+  "schema_id": "event_notice_doc",
+  "status": "passed",
+  "template_id": "event_notice_doc_base_v1"
+}

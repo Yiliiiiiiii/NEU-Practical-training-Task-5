@@ -1,6 +1,6 @@
 from typing import Any
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
 from app.schemas.common import StrictBaseModel
 from app.schemas.mapping_template import MappingTemplate
@@ -32,12 +32,40 @@ class ContentOrganizationConfig(StrictBaseModel):
 class Topic5ConvertRequest(StrictBaseModel):
     uir: UIRDocument
     target_schema: TargetSchema
-    mapping_template: MappingTemplate
+    mapping_rules: MappingTemplate | None = None
+    mapping_template: MappingTemplate | None = None
     metadata_template: MetadataTemplateConfig | None = None
     content_organization: ContentOrganizationConfig = Field(
         default_factory=ContentOrganizationConfig
     )
     options: dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_mapping_rules(self) -> "Topic5ConvertRequest":
+        if self.mapping_rules is None and self.mapping_template is None:
+            raise ValueError("mapping_rules is required")
+
+        if self.mapping_rules is not None and self.mapping_template is not None:
+            rules_payload = self.mapping_rules.model_dump(mode="json")
+            template_payload = self.mapping_template.model_dump(mode="json")
+            if rules_payload != template_payload:
+                raise ValueError("mapping_rules and mapping_template cannot differ")
+
+        return self
+
+    @property
+    def effective_mapping_template(self) -> MappingTemplate:
+        if self.mapping_rules is not None:
+            return self.mapping_rules
+        if self.mapping_template is not None:
+            return self.mapping_template
+        raise ValueError("mapping_rules is required")
+
+    @property
+    def mapping_input_name(self) -> str:
+        if self.mapping_rules is not None:
+            return "mapping_rules"
+        return "mapping_template"
 
 
 class Topic5ConvertResponse(StrictBaseModel):

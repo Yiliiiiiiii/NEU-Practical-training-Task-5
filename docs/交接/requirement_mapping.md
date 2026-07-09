@@ -113,3 +113,8 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 - `POST /api/v1/external-uir/create-task` creates a task from an imported document and explicit schema/template choices without executing it.
 - DeepSeek is disabled by default and limited to adapter suggestions; auto accepted LLM mappings remain zero.
 - The frontend workbench includes an External UIR Adapter panel for Convert -> Preview -> Import -> Create Task.
+# Current Topic 5 Contract Note
+
+Topic 5 inline conversion now uses `mapping_rules` as the preferred public field and keeps `mapping_template` only as a backward-compatible alias. The required input model is UIR + target_schema + mapping_rules + metadata_template + content_organization. Router signals are optional recommendations; SchemaPack examples are not system capability boundaries.
+
+Metric wording must stay conservative: do not claim production-grade blind recall 0.85. Current stronger mapping evidence is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex outputs remain report-only or dry-run and must not write production rules.

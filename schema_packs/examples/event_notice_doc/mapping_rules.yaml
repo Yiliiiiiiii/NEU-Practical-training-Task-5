@@ -1,0 +1,68 @@
+schema_id: event_notice_doc
+template_id: event_notice_doc_base_v1
+name: Event Notice Document Base Rules
+version: 1.0.0
+
+aliases:
+  title:
+    - title
+    - event title
+    - notice title
+    - document_title
+  organizer:
+    - organizer
+    - host
+    - organizing unit
+  event_time:
+    - event time
+    - start time
+    - meeting time
+  location:
+    - location
+    - venue
+    - event location
+  audience:
+    - audience
+    - participants
+    - target audience
+  body:
+    - body
+    - content
+    - notice body
+
+regex_rules:
+  - target_field_id: event_time
+    pattern: "event time\\s*[:：]\\s*(\\d{4}-\\d{1,2}-\\d{1,2}\\s+\\d{1,2}:\\d{2})"
+    group: 1
+
+negative_pairs:
+  - source_pattern: "publish date|retrieved_at"
+    target_field_id: event_time
+    reason: "publish or retrieved time is not event time"
+    severity: block
+
+transform_rules:
+  - rule_id: normalize_event_time
+    operation: normalize_datetime
+    target_field_id: event_time
+  - rule_id: trim_title
+    operation: trim
+    target_field_id: title
+
+defaults:
+  location: ""
+
+thresholds:
+  auto_accept: 0.82
+  review_required: 0.62
+
+candidate_hints:
+  labeled_values:
+    organizer:
+      - organizer
+    event_time:
+      - event time
+    location:
+      - location
+    audience:
+      - audience

@@ -1,0 +1,25 @@
+schema_id: event_notice_doc
+template_id: event_notice_doc_base_v1
+version: 1.0.0
+keywords:
+  - notice
+  - event
+  - lecture
+field_labels:
+  - title
+  - organizer
+  - event time
+  - location
+  - audience
+  - body
+risks:
+  publish date: publish_date_not_event_time
+scoring:
+  metadata: 0.30
+  keyword: 0.25
+  field_hint: 0.25
+  table_label: 0.10
+  adapter_hint: 0.10
+thresholds:
+  auto: 0.75
+  review: 0.50

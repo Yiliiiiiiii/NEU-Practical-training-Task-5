@@ -1,5 +1,27 @@
 # SchemaPack Agent / Topic 5 Conversion Agent
 
+## Topic 5 Current Contract
+
+The public inline conversion contract is:
+
+```text
+UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config
+```
+
+`mapping_rules` is the preferred public API field. Legacy `mapping_template` is still accepted for backward compatibility when it carries the same content.
+
+No-code SchemaPack demos:
+
+```powershell
+python scripts/validate_schema_pack.py schema_packs/examples/announcement_doc
+python scripts/validate_schema_pack.py schema_packs/examples/event_notice_doc
+
+python scripts/run_topic5_inline_convert.py --request examples/topic5_inline/announcement_convert_request.json --out reports/topic5_inline_announcement_result.json --create-package
+python scripts/run_topic5_inline_convert.py --request examples/topic5_inline/event_notice_convert_request.json --out reports/topic5_inline_event_notice_result.json --create-package
+```
+
+Runtime boundaries: production runtime starts from UIR or External UIR JSON. It does not parse raw PDF, Word, Excel, images, or scanned documents. The project does not claim production-grade blind recall 0.85. The current stronger mapping metric is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex paths remain report-only or dry-run and do not write production rules.
+
 本项目实现课题 5“数据格式标准化转换智能体”。系统接收归一后的结构化中间表示 UIR、目标 Schema/元数据模板/映射规则和内容组织参数，完成字段映射、字段重命名/合并/拆分、Schema 校验、面向 RAG 的分段打标摘要，并封装为人读 Markdown 与机读 JSON/chunks 的标准成果包。
 
 输入为 UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config。

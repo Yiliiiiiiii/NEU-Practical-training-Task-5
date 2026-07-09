@@ -1,0 +1,52 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "uir_event_notice_001",
+  "metadata": {
+    "source": "example",
+    "language": "en-US",
+    "document_title": "Network Security Lecture Notice"
+  },
+  "blocks": [
+    {
+      "block_id": "e1",
+      "type": "heading",
+      "level": 1,
+      "text": "Network Security Lecture Notice",
+      "attributes": {}
+    },
+    {
+      "block_id": "e2",
+      "type": "paragraph",
+      "text": "organizer: Information Security School",
+      "attributes": {}
+    },
+    {
+      "block_id": "e3",
+      "type": "paragraph",
+      "text": "event time: 2026-07-12 14:00",
+      "attributes": {}
+    },
+    {
+      "block_id": "e4",
+      "type": "paragraph",
+      "text": "location: Main Building 301",
+      "attributes": {}
+    },
+    {
+      "block_id": "e5",
+      "type": "paragraph",
+      "text": "audience: All information security students",
+      "attributes": {}
+    },
+    {
+      "block_id": "e6",
+      "type": "paragraph",
+      "text": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.",
+      "attributes": {
+        "field_name": "body"
+      }
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

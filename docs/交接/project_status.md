@@ -117,3 +117,10 @@ SchemaPack 只是示例配置与评测基准，不是系统能力边界。
 - Package Verification 只证明结构与包契约有效，不等同于字段语义完全正确。
 - DeepSeek/LLM suggestion 只能 report-only 或进入人工 Review，不得自动 accepted、激活 catalog 或写入生产规则。
 - 当前没有独立 production shadow/blind gold corpus；不能宣称生产盲测 recall 0.85。
+# Current Topic 5 Correction Status
+
+The public inline input is UIR + target_schema + mapping_rules + metadata_template + content_organization. `mapping_template` is backward-compatible legacy vocabulary only.
+
+The project has two no-code SchemaPack demos: `announcement_doc` and `event_notice_doc`. Historical SchemaPacks are examples and benchmarks, not capability boundaries.
+
+Runtime limitations remain explicit: no production raw PDF/Word/Excel/image/scanned-document parsing, no production-grade blind recall 0.85 claim, assisted recall 0.861 is stronger than current auto recall, and LLM/Codex paths remain report-only or dry-run without production rule writes.

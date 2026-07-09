@@ -336,3 +336,19 @@ Show the External UIR Adapter API/UI MVP:
    通过。
 6. 说明 lineage 不改变 mapping，不让 LLM 自动接受，也不等于 strict semantic
    correctness。
+# Current Topic 5 Demo Order
+
+1. Show the Topic 5 expected input model.
+2. Show the inline request: UIR + target_schema + mapping_rules + metadata_template + content_organization.
+3. Run `/api/v1/topic5/convert/package` or the CLI equivalent.
+4. Show `content.json`.
+5. Show `content.md`.
+6. Show chunks and `content_organization_report`.
+7. Show `mapping_report` evidence.
+8. Show `validation_report`.
+9. Show manifest and `verifier_report`.
+10. Show the no-code SchemaPack onboarding demos: `announcement_doc` and `event_notice_doc`.
+11. Explain that historical SchemaPacks are examples, not capability boundaries.
+12. Explain current honest limitations.
+
+Required limitation statement: the project does not parse raw PDF, Word, Excel, images, or scanned documents in production runtime. It does not claim production-grade blind recall 0.85. The current stronger mapping metric is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex paths are report-only or dry-run and do not write production rules.

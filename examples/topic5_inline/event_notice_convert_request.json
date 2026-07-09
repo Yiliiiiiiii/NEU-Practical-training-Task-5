@@ -1,0 +1,199 @@
+{
+  "uir": {
+    "uir_version": "1.0",
+    "doc_id": "uir_event_notice_001",
+    "metadata": {
+      "source": "example",
+      "language": "en-US",
+      "document_title": "Network Security Lecture Notice"
+    },
+    "blocks": [
+      {
+        "block_id": "e1",
+        "type": "heading",
+        "level": 1,
+        "text": "Network Security Lecture Notice",
+        "attributes": {}
+      },
+      {
+        "block_id": "e2",
+        "type": "paragraph",
+        "text": "organizer: Information Security School",
+        "attributes": {}
+      },
+      {
+        "block_id": "e3",
+        "type": "paragraph",
+        "text": "event time: 2026-07-12 14:00",
+        "attributes": {}
+      },
+      {
+        "block_id": "e4",
+        "type": "paragraph",
+        "text": "location: Main Building 301",
+        "attributes": {}
+      },
+      {
+        "block_id": "e5",
+        "type": "paragraph",
+        "text": "audience: All information security students",
+        "attributes": {}
+      },
+      {
+        "block_id": "e6",
+        "type": "paragraph",
+        "text": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.",
+        "attributes": {
+          "field_name": "body"
+        }
+      }
+    ],
+    "assets": [],
+    "normalization_records": []
+  },
+  "target_schema": {
+    "schema_id": "event_notice_doc",
+    "version": "1.0.0",
+    "name": "Event Notice Document",
+    "description": "Example target schema for no-code event notice onboarding.",
+    "fields": [
+      {
+        "field_id": "title",
+        "name": "title",
+        "display_name": "title",
+        "type": "string",
+        "required": true,
+        "aliases": ["title", "event title", "notice title"],
+        "constraints": {}
+      },
+      {
+        "field_id": "organizer",
+        "name": "organizer",
+        "display_name": "organizer",
+        "type": "string",
+        "required": true,
+        "aliases": ["organizer", "host", "organizing unit"],
+        "constraints": {}
+      },
+      {
+        "field_id": "event_time",
+        "name": "event_time",
+        "display_name": "event time",
+        "type": "datetime",
+        "required": true,
+        "aliases": ["event time", "start time", "meeting time"],
+        "constraints": {}
+      },
+      {
+        "field_id": "location",
+        "name": "location",
+        "display_name": "location",
+        "type": "string",
+        "required": false,
+        "aliases": ["location", "venue", "event location"],
+        "constraints": {}
+      },
+      {
+        "field_id": "audience",
+        "name": "audience",
+        "display_name": "audience",
+        "type": "string",
+        "required": false,
+        "aliases": ["audience", "participants", "target audience"],
+        "constraints": {}
+      },
+      {
+        "field_id": "body",
+        "name": "body",
+        "display_name": "body",
+        "type": "text",
+        "required": true,
+        "aliases": ["body", "content", "notice body"],
+        "constraints": {}
+      }
+    ]
+  },
+  "mapping_rules": {
+    "template_id": "event_notice_doc_base_v1",
+    "schema_id": "event_notice_doc",
+    "name": "Event Notice Document Base Rules",
+    "version": "1.0.0",
+    "aliases": {
+      "title": ["title", "event title", "notice title", "document_title"],
+      "organizer": ["organizer", "host", "organizing unit"],
+      "event_time": ["event time", "start time", "meeting time"],
+      "location": ["location", "venue", "event location"],
+      "audience": ["audience", "participants", "target audience"],
+      "body": ["body", "content", "notice body"]
+    },
+    "regex_rules": [
+      {
+        "target_field_id": "event_time",
+        "pattern": "event time\\s*[:：]\\s*(\\d{4}-\\d{1,2}-\\d{1,2}\\s+\\d{1,2}:\\d{2})",
+        "group": 1
+      }
+    ],
+    "transform_rules": [
+      {
+        "rule_id": "normalize_event_time",
+        "operation": "normalize_datetime",
+        "target_field_id": "event_time"
+      },
+      {
+        "rule_id": "trim_title",
+        "operation": "trim",
+        "target_field_id": "title"
+      }
+    ],
+    "defaults": {
+      "location": ""
+    },
+    "enum_maps": {}
+  },
+  "metadata_template": {
+    "template_id": "event_notice_doc_base_v1",
+    "schema_id": "event_notice_doc",
+    "version": "1.0.0",
+    "metadata_fields": [
+      {"field_id": "source", "required": false, "default": null},
+      {"field_id": "language", "required": false, "default": "en-US"}
+    ]
+  },
+  "content_organization": {
+    "chunk_strategy": "source_block_aware",
+    "target_tokens": 1200,
+    "min_tokens": 1,
+    "max_tokens": 1400,
+    "overlap_tokens": 0,
+    "protect_tables": true,
+    "protect_lists": true,
+    "protect_code_blocks": true,
+    "enable_parent_child": false,
+    "summary_mode": "deterministic",
+    "keyword_mode": "deterministic"
+  },
+  "options": {
+    "enable_llm_fallback": false,
+    "no_code_schema_pack_onboarding": true,
+    "negative_pairs": [
+      {
+        "source_pattern": "publish date|retrieved_at",
+        "target_field_id": "event_time",
+        "reason": "publish or retrieved time is not event time",
+        "severity": "block"
+      }
+    ],
+    "thresholds": {
+      "auto_accept": 0.82,
+      "review_required": 0.62
+    },
+    "candidate_profile": {
+      "labeled_values": {
+        "organizer": ["organizer"],
+        "event_time": ["event time"],
+        "location": ["location"],
+        "audience": ["audience"]
+      }
+    }
+  }
+}

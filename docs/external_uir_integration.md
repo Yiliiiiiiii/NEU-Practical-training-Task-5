@@ -149,3 +149,6 @@ backend\.venv\Scripts\python.exe scripts\eval_external_uir_api.py `
 Docling/Unstructured 入口位于 `scripts/upstream_*_to_external_uir.py`，仅用于
 离线生成 External UIR。它们使用惰性可选依赖，不是 backend API，也不会自动
 导入、建任务或执行。无文本层扫描 PDF 仍返回 `unsupported_scanned_pdf`。
+# Current Router Contract
+
+Schema Router is optional recommendation logic. It can run with built-in historical signals enabled for compatibility, or with built-in signals disabled so that only SchemaPack `router_rules.yaml` entries are considered. Router output does not define system capability boundaries; explicit Topic 5 inline input remains authoritative.

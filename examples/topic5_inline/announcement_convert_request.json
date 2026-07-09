@@ -83,7 +83,7 @@
       }
     ]
   },
-  "mapping_template": {
+  "mapping_rules": {
     "template_id": "announcement_doc_base_v1",
     "schema_id": "announcement_doc",
     "name": "Announcement Document Base Template",

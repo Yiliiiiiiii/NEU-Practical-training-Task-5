@@ -4551,8 +4551,25 @@
           "content_organization": {
             "$ref": "#/components/schemas/ContentOrganizationConfig"
           },
+          "mapping_rules": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MappingTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "mapping_template": {
-            "$ref": "#/components/schemas/MappingTemplate"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MappingTemplate"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "metadata_template": {
             "anyOf": [
@@ -4577,8 +4594,7 @@
         },
         "required": [
           "uir",
-          "target_schema",
-          "mapping_template"
+          "target_schema"
         ],
         "title": "Topic5ConvertRequest",
         "type": "object"

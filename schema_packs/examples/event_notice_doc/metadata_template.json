@@ -1,0 +1,17 @@
+{
+  "template_id": "event_notice_doc_base_v1",
+  "schema_id": "event_notice_doc",
+  "version": "1.0.0",
+  "metadata_fields": [
+    {
+      "field_id": "source",
+      "required": false,
+      "default": null
+    },
+    {
+      "field_id": "language",
+      "required": false,
+      "default": "en-US"
+    }
+  ]
+}

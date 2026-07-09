@@ -1,0 +1,11 @@
+chunk_strategy: source_block_aware
+target_tokens: 1200
+min_tokens: 1
+max_tokens: 1400
+overlap_tokens: 0
+protect_tables: true
+protect_lists: true
+protect_code_blocks: true
+enable_parent_child: false
+summary_mode: deterministic
+keyword_mode: deterministic

@@ -27,7 +27,7 @@ def run(
 ) -> dict[str, Any]:
     payload = json.loads(request_path.read_text(encoding="utf-8"))
     request = Topic5ConvertRequest.model_validate(payload)
-    storage_root = package_out or out_path.parent / "topic5_inline_announcement_package"
+    storage_root = package_out or out_path.parent / f"{out_path.stem}_package"
     response = Topic5ConversionService(storage_root).convert(
         request,
         create_package=create_package,

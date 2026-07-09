@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Any
 
+from app.schemas.reports import MappingReport
 from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertResponse
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
@@ -28,7 +29,10 @@ class Topic5ConversionService:
         task_id = new_id("topic5")
         doc_id = request.uir.doc_id or new_id("inline_doc")
         schema = SchemaService().validate_schema(request.target_schema)
-        template = TemplateService().validate_template(request.mapping_template, schema)
+        template = TemplateService().validate_template(
+            request.effective_mapping_template,
+            schema,
+        )
         content_organization = request.content_organization.model_dump(mode="json")
 
         options: dict[str, Any] = dict(request.options)
@@ -55,6 +59,7 @@ class Topic5ConversionService:
             options=options,
         )
         mapping_report.summary["input_mode"] = "inline_topic5_config"
+        mapping_report.summary["mapping_input_name"] = request.mapping_input_name
         mapping_report.summary["thresholds"] = options.get("thresholds", {})
         mapping_report.summary["no_code_schema_pack_onboarding"] = bool(
             options.get("no_code_schema_pack_onboarding")
@@ -75,6 +80,7 @@ class Topic5ConversionService:
             "template_id": template.template_id,
             "template_version": template.version,
             "input_mode": "inline_topic5_config",
+            "mapping_input_name": request.mapping_input_name,
             "options": options,
         }
         canonical = CanonicalService().build_canonical(
@@ -138,7 +144,17 @@ class Topic5ConversionService:
             package_metadata = package_result.metadata.model_dump(mode="json")
             verifier_report = package_result.verifier_report.model_dump(mode="json")
 
-        status = "completed" if validation_report.passed else "review_required"
+        verifier_passed = (
+            bool(verifier_report.get("passed"))
+            if isinstance(verifier_report, dict)
+            else None
+        )
+        status = self._final_status(
+            mapping_report=mapping_report,
+            validation_passed=validation_report.passed,
+            verifier_passed=verifier_passed,
+            create_package=create_package,
+        )
         return Topic5ConvertResponse(
             task_id=task_id,
             status=status,
@@ -156,3 +172,24 @@ class Topic5ConversionService:
             package_metadata=package_metadata,
             verifier_report=verifier_report,
         )
+
+    @staticmethod
+    def _final_status(
+        *,
+        mapping_report: MappingReport,
+        validation_passed: bool,
+        verifier_passed: bool | None,
+        create_package: bool,
+    ) -> str:
+        review_required_count = len(mapping_report.review_required_items)
+        unmapped_required_count = sum(
+            1 for item in mapping_report.unmapped if item.get("required")
+        )
+
+        if create_package and verifier_passed is False:
+            return "failed"
+
+        if review_required_count or unmapped_required_count or not validation_passed:
+            return "review_required"
+
+        return "completed"

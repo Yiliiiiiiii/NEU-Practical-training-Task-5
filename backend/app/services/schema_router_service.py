@@ -122,8 +122,14 @@ class SchemaRouterService:
         },
     }
 
-    def __init__(self, schema_pack_service: SchemaPackService | None = None) -> None:
+    def __init__(
+        self,
+        schema_pack_service: SchemaPackService | None = None,
+        *,
+        include_builtin_signals: bool = True,
+    ) -> None:
         self.schema_pack_service = schema_pack_service or SchemaPackService()
+        self.include_builtin_signals = include_builtin_signals
 
     def route(
         self,
@@ -131,6 +137,21 @@ class SchemaRouterService:
         *,
         adapter_report: AdapterReport | None = None,
     ) -> SchemaRouteDecision:
+        signals = self._signals()
+        if not signals:
+            reason = "no schema router rules configured"
+            return SchemaRouteDecision(
+                selected_schema_id=None,
+                selected_template_id=None,
+                confidence=0.0,
+                reason=reason,
+                alternatives=[],
+                review_required=True,
+                candidates=[],
+                decision_reason=reason,
+                route_version=self.ROUTE_VERSION,
+            )
+
         candidates = sorted(
             (
                 self._score_family(
@@ -144,7 +165,7 @@ class SchemaRouterService:
                     uir=uir,
                     adapter_report=adapter_report,
                 )
-                for schema_id, config in self._signals().items()
+                for schema_id, config in signals.items()
             ),
             key=lambda item: item.confidence,
             reverse=True,
@@ -278,6 +299,8 @@ class SchemaRouterService:
 
     def _signals(self) -> dict[str, dict[str, Any]]:
         loaded = self.schema_pack_service.load_router_rules()
+        if not self.include_builtin_signals:
+            return loaded
         if not loaded:
             return self.SIGNALS
         merged = dict(self.SIGNALS)

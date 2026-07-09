@@ -1,0 +1,62 @@
+{
+  "schema_id": "event_notice_doc",
+  "version": "1.0.0",
+  "name": "Event Notice Document",
+  "description": "Example target schema for no-code event notice onboarding.",
+  "fields": [
+    {
+      "field_id": "title",
+      "name": "title",
+      "display_name": "title",
+      "type": "string",
+      "required": true,
+      "aliases": ["title", "event title", "notice title"],
+      "constraints": {}
+    },
+    {
+      "field_id": "organizer",
+      "name": "organizer",
+      "display_name": "organizer",
+      "type": "string",
+      "required": true,
+      "aliases": ["organizer", "host", "organizing unit"],
+      "constraints": {}
+    },
+    {
+      "field_id": "event_time",
+      "name": "event_time",
+      "display_name": "event time",
+      "type": "datetime",
+      "required": true,
+      "aliases": ["event time", "start time", "meeting time"],
+      "constraints": {}
+    },
+    {
+      "field_id": "location",
+      "name": "location",
+      "display_name": "location",
+      "type": "string",
+      "required": false,
+      "aliases": ["location", "venue", "event location"],
+      "constraints": {}
+    },
+    {
+      "field_id": "audience",
+      "name": "audience",
+      "display_name": "audience",
+      "type": "string",
+      "required": false,
+      "aliases": ["audience", "participants", "target audience"],
+      "constraints": {}
+    },
+    {
+      "field_id": "body",
+      "name": "body",
+      "display_name": "body",
+      "type": "text",
+      "required": true,
+      "aliases": ["body", "content", "notice body"],
+      "constraints": {}
+    }
+  ]
+}

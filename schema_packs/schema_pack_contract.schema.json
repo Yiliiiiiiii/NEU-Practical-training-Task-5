@@ -19,7 +19,11 @@
     },
     "mapping_rules": {
       "type": "object",
+      "required": ["schema_id", "template_id", "version"],
       "properties": {
+        "schema_id": {"type": "string"},
+        "template_id": {"type": "string"},
+        "version": {"type": "string"},
         "aliases": {"type": "object"},
         "regex_rules": {"type": "array"},
         "negative_pairs": {"type": "array"},

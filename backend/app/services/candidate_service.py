@@ -322,16 +322,21 @@ class CandidateService:
             True if enable_legacy_domain_rules is None else enable_legacy_domain_rules
         )
 
+        domain_for_metadata = (
+            str(uir.metadata.get("domain") or "") if use_legacy_domain_rules else ""
+        )
+
         for key, value in uir.metadata.items():
             if key in self.CONTROL_METADATA_KEYS:
                 continue
             semantic = self._metadata_candidate_options(
-                str(uir.metadata.get("domain") or ""),
+                domain_for_metadata,
                 key,
             )
             display_name = semantic["display_name"] or (
                 "attendees"
-                if uir.metadata.get("domain") == "meeting_doc"
+                if use_legacy_domain_rules
+                and uir.metadata.get("domain") == "meeting_doc"
                 and self.normalize_name(key) == "出席"
                 else None
             )

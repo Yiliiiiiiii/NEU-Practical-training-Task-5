@@ -33,7 +33,8 @@ def test_topic5_inline_request_fixture_uses_schema_pack_assets():
 
     assert payload["uir"]["doc_id"] == "uir_announcement_001"
     assert payload["target_schema"]["schema_id"] == "announcement_doc"
-    assert payload["mapping_template"]["schema_id"] == "announcement_doc"
+    assert payload["mapping_rules"]["schema_id"] == "announcement_doc"
+    assert "mapping_template" not in payload
     assert payload["metadata_template"]["template_id"] == "announcement_doc_base_v1"
     assert payload["content_organization"]
     assert payload["options"]["no_code_schema_pack_onboarding"] is True
