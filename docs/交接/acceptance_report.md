@@ -158,3 +158,18 @@ Strengthen-stage mapping quality gate 已通过；但 review-required rate 高�
 The accepted public inline contract is UIR + target_schema + mapping_rules + metadata_template + content_organization. `mapping_template` remains a legacy-compatible alias only.
 
 The project does not claim production-grade blind recall 0.85. The current stronger mapping metric is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex paths remain report-only or dry-run and do not write production rules.
+
+## Topic 5 Phase 2 Mapping Quality
+
+Phase 2 benchmark evidence is now available in
+`reports/topic5_mapping_quality_gate_report.json` and
+`reports/topic5_mapping_quality_gate_report.md`.
+
+The `global_assignment` mode passes the standard UIR benchmark gate with
+test auto precision 0.9310, test auto recall 1.0000, required missing 0,
+badcase violations 0, review-required rate 0.0000, and test-vs-blind gap
+0.0000.
+
+Allowed claim: benchmark-level auto mapping recall >= 0.85 within the
+declared standard UIR benchmark scope. This is still not a production
+shadow/blind recall claim.

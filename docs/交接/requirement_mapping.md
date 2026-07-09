@@ -118,3 +118,13 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 Topic 5 inline conversion now uses `mapping_rules` as the preferred public field and keeps `mapping_template` only as a backward-compatible alias. The required input model is UIR + target_schema + mapping_rules + metadata_template + content_organization. Router signals are optional recommendations; SchemaPack examples are not system capability boundaries.
 
 Metric wording must stay conservative: do not claim production-grade blind recall 0.85. Current stronger mapping evidence is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex outputs remain report-only or dry-run and must not write production rules.
+
+## Topic 5 Phase 2 Mapping Quality Requirement
+
+| Requirement | Evidence | Status |
+| --- | --- | --- |
+| Build an independent standard UIR mapping benchmark | `eval/topic5_standard_uir`, dev/test/blind splits, gold mappings, negative pairs, required fields | Done |
+| Add feature-flagged global assignment mapping | `mapping_mode=global_assignment`, legacy remains default | Done |
+| Report auto precision/recall/F1 separately from review-required support | `scripts/eval_topic5_standard_uir_mapping.py` reports auto and assisted metrics separately | Done |
+| Gate auto mapping quality | `scripts/check_topic5_mapping_quality_gate.py` and `reports/topic5_mapping_quality_gate_report.md` | Passed |
+| Avoid production-grade overclaim | Phase 2 docs state benchmark-scope claim only, not production shadow/blind recall | Done |

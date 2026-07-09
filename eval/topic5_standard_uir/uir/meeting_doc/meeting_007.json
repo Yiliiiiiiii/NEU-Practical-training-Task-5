@@ -1,0 +1,53 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "field_name": "meeting_title"
+      },
+      "block_id": "meeting_007_meeting_title",
+      "text": "Project Coordination Meeting 7",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "field_name": "meeting_date"
+      },
+      "block_id": "meeting_007_meeting_date",
+      "text": "2026-07-16",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "organizer"
+      },
+      "block_id": "meeting_007_organizer",
+      "text": "Project Office",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "content"
+      },
+      "block_id": "meeting_007_content",
+      "text": "The meeting reviewed milestones and confirmed next actions.",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish date"
+      },
+      "block_id": "meeting_007_distractor",
+      "text": "publish date: 2026-07-01; retrieved_at: 2026-07-02T08:00:00Z",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "uir_meeting_doc_007",
+  "metadata": {
+    "domain": "meeting_doc",
+    "language": "en-US",
+    "source": "topic5_standard_uir_fixture"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

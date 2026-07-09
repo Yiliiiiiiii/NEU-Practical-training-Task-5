@@ -1,0 +1,23 @@
+{
+  "items": [
+    "announcement_doc/ann_001.json",
+    "announcement_doc/ann_002.json",
+    "announcement_doc/ann_003.json",
+    "event_notice_doc/event_001.json",
+    "event_notice_doc/event_002.json",
+    "event_notice_doc/event_003.json",
+    "policy_doc/policy_001.json",
+    "policy_doc/policy_002.json",
+    "policy_doc/policy_003.json",
+    "meeting_doc/meeting_001.json",
+    "meeting_doc/meeting_002.json",
+    "meeting_doc/meeting_003.json",
+    "procurement_doc/proc_001.json",
+    "procurement_doc/proc_002.json",
+    "procurement_doc/proc_003.json",
+    "general_doc/general_001.json",
+    "general_doc/general_002.json",
+    "general_doc/general_003.json"
+  ],
+  "split": "dev"
+}

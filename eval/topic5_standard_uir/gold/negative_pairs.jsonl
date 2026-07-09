@@ -1,0 +1,5 @@
+{"reason": "publish or retrieved time is not event time", "schema_id": "event_notice_doc", "severity": "block", "source_pattern": "publish date|retrieved_at", "target_field_id": "event_time"}
+{"reason": "effective or retrieved time is not publish date", "schema_id": "policy_doc", "severity": "block", "source_pattern": "effective_date|retrieved_at", "target_field_id": "publish_date"}
+{"reason": "budget amount is not award amount", "schema_id": "procurement_doc", "severity": "block", "source_pattern": "budget_amount", "target_field_id": "award_amount"}
+{"reason": "chairperson is not the attendee list", "schema_id": "meeting_doc", "severity": "block", "source_pattern": "chairperson|host", "target_field_id": "attendees"}
+{"reason": "contact details are not service object", "schema_id": "general_doc", "severity": "block", "source_pattern": "contact", "target_field_id": "service_object"}

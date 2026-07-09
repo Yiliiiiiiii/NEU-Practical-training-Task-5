@@ -1,0 +1,60 @@
+{"doc_id": "uir_announcement_doc_001", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_001.json"}
+{"doc_id": "uir_announcement_doc_002", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_002.json"}
+{"doc_id": "uir_announcement_doc_003", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_003.json"}
+{"doc_id": "uir_announcement_doc_004", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_004.json"}
+{"doc_id": "uir_announcement_doc_005", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_005.json"}
+{"doc_id": "uir_announcement_doc_006", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_006.json"}
+{"doc_id": "uir_announcement_doc_007", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_007.json"}
+{"doc_id": "uir_announcement_doc_008", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_008.json"}
+{"doc_id": "uir_announcement_doc_009", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_009.json"}
+{"doc_id": "uir_announcement_doc_010", "family": "announcement_doc", "schema_id": "announcement_doc", "uir_path": "uir/announcement_doc/ann_010.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_001", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_001.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_002", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_002.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_003", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_003.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_004", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_004.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_005", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_005.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_006", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_006.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_007", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_007.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_008", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_008.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_009", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_009.json"}
+{"candidate_profile": {"labeled_values": {"audience": ["audience"], "event_time": ["event_time", "event time"], "location": ["location"], "organizer": ["organizer"]}}, "doc_id": "uir_event_notice_doc_010", "family": "event_notice_doc", "schema_id": "event_notice_doc", "uir_path": "uir/event_notice_doc/event_010.json"}
+{"doc_id": "uir_policy_doc_001", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_001.json"}
+{"doc_id": "uir_policy_doc_002", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_002.json"}
+{"doc_id": "uir_policy_doc_003", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_003.json"}
+{"doc_id": "uir_policy_doc_004", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_004.json"}
+{"doc_id": "uir_policy_doc_005", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_005.json"}
+{"doc_id": "uir_policy_doc_006", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_006.json"}
+{"doc_id": "uir_policy_doc_007", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_007.json"}
+{"doc_id": "uir_policy_doc_008", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_008.json"}
+{"doc_id": "uir_policy_doc_009", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_009.json"}
+{"doc_id": "uir_policy_doc_010", "family": "policy_doc", "schema_id": "policy_doc", "uir_path": "uir/policy_doc/policy_010.json"}
+{"doc_id": "uir_meeting_doc_001", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_001.json"}
+{"doc_id": "uir_meeting_doc_002", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_002.json"}
+{"doc_id": "uir_meeting_doc_003", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_003.json"}
+{"doc_id": "uir_meeting_doc_004", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_004.json"}
+{"doc_id": "uir_meeting_doc_005", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_005.json"}
+{"doc_id": "uir_meeting_doc_006", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_006.json"}
+{"doc_id": "uir_meeting_doc_007", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_007.json"}
+{"doc_id": "uir_meeting_doc_008", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_008.json"}
+{"doc_id": "uir_meeting_doc_009", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_009.json"}
+{"doc_id": "uir_meeting_doc_010", "family": "meeting_doc", "schema_id": "meeting_doc", "uir_path": "uir/meeting_doc/meeting_010.json"}
+{"doc_id": "uir_procurement_doc_001", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_001.json"}
+{"doc_id": "uir_procurement_doc_002", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_002.json"}
+{"doc_id": "uir_procurement_doc_003", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_003.json"}
+{"doc_id": "uir_procurement_doc_004", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_004.json"}
+{"doc_id": "uir_procurement_doc_005", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_005.json"}
+{"doc_id": "uir_procurement_doc_006", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_006.json"}
+{"doc_id": "uir_procurement_doc_007", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_007.json"}
+{"doc_id": "uir_procurement_doc_008", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_008.json"}
+{"doc_id": "uir_procurement_doc_009", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_009.json"}
+{"doc_id": "uir_procurement_doc_010", "family": "procurement_doc", "schema_id": "procurement_doc", "uir_path": "uir/procurement_doc/proc_010.json"}
+{"doc_id": "uir_general_doc_001", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_001.json"}
+{"doc_id": "uir_general_doc_002", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_002.json"}
+{"doc_id": "uir_general_doc_003", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_003.json"}
+{"doc_id": "uir_general_doc_004", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_004.json"}
+{"doc_id": "uir_general_doc_005", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_005.json"}
+{"doc_id": "uir_general_doc_006", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_006.json"}
+{"doc_id": "uir_general_doc_007", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_007.json"}
+{"doc_id": "uir_general_doc_008", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_008.json"}
+{"doc_id": "uir_general_doc_009", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_009.json"}
+{"doc_id": "uir_general_doc_010", "family": "general_doc", "schema_id": "general_doc", "uir_path": "uir/general_doc/general_010.json"}

@@ -1,0 +1,53 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "field_name": "title"
+      },
+      "block_id": "ann_008_title",
+      "text": "Campus System Maintenance Announcement 8",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "field_name": "issuer"
+      },
+      "block_id": "ann_008_issuer",
+      "text": "Information Office",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish_date"
+      },
+      "block_id": "ann_008_publish_date",
+      "text": "2026-07-17",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "body"
+      },
+      "block_id": "ann_008_body",
+      "text": "The campus system will be maintained during the evening window.",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish date"
+      },
+      "block_id": "ann_008_distractor",
+      "text": "publish date: 2026-07-01; retrieved_at: 2026-07-02T08:00:00Z",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "uir_announcement_doc_008",
+  "metadata": {
+    "domain": "announcement_doc",
+    "language": "en-US",
+    "source": "topic5_standard_uir_fixture"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

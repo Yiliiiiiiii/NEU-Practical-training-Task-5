@@ -285,3 +285,15 @@ Python SDK 位于 [`sdk/python`](sdk/python)。Adapter scaffold 位于 [`templat
 - 不实现企业级 SSO、tenant-aware authorization、TLS termination、managed secret storage、hosted credential provisioning 或企业级 model/provider monitoring。
 - Package Verification 证明包结构、hash、required artifacts、parseability 和 traceability，不等同于每个字段语义都完全正确。
 - Gold labels 与 badcases 是课程项目规模评测资产，不是企业级 benchmark。
+
+## Topic 5 Phase 2 Mapping Benchmark
+
+Phase 2 adds `eval/topic5_standard_uir` and a feature-flagged
+`global_assignment` mapping mode. The latest gate evidence is written to
+`reports/topic5_mapping_quality_gate_report.json` and
+`reports/topic5_mapping_quality_gate_report.md`.
+
+Current measured claim: Topic 5 benchmark-level auto mapping recall >= 0.85
+within the declared standard UIR benchmark scope. This is not a production
+shadow/blind claim unless `production_shadow_eval_report.json` is also
+completed.

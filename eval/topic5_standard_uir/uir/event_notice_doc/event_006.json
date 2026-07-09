@@ -1,0 +1,69 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "field_name": "title"
+      },
+      "block_id": "event_006_title",
+      "text": "Network Security Lecture Notice 6",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "field_name": "organizer"
+      },
+      "block_id": "event_006_organizer",
+      "text": "Information Security School",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "event_time"
+      },
+      "block_id": "event_006_event_time",
+      "text": "2026-07-15 14:00",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "location"
+      },
+      "block_id": "event_006_location",
+      "text": "Main Building 301",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "audience"
+      },
+      "block_id": "event_006_audience",
+      "text": "All information security students",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "body"
+      },
+      "block_id": "event_006_body",
+      "text": "Please arrive ten minutes early and bring your student ID.",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish date"
+      },
+      "block_id": "event_006_distractor",
+      "text": "publish date: 2026-07-01; retrieved_at: 2026-07-02T08:00:00Z",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "uir_event_notice_doc_006",
+  "metadata": {
+    "domain": "event_notice_doc",
+    "language": "en-US",
+    "source": "topic5_standard_uir_fixture"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

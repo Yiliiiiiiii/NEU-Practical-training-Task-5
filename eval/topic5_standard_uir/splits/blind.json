@@ -1,0 +1,29 @@
+{
+  "items": [
+    "announcement_doc/ann_007.json",
+    "announcement_doc/ann_008.json",
+    "announcement_doc/ann_009.json",
+    "announcement_doc/ann_010.json",
+    "event_notice_doc/event_007.json",
+    "event_notice_doc/event_008.json",
+    "event_notice_doc/event_009.json",
+    "event_notice_doc/event_010.json",
+    "policy_doc/policy_007.json",
+    "policy_doc/policy_008.json",
+    "policy_doc/policy_009.json",
+    "policy_doc/policy_010.json",
+    "meeting_doc/meeting_007.json",
+    "meeting_doc/meeting_008.json",
+    "meeting_doc/meeting_009.json",
+    "meeting_doc/meeting_010.json",
+    "procurement_doc/proc_007.json",
+    "procurement_doc/proc_008.json",
+    "procurement_doc/proc_009.json",
+    "procurement_doc/proc_010.json",
+    "general_doc/general_007.json",
+    "general_doc/general_008.json",
+    "general_doc/general_009.json",
+    "general_doc/general_010.json"
+  ],
+  "split": "blind"
+}

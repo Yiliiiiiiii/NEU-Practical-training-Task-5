@@ -1,0 +1,53 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "field_name": "title"
+      },
+      "block_id": "policy_001_title",
+      "text": "Digital Service Policy 1",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "field_name": "issuer"
+      },
+      "block_id": "policy_001_issuer",
+      "text": "City Data Bureau",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish_date"
+      },
+      "block_id": "policy_001_publish_date",
+      "text": "2026-07-10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "content"
+      },
+      "block_id": "policy_001_content",
+      "text": "This policy improves digital public service handling standards.",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish date"
+      },
+      "block_id": "policy_001_distractor",
+      "text": "publish date: 2026-07-01; retrieved_at: 2026-07-02T08:00:00Z",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "uir_policy_doc_001",
+  "metadata": {
+    "domain": "policy_doc",
+    "language": "en-US",
+    "source": "topic5_standard_uir_fixture"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

@@ -1,0 +1,59 @@
+{
+  "actual": {
+    "blind": {
+      "assisted_recall": 1.0,
+      "auto_f1": 0.9643,
+      "auto_fn": 0,
+      "auto_fp": 8,
+      "auto_precision": 0.931,
+      "auto_recall": 1.0,
+      "auto_tp": 108,
+      "badcase_violations": 0,
+      "dataset_size": 24,
+      "package_pass_rate": 1.0,
+      "required_missing": 0,
+      "review_required_rate": 0.0,
+      "total_gold": 108
+    },
+    "dev": {
+      "assisted_recall": 1.0,
+      "auto_f1": 0.9643,
+      "auto_fn": 0,
+      "auto_fp": 6,
+      "auto_precision": 0.931,
+      "auto_recall": 1.0,
+      "auto_tp": 81,
+      "badcase_violations": 0,
+      "dataset_size": 18,
+      "package_pass_rate": 1.0,
+      "required_missing": 0,
+      "review_required_rate": 0.0,
+      "total_gold": 81
+    },
+    "test": {
+      "assisted_recall": 1.0,
+      "auto_f1": 0.9643,
+      "auto_fn": 0,
+      "auto_fp": 6,
+      "auto_precision": 0.931,
+      "auto_recall": 1.0,
+      "auto_tp": 81,
+      "badcase_violations": 0,
+      "dataset_size": 18,
+      "package_pass_rate": 1.0,
+      "required_missing": 0,
+      "review_required_rate": 0.0,
+      "total_gold": 81
+    },
+    "test_vs_blind_gap": 0.0
+  },
+  "failed_checks": [],
+  "mode": "global_assignment",
+  "status": "passed",
+  "thresholds": {
+    "auto_precision": 0.9,
+    "auto_recall": 0.85,
+    "review_required_rate": 0.08,
+    "test_vs_blind_gap": 0.03
+  }
+}

@@ -40,6 +40,10 @@ reports/*
 !reports/llm_fallback_eval_report.md
 !reports/real_world_validation_gap_analysis.json
 !reports/real_world_validation_gap_analysis.md
+!reports/topic5_mapping_quality_gate_report.json
+!reports/topic5_mapping_quality_gate_report.md
+!reports/topic5_standard_uir_*.json
+!reports/topic5_standard_uir_*.md
 !reports/baselines/
 reports/baselines/*
 !reports/baselines/next_phase_before/

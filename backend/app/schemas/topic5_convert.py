@@ -80,6 +80,7 @@ class Topic5ConvertResponse(StrictBaseModel):
     transform_report: dict[str, Any]
     validation_report: dict[str, Any]
     content_organization_report: dict[str, Any]
+    mapping_repair_report: dict[str, Any] | None = None
     manifest: dict[str, Any] | None = None
     package_zip_path: str | None = None
     package_metadata: dict[str, Any] | None = None

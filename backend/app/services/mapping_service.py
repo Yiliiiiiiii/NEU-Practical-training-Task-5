@@ -74,6 +74,19 @@ class MappingService:
         options: dict[str, Any] | None = None,
     ) -> MappingReport:
         options = options or {}
+        if options.get("mapping_mode") == "global_assignment":
+            from app.services.global_assignment_mapping_service import (
+                GlobalAssignmentMappingService,
+            )
+
+            return GlobalAssignmentMappingService().map_fields(
+                task_id=task_id,
+                uir=uir,
+                schema=schema,
+                template=template,
+                candidates=candidates,
+                options=options,
+            )
         badcases = options.get("badcases", [])
         badcases = badcases if isinstance(badcases, list) else []
         negative_pairs = options.get("negative_pairs", [])
@@ -204,6 +217,7 @@ class MappingService:
             schema_id=schema.schema_id,
             summary={
                 "template_id": template.template_id,
+                "mapping_mode": "legacy",
                 "total_candidates": len(candidates),
                 "total_target_fields": len(schema.fields),
                 "mapped_count": len(mappings),

@@ -1,0 +1,61 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "field_name": "title"
+      },
+      "block_id": "proc_010_title",
+      "text": "Smart Classroom Equipment Procurement Notice 10",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "field_name": "project_name"
+      },
+      "block_id": "proc_010_project_name",
+      "text": "Smart Classroom Equipment Upgrade 10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "purchaser"
+      },
+      "block_id": "proc_010_purchaser",
+      "text": "Academic Affairs Office",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "budget_amount"
+      },
+      "block_id": "proc_010_budget_amount",
+      "text": "560000",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "content"
+      },
+      "block_id": "proc_010_content",
+      "text": "The procurement includes display devices and classroom control terminals.",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish date"
+      },
+      "block_id": "proc_010_distractor",
+      "text": "publish date: 2026-07-01; retrieved_at: 2026-07-02T08:00:00Z",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "uir_procurement_doc_010",
+  "metadata": {
+    "domain": "procurement_doc",
+    "language": "en-US",
+    "source": "topic5_standard_uir_fixture"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

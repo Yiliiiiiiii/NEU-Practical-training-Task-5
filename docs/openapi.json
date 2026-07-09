@@ -4632,6 +4632,17 @@
             ],
             "title": "Manifest"
           },
+          "mapping_repair_report": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mapping Repair Report"
+          },
           "mapping_report": {
             "title": "Mapping Report",
             "type": "object"

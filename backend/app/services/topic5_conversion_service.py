@@ -6,6 +6,7 @@ from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertRespon
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.chunk_organizer_service import ChunkOrganizerService
+from app.services.mapping_repair_service import MappingRepairService
 from app.services.mapping_service import MappingService
 from app.services.package_service import PackageService
 from app.services.render_service import RenderedArtifacts, RenderService
@@ -58,6 +59,17 @@ class Topic5ConversionService:
             candidates=candidates,
             options=options,
         )
+        mapping_repair_report = None
+        if options.get("enable_mapping_repair"):
+            mapping_report, mapping_repair_report = MappingRepairService().repair(
+                task_id=task_id,
+                uir=request.uir,
+                schema=schema,
+                template=template,
+                candidates=candidates,
+                mapping_report=mapping_report,
+                options=options,
+            )
         mapping_report.summary["input_mode"] = "inline_topic5_config"
         mapping_report.summary["mapping_input_name"] = request.mapping_input_name
         mapping_report.summary["thresholds"] = options.get("thresholds", {})
@@ -167,6 +179,7 @@ class Topic5ConversionService:
             transform_report=transform_result.report,
             validation_report=validation_report.model_dump(mode="json"),
             content_organization_report=content_organization_report.model_dump(mode="json"),
+            mapping_repair_report=mapping_repair_report,
             manifest=manifest,
             package_zip_path=package_zip_path,
             package_metadata=package_metadata,

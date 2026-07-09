@@ -1,0 +1,53 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "field_name": "title"
+      },
+      "block_id": "general_007_title",
+      "text": "Student Service Guide 7",
+      "type": "heading"
+    },
+    {
+      "attributes": {
+        "field_name": "source"
+      },
+      "block_id": "general_007_source",
+      "text": "Student Affairs Office",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "created_date"
+      },
+      "block_id": "general_007_created_date",
+      "text": "2026-07-16",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "content"
+      },
+      "block_id": "general_007_content",
+      "text": "This guide explains service scope, application conditions, and process steps.",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "field_name": "publish date"
+      },
+      "block_id": "general_007_distractor",
+      "text": "publish date: 2026-07-01; retrieved_at: 2026-07-02T08:00:00Z",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "uir_general_doc_007",
+  "metadata": {
+    "domain": "general_doc",
+    "language": "en-US",
+    "source": "topic5_standard_uir_fixture"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

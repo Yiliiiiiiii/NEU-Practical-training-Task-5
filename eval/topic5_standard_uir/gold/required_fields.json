@@ -1,0 +1,32 @@
+{
+  "announcement_doc": [
+    "title",
+    "body"
+  ],
+  "event_notice_doc": [
+    "title",
+    "organizer",
+    "event_time",
+    "body"
+  ],
+  "general_doc": [
+    "title",
+    "content"
+  ],
+  "meeting_doc": [
+    "meeting_title",
+    "meeting_date",
+    "content"
+  ],
+  "policy_doc": [
+    "title",
+    "issuer",
+    "publish_date",
+    "content"
+  ],
+  "procurement_doc": [
+    "title",
+    "project_name",
+    "purchaser"
+  ]
+}
