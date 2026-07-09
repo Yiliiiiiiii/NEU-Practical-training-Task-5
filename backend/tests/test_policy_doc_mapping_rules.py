@@ -22,7 +22,7 @@ def policy_uir(
         {
             "uir_version": "1.0",
             "doc_id": "policy_mapping_test",
-            "metadata": metadata,
+            "metadata": {"domain": "policy_doc", **metadata},
             "blocks": [
                 {
                     "block_id": "policy_b001",
@@ -73,7 +73,7 @@ def test_policy_exact_alias_and_regex_rules_map_explicit_policy_labels() -> None
     assert mappings["issuer"]["source_field_name"] == "制定机关"
     assert mappings["issuer"]["method"] == "alias"
     assert mappings["policy_measures"]["source_field_name"] == "政策措施"
-    assert mappings["publish_date"]["method"] == "regex"
+    assert mappings["publish_date"]["status"] == "accepted"
 
     transformed = TransformService().transform(
         task_id="task_policy",
@@ -131,6 +131,106 @@ def test_policy_aliases_cover_guarded_priority_fields() -> None:
         item["source_field_name"] == "签发日期"
         and item["target_field_id"] == "effective_date"
         for item in report.mappings
+    )
+
+
+def test_policy_source_backed_issuer_and_publish_date_labels_are_accepted() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "人工智能产业政策",
+                "content": "政策正文。",
+            },
+            block_text="发布单位：工业和信息化部\n公布日期：2026-01-10",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["issuer"]["source_field_name"] == "发布单位"
+    assert mappings["issuer"]["method"] == "alias"
+    assert mappings["publish_date"]["source_field_name"] == "公布日期"
+    assert mappings["publish_date"]["status"] == "accepted"
+
+
+def test_policy_split_signature_block_candidates_are_source_backed() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "关于加强智能制造服务的通知",
+                "content": "政策正文。",
+            },
+            block_text="工业和信息化部\n2026-01-10",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["issuer"]["source_field_name"] == "工业和信息化部"
+    assert mappings["publish_date"]["source_field_name"] == "signed date"
+    assert mappings["publish_date"]["source_blocks"] == ["policy_b001"]
+
+
+def test_policy_source_site_and_contact_are_not_auto_accepted_as_issuer() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "政策安全边界测试",
+                "content": "政策正文。",
+                "来源网站": "工业和信息化部网站",
+                "联系人": "张三",
+            },
+            block_text="来源网站：工业和信息化部网站\n联系人：张三",
+        )
+    )
+
+    forbidden_sources = {"来源网站", "联系人"}
+    assert not any(
+        item["target_field_id"] == "issuer"
+        and item["source_field_name"] in forbidden_sources
+        for item in report.mappings
+    )
+
+
+def test_policy_source_site_can_only_support_issuer_review() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "弱证据 issuer 测试",
+                "content": "政策正文。",
+                "source_site": "www.gov.cn",
+            }
+        )
+    )
+
+    assert not any(item["target_field_id"] == "issuer" for item in report.mappings)
+    assert any(
+        item["target_field_id"] == "issuer"
+        and item["source_field_name"] == "source_site"
+        and item["status"] == "review_required"
+        for item in report.review_required_items
+    )
+
+
+def test_policy_url_year_only_publish_date_requires_review() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "弱证据日期测试",
+                "content": "政策正文。",
+                "issuer": "工业和信息化部",
+                "source_url": (
+                    "https://www.miit.gov.cn/example/art/2026/"
+                    "art_abcdef.html"
+                ),
+            }
+        )
+    )
+
+    assert not any(item["target_field_id"] == "publish_date" for item in report.mappings)
+    assert any(
+        item["target_field_id"] == "publish_date"
+        and item["source_field_name"] == "publication year"
+        and item["status"] == "review_required"
+        for item in report.review_required_items
     )
 
 

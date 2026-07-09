@@ -22,7 +22,7 @@ def general_uir(
         {
             "uir_version": "1.0",
             "doc_id": "general_mapping_test",
-            "metadata": metadata,
+            "metadata": {"domain": "general_doc", **metadata},
             "blocks": [
                 {
                     "block_id": "general_b001",
@@ -130,3 +130,52 @@ def test_general_long_tail_aliases_map_deadline_contact_and_title() -> None:
     assert mappings["title"]["source_field_name"] == "一级标题"
     assert mappings["deadline"]["source_field_name"] == "报名截止"
     assert mappings["contact"]["source_field_name"] == "邮箱"
+
+
+def test_general_deadline_from_explicit_deadline_label() -> None:
+    _, _, report = map_general(
+        general_uir(
+            {
+                "title": "项目申报指南",
+                "content": "申报说明。",
+            },
+            block_text="申报截止时间：2026年8月1日",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["deadline"]["source_field_name"] == "申报截止时间"
+    assert mappings["deadline"]["status"] == "accepted"
+
+
+def test_general_deadline_from_before_date_sentence() -> None:
+    _, _, report = map_general(
+        general_uir(
+            {
+                "title": "材料提交通知",
+                "content": "申报说明。",
+            },
+            block_text="请各单位于2026年8月1日前提交申报材料。",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["deadline"]["source_field_name"] == "于日期前提交"
+
+
+def test_general_publish_date_is_not_deadline() -> None:
+    _, _, report = map_general(
+        general_uir(
+            {
+                "title": "发布时间边界测试",
+                "content": "申报说明。",
+            },
+            block_text="发布日期：2026年8月1日",
+        )
+    )
+
+    assert not any(
+        item["target_field_id"] == "deadline"
+        and item["source_field_name"] == "发布日期"
+        for item in report.mappings
+    )

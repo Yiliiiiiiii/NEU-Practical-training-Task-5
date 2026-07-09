@@ -22,7 +22,7 @@ def meeting_uir(
         {
             "uir_version": "1.0",
             "doc_id": "meeting_mapping_test",
-            "metadata": metadata,
+            "metadata": {"domain": "meeting_doc", **metadata},
             "blocks": [
                 {
                     "block_id": "meeting_b001",
@@ -73,7 +73,7 @@ def test_meeting_exact_alias_and_regex_rules_normalize_labeled_date() -> None:
     assert mappings["chairperson"]["source_field_name"] == "主持人"
     assert mappings["chairperson"]["method"] == "alias"
     assert mappings["agenda_items"]["source_field_name"] == "审议事项"
-    assert mappings["meeting_date"]["method"] == "regex"
+    assert mappings["meeting_date"]["status"] == "accepted"
 
     transformed = TransformService().transform(
         task_id="task_meeting",
@@ -138,6 +138,75 @@ def test_meeting_long_tail_aliases_map_decisions_and_actions() -> None:
 
     assert mappings["decisions"]["source_field_name"] == "审议通过"
     assert mappings["action_items"]["source_field_name"] == "责任分工"
+
+
+def test_meeting_topics_from_numbered_agenda_headings() -> None:
+    _, _, report = map_meeting(
+        meeting_uir(
+            {
+                "meeting_title": "重点工作会议",
+                "meeting_date": "2026-06-30",
+                "content": "会议记录正文。",
+            },
+            block_text="一、研究产业项目推进事项",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["topics"]["source_field_name"] == "会议内容"
+    assert "产业项目推进事项" in mappings["topics"]["value_sample"]
+
+
+def test_meeting_topics_from_research_and_review_sentences() -> None:
+    _, _, report = map_meeting(
+        meeting_uir(
+            {
+                "meeting_title": "重点工作会议",
+                "meeting_date": "2026-06-30",
+                "content": "会议记录正文。",
+            },
+            block_text="会议研究了城市更新项目推进方案。",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["topics"]["source_field_name"] == "会议内容"
+    assert "城市更新项目推进方案" in mappings["topics"]["value_sample"]
+
+
+def test_meeting_attendees_are_not_topics() -> None:
+    _, _, report = map_meeting(
+        meeting_uir(
+            {
+                "meeting_title": "重点工作会议",
+                "meeting_date": "2026-06-30",
+                "content": "会议记录正文。",
+            },
+            block_text="出席人员：张三、李四、王五",
+        )
+    )
+
+    assert not any(
+        item["target_field_id"] == "topics"
+        and item["source_field_name"] == "出席人员"
+        for item in report.mappings
+    )
+
+
+def test_meeting_action_items_from_responsibility_sentence() -> None:
+    _, _, report = map_meeting(
+        meeting_uir(
+            {
+                "meeting_title": "重点工作会议",
+                "meeting_date": "2026-06-30",
+                "content": "会议记录正文。",
+            },
+            block_text="由产业科负责牵头推进项目落地。",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["action_items"]["source_field_name"] == "责任行动"
 
 
 def test_meeting_numbers_headers_and_ambiguous_roles_are_not_auto_titles() -> None:

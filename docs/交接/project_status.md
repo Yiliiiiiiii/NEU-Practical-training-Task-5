@@ -64,13 +64,13 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 
 - Phase C sprint4：50 samples，average recall `0.7165476190`，strict pass 31/50，required missing 4，review-required 22，package 50/50，badcase violations 0。
 - Phase D：50 samples，average recall `0.7426031746`，strict pass 39/50，required missing 2，review-required 21，package 50/50，badcase violations 0。
-- 当前非采购语义评测记录：50 samples，average recall `0.8063730159`，strict pass 47/50，required missing 2，review-required 16，package 50/50，badcase violations 0。
+- 当前 0.85 guarded sprint 评测记录：50 samples，auto mapping recall `0.7774798928`，assisted mapping recall `0.8096514745`，strict pass 48/50，required missing 0，review-required 18，review-required rate `0.0435835351`，package 50/50，badcase violations 0。
 - 当前非采购语义评测 by doc type：
   - general_doc：15 docs，recall `0.7714285714`，strict pass 14/15；
   - meeting_doc：15 docs，recall `0.8072222222`，strict pass 15/15；
   - policy_doc：20 docs，recall `0.8319444444`，strict pass 18/20。
-- 当前最大瓶颈转为 source-name exact recall 与少数 required gaps：`real_policy_005_ai_industry_guide` 缺 issuer、`real_policy_011_battery_recycling_rules` 缺 publish_date、`real_general_011_shanghai_branch_registration` recall/strict 未过。
-- 当前不能宣称 average recall 达到 0.85，也不能宣称生产盲测 0.85。
+- 当前最大瓶颈转为 dev/test assisted recall 不足和 source-name exact recall：required gaps 已清零，但 dev assisted recall `0.807`、test assisted recall `0.794`，仍不能宣称 0.85 gate 通过。
+- 当前不能宣称 assisted recall 达到 0.85，也不能宣称生产盲测 0.85。
 
 ### UIR Quality Gate、DeepSeek 与 Review Judge
 
@@ -89,10 +89,10 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
 
 ## 当前暂停点
 
-- 已停止本轮本地 backend 进程；恢复评测前需要重新启动 backend。
-- Phase I 最新报告：`reports/phase_i_non_procurement_mapping_eval_report.json` 与 `.md`。
-- 本轮新增/修改了 policy/general/meeting semantic mapping 相关抽取和排序逻辑；工作区存在大量未提交改动，不应回滚无关文件。
-- 后续优先处理低风险 source-name 修复：document number 具体文号、meeting number 完整会议号、policy_005 issuer、general service_object/process_steps 精确来源。
+- 本轮评测使用临时 backend `http://127.0.0.1:18000`；恢复评测前需要重新启动 backend。
+- 最新 sprint 证据位于 `docs/交接/evidence/`，执行记录见 `docs/交接/mapping_recall_085_guarded_sprint.md`。
+- 本轮新增/修改了 policy/general/meeting semantic mapping 相关抽取和排序逻辑；工作区存在未提交改动，不应回滚无关文件。
+- 后续优先处理低风险 source-name 修复与 general/meeting 长尾字段对齐，避免 doc_id 特例和 review-required 膨胀。
 
 ## 项目边界
 

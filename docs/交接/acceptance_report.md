@@ -69,16 +69,18 @@ UIR / External UIR JSON
 | 指标 | Phase C sprint4 | Phase D | 当前记录 |
 | --- | ---: | ---: | ---: |
 | dataset size | 50 | 50 | 50 |
-| average recall | `0.7165476190` | `0.7426031746` | `0.8063730159` |
-| strict pass | 31/50 | 39/50 | 47/50 |
-| required missing | 4 | 2 | 2 |
-| review-required | 22 | 21 | 16 |
+| assisted recall | `0.7165476190` | `0.7426031746` | `0.8096514745` |
+| auto recall | - | - | `0.7774798928` |
+| strict pass | 31/50 | 39/50 | 48/50 |
+| required missing | 4 | 2 | 0 |
+| review-required | 22 | 21 | 18 |
+| review-required rate | - | - | `0.0435835351` |
 | package verify | 50/50 | 50/50 | 50/50 |
 | badcase violations | 0 | 0 | 0 |
 
-当前记录达成：strict pass ≥ 43/50、required missing ≤ 2、badcase violations = 0、package verification = 50/50。
+当前记录达成：strict pass ≥ 43/50、required missing = 0、badcase violations = 0、package verification = 50/50、overfit scan pass。
 
-当前记录未达成：average recall ≥ 0.85；policy_doc 是主要瓶颈，剩余 required missing 仍集中在 issuer / publish_date 等字段。
+当前记录未达成：assisted recall ≥ 0.85。当前 quality gate 失败原因是 dev assisted recall `0.807 < 0.850`、test assisted recall `0.794 < 0.850`；blind assisted recall 已到 `0.855`。
 
 ## 7. UIR Quality Gate、DeepSeek 与 Review Judge
 
@@ -113,8 +115,8 @@ UIR / External UIR JSON
 - `reports/blind_set_eval_report.json`：`status = not_run`，`can_claim_0_85 = false`。
 - `reports/production_shadow_eval_report.json`：`status = not_run`。
 - 原因：当前 workspace 没有独立 production shadow/blind UIR gold corpus。
-- 当前 50-sample 非采购语义评测 average recall 为 `0.8063730159`，尚未达到 0.85。
+- 当前 50-sample 非采购语义评测 assisted recall 为 `0.8096514745`，尚未达到 0.85；required missing 已清零，badcase violations 仍为 0。
 
 ## 11. 当前结论
 
-项目主链路、External UIR、治理工作台、Lineage、Package/downstream 和安全 suggestion 路径均有可复现工程证据。当前最大剩余缺口是非采购语义质量继续提升，尤其是 policy_doc 的 required issuer/publish_date 与长尾政策字段；生产盲测 0.85 需要先补齐独立 blind/shadow gold corpus。
+项目主链路、External UIR、治理工作台、Lineage、Package/downstream 和安全 suggestion 路径均有可复现工程证据。当前最大剩余缺口是非采购语义质量继续提升，尤其是 dev/test split 的 source-name exact recall 与 general/meeting 长尾字段；生产盲测 0.85 需要先补齐独立 blind/shadow gold corpus。

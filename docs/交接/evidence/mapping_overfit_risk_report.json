@@ -1,0 +1,16 @@
+{
+  "findings": {
+    "doc_id_specific_rules": [],
+    "gold_leakage": []
+  },
+  "generated_at": "2026-07-09T01:33:23.626979+00:00",
+  "scanned_files": 107,
+  "summary": {
+    "decision": "Pass",
+    "dev_test_gap": "not_evaluated",
+    "doc_id_specific_rules_found": 0,
+    "gold_leakage_found": 0,
+    "review_inflation_risk": "not_evaluated",
+    "risk_level": "low"
+  }
+}

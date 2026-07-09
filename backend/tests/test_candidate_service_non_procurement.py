@@ -535,7 +535,7 @@ def test_paragraph_regex_extracts_document_number_meeting_date_phone_and_issuer(
     )
 
     expected = {
-        "paragraph_regex.document_number": (
+        "城政办〔2026〕18号": (
             "document_number",
             "城政办〔2026〕18号",
             "doc_number",

@@ -1,0 +1,45 @@
+{
+  "generalization_gap": {
+    "conclusion": "pass",
+    "dev_vs_test_assisted_recall": 0.012899896800825594,
+    "test_vs_blind_assisted_recall": -0.06095481670929248
+  },
+  "generated_at": "2026-07-09T01:33:20.856765+00:00",
+  "manifest_version": "1.0.0",
+  "source_report": null,
+  "splits": [
+    {
+      "assisted_mapping_recall": 0.8070175438596491,
+      "auto_mapping_recall": 0.7631578947368421,
+      "badcase_violations": 0,
+      "docs": 18,
+      "missing_gold_mappings": 8,
+      "package_pass_rate": 1.0,
+      "required_missing": 0,
+      "review_required_rate": 0.05,
+      "split": "dev"
+    },
+    {
+      "assisted_mapping_recall": 0.7941176470588235,
+      "auto_mapping_recall": 0.7794117647058824,
+      "badcase_violations": 0,
+      "docs": 9,
+      "missing_gold_mappings": 6,
+      "package_pass_rate": 1.0,
+      "required_missing": 0,
+      "review_required_rate": 0.013333333333333334,
+      "split": "test"
+    },
+    {
+      "assisted_mapping_recall": 0.855072463768116,
+      "auto_mapping_recall": 0.8115942028985508,
+      "badcase_violations": 0,
+      "docs": 8,
+      "missing_gold_mappings": 5,
+      "package_pass_rate": 1.0,
+      "required_missing": 0,
+      "review_required_rate": 0.05555555555555555,
+      "split": "blind"
+    }
+  ]
+}

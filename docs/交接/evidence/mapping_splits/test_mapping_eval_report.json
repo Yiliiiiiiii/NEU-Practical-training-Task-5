@@ -1,0 +1,657 @@
+{
+  "badcase_violations": [],
+  "generated_at": "2026-07-09T01:33:20.856655+00:00",
+  "missing_or_ambiguous": [
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "required_missing": [],
+      "review_evidence_count": 1
+    }
+  ],
+  "package_summary": {
+    "failed": 0,
+    "passed": 9
+  },
+  "per_document": [
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 0.6666666666666666,
+        "auto_accepted_correct": 4,
+        "auto_mapping_recall": 0.6666666666666666,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_004_tianhe_service_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mapping_rate": 0.2,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_ee6c83139a1c",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_010_auto_ota_management",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_010_auto_ota_management",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.125,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_bc8b54bbfe2b_自印发之日起施行_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target effective_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target effective_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_bc8b54bbfe2b_effective_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.9575,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "relative_effective_date_requires_review",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_010_auto_ota_management_b027"
+          ],
+          "source_field": {
+            "source_name": "自印发之日起施行",
+            "source_path": "$.blocks.real_policy_010_auto_ota_management_b027.text#effective_date"
+          },
+          "source_field_name": "自印发之日起施行",
+          "source_path": "$.blocks.real_policy_010_auto_ota_management_b027.text#effective_date",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_bc8b54bbfe2b",
+          "value_sample": "自印发之日起施行"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_bc8b54bbfe2b",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_005_eldercare_technology_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.75,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.75,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_005_eldercare_technology_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.75,
+        "missing_gold_mapping_rate": 0.14285714285714285,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_3ac68c117360",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_006_soft_science_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.75,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.75,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_006_soft_science_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.75,
+        "missing_gold_mapping_rate": 0.14285714285714285,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_5f686f2bf54a",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_007_domestic_cooperation_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.875,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.875,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_007_domestic_cooperation_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.875,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_c2e384ccd29f",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_008_science_communication_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.75,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.75,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_008_science_communication_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.75,
+        "missing_gold_mapping_rate": 0.14285714285714285,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_d628b325c4d3",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_009_food_technology_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "application_materials",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.875,
+        "auto_accepted_correct": 7,
+        "auto_mapping_recall": 0.875,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_009_food_technology_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.875,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_d349671c594f",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_010_cell_gene_therapy_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.75,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.75,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_010_cell_gene_therapy_guide",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.75,
+        "missing_gold_mapping_rate": 0.14285714285714285,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_0a7baca5c7c4",
+      "task_status": "completed",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_007_zhenping_49_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.75,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.75,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_007_zhenping_49_minutes",
+        "gold_mapping_count": 7,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.75,
+        "missing_gold_mapping_rate": 0.14285714285714285,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_b54c56c8af9d",
+      "task_status": "completed",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    }
+  ],
+  "per_document_type": {
+    "general_doc": {
+      "accepted_item_count": 58,
+      "assisted_mapping_recall": 0.7777777777777778,
+      "auto_accepted_correct": 42,
+      "auto_mapping_recall": 0.7777777777777778,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 7,
+      "gold_mapping_count": 47,
+      "gold_review_required_count": 7,
+      "gold_signal_count": 54,
+      "mapping_recall": 0.7777777777777778,
+      "missing_gold_mapping_rate": 0.10638297872340426,
+      "missing_gold_mappings": 5,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 0,
+      "review_required_item_count": 0,
+      "review_required_rate": 0.0,
+      "review_required_recall": 0.0
+    },
+    "meeting_doc": {
+      "accepted_item_count": 9,
+      "assisted_mapping_recall": 0.75,
+      "auto_accepted_correct": 6,
+      "auto_mapping_recall": 0.75,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 1,
+      "gold_mapping_count": 7,
+      "gold_review_required_count": 1,
+      "gold_signal_count": 8,
+      "mapping_recall": 0.75,
+      "missing_gold_mapping_rate": 0.14285714285714285,
+      "missing_gold_mappings": 1,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 0,
+      "review_required_item_count": 0,
+      "review_required_rate": 0.0,
+      "review_required_recall": 0.0
+    },
+    "policy_doc": {
+      "accepted_item_count": 7,
+      "assisted_mapping_recall": 1.0,
+      "auto_accepted_correct": 5,
+      "auto_mapping_recall": 0.8333333333333334,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 1,
+      "gold_mapping_count": 5,
+      "gold_review_required_count": 1,
+      "gold_signal_count": 6,
+      "mapping_recall": 1.0,
+      "missing_gold_mapping_rate": 0.0,
+      "missing_gold_mappings": 0,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 1,
+      "review_required_item_count": 1,
+      "review_required_rate": 0.125,
+      "review_required_recall": 0.16666666666666666
+    }
+  },
+  "per_field": {},
+  "review_evidence": [
+    {
+      "doc_id": "real_policy_010_auto_ota_management",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_bc8b54bbfe2b_自印发之日起施行_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target effective_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target effective_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_bc8b54bbfe2b_effective_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.9575,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "relative_effective_date_requires_review",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_010_auto_ota_management_b027"
+          ],
+          "source_field": {
+            "source_name": "自印发之日起施行",
+            "source_path": "$.blocks.real_policy_010_auto_ota_management_b027.text#effective_date"
+          },
+          "source_field_name": "自印发之日起施行",
+          "source_path": "$.blocks.real_policy_010_auto_ota_management_b027.text#effective_date",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_bc8b54bbfe2b",
+          "value_sample": "自印发之日起施行"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "accepted_item_count": 74,
+    "assisted_mapping_recall": 0.7941176470588235,
+    "auto_accepted_correct": 53,
+    "auto_mapping_recall": 0.7794117647058824,
+    "badcase_pass_rate": 1.0,
+    "badcase_violation_count": 0,
+    "document_count": 9,
+    "gold_mapping_count": 59,
+    "gold_review_required_count": 9,
+    "gold_signal_count": 68,
+    "mapping_recall": 0.7941176470588235,
+    "missing_gold_mapping_rate": 0.1016949152542373,
+    "missing_gold_mappings": 6,
+    "package_pass_count": 9,
+    "package_pass_rate": 1.0,
+    "review_required_correct": 1,
+    "review_required_item_count": 1,
+    "review_required_rate": 0.013333333333333334,
+    "review_required_recall": 0.014705882352941176,
+    "validation_pass_count": 8
+  }
+}

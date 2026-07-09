@@ -12,7 +12,7 @@ https://github.com/Yiliiiiiiii/NEU-Practical-training-Task-5
 
 项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。它覆盖 Schema 驱动转换、字段映射、结构化 JSON 与 Markdown 双形态输出、内容组织、Package 1.1、下游契约、人工复核、知识沉淀、Lineage 和安全受控的 LLM suggestion。
 
-需要注意：当前不能宣称生产盲测 recall 达到 0.85。历史报告中的 `average_recall` / `mapping_recall` 属于 assisted recall 口径，即自动 accepted 正确项加 review-required 正确候选；新一轮评测会同时报告 `auto_mapping_recall`、`assisted_mapping_recall` 和 `review_required_rate`。非采购语义专项历史记录曾提升到 average recall `0.8063730159`，但尚未达到 0.85；仓库中也没有独立 production shadow / blind gold corpus。
+需要注意：当前不能宣称生产盲测 recall 达到 0.85。历史报告中的 `average_recall` / `mapping_recall` 属于 assisted recall 口径，即自动 accepted 正确项加 review-required 正确候选；新一轮评测会同时报告 `auto_mapping_recall`、`assisted_mapping_recall` 和 `review_required_rate`。本轮 0.85 guarded sprint 已将 required missing 清零，并把 assisted recall 提升到 `0.8096514745`，但 dev/test split 仍低于 0.85；仓库中也没有独立 production shadow / blind gold corpus。
 
 ## 核心链路
 
@@ -58,7 +58,7 @@ Pop-Location
 
 已知结果：
 
-- Backend pytest：`713 passed`
+- Backend pytest：`730 passed`
 - Backend Ruff：`clean`
 - Frontend production build：`successful`
 - Frontend tests：`24 passed / 8 files`
@@ -77,19 +77,22 @@ Pop-Location
 
 ### 非采购语义专项
 
-当前 Phase I 记录：
+当前 0.85 guarded sprint 记录：
 
 - Dataset size：50
-- Average recall：`0.8063730159`
-- Strict pass：47/50
-- Required missing：2
-- Review-required：16
+- Auto mapping recall：`0.7774798928`
+- Assisted mapping recall：`0.8096514745`
+- Review-required rate：`0.0435835351`
+- Strict pass：48/50
+- Required missing：0
+- Review-required：18
 - Package verification：50/50
 - Badcase violations：0
+- Quality gate：未通过，原因是 dev assisted recall `0.807 < 0.850`、test assisted recall `0.794 < 0.850`
 
-主要剩余缺口集中在 `policy_doc` 的 issuer / publish_date 和少数长尾字段。详见 [`reports/phase_i_non_procurement_mapping_eval_report.json`](reports/phase_i_non_procurement_mapping_eval_report.json)。
+主要剩余缺口集中在 source-name exact recall、general_doc 长尾字段和少数 meeting/policy evidence alignment。详见 [`docs/交接/evidence/mapping_gap_analysis.md`](docs/交接/evidence/mapping_gap_analysis.md)。
 
-当前 0.85 guarded sprint 使用 [`reports/mapping_metric_baseline_snapshot.md`](reports/mapping_metric_baseline_snapshot.md) 统一基线口径，并通过 [`examples/real_world/splits/mapping_split_manifest.json`](examples/real_world/splits/mapping_split_manifest.json)、`scripts/eval_mapping_splits.py`、`scripts/analyze_mapping_gaps.py`、`scripts/check_mapping_overfit_risk.py` 和 `scripts/check_mapping_quality_gate.py` 固化 dev/test/blind、gap analysis、防过拟合扫描和质量门禁。可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](docs/交接/mapping_recall_085_guarded_sprint.md)。
+当前 0.85 guarded sprint 使用 [`docs/交接/evidence/mapping_metric_baseline_snapshot.md`](docs/交接/evidence/mapping_metric_baseline_snapshot.md) 统一基线口径，并通过 [`examples/real_world/splits/mapping_split_manifest.json`](examples/real_world/splits/mapping_split_manifest.json)、`scripts/eval_mapping_splits.py`、`scripts/analyze_mapping_gaps.py`、`scripts/check_mapping_overfit_risk.py` 和 `scripts/check_mapping_quality_gate.py` 固化 dev/test/blind、gap analysis、防过拟合扫描和质量门禁。可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](docs/交接/mapping_recall_085_guarded_sprint.md)。
 
 ### Lineage 与下游契约
 

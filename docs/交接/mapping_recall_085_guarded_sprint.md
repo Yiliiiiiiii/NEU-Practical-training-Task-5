@@ -1,145 +1,122 @@
 # Mapping Recall 0.85 Guarded Sprint
 
-本文档记录字段映射指标提升与防过拟合执行文档的本轮落地结果。它是可提交版本；`reports/*` 下的同名评测报告由脚本生成，但当前仓库规则会忽略这些文件。
+本文档记录字段映射 0.85 冲刺的本轮落地结果。当前结论必须如实表述：本轮已清零 required missing，并保持 badcase safety、package verification 和 overfit scan 通过；但 dev/test assisted recall 仍未达到 0.85，不能宣称 0.85 gate 已通过。
 
-## 1. 目标
+## 1. 执行约束
 
-本轮目标是在不引入以下风险的前提下，推进字段映射 assisted recall 向 `0.85` 收敛：
-
-- 不根据 `doc_id` 写特例规则；
-- 不在 runtime mapping 中读取 gold label；
-- 不牺牲 badcase safety；
-- 不自动接受 LLM suggestion；
+- 不根据 `doc_id` 写特例规则。
+- 不在 runtime mapping 中读取 `mapping_gold.jsonl`、`expected_mappings` 或 badcase gold。
+- 不牺牲 badcase safety。
+- 不自动接受 LLM suggestion。
 - 不通过大幅增加 review-required 虚高指标。
+- 能力增强必须来自通用规则或 source-backed candidate extraction。
 
-## 2. 本轮已完成
+## 2. 本轮完成内容
 
 | 类别 | 状态 | 说明 |
 | --- | --- | --- |
-| 指标口径拆分 | 已完成 | `auto_mapping_recall`、`assisted_mapping_recall`、`review_required_recall`、`review_required_rate` 已加入评分与报告。 |
-| Baseline snapshot | 已完成 | 新增 `scripts/build_mapping_metric_baseline_snapshot.py`，生成 `reports/mapping_metric_baseline_snapshot.md`。 |
-| dev/test/blind split | 已完成 | 新增 `examples/real_world/splits/mapping_split_manifest.json` 与三个 doc_id 列表。 |
-| Split evaluator | 已完成 | 新增 `scripts/eval_mapping_splits.py`，输出 split JSON/Markdown summary。 |
-| Gap analysis | 已完成 | 新增 `scripts/analyze_mapping_gaps.py`，按 doc_type/field/estimated gain 排序。 |
-| Overfit risk scan | 已完成 | 新增 `scripts/check_mapping_overfit_risk.py`，扫描 doc_id 特例和 gold 泄漏。 |
-| Quality gate | 已完成 | 新增 `scripts/check_mapping_quality_gate.py`，支持 recall、badcase、required missing 和 split gap 阈值。 |
-| 模板增强 | 已完成一轮 | 增强 policy/general/meeting 模板通用别名，并保留现有 unsafe alias 排除规则。 |
-| README/需求映射 | 已更新 | 明确 legacy average recall 是 assisted recall 兼容口径。 |
+| Evidence path | 已完成 | 评测证据输出到 `docs/交接/evidence/`，避免 README 依赖未提交的 `reports/*` sprint 证据。 |
+| P0 required missing | 已完成 | `required_missing_count` 从 2 降到 0。 |
+| policy issuer | 已增强 | 支持更多显式 issuer label、分行署名块、弱 source_site 仅 review。 |
+| policy publish_date | 已增强 | 支持 `公布日期`、ISO 日期、分行署名日期；official URL year-only 只进 review。 |
+| general deadline | 已增强 | 支持 `申报截止时间` 等 label 与 `于 X 前提交` 句式。 |
+| meeting action/topic | 已增强 | 补充责任行动句式；保留 topics/decisions/action_items 负样本边界。 |
+| evidence naming | 已增强 | 文号 regex 候选 source_name 保留真实文号值。 |
+| Tests | 已完成 | 新增/更新 policy/general/meeting/candidate 规则测试。 |
 
-## 3. 当前基线
+## 3. Final Sprint Result
 
-基线来自 `reports/non_procurement_mapping_eval_report.json`，通过 `scripts/build_mapping_metric_baseline_snapshot.py` 生成快照。
+最终评测时间：2026-07-09 09:33（Asia/Shanghai）
 
 | Metric | Value |
 | --- | ---: |
-| dataset_size | 35 |
-| average_recall / legacy assisted recall | 0.6096598639455783 |
-| auto_mapping_recall | 0.6095617529880478 |
-| assisted_mapping_recall | 0.6095617529880478 |
-| review_required_rate | 0.22264150943396227 |
-| review_required_count | 59 |
-| required_missing_count | 4 |
-| badcase_violations | 0 |
-| package_verification_pass | 35 |
+| Dataset size | 50 |
+| Dev assisted recall | 0.807 |
+| Test assisted recall | 0.794 |
+| Blind assisted recall | 0.855 |
+| Auto mapping recall overall | 0.7774798927613941 |
+| Assisted mapping recall overall | 0.8096514745308311 |
+| Review-required rate | 0.043583535108958835 |
+| Review-required count | 18 |
+| Required missing | 0 |
+| Badcase violations | 0 |
+| Package pass rate | 1.000 |
+| Strict pass | 48/50 |
+| Overfit scan | Pass |
+| Quality gate | Failed |
+| verify_all | 730 passed; Ruff passed; frontend build passed; OpenAPI 63 paths |
+| frontend tests | 24 passed / 8 files |
 
-结论：当前 baseline 尚未达到 `0.85`，不能宣称达标。
-
-## 4. Split 结果
+### Split Summary
 
 | Split | Docs | Auto Recall | Assisted Recall | Review Rate | Required Missing | Badcase Violations | Package Pass |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| dev | 18 | 0.579 | 0.579 | 0.223 | 2 | 0 | 1.000 |
-| test | 9 | 0.676 | 0.676 | 0.291 | 0 | 0 | 1.000 |
-| blind | 8 | 0.594 | 0.594 | 0.125 | 2 | 0 | 1.000 |
+| dev | 18 | 0.763 | 0.807 | 0.050 | 0 | 0 | 1.000 |
+| test | 9 | 0.779 | 0.794 | 0.013 | 0 | 0 | 1.000 |
+| blind | 8 | 0.812 | 0.855 | 0.056 | 0 | 0 | 1.000 |
 
 Generalization gap:
 
-- dev vs test assisted recall gap: `-0.098`
-- test vs blind assisted recall gap: `0.082`
-- conclusion: `review_required`
+- dev vs test assisted recall gap: 0.013
+- test vs blind assisted recall gap: -0.061
+- conclusion: pass
 
-## 5. Quality Gate 结果
+### Quality Gate Result
 
-当前按最终阈值运行质量门禁：
+质量门禁未通过，失败原因：
+
+- dev assisted recall 0.807 < 0.850
+- test assisted recall 0.794 < 0.850
+
+本轮是否达到 0.85：否。
+
+剩余缺口：source-name exact recall 和少数长尾 review/source alignment。当前 gap analysis 中 `required_missing` 已为 0；后续主要提升点是 general/service fields、meeting source-name alignment、policy_005 irregular heading/source evidence 这类可解释证据，而不是继续扩大 review-required。
+
+## 4. Evidence Files
+
+- [`docs/交接/evidence/mapping_metric_baseline_snapshot.md`](evidence/mapping_metric_baseline_snapshot.md)
+- [`docs/交接/evidence/mapping_splits/summary.md`](evidence/mapping_splits/summary.md)
+- [`docs/交接/evidence/mapping_gap_analysis.md`](evidence/mapping_gap_analysis.md)
+- [`docs/交接/evidence/mapping_overfit_risk_report.md`](evidence/mapping_overfit_risk_report.md)
+- [`docs/交接/evidence/mapping_quality_gate_result.md`](evidence/mapping_quality_gate_result.md)
+- [`reports/non_procurement_mapping_eval_report.md`](../../reports/non_procurement_mapping_eval_report.md)
+
+## 5. Reproducible Commands
 
 ```powershell
-backend\.venv\Scripts\python.exe scripts\check_mapping_quality_gate.py `
-  --report reports\mapping_splits\summary.json `
-  --min-assisted-recall 0.85 `
-  --max-badcase-violations 0 `
-  --max-required-missing 0 `
-  --max-dev-test-gap 0.05 `
-  --max-test-blind-gap 0.05
+backend\.venv\Scripts\python.exe scripts\eval_non_procurement_mapping.py --base-url http://127.0.0.1:18000 --baseline reports\non_procurement_baseline_report.json --out reports\non_procurement_mapping_eval_report.json --markdown reports\non_procurement_mapping_eval_report.md
+
+backend\.venv\Scripts\python.exe scripts\eval_mapping_splits.py --report reports\non_procurement_mapping_eval_report.json --out-dir docs\交接\evidence\mapping_splits
+
+backend\.venv\Scripts\python.exe scripts\analyze_mapping_gaps.py --report reports\non_procurement_mapping_eval_report.json --out-json docs\交接\evidence\mapping_gap_analysis.json --out-md docs\交接\evidence\mapping_gap_analysis.md
+
+backend\.venv\Scripts\python.exe scripts\check_mapping_overfit_risk.py --out-json docs\交接\evidence\mapping_overfit_risk_report.json --out-md docs\交接\evidence\mapping_overfit_risk_report.md
+
+backend\.venv\Scripts\python.exe scripts\check_mapping_quality_gate.py --report docs\交接\evidence\mapping_splits\summary.json --min-assisted-recall 0.85 --max-badcase-violations 0 --max-required-missing 0 --max-dev-test-gap 0.05 --max-test-blind-gap 0.05
+
+backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
+
+Push-Location frontend
+npm.cmd test
+Pop-Location
 ```
 
-结果：未通过。
-
-失败原因：
-
-- dev assisted recall `0.579 < 0.850`；
-- dev required missing `2 > 0`；
-- test assisted recall `0.676 < 0.850`；
-- blind assisted recall `0.594 < 0.850`；
-- blind required missing `2 > 0`；
-- test/blind assisted recall gap `0.082 > 0.050`。
-
-## 6. Gap Analysis 优先级
-
-当前 gap analysis 排名前十的修复目标：
-
-1. `meeting_doc.topics`
-2. `policy_doc.issuer`
-3. `policy_doc.publish_date`
-4. `general_doc.deadline`
-5. `policy_doc.target_audience`
-6. `general_doc.application_conditions`
-7. `general_doc.service_object`
-8. `policy_doc.policy_measures`
-9. `meeting_doc.action_items`
-10. `meeting_doc.decisions`
-
-下一轮建议优先做 source-backed candidate extraction，而不是继续只扩模板 alias。尤其是 `meeting_doc.topics`、`policy_doc.issuer`、`policy_doc.publish_date`，需要从正文结构、标题段、署名段、网页元数据和安全负样本中抽取更强证据。
-
-## 7. 安全状态
+## 6. Safety Status
 
 | Check | Result |
 | --- | --- |
 | badcase violations | 0 |
+| required missing | 0 |
 | package pass rate | 100% |
-| overfit risk scan | pass |
+| overfit risk scan | Pass |
 | doc_id-specific runtime rules found | 0 |
 | gold leakage found | 0 |
 | LLM auto accepted | 0 |
+| review-required inflation | Not observed; rate 0.0436 |
 
-Overfit scanner 当前扫描 runtime app code 与 production-like schema/template，没有发现 `real_policy_`、`real_general_`、`real_meeting_`、`real_procurement_`、`doc_id ==` 或 gold leakage 进入 runtime mapping 的风险。
+## 7. 下一步建议
 
-## 8. 可复现命令
-
-```powershell
-backend\.venv\Scripts\python.exe scripts\build_mapping_metric_baseline_snapshot.py
-backend\.venv\Scripts\python.exe scripts\eval_mapping_splits.py
-backend\.venv\Scripts\python.exe scripts\analyze_mapping_gaps.py
-backend\.venv\Scripts\python.exe scripts\check_mapping_overfit_risk.py
-backend\.venv\Scripts\python.exe scripts\check_mapping_quality_gate.py --report reports\mapping_splits\summary.json --min-assisted-recall 0.85 --max-badcase-violations 0 --max-required-missing 0 --max-dev-test-gap 0.05 --max-test-blind-gap 0.05
-backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
-```
-
-## 9. 验证记录
-
-本轮完整验证：
-
-- `backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi`
-- backend pytest：718 passed
-- backend ruff：passed
-- frontend build：passed
-- OpenAPI export：63 paths
-
-质量门禁按最终 0.85 阈值未通过，这是预期的真实验收结论，而不是脚本故障。
-
-## 10. 下一步建议
-
-1. 为 `meeting_doc.topics` 增加正文开场句、议题列表、研究事项、传达学习类段落的候选抽取。
-2. 为 `policy_doc.issuer` 增加 source-backed issuer candidate，区分 `发布单位/发文机关/署名机构/来源网站/联系人`。
-3. 为 `policy_doc.publish_date` 增强显式发布日期与署名日期的安全区分，继续禁止 `成文日期` 自动作为 publish_date。
-4. 为 `general_doc.deadline` 增加截止、受理、办理期限类 label 与正文句式抽取。
-5. 每次规则增强后重新运行 split evaluator、overfit risk scan 和 quality gate。
+1. 继续提升 source-name exact recall，优先处理通用 source_name 规范化，而不是样例特化。
+2. 对 general_doc 的 service_object / application_conditions / contact 做 review-vs-accepted 风险分层，避免把宽泛段落自动 accepted。
+3. 对 meeting_doc 的 meeting_date、meeting_number、topics 增加更多通用 source-name alias，但仍避免参会人员/主持人误入 topics。
+4. 对 policy_doc 的 irregular heading / attachment / page title 场景继续补 source-backed review 候选，不把 `附件1` 等弱信息自动映射为 issuer。
