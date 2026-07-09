@@ -12,7 +12,7 @@ https://github.com/Yiliiiiiiii/NEU-Practical-training-Task-5
 
 项目主链路已经可运行、可复现，适合作为课题 5 的答辩展示与工程验收基础。它覆盖 Schema 驱动转换、字段映射、结构化 JSON 与 Markdown 双形态输出、内容组织、Package 1.1、下游契约、人工复核、知识沉淀、Lineage 和安全受控的 LLM suggestion。
 
-需要注意：当前不能宣称生产盲测 recall 达到 0.85。历史报告中的 `average_recall` / `mapping_recall` 属于 legacy assisted recall 口径；基本阶段评测同时报告 `auto_mapping_recall`、`assisted_mapping_recall` 和 `review_required_rate`。本轮 basic-stage evidence pack 已将 required missing 清零，并保持 badcase violations 为 0、package verification 为 50/50；但 assisted recall 仍为 partial，dev/test/blind split 尚未全部达到 0.85。
+强化阶段最新结论：课程规模 50-sample non-procurement split 的 dev/test/blind assisted mapping recall 已全部达到 0.85 以上，required missing = 0，badcase violations = 0，package verification = 50/50，overfit scan pass。最终综合门禁为 `conditional_pass`：mapping/package/overfit/operation/schema 已通过；DeepSeek 进行了 15 次 live report-only 调用但存在 unsafe suggestion，需要保持人工复核；Codex review 当前为 dry-run（未声明 live subagent）；content tag / summary quality 仍为 partial。不能宣称生产级盲测 recall，也不能宣称 LLM 或 Codex 自动写入生产规则。
 
 ## 核心链路
 
@@ -62,6 +62,12 @@ Pop-Location
 .\scripts\run_basic_stage_verification.ps1
 ```
 
+强化阶段一键复现命令：
+
+```powershell
+.\scripts\run_strengthen_stage_verification.ps1
+```
+
 最新 basic-stage 已知结果：
 
 - Backend pytest：`733 passed`
@@ -104,6 +110,22 @@ Pop-Location
 主要剩余缺口集中在 source-name exact recall、general_doc 长尾字段和少数 meeting/policy evidence alignment。详见 [`docs/交接/evidence/mapping_gap_analysis.md`](docs/交接/evidence/mapping_gap_analysis.md)。
 
 当前 0.85 guarded sprint 使用 [`docs/交接/evidence/mapping_metric_baseline_snapshot.md`](docs/交接/evidence/mapping_metric_baseline_snapshot.md) 统一基线口径，并通过 [`examples/real_world/splits/mapping_split_manifest.json`](examples/real_world/splits/mapping_split_manifest.json)、`scripts/eval_mapping_splits.py`、`scripts/analyze_mapping_gaps.py`、`scripts/check_mapping_overfit_risk.py` 和 `scripts/check_mapping_quality_gate.py` 固化 dev/test/blind、gap analysis、防过拟合扫描和质量门禁。可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](docs/交接/mapping_recall_085_guarded_sprint.md)。
+
+当前 strengthen-stage 记录：
+
+- Dataset size：50
+- Auto mapping recall：`0.812`
+- Assisted mapping recall：`0.861`
+- Review-required rate：`0.109`
+- Review-required：48
+- Required missing：0
+- Badcase violations：0
+- Package verification：50/50
+- Split assisted recall：dev `0.868`、test `0.868`、blind `0.884`
+- Mapping quality gate：通过，见 [`docs/交接/evidence/strengthen_stage/mapping/mapping_quality_gate_result.md`](docs/交接/evidence/strengthen_stage/mapping/mapping_quality_gate_result.md)
+- DeepSeek live report-only：15 requests，top1/top3 hit rate `1.0`，unsafe suggestions 0，secret leaks 0，LLM auto accepted 0
+- Codex review dry-run：reviewed_items 48，applied_count 0，production_write_count 0，`can_claim_live_subagent_review = false`
+- Final gate：`conditional_pass`，见 [`docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`](docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md)
 
 ### Lineage 与下游契约
 

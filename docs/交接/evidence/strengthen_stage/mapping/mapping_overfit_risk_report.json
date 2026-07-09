@@ -1,0 +1,22 @@
+{
+  "findings": {
+    "doc_id_specific_rules": [],
+    "gold_leakage": [],
+    "real_title_snippets": [],
+    "sample_text_snippets": [],
+    "source_path_specific": []
+  },
+  "generated_at": "2026-07-09T08:21:12.602931+00:00",
+  "scanned_files": 107,
+  "summary": {
+    "decision": "Pass",
+    "dev_test_gap": "not_evaluated",
+    "doc_id_specific_rules_found": 0,
+    "gold_leakage_found": 0,
+    "real_title_snippet_findings": 0,
+    "review_inflation_risk": "not_evaluated",
+    "risk_level": "low",
+    "sample_text_snippet_findings": 0,
+    "source_path_specific_findings": 0
+  }
+}

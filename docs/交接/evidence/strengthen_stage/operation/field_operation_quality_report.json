@@ -1,0 +1,101 @@
+{
+  "by_operation": {
+    "merge": {
+      "accuracy": 1.0,
+      "passed": 1,
+      "total": 1
+    },
+    "rename": {
+      "accuracy": 1.0,
+      "passed": 3,
+      "total": 3
+    },
+    "split": {
+      "accuracy": 1.0,
+      "passed": 1,
+      "total": 1
+    },
+    "validate": {
+      "accuracy": 1.0,
+      "passed": 3,
+      "total": 3
+    }
+  },
+  "case_count": 8,
+  "cases": [
+    {
+      "actual": "title",
+      "expected": "title",
+      "input": "标题",
+      "op": "rename",
+      "passed": true
+    },
+    {
+      "actual": "issuer",
+      "expected": "issuer",
+      "input": "发布单位",
+      "op": "rename",
+      "passed": true
+    },
+    {
+      "actual": "service_object",
+      "expected": "service_object",
+      "input": "各有关单位",
+      "op": "rename",
+      "passed": true
+    },
+    {
+      "actual": "财政部 教育部\n中国人民银行 金融监管总局",
+      "expected": "财政部 教育部\n中国人民银行 金融监管总局",
+      "input": [
+        "财政部 教育部",
+        "中国人民银行 金融监管总局"
+      ],
+      "op": "merge",
+      "passed": true
+    },
+    {
+      "actual": [
+        "提交申请",
+        "部门审核",
+        "办结"
+      ],
+      "expected": [
+        "提交申请",
+        "部门审核",
+        "办结"
+      ],
+      "input": "提交申请；部门审核；办结",
+      "op": "split",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "field": "publish_date",
+      "input": "2025-01-16",
+      "op": "validate",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "expected": true,
+      "field": "contact",
+      "input": "010-12345678",
+      "op": "validate",
+      "passed": true
+    },
+    {
+      "actual": false,
+      "expected": false,
+      "field": "publish_date",
+      "input": "网页抓取时间",
+      "op": "validate",
+      "passed": true
+    }
+  ],
+  "field_operation_accuracy": 1.0,
+  "generated_at": "2026-07-09T08:21:54.869184+00:00",
+  "passed_count": 8,
+  "unsafe_operation_count": 0
+}

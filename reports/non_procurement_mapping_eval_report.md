@@ -4,12 +4,12 @@
 
 - Dataset size: 50
 - Strict pass: 48
-- Average recall (legacy assisted): 0.806
-- Auto mapping recall: 0.777
-- Assisted mapping recall: 0.807
-- Review-required recall: 0.029
-- Review-required rate: 0.057
-- Review required: 24
+- Average recall (legacy assisted): 0.861
+- Auto mapping recall: 0.812
+- Assisted mapping recall: 0.861
+- Review-required recall: 0.048
+- Review-required rate: 0.109
+- Review required: 48
 - Required missing: 0
 - Badcase violations: 0
 - Package verification pass: 50
@@ -18,8 +18,8 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 
 ## Baseline Delta
 
-- Average recall: +0.456
-- Review required: -121
+- Average recall: +0.512
+- Review required: -97
 - Required missing: -18
 - Strict pass: +44
 
@@ -27,9 +27,9 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 
 | Type | Documents | Strict pass | Auto recall | Assisted recall | Review rate | Review required | Required missing |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| general_doc | 15 | 14 | 0.741 | 0.759 | 0.089 | 11 | 0 |
-| meeting_doc | 15 | 15 | 0.774 | 0.809 | 0.038 | 5 | 0 |
-| policy_doc | 20 | 19 | 0.808 | 0.842 | 0.048 | 8 | 0 |
+| general_doc | 15 | 14 | 0.804 | 0.830 | 0.089 | 11 | 0 |
+| meeting_doc | 15 | 15 | 0.817 | 0.878 | 0.132 | 19 | 0 |
+| policy_doc | 20 | 19 | 0.815 | 0.870 | 0.103 | 18 | 0 |
 
 ## Field-level Recall
 
@@ -53,7 +53,7 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 | meeting_location | 2 | 0 |
 | meeting_number | 15 | 0 |
 | meeting_title | 15 | 0 |
-| organizer | 1 | 0 |
+| organizer | 15 | 0 |
 | policy_measures | 10 | 0 |
 | process_steps | 15 | 0 |
 | publish_date | 20 | 0 |
@@ -64,7 +64,7 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 | target_audience | 9 | 0 |
 | title | 35 | 0 |
 | topics | 14 | 0 |
-| valid_until | 1 | 0 |
+| valid_until | 8 | 0 |
 
 ## Strict Validation
 
@@ -73,7 +73,7 @@ Metric note: legacy average recall is retained as assisted mapping recall.
 
 ## Review-required Analysis
 
-- Total review-required items: 24
+- Total review-required items: 48
 
 ## Required Missing Analysis
 

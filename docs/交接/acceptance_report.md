@@ -35,6 +35,9 @@ UIR / External UIR JSON
 | frontend tests | 24 passed / 8 files | `Push-Location frontend; npm.cmd test; Pop-Location` |
 | regression gates | 8/8 passed | `scripts\check_regression_gates.py` |
 | basic-stage evidence pack | generated, mapping gate partial | `.\scripts\run_basic_stage_verification.ps1` |
+| strengthen-stage evidence pack | generated, final gate conditional_pass | `.\scripts\run_strengthen_stage_verification.ps1` |
+
+强化阶段最新综合结论见 `docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`。该结论为 `conditional_pass`：mapping/package/overfit/operation/schema 已通过；LLM、Codex review、content quality 和 doc consistency 按证据诚实标记为 partial。
 
 ## 4. 当前实现能力总览
 
@@ -85,6 +88,24 @@ Basic-stage split assisted recall: dev `0.798`、test `0.794`、blind `0.826`。
 
 当前记录未达成：assisted recall ≥ 0.85。当前 quality gate 失败原因是 dev assisted recall `0.807 < 0.850`、test assisted recall `0.794 < 0.850`；blind assisted recall 已到 `0.855`。
 
+强化阶段最新记录：
+
+| 指标 | strengthen-stage |
+| --- | ---: |
+| dataset size | 50 |
+| auto mapping recall | `0.812` |
+| assisted mapping recall | `0.861` |
+| dev assisted recall | `0.868` |
+| test assisted recall | `0.868` |
+| blind assisted recall | `0.884` |
+| required missing | 0 |
+| badcase violations | 0 |
+| package verification | 50/50 |
+| review-required | 48 |
+| review-required rate | `0.109` |
+
+Strengthen-stage mapping quality gate 已通过；但 review-required rate 高于 `0.08` 目标，因此最终口径保留为 `conditional_pass`，不得表述为“生产级盲测达标”。
+
 ## 7. UIR Quality Gate、DeepSeek 与 Review Judge
 
 - UIR Quality Gate：60 total，12 pass，48 review，0 reject，0 unsupported，allow-auto-accept 12。
@@ -93,6 +114,10 @@ Basic-stage split assisted recall: dev `0.798`、test `0.794`、blind `0.826`。
 - Review judge dry-run：pending 979，suggest reject 26，suggest approve 0，unsafe skipped 953，errors 0。
 - Safe apply：applied approve 0，applied reject 0，kept pending 979。
 - Secret redaction audit：passed；exact secret file hits 0；secret leaks 0。
+
+强化阶段 DeepSeek live report-only：15 requests，top1/top3 hit rate `1.0`，unsafe_suggestion_count 0，secret_leak_count 0，LLM auto accepted 0，activate_rule_count 0，write_template_count 0。所有输出只进入报告，不写生产规则。
+
+强化阶段 Codex review：当前为 dry-run report，reviewed_items 48，unsafe_approve_count 0，applied_count 0，production_write_count 0，`can_claim_live_subagent_review = false`。
 
 ## 8. 下游消费与 Lineage
 

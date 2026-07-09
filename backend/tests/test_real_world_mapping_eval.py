@@ -397,6 +397,54 @@ def test_mapping_metrics_count_badcase_violation_for_forbidden_acceptance() -> N
     assert metrics["badcase_violation_count"] == 1
 
 
+def test_mapping_metrics_match_gold_block_index_to_runtime_block_id(tmp_path) -> None:
+    eval_support = load_script("eval_support")
+    uir_path = tmp_path / "sample_uir.json"
+    uir_path.write_text(
+        """
+{
+  "blocks": [
+    {"block_id": "doc_b000", "text": "标题"},
+    {"block_id": "doc_b001", "text": "发布时间：2026年7月9日"}
+  ]
+}
+""".strip(),
+        encoding="utf-8",
+    )
+    gold = {
+        "doc_id": "doc_1",
+        "source_path": str(uir_path),
+        "expected_mappings": [
+            {
+                "source_name": "publication date",
+                "source_path": "blocks[1].text",
+                "target_field": "publish_date",
+            }
+        ],
+        "expected_review_required": [],
+        "known_badcases": [],
+    }
+    report = {
+        "mappings": [
+            {
+                "source_field": {
+                    "source_name": "发布时间",
+                    "source_path": "$.blocks.doc_b001.text#publish_date",
+                },
+                "source_blocks": ["doc_b001"],
+                "target_field_id": "publish_date",
+                "status": "accepted",
+            }
+        ],
+        "review_required_items": [],
+    }
+
+    metrics = eval_support.score_mapping_report(gold, report)
+
+    assert metrics["auto_accepted_correct"] == 1
+    assert metrics["missing_gold_mappings"] == 0
+
+
 def test_mapping_eval_generates_required_json_and_markdown_sections() -> None:
     evaluator = load_script("eval_real_world_mapping")
 

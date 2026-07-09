@@ -152,6 +152,65 @@ def test_policy_source_backed_issuer_and_publish_date_labels_are_accepted() -> N
     assert mappings["publish_date"]["status"] == "accepted"
 
 
+def test_policy_portal_banner_date_maps_to_publish_date() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "国务院办公厅关于印发重点事项清单的通知",
+                "content": "政策正文。",
+            },
+            block_text="中国政府网 2025-01-16",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["publish_date"]["source_field_name"] == "2025-01-16"
+    assert mappings["publish_date"]["status"] == "accepted"
+
+
+def test_policy_concatenated_document_number_requires_review() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "国务院办公厅关于印发重点事项清单的通知",
+                "content": "政策正文。",
+            },
+            block_text="国务院办公厅关于印发重点事项清单的通知 国办函〔2025〕3号",
+        )
+    )
+
+    assert not any(
+        item["target_field_id"] == "document_number"
+        and item["source_field_name"] == "国办函〔2025〕3号"
+        for item in report.mappings
+    )
+    assert any(
+        item["target_field_id"] == "document_number"
+        and item["source_field_name"] == "国办函〔2025〕3号"
+        and item["status"] == "review_required"
+        for item in report.review_required_items
+    )
+
+
+def test_policy_deadline_sentence_requires_valid_until_review() -> None:
+    _, _, report = map_policy(
+        policy_uir(
+            {
+                "政策标题": "培训工作通知",
+                "content": "政策正文。",
+            },
+            block_text="各单位应于6月9日前完成申报。",
+        )
+    )
+
+    assert any(
+        item["target_field_id"] == "valid_until"
+        and item["source_field_name"] == "6月9日前"
+        and item["status"] == "review_required"
+        for item in report.review_required_items
+    )
+
+
 def test_policy_split_signature_block_candidates_are_source_backed() -> None:
     _, _, report = map_policy(
         policy_uir(

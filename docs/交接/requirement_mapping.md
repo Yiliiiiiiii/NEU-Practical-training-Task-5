@@ -19,6 +19,7 @@
 | DeepSeek suggestion evaluation | 基本阶段新增 report-only suggestion packaging；输出 suggestion/confidence/rationale/risk_flags，`llm_auto_accepted_count = 0`。 | [`docs/交接/evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md`](evidence/basic_stage/llm/deepseek_mapping_suggestion_eval_report.md) |
 | Codex review subagent | 基本阶段新增 dry-run human-like review；输出 approve/reject/uncertain，`applied_count = 0`，不写 production rules。 | [`docs/交接/evidence/basic_stage/review/codex_review_subagent_report.md`](evidence/basic_stage/review/codex_review_subagent_report.md) |
 | Content tag / summary faithfulness | 基本阶段新增 tag quality + summary faithfulness 汇总评测。 | [`docs/交接/evidence/basic_stage/content/content_tag_summary_quality_report.md`](evidence/basic_stage/content/content_tag_summary_quality_report.md) |
+| Strengthen-stage final gate | 强化阶段新增 mapping split gate、DeepSeek live report-only、Codex review dry-run、content quality、package consistency、field operation、schema localization 和综合 final gate。 | [`docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`](evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md) |
 
 0.85 guarded sprint 的可提交版执行记录见 [`docs/交接/mapping_recall_085_guarded_sprint.md`](mapping_recall_085_guarded_sprint.md)。该文档同步记录了 baseline、split summary、quality gate 失败原因、overfit scan 结果和下一轮修复优先级。
 
@@ -30,6 +31,8 @@
 - Real-world pipeline：60/60 imports、60/60 executions、60/60 verifier-passing packages。
 - Real-world mapping：overall recall `0.6831896552`、validation pass 40/60、package pass 60/60、badcase violations 0。
 - Non-procurement semantic sprint：当前 50 samples，auto mapping recall `0.777`，assisted mapping recall `0.807`，strict pass 48/50，required missing 0，review-required 24，review-required rate `0.057`，package 50/50，badcase violations 0。Quality gate 仍未通过，原因是 dev/test/blind assisted recall 低于 0.85。
+- Strengthen-stage semantic gate：50 samples，auto mapping recall `0.812`，assisted mapping recall `0.861`，dev/test/blind assisted recall 分别为 `0.868` / `0.868` / `0.884`，required missing 0，badcase violations 0，package 50/50，mapping quality gate passed。
+- Strengthen-stage final gate：`conditional_pass`。原因是 review-required rate `0.109` 高于 0.08 目标，DeepSeek live report-only 有 4 条 unsafe suggestions 但未自动写入，Codex review 当前不能声明 live subagent，content quality 仍 partial。
 - UIR Quality Gate：60 total，12 pass，48 review，0 reject/unsupported。
 - DeepSeek：provider smoke passed，suggestion_count 2，auto accepted 0，secret leaks 0。
 - Review judge：979 pending reviewed in dry-run/apply-safe，suggest reject 26，suggest approve 0，applied 0。

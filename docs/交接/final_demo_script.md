@@ -21,6 +21,24 @@
 
 当前基本阶段 mapping gate 为 `partial`：dev/test/blind assisted recall 分别为 `0.798`、`0.794`、`0.826`，不能宣称 0.85 已达成。
 
+## 0.1 Strengthen-stage Evidence Pack
+
+运行强化阶段一键复现：
+
+```powershell
+.\scripts\run_strengthen_stage_verification.ps1
+```
+
+演示口径：
+
+1. 展示 `docs/交接/evidence/strengthen_stage/mapping/splits/summary.md`：dev/test/blind assisted recall 分别为 `0.868`、`0.868`、`0.884`，mapping quality gate passed。
+2. 展示 `docs/交接/evidence/strengthen_stage/llm/deepseek_mapping_live_eval_report.md`：DeepSeek live report-only 15 requests，LLM auto accepted 0；unsafe suggestions 只进入报告。
+3. 展示 `docs/交接/evidence/strengthen_stage/review/codex_review_subagent_live_report.md`：dry-run，reviewed_items 48，applied_count 0，production_write_count 0。
+4. 展示 `docs/交接/evidence/strengthen_stage/operation/`：field operation accuracy 1.000，schema localization rate 1.000。
+5. 展示 `docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`：final conclusion 为 `conditional_pass`。
+
+答辩时必须说明：当前不是生产级盲测达标；review-required rate `0.109` 高于 0.08 目标，content quality 仍 partial，Codex review 不能宣称 live subagent。
+
 ## 1. 运行统一验证 Gate
 
 ```powershell

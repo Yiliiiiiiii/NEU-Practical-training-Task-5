@@ -73,6 +73,41 @@ Generalization gap:
 
 剩余缺口：source-name exact recall 和少数长尾 review/source alignment。当前 gap analysis 中 `required_missing` 已为 0；后续主要提升点是 general/service fields、meeting source-name alignment、policy_005 irregular heading/source evidence 这类可解释证据，而不是继续扩大 review-required。
 
+## 3.1 Strengthen-stage Result
+
+强化阶段评测时间：2026-07-09 strengthen-stage run（Asia/Shanghai）
+
+| Metric | Value |
+| --- | ---: |
+| Dataset size | 50 |
+| Dev assisted recall | 0.868 |
+| Test assisted recall | 0.868 |
+| Blind assisted recall | 0.884 |
+| Auto mapping recall overall | 0.812 |
+| Assisted mapping recall overall | 0.861 |
+| Review-required rate | 0.109 |
+| Review-required count | 48 |
+| Required missing | 0 |
+| Badcase violations | 0 |
+| Package pass rate | 1.000 |
+| Overfit scan | Pass |
+| Mapping quality gate | Passed |
+| Final gate | conditional_pass |
+
+强化阶段已经达到课程规模 dev/test/blind assisted recall 0.85 gate；但 review-required rate 高于 0.08 目标，且 content quality / Codex live review 仍为 partial。因此最终对外口径是：主链路和 mapping gate 已通过，综合验收为 `conditional_pass`，不得宣称生产级盲测达标。
+
+强化阶段证据：
+
+- [`docs/交接/evidence/strengthen_stage/mapping/splits/summary.md`](evidence/strengthen_stage/mapping/splits/summary.md)
+- [`docs/交接/evidence/strengthen_stage/mapping/mapping_quality_gate_result.md`](evidence/strengthen_stage/mapping/mapping_quality_gate_result.md)
+- [`docs/交接/evidence/strengthen_stage/llm/deepseek_mapping_live_eval_report.md`](evidence/strengthen_stage/llm/deepseek_mapping_live_eval_report.md)
+- [`docs/交接/evidence/strengthen_stage/review/codex_review_subagent_live_report.md`](evidence/strengthen_stage/review/codex_review_subagent_live_report.md)
+- [`docs/交接/evidence/strengthen_stage/content/content_tag_summary_quality_report.md`](evidence/strengthen_stage/content/content_tag_summary_quality_report.md)
+- [`docs/交接/evidence/strengthen_stage/package/package_consistency_report.md`](evidence/strengthen_stage/package/package_consistency_report.md)
+- [`docs/交接/evidence/strengthen_stage/operation/field_operation_quality_report.md`](evidence/strengthen_stage/operation/field_operation_quality_report.md)
+- [`docs/交接/evidence/strengthen_stage/operation/schema_validation_localization_report.md`](evidence/strengthen_stage/operation/schema_validation_localization_report.md)
+- [`docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`](evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md)
+
 ## 4. Evidence Files
 
 - [`docs/交接/evidence/mapping_metric_baseline_snapshot.md`](evidence/mapping_metric_baseline_snapshot.md)

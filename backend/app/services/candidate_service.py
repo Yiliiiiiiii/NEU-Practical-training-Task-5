@@ -581,6 +581,7 @@ class CandidateService:
             source_kind: str,
             confidence: float,
             display_name: str | None = None,
+            quality_flags: list[str] | None = None,
         ) -> None:
             value = self._bounded_sample(value)
             if not value.strip() or not source_blocks:
@@ -605,6 +606,7 @@ class CandidateService:
                     seen_names=seen_names,
                     confidence=confidence,
                     display_name=display_name,
+                    quality_flags=quality_flags,
                 )
             )
 
@@ -722,9 +724,13 @@ class CandidateService:
                         ),
                     )
 
-            for source_name, display_name, value, confidence in self._paragraph_regex_values(
-                text
-            ):
+            for (
+                source_name,
+                display_name,
+                value,
+                confidence,
+                quality_flags,
+            ) in self._paragraph_regex_values(text):
                 append_candidate(
                     source_path=f"$.blocks.{block.block_id}.text",
                     source_name=source_name,
@@ -733,6 +739,7 @@ class CandidateService:
                     source_kind="paragraph_regex",
                     confidence=confidence,
                     display_name=display_name,
+                    quality_flags=quality_flags,
                 )
 
         level_one_headings = [
@@ -847,8 +854,8 @@ class CandidateService:
 
     def _paragraph_regex_values(
         self, text: str
-    ) -> list[tuple[str, str, str, float]]:
-        values: list[tuple[str, str, str, float]] = []
+    ) -> list[tuple[str, str, str, float, list[str]]]:
+        values: list[tuple[str, str, str, float, list[str]]] = []
         labeled_patterns = (
             (
                 "paragraph_regex.document_number",
@@ -876,12 +883,21 @@ class CandidateService:
                     matched_source_name = match.group("value")
                 elif display_name == "issuer":
                     matched_source_name = source_name
+                quality_flags: list[str] = []
+                if (
+                    display_name == "document_number"
+                    and pattern is self.DOCUMENT_NUMBER_PATTERN
+                    and re.sub(r"\s+", "", text) != matched_source_name
+                ):
+                    confidence = 0.66
+                    quality_flags = ["medium_risk_concatenated_document_number"]
                 values.append(
                     (
                         matched_source_name,
                         display_name,
                         match.group("value"),
                         confidence,
+                        quality_flags,
                     )
                 )
         for match in self._bounded_matches(self.LABELED_DATE_PATTERN, text):
@@ -896,10 +912,11 @@ class CandidateService:
                     display_name,
                     match.group("value"),
                     0.65,
+                    [],
                 )
             )
         for match in self._bounded_matches(self.FULL_DATE_REGEX, text):
-            values.append(("paragraph_regex.date", "date", match.group(0), 0.55))
+            values.append(("paragraph_regex.date", "date", match.group(0), 0.55, []))
         return values
 
     def _meeting_date_candidate(
@@ -1285,6 +1302,23 @@ class CandidateService:
                         source_kind="meeting_opening_alias",
                         seen_names=seen_names,
                         confidence=0.9,
+                    )
+                )
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#organizer",
+                        source_name=chairperson,
+                        value=chairperson,
+                        source_blocks=[block.block_id],
+                        source_kind="meeting_opening_organizer_review",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="organizer",
+                        target_hints=["organizer"],
+                        evidence_type="meeting_opening_organizer_review",
+                        quality_flags=["medium_risk_chairperson_as_organizer"],
                     )
                 )
             if candidates and {item.display_name for item in candidates} == {
@@ -1788,6 +1822,28 @@ class CandidateService:
                                 if target_field in {"application_materials", "process_steps"}
                                 else None
                             ),
+                    )
+                )
+            addressee_match = re.fullmatch(
+                r"(?P<value>各有关单位|各有关部门|各单位|各部门|有关单位)\s*[:：]",
+                text,
+            )
+            if addressee_match is not None:
+                addressee = addressee_match.group("value")
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#service_object",
+                        source_name=addressee,
+                        value=addressee,
+                        source_blocks=[block.block_id],
+                        source_kind="general_addressee_service_object",
+                        seen_names=seen_names,
+                        confidence=0.86,
+                        display_name="service_object",
+                        target_hints=["service_object"],
+                        evidence_type="general_addressee_service_object",
                     )
                 )
             labeled_field = labeled_field_pattern.search(text)
@@ -2328,6 +2384,31 @@ class CandidateService:
             text = block.text.strip() if isinstance(block.text, str) else ""
             if not text:
                 continue
+            deadline_review_match = re.search(
+                r"(?P<value>(?:20\d{2}\s*年\s*)?\d{1,2}\s*月\s*\d{1,2}\s*日?\s*前)",
+                text,
+            )
+            if deadline_review_match is not None and not any(
+                marker in text for marker in ("发布时间", "发布日期", "公开日期")
+            ):
+                valid_until = re.sub(r"\s+", "", deadline_review_match.group("value"))
+                candidates.append(
+                    self._candidate(
+                        task_id=task_id,
+                        uir=uir,
+                        source_path=f"$.blocks.{block.block_id}.text#valid_until",
+                        source_name=valid_until,
+                        value=valid_until,
+                        source_blocks=[block.block_id],
+                        source_kind="policy_deadline_review",
+                        seen_names=seen_names,
+                        confidence=0.66,
+                        display_name="valid_until",
+                        target_hints=["valid_until"],
+                        evidence_type="policy_deadline_review",
+                        quality_flags=["medium_risk_deadline_as_valid_until"],
+                    )
+                )
             for line_index, line in enumerate(
                 item.strip() for item in text.splitlines() if item.strip()
             ):

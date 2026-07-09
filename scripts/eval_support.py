@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -124,6 +125,52 @@ def _key_matches(expected: dict[str, Any], actual: dict[str, Any], target: str) 
     )
 
 
+def _resolve_gold_uir_path(gold: dict[str, Any]) -> Path | None:
+    source_path = gold.get("source_path")
+    if not isinstance(source_path, str) or not source_path:
+        return None
+    path = Path(source_path)
+    if path.is_absolute():
+        return path
+    return Path(__file__).resolve().parents[1] / path
+
+
+def _gold_block_id(gold: dict[str, Any], expected: dict[str, Any]) -> str | None:
+    expected_path = _source_path(expected)
+    if not expected_path:
+        return None
+    match = re.search(r"blocks\[(?P<index>\d+)\]", expected_path)
+    if match is None:
+        return None
+    uir_path = _resolve_gold_uir_path(gold)
+    if uir_path is None or not uir_path.exists():
+        return None
+    try:
+        uir = json.loads(uir_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    blocks = uir.get("blocks")
+    if not isinstance(blocks, list):
+        return None
+    index = int(match.group("index"))
+    if index >= len(blocks) or not isinstance(blocks[index], dict):
+        return None
+    block_id = blocks[index].get("block_id")
+    return block_id if isinstance(block_id, str) and block_id else None
+
+
+def _block_matches(gold: dict[str, Any], expected: dict[str, Any], actual: dict[str, Any], target: str) -> bool:
+    if _target_field(actual) != target:
+        return False
+    block_id = _gold_block_id(gold, expected)
+    source_blocks = actual.get("source_blocks")
+    return bool(
+        block_id
+        and isinstance(source_blocks, list)
+        and block_id in {item for item in source_blocks if isinstance(item, str)}
+    )
+
+
 def _matches_review(expected: dict[str, Any], actual: dict[str, Any]) -> bool:
     expected_name = _source_name(expected)
     actual_name = _source_name(actual)
@@ -170,14 +217,21 @@ def score_mapping_report(
     for index, expected in enumerate(expected_mappings):
         target = _target_field(expected)
         if target and any(
-            _key_matches(expected, actual, target) for actual in accepted
+            _key_matches(expected, actual, target)
+            or _block_matches(gold, expected, actual, target)
+            for actual in accepted
         ):
             accepted_correct += 1
             matched_expected_mapping_indexes.add(index)
 
     review_correct = 0
     for expected in expected_reviews:
-        if any(_matches_review(expected, actual) for actual in review_items):
+        target = _target_field(expected)
+        if any(
+            _matches_review(expected, actual)
+            or bool(target and _block_matches(gold, expected, actual, target))
+            for actual in review_items
+        ):
             review_correct += 1
 
     missing_gold_mappings = len(expected_mappings) - len(

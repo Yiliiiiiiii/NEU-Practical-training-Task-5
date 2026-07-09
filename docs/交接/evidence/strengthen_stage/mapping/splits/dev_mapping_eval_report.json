@@ -1,0 +1,3042 @@
+{
+  "badcase_violations": [],
+  "generated_at": "2026-07-09T08:21:12.202476+00:00",
+  "missing_or_ambiguous": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "required_missing": [],
+      "review_evidence_count": 2
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "required_missing": [],
+      "review_evidence_count": 1
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "required_missing": [],
+      "review_evidence_count": 2
+    }
+  ],
+  "package_summary": {
+    "failed": 0,
+    "passed": 18
+  },
+  "per_document": [
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_001_training_platform_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 0.875,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.75,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_001_training_platform_rules",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 2,
+        "gold_signal_count": 8,
+        "mapping_recall": 0.875,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.125,
+        "review_required_recall": 0.125
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_3fbaf661b9b4_自印发之日起施行_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target effective_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target effective_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_3fbaf661b9b4_effective_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.9575,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "relative_effective_date_requires_review",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_001_training_platform_rules_b045"
+          ],
+          "source_field": {
+            "source_name": "自印发之日起施行",
+            "source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date"
+          },
+          "source_field_name": "自印发之日起施行",
+          "source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_3fbaf661b9b4",
+          "value_sample": "自印发之日起施行"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_3fbaf661b9b4",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_002_equipment_renewal",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title",
+        "valid_until"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.8571428571428571,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.8571428571428571,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_002_equipment_renewal",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 7,
+        "mapping_recall": 0.8571428571428571,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_735e53a8a411_2012年6月30日前_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target valid_until",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target valid_until"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_735e53a8a411_valid_until_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_deadline_as_valid_until",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_002_equipment_renewal_b028"
+          ],
+          "source_field": {
+            "source_name": "2012年6月30日前",
+            "source_path": "$.blocks.real_policy_002_equipment_renewal_b028.text#valid_until"
+          },
+          "source_field_name": "2012年6月30日前",
+          "source_path": "$.blocks.real_policy_002_equipment_renewal_b028.text#valid_until",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "valid_until",
+          "target_field_name": "valid_until",
+          "task_id": "task_735e53a8a411",
+          "value_sample": "2012年6月30日前"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_735e53a8a411",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_003_science_education_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 0.8571428571428571,
+        "auto_accepted_correct": 6,
+        "auto_mapping_recall": 0.8571428571428571,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_003_science_education_guide",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 7,
+        "mapping_recall": 0.8571428571428571,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_e8babcdf3c0e",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_004_student_loan_relief",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 6,
+        "assisted_mapping_recall": 0.7142857142857143,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.7142857142857143,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_004_student_loan_relief",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 7,
+        "mapping_recall": 0.7142857142857143,
+        "missing_gold_mapping_rate": 0.16666666666666666,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_4d1dcc5048e2",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "doc_type": "policy_doc",
+      "failure_reasons": [
+        "strict_pass_failed",
+        "mapping_recall_below_threshold"
+      ],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 5,
+        "assisted_mapping_recall": 0.5714285714285714,
+        "auto_accepted_correct": 4,
+        "auto_mapping_recall": 0.5714285714285714,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_005_ai_industry_guide",
+        "gold_mapping_count": 6,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 7,
+        "mapping_recall": 0.5714285714285714,
+        "missing_gold_mapping_rate": 0.3333333333333333,
+        "missing_gold_mappings": 2,
+        "review_required_correct": 0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.16666666666666666,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_66f9a1187fbc_source_site_2",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target issuer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_66f9a1187fbc_issuer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.6,
+            "final_score": 0.6625,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.85,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_issuer",
+            "review_required",
+            "weak_source_site"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_site",
+            "source_path": "$.metadata.source_site#issuer"
+          },
+          "source_field_name": "source_site",
+          "source_path": "$.metadata.source_site#issuer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_66f9a1187fbc",
+          "value_sample": "www.gov.cn"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": false,
+      "task_id": "task_66f9a1187fbc",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "organizer",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_001_changning_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.125,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_71f4ee92fbca_刘平_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_71f4ee92fbca_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_001_changning_executive_minutes_b003"
+          ],
+          "source_field": {
+            "source_name": "刘平",
+            "source_path": "$.blocks.real_meeting_001_changning_executive_minutes_b003.text#organizer"
+          },
+          "source_field_name": "刘平",
+          "source_path": "$.blocks.real_meeting_001_changning_executive_minutes_b003.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_71f4ee92fbca",
+          "value_sample": "刘平"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_71f4ee92fbca",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_location",
+        "meeting_number",
+        "meeting_title",
+        "organizer",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_002_shaxian_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f6850f2a0643_吴晓峰_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f6850f2a0643_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_002_shaxian_executive_minutes_b001"
+          ],
+          "source_field": {
+            "source_name": "吴晓峰",
+            "source_path": "$.blocks.real_meeting_002_shaxian_executive_minutes_b001.text#organizer"
+          },
+          "source_field_name": "吴晓峰",
+          "source_path": "$.blocks.real_meeting_002_shaxian_executive_minutes_b001.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_f6850f2a0643",
+          "value_sample": "吴晓峰"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_f6850f2a0643",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "attendees",
+        "chairperson",
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "organizer",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.8333333333333334,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_003_miluo_executive_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6bb2f3905afe_林恒求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6bb2f3905afe_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_003_miluo_executive_minutes_b003"
+          ],
+          "source_field": {
+            "source_name": "林恒求",
+            "source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b003.text#organizer"
+          },
+          "source_field_name": "林恒求",
+          "source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b003.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_6bb2f3905afe",
+          "value_sample": "林恒求"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_6bb2f3905afe",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_001_notary_service_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "category",
+        "contact",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 0.8333333333333334,
+        "auto_accepted_correct": 4,
+        "auto_mapping_recall": 0.6666666666666666,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_001_notary_service_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mapping_rate": 0.2,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.125,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4a2857a127bf_办理事项及证明材料清单_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4a2857a127bf_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_001_notary_service_guide_b004"
+          ],
+          "source_field": {
+            "source_name": "办理事项及证明材料清单",
+            "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review"
+          },
+          "source_field_name": "办理事项及证明材料清单",
+          "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_4a2857a127bf",
+          "value_sample": "一、办理事项及证明材料清单"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_4a2857a127bf",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_002_biomed_project_guide",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "category",
+        "contact",
+        "content",
+        "deadline",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 0.8333333333333334,
+        "auto_accepted_correct": 4,
+        "auto_mapping_recall": 0.6666666666666666,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_002_biomed_project_guide",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mapping_rate": 0.2,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_a97ba1cf1ae0_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_a97ba1cf1ae0_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_002_biomed_project_guide_b010"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_a97ba1cf1ae0",
+          "value_sample": "经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_a97ba1cf1ae0",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "general_doc",
+        "template_id": "general_doc_base_v1"
+      },
+      "doc_id": "real_general_003_textile_application_flow",
+      "doc_type": "general_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "application_conditions",
+        "category",
+        "content",
+        "process_steps",
+        "service_object",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 5,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_general_003_textile_application_flow",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 2,
+        "review_required_rate": 0.2857142857142857,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4f0303166a58_申报流程说明_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4f0303166a58_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_003_textile_application_flow_b004"
+          ],
+          "source_field": {
+            "source_name": "申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review"
+          },
+          "source_field_name": "申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_4f0303166a58",
+          "value_sample": "建设推广工作网上申报流程说明"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4f0303166a58_申报流程说明_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4f0303166a58_process_steps_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.7,
+            "final_score": 0.5375,
+            "label_score": 0.8,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence",
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_003_textile_application_flow_b004"
+          ],
+          "source_field": {
+            "source_name": "申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review"
+          },
+          "source_field_name": "申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "process_steps",
+          "target_field_name": "process_steps",
+          "task_id": "task_4f0303166a58",
+          "value_sample": "建设推广工作网上申报流程说明"
+        }
+      ],
+      "schema_id": "general_doc",
+      "strict_passed": true,
+      "task_id": "task_4f0303166a58",
+      "task_status": "review_required",
+      "template_id": "general_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "effective_date",
+        "issuer",
+        "policy_measures",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 0.8333333333333334,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_006_technology_incubator_rules",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 0,
+        "review_required_item_count": 0,
+        "review_required_rate": 0.0,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_5cdca6334710",
+      "task_status": "completed",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_007_one_thing_list",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title"
+      ],
+      "metrics": {
+        "accepted_item_count": 6,
+        "assisted_mapping_recall": 0.8333333333333334,
+        "auto_accepted_correct": 4,
+        "auto_mapping_recall": 0.6666666666666666,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_007_one_thing_list",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.8333333333333334,
+        "missing_gold_mapping_rate": 0.2,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.14285714285714285,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_c3744e0cc761_国办函_2025_3号_1",
+          "confidence": 0.7075,
+          "confidence_tier": "medium",
+          "evidence": [
+            {
+              "message": "evidence-aware score 0.708 for target document_number",
+              "metadata": {},
+              "source": null,
+              "type": "evidence_ranked",
+              "weight": 0.7075
+            }
+          ],
+          "evidence_text": [
+            "evidence-aware score 0.708 for target document_number"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_c3744e0cc761_document_number_evidence_ranked",
+          "method": "evidence_ranked",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.9,
+            "final_score": 0.7075,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_concatenated_document_number",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_007_one_thing_list_b003"
+          ],
+          "source_field": {
+            "source_name": "国办函〔2025〕3号",
+            "source_path": "$.blocks.real_policy_007_one_thing_list_b003.text"
+          },
+          "source_field_name": "国办函〔2025〕3号",
+          "source_path": "$.blocks.real_policy_007_one_thing_list_b003.text",
+          "status": "review_required",
+          "strategy": "evidence_ranked",
+          "target_field_id": "document_number",
+          "target_field_name": "document_number",
+          "task_id": "task_c3744e0cc761",
+          "value_sample": "国办函〔2025〕3号"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_c3744e0cc761",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_008_sme_leader_training",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "target_audience",
+        "title",
+        "valid_until"
+      ],
+      "metrics": {
+        "accepted_item_count": 8,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_008_sme_leader_training",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.1111111111111111,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_b366756c85ca_6月9日前_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target valid_until",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target valid_until"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_b366756c85ca_valid_until_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_deadline_as_valid_until",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_008_sme_leader_training_b020"
+          ],
+          "source_field": {
+            "source_name": "6月9日前",
+            "source_path": "$.blocks.real_policy_008_sme_leader_training_b020.text#valid_until"
+          },
+          "source_field_name": "6月9日前",
+          "source_path": "$.blocks.real_policy_008_sme_leader_training_b020.text#valid_until",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "valid_until",
+          "target_field_name": "valid_until",
+          "task_id": "task_b366756c85ca",
+          "value_sample": "6月9日前"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_b366756c85ca",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "policy_doc",
+        "template_id": "policy_doc_base_v1"
+      },
+      "doc_id": "real_policy_009_network_safety_work",
+      "doc_type": "policy_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "doc_type",
+        "document_number",
+        "issuer",
+        "publish_date",
+        "source",
+        "title",
+        "valid_until"
+      ],
+      "metrics": {
+        "accepted_item_count": 7,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_policy_009_network_safety_work",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.125,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_ee810ca746ac_2025年12月15日前_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target valid_until",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target valid_until"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_ee810ca746ac_valid_until_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_deadline_as_valid_until",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_009_network_safety_work_b030"
+          ],
+          "source_field": {
+            "source_name": "2025年12月15日前",
+            "source_path": "$.blocks.real_policy_009_network_safety_work_b030.text#valid_until"
+          },
+          "source_field_name": "2025年12月15日前",
+          "source_path": "$.blocks.real_policy_009_network_safety_work_b030.text#valid_until",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "valid_until",
+          "target_field_name": "valid_until",
+          "task_id": "task_ee810ca746ac",
+          "value_sample": "2025年12月15日前"
+        }
+      ],
+      "schema_id": "policy_doc",
+      "strict_passed": true,
+      "task_id": "task_ee810ca746ac",
+      "task_status": "review_required",
+      "template_id": "policy_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "attendees",
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "organizer",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 10,
+        "assisted_mapping_recall": 0.6666666666666666,
+        "auto_accepted_correct": 4,
+        "auto_mapping_recall": 0.6666666666666666,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 0.6666666666666666,
+        "missing_gold_mapping_rate": 0.2,
+        "missing_gold_mappings": 1,
+        "review_required_correct": 0,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.09090909090909091,
+        "review_required_recall": 0.0
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_865ae2e0b879_黄国杰_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_865ae2e0b879_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_004_shandan_2025_11_minutes_b014"
+          ],
+          "source_field": {
+            "source_name": "黄国杰",
+            "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b014.text#organizer"
+          },
+          "source_field_name": "黄国杰",
+          "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b014.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_865ae2e0b879",
+          "value_sample": "黄国杰"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_865ae2e0b879",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "content",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "organizer",
+        "source"
+      ],
+      "metrics": {
+        "accepted_item_count": 5,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_005_miluo_2026_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 1,
+        "review_required_rate": 0.16666666666666666,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2518e8adb9d2_汨罗市人民政府办公室_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2518e8adb9d2_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_source_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_005_miluo_2026_minutes_b002"
+          ],
+          "source_field": {
+            "source_name": "汨罗市人民政府办公室",
+            "source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer"
+          },
+          "source_field_name": "汨罗市人民政府办公室",
+          "source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_2518e8adb9d2",
+          "value_sample": "汨罗市人民政府办公室"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_2518e8adb9d2",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": true
+    },
+    {
+      "catalog": {
+        "schema_id": "meeting_doc",
+        "template_id": "meeting_doc_base_v1"
+      },
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "doc_type": "meeting_doc",
+      "failure_reasons": [],
+      "high_risk_auto_accepted": [],
+      "mapped_or_review_targets": [
+        "action_items",
+        "attendees",
+        "chairperson",
+        "content",
+        "decisions",
+        "meeting_date",
+        "meeting_number",
+        "meeting_title",
+        "organizer",
+        "source",
+        "topics"
+      ],
+      "metrics": {
+        "accepted_item_count": 9,
+        "assisted_mapping_recall": 1.0,
+        "auto_accepted_correct": 5,
+        "auto_mapping_recall": 0.8333333333333334,
+        "badcase_violation_count": 0,
+        "badcase_violations": [],
+        "doc_id": "real_meeting_006_shandan_minutes",
+        "gold_mapping_count": 5,
+        "gold_review_required_count": 1,
+        "gold_signal_count": 6,
+        "mapping_recall": 1.0,
+        "missing_gold_mapping_rate": 0.0,
+        "missing_gold_mappings": 0,
+        "review_required_correct": 1,
+        "review_required_item_count": 2,
+        "review_required_rate": 0.18181818181818182,
+        "review_required_recall": 0.16666666666666666
+      },
+      "package_passed": true,
+      "required_missing": [],
+      "review_evidence": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_66577abcaef2_黄国杰_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_66577abcaef2_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_006_shandan_minutes_b005"
+          ],
+          "source_field": {
+            "source_name": "黄国杰",
+            "source_path": "$.blocks.real_meeting_006_shandan_minutes_b005.text#organizer"
+          },
+          "source_field_name": "黄国杰",
+          "source_path": "$.blocks.real_meeting_006_shandan_minutes_b005.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_66577abcaef2",
+          "value_sample": "黄国杰"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_66577abcaef2_出席会议_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_66577abcaef2_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_mixed_attendee_roles",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_006_shandan_minutes_b010"
+          ],
+          "source_field": {
+            "source_name": "出席会议",
+            "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees"
+          },
+          "source_field_name": "出席会议",
+          "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_66577abcaef2",
+          "value_sample": "出席会议，各乡镇、县直有关部门、企事业及省市驻丹有关单位"
+        }
+      ],
+      "schema_id": "meeting_doc",
+      "strict_passed": true,
+      "task_id": "task_66577abcaef2",
+      "task_status": "review_required",
+      "template_id": "meeting_doc_base_v1",
+      "validation_passed": false
+    }
+  ],
+  "per_document_type": {
+    "general_doc": {
+      "accepted_item_count": 20,
+      "assisted_mapping_recall": 0.8888888888888888,
+      "auto_accepted_correct": 13,
+      "auto_mapping_recall": 0.7222222222222222,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 3,
+      "gold_mapping_count": 15,
+      "gold_review_required_count": 3,
+      "gold_signal_count": 18,
+      "mapping_recall": 0.8888888888888888,
+      "missing_gold_mapping_rate": 0.13333333333333333,
+      "missing_gold_mappings": 2,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 3,
+      "review_required_item_count": 4,
+      "review_required_rate": 0.16666666666666666,
+      "review_required_recall": 0.16666666666666666
+    },
+    "meeting_doc": {
+      "accepted_item_count": 49,
+      "assisted_mapping_recall": 0.9166666666666666,
+      "auto_accepted_correct": 29,
+      "auto_mapping_recall": 0.8055555555555556,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 6,
+      "gold_mapping_count": 30,
+      "gold_review_required_count": 6,
+      "gold_signal_count": 36,
+      "mapping_recall": 0.9166666666666666,
+      "missing_gold_mapping_rate": 0.03333333333333333,
+      "missing_gold_mappings": 1,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 4,
+      "review_required_item_count": 7,
+      "review_required_rate": 0.125,
+      "review_required_recall": 0.1111111111111111
+    },
+    "policy_doc": {
+      "accepted_item_count": 63,
+      "assisted_mapping_recall": 0.8333333333333334,
+      "auto_accepted_correct": 46,
+      "auto_mapping_recall": 0.7666666666666667,
+      "badcase_pass_rate": 1.0,
+      "badcase_violation_count": 0,
+      "document_count": 9,
+      "gold_mapping_count": 50,
+      "gold_review_required_count": 10,
+      "gold_signal_count": 60,
+      "mapping_recall": 0.8333333333333334,
+      "missing_gold_mapping_rate": 0.08,
+      "missing_gold_mappings": 4,
+      "package_pass_rate": 1.0,
+      "review_required_correct": 4,
+      "review_required_item_count": 6,
+      "review_required_rate": 0.08695652173913043,
+      "review_required_recall": 0.06666666666666667
+    }
+  },
+  "per_field": {},
+  "review_evidence": [
+    {
+      "doc_id": "real_policy_001_training_platform_rules",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_3fbaf661b9b4_自印发之日起施行_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target effective_date",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target effective_date"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_3fbaf661b9b4_effective_date_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.95,
+            "final_score": 0.9575,
+            "label_score": 1.0,
+            "risk_penalty": 0.0,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": null,
+          "risk_flags": [
+            "relative_effective_date_requires_review",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_001_training_platform_rules_b045"
+          ],
+          "source_field": {
+            "source_name": "自印发之日起施行",
+            "source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date"
+          },
+          "source_field_name": "自印发之日起施行",
+          "source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "effective_date",
+          "target_field_name": "effective_date",
+          "task_id": "task_3fbaf661b9b4",
+          "value_sample": "自印发之日起施行"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_policy_002_equipment_renewal",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_735e53a8a411_2012年6月30日前_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target valid_until",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target valid_until"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_735e53a8a411_valid_until_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_deadline_as_valid_until",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_002_equipment_renewal_b028"
+          ],
+          "source_field": {
+            "source_name": "2012年6月30日前",
+            "source_path": "$.blocks.real_policy_002_equipment_renewal_b028.text#valid_until"
+          },
+          "source_field_name": "2012年6月30日前",
+          "source_path": "$.blocks.real_policy_002_equipment_renewal_b028.text#valid_until",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "valid_until",
+          "target_field_name": "valid_until",
+          "task_id": "task_735e53a8a411",
+          "value_sample": "2012年6月30日前"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_66f9a1187fbc_source_site_2",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target issuer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target issuer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_66f9a1187fbc_issuer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.6,
+            "final_score": 0.6625,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.85,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_issuer",
+            "review_required",
+            "weak_source_site"
+          ],
+          "source_blocks": [],
+          "source_field": {
+            "source_name": "source_site",
+            "source_path": "$.metadata.source_site#issuer"
+          },
+          "source_field_name": "source_site",
+          "source_path": "$.metadata.source_site#issuer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "issuer",
+          "target_field_name": "issuer",
+          "task_id": "task_66f9a1187fbc",
+          "value_sample": "www.gov.cn"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_71f4ee92fbca_刘平_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_71f4ee92fbca_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_001_changning_executive_minutes_b003"
+          ],
+          "source_field": {
+            "source_name": "刘平",
+            "source_path": "$.blocks.real_meeting_001_changning_executive_minutes_b003.text#organizer"
+          },
+          "source_field_name": "刘平",
+          "source_path": "$.blocks.real_meeting_001_changning_executive_minutes_b003.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_71f4ee92fbca",
+          "value_sample": "刘平"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_002_shaxian_executive_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_f6850f2a0643_吴晓峰_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_f6850f2a0643_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_002_shaxian_executive_minutes_b001"
+          ],
+          "source_field": {
+            "source_name": "吴晓峰",
+            "source_path": "$.blocks.real_meeting_002_shaxian_executive_minutes_b001.text#organizer"
+          },
+          "source_field_name": "吴晓峰",
+          "source_path": "$.blocks.real_meeting_002_shaxian_executive_minutes_b001.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_f6850f2a0643",
+          "value_sample": "吴晓峰"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_003_miluo_executive_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_6bb2f3905afe_林恒求_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_6bb2f3905afe_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_003_miluo_executive_minutes_b003"
+          ],
+          "source_field": {
+            "source_name": "林恒求",
+            "source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b003.text#organizer"
+          },
+          "source_field_name": "林恒求",
+          "source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b003.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_6bb2f3905afe",
+          "value_sample": "林恒求"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_general_001_notary_service_guide",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4a2857a127bf_办理事项及证明材料清单_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4a2857a127bf_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_001_notary_service_guide_b004"
+          ],
+          "source_field": {
+            "source_name": "办理事项及证明材料清单",
+            "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review"
+          },
+          "source_field_name": "办理事项及证明材料清单",
+          "source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_4a2857a127bf",
+          "value_sample": "一、办理事项及证明材料清单"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_general_002_biomed_project_guide",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_a97ba1cf1ae0_经费额度_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_a97ba1cf1ae0_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_002_biomed_project_guide_b010"
+          ],
+          "source_field": {
+            "source_name": "经费额度",
+            "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review"
+          },
+          "source_field_name": "经费额度",
+          "source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_a97ba1cf1ae0",
+          "value_sample": "经费额度：非定额资助，I期临床试验每项不超过100万元，II期临床试验（早期临床试验）每项不超过150万元，III期临床试验（确证性临床试验）每项不超过300万元。"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_general_003_textile_application_flow",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4f0303166a58_申报流程说明_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target category",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target category"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4f0303166a58_category_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_003_textile_application_flow_b004"
+          ],
+          "source_field": {
+            "source_name": "申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review"
+          },
+          "source_field_name": "申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "category",
+          "target_field_name": "category",
+          "task_id": "task_4f0303166a58",
+          "value_sample": "建设推广工作网上申报流程说明"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_4f0303166a58_申报流程说明_1",
+          "confidence": 0.62,
+          "confidence_tier": "low",
+          "evidence": [
+            {
+              "message": "fuzzy score 0.80 requires review",
+              "metadata": {},
+              "source": null,
+              "type": "fuzzy_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "fuzzy score 0.80 requires review"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_4f0303166a58_process_steps_fuzzy",
+          "method": "fuzzy",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.7,
+            "final_score": 0.5375,
+            "label_score": 0.8,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "fuzzy_match",
+            "low_confidence",
+            "medium_risk_schema_overload",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_general_003_textile_application_flow_b004"
+          ],
+          "source_field": {
+            "source_name": "申报流程说明",
+            "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review"
+          },
+          "source_field_name": "申报流程说明",
+          "source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+          "status": "review_required",
+          "strategy": "fuzzy",
+          "target_field_id": "process_steps",
+          "target_field_name": "process_steps",
+          "task_id": "task_4f0303166a58",
+          "value_sample": "建设推广工作网上申报流程说明"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_policy_007_one_thing_list",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_c3744e0cc761_国办函_2025_3号_1",
+          "confidence": 0.7075,
+          "confidence_tier": "medium",
+          "evidence": [
+            {
+              "message": "evidence-aware score 0.708 for target document_number",
+              "metadata": {},
+              "source": null,
+              "type": "evidence_ranked",
+              "weight": 0.7075
+            }
+          ],
+          "evidence_text": [
+            "evidence-aware score 0.708 for target document_number"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_c3744e0cc761_document_number_evidence_ranked",
+          "method": "evidence_ranked",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.7,
+            "evidence_score": 0.9,
+            "final_score": 0.7075,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_concatenated_document_number",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_007_one_thing_list_b003"
+          ],
+          "source_field": {
+            "source_name": "国办函〔2025〕3号",
+            "source_path": "$.blocks.real_policy_007_one_thing_list_b003.text"
+          },
+          "source_field_name": "国办函〔2025〕3号",
+          "source_path": "$.blocks.real_policy_007_one_thing_list_b003.text",
+          "status": "review_required",
+          "strategy": "evidence_ranked",
+          "target_field_id": "document_number",
+          "target_field_name": "document_number",
+          "task_id": "task_c3744e0cc761",
+          "value_sample": "国办函〔2025〕3号"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_policy_008_sme_leader_training",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_b366756c85ca_6月9日前_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target valid_until",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target valid_until"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_b366756c85ca_valid_until_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_deadline_as_valid_until",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_008_sme_leader_training_b020"
+          ],
+          "source_field": {
+            "source_name": "6月9日前",
+            "source_path": "$.blocks.real_policy_008_sme_leader_training_b020.text#valid_until"
+          },
+          "source_field_name": "6月9日前",
+          "source_path": "$.blocks.real_policy_008_sme_leader_training_b020.text#valid_until",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "valid_until",
+          "target_field_name": "valid_until",
+          "task_id": "task_b366756c85ca",
+          "value_sample": "6月9日前"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_policy_009_network_safety_work",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_ee810ca746ac_2025年12月15日前_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target valid_until",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target valid_until"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_ee810ca746ac_valid_until_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6825,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.85
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_deadline_as_valid_until",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_policy_009_network_safety_work_b030"
+          ],
+          "source_field": {
+            "source_name": "2025年12月15日前",
+            "source_path": "$.blocks.real_policy_009_network_safety_work_b030.text#valid_until"
+          },
+          "source_field_name": "2025年12月15日前",
+          "source_path": "$.blocks.real_policy_009_network_safety_work_b030.text#valid_until",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "valid_until",
+          "target_field_name": "valid_until",
+          "task_id": "task_ee810ca746ac",
+          "value_sample": "2025年12月15日前"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_865ae2e0b879_黄国杰_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_865ae2e0b879_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_004_shandan_2025_11_minutes_b014"
+          ],
+          "source_field": {
+            "source_name": "黄国杰",
+            "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b014.text#organizer"
+          },
+          "source_field_name": "黄国杰",
+          "source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b014.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_865ae2e0b879",
+          "value_sample": "黄国杰"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_005_miluo_2026_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_2518e8adb9d2_汨罗市人民政府办公室_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_2518e8adb9d2_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_source_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_005_miluo_2026_minutes_b002"
+          ],
+          "source_field": {
+            "source_name": "汨罗市人民政府办公室",
+            "source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer"
+          },
+          "source_field_name": "汨罗市人民政府办公室",
+          "source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_2518e8adb9d2",
+          "value_sample": "汨罗市人民政府办公室"
+        }
+      ]
+    },
+    {
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "items": [
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_66577abcaef2_黄国杰_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target organizer",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target organizer"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_66577abcaef2_organizer_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6975,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 1.0
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_chairperson_as_organizer",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_006_shandan_minutes_b005"
+          ],
+          "source_field": {
+            "source_name": "黄国杰",
+            "source_path": "$.blocks.real_meeting_006_shandan_minutes_b005.text#organizer"
+          },
+          "source_field_name": "黄国杰",
+          "source_path": "$.blocks.real_meeting_006_shandan_minutes_b005.text#organizer",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "organizer",
+          "target_field_name": "organizer",
+          "task_id": "task_66577abcaef2",
+          "value_sample": "黄国杰"
+        },
+        {
+          "badcase_filter": {
+            "blocked": false,
+            "checked": false,
+            "reason": null
+          },
+          "candidate_id": "cand_task_66577abcaef2_出席会议_1",
+          "confidence": 0.96,
+          "confidence_tier": "high",
+          "evidence": [
+            {
+              "message": "alias matched target attendees",
+              "metadata": {},
+              "source": null,
+              "type": "alias_match",
+              "weight": null
+            }
+          ],
+          "evidence_text": [
+            "alias matched target attendees"
+          ],
+          "llm_metadata": null,
+          "mapping_id": "map_task_66577abcaef2_attendees_alias",
+          "method": "alias",
+          "need_review": true,
+          "ranking_trace": {
+            "context_score": 0.95,
+            "evidence_score": 0.7,
+            "final_score": 0.6575,
+            "label_score": 1.0,
+            "risk_penalty": 0.2,
+            "source_quality_score": 0.95,
+            "type_score": 0.6
+          },
+          "rejected_candidates": [],
+          "review_required_reason": "Mapping evidence has semantic risk and requires human review.",
+          "risk_flags": [
+            "medium_risk_mixed_attendee_roles",
+            "review_required"
+          ],
+          "source_blocks": [
+            "real_meeting_006_shandan_minutes_b010"
+          ],
+          "source_field": {
+            "source_name": "出席会议",
+            "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees"
+          },
+          "source_field_name": "出席会议",
+          "source_path": "$.blocks.real_meeting_006_shandan_minutes_b010.text#attendees",
+          "status": "review_required",
+          "strategy": "alias",
+          "target_field_id": "attendees",
+          "target_field_name": "attendees",
+          "task_id": "task_66577abcaef2",
+          "value_sample": "出席会议，各乡镇、县直有关部门、企事业及省市驻丹有关单位"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "accepted_item_count": 132,
+    "assisted_mapping_recall": 0.868421052631579,
+    "auto_accepted_correct": 88,
+    "auto_mapping_recall": 0.7719298245614035,
+    "badcase_pass_rate": 1.0,
+    "badcase_violation_count": 0,
+    "document_count": 18,
+    "gold_mapping_count": 95,
+    "gold_review_required_count": 19,
+    "gold_signal_count": 114,
+    "mapping_recall": 0.868421052631579,
+    "missing_gold_mapping_rate": 0.07368421052631578,
+    "missing_gold_mappings": 7,
+    "package_pass_count": 18,
+    "package_pass_rate": 1.0,
+    "review_required_correct": 11,
+    "review_required_item_count": 17,
+    "review_required_rate": 0.11409395973154363,
+    "review_required_recall": 0.09649122807017543,
+    "validation_pass_count": 14
+  }
+}

@@ -209,6 +209,25 @@ def test_meeting_action_items_from_responsibility_sentence() -> None:
     assert mappings["action_items"]["source_field_name"] == "责任行动"
 
 
+def test_meeting_opening_host_is_organizer_review_candidate() -> None:
+    _, _, report = map_meeting(
+        meeting_uir(
+            {
+                "meeting_title": "常务会议纪要",
+                "content": "会议记录正文。",
+            },
+            block_text="2026年5月20日，区长李明主持召开区政府常务会议。",
+        )
+    )
+
+    assert any(
+        item["target_field_id"] == "organizer"
+        and item["source_field_name"] == "李明"
+        and item["status"] == "review_required"
+        for item in report.review_required_items
+    )
+
+
 def test_meeting_numbers_headers_and_ambiguous_roles_are_not_auto_titles() -> None:
     _, _, report = map_meeting(
         meeting_uir(

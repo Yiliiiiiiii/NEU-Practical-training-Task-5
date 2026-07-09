@@ -1,7 +1,7 @@
 # SchemaPack Agent 当前实施状态
 
 > 最后同步：2026-07-09。本文档是项目能力、验证基线、评测证据和边界的统一状态入口。
-> 当前分支：`codex/basic-topic5-complete-evidence`；当前状态：项目主链路已可复现，basic-stage evidence pack 已生成，mapping 0.85 gate 仍为 partial。
+> 当前分支：`codex/strengthen-topic5-final-gate`；当前状态：项目主链路已可复现，strengthen-stage evidence pack 已生成，最终综合门禁为 `conditional_pass`。
 > 历史需求、规格和实施计划保留当时语境；发生冲突时，以本文档、
 > [`README.md`](README.md) 和 [`../openapi.json`](../openapi.json) 为准。
 
@@ -25,8 +25,9 @@ Pop-Location
 - API：当前 basic-stage 验证 63 OpenAPI paths exported to [`../openapi.json`](../openapi.json)。
 - Regression gates：上一完整基线 8/8 passed。
 - Basic-stage 一键复现：`.\scripts\run_basic_stage_verification.ps1` 已生成 `docs/交接/evidence/basic_stage/`。
+- Strengthen-stage 一键复现：`.\scripts\run_strengthen_stage_verification.ps1` 已生成 `docs/交接/evidence/strengthen_stage/`。
 
-质量专项当前结论：仓库级验证与 evidence pack 可复现；mapping quality gate 未通过，失败报告已保留。
+质量专项当前结论：仓库级验证与 evidence pack 可复现；strengthen-stage mapping quality gate 已通过，final gate 为 `conditional_pass`。主要 partial 项为 review-required rate 超出 0.08 目标、Codex review 未声明 live subagent、content quality 未全面达标。
 
 ## 已实施能力
 
@@ -71,6 +72,16 @@ UIR -> Schema/Template Snapshot -> Candidate Extraction -> Mapping
   - policy_doc：20 docs，recall `0.8319444444`，strict pass 18/20。
 - 当前最大瓶颈转为 dev/test/blind assisted recall 不足和 source-name exact recall：required gaps 已清零，但 dev assisted recall `0.798`、test assisted recall `0.794`、blind assisted recall `0.826`，仍不能宣称 0.85 gate 通过。
 - 当前不能宣称 assisted recall 达到 0.85，也不能宣称生产盲测 0.85。
+
+### Strengthen-stage final gate
+
+- 50-sample non-procurement：auto mapping recall `0.812`，assisted mapping recall `0.861`。
+- Split assisted recall：dev `0.868`、test `0.868`、blind `0.884`。
+- Required missing 0，badcase violations 0，package verification 50/50，overfit scan pass。
+- Review-required 48，review-required rate `0.109`，高于 0.08 目标，需诚实说明。
+- DeepSeek live report-only：15 requests，unsafe_suggestion_count 0，secret leaks 0，LLM auto accepted 0。
+- Codex review dry-run：reviewed_items 48，applied_count 0，production_write_count 0，`can_claim_live_subagent_review = false`。
+- Final gate：`conditional_pass`，证据位于 `docs/交接/evidence/strengthen_stage/final/strengthen_stage_final_gate_result.md`。
 
 ### UIR Quality Gate、DeepSeek 与 Review Judge
 

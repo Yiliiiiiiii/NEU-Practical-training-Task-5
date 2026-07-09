@@ -1,0 +1,151 @@
+{
+  "case_count": 6,
+  "cases": [
+    {
+      "case_id": "missing_required",
+      "expected_path": "issuer",
+      "issues": [
+        {
+          "code": "missing_required",
+          "path": "issuer"
+        }
+      ],
+      "localized_paths": [
+        "issuer"
+      ],
+      "passed": true,
+      "payload": {
+        "doc_type": "notice",
+        "package": {
+          "manifest": {
+            "checksum": "abc"
+          }
+        },
+        "publish_date": "2025-01-16",
+        "title": "政策通知"
+      }
+    },
+    {
+      "case_id": "wrong_date_format",
+      "expected_path": "publish_date",
+      "issues": [
+        {
+          "code": "wrong_format",
+          "path": "publish_date"
+        }
+      ],
+      "localized_paths": [
+        "publish_date"
+      ],
+      "passed": true,
+      "payload": {
+        "doc_type": "notice",
+        "issuer": "国务院办公厅",
+        "package": {
+          "manifest": {
+            "checksum": "abc"
+          }
+        },
+        "publish_date": "2025年1月16日",
+        "title": "政策通知"
+      }
+    },
+    {
+      "case_id": "wrong_enum",
+      "expected_path": "doc_type",
+      "issues": [
+        {
+          "code": "wrong_enum",
+          "path": "doc_type"
+        }
+      ],
+      "localized_paths": [
+        "doc_type"
+      ],
+      "passed": true,
+      "payload": {
+        "doc_type": "unknown",
+        "issuer": "国务院办公厅",
+        "package": {
+          "manifest": {
+            "checksum": "abc"
+          }
+        },
+        "publish_date": "2025-01-16",
+        "title": "政策通知"
+      }
+    },
+    {
+      "case_id": "wrong_type",
+      "expected_path": "title",
+      "issues": [
+        {
+          "code": "wrong_type",
+          "path": "title"
+        }
+      ],
+      "localized_paths": [
+        "title"
+      ],
+      "passed": true,
+      "payload": {
+        "doc_type": "notice",
+        "issuer": "国务院办公厅",
+        "package": {
+          "manifest": {
+            "checksum": "abc"
+          }
+        },
+        "publish_date": "2025-01-16",
+        "title": 123
+      }
+    },
+    {
+      "case_id": "bad_nested_path",
+      "expected_path": "package.manifest.checksum",
+      "issues": [
+        {
+          "code": "bad_nested_path",
+          "path": "package.manifest.checksum"
+        }
+      ],
+      "localized_paths": [
+        "package.manifest.checksum"
+      ],
+      "passed": true,
+      "payload": {
+        "doc_type": "notice",
+        "issuer": "国务院办公厅",
+        "package": {
+          "manifest": {}
+        },
+        "publish_date": "2025-01-16",
+        "title": "政策通知"
+      }
+    },
+    {
+      "case_id": "invalid_package_artifact",
+      "expected_path": "package.manifest",
+      "issues": [
+        {
+          "code": "bad_nested_path",
+          "path": "package.manifest"
+        }
+      ],
+      "localized_paths": [
+        "package.manifest"
+      ],
+      "passed": true,
+      "payload": {
+        "doc_type": "notice",
+        "issuer": "国务院办公厅",
+        "package": {},
+        "publish_date": "2025-01-16",
+        "title": "政策通知"
+      }
+    }
+  ],
+  "generated_at": "2026-07-09T08:21:54.967764+00:00",
+  "localization_rate": 1.0,
+  "localized_count": 6
+}

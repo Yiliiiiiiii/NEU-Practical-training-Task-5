@@ -1,0 +1,232 @@
+{
+  "activate_rule_count": 0,
+  "avg_latency_ms": 2726.9179999999997,
+  "can_claim_live_model_capability": true,
+  "case_count": 15,
+  "errors": [],
+  "estimated_cost": 0.0,
+  "evaluation_scope": "live_report_only",
+  "generated_at": "2026-07-09T08:21:53.943684+00:00",
+  "honesty_note": "DeepSeek was invoked only for report-only suggestions; no suggestion was auto accepted or written to production rules.",
+  "live_request_count": 15,
+  "llm_auto_accepted_count": 0,
+  "llm_request_count": 15,
+  "mode": "report-only",
+  "provider": "deepseek",
+  "provider_configured": true,
+  "secret_leak_count": 0,
+  "suggestion_count": 15,
+  "suggestions": [
+    {
+      "case_id": "deepseek_case_001_real_policy_001_training_platform_rules_effective_date",
+      "confidence": 0.5,
+      "decision": "suggest_review",
+      "latency_ms": 2887.72,
+      "rationale": "The source '自印发之日起施行' indicates a relative effective date (upon issuance), which is ambiguous and requires human review to determine the actual date. The candidate source confidence is high but the value itself is relative, aligning with the known badcase 'relative_effective_date_requires_review'. Thus, the decision is 'suggest_review'.",
+      "risk_flags": [
+        "relative_effective_date_requires_review"
+      ],
+      "suggested_source_name": "自印发之日起施行",
+      "suggested_source_path": "$.blocks.real_policy_001_training_platform_rules_b045.text#effective_date",
+      "target_field": "effective_date"
+    },
+    {
+      "case_id": "deepseek_case_002_real_policy_002_equipment_renewal_valid_until",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2589.2,
+      "rationale": "The source '2012年6月30日前' is a clear deadline indicating the valid until date, matching the target field. However, known badcases include 'medium_risk_deadline_as_valid_until' and 'review_required', indicating potential ambiguity or contextual risks. The confidence is high but review is recommended due to the known issues.",
+      "risk_flags": [
+        "medium_risk_deadline_as_valid_until",
+        "review_required"
+      ],
+      "suggested_source_name": "2012年6月30日前",
+      "suggested_source_path": "$.blocks.real_policy_002_equipment_renewal_b028.text#valid_until",
+      "target_field": "valid_until"
+    },
+    {
+      "case_id": "deepseek_case_003_real_policy_005_ai_industry_guide_issuer",
+      "confidence": 0.3,
+      "decision": "suggest_review",
+      "latency_ms": 2733.5,
+      "rationale": "The source 'source_site' contains the website domain 'www.gov.cn', which is not a reliable issuer name. The alias match is weak, and known badcases include 'weak_source_site', indicating this source is not suitable for the issuer field.",
+      "risk_flags": [
+        "weak_source_site",
+        "review_required"
+      ],
+      "suggested_source_name": "source_site",
+      "suggested_source_path": "$.metadata.source_site#issuer",
+      "target_field": "issuer"
+    },
+    {
+      "case_id": "deepseek_case_004_real_meeting_001_changning_executive_minutes_organizer",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 3161.61,
+      "rationale": "The candidate source '刘平' is directly extracted from the document with high confidence. The source evidence indicates alias matched target organizer, and there are no conflicting flags or low-confidence indicators. However, due to known badcases 'medium_risk_chairperson_as_organizer' and 'review_required', a review is advised.",
+      "risk_flags": [
+        "medium_risk_chairperson_as_organizer",
+        "review_required"
+      ],
+      "suggested_source_name": "刘平",
+      "suggested_source_path": "$.blocks.real_meeting_001_changning_executive_minutes_b003.text#organizer",
+      "target_field": "organizer"
+    },
+    {
+      "case_id": "deepseek_case_005_real_meeting_002_shaxian_executive_minutes_organizer",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2648.78,
+      "rationale": "Candidate source '吴晓峰' has high confidence (0.96) and matches target field via alias. Known badcase 'review_required' is present, prompting review decision, but no direct risk from chairperson as organizer is observed.",
+      "risk_flags": [
+        "review_required"
+      ],
+      "suggested_source_name": "吴晓峰",
+      "suggested_source_path": "$.blocks.real_meeting_002_shaxian_executive_minutes_b001.text#organizer",
+      "target_field": "organizer"
+    },
+    {
+      "case_id": "deepseek_case_006_real_meeting_003_miluo_executive_minutes_organizer",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2300.79,
+      "rationale": "Source clearly names '林恒求' as the organizer with high confidence. However, risk flags indicate potential chairperson misidentification and require review.",
+      "risk_flags": [
+        "medium_risk_chairperson_as_organizer",
+        "review_required"
+      ],
+      "suggested_source_name": "林恒求",
+      "suggested_source_path": "$.blocks.real_meeting_003_miluo_executive_minutes_b003.text#organizer",
+      "target_field": "organizer"
+    },
+    {
+      "case_id": "deepseek_case_007_real_general_001_notary_service_guide_category",
+      "confidence": 0.92,
+      "decision": "suggest_review",
+      "latency_ms": 2405.58,
+      "rationale": "The source name '办理事项及证明材料清单' contains '办理事项' which is an alias of 'category' in the context of service items. However, due to known risks of schema overload and the need for review, confidence is slightly reduced.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "办理事项及证明材料清单",
+      "suggested_source_path": "$.blocks.real_general_001_notary_service_guide_b004.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "case_id": "deepseek_case_008_real_general_002_biomed_project_guide_category",
+      "confidence": 0.4,
+      "decision": "suggest_review",
+      "latency_ms": 3285.49,
+      "rationale": "The source contains funding amounts for clinical trial phases, which is about categories of clinical trials. However, 'category' in the target schema likely refers to research category or project category (e.g., basic research, applied research), not trial phases. The alias match is weak. Known badcase 'medium_risk_schema_overload' suggests possible schema mismatch, and 'review_required' indicates caution. Source evidence 'alias matched target category' is not sufficient. Recommend review to confirm appropriateness.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "经费额度",
+      "suggested_source_path": "$.blocks.real_general_002_biomed_project_guide_b010.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "case_id": "deepseek_case_009_real_general_003_textile_application_flow_category",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2321.08,
+      "rationale": "The candidate source matches the target field 'category' via alias and has high confidence. However, due to known badcases (medium_risk_schema_overload, review_required), manual review is advised.",
+      "risk_flags": [
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "申报流程说明",
+      "suggested_source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+      "target_field": "category"
+    },
+    {
+      "case_id": "deepseek_case_010_real_general_003_textile_application_flow_process_steps",
+      "confidence": 0.62,
+      "decision": "suggest_reject",
+      "latency_ms": 3247.34,
+      "rationale": "The source text '建设推广工作网上申报流程说明' does not contain specific process steps; it is a general title. Fuzzy match score is 0.80, but the content is not actionable steps. Risk flags include fuzzy_match, low_confidence, medium_risk_schema_overload, and review_required. The candidate does not provide clear process steps for textile application flow.",
+      "risk_flags": [
+        "fuzzy_match",
+        "low_confidence",
+        "medium_risk_schema_overload",
+        "review_required"
+      ],
+      "suggested_source_name": "申报流程说明",
+      "suggested_source_path": "$.blocks.real_general_003_textile_application_flow_b004.text#category_review",
+      "target_field": "process_steps"
+    },
+    {
+      "case_id": "deepseek_case_011_real_policy_007_one_thing_list_document_number",
+      "confidence": 0.7075,
+      "decision": "suggest_review",
+      "latency_ms": 2971.52,
+      "rationale": "The source provides the document number exactly as the target field expects. The value '国办函〔2025〕3号' is a standard format for Chinese government document numbers and matches no transformation needed. However, as a one_thing_list policy document, there is a known risk of concatenated document numbers which could introduce errors. The confidence is moderate and the source is direct.",
+      "risk_flags": [
+        "medium_risk_concatenated_document_number",
+        "review_required"
+      ],
+      "suggested_source_name": "国办函〔2025〕3号",
+      "suggested_source_path": "$.blocks.real_policy_007_one_thing_list_b003.text",
+      "target_field": "document_number"
+    },
+    {
+      "case_id": "deepseek_case_012_real_policy_008_sme_leader_training_valid_until",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2680.96,
+      "rationale": "The source '6月9日前' matches the target field 'valid_until' and has high confidence. However, the case includes known badcases 'medium_risk_deadline_as_valid_until' and 'review_required', indicating that this value may be a deadline rather than a validity date, requiring manual review.",
+      "risk_flags": [
+        "medium_risk_deadline_as_valid_until",
+        "review_required"
+      ],
+      "suggested_source_name": "6月9日前",
+      "suggested_source_path": "$.blocks.real_policy_008_sme_leader_training_b020.text#valid_until",
+      "target_field": "valid_until"
+    },
+    {
+      "case_id": "deepseek_case_013_real_policy_009_network_safety_work_valid_until",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2680.59,
+      "rationale": "The source matches the target field 'valid_until' through alias and provides a clear deadline. However, the case is flagged with 'medium_risk_deadline_as_valid_until' and 'review_required', indicating potential issues such as the source being a medium-risk deadline expression or needing human review. Therefore, while the source is valid, due to the risk flags, review is suggested.",
+      "risk_flags": [
+        "medium_risk_deadline_as_valid_until",
+        "review_required"
+      ],
+      "suggested_source_name": "2025年12月15日前",
+      "suggested_source_path": "$.blocks.real_policy_009_network_safety_work_b030.text#valid_until",
+      "target_field": "valid_until"
+    },
+    {
+      "case_id": "deepseek_case_014_real_meeting_004_shandan_2025_11_minutes_organizer",
+      "confidence": 0.96,
+      "decision": "suggest_review",
+      "latency_ms": 2596.12,
+      "rationale": "The source value '黄国杰' is extracted via alias matching for the organizer field, with high confidence (0.96). No contradictory evidence identified. However, known badcases 'medium_risk_chairperson_as_organizer' and 'review_required' suggest caution; the alias could indicate a different role misinterpreted as organizer.",
+      "risk_flags": [
+        "medium_risk_chairperson_as_organizer",
+        "review_required"
+      ],
+      "suggested_source_name": "黄国杰",
+      "suggested_source_path": "$.blocks.real_meeting_004_shandan_2025_11_minutes_b014.text#organizer",
+      "target_field": "organizer"
+    },
+    {
+      "case_id": "deepseek_case_015_real_meeting_005_miluo_2026_minutes_organizer",
+      "confidence": 0.96,
+      "decision": "suggest_accept",
+      "latency_ms": 2393.49,
+      "rationale": "The source value '汨罗市人民政府办公室' matches the expected organizer name from alias matching evidence, with high confidence. No risk flags triggered beyond known badcases which are noted but not overriding.",
+      "risk_flags": [],
+      "suggested_source_name": "汨罗市人民政府办公室",
+      "suggested_source_path": "$.blocks.real_meeting_005_miluo_2026_minutes_b002.text#organizer",
+      "target_field": "organizer"
+    }
+  ],
+  "top1_hit_rate": 1.0,
+  "top3_hit_rate": 1.0,
+  "unsafe_suggestion_count": 0,
+  "write_template_count": 0
+}

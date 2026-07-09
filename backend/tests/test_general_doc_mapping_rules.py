@@ -148,6 +148,22 @@ def test_general_deadline_from_explicit_deadline_label() -> None:
     assert mappings["deadline"]["status"] == "accepted"
 
 
+def test_general_addressee_line_can_seed_service_object() -> None:
+    _, _, report = map_general(
+        general_uir(
+            {
+                "title": "项目申报指南",
+                "content": "申报说明。",
+            },
+            block_text="各有关单位：",
+        )
+    )
+    mappings = {item["target_field_id"]: item for item in report.mappings}
+
+    assert mappings["service_object"]["source_field_name"] == "各有关单位"
+    assert mappings["service_object"]["status"] == "accepted"
+
+
 def test_general_deadline_from_before_date_sentence() -> None:
     _, _, report = map_general(
         general_uir(

@@ -1,0 +1,86 @@
+{
+  "content_quality_gate": "partial",
+  "doc_consistency_gate": "partial",
+  "final_conclusion": "conditional_pass",
+  "generated_at": "2026-07-09T08:21:55.148423+00:00",
+  "key_metrics": {
+    "content_tag_metrics": {
+      "content_tag_f1": 0.9,
+      "content_tag_precision": 0.8583,
+      "content_tag_recall": 1.0,
+      "management_tag_f1": 0.5474,
+      "management_tag_precision": 0.3783,
+      "management_tag_recall": 1.0,
+      "quality_tag_f1": 0.5607,
+      "quality_tag_precision": 0.39,
+      "quality_tag_recall": 1.0,
+      "tag_coverage": 1.0,
+      "unknown_tag_count": 0
+    },
+    "llm_request_count": 15,
+    "mapping_splits": [
+      {
+        "assisted_mapping_recall": 0.868421052631579,
+        "auto_mapping_recall": 0.7719298245614035,
+        "badcase_violations": 0,
+        "docs": 18,
+        "missing_gold_mappings": 7,
+        "package_pass_rate": 1.0,
+        "required_missing": 0,
+        "review_required_rate": 0.11409395973154363,
+        "split": "dev"
+      },
+      {
+        "assisted_mapping_recall": 0.8676470588235294,
+        "auto_mapping_recall": 0.8529411764705882,
+        "badcase_violations": 0,
+        "docs": 9,
+        "missing_gold_mappings": 1,
+        "package_pass_rate": 1.0,
+        "required_missing": 0,
+        "review_required_rate": 0.0963855421686747,
+        "split": "test"
+      },
+      {
+        "assisted_mapping_recall": 0.8840579710144928,
+        "auto_mapping_recall": 0.8405797101449275,
+        "badcase_violations": 0,
+        "docs": 8,
+        "missing_gold_mappings": 3,
+        "package_pass_rate": 1.0,
+        "required_missing": 0,
+        "review_required_rate": 0.10526315789473684,
+        "split": "blind"
+      }
+    ],
+    "reviewed_items": 48,
+    "summary_metrics": {
+      "changed_table_number_count": 0,
+      "empty_summary_count": 0,
+      "failed": 2,
+      "failed_count": 2,
+      "faithfulness_pass_rate": 0.9,
+      "must_include_hit_rate": 0.95,
+      "must_not_include_violation_count": 0,
+      "new_amount_violation": 0,
+      "new_amount_violation_count": 0,
+      "new_date_violation": 0,
+      "new_date_violation_count": 0,
+      "new_org_violation": 0,
+      "new_org_violation_count": 0,
+      "overlong_summary_count": 1,
+      "pass_rate": 0.9,
+      "passed": 18,
+      "passed_count": 18
+    }
+  },
+  "llm_gate": "pass",
+  "mapping_gate": "pass",
+  "notes": [
+    "mapping recall passed, but review_required_rate is above the 0.08 target in at least one split."
+  ],
+  "operation_schema_gate": "pass",
+  "overfit_gate": "pass",
+  "package_gate": "pass",
+  "review_subagent_gate": "partial"
+}

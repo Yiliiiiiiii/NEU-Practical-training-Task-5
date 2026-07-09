@@ -1,0 +1,17 @@
+{
+  "checksum_pass_rate": 1.0,
+  "chunk_to_source_link_coverage": 1.0,
+  "document_count": 50,
+  "downstream_csv_parse_pass": 1.0,
+  "downstream_rag_jsonl_parse_pass": 1.0,
+  "downstream_training_jsonl_parse_pass": 1.0,
+  "field_to_source_link_coverage": 1.0,
+  "generated_at": "2026-07-09T08:21:54.771018+00:00",
+  "json_markdown_core_field_consistency": 1.0,
+  "json_parse_pass_rate": 1.0,
+  "manifest_exists_rate": 1.0,
+  "markdown_exists_rate": 1.0,
+  "note": "Package verification proves structure, hashes, artifacts, parseability and traceability; semantic field quality is covered by mapping and review reports.",
+  "package_verify_pass_count": 50,
+  "package_verify_pass_rate": 1.0
+}
