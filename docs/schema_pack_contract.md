@@ -44,6 +44,23 @@ The assertion report is a task artifact by default. When explicitly enabled, `re
 
 The Phase 3 gate verifies Package 1.1 in both forms: one example without the optional assertion report and one with a `required=false`, `conversion_assertion_report`, `application/json` manifest entry.
 
+## Hard-Gap Batch 1 Configuration
+
+`metadata_template.json` is operational configuration, not descriptive metadata. Fields
+use strict types and safe source roots only. `content_org.yaml` may configure audited
+content-tag predicates, whitelisted management metadata, built-in local quality facts,
+document-summary behavior, and `internal` or `topic11` chunk providers. Unknown keys and
+malformed rules are rejected by the strict models.
+
+Transform rules execute a fixed allowlist: rename, merge, split, trim, date/datetime
+normalization, enum mapping, and defaults. Source access is limited to safe UIR metadata
+paths and exact block text paths. Python expressions, wildcards, environment lookups, and
+credential paths are not executable.
+
+The announcement and event-notice example packs are golden fixtures for metadata effects,
+configured tags, local quality tags, extractive summaries, entity passthrough, Markdown
+anchors, artifact consistency, and final manifest verification.
+
 ## Scope Boundary
 
 Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.

@@ -308,6 +308,27 @@ Phase 3 adds strict `schema_pack.yaml` manifests, manifest-only asset loading, o
 
 Output assertions are optional. Existing Package 1.1 deliverables and legacy Topic 5 requests remain supported.
 
+## Topic 5 Hard-Gap Batch 1
+
+Topic 5 now applies strict metadata templates, SchemaPack-owned three-level tag rules,
+upstream entity passthrough, deterministic extractive document summaries, a replaceable
+Topic 11 chunk-provider contract, and canonical JSON/Markdown/chunk consistency checks.
+New feature-aware packages include checksummed metadata and consistency reports while
+legacy requests and Package 1.1 packages remain supported.
+
+The fixed evidence sets contain 110 field-operation cases and 40 exact schema issue
+localization cases. Reproduce the acceptance evidence with:
+
+```powershell
+backend\.venv\Scripts\python.exe scripts\eval_topic5_field_operations.py
+backend\.venv\Scripts\python.exe scripts\eval_topic5_schema_localization.py
+backend\.venv\Scripts\python.exe scripts\check_topic5_hard_gap_batch_1_gate.py
+```
+
+The gate is scoped to deterministic Topic 5 conversion and traceability. It does not
+claim raw-file parsing, OCR, embedding/RAG, Topic 6 quality scoring, or production
+shadow/blind semantic recall.
+
 Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.
 
 Phase 3 explicitly adds no quality score, no quality grade, no publication route, no semantic fidelity judgment, no LLM-as-Judge, and no Topic 11 retrieval optimization.

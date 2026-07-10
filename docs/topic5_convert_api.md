@@ -71,6 +71,10 @@ manifest
 package_zip_path
 package_metadata
 verifier_report
+document_metadata
+metadata_template_report
+document_summary
+artifact_consistency_report
 ```
 
 `mapping_report.summary.mapping_input_name` records whether the accepted request used `mapping_rules` or legacy `mapping_template`.
@@ -88,11 +92,31 @@ review_required:
   At least one mapping requires human review.
   Or at least one required target field is unmapped.
   Or validation did not pass.
+  Or metadata rendering, summary faithfulness, or cross-artifact consistency requires review.
 
 failed:
   Package verifier failed.
   Or unrecoverable conversion error occurred.
 ```
+
+## 5.1 Hard-Gap Batch 1 Contracts
+
+`metadata_template` resolves safe values from `uir.metadata.*`,
+`transformed_fields.*`, whitelisted `system.*` values, or configured defaults. It
+does not execute expressions or arbitrary JSONPath. Exact field traces are returned
+in `metadata_template_report`.
+
+`content_organization` owns configured content, management, and quality tag rules;
+deterministic document-summary settings; and chunk provider selection. The default
+provider is offline `internal`. `topic11` uses the versioned request/response contracts
+under `contracts/schemas/` and may fall back to internal chunking unless strict provider
+behavior is requested.
+
+Markdown uses `topic5:*` comment markers for document, structured-data, summary, and
+canonical block envelopes. `artifact_consistency_report` verifies JSON fields, document
+metadata, Markdown data/block order/hashes/content, summary, chunk sources, parent links,
+and entity relevance. A failed report makes conversion `review_required`; a package that
+declares the feature cannot pass verification with a missing, malformed, or failed report.
 
 ## 6. Runtime Non-goals
 

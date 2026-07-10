@@ -28,6 +28,14 @@ def test_task_execution_writes_lineage_reports_by_default(execution_client) -> N
     assert graph["nodes"]
     assert summary["node_count"] == len(graph["nodes"])
     assert summary["source_mode"] == "standard_uir"
+    for metric in (
+        "metadata_source_coverage",
+        "summary_source_coverage",
+        "tag_trace_coverage",
+        "entity_source_coverage",
+        "markdown_block_coverage",
+    ):
+        assert summary[metric] == 1.0
 
 
 def test_task_execution_can_disable_lineage(execution_client) -> None:

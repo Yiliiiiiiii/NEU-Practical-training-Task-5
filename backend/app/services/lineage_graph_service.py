@@ -596,6 +596,168 @@ class LineageGraphService:
                     and mapping_node.status == "accepted"
                 ):
                     self._add_edge(mapping_node.node_id, node_id, "converted_to")
+            structured_node_id = self._node_id("structured_field", field_name)
+            self._add_node(
+                LineageNode(
+                    node_id=structured_node_id,
+                    node_type="structured_field",
+                    label=f"content.json data.{self._safe_text(field_name)}",
+                    status="accepted",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    field_name=field_name,
+                    artifact_path="content.json",
+                    metadata={"path": f"data.{field_name}"},
+                )
+            )
+            self._add_edge(node_id, structured_node_id, "rendered_as")
+
+        self._add_metadata_lineage(canonical)
+        self._add_summary_lineage(canonical)
+        self._add_entity_sources(canonical)
+        for block in canonical.blocks:
+            node_id = self._node_id("markdown_block", block.block_id)
+            self._add_node(
+                LineageNode(
+                    node_id=node_id,
+                    node_type="markdown_block",
+                    label=f"Markdown block {self._safe_text(block.block_id)}",
+                    status="accepted",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    block_id=block.block_id,
+                    artifact_path="content.md",
+                    metadata=self._safe_metadata(
+                        {"text_hash": block.text_hash, "type": block.type}
+                    ),
+                )
+            )
+            for source_id in block.source_blocks or [block.block_id]:
+                source_node_id = self._node_id("uir_block", source_id)
+                if source_node_id in self._nodes:
+                    self._add_edge(source_node_id, node_id, "rendered_as")
+
+    def _add_metadata_lineage(self, canonical: CanonicalModel) -> None:
+        report = canonical.doc_meta.get("metadata_template_report", {})
+        traces = report.get("field_traces", []) if isinstance(report, dict) else []
+        if not isinstance(traces, list):
+            return
+        for trace in traces:
+            if not isinstance(trace, dict) or not trace.get("field_id"):
+                continue
+            field_id = str(trace["field_id"])
+            field_node_id = self._node_id("metadata_field", field_id)
+            self._add_node(
+                LineageNode(
+                    node_id=field_node_id,
+                    node_type="metadata_field",
+                    label=f"document_metadata.{self._safe_text(field_id)}",
+                    status="accepted" if trace.get("resolved") else "review_required",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    field_name=field_id,
+                    metadata=self._safe_metadata(trace),
+                )
+            )
+            source = trace.get("source", {})
+            source = source if isinstance(source, dict) else {}
+            source_key = str(source.get("path") or source.get("kind") or "missing")
+            source_node_id = self._node_id(
+                "metadata_source", f"{field_id}:{source_key}"
+            )
+            self._add_node(
+                LineageNode(
+                    node_id=source_node_id,
+                    node_type="metadata_source",
+                    label=self._safe_text(source_key),
+                    status="informational",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    metadata=self._safe_metadata(source),
+                )
+            )
+            evidence_id = self._evidence_id("metadata", field_id)
+            self._add_evidence(
+                LineageEvidence(
+                    evidence_id=evidence_id,
+                    evidence_type="source_path",
+                    path=self._optional_safe_text(source.get("path")),
+                    metadata=self._safe_metadata(trace),
+                )
+            )
+            self._add_edge(
+                source_node_id,
+                field_node_id,
+                "derived_from",
+                evidence_ids=[evidence_id],
+            )
+
+    def _add_summary_lineage(self, canonical: CanonicalModel) -> None:
+        summary = canonical.doc_meta.get("document_summary", {})
+        traces = summary.get("sentence_traces", []) if isinstance(summary, dict) else []
+        if not isinstance(traces, list):
+            return
+        for index, trace in enumerate(traces):
+            if not isinstance(trace, dict):
+                continue
+            node_id = self._node_id("summary_sentence", str(index))
+            self._add_node(
+                LineageNode(
+                    node_id=node_id,
+                    node_type="summary_sentence",
+                    label=self._preview(trace.get("summary_sentence")),
+                    status="accepted",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    block_id=self._optional_text(trace.get("source_block_id")),
+                    metadata=self._safe_metadata(trace),
+                )
+            )
+            block_id = trace.get("source_block_id")
+            block_node_id = self._node_id("uir_block", str(block_id))
+            if block_id and block_node_id in self._nodes:
+                evidence_id = self._evidence_id("summary", str(index))
+                self._add_evidence(
+                    LineageEvidence(
+                        evidence_id=evidence_id,
+                        evidence_type="source_text",
+                        text=self._optional_safe_text(trace.get("source_text_span")),
+                        block_id=str(block_id),
+                    )
+                )
+                self._add_edge(
+                    block_node_id,
+                    node_id,
+                    "derived_from",
+                    evidence_ids=[evidence_id],
+                )
+
+    def _add_entity_sources(self, canonical: CanonicalModel) -> None:
+        entities = canonical.doc_meta.get("entities", [])
+        if not isinstance(entities, list):
+            return
+        for index, entity in enumerate(entities):
+            if not isinstance(entity, dict):
+                continue
+            identity = str(
+                entity.get("normalized_id") or entity.get("mention") or f"entity-{index}"
+            )
+            node_id = self._node_id("upstream_entity", identity)
+            self._add_node(
+                LineageNode(
+                    node_id=node_id,
+                    node_type="upstream_entity",
+                    label=self._safe_text(entity.get("mention") or identity),
+                    status="accepted",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    metadata=self._safe_metadata(entity),
+                )
+            )
+            for block_id in self._string_list(entity.get("source_block_ids")):
+                block_node_id = self._node_id("uir_block", block_id)
+                if block_node_id in self._nodes:
+                    self._add_edge(block_node_id, node_id, "derived_from")
 
     def _add_chunks(self, chunks: Sequence[dict[str, Any]]) -> None:
         for index, chunk in enumerate(chunks):
@@ -629,6 +791,90 @@ class LineageGraphService:
                 block_node_id = self._node_id("uir_block", block_id)
                 if block_node_id in self._nodes:
                     self._add_edge(block_node_id, node_id, "derived_from")
+            self._add_chunk_tag_lineage(chunk, chunk_id, node_id)
+            self._add_chunk_entity_lineage(chunk, chunk_id, node_id)
+
+    def _add_chunk_tag_lineage(
+        self, chunk: Mapping[str, Any], chunk_id: str, chunk_node_id: str
+    ) -> None:
+        organization_trace = chunk.get("organization_trace", {})
+        traces = (
+            organization_trace.get("tag_traces", [])
+            if isinstance(organization_trace, Mapping)
+            else []
+        )
+        if not isinstance(traces, list):
+            return
+        for index, trace in enumerate(traces):
+            if not isinstance(trace, Mapping):
+                continue
+            node_id = self._node_id("tag_trace", f"{chunk_id}:{index}")
+            self._add_node(
+                LineageNode(
+                    node_id=node_id,
+                    node_type="tag_trace",
+                    label=self._safe_text(trace.get("tag") or f"tag-{index}"),
+                    status="accepted",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    chunk_id=chunk_id,
+                    metadata=self._safe_metadata(trace),
+                )
+            )
+            evidence_id = self._evidence_id("tag", f"{chunk_id}:{index}")
+            self._add_evidence(
+                LineageEvidence(
+                    evidence_id=evidence_id,
+                    evidence_type="contract_check",
+                    text=self._optional_safe_text(trace.get("evidence")),
+                    metadata=self._safe_metadata(
+                        {
+                            "rule_id": trace.get("rule_id"),
+                            "scope": trace.get("scope"),
+                        }
+                    ),
+                )
+            )
+            self._add_edge(
+                node_id,
+                chunk_node_id,
+                "influenced_by",
+                evidence_ids=[evidence_id],
+            )
+            for block_id in self._string_list(trace.get("source_block_ids")):
+                block_node_id = self._node_id("uir_block", block_id)
+                if block_node_id in self._nodes:
+                    self._add_edge(block_node_id, node_id, "derived_from")
+
+    def _add_chunk_entity_lineage(
+        self, chunk: Mapping[str, Any], chunk_id: str, chunk_node_id: str
+    ) -> None:
+        entity_tags = chunk.get("entity_tags", [])
+        if not isinstance(entity_tags, list):
+            return
+        for index, tag in enumerate(entity_tags):
+            if not isinstance(tag, Mapping):
+                continue
+            identity = str(
+                tag.get("normalized_id") or tag.get("mention") or f"entity-{index}"
+            )
+            node_id = self._node_id("entity_tag", f"{chunk_id}:{index}")
+            self._add_node(
+                LineageNode(
+                    node_id=node_id,
+                    node_type="entity_tag",
+                    label=self._safe_text(tag.get("mention") or identity),
+                    status="accepted",
+                    task_id=self._task_id,
+                    doc_id=self._doc_id,
+                    chunk_id=chunk_id,
+                    metadata=self._safe_metadata(tag),
+                )
+            )
+            source_node_id = self._node_id("upstream_entity", identity)
+            if source_node_id in self._nodes:
+                self._add_edge(source_node_id, node_id, "derived_from")
+            self._add_edge(node_id, chunk_node_id, "influenced_by")
 
     def _add_manifest(self, manifest: Manifest) -> None:
         contract_node_id = self._node_id("consumer_contract", "package-1.1")
@@ -728,6 +974,17 @@ class LineageGraphService:
                     node
                     for node in self._nodes.values()
                     if node.node_type == "uir_block"
+                )
+                sources.extend(
+                    node
+                    for node in self._nodes.values()
+                    if node.node_type in {"markdown_block", "summary_sentence"}
+                )
+            if path == "content.json":
+                sources.extend(
+                    node
+                    for node in self._nodes.values()
+                    if node.node_type in {"structured_field", "metadata_field"}
                 )
         else:
             sources = []
@@ -856,6 +1113,23 @@ class LineageGraphService:
         artifact_coverage = (
             len(traced_artifacts) / artifact_count if artifact_count else 1.0
         )
+        extended_coverage = {
+            "metadata_source_coverage": self._node_source_coverage(
+                nodes, edges, "metadata_field", {"metadata_source"}
+            ),
+            "summary_source_coverage": self._node_source_coverage(
+                nodes, edges, "summary_sentence", {"uir_block"}
+            ),
+            "tag_trace_coverage": self._node_source_coverage(
+                nodes, edges, "tag_trace", {"uir_block"}, allow_unlinked=True
+            ),
+            "entity_source_coverage": self._node_source_coverage(
+                nodes, edges, "entity_tag", {"upstream_entity"}
+            ),
+            "markdown_block_coverage": self._node_source_coverage(
+                nodes, edges, "markdown_block", {"uir_block"}
+            ),
+        }
         return {
             "node_count": len(nodes),
             "edge_count": len(edges),
@@ -883,8 +1157,35 @@ class LineageGraphService:
                 (field_coverage + chunk_coverage + artifact_coverage) / 3,
                 4,
             ),
+            **extended_coverage,
             "source_mode": source_mode,
         }
+
+    @staticmethod
+    def _node_source_coverage(
+        nodes: Sequence[LineageNode],
+        edges: Sequence[LineageEdge],
+        target_type: str,
+        source_types: set[str],
+        *,
+        allow_unlinked: bool = False,
+    ) -> float:
+        targets = {node.node_id for node in nodes if node.node_type == target_type}
+        if not targets:
+            return 1.0
+        sources = {node.node_id for node in nodes if node.node_type in source_types}
+        traced = {
+            edge.target_node_id
+            for edge in edges
+            if edge.target_node_id in targets and edge.source_node_id in sources
+        }
+        if allow_unlinked:
+            traced.update(
+                edge.source_node_id
+                for edge in edges
+                if edge.source_node_id in targets and edge.edge_type == "influenced_by"
+            )
+        return round(len(traced) / len(targets), 4)
 
     def _add_node(self, node: LineageNode) -> None:
         self._nodes.setdefault(node.node_id, node)

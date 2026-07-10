@@ -151,6 +151,8 @@ Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/m
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/validation"
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/content-organization"
 Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/chunks"
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/metadata-template"
+Invoke-RestMethod "http://127.0.0.1:8000/api/v1/tasks/$($task.task_id)/reports/artifact-consistency"
 ```
 
 Package metadata and download:
@@ -164,7 +166,9 @@ Invoke-WebRequest `
 ```
 
 The ZIP contains `metadata.json`, `manifest.json`, `content.json`,
-`content.md`, `chunks.jsonl`, task reports, and verifier output. See
+`content.md`, `chunks.jsonl`, task reports, `artifact_consistency_report.json`,
+and verifier output. Feature-aware packages list `verifier_report.json` and every
+declared report in the final manifest. See
 [`docs/package_spec.md`](package_spec.md) for required roles, media types, and
 strict verification rules.
 

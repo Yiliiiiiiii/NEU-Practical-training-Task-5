@@ -1,6 +1,6 @@
 import json
 
-from app.schemas.canonical import CanonicalField, CanonicalModel
+from app.schemas.canonical import CanonicalBlock, CanonicalField, CanonicalModel
 from app.schemas.mapping import FieldCandidate
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.package import Manifest, ManifestFile
@@ -147,6 +147,36 @@ def build_graph():
         task_id="task_1",
         doc_id="doc_1",
         schema_id="policy_doc",
+        doc_meta={
+            "metadata_template_report": {
+                "field_traces": [
+                    {
+                        "field_id": "language",
+                        "path": "document_metadata.language",
+                        "source": {"kind": "default", "path": None},
+                        "resolved": True,
+                        "default_used": True,
+                        "value_type": "string",
+                    }
+                ]
+            },
+            "document_summary": {
+                "sentence_traces": [
+                    {
+                        "summary_sentence": "Summary",
+                        "source_block_id": "b1",
+                        "source_text_span": "Summary",
+                    }
+                ]
+            },
+            "entities": [
+                {
+                    "mention": "OpenAI",
+                    "normalized_id": "org:openai",
+                    "source_block_ids": ["b1"],
+                }
+            ],
+        },
         fields={
             "title": CanonicalField(
                 value="可信转换",
@@ -155,6 +185,15 @@ def build_graph():
                 source_blocks=["b1"],
             )
         },
+        blocks=[
+            CanonicalBlock(
+                block_id="b1",
+                type="paragraph",
+                text="Summary",
+                source_blocks=["b1"],
+                text_hash="sha256:fixture",
+            )
+        ],
     )
     manifest = Manifest(
         manifest_version="1.1",
@@ -171,6 +210,14 @@ def build_graph():
                 sha256="a" * 64,
                 bytes=100,
                 role="structured_json",
+            ),
+            ManifestFile(
+                path="content.md",
+                required=True,
+                media_type="text/markdown",
+                sha256="c" * 64,
+                bytes=150,
+                role="markdown",
             ),
             ManifestFile(
                 path="chunks.jsonl",
@@ -207,6 +254,24 @@ def build_graph():
                 "summary": "摘要",
                 "keywords": ["可信"],
                 "tags": {"quality": "high"},
+                "organization_trace": {
+                    "tag_traces": [
+                        {
+                            "tag": "policy",
+                            "rule_id": "content:policy",
+                            "scope": "chunk",
+                            "evidence": "configured rule",
+                            "source_block_ids": ["b1"],
+                        }
+                    ]
+                },
+                "entity_tags": [
+                    {
+                        "mention": "OpenAI",
+                        "normalized_id": "org:openai",
+                        "source_block_ids": ["b1"],
+                    }
+                ],
             }
         ],
         manifest=manifest,
@@ -355,6 +420,45 @@ def test_chunk_links_source_block_and_artifact() -> None:
     assert any(
         edge.source_node_id == "lineage:uir_block:b1"
         and edge.target_node_id == "lineage:chunk:chunk_1"
+        for edge in graph.edges
+    )
+
+
+def test_extended_topic5_lineage_nodes_have_source_coverage() -> None:
+    graph = build_graph()
+    node_types = {node.node_type for node in graph.nodes}
+
+    assert {
+        "metadata_source",
+        "metadata_field",
+        "summary_sentence",
+        "tag_trace",
+        "upstream_entity",
+        "entity_tag",
+        "markdown_block",
+        "structured_field",
+    }.issubset(node_types)
+    for metric in (
+        "metadata_source_coverage",
+        "summary_source_coverage",
+        "tag_trace_coverage",
+        "entity_source_coverage",
+        "markdown_block_coverage",
+    ):
+        assert graph.summary[metric] == 1.0
+
+
+def test_extended_nodes_link_to_rendered_artifacts() -> None:
+    graph = build_graph()
+
+    assert any(
+        edge.source_node_id == "lineage:structured_field:title"
+        and edge.target_node_id == "lineage:rendered_artifact:content.json"
+        for edge in graph.edges
+    )
+    assert any(
+        edge.source_node_id == "lineage:markdown_block:b1"
+        and edge.target_node_id == "lineage:rendered_artifact:content.md"
         for edge in graph.edges
     )
     assert any(

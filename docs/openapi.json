@@ -662,16 +662,42 @@
         "properties": {
           "chunk_strategy": {
             "default": "source_block_aware",
+            "enum": [
+              "fixed_window",
+              "heading_aware",
+              "source_block_aware",
+              "table_protect",
+              "parent_child"
+            ],
             "title": "Chunk Strategy",
             "type": "string"
+          },
+          "enable_legacy_entity_inference": {
+            "default": false,
+            "title": "Enable Legacy Entity Inference",
+            "type": "boolean"
+          },
+          "enable_light_semantic_boundary": {
+            "default": true,
+            "title": "Enable Light Semantic Boundary",
+            "type": "boolean"
           },
           "enable_parent_child": {
             "default": false,
             "title": "Enable Parent Child",
             "type": "boolean"
           },
+          "fallback_to_internal": {
+            "default": true,
+            "title": "Fallback To Internal",
+            "type": "boolean"
+          },
           "keyword_mode": {
             "default": "deterministic",
+            "enum": [
+              "none",
+              "deterministic"
+            ],
             "title": "Keyword Mode",
             "type": "string"
           },
@@ -705,10 +731,34 @@
             "title": "Protect Tables",
             "type": "boolean"
           },
+          "provider": {
+            "default": "internal",
+            "enum": [
+              "internal",
+              "topic11"
+            ],
+            "title": "Provider",
+            "type": "string"
+          },
+          "strict_provider": {
+            "default": false,
+            "title": "Strict Provider",
+            "type": "boolean"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/SummaryConfig"
+          },
           "summary_mode": {
             "default": "deterministic",
+            "enum": [
+              "none",
+              "deterministic"
+            ],
             "title": "Summary Mode",
             "type": "string"
+          },
+          "tag_rules": {
+            "$ref": "#/components/schemas/TagRules"
           },
           "target_tokens": {
             "default": 1200,
@@ -717,6 +767,93 @@
           }
         },
         "title": "ContentOrganizationConfig",
+        "type": "object"
+      },
+      "ContentTagRule": {
+        "additionalProperties": false,
+        "properties": {
+          "all_terms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "All Terms",
+            "type": "array"
+          },
+          "any_terms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Any Terms",
+            "type": "array"
+          },
+          "block_types": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Block Types",
+            "type": "array"
+          },
+          "case_sensitive": {
+            "default": false,
+            "title": "Case Sensitive",
+            "type": "boolean"
+          },
+          "none_terms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "None Terms",
+            "type": "array"
+          },
+          "rule_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rule Id"
+          },
+          "tag": {
+            "minLength": 1,
+            "title": "Tag",
+            "type": "string"
+          },
+          "title_terms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Title Terms",
+            "type": "array"
+          }
+        },
+        "required": [
+          "tag"
+        ],
+        "title": "ContentTagRule",
+        "type": "object"
+      },
+      "ContentTagRules": {
+        "additionalProperties": false,
+        "properties": {
+          "base_tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Base Tags",
+            "type": "array"
+          },
+          "rules": {
+            "items": {
+              "$ref": "#/components/schemas/ContentTagRule"
+            },
+            "title": "Rules",
+            "type": "array"
+          }
+        },
+        "title": "ContentTagRules",
         "type": "object"
       },
       "ConversionAssertionConfig": {
@@ -2822,6 +2959,14 @@
               "knowledge_pack",
               "schema_field",
               "canonical_field",
+              "metadata_source",
+              "metadata_field",
+              "summary_sentence",
+              "tag_trace",
+              "upstream_entity",
+              "entity_tag",
+              "markdown_block",
+              "structured_field",
               "rendered_artifact",
               "chunk",
               "package_manifest_entry",
@@ -2982,6 +3127,62 @@
         "title": "LineageQueryResult",
         "type": "object"
       },
+      "ManagementMetadataRule": {
+        "additionalProperties": false,
+        "properties": {
+          "omit_if_missing": {
+            "default": true,
+            "title": "Omit If Missing",
+            "type": "boolean"
+          },
+          "rule_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rule Id"
+          },
+          "source_path": {
+            "title": "Source Path",
+            "type": "string"
+          },
+          "tag_template": {
+            "title": "Tag Template",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tag_template",
+          "source_path"
+        ],
+        "title": "ManagementMetadataRule",
+        "type": "object"
+      },
+      "ManagementTagRules": {
+        "additionalProperties": false,
+        "properties": {
+          "metadata_rules": {
+            "items": {
+              "$ref": "#/components/schemas/ManagementMetadataRule"
+            },
+            "title": "Metadata Rules",
+            "type": "array"
+          },
+          "static_tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Static Tags",
+            "type": "array"
+          }
+        },
+        "title": "ManagementTagRules",
+        "type": "object"
+      },
       "MappingTemplate": {
         "additionalProperties": false,
         "properties": {
@@ -3049,21 +3250,90 @@
         "title": "MappingTemplate",
         "type": "object"
       },
+      "MetadataFieldConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "allow_empty": {
+            "default": true,
+            "title": "Allow Empty",
+            "type": "boolean"
+          },
+          "default": {
+            "title": "Default"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "field_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "title": "Field Id",
+            "type": "string"
+          },
+          "required": {
+            "default": false,
+            "title": "Required",
+            "type": "boolean"
+          },
+          "source_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Path"
+          },
+          "type": {
+            "default": "any",
+            "enum": [
+              "any",
+              "string",
+              "integer",
+              "number",
+              "boolean",
+              "array",
+              "object",
+              "date",
+              "datetime"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "field_id"
+        ],
+        "title": "MetadataFieldConfig",
+        "type": "object"
+      },
       "MetadataTemplateConfig": {
         "additionalProperties": false,
         "properties": {
           "metadata_fields": {
             "items": {
-              "type": "object"
+              "$ref": "#/components/schemas/MetadataFieldConfig"
             },
             "title": "Metadata Fields",
             "type": "array"
           },
           "schema_id": {
+            "minLength": 1,
             "title": "Schema Id",
             "type": "string"
           },
           "template_id": {
+            "minLength": 1,
             "title": "Template Id",
             "type": "string"
           },
@@ -3147,6 +3417,38 @@
           "items"
         ],
         "title": "MetricRegistryResponse",
+        "type": "object"
+      },
+      "QualityTagRules": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled_builtin_rules": {
+            "items": {
+              "enum": [
+                "source_linked",
+                "anchor_linked",
+                "length_ok",
+                "summarized",
+                "keyworded",
+                "entity_linked",
+                "empty_text",
+                "short_chunk",
+                "overlong_chunk",
+                "oversized_protected_block",
+                "summary_missing",
+                "keyword_missing",
+                "source_unlinked",
+                "mapping_review_required",
+                "validation_error",
+                "entity_unlinked"
+              ],
+              "type": "string"
+            },
+            "title": "Enabled Builtin Rules",
+            "type": "array"
+          }
+        },
+        "title": "QualityTagRules",
         "type": "object"
       },
       "RegexDraftSuggestion": {
@@ -4197,6 +4499,62 @@
         "title": "SourceAnchor",
         "type": "object"
       },
+      "SummaryConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "chunk_mode": {
+            "default": "deterministic",
+            "enum": [
+              "none",
+              "deterministic"
+            ],
+            "title": "Chunk Mode",
+            "type": "string"
+          },
+          "document_max_chars": {
+            "default": 500,
+            "maximum": 20000.0,
+            "minimum": 1.0,
+            "title": "Document Max Chars",
+            "type": "integer"
+          },
+          "document_max_sentences": {
+            "default": 5,
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Document Max Sentences",
+            "type": "integer"
+          },
+          "document_mode": {
+            "default": "extractive",
+            "enum": [
+              "none",
+              "deterministic",
+              "extractive"
+            ],
+            "title": "Document Mode",
+            "type": "string"
+          }
+        },
+        "title": "SummaryConfig",
+        "type": "object"
+      },
+      "TagRules": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/ContentTagRules"
+          },
+          "management": {
+            "$ref": "#/components/schemas/ManagementTagRules"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/QualityTagRules"
+          }
+        },
+        "title": "TagRules",
+        "type": "object"
+      },
       "TargetField": {
         "additionalProperties": false,
         "properties": {
@@ -4754,6 +5112,17 @@
       "Topic5ConvertResponse": {
         "additionalProperties": false,
         "properties": {
+          "artifact_consistency_report": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Consistency Report"
+          },
           "chunks": {
             "items": {
               "type": "object"
@@ -4784,6 +5153,28 @@
             ],
             "title": "Conversion Assertion Report"
           },
+          "document_metadata": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Metadata"
+          },
+          "document_summary": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Summary"
+          },
           "manifest": {
             "anyOf": [
               {
@@ -4809,6 +5200,17 @@
           "mapping_report": {
             "title": "Mapping Report",
             "type": "object"
+          },
+          "metadata_template_report": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata Template Report"
           },
           "package_metadata": {
             "anyOf": [
@@ -5070,6 +5472,13 @@
             "title": "Doc Id",
             "type": "string"
           },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/UIREntity"
+            },
+            "title": "Entities",
+            "type": "array"
+          },
           "metadata": {
             "title": "Metadata",
             "type": "object"
@@ -5124,6 +5533,13 @@
             "title": "Doc Id",
             "type": "string"
           },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/UIREntity"
+            },
+            "title": "Entities",
+            "type": "array"
+          },
           "metadata": {
             "title": "Metadata",
             "type": "object"
@@ -5155,6 +5571,89 @@
           "doc_id"
         ],
         "title": "UIRDocument",
+        "type": "object"
+      },
+      "UIREntity": {
+        "additionalProperties": false,
+        "properties": {
+          "canonical_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Name"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "entity_type": {
+            "default": "unknown",
+            "title": "Entity Type",
+            "type": "string"
+          },
+          "evidence": {
+            "title": "Evidence",
+            "type": "object"
+          },
+          "link_status": {
+            "default": "unlinked",
+            "pattern": "^(linked|unlinked|nil)$",
+            "title": "Link Status",
+            "type": "string"
+          },
+          "mention": {
+            "minLength": 1,
+            "title": "Mention",
+            "type": "string"
+          },
+          "normalized_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Id"
+          },
+          "source_agent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Agent"
+          },
+          "source_block_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source Block Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "mention"
+        ],
+        "title": "UIREntity",
         "type": "object"
       },
       "UIRSource": {

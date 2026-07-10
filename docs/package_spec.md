@@ -58,6 +58,30 @@ Verifier 会把每个 manifest entry 与 package 中实际 file bytes 比对。H
 
 Source links 与 source block IDs 是 traceability aids。它们让 downstream retrieval 或 training-corpus consumers 可以把 chunk 追溯到生成它的 UIR blocks。
 
+## Hard-Gap Batch 1 Feature Artifacts
+
+Package 1.1 remains feature-aware and backward compatible. New conversion packages may
+declare these values in `metadata.json.features`:
+
+- `metadata_template_v1` requires a valid, manifested `metadata_template_report.json`.
+- `document_summary_v1` records one shared extractive summary.
+- `artifact_consistency_v1` requires a valid, manifested, passing
+  `artifact_consistency_report.json`.
+
+The final manifest includes `verifier_report.json` with role `verifier_report`. Package
+creation writes semantic artifacts, performs initial verification, writes the verifier
+report, rebuilds the final manifest, and verifies the final file set. The manifest never
+hashes itself.
+
+Legacy packages that do not declare a new feature retain existing required-file behavior.
+Declaring a feature and omitting, corrupting, unmanifesting, or failing its report is a
+verifier error. Verification remains structural and cross-artifact; it is not a Topic 6
+quality score, grade, or semantic-fidelity judgment.
+
+`content.md` contains machine-readable `topic5:*` comment envelopes. Each canonical block
+appears exactly once with a SHA-256 text hash. Consumers may ignore HTML comments for
+presentation, but must preserve them when using Markdown for consistency checks.
+
 ## Consumer Contracts
 
 `contracts/` contains versioned Package 1.1, RAG corpus, training corpus, and
