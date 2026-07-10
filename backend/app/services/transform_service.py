@@ -7,6 +7,7 @@ from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
 from app.schemas.target_schema import TargetField, TargetSchema
 from app.schemas.uir import UIRDocument
+from app.services.field_operation_service import FieldOperationService
 
 
 @dataclass(frozen=True)
@@ -120,6 +121,50 @@ class TransformService:
                         "target_field_id": target_field,
                         "source_field": None,
                         "operation": "default",
+                        "status": "ok",
+                    }
+                )
+
+        operation_service = FieldOperationService()
+        for rule in template.transform_rules:
+            target_ids = [
+                target
+                for target in [rule.target_field_id, *rule.target_fields]
+                if target is not None
+            ]
+            for target_field_id in target_ids:
+                field = fields_by_id.get(target_field_id)
+                if field is None:
+                    continue
+                outcome = operation_service.apply(
+                    rule=rule,
+                    uir=uir,
+                    target_field=field,
+                    current_value=data.get(target_field_id),
+                )
+                if outcome.error:
+                    errors.append(
+                        {
+                            "field_id": target_field_id,
+                            "level": "error",
+                            "code": outcome.error,
+                            "message": (
+                                f"Transform rule {rule.rule_id} could not be applied."
+                            ),
+                            "rule_id": rule.rule_id,
+                        }
+                    )
+                    continue
+                if not outcome.applied:
+                    continue
+                data[target_field_id] = outcome.value
+                traces.append(
+                    {
+                        "target_field_id": target_field_id,
+                        "source_field": rule.source_field,
+                        "source_fields": rule.source_fields,
+                        "operation": rule.operation,
+                        "rule_id": rule.rule_id,
                         "status": "ok",
                     }
                 )

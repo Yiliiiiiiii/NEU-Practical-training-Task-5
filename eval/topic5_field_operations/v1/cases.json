@@ -1,0 +1,163 @@
+{
+  "dataset_id": "topic5_field_operations_v1",
+  "version": "1.0.0",
+  "groups": [
+    {
+      "category": "rename",
+      "operation": "rename",
+      "target_type": "string",
+      "variants": [
+        ["title_en_01", "metadata.title", "Title 01"],
+        ["title_en_02", "metadata.document_title", "Title 02"],
+        ["title_en_03", "metadata.subject", "Subject 03"],
+        ["title_en_04", "metadata.name", "Name 04"],
+        ["issuer_en_01", "metadata.issuer", "Agency 01"],
+        ["issuer_en_02", "metadata.publisher", "Agency 02"],
+        ["owner_en_01", "metadata.owner", "Owner 01"],
+        ["owner_en_02", "metadata.department", "Department 02"],
+        ["title_zh_01", "metadata.标题", "通知标题一"],
+        ["title_zh_02", "metadata.文档标题", "通知标题二"],
+        ["issuer_zh_01", "metadata.发布单位", "信息化办公室"],
+        ["issuer_zh_02", "metadata.发文机关", "教育局"],
+        ["date_zh_01", "metadata.发布日期", "2026-07-01"],
+        ["date_en_01", "metadata.publish_date", "2026-07-02"],
+        ["contact_zh_01", "metadata.联系电话", "010-12345678"],
+        ["contact_en_01", "metadata.contact", "020-87654321"],
+        ["long_text_01", "metadata.body", "This is a deterministic long text fixture used to verify that rename operations preserve exact content without truncation or implicit coercion."],
+        ["empty_string_01", "metadata.empty", ""],
+        ["unicode_01", "metadata.label", "研发中心"],
+        ["hyphen_key_01", "metadata.source-name", "source-value"]
+      ]
+    },
+    {
+      "category": "merge",
+      "operation": "merge",
+      "target_type": "text",
+      "variants": [
+        ["merge_01", ["First", "Second"], "\n", true, "First\nSecond"],
+        ["merge_02", ["Alpha", "Beta"], " | ", true, "Alpha | Beta"],
+        ["merge_03", ["甲", "乙"], "；", true, "甲；乙"],
+        ["merge_04", ["A", "", "C"], "\n", true, "A\nC"],
+        ["merge_05", ["A", "", "C"], "\n", false, "A\n\nC"],
+        ["merge_06", ["One"], "\n", true, "One"],
+        ["merge_07", ["", "Two"], ",", true, "Two"],
+        ["merge_08", ["第一段", "第二段", "第三段"], "\n", true, "第一段\n第二段\n第三段"],
+        ["merge_09", ["1", "2", "3"], "-", true, "1-2-3"],
+        ["merge_10", ["left ", " right"], "", true, "left  right"],
+        ["merge_11", ["x", "y"], "::", true, "x::y"],
+        ["merge_12", ["发布单位", "发布日期"], " / ", true, "发布单位 / 发布日期"],
+        ["merge_13", ["Line 1", "Line 2"], "\n\n", true, "Line 1\n\nLine 2"],
+        ["merge_14", ["A", "B", "C", "D"], ",", true, "A,B,C,D"],
+        ["merge_15", ["末尾", "开始"], " -> ", true, "末尾 -> 开始"]
+      ]
+    },
+    {
+      "category": "split",
+      "operation": "split",
+      "target_type": "array[string]",
+      "variants": [
+        ["split_01", "alpha,beta,gamma", [","], ["alpha", "beta", "gamma"]],
+        ["split_02", "alpha; beta; gamma", [";"], ["alpha", "beta", "gamma"]],
+        ["split_03", "甲、乙、丙", ["、"], ["甲", "乙", "丙"]],
+        ["split_04", "甲；乙；丙", ["；"], ["甲", "乙", "丙"]],
+        ["split_05", "甲，乙,gamma", ["，", ","], ["甲", "乙", "gamma"]],
+        ["split_06", "one\ntwo\nthree", ["\n"], ["one", "two", "three"]],
+        ["split_07", " one | two | three ", ["|"], ["one", "two", "three"]],
+        ["split_08", "single", [","], ["single"]],
+        ["split_09", "a,,b", [","], ["a", "b"]],
+        ["split_10", "a;；b", [";", "；"], ["a", "b"]],
+        ["split_11", "部门一 / 部门二", [" / "], ["部门一", "部门二"]],
+        ["split_12", "A::B::C", ["::"], ["A", "B", "C"]],
+        ["split_13", "A\r\nB", ["\r\n"], ["A", "B"]],
+        ["split_14", "A and B", [" and "], ["A", "B"]],
+        ["split_15", "一、 two; three", ["、", ";"], ["一", "two", "three"]]
+      ]
+    },
+    {
+      "category": "conversion",
+      "operation": "conversion",
+      "variants": [
+        ["date_01", "normalize_date", "date", "2026-07-01", {}, "2026-07-01"],
+        ["date_02", "normalize_date", "date", "2026/7/2", {}, "2026-07-02"],
+        ["date_03", "date_format", "date", "2026.07.03", {}, "2026-07-03"],
+        ["date_04", "normalize_date", "date", "2026-7-4", {}, "2026-07-04"],
+        ["date_05", "normalize_date", "date", "2024-02-29", {}, "2024-02-29"],
+        ["datetime_01", "normalize_datetime", "datetime", "2026-07-01 09:30", {}, "2026-07-01T09:30:00"],
+        ["datetime_02", "normalize_datetime", "datetime", "2026/7/2 10:20:30", {}, "2026-07-02T10:20:30"],
+        ["datetime_03", "normalize_datetime", "datetime", "2026-07-03T11:00", {}, "2026-07-03T11:00:00"],
+        ["enum_01", "enum_map", "enum", "公告", {"map": {"公告": "notice"}}, "notice"],
+        ["enum_02", "enum_map", "enum", "policy", {"map": {"policy": "policy"}}, "policy"],
+        ["enum_03", "enum_map", "enum", "公开招标", {"map": {"公开招标": "public_tender"}}, "public_tender"],
+        ["trim_01", "trim", "string", "  title  ", {}, "title"],
+        ["trim_02", "trim", "string", "\tissuer\n", {}, "issuer"],
+        ["trim_03", "trim", "string", "  中文  ", {}, "中文"],
+        ["rename_convert_01", "rename", "string", "exact", {}, "exact"],
+        ["rename_convert_02", "rename", "number", 12.345, {}, 12.345],
+        ["rename_convert_03", "rename", "boolean", true, {}, true],
+        ["rename_convert_04", "rename", "array[string]", ["a", "b"], {}, ["a", "b"]],
+        ["rename_convert_05", "rename", "object", {"a": 1}, {}, {"a": 1}],
+        ["rename_convert_06", "rename", "string", "00123", {}, "00123"]
+      ]
+    },
+    {
+      "category": "default",
+      "operation": "default",
+      "target_type": "string",
+      "variants": [
+        ["default_01", null, "zh-CN", true, "zh-CN"],
+        ["default_02", null, "en-US", true, "en-US"],
+        ["default_03", null, "internal", true, "internal"],
+        ["default_04", null, "public", true, "public"],
+        ["default_05", null, "", true, ""],
+        ["default_06", "existing", "fallback", false, "existing"],
+        ["default_07", "", "fallback", false, ""],
+        ["default_08", "0", "1", false, "0"],
+        ["default_09", "false", "true", false, "false"],
+        ["default_10", "中文", "默认", false, "中文"]
+      ]
+    },
+    {
+      "category": "nested_array",
+      "operation": "rename",
+      "variants": [
+        ["nested_01", "metadata.owner.name", "string", {"owner": {"name": "OpenAI"}}, "OpenAI"],
+        ["nested_02", "metadata.owner.department", "string", {"owner": {"department": "Research"}}, "Research"],
+        ["nested_03", "metadata.payload.items", "array[string]", {"payload": {"items": ["a", "b"]}}, ["a", "b"]],
+        ["nested_04", "metadata.payload.flags", "array[string]", {"payload": {"flags": []}}, []],
+        ["nested_05", "metadata.payload.object", "object", {"payload": {"object": {"k": "v"}}}, {"k": "v"}],
+        ["nested_06", "metadata.level1.level2.level3", "string", {"level1": {"level2": {"level3": "deep"}}}, "deep"],
+        ["nested_07", "metadata.中文.字段", "string", {"中文": {"字段": "值"}}, "值"],
+        ["nested_08", "metadata.numbers", "array[string]", {"numbers": ["1", "2"]}, ["1", "2"]],
+        ["nested_09", "metadata.empty.items", "array[string]", {"empty": {"items": []}}, []],
+        ["nested_10", "metadata.record", "object", {"record": {"name": "n", "active": true}}, {"name": "n", "active": true}]
+      ]
+    },
+    {
+      "category": "unsafe",
+      "operation": "rename",
+      "target_type": "string",
+      "variants": [
+        ["unsafe_01", "metadata.__class__", "unsafe_source_path"],
+        ["unsafe_02", "metadata._private", "unsafe_source_path"],
+        ["unsafe_03", "metadata..owner", "unsafe_source_path"],
+        ["unsafe_04", "metadata.items[0]", "unsafe_source_path"],
+        ["unsafe_05", "metadata.owner.*", "unsafe_source_path"],
+        ["unsafe_06", "metadata.owner()", "unsafe_source_path"],
+        ["unsafe_07", "metadata.owner;drop", "unsafe_source_path"],
+        ["unsafe_08", "system.secret", "unsafe_source_path"],
+        ["unsafe_09", "environment.API_KEY", "unsafe_source_path"],
+        ["unsafe_10", "blocks.b1.attributes", "unsafe_source_path"],
+        ["unsafe_11", "blocks.b1.text.extra", "unsafe_source_path"],
+        ["unsafe_12", "blocks.*.text", "unsafe_source_path"],
+        ["unsafe_13", "blocks.b1.__dict__", "unsafe_source_path"],
+        ["unsafe_14", "../metadata.owner", "unsafe_source_path"],
+        ["unsafe_15", "metadata/owner", "unsafe_source_path"],
+        ["unsafe_16", "uir.metadata.owner", "unsafe_source_path"],
+        ["unsafe_17", "metadata.owner[0]", "unsafe_source_path"],
+        ["unsafe_18", "metadata.${owner}", "unsafe_source_path"],
+        ["unsafe_19", "metadata.owner|filter", "unsafe_source_path"],
+        ["unsafe_20", "metadata.owner value", "unsafe_source_path"]
+      ]
+    }
+  ]
+}

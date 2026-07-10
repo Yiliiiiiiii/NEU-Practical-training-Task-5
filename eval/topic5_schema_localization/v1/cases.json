@@ -1,0 +1,53 @@
+{
+  "dataset_id": "topic5_schema_localization_v1",
+  "version": "1.0.0",
+  "cases": [
+    {"case_id":"missing_01","scenario":"required_missing","field_id":"title","field_type":"string","expected_stage":"schema_validation","expected_path":"data.title","expected_error_code":"required_field_missing"},
+    {"case_id":"missing_02","scenario":"required_missing","field_id":"issuer","field_type":"string","expected_stage":"schema_validation","expected_path":"data.issuer","expected_error_code":"required_field_missing"},
+    {"case_id":"missing_03","scenario":"required_missing","field_id":"publish_date","field_type":"date","expected_stage":"schema_validation","expected_path":"data.publish_date","expected_error_code":"required_field_missing"},
+    {"case_id":"missing_04","scenario":"required_missing","field_id":"items","field_type":"array[string]","expected_stage":"schema_validation","expected_path":"data.items","expected_error_code":"required_field_missing"},
+    {"case_id":"missing_05","scenario":"required_missing","field_id":"details","field_type":"object","expected_stage":"schema_validation","expected_path":"data.details","expected_error_code":"required_field_missing"},
+
+    {"case_id":"scalar_01","scenario":"field_value","field_id":"title","field_type":"string","value":12,"expected_stage":"schema_validation","expected_path":"data.title","expected_error_code":"field_type_invalid"},
+    {"case_id":"scalar_02","scenario":"field_value","field_id":"amount","field_type":"number","value":"12","expected_stage":"schema_validation","expected_path":"data.amount","expected_error_code":"field_type_invalid"},
+    {"case_id":"scalar_03","scenario":"field_value","field_id":"active","field_type":"boolean","value":1,"expected_stage":"schema_validation","expected_path":"data.active","expected_error_code":"field_type_invalid"},
+    {"case_id":"scalar_04","scenario":"field_value","field_id":"details","field_type":"object","value":[],"expected_stage":"schema_validation","expected_path":"data.details","expected_error_code":"field_type_invalid"},
+    {"case_id":"scalar_05","scenario":"field_value","field_id":"items","field_type":"array[string]","value":"a,b","expected_stage":"schema_validation","expected_path":"data.items","expected_error_code":"field_type_invalid"},
+
+    {"case_id":"array_01","scenario":"field_value","field_id":"items","field_type":"array[string]","value":["a",2],"expected_stage":"schema_validation","expected_path":"data.items[1]","expected_error_code":"array_item_invalid"},
+    {"case_id":"array_02","scenario":"field_value","field_id":"items","field_type":"array[string]","value":[""],"expected_stage":"schema_validation","expected_path":"data.items[0]","expected_error_code":"array_item_invalid"},
+    {"case_id":"array_03","scenario":"field_value","field_id":"items","field_type":"array[string]","value":[null],"expected_stage":"schema_validation","expected_path":"data.items[0]","expected_error_code":"array_item_invalid"},
+    {"case_id":"array_04","scenario":"field_value","field_id":"rows","field_type":"array[object]","value":[{"a":1},"bad"],"expected_stage":"schema_validation","expected_path":"data.rows[1]","expected_error_code":"array_item_invalid"},
+    {"case_id":"array_05","scenario":"field_value","field_id":"rows","field_type":"array[object]","value":[1],"expected_stage":"schema_validation","expected_path":"data.rows[0]","expected_error_code":"array_item_invalid"},
+
+    {"case_id":"format_01","scenario":"field_value","field_id":"date","field_type":"date","value":"2026/07/10","expected_stage":"schema_validation","expected_path":"data.date","expected_error_code":"date_format_invalid"},
+    {"case_id":"format_02","scenario":"field_value","field_id":"date","field_type":"date","value":"2026-02-30","expected_stage":"schema_validation","expected_path":"data.date","expected_error_code":"date_format_invalid"},
+    {"case_id":"format_03","scenario":"field_value","field_id":"time","field_type":"datetime","value":"2026-07-10 12:00","expected_stage":"schema_validation","expected_path":"data.time","expected_error_code":"datetime_format_invalid"},
+    {"case_id":"format_04","scenario":"field_value","field_id":"time","field_type":"datetime","value":"2026-13-10T12:00:00","expected_stage":"schema_validation","expected_path":"data.time","expected_error_code":"datetime_format_invalid"},
+    {"case_id":"format_05","scenario":"field_value","field_id":"kind","field_type":"enum","value":"unknown","constraints":{"enum":["notice","policy"]},"expected_stage":"schema_validation","expected_path":"data.kind","expected_error_code":"enum_value_invalid"},
+
+    {"case_id":"constraint_01","scenario":"field_value","field_id":"code","field_type":"string","value":"abc","constraints":{"min_length":5},"expected_stage":"schema_validation","expected_path":"data.code","expected_error_code":"min_length_violation"},
+    {"case_id":"constraint_02","scenario":"field_value","field_id":"code","field_type":"string","value":"abcdef","constraints":{"max_length":5},"expected_stage":"schema_validation","expected_path":"data.code","expected_error_code":"max_length_violation"},
+    {"case_id":"constraint_03","scenario":"field_value","field_id":"code","field_type":"string","value":"abc-12","constraints":{"pattern":"^[A-Z]+$"},"expected_stage":"schema_validation","expected_path":"data.code","expected_error_code":"pattern_mismatch"},
+    {"case_id":"constraint_04","scenario":"field_value","field_id":"amount","field_type":"number","value":9,"constraints":{"minimum":10},"expected_stage":"schema_validation","expected_path":"data.amount","expected_error_code":"minimum_violation"},
+    {"case_id":"constraint_05","scenario":"field_value","field_id":"amount","field_type":"number","value":101,"constraints":{"maximum":100},"expected_stage":"schema_validation","expected_path":"data.amount","expected_error_code":"maximum_violation"},
+
+    {"case_id":"nested_01","scenario":"field_value","field_id":"details","field_type":"object","value":{},"constraints":{"properties":{"owner":{"type":"string","required":true}}},"expected_stage":"schema_validation","expected_path":"data.details.owner","expected_error_code":"nested_required_missing"},
+    {"case_id":"nested_02","scenario":"field_value","field_id":"details","field_type":"object","value":{"owner":1},"constraints":{"properties":{"owner":{"type":"string"}}},"expected_stage":"schema_validation","expected_path":"data.details.owner","expected_error_code":"nested_type_invalid"},
+    {"case_id":"nested_03","scenario":"field_value","field_id":"details","field_type":"object","value":{"items":"bad"},"constraints":{"properties":{"items":{"type":"array"}}},"expected_stage":"schema_validation","expected_path":"data.details.items","expected_error_code":"nested_type_invalid"},
+    {"case_id":"nested_04","scenario":"field_value","field_id":"details","field_type":"object","value":{"active":"yes"},"constraints":{"properties":{"active":{"type":"boolean"}}},"expected_stage":"schema_validation","expected_path":"data.details.active","expected_error_code":"nested_type_invalid"},
+    {"case_id":"nested_05","scenario":"field_value","field_id":"details","field_type":"object","value":{"extra":1},"constraints":{"properties":{},"additional_properties":false},"expected_stage":"schema_validation","expected_path":"data.details.extra","expected_error_code":"unexpected_field"},
+
+    {"case_id":"metadata_01","scenario":"metadata","field_id":"language","field_type":"string","required":true,"expected_stage":"metadata_template","expected_path":"document_metadata.language","expected_error_code":"metadata_required_missing"},
+    {"case_id":"metadata_02","scenario":"metadata","field_id":"count","field_type":"integer","value":"1","expected_stage":"metadata_template","expected_path":"document_metadata.count","expected_error_code":"metadata_type_mismatch"},
+    {"case_id":"metadata_03","scenario":"metadata","field_id":"enabled","field_type":"boolean","value":"true","expected_stage":"metadata_template","expected_path":"document_metadata.enabled","expected_error_code":"metadata_type_mismatch"},
+    {"case_id":"metadata_04","scenario":"metadata","field_id":"label","field_type":"string","value":"","allow_empty":false,"expected_stage":"metadata_template","expected_path":"document_metadata.label","expected_error_code":"metadata_empty_not_allowed"},
+    {"case_id":"metadata_05","scenario":"metadata","field_id":"date","field_type":"date","value":"2026-02-30","expected_stage":"metadata_template","expected_path":"document_metadata.date","expected_error_code":"metadata_type_mismatch"},
+
+    {"case_id":"cross_01","scenario":"chunk_source","expected_stage":"schema_validation","expected_path":"chunks.c1.source_block_ids[0]","expected_error_code":"chunk_source_missing"},
+    {"case_id":"cross_02","scenario":"unexpected_top_level","expected_stage":"schema_validation","expected_path":"data.extra","expected_error_code":"unexpected_field"},
+    {"case_id":"cross_03","scenario":"invalid_entity_source","expected_stage":"uir_contract","expected_path":"entities","expected_error_code":"entity_source_block_unknown"},
+    {"case_id":"cross_04","scenario":"package_role","expected_stage":"package_verifier","expected_path":"content.json","expected_error_code":"role_mismatch"},
+    {"case_id":"cross_05","scenario":"missing_consistency_report","expected_stage":"package_verifier","expected_path":"artifact_consistency_report.json","expected_error_code":"required_file_missing"}
+  ]
+}
