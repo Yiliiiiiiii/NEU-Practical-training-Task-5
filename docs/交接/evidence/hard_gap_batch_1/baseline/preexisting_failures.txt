@@ -1,0 +1,4 @@
+Initial verification attempt was terminated by orchestration timeout (1 second); the successful rerun is authoritative.
+No repository test, lint, frontend build/test, or OpenAPI export failure was observed.
+Known non-gate warnings: meeting_doc and policy_doc automatic mapping precision are 0.8 on dev/test/blind splits.
+

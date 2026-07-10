@@ -1,0 +1,18 @@
+{
+  "baseline_commit": "233b1a9f46382040e4f3e83361466cb53fe6511c",
+  "backend": {"passed": 885, "failed": 0, "duration_seconds": 78.14},
+  "ruff_clean": true,
+  "frontend": {"test_files_passed": 8, "tests_passed": 24, "build_passed": true},
+  "focused_backend": {"files": 19, "passed": 133, "failed": 0},
+  "openapi_path_count": 65,
+  "existing_gates": {
+    "mapping_quality": "passed",
+    "schema_pack_contract": "passed",
+    "package_verifier_pass_rate": 1.0
+  },
+  "pre_existing_warnings": [
+    "meeting_doc mapping auto_precision is 0.8 on dev/test/blind",
+    "policy_doc mapping auto_precision is 0.8 on dev/test/blind"
+  ]
+}
+

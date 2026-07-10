@@ -1,0 +1,6 @@
+baseline_commit=233b1a9f46382040e4f3e83361466cb53fe6511c
+branch=feat/topic5-hard-gap-batch-1
+python=Python 3.13.5
+node=v22.16.0
+npm=10.9.2
+
