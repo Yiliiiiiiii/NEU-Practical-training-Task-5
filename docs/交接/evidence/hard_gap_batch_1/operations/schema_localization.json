@@ -1,0 +1,743 @@
+{
+  "case_count": 40,
+  "cases": [
+    {
+      "actual_issues": [
+        {
+          "error_code": "required_field_missing",
+          "path": "data.title",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "missing_01",
+      "error_code_correct": true,
+      "expected_error_code": "required_field_missing",
+      "expected_path": "data.title",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "required_missing",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "required_field_missing",
+          "path": "data.issuer",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "missing_02",
+      "error_code_correct": true,
+      "expected_error_code": "required_field_missing",
+      "expected_path": "data.issuer",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "required_missing",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "required_field_missing",
+          "path": "data.publish_date",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "missing_03",
+      "error_code_correct": true,
+      "expected_error_code": "required_field_missing",
+      "expected_path": "data.publish_date",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "required_missing",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "required_field_missing",
+          "path": "data.items",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "missing_04",
+      "error_code_correct": true,
+      "expected_error_code": "required_field_missing",
+      "expected_path": "data.items",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "required_missing",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "required_field_missing",
+          "path": "data.details",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "missing_05",
+      "error_code_correct": true,
+      "expected_error_code": "required_field_missing",
+      "expected_path": "data.details",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "required_missing",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "field_type_invalid",
+          "path": "data.title",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "scalar_01",
+      "error_code_correct": true,
+      "expected_error_code": "field_type_invalid",
+      "expected_path": "data.title",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "field_type_invalid",
+          "path": "data.amount",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "scalar_02",
+      "error_code_correct": true,
+      "expected_error_code": "field_type_invalid",
+      "expected_path": "data.amount",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "field_type_invalid",
+          "path": "data.active",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "scalar_03",
+      "error_code_correct": true,
+      "expected_error_code": "field_type_invalid",
+      "expected_path": "data.active",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "field_type_invalid",
+          "path": "data.details",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "scalar_04",
+      "error_code_correct": true,
+      "expected_error_code": "field_type_invalid",
+      "expected_path": "data.details",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "field_type_invalid",
+          "path": "data.items",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "scalar_05",
+      "error_code_correct": true,
+      "expected_error_code": "field_type_invalid",
+      "expected_path": "data.items",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "array_item_invalid",
+          "path": "data.items[1]",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "array_01",
+      "error_code_correct": true,
+      "expected_error_code": "array_item_invalid",
+      "expected_path": "data.items[1]",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "array_item_invalid",
+          "path": "data.items[0]",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "array_02",
+      "error_code_correct": true,
+      "expected_error_code": "array_item_invalid",
+      "expected_path": "data.items[0]",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "array_item_invalid",
+          "path": "data.items[0]",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "array_03",
+      "error_code_correct": true,
+      "expected_error_code": "array_item_invalid",
+      "expected_path": "data.items[0]",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "array_item_invalid",
+          "path": "data.rows[1]",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "array_04",
+      "error_code_correct": true,
+      "expected_error_code": "array_item_invalid",
+      "expected_path": "data.rows[1]",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "array_item_invalid",
+          "path": "data.rows[0]",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "array_05",
+      "error_code_correct": true,
+      "expected_error_code": "array_item_invalid",
+      "expected_path": "data.rows[0]",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "date_format_invalid",
+          "path": "data.date",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "format_01",
+      "error_code_correct": true,
+      "expected_error_code": "date_format_invalid",
+      "expected_path": "data.date",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "date_format_invalid",
+          "path": "data.date",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "format_02",
+      "error_code_correct": true,
+      "expected_error_code": "date_format_invalid",
+      "expected_path": "data.date",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "datetime_format_invalid",
+          "path": "data.time",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "format_03",
+      "error_code_correct": true,
+      "expected_error_code": "datetime_format_invalid",
+      "expected_path": "data.time",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "datetime_format_invalid",
+          "path": "data.time",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "format_04",
+      "error_code_correct": true,
+      "expected_error_code": "datetime_format_invalid",
+      "expected_path": "data.time",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "enum_value_invalid",
+          "path": "data.kind",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "format_05",
+      "error_code_correct": true,
+      "expected_error_code": "enum_value_invalid",
+      "expected_path": "data.kind",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "min_length_violation",
+          "path": "data.code",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "constraint_01",
+      "error_code_correct": true,
+      "expected_error_code": "min_length_violation",
+      "expected_path": "data.code",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "max_length_violation",
+          "path": "data.code",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "constraint_02",
+      "error_code_correct": true,
+      "expected_error_code": "max_length_violation",
+      "expected_path": "data.code",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "pattern_mismatch",
+          "path": "data.code",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "constraint_03",
+      "error_code_correct": true,
+      "expected_error_code": "pattern_mismatch",
+      "expected_path": "data.code",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "minimum_violation",
+          "path": "data.amount",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "constraint_04",
+      "error_code_correct": true,
+      "expected_error_code": "minimum_violation",
+      "expected_path": "data.amount",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "maximum_violation",
+          "path": "data.amount",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "constraint_05",
+      "error_code_correct": true,
+      "expected_error_code": "maximum_violation",
+      "expected_path": "data.amount",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "nested_required_missing",
+          "path": "data.details.owner",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "nested_01",
+      "error_code_correct": true,
+      "expected_error_code": "nested_required_missing",
+      "expected_path": "data.details.owner",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "nested_type_invalid",
+          "path": "data.details.owner",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "nested_02",
+      "error_code_correct": true,
+      "expected_error_code": "nested_type_invalid",
+      "expected_path": "data.details.owner",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "nested_type_invalid",
+          "path": "data.details.items",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "nested_03",
+      "error_code_correct": true,
+      "expected_error_code": "nested_type_invalid",
+      "expected_path": "data.details.items",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "nested_type_invalid",
+          "path": "data.details.active",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "nested_04",
+      "error_code_correct": true,
+      "expected_error_code": "nested_type_invalid",
+      "expected_path": "data.details.active",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "unexpected_field",
+          "path": "data.details.extra",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "nested_05",
+      "error_code_correct": true,
+      "expected_error_code": "unexpected_field",
+      "expected_path": "data.details.extra",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "field_value",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "metadata_required_missing",
+          "path": "document_metadata.language",
+          "stage": "metadata_template"
+        }
+      ],
+      "case_id": "metadata_01",
+      "error_code_correct": true,
+      "expected_error_code": "metadata_required_missing",
+      "expected_path": "document_metadata.language",
+      "expected_stage": "metadata_template",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "metadata",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "metadata_type_mismatch",
+          "path": "document_metadata.count",
+          "stage": "metadata_template"
+        }
+      ],
+      "case_id": "metadata_02",
+      "error_code_correct": true,
+      "expected_error_code": "metadata_type_mismatch",
+      "expected_path": "document_metadata.count",
+      "expected_stage": "metadata_template",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "metadata",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "metadata_type_mismatch",
+          "path": "document_metadata.enabled",
+          "stage": "metadata_template"
+        }
+      ],
+      "case_id": "metadata_03",
+      "error_code_correct": true,
+      "expected_error_code": "metadata_type_mismatch",
+      "expected_path": "document_metadata.enabled",
+      "expected_stage": "metadata_template",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "metadata",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "metadata_empty_not_allowed",
+          "path": "document_metadata.label",
+          "stage": "metadata_template"
+        }
+      ],
+      "case_id": "metadata_04",
+      "error_code_correct": true,
+      "expected_error_code": "metadata_empty_not_allowed",
+      "expected_path": "document_metadata.label",
+      "expected_stage": "metadata_template",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "metadata",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "metadata_type_mismatch",
+          "path": "document_metadata.date",
+          "stage": "metadata_template"
+        }
+      ],
+      "case_id": "metadata_05",
+      "error_code_correct": true,
+      "expected_error_code": "metadata_type_mismatch",
+      "expected_path": "document_metadata.date",
+      "expected_stage": "metadata_template",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "metadata",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "chunk_source_missing",
+          "path": "chunks.c1.source_block_ids[0]",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "cross_01",
+      "error_code_correct": true,
+      "expected_error_code": "chunk_source_missing",
+      "expected_path": "chunks.c1.source_block_ids[0]",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "chunk_source",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "unexpected_field",
+          "path": "data.extra",
+          "stage": "schema_validation"
+        }
+      ],
+      "case_id": "cross_02",
+      "error_code_correct": true,
+      "expected_error_code": "unexpected_field",
+      "expected_path": "data.extra",
+      "expected_stage": "schema_validation",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "unexpected_top_level",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "entity_source_block_unknown",
+          "path": "entities",
+          "stage": "uir_contract"
+        }
+      ],
+      "case_id": "cross_03",
+      "error_code_correct": true,
+      "expected_error_code": "entity_source_block_unknown",
+      "expected_path": "entities",
+      "expected_stage": "uir_contract",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "invalid_entity_source",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "role_mismatch",
+          "path": "content.json",
+          "stage": "package_verifier"
+        }
+      ],
+      "case_id": "cross_04",
+      "error_code_correct": true,
+      "expected_error_code": "role_mismatch",
+      "expected_path": "content.json",
+      "expected_stage": "package_verifier",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "package_role",
+      "stage_correct": true
+    },
+    {
+      "actual_issues": [
+        {
+          "error_code": "required_file_missing",
+          "path": "artifact_consistency_report.json",
+          "stage": "package_verifier"
+        },
+        {
+          "error_code": "required_file_not_manifested",
+          "path": "artifact_consistency_report.json",
+          "stage": "package_verifier"
+        }
+      ],
+      "case_id": "cross_05",
+      "error_code_correct": true,
+      "expected_error_code": "required_file_missing",
+      "expected_path": "artifact_consistency_report.json",
+      "expected_stage": "package_verifier",
+      "passed": true,
+      "path_correct": true,
+      "scenario": "missing_consistency_report",
+      "stage_correct": true
+    }
+  ],
+  "claim_boundary": "Measures exact stage/path/error-code localization for declared Topic 5 validators; it does not measure semantic document quality.",
+  "commit_sha": "0d039e45169f9fa684e85afc08a3128fda41a509",
+  "dataset_id": "topic5_schema_localization_v1",
+  "dataset_sha256": "d868b578086f30fe546c67d0d741e1d8b1a6724275cfc6657f91785cff56f5e6",
+  "dataset_version": "1.0.0",
+  "error_code_accuracy": 1.0,
+  "failed_cases": [],
+  "generated_at": "2026-07-10T08:28:34.062419+00:00",
+  "localized_count": 40,
+  "path_accuracy": 1.0,
+  "reproduction_command": "backend/.venv/Scripts/python.exe scripts/eval_topic5_schema_localization.py",
+  "schema_localization_rate": 1.0,
+  "stage_accuracy": 1.0
+}

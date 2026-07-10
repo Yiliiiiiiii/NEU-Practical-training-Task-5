@@ -125,15 +125,15 @@
 - Test: `backend/tests/test_topic5_hard_gap_evaluators.py`
 - Create: `docs/交接/evidence/hard_gap_batch_1/operations/*`
 
-- [ ] Add failing evaluator/gate tests proving fixed denominators and thresholds.
-- [ ] Add fixtures/evaluators against production services/contracts.
-- [ ] Run evaluators and gate; commit datasets/scripts/reports.
+- [x] Add failing evaluator/gate tests proving fixed denominators and thresholds.
+- [x] Add fixtures/evaluators against production services/contracts.
+- [x] Run evaluators and gate; commit datasets/scripts/reports.
 
 ### Task 8: Documentation, OpenAPI, golden artifacts, and final verification
 
 **Files:** Update public API/package/lineage/SchemaPack docs and handoff docs; create `docs/交接/topic5_hard_gap_batch_1_result.md`; regenerate `docs/openapi.json` and final evidence.
 
-- [ ] Add/refresh announcement and event-notice golden tests and three-run semantic hashes.
-- [ ] Run full backend/Ruff/frontend/OpenAPI/SchemaPack/inline/evaluator/gate commands.
-- [ ] Review scope, secrets, compatibility, evidence accuracy, and untracked user files.
-- [ ] Commit documentation/evidence and record all commit SHAs.
+- [x] Add/refresh announcement and event-notice golden tests and three-run semantic hashes.
+- [x] Run full backend/Ruff/frontend/OpenAPI/SchemaPack/inline/evaluator/gate commands.
+- [x] Review scope, secrets, compatibility, evidence accuracy, and untracked user files.
+- [x] Commit documentation/evidence and record all commit SHAs.

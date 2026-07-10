@@ -1,0 +1,17 @@
+{
+  "commit_sha": "0d039e45169f9fa684e85afc08a3128fda41a509",
+  "verified_at": "2026-07-10T16:23:30+08:00",
+  "full_backend_tests_passed": true,
+  "backend_test_count": 1032,
+  "backend_test_duration_seconds": 77.27,
+  "ruff_clean": true,
+  "frontend_build_passed": true,
+  "frontend_tests_passed": true,
+  "frontend_test_count": 24,
+  "openapi_export_passed": true,
+  "openapi_path_count": 65,
+  "commands": [
+    "backend/.venv/Scripts/python.exe scripts/verify_all.py --check-openapi",
+    "frontend/npm.cmd test"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "checks": {
+    "artifact_consistency_pass_rate": true,
+    "chunk_source_coverage": true,
+    "content_tag_metric": true,
+    "document_summary_faithfulness": true,
+    "document_summary_new_fact_violations": true,
+    "document_summary_source_coverage": true,
+    "entity_passthrough_coverage": true,
+    "error_code_accuracy": true,
+    "field_operation_accuracy": true,
+    "frontend_tests_passed": true,
+    "full_backend_tests_passed": true,
+    "global_quality_tag_pollution_count": true,
+    "invented_entity_id_count": true,
+    "legacy_package_regression": true,
+    "legacy_request_regression": true,
+    "management_tag_rule_accuracy": true,
+    "markdown_block_coverage": true,
+    "merge_accuracy": true,
+    "metadata_required_localization_rate": true,
+    "metadata_template_effective": true,
+    "openapi_export_passed": true,
+    "quality_tag_metric": true,
+    "rename_accuracy": true,
+    "ruff_clean": true,
+    "schema_localization_rate": true,
+    "secret_leak_count": true,
+    "split_accuracy": true,
+    "stage_accuracy": true,
+    "tampering_detection_rate": true,
+    "topic11_fallback_success_rate": true,
+    "topic11_invalid_output_acceptance_count": true,
+    "unsafe_operation_count": true
+  },
+  "component_checks": {
+    "consistency": {
+      "command": "F:\\p2\\backend\\.venv\\Scripts\\python.exe -m pytest backend/tests/test_artifact_consistency_service.py -q",
+      "passed": true,
+      "return_code": 0,
+      "summary": "14 passed in 0.19s"
+    },
+    "entity": {
+      "command": "F:\\p2\\backend\\.venv\\Scripts\\python.exe -m pytest backend/tests/test_topic5_entity_passthrough.py -q",
+      "passed": true,
+      "return_code": 0,
+      "summary": "9 passed in 0.22s"
+    },
+    "legacy": {
+      "command": "F:\\p2\\backend\\.venv\\Scripts\\python.exe -m pytest backend/tests/test_package_1_1_assertion_report_compatibility.py backend/tests/test_topic5_convert_api.py -q",
+      "passed": true,
+      "return_code": 0,
+      "summary": "35 passed in 8.30s"
+    },
+    "metadata": {
+      "command": "F:\\p2\\backend\\.venv\\Scripts\\python.exe -m pytest backend/tests/test_metadata_template_service.py backend/tests/test_topic5_convert_api.py -q",
+      "passed": true,
+      "return_code": 0,
+      "summary": "43 passed in 7.18s"
+    },
+    "summary": {
+      "command": "F:\\p2\\backend\\.venv\\Scripts\\python.exe -m pytest backend/tests/test_document_summary_service.py -q",
+      "passed": true,
+      "return_code": 0,
+      "summary": "10 passed in 0.19s"
+    },
+    "topic11": {
+      "command": "F:\\p2\\backend\\.venv\\Scripts\\python.exe -m pytest backend/tests/test_topic11_chunk_provider.py -q",
+      "passed": true,
+      "return_code": 0,
+      "summary": "15 passed in 0.34s"
+    }
+  },
+  "conclusion": "passed",
+  "datasets": {
+    "field_operations": "bc09416bb5dd75bc797fc3eb589902e85b4b76b3046d19477bb1a32a2281a989",
+    "schema_localization": "d868b578086f30fe546c67d0d741e1d8b1a6724275cfc6657f91785cff56f5e6"
+  },
+  "failed_conditions": [],
+  "generated_at": "2026-07-10T08:30:17.076339+00:00",
+  "passed": true,
+  "values": {
+    "artifact_consistency_pass_rate": 1.0,
+    "chunk_source_coverage": 1.0,
+    "content_tag_metric": 0.9,
+    "document_summary_faithfulness": 1.0,
+    "document_summary_new_fact_violations": 0,
+    "document_summary_source_coverage": 1.0,
+    "entity_passthrough_coverage": 1.0,
+    "error_code_accuracy": 1.0,
+    "field_operation_accuracy": 1.0,
+    "frontend_tests_passed": true,
+    "full_backend_tests_passed": true,
+    "global_quality_tag_pollution_count": 0,
+    "invented_entity_id_count": 0,
+    "legacy_package_regression": 0,
+    "legacy_request_regression": 0,
+    "management_tag_rule_accuracy": 1.0,
+    "markdown_block_coverage": 1.0,
+    "merge_accuracy": 1.0,
+    "metadata_required_localization_rate": 1.0,
+    "metadata_template_effective": true,
+    "openapi_export_passed": true,
+    "quality_tag_metric": 1.0,
+    "rename_accuracy": 1.0,
+    "ruff_clean": true,
+    "schema_localization_rate": 1.0,
+    "secret_leak_count": 0,
+    "split_accuracy": 1.0,
+    "stage_accuracy": 1.0,
+    "tampering_detection_rate": 1.0,
+    "topic11_fallback_success_rate": 1.0,
+    "topic11_invalid_output_acceptance_count": 0,
+    "unsafe_operation_count": 0
+  }
+}

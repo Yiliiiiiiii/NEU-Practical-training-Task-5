@@ -1,0 +1,41 @@
+{
+  "failed_schema_packs": 0,
+  "generated_at": "2026-07-10T08:23:39.491382+00:00",
+  "items": [
+    {
+      "assertion_errors": 0,
+      "badcases_passed": 1,
+      "badcases_total": 1,
+      "contract_errors": [],
+      "contract_valid": true,
+      "package_verifier_passed": true,
+      "package_with_assertion_report_verified": false,
+      "package_without_assertion_report_verified": true,
+      "positive_examples_passed": 1,
+      "positive_examples_total": 1,
+      "schema_pack_id": "announcement_doc",
+      "schema_pack_version": "1.0.0",
+      "status": "passed",
+      "unexpected_assertion_failures": []
+    },
+    {
+      "assertion_errors": 0,
+      "badcases_passed": 1,
+      "badcases_total": 1,
+      "contract_errors": [],
+      "contract_valid": true,
+      "package_verifier_passed": true,
+      "package_with_assertion_report_verified": true,
+      "package_without_assertion_report_verified": false,
+      "positive_examples_passed": 1,
+      "positive_examples_total": 1,
+      "schema_pack_id": "event_notice_doc",
+      "schema_pack_version": "1.0.0",
+      "status": "passed",
+      "unexpected_assertion_failures": []
+    }
+  ],
+  "passed_schema_packs": 2,
+  "status": "passed",
+  "total_schema_packs": 2
+}

@@ -1,0 +1,1295 @@
+{
+  "by_operation": {
+    "conversion": {
+      "accuracy": 1.0,
+      "passed": 20,
+      "total": 20
+    },
+    "default": {
+      "accuracy": 1.0,
+      "passed": 10,
+      "total": 10
+    },
+    "merge": {
+      "accuracy": 1.0,
+      "passed": 15,
+      "total": 15
+    },
+    "nested_array": {
+      "accuracy": 1.0,
+      "passed": 10,
+      "total": 10
+    },
+    "rename": {
+      "accuracy": 1.0,
+      "passed": 20,
+      "total": 20
+    },
+    "split": {
+      "accuracy": 1.0,
+      "passed": 15,
+      "total": 15
+    },
+    "unsafe": {
+      "accuracy": 1.0,
+      "passed": 20,
+      "total": 20
+    }
+  },
+  "case_count": 110,
+  "cases": [
+    {
+      "actual": "Title 01",
+      "actual_error": null,
+      "case_id": "title_en_01",
+      "category": "rename",
+      "expected": "Title 01",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Title 02",
+      "actual_error": null,
+      "case_id": "title_en_02",
+      "category": "rename",
+      "expected": "Title 02",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Subject 03",
+      "actual_error": null,
+      "case_id": "title_en_03",
+      "category": "rename",
+      "expected": "Subject 03",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Name 04",
+      "actual_error": null,
+      "case_id": "title_en_04",
+      "category": "rename",
+      "expected": "Name 04",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Agency 01",
+      "actual_error": null,
+      "case_id": "issuer_en_01",
+      "category": "rename",
+      "expected": "Agency 01",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Agency 02",
+      "actual_error": null,
+      "case_id": "issuer_en_02",
+      "category": "rename",
+      "expected": "Agency 02",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Owner 01",
+      "actual_error": null,
+      "case_id": "owner_en_01",
+      "category": "rename",
+      "expected": "Owner 01",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Department 02",
+      "actual_error": null,
+      "case_id": "owner_en_02",
+      "category": "rename",
+      "expected": "Department 02",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "通知标题一",
+      "actual_error": null,
+      "case_id": "title_zh_01",
+      "category": "rename",
+      "expected": "通知标题一",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "通知标题二",
+      "actual_error": null,
+      "case_id": "title_zh_02",
+      "category": "rename",
+      "expected": "通知标题二",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "信息化办公室",
+      "actual_error": null,
+      "case_id": "issuer_zh_01",
+      "category": "rename",
+      "expected": "信息化办公室",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "教育局",
+      "actual_error": null,
+      "case_id": "issuer_zh_02",
+      "category": "rename",
+      "expected": "教育局",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-01",
+      "actual_error": null,
+      "case_id": "date_zh_01",
+      "category": "rename",
+      "expected": "2026-07-01",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-02",
+      "actual_error": null,
+      "case_id": "date_en_01",
+      "category": "rename",
+      "expected": "2026-07-02",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "010-12345678",
+      "actual_error": null,
+      "case_id": "contact_zh_01",
+      "category": "rename",
+      "expected": "010-12345678",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "020-87654321",
+      "actual_error": null,
+      "case_id": "contact_en_01",
+      "category": "rename",
+      "expected": "020-87654321",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "This is a deterministic long text fixture used to verify that rename operations preserve exact content without truncation or implicit coercion.",
+      "actual_error": null,
+      "case_id": "long_text_01",
+      "category": "rename",
+      "expected": "This is a deterministic long text fixture used to verify that rename operations preserve exact content without truncation or implicit coercion.",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "",
+      "actual_error": null,
+      "case_id": "empty_string_01",
+      "category": "rename",
+      "expected": "",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "研发中心",
+      "actual_error": null,
+      "case_id": "unicode_01",
+      "category": "rename",
+      "expected": "研发中心",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "source-value",
+      "actual_error": null,
+      "case_id": "hyphen_key_01",
+      "category": "rename",
+      "expected": "source-value",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "First\nSecond",
+      "actual_error": null,
+      "case_id": "merge_01",
+      "category": "merge",
+      "expected": "First\nSecond",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "Alpha | Beta",
+      "actual_error": null,
+      "case_id": "merge_02",
+      "category": "merge",
+      "expected": "Alpha | Beta",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "甲；乙",
+      "actual_error": null,
+      "case_id": "merge_03",
+      "category": "merge",
+      "expected": "甲；乙",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "A\nC",
+      "actual_error": null,
+      "case_id": "merge_04",
+      "category": "merge",
+      "expected": "A\nC",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "A\n\nC",
+      "actual_error": null,
+      "case_id": "merge_05",
+      "category": "merge",
+      "expected": "A\n\nC",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "One",
+      "actual_error": null,
+      "case_id": "merge_06",
+      "category": "merge",
+      "expected": "One",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "Two",
+      "actual_error": null,
+      "case_id": "merge_07",
+      "category": "merge",
+      "expected": "Two",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "第一段\n第二段\n第三段",
+      "actual_error": null,
+      "case_id": "merge_08",
+      "category": "merge",
+      "expected": "第一段\n第二段\n第三段",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "1-2-3",
+      "actual_error": null,
+      "case_id": "merge_09",
+      "category": "merge",
+      "expected": "1-2-3",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "left  right",
+      "actual_error": null,
+      "case_id": "merge_10",
+      "category": "merge",
+      "expected": "left  right",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "x::y",
+      "actual_error": null,
+      "case_id": "merge_11",
+      "category": "merge",
+      "expected": "x::y",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "发布单位 / 发布日期",
+      "actual_error": null,
+      "case_id": "merge_12",
+      "category": "merge",
+      "expected": "发布单位 / 发布日期",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "Line 1\n\nLine 2",
+      "actual_error": null,
+      "case_id": "merge_13",
+      "category": "merge",
+      "expected": "Line 1\n\nLine 2",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "A,B,C,D",
+      "actual_error": null,
+      "case_id": "merge_14",
+      "category": "merge",
+      "expected": "A,B,C,D",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": "末尾 -> 开始",
+      "actual_error": null,
+      "case_id": "merge_15",
+      "category": "merge",
+      "expected": "末尾 -> 开始",
+      "expected_error": null,
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "actual_error": null,
+      "case_id": "split_01",
+      "category": "split",
+      "expected": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "actual_error": null,
+      "case_id": "split_02",
+      "category": "split",
+      "expected": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "甲",
+        "乙",
+        "丙"
+      ],
+      "actual_error": null,
+      "case_id": "split_03",
+      "category": "split",
+      "expected": [
+        "甲",
+        "乙",
+        "丙"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "甲",
+        "乙",
+        "丙"
+      ],
+      "actual_error": null,
+      "case_id": "split_04",
+      "category": "split",
+      "expected": [
+        "甲",
+        "乙",
+        "丙"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "甲",
+        "乙",
+        "gamma"
+      ],
+      "actual_error": null,
+      "case_id": "split_05",
+      "category": "split",
+      "expected": [
+        "甲",
+        "乙",
+        "gamma"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "one",
+        "two",
+        "three"
+      ],
+      "actual_error": null,
+      "case_id": "split_06",
+      "category": "split",
+      "expected": [
+        "one",
+        "two",
+        "three"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "one",
+        "two",
+        "three"
+      ],
+      "actual_error": null,
+      "case_id": "split_07",
+      "category": "split",
+      "expected": [
+        "one",
+        "two",
+        "three"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "single"
+      ],
+      "actual_error": null,
+      "case_id": "split_08",
+      "category": "split",
+      "expected": [
+        "single"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "a",
+        "b"
+      ],
+      "actual_error": null,
+      "case_id": "split_09",
+      "category": "split",
+      "expected": [
+        "a",
+        "b"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "a",
+        "b"
+      ],
+      "actual_error": null,
+      "case_id": "split_10",
+      "category": "split",
+      "expected": [
+        "a",
+        "b"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "部门一",
+        "部门二"
+      ],
+      "actual_error": null,
+      "case_id": "split_11",
+      "category": "split",
+      "expected": [
+        "部门一",
+        "部门二"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "A",
+        "B",
+        "C"
+      ],
+      "actual_error": null,
+      "case_id": "split_12",
+      "category": "split",
+      "expected": [
+        "A",
+        "B",
+        "C"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "A",
+        "B"
+      ],
+      "actual_error": null,
+      "case_id": "split_13",
+      "category": "split",
+      "expected": [
+        "A",
+        "B"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "A",
+        "B"
+      ],
+      "actual_error": null,
+      "case_id": "split_14",
+      "category": "split",
+      "expected": [
+        "A",
+        "B"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": [
+        "一",
+        "two",
+        "three"
+      ],
+      "actual_error": null,
+      "case_id": "split_15",
+      "category": "split",
+      "expected": [
+        "一",
+        "two",
+        "three"
+      ],
+      "expected_error": null,
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-01",
+      "actual_error": null,
+      "case_id": "date_01",
+      "category": "conversion",
+      "expected": "2026-07-01",
+      "expected_error": null,
+      "operation": "normalize_date",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-02",
+      "actual_error": null,
+      "case_id": "date_02",
+      "category": "conversion",
+      "expected": "2026-07-02",
+      "expected_error": null,
+      "operation": "normalize_date",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-03",
+      "actual_error": null,
+      "case_id": "date_03",
+      "category": "conversion",
+      "expected": "2026-07-03",
+      "expected_error": null,
+      "operation": "date_format",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-04",
+      "actual_error": null,
+      "case_id": "date_04",
+      "category": "conversion",
+      "expected": "2026-07-04",
+      "expected_error": null,
+      "operation": "normalize_date",
+      "passed": true
+    },
+    {
+      "actual": "2024-02-29",
+      "actual_error": null,
+      "case_id": "date_05",
+      "category": "conversion",
+      "expected": "2024-02-29",
+      "expected_error": null,
+      "operation": "normalize_date",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-01T09:30:00",
+      "actual_error": null,
+      "case_id": "datetime_01",
+      "category": "conversion",
+      "expected": "2026-07-01T09:30:00",
+      "expected_error": null,
+      "operation": "normalize_datetime",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-02T10:20:30",
+      "actual_error": null,
+      "case_id": "datetime_02",
+      "category": "conversion",
+      "expected": "2026-07-02T10:20:30",
+      "expected_error": null,
+      "operation": "normalize_datetime",
+      "passed": true
+    },
+    {
+      "actual": "2026-07-03T11:00:00",
+      "actual_error": null,
+      "case_id": "datetime_03",
+      "category": "conversion",
+      "expected": "2026-07-03T11:00:00",
+      "expected_error": null,
+      "operation": "normalize_datetime",
+      "passed": true
+    },
+    {
+      "actual": "notice",
+      "actual_error": null,
+      "case_id": "enum_01",
+      "category": "conversion",
+      "expected": "notice",
+      "expected_error": null,
+      "operation": "enum_map",
+      "passed": true
+    },
+    {
+      "actual": "policy",
+      "actual_error": null,
+      "case_id": "enum_02",
+      "category": "conversion",
+      "expected": "policy",
+      "expected_error": null,
+      "operation": "enum_map",
+      "passed": true
+    },
+    {
+      "actual": "public_tender",
+      "actual_error": null,
+      "case_id": "enum_03",
+      "category": "conversion",
+      "expected": "public_tender",
+      "expected_error": null,
+      "operation": "enum_map",
+      "passed": true
+    },
+    {
+      "actual": "title",
+      "actual_error": null,
+      "case_id": "trim_01",
+      "category": "conversion",
+      "expected": "title",
+      "expected_error": null,
+      "operation": "trim",
+      "passed": true
+    },
+    {
+      "actual": "issuer",
+      "actual_error": null,
+      "case_id": "trim_02",
+      "category": "conversion",
+      "expected": "issuer",
+      "expected_error": null,
+      "operation": "trim",
+      "passed": true
+    },
+    {
+      "actual": "中文",
+      "actual_error": null,
+      "case_id": "trim_03",
+      "category": "conversion",
+      "expected": "中文",
+      "expected_error": null,
+      "operation": "trim",
+      "passed": true
+    },
+    {
+      "actual": "exact",
+      "actual_error": null,
+      "case_id": "rename_convert_01",
+      "category": "conversion",
+      "expected": "exact",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": 12.345,
+      "actual_error": null,
+      "case_id": "rename_convert_02",
+      "category": "conversion",
+      "expected": 12.345,
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": true,
+      "actual_error": null,
+      "case_id": "rename_convert_03",
+      "category": "conversion",
+      "expected": true,
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": [
+        "a",
+        "b"
+      ],
+      "actual_error": null,
+      "case_id": "rename_convert_04",
+      "category": "conversion",
+      "expected": [
+        "a",
+        "b"
+      ],
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": {
+        "a": 1
+      },
+      "actual_error": null,
+      "case_id": "rename_convert_05",
+      "category": "conversion",
+      "expected": {
+        "a": 1
+      },
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "00123",
+      "actual_error": null,
+      "case_id": "rename_convert_06",
+      "category": "conversion",
+      "expected": "00123",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "zh-CN",
+      "actual_error": null,
+      "case_id": "default_01",
+      "category": "default",
+      "expected": "zh-CN",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "en-US",
+      "actual_error": null,
+      "case_id": "default_02",
+      "category": "default",
+      "expected": "en-US",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "internal",
+      "actual_error": null,
+      "case_id": "default_03",
+      "category": "default",
+      "expected": "internal",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "public",
+      "actual_error": null,
+      "case_id": "default_04",
+      "category": "default",
+      "expected": "public",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "",
+      "actual_error": null,
+      "case_id": "default_05",
+      "category": "default",
+      "expected": "",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "existing",
+      "actual_error": null,
+      "case_id": "default_06",
+      "category": "default",
+      "expected": "existing",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "",
+      "actual_error": null,
+      "case_id": "default_07",
+      "category": "default",
+      "expected": "",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "0",
+      "actual_error": null,
+      "case_id": "default_08",
+      "category": "default",
+      "expected": "0",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "false",
+      "actual_error": null,
+      "case_id": "default_09",
+      "category": "default",
+      "expected": "false",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "中文",
+      "actual_error": null,
+      "case_id": "default_10",
+      "category": "default",
+      "expected": "中文",
+      "expected_error": null,
+      "operation": "default",
+      "passed": true
+    },
+    {
+      "actual": "OpenAI",
+      "actual_error": null,
+      "case_id": "nested_01",
+      "category": "nested_array",
+      "expected": "OpenAI",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "Research",
+      "actual_error": null,
+      "case_id": "nested_02",
+      "category": "nested_array",
+      "expected": "Research",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": [
+        "a",
+        "b"
+      ],
+      "actual_error": null,
+      "case_id": "nested_03",
+      "category": "nested_array",
+      "expected": [
+        "a",
+        "b"
+      ],
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "actual_error": null,
+      "case_id": "nested_04",
+      "category": "nested_array",
+      "expected": [],
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": {
+        "k": "v"
+      },
+      "actual_error": null,
+      "case_id": "nested_05",
+      "category": "nested_array",
+      "expected": {
+        "k": "v"
+      },
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "deep",
+      "actual_error": null,
+      "case_id": "nested_06",
+      "category": "nested_array",
+      "expected": "deep",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": "值",
+      "actual_error": null,
+      "case_id": "nested_07",
+      "category": "nested_array",
+      "expected": "值",
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": [
+        "1",
+        "2"
+      ],
+      "actual_error": null,
+      "case_id": "nested_08",
+      "category": "nested_array",
+      "expected": [
+        "1",
+        "2"
+      ],
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "actual_error": null,
+      "case_id": "nested_09",
+      "category": "nested_array",
+      "expected": [],
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": {
+        "active": true,
+        "name": "n"
+      },
+      "actual_error": null,
+      "case_id": "nested_10",
+      "category": "nested_array",
+      "expected": {
+        "active": true,
+        "name": "n"
+      },
+      "expected_error": null,
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_01",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_02",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_03",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_04",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_05",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_06",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_07",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_08",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_09",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_10",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_11",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_12",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_13",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_14",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_15",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_16",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_17",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_18",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_19",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_source_path",
+      "case_id": "unsafe_20",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_source_path",
+      "operation": "rename",
+      "passed": true
+    }
+  ],
+  "claim_boundary": "Measures deterministic Topic 5 field operations only; it does not measure semantic extraction, retrieval, or downstream quality scoring.",
+  "commit_sha": "0d039e45169f9fa684e85afc08a3128fda41a509",
+  "conversion_accuracy": 1.0,
+  "dataset_id": "topic5_field_operations_v1",
+  "dataset_sha256": "bc09416bb5dd75bc797fc3eb589902e85b4b76b3046d19477bb1a32a2281a989",
+  "dataset_version": "1.0.0",
+  "failed_cases": [],
+  "field_operation_accuracy": 1.0,
+  "generated_at": "2026-07-10T08:28:33.627885+00:00",
+  "merge_accuracy": 1.0,
+  "passed_count": 110,
+  "rename_accuracy": 1.0,
+  "reproduction_command": "backend/.venv/Scripts/python.exe scripts/eval_topic5_field_operations.py",
+  "split_accuracy": 1.0,
+  "unsafe_operation_count": 0
+}

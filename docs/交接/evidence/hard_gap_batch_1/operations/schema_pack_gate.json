@@ -1,0 +1,58 @@
+{
+  "checks": {
+    "asset_integrity": "passed",
+    "badcase_detection": "passed",
+    "cross_file_consistency": "passed",
+    "manifest_contracts": "passed",
+    "package_1_1_compatibility": "passed",
+    "phase2_mapping_gate": "passed",
+    "positive_examples": "passed",
+    "topic5_alignment_gate": "passed"
+  },
+  "failed_checks": [],
+  "status": "passed",
+  "warnings": [
+    {
+      "auto_precision": 0.8,
+      "schema_id": "meeting_doc",
+      "split": "dev",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    },
+    {
+      "auto_precision": 0.8,
+      "schema_id": "policy_doc",
+      "split": "dev",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    },
+    {
+      "auto_precision": 0.8,
+      "schema_id": "meeting_doc",
+      "split": "test",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    },
+    {
+      "auto_precision": 0.8,
+      "schema_id": "policy_doc",
+      "split": "test",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    },
+    {
+      "auto_precision": 0.8,
+      "schema_id": "meeting_doc",
+      "split": "blind",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    },
+    {
+      "auto_precision": 0.8,
+      "schema_id": "policy_doc",
+      "split": "blind",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    }
+  ]
+}
