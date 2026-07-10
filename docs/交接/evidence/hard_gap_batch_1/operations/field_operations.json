@@ -32,11 +32,11 @@
     },
     "unsafe": {
       "accuracy": 1.0,
-      "passed": 20,
-      "total": 20
+      "passed": 29,
+      "total": 29
     }
   },
-  "case_count": 110,
+  "case_count": 119,
   "cases": [
     {
       "actual": "Title 01",
@@ -801,7 +801,7 @@
       "category": "conversion",
       "expected": 12.345,
       "expected_error": null,
-      "operation": "rename",
+      "operation": "normalize_number",
       "passed": true
     },
     {
@@ -811,7 +811,7 @@
       "category": "conversion",
       "expected": true,
       "expected_error": null,
-      "operation": "rename",
+      "operation": "normalize_boolean",
       "passed": true
     },
     {
@@ -1275,19 +1275,109 @@
       "expected_error": "unsafe_source_path",
       "operation": "rename",
       "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsupported_operation",
+      "case_id": "unsafe_21",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsupported_operation",
+      "operation": "python_eval",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "source_missing",
+      "case_id": "unsafe_22",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "source_missing",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "source_type_invalid",
+      "case_id": "unsafe_23",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "source_type_invalid",
+      "operation": "split",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "enum_value_unmapped",
+      "case_id": "unsafe_24",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "enum_value_unmapped",
+      "operation": "enum_map",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsafe_implicit_coercion",
+      "case_id": "unsafe_25",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsafe_implicit_coercion",
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "target_type_invalid",
+      "case_id": "unsafe_26",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "target_type_invalid",
+      "operation": "rename",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "duplicate_source_path",
+      "case_id": "unsafe_27",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "duplicate_source_path",
+      "operation": "merge",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "unsupported_operation",
+      "case_id": "unsafe_28",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "unsupported_operation",
+      "operation": "blocked_semantic_pair",
+      "passed": true
+    },
+    {
+      "actual": null,
+      "actual_error": "target_required",
+      "case_id": "unsafe_29",
+      "category": "unsafe",
+      "expected": null,
+      "expected_error": "target_required",
+      "operation": "contract_missing_target",
+      "passed": true
     }
   ],
   "claim_boundary": "Measures deterministic Topic 5 field operations only; it does not measure semantic extraction, retrieval, or downstream quality scoring.",
-  "commit_sha": "0d039e45169f9fa684e85afc08a3128fda41a509",
+  "commit_sha": "783a8530b3b3b7bb0e5099a78a23c3540446683c",
   "conversion_accuracy": 1.0,
   "dataset_id": "topic5_field_operations_v1",
-  "dataset_sha256": "bc09416bb5dd75bc797fc3eb589902e85b4b76b3046d19477bb1a32a2281a989",
+  "dataset_sha256": "d95ddc02218a6897d0c82ef0a7e68197598493483e2713c7b04df2c97d295254",
   "dataset_version": "1.0.0",
   "failed_cases": [],
   "field_operation_accuracy": 1.0,
-  "generated_at": "2026-07-10T08:28:33.627885+00:00",
+  "generated_at": "2026-07-10T08:48:05.195129+00:00",
   "merge_accuracy": 1.0,
-  "passed_count": 110,
+  "passed_count": 119,
   "rename_accuracy": 1.0,
   "reproduction_command": "backend/.venv/Scripts/python.exe scripts/eval_topic5_field_operations.py",
   "split_accuracy": 1.0,

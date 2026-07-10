@@ -66,6 +66,7 @@ npm.cmd test
 | Artifact consistency | `e052701a` |
 | Field operations and localization datasets | `29ead02a` |
 | Extended lineage, golden packages, and public docs | `0d039e45` |
+| Unsafe operation hardening | `783a8530` |
 
 The final documentation/evidence commit is intentionally recorded by Git history after
 this file is committed; embedding its own hash would be self-referential.

@@ -1,9 +1,9 @@
 # Topic 5 Field Operations
 
 - Dataset: `topic5_field_operations_v1` `1.0.0`
-- Dataset SHA-256: `bc09416bb5dd75bc797fc3eb589902e85b4b76b3046d19477bb1a32a2281a989`
-- Commit: `0d039e45169f9fa684e85afc08a3128fda41a509`
-- Cases: 110
+- Dataset SHA-256: `d95ddc02218a6897d0c82ef0a7e68197598493483e2713c7b04df2c97d295254`
+- Commit: `783a8530b3b3b7bb0e5099a78a23c3540446683c`
+- Cases: 119
 - Accuracy: 1.000
 - Unsafe operations accepted: 0
 
@@ -15,7 +15,7 @@
 | conversion | 20 | 20 | 1.000 |
 | default | 10 | 10 | 1.000 |
 | nested_array | 10 | 10 | 1.000 |
-| unsafe | 20 | 20 | 1.000 |
+| unsafe | 29 | 29 | 1.000 |
 
 Reproduce: `backend/.venv/Scripts/python.exe scripts/eval_topic5_field_operations.py`
 
