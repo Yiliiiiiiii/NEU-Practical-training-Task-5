@@ -1,4 +1,5 @@
 import hashlib
+from pathlib import Path
 
 import pytest
 
@@ -43,3 +44,24 @@ def test_storage_service_rejects_unsafe_paths(tmp_path):
     for path in unsafe_paths:
         with pytest.raises(ValueError, match="unsafe storage path"):
             service.resolve(path)
+
+
+def test_storage_service_save_json_replaces_target_atomically(tmp_path, monkeypatch):
+    from app.services.storage_service import StorageService
+
+    replacements: list[tuple[Path, Path]] = []
+    original_replace = Path.replace
+
+    def record_replace(source: Path, target: Path):
+        replacements.append((source, target))
+        return original_replace(source, target)
+
+    monkeypatch.setattr(Path, "replace", record_replace)
+    service = StorageService(tmp_path)
+
+    target = service.save_json("tasks/task-1/conversion_assertion_report.json", {"passed": True})
+
+    assert replacements
+    assert replacements[0][1] == target
+    assert replacements[0][0] != target
+    assert list(target.parent.glob("*.tmp")) == []

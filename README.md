@@ -297,3 +297,21 @@ Current measured claim: Topic 5 benchmark-level auto mapping recall >= 0.85
 within the declared standard UIR benchmark scope. This is not a production
 shadow/blind claim unless `production_shadow_eval_report.json` is also
 completed.
+
+## Topic 5 Phase 3 SchemaPack Contract
+
+A SchemaPack is the versioned external configuration contract for Topic 5. It declares the target schema, metadata template, mapping rules, content organization parameters, optional router hints, deterministic output assertions, examples, and badcases.
+
+The canonical Topic 5 input consists of normalized UIR, target schema, metadata template, mapping rules, and content organization parameters. A SchemaPack packages these configuration assets for reusable execution.
+
+Phase 3 adds strict `schema_pack.yaml` manifests, manifest-only asset loading, optional `output_assertions.yaml`, atomic `conversion_assertion_report.json` task evidence, positive/badcase evaluation, and a Phase 3 contract gate. Registered tasks can select a pack with `schema_pack_id`; inline requests can provide `output_assertions` directly.
+
+Output assertions are optional. Existing Package 1.1 deliverables and legacy Topic 5 requests remain supported.
+
+Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.
+
+Phase 3 explicitly adds no quality score, no quality grade, no publication route, no semantic fidelity judgment, no LLM-as-Judge, and no Topic 11 retrieval optimization.
+
+The project demonstrates benchmark-level automatic field mapping performance within the declared Topic 5 standard UIR benchmark scope. It does not claim arbitrary-schema production performance or production shadow/blind performance.
+
+Latest Phase 3 repository verification on 2026-07-10: backend `885 passed`, Ruff clean, frontend production build successful, frontend `24 passed / 8 files`, and 65 OpenAPI paths exported. The Phase 3 contract gate passed all eight hard checks; documented per-schema precision warnings remain non-blocking in this phase.

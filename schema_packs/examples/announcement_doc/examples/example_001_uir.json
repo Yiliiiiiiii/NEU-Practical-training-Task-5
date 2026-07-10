@@ -1,0 +1,31 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "announcement_positive_001",
+  "metadata": {
+    "document_title": "Scheduled Maintenance Announcement",
+    "language": "en-US"
+  },
+  "blocks": [
+    {
+      "block_id": "a1",
+      "type": "heading",
+      "level": 1,
+      "text": "Scheduled Maintenance Announcement",
+      "attributes": {}
+    },
+    {
+      "block_id": "a2",
+      "type": "paragraph",
+      "text": "2026-07-09",
+      "attributes": {"field_name": "publish_date"}
+    },
+    {
+      "block_id": "a3",
+      "type": "paragraph",
+      "text": "The platform will be maintained on Saturday morning.",
+      "attributes": {"field_name": "body"}
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

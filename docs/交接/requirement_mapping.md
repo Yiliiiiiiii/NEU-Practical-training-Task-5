@@ -128,3 +128,17 @@ Metric wording must stay conservative: do not claim production-grade blind recal
 | Report auto precision/recall/F1 separately from review-required support | `scripts/eval_topic5_standard_uir_mapping.py` reports auto and assisted metrics separately | Done |
 | Gate auto mapping quality | `scripts/check_topic5_mapping_quality_gate.py` and `reports/topic5_mapping_quality_gate_report.md` | Passed |
 | Avoid production-grade overclaim | Phase 2 docs state benchmark-scope claim only, not production shadow/blind recall | Done |
+
+## Topic 5 Phase 3 Contract Requirement
+
+| Requirement | Evidence | Status |
+| --- | --- | --- |
+| Version SchemaPack as an external contract | `schema_pack.yaml`, strict Pydantic models, generated `schema_pack_contract.schema.json` | Done |
+| Load assets only through manifest references | `SchemaPackService`, path containment tests, registered task integration | Done |
+| Add deterministic conversion output assertions | `output_assertions.yaml`, `ConversionAssertionService`, 13 deterministic operators | Done |
+| Preserve evidence and status semantics | atomic `conversion_assertion_report.json`, mapping evidence, warning/error/strict tests | Done |
+| Preserve Package 1.1 and legacy requests | optional checksummed report tests and assertion-free conversion tests | Done |
+| Add positive and badcase regression | `announcement_doc` and `event_notice_doc` fixtures plus all-pack evaluator | Done |
+| Preserve Topic 5 boundary | no score, grade, semantic judgment, LLM-as-Judge, or publication route | Done |
+
+Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.

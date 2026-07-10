@@ -13,6 +13,7 @@ from app.services.mapping_service import MappingService
 
 
 class MappingRepairService:
+    DEFAULT_AUTO_ACCEPT_THRESHOLD = 0.82
     DEFAULT_REVIEW_THRESHOLD = 0.62
     DEFAULT_MAX_REPAIR_ROUNDS = 2
 
@@ -40,7 +41,8 @@ class MappingRepairService:
             "enabled": enabled,
             "rounds": 0,
             "attempted_fields": [],
-            "repaired_fields": [],
+            "accepted_repair_fields": [],
+            "review_repair_fields": [],
             "unrepaired_fields": [],
             "blocked_candidates": [],
         }
@@ -49,7 +51,20 @@ class MappingRepairService:
 
         negative_pairs = options.get("negative_pairs", [])
         negative_pairs = negative_pairs if isinstance(negative_pairs, list) else []
-        review_threshold = float(options.get("review_threshold", self.DEFAULT_REVIEW_THRESHOLD))
+        auto_accept_threshold = float(
+            options.get(
+                "repair_auto_accept_threshold",
+                options.get("auto_accept_threshold", self.DEFAULT_AUTO_ACCEPT_THRESHOLD),
+            )
+        )
+        review_threshold = float(
+            options.get(
+                "repair_review_threshold",
+                options.get("review_threshold", self.DEFAULT_REVIEW_THRESHOLD),
+            )
+        )
+        if review_threshold > auto_accept_threshold:
+            raise ValueError("repair_review_threshold cannot exceed repair_auto_accept_threshold")
         max_rounds = int(options.get("max_repair_rounds", self.DEFAULT_MAX_REPAIR_ROUNDS))
         report["rounds"] = min(max_rounds, 1)
 
@@ -104,13 +119,26 @@ class MappingRepairService:
                 report["unrepaired_fields"].append(field_id)
                 continue
             score, candidate, features = ranked[0]
-            mappings.append(
-                self._repair_mapping(task_id, candidate, target, score, features)
+            mapping = self._repair_mapping(
+                task_id,
+                candidate,
+                target,
+                score,
+                features,
+                need_review=score < auto_accept_threshold,
             )
+            if score >= auto_accept_threshold:
+                mappings.append(mapping)
+                report["accepted_repair_fields"].append(field_id)
+            else:
+                review_required.append(mapping)
+                report["review_repair_fields"].append(field_id)
             used_sources.add(candidate.source_path)
-            report["repaired_fields"].append(field_id)
 
-        repaired_fields = set(report["repaired_fields"])
+        repaired_fields = {
+            *report["accepted_repair_fields"],
+            *report["review_repair_fields"],
+        }
         unmapped = [
             item
             for item in mapping_report.unmapped
@@ -119,7 +147,10 @@ class MappingRepairService:
         summary = dict(mapping_report.summary)
         summary["mapping_repair_enabled"] = True
         summary["mapping_repair_attempted_count"] = len(report["attempted_fields"])
-        summary["mapping_repair_repaired_count"] = len(report["repaired_fields"])
+        summary["mapping_repair_accepted_count"] = len(
+            report["accepted_repair_fields"]
+        )
+        summary["mapping_repair_review_count"] = len(report["review_repair_fields"])
         summary["mapped_count"] = len(mappings)
         summary["accepted_count"] = len(mappings)
         summary["review_required_count"] = len(review_required)
@@ -147,6 +178,8 @@ class MappingRepairService:
         target: TargetField,
         score: float,
         features: Any,
+        *,
+        need_review: bool,
     ) -> dict[str, Any]:
         mapping = self.mapping_service._mapping(
             task_id=task_id,
@@ -154,7 +187,7 @@ class MappingRepairService:
             field=target,
             method="mapping_repair",
             confidence=score,
-            need_review=False,
+            need_review=need_review,
             evidence=[
                 MappingEvidence(
                     type="mapping_repair",

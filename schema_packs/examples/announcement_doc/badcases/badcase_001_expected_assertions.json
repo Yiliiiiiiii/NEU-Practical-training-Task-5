@@ -1,0 +1,4 @@
+{
+  "expected_failed_assertion_ids": ["dates_must_differ"],
+  "expected_severities": {"dates_must_differ": "warning"}
+}

@@ -56,6 +56,7 @@ class TaskCreateRequest(StrictBaseModel):
     template_id: str
     schema_version: str = "1.0.0"
     template_version: str = "1.0.0"
+    schema_pack_id: str | None = None
     options: dict[str, Any] = Field(default_factory=dict)
 
 

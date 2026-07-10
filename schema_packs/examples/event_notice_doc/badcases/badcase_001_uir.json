@@ -1,0 +1,39 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "event_notice_badcase_001",
+  "metadata": {
+    "document_title": "Incorrect Event Time Notice",
+    "publish_date": "2026-07-12T14:00:00",
+    "retrieved_at": "2026-07-10 08:00",
+    "language": "en-US"
+  },
+  "blocks": [
+    {
+      "block_id": "eb1",
+      "type": "heading",
+      "level": 1,
+      "text": "Incorrect Event Time Notice",
+      "attributes": {}
+    },
+    {
+      "block_id": "eb2",
+      "type": "paragraph",
+      "text": "Example Organizer",
+      "attributes": {"field_name": "organizer"}
+    },
+    {
+      "block_id": "eb3",
+      "type": "paragraph",
+      "text": "2026-07-12 14:00",
+      "attributes": {"field_name": "event_time"}
+    },
+    {
+      "block_id": "eb4",
+      "type": "paragraph",
+      "text": "This fixture intentionally copies publish date into event time.",
+      "attributes": {"field_name": "body"}
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

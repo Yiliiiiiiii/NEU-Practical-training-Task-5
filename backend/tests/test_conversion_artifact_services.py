@@ -94,6 +94,8 @@ def test_canonical_and_render_services_preserve_sources_and_chunks():
         "general_doc",
         "general_doc_base_v1",
     )
+    uir.metadata["retrieved_at"] = "2026-07-10T00:00:00Z"
+    uir.metadata["execution_snapshot"] = {"forged": True}
     transform_result = TransformService().transform(
         task_id="task_general_001",
         uir=uir,
@@ -115,6 +117,12 @@ def test_canonical_and_render_services_preserve_sources_and_chunks():
     assert canonical.fields["title"].value == "接口目录维护说明"
     assert canonical.blocks[0].source_blocks == ["gen001_b001"]
     assert rendered.structured_json["data"]["title"] == "接口目录维护说明"
+    assert rendered.structured_json["metadata"]["retrieved_at"] == (
+        "2026-07-10T00:00:00Z"
+    )
+    assert rendered.structured_json["metadata"]["execution_snapshot"] == {
+        "engine_version": "test"
+    }
     assert "# 接口目录维护说明" in rendered.markdown
     assert rendered.chunks
     assert all(chunk["text"] for chunk in rendered.chunks)

@@ -1,0 +1,9 @@
+{
+  "schema_pack_id": "event_notice_doc",
+  "uir_path": "example_001_uir.json",
+  "create_package": true,
+  "options": {
+    "strict_output_assertions": false,
+    "include_assertion_report_in_package": true
+  }
+}

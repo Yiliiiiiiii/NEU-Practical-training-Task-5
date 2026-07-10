@@ -9,12 +9,17 @@ from sqlalchemy.orm import Session
 
 from app.config import Settings
 from app.db.models import ConversionTask, Document, KnowledgeCandidateRecord
+from app.schemas.conversion_assertions import ConversionAssertionConfig
+from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
+from app.schemas.schema_pack_contract import SchemaPackManifest
+from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
 from app.services.chunk_organizer_service import ChunkOrganizerService
+from app.services.conversion_assertion_service import ConversionAssertionService
 from app.services.effective_template_service import EffectiveTemplateService
 from app.services.lineage_graph_service import LineageGraphService
 from app.services.llm_fallback_service import LLMFallbackService
@@ -22,6 +27,7 @@ from app.services.mapping_service import MappingService
 from app.services.package_service import PackageService
 from app.services.render_service import RenderedArtifacts, RenderService
 from app.services.review_knowledge_workflow_service import ReviewKnowledgeWorkflowService
+from app.services.schema_pack_service import SchemaPackService
 from app.services.schema_service import SchemaService
 from app.services.storage_service import StorageService
 from app.services.task_service import TaskService
@@ -56,6 +62,9 @@ class TaskExecutionService:
         "lineage_graph": "lineage_graph",
         "lineage-summary": "lineage_summary",
         "lineage_summary": "lineage_summary",
+        "assertions": "conversion_assertion_report",
+        "conversion-assertions": "conversion_assertion_report",
+        "conversion_assertion_report": "conversion_assertion_report",
     }
 
     def __init__(
@@ -65,24 +74,46 @@ class TaskExecutionService:
         schema_service: SchemaService | None = None,
         template_service: TemplateService | None = None,
         settings: Settings | None = None,
+        schema_pack_service: SchemaPackService | None = None,
     ) -> None:
         self.db = db
         self.storage = storage
         self.schema_service = schema_service or SchemaService()
         self.template_service = template_service or TemplateService()
         self.settings = settings or Settings()
+        self.schema_pack_service = schema_pack_service or SchemaPackService()
 
     def execute_task(self, task_id: str) -> TaskExecutionResult:
         task = self.db.get(ConversionTask, task_id)
         if task is None:
             raise LookupError("task not found")
 
-        task.started_at = self._now()
-        task.finished_at = None
-        task.status = "running"
-        task.error_code = None
-        task.error_message = None
+        started_at = self._now()
+        claimed = (
+            self.db.query(ConversionTask)
+            .filter(
+                ConversionTask.task_id == task_id,
+                ConversionTask.status == "created",
+            )
+            .update(
+                {
+                    ConversionTask.started_at: started_at,
+                    ConversionTask.finished_at: None,
+                    ConversionTask.updated_at: started_at,
+                    ConversionTask.status: "running",
+                    ConversionTask.error_code: None,
+                    ConversionTask.error_message: None,
+                },
+                synchronize_session=False,
+            )
+        )
+        if claimed != 1:
+            self.db.rollback()
+            raise ValueError(
+                "task has already been executed; create a new task to rerun"
+            )
         self.db.commit()
+        self.db.refresh(task)
 
         try:
             return self._execute(task)
@@ -151,24 +182,39 @@ class TaskExecutionService:
         uir_data = self.storage.read_json(document.storage_path)
         uir = UIRDocument.model_validate(uir_data)
         options = TaskService.task_options(task)
-        catalog_service = CatalogGovernanceService(
-            self.db,
-            self.schema_service,
-            self.template_service,
-        )
-
-        try:
-            schema = catalog_service.load_schema(task.schema_id, task.schema_version)
-        except LookupError as exc:
-            raise LookupError(f"schema not found: {task.schema_id}") from exc
-
-        try:
-            template = catalog_service.load_template(
-                task.template_id,
-                task.template_version,
+        schema_pack_id = options.get("schema_pack_id")
+        assertion_config = None
+        schema_pack_manifest = None
+        if isinstance(schema_pack_id, str) and schema_pack_id:
+            (
+                schema,
+                template,
+                assertion_config,
+                schema_pack_manifest,
+            ) = self._load_schema_pack_contract(
+                task,
+                schema_pack_id,
+                options,
+                input_uir_version=uir.uir_version,
             )
-        except LookupError as exc:
-            raise LookupError(f"template not found: {task.template_id}") from exc
+        else:
+            catalog_service = CatalogGovernanceService(
+                self.db,
+                self.schema_service,
+                self.template_service,
+            )
+            try:
+                schema = catalog_service.load_schema(task.schema_id, task.schema_version)
+            except LookupError as exc:
+                raise LookupError(f"schema not found: {task.schema_id}") from exc
+
+            try:
+                template = catalog_service.load_template(
+                    task.template_id,
+                    task.template_version,
+                )
+            except LookupError as exc:
+                raise LookupError(f"template not found: {task.template_id}") from exc
         self.template_service.validate_template(template, schema)
         review_knowledge_service = ReviewKnowledgeWorkflowService(
             self.db,
@@ -181,7 +227,12 @@ class TaskExecutionService:
         effective_result = EffectiveTemplateService().resolve(template, active_packs)
         template = effective_result.template
 
-        candidates = CandidateService().extract_candidates(task.task_id, uir)
+        candidates = CandidateService().extract_candidates(
+            task.task_id,
+            uir,
+            candidate_profile=options.get("candidate_profile"),
+            enable_legacy_domain_rules=not bool(schema_pack_manifest),
+        )
         llm_fallback_service = LLMFallbackService(self.settings)
         mapping_report = MappingService(llm_fallback_service=llm_fallback_service).map_fields(
             task_id=task.task_id,
@@ -225,6 +276,7 @@ class TaskExecutionService:
             },
             "started_at": started_at,
         }
+        snapshot_path = f"tasks/{task.task_id}/execution_snapshot.json"
         canonical = CanonicalService().build_canonical(
             task_id=task.task_id,
             uir=uir,
@@ -267,6 +319,44 @@ class TaskExecutionService:
             rendered,
             require_content_organization=True,
         )
+        conversion_assertion_report: dict[str, Any] | None = None
+        conversion_assertion_report_path: str | None = None
+        if assertion_config is not None and schema_pack_manifest is not None:
+            assertion_report = ConversionAssertionService().evaluate(
+                task_id=task.task_id,
+                schema_pack_id=schema_pack_manifest.schema_pack_id,
+                schema_pack_version=schema_pack_manifest.schema_pack_version,
+                schema_id=schema.schema_id,
+                content_json=rendered.structured_json,
+                assertion_config=assertion_config,
+                mapping_report=mapping_report.model_dump(mode="json"),
+            )
+            conversion_assertion_report = assertion_report.model_dump(mode="json")
+            conversion_assertion_report_path = str(
+                self.storage.save_json(
+                    f"tasks/{task.task_id}/conversion_assertion_report.json",
+                    conversion_assertion_report,
+                )
+            )
+            execution_snapshot.update(
+                {
+                    "status": "running",
+                    "artifacts": {
+                        "conversion_assertion_report": (
+                            conversion_assertion_report_path
+                        )
+                    },
+                    "report_paths": {
+                        "conversion_assertion_report": (
+                            conversion_assertion_report_path
+                        )
+                    },
+                }
+            )
+            self.storage.save_json(snapshot_path, execution_snapshot)
+            task.config_snapshot_path = snapshot_path
+            task.updated_at = self._now()
+            self.db.commit()
         package_result = PackageService(self.storage.root).create_package(
             task_id=task.task_id,
             doc_id=document.doc_id,
@@ -278,6 +368,10 @@ class TaskExecutionService:
             transform_report=transform_result.report,
             validation_report=validation_report,
             content_organization_report=content_organization_report,
+            conversion_assertion_report=conversion_assertion_report,
+            include_assertion_report=bool(
+                options.get("include_assertion_report_in_package", False)
+            ),
         )
 
         lineage_graph: dict[str, Any] | None = None
@@ -370,6 +464,7 @@ class TaskExecutionService:
             package_metadata=package_result.metadata.model_dump(mode="json"),
             verifier_report=package_result.verifier_report.model_dump(mode="json"),
             manifest=package_result.manifest.model_dump(mode="json"),
+            conversion_assertion_report_path=conversion_assertion_report_path,
             lineage_graph=lineage_graph,
             lineage_summary=lineage_summary,
         )
@@ -382,12 +477,24 @@ class TaskExecutionService:
             package_passed=package_result.verifier_report.passed,
             review_required_count=review_required_count,
             unmapped_required_count=unmapped_required_count,
+            assertion_error_count=(
+                int(conversion_assertion_report.get("error_count", 0))
+                if conversion_assertion_report
+                else 0
+            ),
+            strict_output_assertions=bool(
+                options.get("strict_output_assertions", False)
+            ),
         )
-        snapshot_path = f"tasks/{task.task_id}/execution_snapshot.json"
+        artifacts: dict[str, str] = {}
+        assertion_report_path = report_paths.get("conversion_assertion_report")
+        if assertion_report_path is not None:
+            artifacts["conversion_assertion_report"] = assertion_report_path
         execution_snapshot.update(
             {
                 "status": status,
                 "finished_at": finished_at.isoformat(),
+                "artifacts": artifacts,
                 "report_paths": report_paths,
                 "package_zip_path": package_result.metadata.zip_path,
                 "review_required_count": review_required_count,
@@ -403,8 +510,15 @@ class TaskExecutionService:
         task.config_snapshot_path = snapshot_path
         task.finished_at = finished_at
         task.updated_at = finished_at
-        task.error_code = None if status != "failed" else "package_verification_failed"
-        task.error_message = None if status != "failed" else "package verification failed"
+        if status != "failed":
+            task.error_code = None
+            task.error_message = None
+        elif not package_result.verifier_report.passed:
+            task.error_code = "package_verification_failed"
+            task.error_message = "package verification failed"
+        else:
+            task.error_code = "output_assertion_failed"
+            task.error_message = "strict output assertion failed"
         self.db.commit()
         self.db.refresh(task)
 
@@ -416,6 +530,83 @@ class TaskExecutionService:
             review_required_count=review_required_count,
             unmapped_required_count=unmapped_required_count,
         )
+
+    def _load_schema_pack_contract(
+        self,
+        task: ConversionTask,
+        schema_pack_id: str,
+        options: dict[str, Any],
+        *,
+        input_uir_version: str,
+    ) -> tuple[
+        TargetSchema,
+        MappingTemplate,
+        ConversionAssertionConfig | None,
+        SchemaPackManifest,
+    ]:
+        manifest = self.schema_pack_service.validate_for_execution(
+            schema_pack_id,
+            input_uir_version=input_uir_version,
+        )
+        if manifest.schema_pack_id != task.schema_id:
+            raise ValueError("schema_pack_id does not match task.schema_id")
+
+        schema = TargetSchema.model_validate(
+            self.schema_pack_service.load_target_schema(schema_pack_id)
+        )
+        if schema.version != task.schema_version:
+            raise ValueError("SchemaPack target schema version does not match task")
+
+        mapping_payload = self.schema_pack_service.load_mapping_rules(schema_pack_id)
+        regex_rules = [
+            {
+                key: item[key]
+                for key in ("target_field_id", "pattern", "group")
+                if key in item
+            }
+            for item in mapping_payload.get("regex_rules", [])
+            if isinstance(item, dict)
+        ]
+        template = MappingTemplate.model_validate(
+            {
+                "template_id": mapping_payload.get("template_id"),
+                "schema_id": mapping_payload.get("schema_id"),
+                "name": mapping_payload.get("name") or manifest.display_name,
+                "version": mapping_payload.get("version"),
+                "aliases": mapping_payload.get("aliases", {}),
+                "regex_rules": regex_rules,
+                "transform_rules": mapping_payload.get("transform_rules", []),
+                "defaults": mapping_payload.get("defaults", {}),
+                "enum_maps": mapping_payload.get("enum_maps", {}),
+            }
+        )
+        if template.template_id != task.template_id:
+            raise ValueError("SchemaPack mapping template does not match task.template_id")
+        if template.version != task.template_version:
+            raise ValueError("SchemaPack mapping template version does not match task")
+
+        options.setdefault("mapping_mode", manifest.execution.default_mapping_mode)
+        options.setdefault("enable_llm_fallback", manifest.execution.allow_llm_fallback)
+        options.setdefault(
+            "include_assertion_report_in_package",
+            manifest.execution.include_assertion_report_in_package,
+        )
+        options.setdefault(
+            "content_organization",
+            self.schema_pack_service.load_content_org(schema_pack_id),
+        )
+        options.setdefault(
+            "metadata_template",
+            self.schema_pack_service.load_metadata_template(schema_pack_id),
+        )
+        options.setdefault("negative_pairs", mapping_payload.get("negative_pairs", []))
+        options.setdefault("thresholds", mapping_payload.get("thresholds", {}))
+        options.setdefault("candidate_profile", mapping_payload.get("candidate_hints", {}))
+        options["schema_pack_id"] = manifest.schema_pack_id
+        options["schema_pack_version"] = manifest.schema_pack_version
+        options["no_code_schema_pack_onboarding"] = True
+        assertions = self.schema_pack_service.load_output_assertions(schema_pack_id)
+        return schema, template, assertions, manifest
 
     def _write_execution_artifacts(
         self,
@@ -430,6 +621,7 @@ class TaskExecutionService:
         package_metadata: dict[str, Any],
         verifier_report: dict[str, Any],
         manifest: dict[str, Any],
+        conversion_assertion_report_path: str | None = None,
         lineage_graph: dict[str, Any] | None = None,
         lineage_summary: dict[str, Any] | None = None,
     ) -> dict[str, str]:
@@ -483,6 +675,10 @@ class TaskExecutionService:
                     lineage_summary,
                 )
             )
+        if conversion_assertion_report_path is not None:
+            report_paths["conversion_assertion_report"] = (
+                conversion_assertion_report_path
+            )
         return report_paths
 
     @staticmethod
@@ -490,15 +686,33 @@ class TaskExecutionService:
         package_passed: bool,
         review_required_count: int,
         unmapped_required_count: int,
+        assertion_error_count: int = 0,
+        strict_output_assertions: bool = False,
     ) -> str:
         if not package_passed:
             return "failed"
-        if review_required_count or unmapped_required_count:
+        if strict_output_assertions and assertion_error_count:
+            return "failed"
+        if review_required_count or unmapped_required_count or assertion_error_count:
             return "review_required"
         return "completed"
 
     def _mark_failed(self, task: ConversionTask, error_code: str, message: str) -> None:
         now = self._now()
+        if task.config_snapshot_path:
+            try:
+                snapshot = self.execution_snapshot(task)
+                snapshot.update(
+                    {
+                        "status": "failed",
+                        "finished_at": now.isoformat(),
+                        "error_code": error_code,
+                        "error_message": message,
+                    }
+                )
+                self.storage.save_json(task.config_snapshot_path, snapshot)
+            except (OSError, TypeError, ValueError):
+                pass
         task.status = "failed"
         task.error_code = error_code
         task.error_message = message

@@ -38,13 +38,17 @@ def build_gate_report(
     *,
     mode: str,
     thresholds: dict[str, float] | None = None,
+    verify_package: bool = False,
 ) -> dict[str, Any]:
     thresholds = thresholds or DEFAULT_THRESHOLDS
     failed: list[str] = []
     actual: dict[str, Any] = {}
+    per_schema: dict[str, dict[str, Any]] = {}
+    warnings: list[dict[str, Any]] = []
     for split in ("dev", "test", "blind"):
         metrics = split_reports[split]["metrics"]
         actual[split] = metrics
+        per_schema[split] = split_reports[split].get("by_schema", {})
         if metrics["auto_precision"] < thresholds["auto_precision"]:
             failed.append(f"{split}_auto_precision_below_threshold")
         if metrics["auto_recall"] < thresholds["auto_recall"]:
@@ -55,6 +59,36 @@ def build_gate_report(
             failed.append("required_missing")
         if metrics["badcase_violations"]:
             failed.append("badcase_violations")
+        if verify_package:
+            if metrics.get("package_verified_count") != metrics.get("dataset_size"):
+                failed.append(f"{split}_package_verification_incomplete")
+            if metrics.get("package_verifier_pass_rate") != 1.0:
+                failed.append(f"{split}_package_verifier_failed")
+        for schema_id, schema_metrics in per_schema[split].items():
+            if schema_metrics.get("required_missing"):
+                failed.append(f"{split}_{schema_id}_required_missing")
+            if schema_metrics.get("badcase_violations"):
+                failed.append(f"{split}_{schema_id}_badcase_violations")
+            if schema_metrics.get("auto_precision", 0.0) < 0.85:
+                warnings.append(
+                    {
+                        "type": "schema_precision_below_recommended_threshold",
+                        "split": split,
+                        "schema_id": schema_id,
+                        "auto_precision": schema_metrics["auto_precision"],
+                        "threshold": 0.85,
+                    }
+                )
+            if schema_metrics.get("auto_recall", 0.0) < 0.85:
+                warnings.append(
+                    {
+                        "type": "schema_recall_below_recommended_threshold",
+                        "split": split,
+                        "schema_id": schema_id,
+                        "auto_recall": schema_metrics["auto_recall"],
+                        "threshold": 0.85,
+                    }
+                )
 
     gap = round(
         abs(
@@ -71,9 +105,12 @@ def build_gate_report(
     return {
         "status": "passed" if not failed else "failed",
         "mode": mode,
+        "verify_package": verify_package,
         "thresholds": thresholds,
         "actual": actual,
+        "per_schema": per_schema,
         "failed_checks": failed,
+        "warnings": warnings,
     }
 
 
@@ -109,21 +146,25 @@ def render_markdown(report: dict[str, Any]) -> str:
     lines.extend(["", "## Claim Boundary", ""])
     if report["status"] == "passed":
         lines.append(
-            "The project can claim Topic 5 benchmark-level auto mapping recall >= 0.85 "
-            "within the declared standard UIR benchmark scope."
+            "The project demonstrates benchmark-level automatic field mapping "
+            "performance within the declared Topic 5 standard UIR benchmark scope. "
+            "It does not claim arbitrary-schema production performance or production "
+            "shadow/blind performance."
         )
     else:
         lines.append(
             "The project must not claim auto mapping recall >= 0.85; it may claim "
             "benchmark infrastructure is ready and report the current measured value."
         )
-    lines.append(
-        "This is not a production shadow/blind claim unless "
-        "production_shadow_eval_report.json is also completed."
-    )
     if report["failed_checks"]:
         lines.extend(["", "## Failed Checks", ""])
         lines.extend(f"- {item}" for item in report["failed_checks"])
+    if report["warnings"]:
+        lines.extend(["", "## Per-Schema Warnings", ""])
+        lines.extend(
+            f"- {item['split']}/{item['schema_id']}: {item['type']}"
+            for item in report["warnings"]
+        )
     return "\n".join(lines) + "\n"
 
 
@@ -132,11 +173,16 @@ def run_split_reports(
     dataset_root: Path,
     mode: str,
     thresholds: dict[str, float],
+    verify_package: bool = False,
 ) -> dict[str, dict[str, Any]]:
     split_reports: dict[str, dict[str, Any]] = {}
     for split in ("dev", "test", "blind"):
         dataset = load_dataset(dataset_root, split)
-        rows = evaluate_dataset(dataset, mapping_mode=mode)
+        rows = evaluate_dataset(
+            dataset,
+            mapping_mode=mode,
+            verify_package=verify_package,
+        )
         report = build_report(
             rows,
             split=split,
@@ -163,14 +209,20 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=DEFAULT_JSON)
     parser.add_argument("--markdown", type=Path, default=DEFAULT_MD)
     parser.add_argument("--fail-on-gate", action="store_true")
+    parser.add_argument("--verify-package", action="store_true")
     args = parser.parse_args()
 
     split_reports = run_split_reports(
         dataset_root=args.dataset,
         mode=args.mode,
         thresholds=DEFAULT_THRESHOLDS,
+        verify_package=args.verify_package,
     )
-    report = build_gate_report(split_reports, mode=args.mode)
+    report = build_gate_report(
+        split_reports,
+        mode=args.mode,
+        verify_package=args.verify_package,
+    )
     write_json(args.out, report)
     write_markdown(args.markdown, render_markdown(report))
     if args.fail_on_gate and report["status"] != "passed":

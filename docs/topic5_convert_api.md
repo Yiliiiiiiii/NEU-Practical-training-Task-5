@@ -100,3 +100,21 @@ The project does not claim production-grade blind recall 0.85. The current stron
 
 LLM assistance is disabled by default. If enabled in future extensions, it must remain report-only unless a separate explicit governance workflow accepts the result. LLM output must not directly activate schema, template, mapping rules, or production catalog entries.
 
+## 7. Phase 3 Output Assertions
+
+Inline requests may add an optional `output_assertions` object conforming to `schema_packs/output_assertions_contract.schema.json`. Responses add optional `conversion_assertion_report` evidence.
+
+```json
+{
+  "strict_output_assertions": false,
+  "include_assertion_report_in_package": false
+}
+```
+
+Warnings do not fail conversion. Assertion errors produce `review_required` by default; strict assertion errors produce `failed`. Requests without assertions retain existing behavior.
+
+Registered task creation may set `schema_pack_id`. The task then loads target schema, metadata template, mapping rules, content organization parameters, optional router hints, and output assertions from `schema_pack.yaml` references.
+
+Output assertions are optional. Existing Package 1.1 deliverables and legacy Topic 5 requests remain supported.
+
+Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.

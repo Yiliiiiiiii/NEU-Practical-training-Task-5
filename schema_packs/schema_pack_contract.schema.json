@@ -1,43 +1,241 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Topic 5 SchemaPack Contract",
-  "type": "object",
-  "required": [
-    "target_schema",
-    "metadata_template",
-    "mapping_rules",
-    "content_org"
-  ],
-  "properties": {
-    "target_schema": {
-      "type": "object",
-      "required": ["schema_id", "version", "name", "fields"]
-    },
-    "metadata_template": {
-      "type": "object",
-      "required": ["template_id", "schema_id", "version"]
-    },
-    "mapping_rules": {
-      "type": "object",
-      "required": ["schema_id", "template_id", "version"],
+  "$defs": {
+    "SchemaPackAssets": {
+      "additionalProperties": false,
       "properties": {
-        "schema_id": {"type": "string"},
-        "template_id": {"type": "string"},
-        "version": {"type": "string"},
-        "aliases": {"type": "object"},
-        "regex_rules": {"type": "array"},
-        "negative_pairs": {"type": "array"},
-        "transform_rules": {"type": "array"},
-        "defaults": {"type": "object"},
-        "thresholds": {"type": "object"},
-        "candidate_hints": {"type": "object"}
-      }
-    },
-    "content_org": {
+        "content_org": {
+          "title": "Content Org",
+          "type": "string"
+        },
+        "mapping_rules": {
+          "title": "Mapping Rules",
+          "type": "string"
+        },
+        "metadata_template": {
+          "title": "Metadata Template",
+          "type": "string"
+        },
+        "output_assertions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output Assertions"
+        },
+        "router_rules": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Router Rules"
+        },
+        "target_schema": {
+          "title": "Target Schema",
+          "type": "string"
+        }
+      },
+      "required": [
+        "target_schema",
+        "metadata_template",
+        "mapping_rules",
+        "content_org"
+      ],
+      "title": "SchemaPackAssets",
       "type": "object"
     },
-    "router_rules": {
+    "SchemaPackClaimBoundary": {
+      "additionalProperties": false,
+      "properties": {
+        "benchmark_scope": {
+          "default": true,
+          "title": "Benchmark Scope",
+          "type": "boolean"
+        },
+        "notes": {
+          "title": "Notes",
+          "type": "string"
+        },
+        "production_ready": {
+          "default": false,
+          "title": "Production Ready",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "notes"
+      ],
+      "title": "SchemaPackClaimBoundary",
+      "type": "object"
+    },
+    "SchemaPackCompatibility": {
+      "additionalProperties": false,
+      "properties": {
+        "input_uir_version": {
+          "title": "Input Uir Version",
+          "type": "string"
+        },
+        "max_agent_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Agent Version"
+        },
+        "min_agent_version": {
+          "title": "Min Agent Version",
+          "type": "string"
+        },
+        "package_contract_version": {
+          "title": "Package Contract Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "min_agent_version",
+        "input_uir_version",
+        "package_contract_version"
+      ],
+      "title": "SchemaPackCompatibility",
+      "type": "object"
+    },
+    "SchemaPackExecution": {
+      "additionalProperties": false,
+      "properties": {
+        "allow_llm_fallback": {
+          "default": false,
+          "title": "Allow Llm Fallback",
+          "type": "boolean"
+        },
+        "default_mapping_mode": {
+          "default": "global_assignment",
+          "enum": [
+            "legacy",
+            "global_assignment"
+          ],
+          "title": "Default Mapping Mode",
+          "type": "string"
+        },
+        "include_assertion_report_in_package": {
+          "default": false,
+          "title": "Include Assertion Report In Package",
+          "type": "boolean"
+        }
+      },
+      "title": "SchemaPackExecution",
+      "type": "object"
+    },
+    "SchemaPackSupportedInput": {
+      "additionalProperties": false,
+      "properties": {
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Languages",
+          "type": "array"
+        },
+        "normalized_uir_required": {
+          "default": true,
+          "title": "Normalized Uir Required",
+          "type": "boolean"
+        },
+        "source_formats": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Formats",
+          "type": "array"
+        }
+      },
+      "required": [
+        "source_formats"
+      ],
+      "title": "SchemaPackSupportedInput",
       "type": "object"
     }
-  }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assets": {
+      "$ref": "#/$defs/SchemaPackAssets"
+    },
+    "claim_boundary": {
+      "$ref": "#/$defs/SchemaPackClaimBoundary"
+    },
+    "compatibility": {
+      "$ref": "#/$defs/SchemaPackCompatibility"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "display_name": {
+      "title": "Display Name",
+      "type": "string"
+    },
+    "execution": {
+      "$ref": "#/$defs/SchemaPackExecution"
+    },
+    "owner": {
+      "title": "Owner",
+      "type": "string"
+    },
+    "schema_pack_id": {
+      "title": "Schema Pack Id",
+      "type": "string"
+    },
+    "schema_pack_version": {
+      "title": "Schema Pack Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "example",
+        "experimental",
+        "stable",
+        "deprecated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "supported_input": {
+      "$ref": "#/$defs/SchemaPackSupportedInput"
+    }
+  },
+  "required": [
+    "contract_version",
+    "schema_pack_id",
+    "schema_pack_version",
+    "display_name",
+    "description",
+    "status",
+    "owner",
+    "compatibility",
+    "assets",
+    "execution",
+    "supported_input",
+    "claim_boundary"
+  ],
+  "title": "SchemaPackManifest",
+  "type": "object"
 }

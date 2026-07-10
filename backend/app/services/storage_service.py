@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 
 class StorageService:
@@ -22,9 +23,9 @@ class StorageService:
     def save_json(self, relative_path: str | Path, data: Any) -> Path:
         path = self.resolve(relative_path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(
+        self._atomic_write_text(
+            path,
             json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True),
-            encoding="utf-8",
         )
         return path
 
@@ -34,7 +35,7 @@ class StorageService:
     def write_text(self, relative_path: str | Path, text: str) -> Path:
         path = self.resolve(relative_path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text, encoding="utf-8")
+        self._atomic_write_text(path, text)
         return path
 
     def read_text(self, relative_path: str | Path) -> str:
@@ -46,3 +47,13 @@ class StorageService:
             for chunk in iter(lambda: file.read(1024 * 1024), b""):
                 digest.update(chunk)
         return digest.hexdigest()
+
+    @staticmethod
+    def _atomic_write_text(path: Path, text: str) -> None:
+        temporary = path.with_name(f".{path.name}.{uuid4().hex}.tmp")
+        try:
+            temporary.write_text(text, encoding="utf-8")
+            temporary.replace(path)
+        finally:
+            if temporary.exists():
+                temporary.unlink()

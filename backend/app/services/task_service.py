@@ -19,6 +19,10 @@ class TaskService:
         if document is None:
             raise LookupError("document not found")
 
+        options = dict(request.options)
+        if request.schema_pack_id is not None:
+            options["schema_pack_id"] = request.schema_pack_id
+
         task = ConversionTask(
             task_id=new_id("task"),
             doc_id=document.doc_id,
@@ -29,7 +33,7 @@ class TaskService:
             status="created",
             input_hash=f"sha256:{self.storage.sha256(document.storage_path)}",
             options_json=json.dumps(
-                redact_sensitive_values(request.options),
+                redact_sensitive_values(options),
                 ensure_ascii=False,
                 sort_keys=True,
             ),

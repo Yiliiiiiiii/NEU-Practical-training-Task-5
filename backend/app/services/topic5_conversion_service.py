@@ -6,6 +6,7 @@ from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertRespon
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.chunk_organizer_service import ChunkOrganizerService
+from app.services.conversion_assertion_service import ConversionAssertionService
 from app.services.mapping_repair_service import MappingRepairService
 from app.services.mapping_service import MappingService
 from app.services.package_service import PackageService
@@ -133,6 +134,20 @@ class Topic5ConversionService:
             rendered,
             require_content_organization=True,
         )
+        conversion_assertion_report = None
+        if request.output_assertions is not None:
+            assertion_report = ConversionAssertionService().evaluate(
+                task_id=task_id,
+                schema_pack_id=str(options.get("schema_pack_id") or schema.schema_id),
+                schema_pack_version=str(
+                    options.get("schema_pack_version") or schema.version
+                ),
+                schema_id=schema.schema_id,
+                content_json=rendered.structured_json,
+                assertion_config=request.output_assertions,
+                mapping_report=mapping_report.model_dump(mode="json"),
+            )
+            conversion_assertion_report = assertion_report.model_dump(mode="json")
 
         manifest = None
         package_zip_path = None
@@ -150,6 +165,10 @@ class Topic5ConversionService:
                 transform_report=transform_result.report,
                 validation_report=validation_report,
                 content_organization_report=content_organization_report,
+                conversion_assertion_report=conversion_assertion_report,
+                include_assertion_report=bool(
+                    options.get("include_assertion_report_in_package", False)
+                ),
             )
             manifest = package_result.manifest.model_dump(mode="json")
             package_zip_path = package_result.metadata.zip_path
@@ -166,6 +185,14 @@ class Topic5ConversionService:
             validation_passed=validation_report.passed,
             verifier_passed=verifier_passed,
             create_package=create_package,
+            assertion_error_count=(
+                int(conversion_assertion_report.get("error_count", 0))
+                if conversion_assertion_report
+                else 0
+            ),
+            strict_output_assertions=bool(
+                options.get("strict_output_assertions", False)
+            ),
         )
         return Topic5ConvertResponse(
             task_id=task_id,
@@ -184,6 +211,7 @@ class Topic5ConversionService:
             package_zip_path=package_zip_path,
             package_metadata=package_metadata,
             verifier_report=verifier_report,
+            conversion_assertion_report=conversion_assertion_report,
         )
 
     @staticmethod
@@ -193,6 +221,8 @@ class Topic5ConversionService:
         validation_passed: bool,
         verifier_passed: bool | None,
         create_package: bool,
+        assertion_error_count: int = 0,
+        strict_output_assertions: bool = False,
     ) -> str:
         review_required_count = len(mapping_report.review_required_items)
         unmapped_required_count = sum(
@@ -202,7 +232,15 @@ class Topic5ConversionService:
         if create_package and verifier_passed is False:
             return "failed"
 
-        if review_required_count or unmapped_required_count or not validation_passed:
+        if strict_output_assertions and assertion_error_count:
+            return "failed"
+
+        if (
+            review_required_count
+            or unmapped_required_count
+            or not validation_passed
+            or assertion_error_count
+        ):
             return "review_required"
 
         return "completed"

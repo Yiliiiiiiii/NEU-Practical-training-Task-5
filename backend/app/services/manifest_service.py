@@ -17,7 +17,9 @@ class ManifestService:
         template_id: str,
         package_dir: Path,
         file_paths: list[Path],
+        optional_paths: set[str] | None = None,
     ) -> Manifest:
+        optional_paths = optional_paths or set()
         return Manifest(
             manifest_version="1.1",
             package_id=package_id,
@@ -28,11 +30,12 @@ class ManifestService:
             files=[
                 ManifestFile(
                     path=path.relative_to(package_dir).as_posix(),
-                    required=True,
-                    media_type=self.media_type(path.name),
+                    required=path.relative_to(package_dir).as_posix()
+                    not in optional_paths,
+                    media_type=self.media_type(path.relative_to(package_dir).as_posix()),
                     sha256=self.sha256_file(path),
                     bytes=path.stat().st_size,
-                    role=self.role(path.name),
+                    role=self.role(path.relative_to(package_dir).as_posix()),
                 )
                 for path in sorted(file_paths)
             ],
@@ -65,6 +68,7 @@ class ManifestService:
 
     @staticmethod
     def role(file_name: str) -> str:
+        file_name = Path(file_name).name
         return {
             "content.json": "structured_json",
             "content.md": "markdown",
@@ -76,4 +80,5 @@ class ManifestService:
             "metadata.json": "package_metadata",
             "canonical.json": "canonical",
             "verifier_report.json": "verifier_report",
+            "conversion_assertion_report.json": "conversion_assertion_report",
         }.get(file_name, "supporting")

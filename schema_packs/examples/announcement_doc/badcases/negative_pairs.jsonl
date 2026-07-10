@@ -1,0 +1,1 @@
+{"schema_id":"announcement_doc","source_pattern":"retrieved_at","target_field_id":"publish_date","reason":"retrieval time is not publish date","severity":"block"}

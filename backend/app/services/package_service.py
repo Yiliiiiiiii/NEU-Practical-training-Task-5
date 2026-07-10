@@ -37,6 +37,8 @@ class PackageService:
         transform_report: dict,
         validation_report: ValidationReport,
         content_organization_report: ContentOrganizationReport,
+        conversion_assertion_report: dict | None = None,
+        include_assertion_report: bool = False,
     ) -> PackageResult:
         package_id = f"pkg_{task_id}"
         package_dir = self.output_root / "packages" / package_id
@@ -71,9 +73,18 @@ class PackageService:
                 },
             },
         }
+        optional_paths: set[str] = set()
+        if include_assertion_report and conversion_assertion_report is not None:
+            assertion_path = "reports/conversion_assertion_report.json"
+            files[assertion_path] = conversion_assertion_report
+            optional_paths.add(assertion_path)
+            files["metadata.json"]["artifact_roles"][assertion_path] = (
+                "conversion_assertion_report"
+            )
         written_files: list[Path] = []
         for name, payload in files.items():
             path = package_dir / name
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(
                 json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True),
                 encoding="utf-8",
@@ -100,6 +111,7 @@ class PackageService:
             template_id=template.template_id,
             package_dir=package_dir,
             file_paths=written_files,
+            optional_paths=optional_paths,
         )
         manifest_path = package_dir / "manifest.json"
         manifest_path.write_text(
@@ -116,9 +128,9 @@ class PackageService:
 
         zip_path = package_dir / "standard_package.zip"
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as archive:
-            for path in sorted(package_dir.iterdir()):
+            for path in sorted(package_dir.rglob("*")):
                 if path.is_file() and path.name != "standard_package.zip":
-                    archive.write(path, path.name)
+                    archive.write(path, path.relative_to(package_dir).as_posix())
 
         metadata = OutputPackageMetadata(
             package_id=package_id,

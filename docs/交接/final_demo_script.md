@@ -352,3 +352,15 @@ Show the External UIR Adapter API/UI MVP:
 12. Explain current honest limitations.
 
 Required limitation statement: the project does not parse raw PDF, Word, Excel, images, or scanned documents in production runtime. It does not claim production-grade blind recall 0.85. The current stronger mapping metric is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex paths are report-only or dry-run and do not write production rules.
+
+## Topic 5 Phase 3 Demo Segment
+
+1. Show `schema_packs/examples/announcement_doc/schema_pack.yaml` and explain that every asset is manifest-referenced.
+2. Run both pack validators and show zero contract errors.
+3. Show `output_assertions.yaml` and the deterministic operator boundary.
+4. Run the all-pack evaluator and show positive fixtures plus exact badcase assertion IDs.
+5. Run an inline conversion and show `conversion_assertion_report` in the response.
+6. Run a registered task with `schema_pack_id` and show the atomic task report.
+7. Enable optional package inclusion and show the non-required manifest entry and checksum verification.
+8. Run `scripts/check_schema_pack_contract_gate.py --fail-on-gate`.
+9. State that this is Topic 5 contract compliance, not Topic 6 scoring, grading, semantic evaluation, or routing.

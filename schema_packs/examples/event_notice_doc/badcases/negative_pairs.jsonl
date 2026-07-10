@@ -1,0 +1,1 @@
+{"schema_id":"event_notice_doc","source_pattern":"publish date|retrieved_at","target_field_id":"event_time","reason":"publish or retrieved time is not event time","severity":"block"}

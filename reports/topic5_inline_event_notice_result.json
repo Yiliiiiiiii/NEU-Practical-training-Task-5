@@ -6,7 +6,7 @@
     "chunks": [
       {
         "char_count": 31,
-        "chunk_id": "chunk_topic5_9473b0a24bc9_0000",
+        "chunk_id": "chunk_topic5_34689aabf4dc_0000",
         "chunk_index": 0,
         "content_tags": [
           "event_notice"
@@ -27,7 +27,7 @@
           "doc:uir_event_notice_001",
           "schema:event_notice_doc",
           "schema_version:1.0.0",
-          "task:topic5_9473b0a24bc9",
+          "task:topic5_34689aabf4dc",
           "template:event_notice_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -72,7 +72,7 @@
             "doc:uir_event_notice_001",
             "schema:event_notice_doc",
             "schema_version:1.0.0",
-            "task:topic5_9473b0a24bc9",
+            "task:topic5_34689aabf4dc",
             "template:event_notice_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -85,7 +85,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "text": "Network Security Lecture Notice",
         "title": "Network Security Lecture Notice",
         "title_path": [
@@ -95,7 +95,7 @@
       },
       {
         "char_count": 38,
-        "chunk_id": "chunk_topic5_9473b0a24bc9_0001",
+        "chunk_id": "chunk_topic5_34689aabf4dc_0001",
         "chunk_index": 1,
         "content_tags": [
           "event_notice"
@@ -124,7 +124,7 @@
           "doc:uir_event_notice_001",
           "schema:event_notice_doc",
           "schema_version:1.0.0",
-          "task:topic5_9473b0a24bc9",
+          "task:topic5_34689aabf4dc",
           "template:event_notice_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -169,7 +169,7 @@
             "doc:uir_event_notice_001",
             "schema:event_notice_doc",
             "schema_version:1.0.0",
-            "task:topic5_9473b0a24bc9",
+            "task:topic5_34689aabf4dc",
             "template:event_notice_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -182,7 +182,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "text": "organizer: Information Security School",
         "title": "Network Security Lecture Notice",
         "title_path": [
@@ -192,7 +192,7 @@
       },
       {
         "char_count": 28,
-        "chunk_id": "chunk_topic5_9473b0a24bc9_0002",
+        "chunk_id": "chunk_topic5_34689aabf4dc_0002",
         "chunk_index": 2,
         "content_tags": [
           "event_notice"
@@ -211,7 +211,7 @@
           "doc:uir_event_notice_001",
           "schema:event_notice_doc",
           "schema_version:1.0.0",
-          "task:topic5_9473b0a24bc9",
+          "task:topic5_34689aabf4dc",
           "template:event_notice_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -256,7 +256,7 @@
             "doc:uir_event_notice_001",
             "schema:event_notice_doc",
             "schema_version:1.0.0",
-            "task:topic5_9473b0a24bc9",
+            "task:topic5_34689aabf4dc",
             "template:event_notice_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -269,7 +269,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "text": "event time: 2026-07-12 14:00",
         "title": "Network Security Lecture Notice",
         "title_path": [
@@ -279,7 +279,7 @@
       },
       {
         "char_count": 27,
-        "chunk_id": "chunk_topic5_9473b0a24bc9_0003",
+        "chunk_id": "chunk_topic5_34689aabf4dc_0003",
         "chunk_index": 3,
         "content_tags": [
           "event_notice"
@@ -299,7 +299,7 @@
           "doc:uir_event_notice_001",
           "schema:event_notice_doc",
           "schema_version:1.0.0",
-          "task:topic5_9473b0a24bc9",
+          "task:topic5_34689aabf4dc",
           "template:event_notice_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -344,7 +344,7 @@
             "doc:uir_event_notice_001",
             "schema:event_notice_doc",
             "schema_version:1.0.0",
-            "task:topic5_9473b0a24bc9",
+            "task:topic5_34689aabf4dc",
             "template:event_notice_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -357,7 +357,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "text": "location: Main Building 301",
         "title": "Network Security Lecture Notice",
         "title_path": [
@@ -367,7 +367,7 @@
       },
       {
         "char_count": 43,
-        "chunk_id": "chunk_topic5_9473b0a24bc9_0004",
+        "chunk_id": "chunk_topic5_34689aabf4dc_0004",
         "chunk_index": 4,
         "content_tags": [
           "event_notice"
@@ -389,7 +389,7 @@
           "doc:uir_event_notice_001",
           "schema:event_notice_doc",
           "schema_version:1.0.0",
-          "task:topic5_9473b0a24bc9",
+          "task:topic5_34689aabf4dc",
           "template:event_notice_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -434,7 +434,7 @@
             "doc:uir_event_notice_001",
             "schema:event_notice_doc",
             "schema_version:1.0.0",
-            "task:topic5_9473b0a24bc9",
+            "task:topic5_34689aabf4dc",
             "template:event_notice_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -447,7 +447,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "text": "audience: All information security students",
         "title": "Network Security Lecture Notice",
         "title_path": [
@@ -457,7 +457,7 @@
       },
       {
         "char_count": 123,
-        "chunk_id": "chunk_topic5_9473b0a24bc9_0005",
+        "chunk_id": "chunk_topic5_34689aabf4dc_0005",
         "chunk_index": 5,
         "content_tags": [
           "event_notice"
@@ -482,7 +482,7 @@
           "doc:uir_event_notice_001",
           "schema:event_notice_doc",
           "schema_version:1.0.0",
-          "task:topic5_9473b0a24bc9",
+          "task:topic5_34689aabf4dc",
           "template:event_notice_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -527,7 +527,7 @@
             "doc:uir_event_notice_001",
             "schema:event_notice_doc",
             "schema_version:1.0.0",
-            "task:topic5_9473b0a24bc9",
+            "task:topic5_34689aabf4dc",
             "template:event_notice_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -540,7 +540,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "text": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.",
         "title": "Network Security Lecture Notice",
         "title_path": [
@@ -698,11 +698,12 @@
         },
         "schema_id": "event_notice_doc",
         "schema_version": "1.0.0",
-        "task_id": "topic5_9473b0a24bc9",
+        "task_id": "topic5_34689aabf4dc",
         "template_id": "event_notice_doc_base_v1",
         "template_version": "1.0.0"
       },
       "metadata": {
+        "document_title": "Network Security Lecture Notice",
         "execution_snapshot": {
           "doc_id": "uir_event_notice_001",
           "input_mode": "inline_topic5_config",
@@ -773,10 +774,11 @@
           },
           "schema_id": "event_notice_doc",
           "schema_version": "1.0.0",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "template_id": "event_notice_doc_base_v1",
           "template_version": "1.0.0"
         },
+        "language": "en-US",
         "mapping_summary": {
           "accepted_count": 6,
           "average_confidence": 0.9933,
@@ -788,6 +790,7 @@
           "mapped_count": 6,
           "mapped_fields": 6,
           "mapping_input_name": "mapping_rules",
+          "mapping_mode": "legacy",
           "methods": {
             "alias": 1,
             "exact": 5
@@ -821,6 +824,7 @@
           "language": "en-US",
           "source": "example"
         },
+        "source": "example",
         "template_id": "event_notice_doc_base_v1",
         "transform_summary": {
           "error_count": 0,
@@ -829,7 +833,7 @@
         }
       },
       "schema_id": "event_notice_doc",
-      "task_id": "topic5_9473b0a24bc9"
+      "task_id": "topic5_34689aabf4dc"
     },
     "content_markdown": "# Network Security Lecture Notice\n\norganizer: Information Security School\n\nevent time: 2026-07-12 14:00\n\nlocation: Main Building 301\n\naudience: All information security students\n\nPlease arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice.\n",
     "content_organization_report": {
@@ -846,7 +850,7 @@
         "chunk_count": 6,
         "chunks": [
           {
-            "chunk_id": "chunk_topic5_9473b0a24bc9_0000",
+            "chunk_id": "chunk_topic5_34689aabf4dc_0000",
             "quality_flags": [],
             "source_block_ids": [
               "e1"
@@ -854,7 +858,7 @@
             "token_estimate": 7
           },
           {
-            "chunk_id": "chunk_topic5_9473b0a24bc9_0001",
+            "chunk_id": "chunk_topic5_34689aabf4dc_0001",
             "quality_flags": [],
             "source_block_ids": [
               "e2"
@@ -862,7 +866,7 @@
             "token_estimate": 9
           },
           {
-            "chunk_id": "chunk_topic5_9473b0a24bc9_0002",
+            "chunk_id": "chunk_topic5_34689aabf4dc_0002",
             "quality_flags": [],
             "source_block_ids": [
               "e3"
@@ -870,7 +874,7 @@
             "token_estimate": 7
           },
           {
-            "chunk_id": "chunk_topic5_9473b0a24bc9_0003",
+            "chunk_id": "chunk_topic5_34689aabf4dc_0003",
             "quality_flags": [],
             "source_block_ids": [
               "e4"
@@ -878,7 +882,7 @@
             "token_estimate": 6
           },
           {
-            "chunk_id": "chunk_topic5_9473b0a24bc9_0004",
+            "chunk_id": "chunk_topic5_34689aabf4dc_0004",
             "quality_flags": [],
             "source_block_ids": [
               "e5"
@@ -886,7 +890,7 @@
             "token_estimate": 10
           },
           {
-            "chunk_id": "chunk_topic5_9473b0a24bc9_0005",
+            "chunk_id": "chunk_topic5_34689aabf4dc_0005",
             "quality_flags": [],
             "source_block_ids": [
               "e6"
@@ -934,20 +938,67 @@
         "strategy": "source_block_aware",
         "template_id": "event_notice_doc_base_v1"
       },
-      "task_id": "topic5_9473b0a24bc9",
+      "task_id": "topic5_34689aabf4dc",
       "warnings": []
     },
+    "conversion_assertion_report": {
+      "assertion_set_version": "1.0.0",
+      "contract_version": "1.0",
+      "error_count": 0,
+      "failed_count": 0,
+      "generated_at": "2026-07-10T02:42:17.741858+00:00",
+      "issues": [],
+      "passed": true,
+      "passed_count": 4,
+      "results": [
+        {
+          "assertion_id": "title_non_empty",
+          "operator": "non_empty",
+          "path": "$.data.title",
+          "severity": "error",
+          "status": "passed"
+        },
+        {
+          "assertion_id": "organizer_non_empty",
+          "operator": "non_empty",
+          "path": "$.data.organizer",
+          "severity": "error",
+          "status": "passed"
+        },
+        {
+          "assertion_id": "event_time_format",
+          "operator": "datetime_format",
+          "path": "$.data.event_time",
+          "severity": "error",
+          "status": "passed"
+        },
+        {
+          "assertion_id": "body_non_empty",
+          "operator": "non_empty",
+          "path": "$.data.body",
+          "severity": "error",
+          "status": "passed"
+        }
+      ],
+      "schema_id": "event_notice_doc",
+      "schema_pack_id": "event_notice_doc",
+      "schema_pack_version": "1.0.0",
+      "skipped_count": 0,
+      "task_id": "topic5_34689aabf4dc",
+      "total_count": 4,
+      "warning_count": 0
+    },
     "manifest": {
-      "created_at": "2026-07-09T12:45:54.475181+00:00",
+      "created_at": "2026-07-10T02:42:17.762529+00:00",
       "doc_id": "uir_event_notice_001",
       "files": [
         {
-          "bytes": 7332,
+          "bytes": 7365,
           "media_type": "application/json",
           "path": "canonical.json",
           "required": true,
           "role": "canonical",
-          "sha256": "6b1f0cef9dadb2dd95ab7a8be4e2bd2c3825a77c941c6caa32619bde2db164ae"
+          "sha256": "2d8483f9c4be217a3c39d113ea3e504436357422427d92a87032becadc5b22eb"
         },
         {
           "bytes": 10729,
@@ -955,15 +1006,15 @@
           "path": "chunks.jsonl",
           "required": true,
           "role": "chunks",
-          "sha256": "8799b9c3f811b97ca78ac0671be256ce4c15256440febff2b7a9ea626f18dd67"
+          "sha256": "2989c187795b8bd186f173eff3803d9104368e0e140f4fb86f31338f6f1d1a84"
         },
         {
-          "bytes": 8302,
+          "bytes": 8445,
           "media_type": "application/json",
           "path": "content.json",
           "required": true,
           "role": "structured_json",
-          "sha256": "8b4bbf55fb24ed5ee4397138edeedde97d7afc9fcfa96360aaa8ca7dc91fa875"
+          "sha256": "51446a0164dc3a96d0199ff14decd8e0aefcac1fb2fdcb511c4a3a72878eb4ea"
         },
         {
           "bytes": 314,
@@ -979,15 +1030,15 @@
           "path": "content_organization_report.json",
           "required": true,
           "role": "content_organization_report",
-          "sha256": "f0269507163e38ae0f620c623ff532f3522f0cbaf741a979a7b8df2eb7c94084"
+          "sha256": "eac7dfd52363118572b4d13ddc2fef8c57107ed1d9bf9a6fc87fc88545ee1c2b"
         },
         {
-          "bytes": 10354,
+          "bytes": 10385,
           "media_type": "application/json",
           "path": "mapping_report.json",
           "required": true,
           "role": "mapping_report",
-          "sha256": "afa65712a9b2c255d51b3bfe1266aa3a77d4e3d85ff3236ea4b34d9ac98bd02f"
+          "sha256": "02ff7a7e8326b197e4e78fe4802fdfb352014d4e6d1ebf183dbb1b8251af2dca"
         },
         {
           "bytes": 724,
@@ -995,7 +1046,7 @@
           "path": "metadata.json",
           "required": true,
           "role": "package_metadata",
-          "sha256": "64a6997f67ef06dac1f924a60cb248ad10d55575283acdc71f78c3889089c3b1"
+          "sha256": "7ba00e23db8d5e99789a16320f3c98099f67499ee27d7777d7f930083c71d376"
         },
         {
           "bytes": 1784,
@@ -1003,7 +1054,7 @@
           "path": "transform_report.json",
           "required": true,
           "role": "transform_report",
-          "sha256": "9dc8d94e3a0507ff37ba3c7823924535c569eaec294536e8b68461e549c076b3"
+          "sha256": "ce34bdaf904580ae359a3ced959fb2421f40fd26cb7d51fada306ec96d439d90"
         },
         {
           "bytes": 272,
@@ -1011,7 +1062,7 @@
           "path": "validation_report.json",
           "required": true,
           "role": "validation_report",
-          "sha256": "cca4d26e57e8f26316d67d01b1f34112bfad0160c6f68a3dc5557a04855fc19c"
+          "sha256": "ab7a34bf20eae68bd32556d22bd4df7f546dbda6a3cb1248d321f012ca723e02"
         }
       ],
       "generator": {
@@ -1022,10 +1073,11 @@
         "version": "service-layer-0.1.0"
       },
       "manifest_version": "1.1",
-      "package_id": "pkg_topic5_9473b0a24bc9",
+      "package_id": "pkg_topic5_34689aabf4dc",
       "package_version": "1.0.0",
-      "task_id": "topic5_9473b0a24bc9"
+      "task_id": "topic5_34689aabf4dc"
     },
+    "mapping_repair_report": null,
     "mapping_report": {
       "mappings": [
         {
@@ -1034,7 +1086,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_9473b0a24bc9_document_title_1",
+          "candidate_id": "cand_topic5_34689aabf4dc_document_title_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -1050,7 +1102,7 @@
             "alias matched target title"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_9473b0a24bc9_title_alias",
+          "mapping_id": "map_topic5_34689aabf4dc_title_alias",
           "method": "alias",
           "need_review": false,
           "ranking_trace": {
@@ -1076,7 +1128,7 @@
           "strategy": "alias",
           "target_field_id": "title",
           "target_field_name": "title",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "value_sample": "Network Security Lecture Notice"
         },
         {
@@ -1085,7 +1137,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_9473b0a24bc9_organizer_1",
+          "candidate_id": "cand_topic5_34689aabf4dc_organizer_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -1101,7 +1153,7 @@
             "exact mapping to organizer"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_9473b0a24bc9_organizer_exact",
+          "mapping_id": "map_topic5_34689aabf4dc_organizer_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -1129,7 +1181,7 @@
           "strategy": "exact",
           "target_field_id": "organizer",
           "target_field_name": "organizer",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "value_sample": "Information Security School"
         },
         {
@@ -1138,7 +1190,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_9473b0a24bc9_event_time_1",
+          "candidate_id": "cand_topic5_34689aabf4dc_event_time_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -1154,7 +1206,7 @@
             "exact mapping to event_time"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_9473b0a24bc9_event_time_exact",
+          "mapping_id": "map_topic5_34689aabf4dc_event_time_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -1182,7 +1234,7 @@
           "strategy": "exact",
           "target_field_id": "event_time",
           "target_field_name": "event_time",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "value_sample": "2026-07-12 14:00"
         },
         {
@@ -1191,7 +1243,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_9473b0a24bc9_location_1",
+          "candidate_id": "cand_topic5_34689aabf4dc_location_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -1207,7 +1259,7 @@
             "exact mapping to location"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_9473b0a24bc9_location_exact",
+          "mapping_id": "map_topic5_34689aabf4dc_location_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -1235,7 +1287,7 @@
           "strategy": "exact",
           "target_field_id": "location",
           "target_field_name": "location",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "value_sample": "Main Building 301"
         },
         {
@@ -1244,7 +1296,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_9473b0a24bc9_audience_1",
+          "candidate_id": "cand_topic5_34689aabf4dc_audience_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -1260,7 +1312,7 @@
             "exact mapping to audience"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_9473b0a24bc9_audience_exact",
+          "mapping_id": "map_topic5_34689aabf4dc_audience_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -1288,7 +1340,7 @@
           "strategy": "exact",
           "target_field_id": "audience",
           "target_field_name": "audience",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "value_sample": "All information security students"
         },
         {
@@ -1297,7 +1349,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_9473b0a24bc9_body_1",
+          "candidate_id": "cand_topic5_34689aabf4dc_body_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -1313,7 +1365,7 @@
             "exact mapping to body"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_9473b0a24bc9_body_exact",
+          "mapping_id": "map_topic5_34689aabf4dc_body_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -1341,7 +1393,7 @@
           "strategy": "exact",
           "target_field_id": "body",
           "target_field_name": "body",
-          "task_id": "topic5_9473b0a24bc9",
+          "task_id": "topic5_34689aabf4dc",
           "value_sample": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice."
         }
       ],
@@ -1358,6 +1410,7 @@
         "mapped_count": 6,
         "mapped_fields": 6,
         "mapping_input_name": "mapping_rules",
+        "mapping_mode": "legacy",
         "methods": {
           "alias": 1,
           "exact": 5
@@ -1386,25 +1439,25 @@
         "unmapped_required_fields": 0,
         "warnings": []
       },
-      "task_id": "topic5_9473b0a24bc9",
+      "task_id": "topic5_34689aabf4dc",
       "unmapped": []
     },
     "package_metadata": {
-      "created_at": "2026-07-09T12:45:54.475181+00:00",
+      "created_at": "2026-07-10T02:42:17.762529+00:00",
       "doc_id": "uir_event_notice_001",
-      "package_id": "pkg_topic5_9473b0a24bc9",
+      "package_id": "pkg_topic5_34689aabf4dc",
       "package_version": "1.0.0",
       "schema_id": "event_notice_doc",
-      "sha256": "baa068223a7b646c98f94988fb598d65930789ae97c1ba51b9a7085744bb82d6",
+      "sha256": "3436c32b0c1b4b4316c2321670288b69ccea8ae8e50635b4980118fbfa6b9904",
       "status": "completed",
-      "task_id": "topic5_9473b0a24bc9",
+      "task_id": "topic5_34689aabf4dc",
       "template_id": "event_notice_doc_base_v1",
-      "zip_path": "reports\\topic5_inline_event_notice_result_package\\packages\\pkg_topic5_9473b0a24bc9\\standard_package.zip"
+      "zip_path": ".tmp\\phase3-inline-event\\packages\\pkg_topic5_34689aabf4dc\\standard_package.zip"
     },
-    "package_zip_path": "reports\\topic5_inline_event_notice_result_package\\packages\\pkg_topic5_9473b0a24bc9\\standard_package.zip",
+    "package_zip_path": ".tmp\\phase3-inline-event\\packages\\pkg_topic5_34689aabf4dc\\standard_package.zip",
     "schema_id": "event_notice_doc",
     "status": "completed",
-    "task_id": "topic5_9473b0a24bc9",
+    "task_id": "topic5_34689aabf4dc",
     "template_id": "event_notice_doc_base_v1",
     "transform_report": {
       "doc_id": "uir_event_notice_001",
@@ -1415,7 +1468,7 @@
         "trace_count": 6,
         "transformed_fields": 6
       },
-      "task_id": "topic5_9473b0a24bc9",
+      "task_id": "topic5_34689aabf4dc",
       "template_id": "event_notice_doc_base_v1",
       "traces": [
         {
@@ -1489,13 +1542,13 @@
         "failure_type_counts": {},
         "warning_count": 0
       },
-      "task_id": "topic5_9473b0a24bc9"
+      "task_id": "topic5_34689aabf4dc"
     },
     "verifier_report": {
       "checks": [],
       "errors": [],
       "passed": true,
-      "task_id": "topic5_9473b0a24bc9",
+      "task_id": "topic5_34689aabf4dc",
       "warnings": []
     }
   },

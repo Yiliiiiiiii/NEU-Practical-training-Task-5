@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "error_count": 0,
+  "warning_count": 0,
+  "expected_results": {
+    "title_non_empty": "passed",
+    "body_non_empty": "passed",
+    "publish_date_iso": "passed",
+    "source_url_format": "skipped",
+    "dates_must_differ": "skipped"
+  }
+}

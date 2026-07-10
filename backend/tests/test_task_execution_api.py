@@ -73,6 +73,31 @@ def create_policy_task(
     return response.json()["task_id"]
 
 
+def create_schema_pack_task(
+    client: TestClient,
+    schema_pack_id: str,
+    uir: dict,
+    *,
+    options: dict | None = None,
+) -> str:
+    imported = client.post("/api/v1/documents/import", json={"uir": uir})
+    assert imported.status_code == 200
+    created = client.post(
+        "/api/v1/tasks",
+        json={
+            "doc_id": imported.json()["doc_id"],
+            "schema_id": schema_pack_id,
+            "template_id": f"{schema_pack_id}_base_v1",
+            "schema_version": "1.0.0",
+            "template_version": "1.0.0",
+            "schema_pack_id": schema_pack_id,
+            "options": options or {},
+        },
+    )
+    assert created.status_code == 200
+    return created.json()["task_id"]
+
+
 def test_execute_task_runs_service_pipeline_and_updates_detail(execution_client):
     client, _storage_root = execution_client
     doc_id = import_policy_document(client, "policy_001_standard.json")
@@ -223,3 +248,134 @@ def test_execute_task_returns_404_and_marks_failed_for_missing_schema(execution_
     detail_response = client.get(f"/api/v1/tasks/{task_id}")
     assert detail_response.status_code == 200
     assert detail_response.json()["status"] == "failed"
+
+
+def test_registered_task_executes_selected_schema_pack_and_persists_assertions(
+    execution_client,
+):
+    client, storage_root = execution_client
+    pack_dir = ROOT / "schema_packs" / "examples" / "announcement_doc"
+    uir = json.loads(
+        (pack_dir / "examples" / "example_001_uir.json").read_text(encoding="utf-8")
+    )
+    task_id = create_schema_pack_task(
+        client,
+        "announcement_doc",
+        uir,
+        options={"include_assertion_report_in_package": True},
+    )
+
+    executed = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert executed.status_code == 200
+    payload = executed.json()
+    assert payload["status"] == "completed"
+    assertion_path = Path(payload["report_paths"]["conversion_assertion_report"])
+    assert assertion_path == (
+        storage_root / "tasks" / task_id / "conversion_assertion_report.json"
+    )
+    assert assertion_path.is_file()
+    snapshot = json.loads(
+        (storage_root / "tasks" / task_id / "execution_snapshot.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert snapshot["artifacts"]["conversion_assertion_report"] == str(
+        assertion_path
+    )
+
+    report = client.get(f"/api/v1/tasks/{task_id}/reports/assertions")
+    assert report.status_code == 200
+    assert report.json()["passed"] is True
+
+    package_dir = Path(payload["package_zip_path"]).parent
+    manifest = json.loads((package_dir / "manifest.json").read_text(encoding="utf-8"))
+    assertion_entry = next(
+        item
+        for item in manifest["files"]
+        if item["path"] == "reports/conversion_assertion_report.json"
+    )
+    assert assertion_entry["required"] is False
+
+    original_report = assertion_path.read_bytes()
+    repeated = client.post(f"/api/v1/tasks/{task_id}/execute")
+    assert repeated.status_code == 400
+    assert "create a new task to rerun" in repeated.json()["detail"]
+    assert assertion_path.read_bytes() == original_report
+
+
+def test_registered_assertion_report_is_written_before_package_creation(
+    execution_client,
+    monkeypatch,
+):
+    from app.services.package_service import PackageService
+
+    client, storage_root = execution_client
+    pack_dir = ROOT / "schema_packs" / "examples" / "announcement_doc"
+    uir = json.loads(
+        (pack_dir / "examples" / "example_001_uir.json").read_text(encoding="utf-8")
+    )
+    task_id = create_schema_pack_task(client, "announcement_doc", uir)
+
+    def fail_package_creation(*_args, **_kwargs):
+        raise RuntimeError("forced package failure")
+
+    monkeypatch.setattr(PackageService, "create_package", fail_package_creation)
+
+    with pytest.raises(RuntimeError, match="forced package failure"):
+        client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    report_path = (
+        storage_root / "tasks" / task_id / "conversion_assertion_report.json"
+    )
+    assert report_path.is_file()
+    assert json.loads(report_path.read_text(encoding="utf-8"))["schema_pack_id"] == (
+        "announcement_doc"
+    )
+    report = client.get(f"/api/v1/tasks/{task_id}/reports/assertions")
+    assert report.status_code == 200
+    assert report.json()["schema_pack_id"] == "announcement_doc"
+    snapshot = json.loads(
+        (storage_root / "tasks" / task_id / "execution_snapshot.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert snapshot["status"] == "failed"
+    assert snapshot["artifacts"]["conversion_assertion_report"] == str(report_path)
+
+
+def test_registered_strict_assertion_failure_has_truthful_diagnostic(
+    execution_client,
+):
+    from app.db.models import ConversionTask
+
+    client, storage_root = execution_client
+    pack_dir = ROOT / "schema_packs" / "examples" / "event_notice_doc"
+    uir = json.loads(
+        (pack_dir / "badcases" / "badcase_001_uir.json").read_text(encoding="utf-8")
+    )
+    task_id = create_schema_pack_task(
+        client,
+        "event_notice_doc",
+        uir,
+        options={"strict_output_assertions": True},
+    )
+
+    executed = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert executed.status_code == 200
+    assert executed.json()["status"] == "failed"
+    snapshot = json.loads(
+        (storage_root / "tasks" / task_id / "execution_snapshot.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert snapshot["package_verifier_passed"] is True
+
+    engine = create_engine(f"sqlite:///{storage_root.parent / 'test.db'}")
+    Session = sessionmaker(bind=engine)
+    with Session() as db:
+        task = db.get(ConversionTask, task_id)
+        assert task is not None
+        assert task.error_code == "output_assertion_failed"
+        assert task.error_message == "strict output assertion failed"

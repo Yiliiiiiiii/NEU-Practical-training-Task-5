@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
+
 from app.schemas.mapping import FieldCandidate
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
@@ -68,6 +70,21 @@ def make_candidate(source_name: str, *, target_hint: str = "title") -> FieldCand
     )
 
 
+class FixedScoreFeatureService:
+    def __init__(self, score: float) -> None:
+        self.score = score
+
+    def build(self, *_args, **_kwargs):
+        return SimpleNamespace(
+            final_score=self.score,
+            lexical_score=self.score,
+            alias_score=self.score,
+            type_score=self.score,
+            value_score=self.score,
+            negative_score=0.0,
+        )
+
+
 def missing_report() -> MappingReport:
     return MappingReport(
         task_id="task-repair",
@@ -104,7 +121,8 @@ def test_mapping_repair_fills_required_missing_with_safe_candidate() -> None:
     )
 
     assert repair_report["enabled"] is True
-    assert repair_report["repaired_fields"] == ["title"]
+    assert repair_report["accepted_repair_fields"] == ["title"]
+    assert repair_report["review_repair_fields"] == []
     assert repaired.summary["required_unmapped_count"] == 0
     assert repaired.mappings[0]["target_field_id"] == "title"
 
@@ -134,3 +152,45 @@ def test_mapping_repair_never_accepts_negative_pair_candidate() -> None:
     assert repaired.mappings == []
     assert repaired.summary["required_unmapped_count"] == 1
     assert repair_report["blocked_candidates"][0]["reason"] == "publish date is not title"
+
+
+def test_mapping_repair_sends_review_band_candidate_to_review_required() -> None:
+    repaired, repair_report = MappingRepairService(
+        pair_feature_service=FixedScoreFeatureService(0.70)
+    ).repair(
+        task_id="task-repair",
+        uir=make_uir(),
+        schema=make_schema(),
+        template=make_template(),
+        candidates=[make_candidate("title")],
+        mapping_report=missing_report(),
+        options={"enable_mapping_repair": True},
+    )
+
+    assert repair_report["accepted_repair_fields"] == []
+    assert repair_report["review_repair_fields"] == ["title"]
+    assert repaired.mappings == []
+    assert repaired.review_required_items[0]["target_field_id"] == "title"
+    assert repaired.review_required_items[0]["status"] == "review_required"
+    assert repaired.summary["required_unmapped_count"] == 0
+
+
+def test_mapping_repair_leaves_below_review_candidate_unmapped() -> None:
+    repaired, repair_report = MappingRepairService(
+        pair_feature_service=FixedScoreFeatureService(0.61)
+    ).repair(
+        task_id="task-repair",
+        uir=make_uir(),
+        schema=make_schema(),
+        template=make_template(),
+        candidates=[make_candidate("title")],
+        mapping_report=missing_report(),
+        options={"enable_mapping_repair": True},
+    )
+
+    assert repair_report["accepted_repair_fields"] == []
+    assert repair_report["review_repair_fields"] == []
+    assert repair_report["unrepaired_fields"] == ["title"]
+    assert repaired.mappings == []
+    assert repaired.review_required_items == []
+    assert repaired.summary["required_unmapped_count"] == 1

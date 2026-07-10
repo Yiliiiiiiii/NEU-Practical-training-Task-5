@@ -1,0 +1,37 @@
+contract_version: "1.0"
+schema_id: announcement_doc
+assertion_set_version: "1.0.0"
+defaults:
+  severity: error
+  missing_optional_field: skip
+assertions:
+  - assertion_id: title_non_empty
+    path: $.data.title
+    operator: non_empty
+    message: The converted title must not be empty.
+  - assertion_id: body_non_empty
+    path: $.data.body
+    operator: non_empty
+    message: The converted body must not be empty.
+  - assertion_id: publish_date_iso
+    path: $.data.publish_date
+    operator: date_format
+    optional: true
+    parameters:
+      formats:
+        - "%Y-%m-%d"
+    message: Publish date must use YYYY-MM-DD.
+  - assertion_id: source_url_format
+    path: $.metadata.source_url
+    operator: url_like
+    severity: warning
+    optional: true
+    message: Source URL should use HTTP or HTTPS.
+  - assertion_id: dates_must_differ
+    path: $.data.publish_date
+    operator: not_equal_to_path
+    severity: warning
+    optional: true
+    parameters:
+      other_path: $.metadata.retrieved_at
+    message: Publish date should not be copied from retrieval time.

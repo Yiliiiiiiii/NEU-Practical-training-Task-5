@@ -10,7 +10,9 @@
 - review-required rate: 0.0000
 - required missing: 0
 - badcase violations: 0
-- package pass rate: 1.0000
+- conversion success rate: 1.0000
+- package verifier pass rate: 1.0000
+- package verified count: 24
 
 ## By Schema
 
@@ -22,3 +24,8 @@
 | meeting_doc | 4 | 0.8000 | 1.0000 | 0.0000 | 0 | 0 |
 | policy_doc | 4 | 0.8000 | 1.0000 | 0.0000 | 0 | 0 |
 | procurement_doc | 4 | 1.0000 | 1.0000 | 0.0000 | 0 | 0 |
+
+## Warnings
+
+- schema_precision_below_recommended_threshold: meeting_doc
+- schema_precision_below_recommended_threshold: policy_doc

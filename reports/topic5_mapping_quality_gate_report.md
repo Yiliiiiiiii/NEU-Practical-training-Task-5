@@ -19,5 +19,13 @@
 
 ## Claim Boundary
 
-The project can claim Topic 5 benchmark-level auto mapping recall >= 0.85 within the declared standard UIR benchmark scope.
-This is not a production shadow/blind claim unless production_shadow_eval_report.json is also completed.
+The project demonstrates benchmark-level automatic field mapping performance within the declared Topic 5 standard UIR benchmark scope. It does not claim arbitrary-schema production performance or production shadow/blind performance.
+
+## Per-Schema Warnings
+
+- dev/meeting_doc: schema_precision_below_recommended_threshold
+- dev/policy_doc: schema_precision_below_recommended_threshold
+- test/meeting_doc: schema_precision_below_recommended_threshold
+- test/policy_doc: schema_precision_below_recommended_threshold
+- blind/meeting_doc: schema_precision_below_recommended_threshold
+- blind/policy_doc: schema_precision_below_recommended_threshold

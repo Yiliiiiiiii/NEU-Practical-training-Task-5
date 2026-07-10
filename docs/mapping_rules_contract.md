@@ -123,3 +123,8 @@ examples/topic5_inline/announcement_convert_request.json
 examples/topic5_inline/event_notice_convert_request.json
 ```
 
+## 13. SchemaPack Phase 3 Relationship
+
+`mapping_rules.yaml` is one manifest-referenced asset in the versioned SchemaPack contract. It remains responsible for candidate-to-target alignment, transformations, negative pairs, thresholds, and candidate hints. `output_assertions.yaml` is a separate deterministic safeguard over final converted output.
+
+When the same badcase appears in both layers, the checks are complementary: the mapping layer prevents or reviews an incorrect source-target assignment, while the conversion assertion layer detects an invalid final relationship. Assertion definitions must not be tuned into mapping implementation code.

@@ -1,0 +1,32 @@
+{
+  "uir_version": "1.0",
+  "doc_id": "announcement_badcase_001",
+  "metadata": {
+    "document_title": "Incorrect Retrieval Date Announcement",
+    "retrieved_at": "2026-07-10",
+    "language": "en-US"
+  },
+  "blocks": [
+    {
+      "block_id": "ab1",
+      "type": "heading",
+      "level": 1,
+      "text": "Incorrect Retrieval Date Announcement",
+      "attributes": {}
+    },
+    {
+      "block_id": "ab2",
+      "type": "paragraph",
+      "text": "2026-07-10",
+      "attributes": {"field_name": "publish_date"}
+    },
+    {
+      "block_id": "ab3",
+      "type": "paragraph",
+      "text": "This fixture intentionally copies retrieval time into publish date.",
+      "attributes": {"field_name": "body"}
+    }
+  ],
+  "assets": [],
+  "normalization_records": []
+}

@@ -67,5 +67,29 @@
 ## 13. Update Documentation
 
 - [ ] Documentation states the SchemaPack is an example configuration, not a system boundary.
-- [ ] Demo or handoff docs include the new no-code onboarding example.
 
+## 14. Add The Versioned Manifest
+
+- [ ] `schema_pack.yaml` includes identity, semantic version, compatibility, assets, execution defaults, supported input, and claim boundary.
+- [ ] Every asset path is relative and contained by the SchemaPack directory.
+- [ ] Cross-file schema and template IDs match.
+
+## 15. Add Deterministic Output Assertions
+
+- [ ] `output_assertions.yaml` uses stable unique assertion IDs.
+- [ ] Assertions add deterministic formatting or cross-field checks beyond native target-schema validation.
+- [ ] Positive expected assertion results are committed.
+- [ ] Badcases name the exact expected failed assertion IDs.
+- [ ] No score, grade, semantic judgment, LLM operator, or publication route is introduced.
+
+## 16. Run The Phase 3 Contract Gate
+
+```powershell
+python scripts/validate_schema_pack.py schema_packs/examples/<schema_pack_id>
+python scripts/eval_schema_pack_contracts.py --schema-pack schema_packs/examples/<schema_pack_id> --verify-package --out reports/<schema_pack_id>_contract.json --markdown reports/<schema_pack_id>_contract.md
+python scripts/check_schema_pack_contract_gate.py --fail-on-gate
+```
+
+- [ ] Output assertions remain optional for legacy requests.
+- [ ] Package 1.1 passes with and without the optional assertion report.
+- [ ] Demo or handoff docs include the new no-code onboarding example.

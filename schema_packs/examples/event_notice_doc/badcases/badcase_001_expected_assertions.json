@@ -1,0 +1,4 @@
+{
+  "expected_failed_assertion_ids": ["event_time_not_publish_date"],
+  "expected_severities": {"event_time_not_publish_date": "error"}
+}

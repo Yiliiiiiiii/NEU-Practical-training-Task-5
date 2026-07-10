@@ -13,6 +13,14 @@ def report(auto_precision: float, auto_recall: float, *, review_rate: float = 0.
             "required_missing": 0,
             "badcase_violations": 0,
         },
+        "by_schema": {
+            "event_notice_doc": {
+                "auto_precision": auto_precision,
+                "auto_recall": auto_recall,
+                "required_missing": 0,
+                "badcase_violations": 0,
+            }
+        },
     }
 
 
@@ -48,3 +56,29 @@ def test_quality_gate_fails_on_split_gap_and_missing_required() -> None:
     assert "blind_auto_recall_below_threshold" in gate["failed_checks"]
     assert "required_missing" in gate["failed_checks"]
     assert "test_vs_blind_gap_above_threshold" in gate["failed_checks"]
+
+
+def test_quality_gate_reports_per_schema_warning_without_failing() -> None:
+    dev = report(0.95, 0.91)
+    test = report(0.94, 0.90)
+    blind = report(0.93, 0.88)
+    test["by_schema"]["policy_doc"] = {
+        "auto_precision": 0.80,
+        "auto_recall": 0.90,
+        "required_missing": 0,
+        "badcase_violations": 0,
+    }
+
+    gate = build_gate_report(
+        {"dev": dev, "test": test, "blind": blind},
+        mode="global_assignment",
+    )
+
+    assert gate["status"] == "passed"
+    assert {
+        "type": "schema_precision_below_recommended_threshold",
+        "split": "test",
+        "schema_id": "policy_doc",
+        "auto_precision": 0.8,
+        "threshold": 0.85,
+    } in gate["warnings"]

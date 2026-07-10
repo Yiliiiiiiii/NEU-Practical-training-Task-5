@@ -1,7 +1,7 @@
 # SchemaPack Agent 当前实施状态
 
-> 最后同步：2026-07-09。本文档是项目能力、验证基线、评测证据和边界的统一状态入口。
-> 当前分支：`codex/strengthen-topic5-final-gate`；当前状态：项目主链路已可复现，strengthen-stage evidence pack 已生成，最终综合门禁为 `conditional_pass`。
+> 最后同步：2026-07-10。本文档是项目能力、验证基线、评测证据和边界的统一状态入口。
+> 当前分支：`feat/topic5-mapping-benchmark`；当前状态：Topic 5 Phase 3 的 8 项合同硬门禁已全部通过。strengthen-stage 的历史综合门禁仍保留为 `conditional_pass`。
 > 历史需求、规格和实施计划保留当时语境；发生冲突时，以本文档、
 > [`README.md`](README.md) 和 [`../openapi.json`](../openapi.json) 为准。
 
@@ -18,11 +18,11 @@ Pop-Location
 
 已知结果：
 
-- Backend pytest：当前 basic-stage 验证 733 passed。
-- Backend Ruff：当前 basic-stage 验证 clean。
-- Frontend production build：当前 basic-stage 验证 successful。
-- Frontend tests：当前 basic-stage 验证 24 passed，8 test files passed。
-- API：当前 basic-stage 验证 63 OpenAPI paths exported to [`../openapi.json`](../openapi.json)。
+- Backend pytest：当前完整验证 885 passed。
+- Backend Ruff：当前完整验证 clean。
+- Frontend production build：当前完整验证 successful。
+- Frontend tests：当前完整验证 24 passed，8 test files passed。
+- API：当前完整验证 65 OpenAPI paths exported to [`../openapi.json`](../openapi.json)。
 - Regression gates：上一完整基线 8/8 passed。
 - Basic-stage 一键复现：`.\scripts\run_basic_stage_verification.ps1` 已生成 `docs/交接/evidence/basic_stage/`。
 - Strengthen-stage 一键复现：`.\scripts\run_strengthen_stage_verification.ps1` 已生成 `docs/交接/evidence/strengthen_stage/`。
@@ -124,3 +124,9 @@ The public inline input is UIR + target_schema + mapping_rules + metadata_templa
 The project has two no-code SchemaPack demos: `announcement_doc` and `event_notice_doc`. Historical SchemaPacks are examples and benchmarks, not capability boundaries.
 
 Runtime limitations remain explicit: no production raw PDF/Word/Excel/image/scanned-document parsing, no production-grade blind recall 0.85 claim, assisted recall 0.861 is stronger than current auto recall, and LLM/Codex paths remain report-only or dry-run without production rule writes.
+
+## Topic 5 Phase 3 Status
+
+The versioned SchemaPack contract, deterministic output assertions, manifest-only loading, registered and inline integration, atomic assertion evidence, optional Package 1.1 inclusion, two migrated example packs, contract evaluator, and Phase 3 gate are implemented.
+
+Output assertions are optional. Existing Package 1.1 deliverables and legacy Topic 5 requests remain supported. Phase 3 adds no quality score, no quality grade, no publication route, no semantic fidelity judgment, no LLM-as-Judge, and no Topic 11 retrieval optimization.

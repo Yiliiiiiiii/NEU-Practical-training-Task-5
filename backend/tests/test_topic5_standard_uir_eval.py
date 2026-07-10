@@ -78,6 +78,80 @@ def test_eval_metrics_precision_recall() -> None:
     assert report["metrics"]["auto_f1"] == 0.5
 
 
+def test_eval_reports_conversion_and_actual_package_verifier_rates() -> None:
+    rows = [
+        {
+            "doc_id": "doc-1",
+            "schema_id": "event_notice_doc",
+            "gold_count": 0,
+            "conversion_passed": True,
+            "package_verifier_passed": True,
+        },
+        {
+            "doc_id": "doc-2",
+            "schema_id": "event_notice_doc",
+            "gold_count": 0,
+            "conversion_passed": True,
+            "package_verifier_passed": False,
+        },
+        {
+            "doc_id": "doc-3",
+            "schema_id": "announcement_doc",
+            "gold_count": 0,
+            "conversion_passed": False,
+            "package_verifier_passed": None,
+        },
+    ]
+
+    report = build_report(rows, split="dev")
+
+    assert report["metrics"]["conversion_success_rate"] == 0.6667
+    assert report["metrics"]["package_verifier_pass_rate"] == 0.5
+    assert report["metrics"]["package_verified_count"] == 2
+    assert "package_pass_rate" not in report["metrics"]
+
+
+def test_eval_surfaces_per_schema_precision_warning_and_hard_failure() -> None:
+    rows = [
+        {
+            "doc_id": "doc-1",
+            "schema_id": "policy_doc",
+            "gold_count": 5,
+            "auto_tp": 4,
+            "auto_fp": 1,
+            "auto_fn": 1,
+            "required_missing": [],
+            "badcase_violations": [],
+            "conversion_passed": True,
+            "package_verifier_passed": None,
+        },
+        {
+            "doc_id": "doc-2",
+            "schema_id": "event_notice_doc",
+            "gold_count": 1,
+            "auto_tp": 1,
+            "auto_fp": 0,
+            "auto_fn": 0,
+            "required_missing": ["organizer"],
+            "badcase_violations": [],
+            "conversion_passed": True,
+            "package_verifier_passed": None,
+        },
+    ]
+
+    report = build_report(rows, split="dev")
+
+    assert {
+        "type": "schema_precision_below_recommended_threshold",
+        "schema_id": "policy_doc",
+        "auto_precision": 0.8,
+        "threshold": 0.85,
+    } in report["warnings"]
+    assert "event_notice_doc_required_missing" in report["failures"]
+    assert report["by_schema"]["policy_doc"]["sample_count"] == 1
+    assert report["by_schema"]["policy_doc"]["gold_mapping_count"] == 5
+
+
 def test_badcase_violation_detection() -> None:
     violations = detect_badcase_violations(
         {

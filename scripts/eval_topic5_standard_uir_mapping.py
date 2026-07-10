@@ -320,11 +320,18 @@ def _aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     total_target_fields = sum(int(row.get("total_target_fields", 0)) for row in rows)
     required_missing = sum(len(row.get("required_missing", [])) for row in rows)
     badcase_violations = sum(len(row.get("badcase_violations", [])) for row in rows)
-    package_passed = sum(1 for row in rows if row.get("package_passed"))
+    conversion_passed = sum(1 for row in rows if row.get("conversion_passed"))
+    verified_rows = [
+        row for row in rows if row.get("package_verifier_passed") is not None
+    ]
+    package_verifier_passed = sum(
+        1 for row in verified_rows if row.get("package_verifier_passed") is True
+    )
     precision = ratio(auto_tp, auto_tp + auto_fp)
     recall = ratio(auto_tp, auto_tp + auto_fn)
     return {
         "dataset_size": len(rows),
+        "sample_count": len(rows),
         "auto_precision": rounded(precision),
         "auto_recall": rounded(recall),
         "auto_f1": rounded(ratio(2 * precision * recall, precision + recall)),
@@ -332,11 +339,18 @@ def _aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "review_required_rate": rounded(ratio(review_required_count, total_target_fields)),
         "required_missing": required_missing,
         "badcase_violations": badcase_violations,
-        "package_pass_rate": rounded(ratio(package_passed, len(rows))),
+        "conversion_success_rate": rounded(ratio(conversion_passed, len(rows))),
+        "package_verifier_pass_rate": (
+            rounded(ratio(package_verifier_passed, len(verified_rows)))
+            if verified_rows
+            else None
+        ),
+        "package_verified_count": len(verified_rows),
         "auto_tp": auto_tp,
         "auto_fp": auto_fp,
         "auto_fn": auto_fn,
         "total_gold": total_gold,
+        "gold_mapping_count": total_gold,
     }
 
 
@@ -356,6 +370,7 @@ def build_report(
         for schema_id, schema_rows in sorted(by_schema_rows.items())
     }
     failures: list[str] = []
+    warnings: list[dict[str, Any]] = []
     if metrics["auto_precision"] < thresholds.get("auto_precision", 0.0):
         failures.append("auto_precision_below_threshold")
     if metrics["auto_recall"] < thresholds.get("auto_recall", 0.0):
@@ -366,6 +381,31 @@ def build_report(
         failures.append("required_missing")
     if metrics["badcase_violations"]:
         failures.append("badcase_violations")
+    for schema_id, schema_metrics in by_schema.items():
+        if schema_metrics["required_missing"]:
+            failures.append(f"{schema_id}_required_missing")
+        if schema_metrics["badcase_violations"]:
+            failures.append(f"{schema_id}_badcase_violations")
+        if schema_metrics["gold_mapping_count"]:
+            if schema_metrics["auto_precision"] < 0.85:
+                warnings.append(
+                    {
+                        "type": "schema_precision_below_recommended_threshold",
+                        "schema_id": schema_id,
+                        "auto_precision": schema_metrics["auto_precision"],
+                        "threshold": 0.85,
+                    }
+                )
+            if schema_metrics["auto_recall"] < 0.85:
+                warnings.append(
+                    {
+                        "type": "schema_recall_below_recommended_threshold",
+                        "schema_id": schema_id,
+                        "auto_recall": schema_metrics["auto_recall"],
+                        "threshold": 0.85,
+                    }
+                )
+    failures = sorted(set(failures))
     return {
         "generated_at": datetime.now(UTC).isoformat(),
         "status": "passed" if not failures else "failed",
@@ -374,6 +414,7 @@ def build_report(
         "metrics": metrics,
         "by_schema": by_schema,
         "failures": failures,
+        "warnings": warnings,
         "badcases": [
             violation
             for row in rows
@@ -402,7 +443,14 @@ def render_markdown(report: dict[str, Any]) -> str:
         f"- review-required rate: {metrics['review_required_rate']:.4f}",
         f"- required missing: {metrics['required_missing']}",
         f"- badcase violations: {metrics['badcase_violations']}",
-        f"- package pass rate: {metrics['package_pass_rate']:.4f}",
+        f"- conversion success rate: {metrics['conversion_success_rate']:.4f}",
+        "- package verifier pass rate: "
+        + (
+            f"{metrics['package_verifier_pass_rate']:.4f}"
+            if metrics["package_verifier_pass_rate"] is not None
+            else "not run"
+        ),
+        f"- package verified count: {metrics['package_verified_count']}",
         "",
         "## By Schema",
         "",
@@ -421,10 +469,21 @@ def render_markdown(report: dict[str, Any]) -> str:
     if report["failures"]:
         lines.extend(["", "## Failures", ""])
         lines.extend(f"- {failure}" for failure in report["failures"])
+    if report["warnings"]:
+        lines.extend(["", "## Warnings", ""])
+        lines.extend(
+            f"- {warning['type']}: {warning['schema_id']}"
+            for warning in report["warnings"]
+        )
     return "\n".join(lines) + "\n"
 
 
-def run_conversion(row: dict[str, Any], *, mapping_mode: str) -> dict[str, Any]:
+def run_conversion(
+    row: dict[str, Any],
+    *,
+    mapping_mode: str,
+    verify_package: bool = False,
+) -> dict[str, Any]:
     schema, template = load_schema_and_template(str(row["schema_id"]))
     options = {
         "enable_llm_fallback": False,
@@ -454,12 +513,20 @@ def run_conversion(row: dict[str, Any], *, mapping_mode: str) -> dict[str, Any]:
         }
     )
     with tempfile.TemporaryDirectory(prefix="topic5_eval_") as tmp:
-        response = Topic5ConversionService(tmp).convert(request, create_package=False)
+        response = Topic5ConversionService(tmp).convert(
+            request,
+            create_package=verify_package,
+        )
     return {
         **row,
         "mapping_report": response.mapping_report,
         "validation_passed": response.validation_report.get("passed") is True,
-        "package_passed": response.status in {"completed", "review_required"},
+        "conversion_passed": response.status in {"completed", "review_required"},
+        "package_verifier_passed": (
+            response.verifier_report.get("passed") is True
+            if verify_package and response.verifier_report
+            else None
+        ),
     }
 
 
@@ -467,8 +534,16 @@ def evaluate_dataset(
     dataset: Topic5EvalDataset,
     *,
     mapping_mode: str,
+    verify_package: bool = False,
 ) -> list[dict[str, Any]]:
-    converted = [run_conversion(row, mapping_mode=mapping_mode) for row in dataset.items]
+    converted = [
+        run_conversion(
+            row,
+            mapping_mode=mapping_mode,
+            verify_package=verify_package,
+        )
+        for row in dataset.items
+    ]
     return evaluate_mapping_rows(
         converted,
         gold_by_doc=dataset.gold_by_doc,
@@ -485,13 +560,18 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--markdown", type=Path, default=DEFAULT_MARKDOWN)
     parser.add_argument("--fail-on-gate", action="store_true")
+    parser.add_argument("--verify-package", action="store_true")
     parser.add_argument("--auto-recall-threshold", type=float, default=0.85)
     parser.add_argument("--auto-precision-threshold", type=float, default=0.90)
     parser.add_argument("--review-rate-threshold", type=float, default=0.08)
     args = parser.parse_args()
 
     dataset = load_dataset(args.dataset, args.split)
-    rows = evaluate_dataset(dataset, mapping_mode=args.mapping_mode)
+    rows = evaluate_dataset(
+        dataset,
+        mapping_mode=args.mapping_mode,
+        verify_package=args.verify_package,
+    )
     report = build_report(
         rows,
         split=args.split,

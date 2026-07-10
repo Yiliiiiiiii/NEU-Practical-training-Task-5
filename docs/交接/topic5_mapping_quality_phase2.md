@@ -38,8 +38,7 @@ Measured global-assignment gate:
 
 Allowed statement:
 
-> The project can claim Topic 5 benchmark-level auto mapping recall >= 0.85
-> within the declared standard UIR benchmark scope.
+> The project demonstrates benchmark-level automatic field mapping performance within the declared Topic 5 standard UIR benchmark scope. It does not claim arbitrary-schema production performance or production shadow/blind performance.
 
 Forbidden overclaim:
 

@@ -1,0 +1,41 @@
+contract_version: "1.0"
+schema_id: event_notice_doc
+assertion_set_version: "1.0.0"
+defaults:
+  severity: error
+  missing_optional_field: skip
+assertions:
+  - assertion_id: title_non_empty
+    path: $.data.title
+    operator: non_empty
+    message: The converted title must not be empty.
+  - assertion_id: organizer_non_empty
+    path: $.data.organizer
+    operator: non_empty
+    message: The converted organizer must not be empty.
+  - assertion_id: event_time_format
+    path: $.data.event_time
+    operator: datetime_format
+    parameters:
+      formats:
+        - "%Y-%m-%d %H:%M"
+        - "%Y-%m-%dT%H:%M:%S"
+    message: Event time must use a configured datetime format.
+  - assertion_id: body_non_empty
+    path: $.data.body
+    operator: non_empty
+    message: The converted body must not be empty.
+  - assertion_id: event_time_not_publish_date
+    path: $.data.event_time
+    operator: not_equal_to_path
+    optional: true
+    parameters:
+      other_path: $.metadata.publish_date
+    message: Event time must not be copied from publish date.
+  - assertion_id: event_time_not_retrieved_at
+    path: $.data.event_time
+    operator: not_equal_to_path
+    optional: true
+    parameters:
+      other_path: $.metadata.retrieved_at
+    message: Event time must not be copied from retrieval time.

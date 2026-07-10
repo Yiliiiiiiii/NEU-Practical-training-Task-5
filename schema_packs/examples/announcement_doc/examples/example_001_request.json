@@ -1,0 +1,8 @@
+{
+  "schema_pack_id": "announcement_doc",
+  "uir_path": "example_001_uir.json",
+  "create_package": true,
+  "options": {
+    "strict_output_assertions": false
+  }
+}

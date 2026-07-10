@@ -44,6 +44,10 @@ reports/*
 !reports/topic5_mapping_quality_gate_report.md
 !reports/topic5_standard_uir_*.json
 !reports/topic5_standard_uir_*.md
+!reports/schema_pack_contract_*.json
+!reports/schema_pack_contract_*.md
+!reports/topic5_alignment_gate_report.json
+!reports/topic5_alignment_gate_report.md
 !reports/baselines/
 reports/baselines/*
 !reports/baselines/next_phase_before/

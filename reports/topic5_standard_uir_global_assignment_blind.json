@@ -10,10 +10,14 @@
       "auto_recall": 1.0,
       "auto_tp": 16,
       "badcase_violations": 0,
+      "conversion_success_rate": 1.0,
       "dataset_size": 4,
-      "package_pass_rate": 1.0,
+      "gold_mapping_count": 16,
+      "package_verified_count": 4,
+      "package_verifier_pass_rate": 1.0,
       "required_missing": 0,
       "review_required_rate": 0.0,
+      "sample_count": 4,
       "total_gold": 16
     },
     "event_notice_doc": {
@@ -25,10 +29,14 @@
       "auto_recall": 1.0,
       "auto_tp": 24,
       "badcase_violations": 0,
+      "conversion_success_rate": 1.0,
       "dataset_size": 4,
-      "package_pass_rate": 1.0,
+      "gold_mapping_count": 24,
+      "package_verified_count": 4,
+      "package_verifier_pass_rate": 1.0,
       "required_missing": 0,
       "review_required_rate": 0.0,
+      "sample_count": 4,
       "total_gold": 24
     },
     "general_doc": {
@@ -40,10 +48,14 @@
       "auto_recall": 1.0,
       "auto_tp": 16,
       "badcase_violations": 0,
+      "conversion_success_rate": 1.0,
       "dataset_size": 4,
-      "package_pass_rate": 1.0,
+      "gold_mapping_count": 16,
+      "package_verified_count": 4,
+      "package_verifier_pass_rate": 1.0,
       "required_missing": 0,
       "review_required_rate": 0.0,
+      "sample_count": 4,
       "total_gold": 16
     },
     "meeting_doc": {
@@ -55,10 +67,14 @@
       "auto_recall": 1.0,
       "auto_tp": 16,
       "badcase_violations": 0,
+      "conversion_success_rate": 1.0,
       "dataset_size": 4,
-      "package_pass_rate": 1.0,
+      "gold_mapping_count": 16,
+      "package_verified_count": 4,
+      "package_verifier_pass_rate": 1.0,
       "required_missing": 0,
       "review_required_rate": 0.0,
+      "sample_count": 4,
       "total_gold": 16
     },
     "policy_doc": {
@@ -70,10 +86,14 @@
       "auto_recall": 1.0,
       "auto_tp": 16,
       "badcase_violations": 0,
+      "conversion_success_rate": 1.0,
       "dataset_size": 4,
-      "package_pass_rate": 1.0,
+      "gold_mapping_count": 16,
+      "package_verified_count": 4,
+      "package_verifier_pass_rate": 1.0,
       "required_missing": 0,
       "review_required_rate": 0.0,
+      "sample_count": 4,
       "total_gold": 16
     },
     "procurement_doc": {
@@ -85,16 +105,20 @@
       "auto_recall": 1.0,
       "auto_tp": 20,
       "badcase_violations": 0,
+      "conversion_success_rate": 1.0,
       "dataset_size": 4,
-      "package_pass_rate": 1.0,
+      "gold_mapping_count": 20,
+      "package_verified_count": 4,
+      "package_verifier_pass_rate": 1.0,
       "required_missing": 0,
       "review_required_rate": 0.0,
+      "sample_count": 4,
       "total_gold": 20
     }
   },
   "dataset_size": 24,
   "failures": [],
-  "generated_at": "2026-07-09T13:22:11.949340+00:00",
+  "generated_at": "2026-07-10T02:48:39.549149+00:00",
   "mapping_mode": "global_assignment",
   "metrics": {
     "assisted_recall": 1.0,
@@ -105,13 +129,31 @@
     "auto_recall": 1.0,
     "auto_tp": 108,
     "badcase_violations": 0,
+    "conversion_success_rate": 1.0,
     "dataset_size": 24,
-    "package_pass_rate": 1.0,
+    "gold_mapping_count": 108,
+    "package_verified_count": 24,
+    "package_verifier_pass_rate": 1.0,
     "required_missing": 0,
     "review_required_rate": 0.0,
+    "sample_count": 24,
     "total_gold": 108
   },
   "required_missing": [],
   "split": "blind",
-  "status": "passed"
+  "status": "passed",
+  "warnings": [
+    {
+      "auto_precision": 0.8,
+      "schema_id": "meeting_doc",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    },
+    {
+      "auto_precision": 0.8,
+      "schema_id": "policy_doc",
+      "threshold": 0.85,
+      "type": "schema_precision_below_recommended_threshold"
+    }
+  ]
 }

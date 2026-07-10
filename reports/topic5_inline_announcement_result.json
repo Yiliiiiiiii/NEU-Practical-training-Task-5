@@ -6,7 +6,7 @@
     "chunks": [
       {
         "char_count": 11,
-        "chunk_id": "chunk_topic5_67e0d559785f_0000",
+        "chunk_id": "chunk_topic5_10ab45ee9382_0000",
         "chunk_index": 0,
         "content_tags": [
           "announcement"
@@ -25,7 +25,7 @@
           "doc:uir_announcement_001",
           "schema:announcement_doc",
           "schema_version:1.0.0",
-          "task:topic5_67e0d559785f",
+          "task:topic5_10ab45ee9382",
           "template:announcement_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -70,7 +70,7 @@
             "doc:uir_announcement_001",
             "schema:announcement_doc",
             "schema_version:1.0.0",
-            "task:topic5_67e0d559785f",
+            "task:topic5_10ab45ee9382",
             "template:announcement_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -83,7 +83,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_67e0d559785f",
+        "task_id": "topic5_10ab45ee9382",
         "text": "关于开展系统维护的公告",
         "title": "关于开展系统维护的公告",
         "title_path": [
@@ -93,7 +93,7 @@
       },
       {
         "char_count": 11,
-        "chunk_id": "chunk_topic5_67e0d559785f_0001",
+        "chunk_id": "chunk_topic5_10ab45ee9382_0001",
         "chunk_index": 1,
         "content_tags": [
           "announcement"
@@ -120,7 +120,7 @@
           "doc:uir_announcement_001",
           "schema:announcement_doc",
           "schema_version:1.0.0",
-          "task:topic5_67e0d559785f",
+          "task:topic5_10ab45ee9382",
           "template:announcement_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -165,7 +165,7 @@
             "doc:uir_announcement_001",
             "schema:announcement_doc",
             "schema_version:1.0.0",
-            "task:topic5_67e0d559785f",
+            "task:topic5_10ab45ee9382",
             "template:announcement_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -178,7 +178,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_67e0d559785f",
+        "task_id": "topic5_10ab45ee9382",
         "text": "发布单位：信息化办公室",
         "title": "关于开展系统维护的公告",
         "title_path": [
@@ -188,7 +188,7 @@
       },
       {
         "char_count": 15,
-        "chunk_id": "chunk_topic5_67e0d559785f_0002",
+        "chunk_id": "chunk_topic5_10ab45ee9382_0002",
         "chunk_index": 2,
         "content_tags": [
           "announcement"
@@ -206,7 +206,7 @@
           "doc:uir_announcement_001",
           "schema:announcement_doc",
           "schema_version:1.0.0",
-          "task:topic5_67e0d559785f",
+          "task:topic5_10ab45ee9382",
           "template:announcement_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -251,7 +251,7 @@
             "doc:uir_announcement_001",
             "schema:announcement_doc",
             "schema_version:1.0.0",
-            "task:topic5_67e0d559785f",
+            "task:topic5_10ab45ee9382",
             "template:announcement_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -264,7 +264,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_67e0d559785f",
+        "task_id": "topic5_10ab45ee9382",
         "text": "发布日期：2026-07-09",
         "title": "关于开展系统维护的公告",
         "title_path": [
@@ -274,7 +274,7 @@
       },
       {
         "char_count": 39,
-        "chunk_id": "chunk_topic5_67e0d559785f_0003",
+        "chunk_id": "chunk_topic5_10ab45ee9382_0003",
         "chunk_index": 3,
         "content_tags": [
           "announcement"
@@ -296,7 +296,7 @@
           "doc:uir_announcement_001",
           "schema:announcement_doc",
           "schema_version:1.0.0",
-          "task:topic5_67e0d559785f",
+          "task:topic5_10ab45ee9382",
           "template:announcement_doc_base_v1",
           "template_version:1.0.0"
         ],
@@ -341,7 +341,7 @@
             "doc:uir_announcement_001",
             "schema:announcement_doc",
             "schema_version:1.0.0",
-            "task:topic5_67e0d559785f",
+            "task:topic5_10ab45ee9382",
             "template:announcement_doc_base_v1",
             "template_version:1.0.0"
           ],
@@ -354,7 +354,7 @@
             "validation_passed"
           ]
         },
-        "task_id": "topic5_67e0d559785f",
+        "task_id": "topic5_10ab45ee9382",
         "text": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。",
         "title": "关于开展系统维护的公告",
         "title_path": [
@@ -484,11 +484,12 @@
         },
         "schema_id": "announcement_doc",
         "schema_version": "1.0.0",
-        "task_id": "topic5_67e0d559785f",
+        "task_id": "topic5_10ab45ee9382",
         "template_id": "announcement_doc_base_v1",
         "template_version": "1.0.0"
       },
       "metadata": {
+        "document_title": "关于开展系统维护的公告",
         "execution_snapshot": {
           "doc_id": "uir_announcement_001",
           "input_mode": "inline_topic5_config",
@@ -555,10 +556,11 @@
           },
           "schema_id": "announcement_doc",
           "schema_version": "1.0.0",
-          "task_id": "topic5_67e0d559785f",
+          "task_id": "topic5_10ab45ee9382",
           "template_id": "announcement_doc_base_v1",
           "template_version": "1.0.0"
         },
+        "language": "zh-CN",
         "mapping_summary": {
           "accepted_count": 4,
           "average_confidence": 0.98,
@@ -570,6 +572,7 @@
           "mapped_count": 4,
           "mapped_fields": 4,
           "mapping_input_name": "mapping_rules",
+          "mapping_mode": "legacy",
           "methods": {
             "alias": 2,
             "exact": 2
@@ -603,6 +606,7 @@
           "language": "zh-CN",
           "source": "example"
         },
+        "source": "example",
         "template_id": "announcement_doc_base_v1",
         "transform_summary": {
           "error_count": 0,
@@ -611,7 +615,7 @@
         }
       },
       "schema_id": "announcement_doc",
-      "task_id": "topic5_67e0d559785f"
+      "task_id": "topic5_10ab45ee9382"
     },
     "content_markdown": "# 关于开展系统维护的公告\n\n发布单位：信息化办公室\n\n发布日期：2026-07-09\n\n为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。\n",
     "content_organization_report": {
@@ -628,7 +632,7 @@
         "chunk_count": 4,
         "chunks": [
           {
-            "chunk_id": "chunk_topic5_67e0d559785f_0000",
+            "chunk_id": "chunk_topic5_10ab45ee9382_0000",
             "quality_flags": [],
             "source_block_ids": [
               "b1"
@@ -636,7 +640,7 @@
             "token_estimate": 7
           },
           {
-            "chunk_id": "chunk_topic5_67e0d559785f_0001",
+            "chunk_id": "chunk_topic5_10ab45ee9382_0001",
             "quality_flags": [],
             "source_block_ids": [
               "b2"
@@ -644,7 +648,7 @@
             "token_estimate": 6
           },
           {
-            "chunk_id": "chunk_topic5_67e0d559785f_0002",
+            "chunk_id": "chunk_topic5_10ab45ee9382_0002",
             "quality_flags": [],
             "source_block_ids": [
               "b3"
@@ -652,7 +656,7 @@
             "token_estimate": 5
           },
           {
-            "chunk_id": "chunk_topic5_67e0d559785f_0003",
+            "chunk_id": "chunk_topic5_10ab45ee9382_0003",
             "quality_flags": [],
             "source_block_ids": [
               "b4"
@@ -700,20 +704,60 @@
         "strategy": "source_block_aware",
         "template_id": "announcement_doc_base_v1"
       },
-      "task_id": "topic5_67e0d559785f",
+      "task_id": "topic5_10ab45ee9382",
       "warnings": []
     },
+    "conversion_assertion_report": {
+      "assertion_set_version": "1.0.0",
+      "contract_version": "1.0",
+      "error_count": 0,
+      "failed_count": 0,
+      "generated_at": "2026-07-10T02:42:17.744239+00:00",
+      "issues": [],
+      "passed": true,
+      "passed_count": 3,
+      "results": [
+        {
+          "assertion_id": "title_non_empty",
+          "operator": "non_empty",
+          "path": "$.data.title",
+          "severity": "error",
+          "status": "passed"
+        },
+        {
+          "assertion_id": "body_non_empty",
+          "operator": "non_empty",
+          "path": "$.data.body",
+          "severity": "error",
+          "status": "passed"
+        },
+        {
+          "assertion_id": "publish_date_iso",
+          "operator": "date_format",
+          "path": "$.data.publish_date",
+          "severity": "error",
+          "status": "passed"
+        }
+      ],
+      "schema_id": "announcement_doc",
+      "schema_pack_id": "announcement_doc",
+      "schema_pack_version": "1.0.0",
+      "skipped_count": 0,
+      "task_id": "topic5_10ab45ee9382",
+      "total_count": 3,
+      "warning_count": 0
+    },
     "manifest": {
-      "created_at": "2026-07-09T12:45:54.441137+00:00",
+      "created_at": "2026-07-10T02:42:17.764194+00:00",
       "doc_id": "uir_announcement_001",
       "files": [
         {
-          "bytes": 6113,
+          "bytes": 6146,
           "media_type": "application/json",
           "path": "canonical.json",
           "required": true,
           "role": "canonical",
-          "sha256": "1edd91bef418e87914cf3f3ebb9106db61daf82f2462f309c8b60bde572b2b36"
+          "sha256": "df1f215de14c32f44a97f34de3cfb0a0fde9c2c0cc858de47661dc1fde861093"
         },
         {
           "bytes": 7350,
@@ -721,15 +765,15 @@
           "path": "chunks.jsonl",
           "required": true,
           "role": "chunks",
-          "sha256": "4051cbb590a83df0c65f89e6ee2ddd6e1ffdd8ab8a793cc475f845af50ab7eda"
+          "sha256": "773228b2e98d4614899ef4c5d0d18b747c2d4fad1587e043408fb10352dd8501"
         },
         {
-          "bytes": 7391,
+          "bytes": 7536,
           "media_type": "application/json",
           "path": "content.json",
           "required": true,
           "role": "structured_json",
-          "sha256": "08c0fb2077537a238be6dafb1b051caa64a9a0397ad1682ca90ad1cfb4c2651a"
+          "sha256": "d43dea51a7bbe60c3c2215fb5c7077795105d1e8986e4235bdb74499b7efec62"
         },
         {
           "bytes": 224,
@@ -745,15 +789,15 @@
           "path": "content_organization_report.json",
           "required": true,
           "role": "content_organization_report",
-          "sha256": "30cce5b145d6e225c2cde481b4eb16622f11acef1d77a83bdddf0054c1e3f9b4"
+          "sha256": "7b976865123a7117646d9094857ab8452351e73af772c1d082523c9fe5364094"
         },
         {
-          "bytes": 7301,
+          "bytes": 7332,
           "media_type": "application/json",
           "path": "mapping_report.json",
           "required": true,
           "role": "mapping_report",
-          "sha256": "33757085e6548f8118569a6f0d12458ccb65822ca324211ad6f0d5d0b7ebefe1"
+          "sha256": "a9b1c6010a83e2559ef05fccc4e2d2f03875ae0b2e7c358ae34f49f6ac121347"
         },
         {
           "bytes": 724,
@@ -761,7 +805,7 @@
           "path": "metadata.json",
           "required": true,
           "role": "package_metadata",
-          "sha256": "3ac950101faed7102f3e8b0dd3c96335913c5de63ae834e1384aa0bf42489968"
+          "sha256": "304ff0b0a11aec49a7c496d75e4bf18d9144de7be026d28351b14bcedcf726f3"
         },
         {
           "bytes": 1206,
@@ -769,7 +813,7 @@
           "path": "transform_report.json",
           "required": true,
           "role": "transform_report",
-          "sha256": "62dd7ec1e108fd443f3db5a3511eb156391bd3dc5ff302e8c361023afe5a99d3"
+          "sha256": "0bcbf40c1d86e0b37b153dbe8410c9c8e0c483779d9bc9a587947a7de45aa36a"
         },
         {
           "bytes": 272,
@@ -777,7 +821,7 @@
           "path": "validation_report.json",
           "required": true,
           "role": "validation_report",
-          "sha256": "aebfe598ac631021a14d3c2219cb135f2e7ef9cab01b0e26e2314d1f2afd11a9"
+          "sha256": "85ece418c64282e853db5dc554f43b720c46d82c756a158fabf209af2784c979"
         }
       ],
       "generator": {
@@ -788,10 +832,11 @@
         "version": "service-layer-0.1.0"
       },
       "manifest_version": "1.1",
-      "package_id": "pkg_topic5_67e0d559785f",
+      "package_id": "pkg_topic5_10ab45ee9382",
       "package_version": "1.0.0",
-      "task_id": "topic5_67e0d559785f"
+      "task_id": "topic5_10ab45ee9382"
     },
+    "mapping_repair_report": null,
     "mapping_report": {
       "mappings": [
         {
@@ -800,7 +845,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_67e0d559785f_document_title_1",
+          "candidate_id": "cand_topic5_10ab45ee9382_document_title_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -816,7 +861,7 @@
             "alias matched target title"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_67e0d559785f_title_alias",
+          "mapping_id": "map_topic5_10ab45ee9382_title_alias",
           "method": "alias",
           "need_review": false,
           "ranking_trace": {
@@ -842,7 +887,7 @@
           "strategy": "alias",
           "target_field_id": "title",
           "target_field_name": "title",
-          "task_id": "topic5_67e0d559785f",
+          "task_id": "topic5_10ab45ee9382",
           "value_sample": "关于开展系统维护的公告"
         },
         {
@@ -851,7 +896,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_67e0d559785f_issuer_1",
+          "candidate_id": "cand_topic5_10ab45ee9382_issuer_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -867,7 +912,7 @@
             "exact mapping to issuer"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_67e0d559785f_issuer_exact",
+          "mapping_id": "map_topic5_10ab45ee9382_issuer_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -895,7 +940,7 @@
           "strategy": "exact",
           "target_field_id": "issuer",
           "target_field_name": "issuer",
-          "task_id": "topic5_67e0d559785f",
+          "task_id": "topic5_10ab45ee9382",
           "value_sample": "信息化办公室"
         },
         {
@@ -904,7 +949,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_67e0d559785f_publish_date_1",
+          "candidate_id": "cand_topic5_10ab45ee9382_publish_date_1",
           "confidence": 1.0,
           "confidence_tier": "high",
           "evidence": [
@@ -920,7 +965,7 @@
             "exact mapping to publish_date"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_67e0d559785f_publish_date_exact",
+          "mapping_id": "map_topic5_10ab45ee9382_publish_date_exact",
           "method": "exact",
           "need_review": false,
           "ranking_trace": {
@@ -948,7 +993,7 @@
           "strategy": "exact",
           "target_field_id": "publish_date",
           "target_field_name": "publish_date",
-          "task_id": "topic5_67e0d559785f",
+          "task_id": "topic5_10ab45ee9382",
           "value_sample": "2026-07-09"
         },
         {
@@ -957,7 +1002,7 @@
             "checked": false,
             "reason": null
           },
-          "candidate_id": "cand_topic5_67e0d559785f_正文_1",
+          "candidate_id": "cand_topic5_10ab45ee9382_正文_1",
           "confidence": 0.96,
           "confidence_tier": "high",
           "evidence": [
@@ -973,7 +1018,7 @@
             "alias matched target body"
           ],
           "llm_metadata": null,
-          "mapping_id": "map_topic5_67e0d559785f_body_alias",
+          "mapping_id": "map_topic5_10ab45ee9382_body_alias",
           "method": "alias",
           "need_review": false,
           "ranking_trace": {
@@ -1001,7 +1046,7 @@
           "strategy": "alias",
           "target_field_id": "body",
           "target_field_name": "body",
-          "task_id": "topic5_67e0d559785f",
+          "task_id": "topic5_10ab45ee9382",
           "value_sample": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。"
         }
       ],
@@ -1018,6 +1063,7 @@
         "mapped_count": 4,
         "mapped_fields": 4,
         "mapping_input_name": "mapping_rules",
+        "mapping_mode": "legacy",
         "methods": {
           "alias": 2,
           "exact": 2
@@ -1046,25 +1092,25 @@
         "unmapped_required_fields": 0,
         "warnings": []
       },
-      "task_id": "topic5_67e0d559785f",
+      "task_id": "topic5_10ab45ee9382",
       "unmapped": []
     },
     "package_metadata": {
-      "created_at": "2026-07-09T12:45:54.441137+00:00",
+      "created_at": "2026-07-10T02:42:17.764194+00:00",
       "doc_id": "uir_announcement_001",
-      "package_id": "pkg_topic5_67e0d559785f",
+      "package_id": "pkg_topic5_10ab45ee9382",
       "package_version": "1.0.0",
       "schema_id": "announcement_doc",
-      "sha256": "782f6176b6277ae20d06596b3cf5811f01286304b3ddceee4cd3ce84b1833d18",
+      "sha256": "b75832b302e64251619564e228dadb603f623a4578e321195b0d93d2adc5d40c",
       "status": "completed",
-      "task_id": "topic5_67e0d559785f",
+      "task_id": "topic5_10ab45ee9382",
       "template_id": "announcement_doc_base_v1",
-      "zip_path": "reports\\topic5_inline_announcement_result_package\\packages\\pkg_topic5_67e0d559785f\\standard_package.zip"
+      "zip_path": ".tmp\\phase3-inline-announcement\\packages\\pkg_topic5_10ab45ee9382\\standard_package.zip"
     },
-    "package_zip_path": "reports\\topic5_inline_announcement_result_package\\packages\\pkg_topic5_67e0d559785f\\standard_package.zip",
+    "package_zip_path": ".tmp\\phase3-inline-announcement\\packages\\pkg_topic5_10ab45ee9382\\standard_package.zip",
     "schema_id": "announcement_doc",
     "status": "completed",
-    "task_id": "topic5_67e0d559785f",
+    "task_id": "topic5_10ab45ee9382",
     "template_id": "announcement_doc_base_v1",
     "transform_report": {
       "doc_id": "uir_announcement_001",
@@ -1075,7 +1121,7 @@
         "trace_count": 4,
         "transformed_fields": 4
       },
-      "task_id": "topic5_67e0d559785f",
+      "task_id": "topic5_10ab45ee9382",
       "template_id": "announcement_doc_base_v1",
       "traces": [
         {
@@ -1128,13 +1174,13 @@
         "failure_type_counts": {},
         "warning_count": 0
       },
-      "task_id": "topic5_67e0d559785f"
+      "task_id": "topic5_10ab45ee9382"
     },
     "verifier_report": {
       "checks": [],
       "errors": [],
       "passed": true,
-      "task_id": "topic5_67e0d559785f",
+      "task_id": "topic5_10ab45ee9382",
       "warnings": []
     }
   },

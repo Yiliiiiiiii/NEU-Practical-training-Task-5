@@ -3,6 +3,7 @@ from typing import Any
 from pydantic import Field, model_validator
 
 from app.schemas.common import StrictBaseModel
+from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
@@ -38,6 +39,7 @@ class Topic5ConvertRequest(StrictBaseModel):
     content_organization: ContentOrganizationConfig = Field(
         default_factory=ContentOrganizationConfig
     )
+    output_assertions: ConversionAssertionConfig | None = None
     options: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="after")
@@ -50,6 +52,12 @@ class Topic5ConvertRequest(StrictBaseModel):
             template_payload = self.mapping_template.model_dump(mode="json")
             if rules_payload != template_payload:
                 raise ValueError("mapping_rules and mapping_template cannot differ")
+
+        if (
+            self.output_assertions is not None
+            and self.output_assertions.schema_id != self.target_schema.schema_id
+        ):
+            raise ValueError("output_assertions.schema_id must match target_schema.schema_id")
 
         return self
 
@@ -85,3 +93,4 @@ class Topic5ConvertResponse(StrictBaseModel):
     package_zip_path: str | None = None
     package_metadata: dict[str, Any] | None = None
     verifier_report: dict[str, Any] | None = None
+    conversion_assertion_report: dict[str, Any] | None = None

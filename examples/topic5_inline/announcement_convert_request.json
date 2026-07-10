@@ -143,6 +143,34 @@
     "summary_mode": "deterministic",
     "keyword_mode": "deterministic"
   },
+  "output_assertions": {
+    "contract_version": "1.0",
+    "schema_id": "announcement_doc",
+    "assertion_set_version": "1.0.0",
+    "defaults": {
+      "severity": "error",
+      "missing_optional_field": "skip"
+    },
+    "assertions": [
+      {
+        "assertion_id": "title_non_empty",
+        "path": "$.data.title",
+        "operator": "non_empty"
+      },
+      {
+        "assertion_id": "body_non_empty",
+        "path": "$.data.body",
+        "operator": "non_empty"
+      },
+      {
+        "assertion_id": "publish_date_iso",
+        "path": "$.data.publish_date",
+        "operator": "date_format",
+        "optional": true,
+        "parameters": {"formats": ["%Y-%m-%d"]}
+      }
+    ]
+  },
   "options": {
     "enable_llm_fallback": false,
     "no_code_schema_pack_onboarding": true,

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "error_count": 0,
+  "warning_count": 0,
+  "expected_results": {
+    "title_non_empty": "passed",
+    "organizer_non_empty": "passed",
+    "event_time_format": "passed",
+    "body_non_empty": "passed",
+    "event_time_not_publish_date": "passed",
+    "event_time_not_retrieved_at": "passed"
+  }
+}

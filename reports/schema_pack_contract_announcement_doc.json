@@ -1,0 +1,16 @@
+{
+  "errors": [],
+  "schema_pack_id": "announcement_doc",
+  "schema_pack_version": "1.0.0",
+  "status": "passed",
+  "validated_assets": [
+    "content_org.yaml",
+    "mapping_rules.yaml",
+    "metadata_template.json",
+    "output_assertions.yaml",
+    "router_rules.yaml",
+    "schema_pack.yaml",
+    "target_schema.json"
+  ],
+  "warnings": []
+}
