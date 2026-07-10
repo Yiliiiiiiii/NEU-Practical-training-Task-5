@@ -1,0 +1,113 @@
+{
+  "audit_id": "topic5-batch-1-findings-at-batch-2-start",
+  "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+  "findings": [
+    {
+      "section": "4.1",
+      "status": "confirmed",
+      "summary": "The gate converts component-test success into quantitative rates.",
+      "evidence": [
+        "scripts/check_topic5_hard_gap_batch_1_gate.py:27-72",
+        "scripts/check_topic5_hard_gap_batch_1_gate.py:91-108",
+        "scripts/check_topic5_hard_gap_batch_1_gate.py:200-207"
+      ]
+    },
+    {
+      "section": "4.2",
+      "status": "confirmed_with_two_refuted_subclaims",
+      "summary": "Verification is manually asserted/stale and CI coverage is incomplete. Empty raw files and total absence of checks are no longer true; the reviewed SHA has two checks, with backend failing.",
+      "evidence": [
+        "docs/交接/evidence/hard_gap_batch_1/operations/verification_summary.json:2-16",
+        "scripts/verify_all.py:11-43",
+        ".github/workflows/ci.yml:19-42"
+      ]
+    },
+    {
+      "section": "4.3",
+      "status": "confirmed",
+      "summary": "No immutable v2 tag gold exists and deterministic management/quality labels are still reported as F1.",
+      "evidence": [
+        "scripts/eval_content_tag_quality.py:14-19",
+        "scripts/eval_content_tag_quality.py:199-287",
+        "examples/real_world/gold/content_organization_gold.jsonl:1"
+      ]
+    },
+    {
+      "section": "4.4",
+      "status": "confirmed",
+      "summary": "Inline and registered status evaluators diverge; registered execution omits schema validation and verifier+consistency failure can become review_required.",
+      "evidence": [
+        "backend/app/services/topic5_conversion_service.py:299-337",
+        "backend/app/services/task_execution_service.py:568-587",
+        "backend/app/services/task_execution_service.py:810-836"
+      ]
+    },
+    {
+      "section": "4.5",
+      "status": "confirmed",
+      "summary": "Renderer merges complete canonical doc_meta into content.json metadata and emits execution_snapshot.",
+      "evidence": [
+        "backend/app/services/canonical_service.py:67-84",
+        "backend/app/services/render_service.py:18-51",
+        "backend/tests/test_conversion_artifact_services.py:98-123"
+      ]
+    },
+    {
+      "section": "4.6",
+      "status": "confirmed",
+      "summary": "Package finalization leaves a stale first-pass verifier report, trusts precomputed consistency, and writes directly to the final directory.",
+      "evidence": [
+        "backend/app/services/package_service.py:50-52",
+        "backend/app/services/package_service.py:138-222",
+        "backend/app/services/package_verifier_service.py:12-21",
+        "backend/app/services/package_verifier_service.py:188-215"
+      ]
+    },
+    {
+      "section": "4.7",
+      "status": "confirmed",
+      "summary": "Topic 11 validates protected-block coverage only; artifact consistency measures chunks with valid sources rather than canonical blocks represented in chunks.",
+      "evidence": [
+        "backend/app/services/chunk_providers/resolver.py:142-176",
+        "backend/app/services/artifact_consistency_service.py:51-75",
+        "backend/app/services/artifact_consistency_service.py:275-326"
+      ]
+    },
+    {
+      "section": "4.8",
+      "status": "confirmed",
+      "summary": "summary_mode and summary.chunk_mode coexist without migration/conflict validation, and internal chunk construction uses doc_id as task_id.",
+      "evidence": [
+        "backend/app/schemas/content_organization.py:44-49",
+        "backend/app/schemas/content_organization.py:163-197",
+        "backend/app/services/chunk_organizer_service.py:83-128",
+        "backend/app/services/chunk_organizer_service.py:278-290"
+      ]
+    },
+    {
+      "section": "4.9",
+      "status": "confirmed",
+      "summary": "Domain-specific document type, array, contact, and organization normalization remains enabled unconditionally.",
+      "evidence": [
+        "backend/app/services/transform_service.py:19-57",
+        "backend/app/services/transform_service.py:66-129",
+        "backend/app/services/transform_service.py:201-247"
+      ]
+    },
+    {
+      "section": "4.10",
+      "status": "confirmed",
+      "summary": "No topic5_current_status.json exists and status documents contain stale, appended, contradictory counts and branch names.",
+      "evidence": [
+        "README.md:102-108",
+        "README.md:311-338",
+        "docs/交接/project_status.md:4-25",
+        "docs/交接/final_handoff_status.md:3-15"
+      ]
+    }
+  ],
+  "confirmed_count": 10,
+  "refuted_finding_count": 0,
+  "refuted_subclaim_count": 2,
+  "claim_boundary": "File-level audit only. Passing component tests do not establish the rates required by Batch 2."
+}

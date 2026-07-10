@@ -1,0 +1,67 @@
+{
+  "baseline_id": "topic5-batch-2-main-baseline",
+  "baseline_version": "1.0.0",
+  "captured_at": "2026-07-10T19:43:10.4082777+08:00",
+  "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+  "source_branch": "main",
+  "target_branch": "feat/topic5-batch-2-reliability",
+  "tracked_worktree_clean": true,
+  "untracked_user_files_present": true,
+  "environment": {
+    "os": "Windows",
+    "python": "3.13.5",
+    "pytest": "8.3.4",
+    "ruff": "0.8.4",
+    "node": "22.16.0",
+    "npm": "10.9.2",
+    "git": "2.47.1.windows.1"
+  },
+  "checks": {
+    "backend_tests": {
+      "command": "backend/.venv/Scripts/python.exe -m pytest -q",
+      "return_code": 0,
+      "passed_count": 1036,
+      "failed_count": 0,
+      "duration_seconds": 86.29
+    },
+    "ruff": {
+      "command": "backend/.venv/Scripts/python.exe -m ruff check .",
+      "return_code": 0,
+      "result": "All checks passed!"
+    },
+    "frontend_tests": {
+      "command": "npm.cmd test",
+      "return_code": 0,
+      "test_file_count": 8,
+      "passed_count": 24,
+      "failed_count": 0,
+      "duration_seconds": 3.93
+    },
+    "frontend_build": {
+      "command": "npm.cmd run build",
+      "return_code": 0,
+      "module_count": 1596,
+      "duration_seconds": 2.98
+    },
+    "openapi_drift": {
+      "command": "compare create_app().openapi() with docs/openapi.json",
+      "return_code": 0,
+      "drift_count": 0,
+      "path_count": 65
+    },
+    "schema_pack_gate": {
+      "command": "scripts.check_schema_pack_contract_gate.run_gate() with report writers disabled",
+      "return_code": 0,
+      "status": "passed",
+      "warning_count": 6,
+      "warning_boundary": "meeting_doc and policy_doc precision is 0.8 on dev/test/blind, below the prior recommended 0.85 warning threshold"
+    },
+    "batch_1_gate": {
+      "command": "python scripts/check_topic5_hard_gap_batch_1_gate.py --out-dir <temporary-directory>",
+      "return_code": 0,
+      "status": "passed",
+      "claim_boundary": "Not acceptable as quantitative Batch 2 evidence because proxy metrics and a stale verification summary are consumed."
+    }
+  },
+  "claim_boundary": "This report records the unmodified reviewed-head baseline. It does not claim Batch 2 acceptance, production-blind mapping performance, or exact-head GitHub CI success."
+}
