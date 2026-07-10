@@ -3,6 +3,7 @@ import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
+from app.schemas.artifact_consistency import ArtifactConsistencyReport
 from app.schemas.canonical import CanonicalModel
 from app.schemas.content_organization import ContentOrganizationReport
 from app.schemas.document_summary import DocumentSummary
@@ -44,6 +45,7 @@ class PackageService:
         metadata_result: MetadataRenderResult | None = None,
         metadata_template: MetadataTemplateConfig | None = None,
         document_summary: DocumentSummary | None = None,
+        artifact_consistency_report: ArtifactConsistencyReport | None = None,
     ) -> PackageResult:
         package_id = f"pkg_{task_id}"
         package_dir = self.output_root / "packages" / package_id
@@ -66,6 +68,8 @@ class PackageService:
         features = ["metadata_template_v1"] if metadata_result is not None else []
         if document_summary is not None:
             features.append("document_summary_v1")
+        if artifact_consistency_report is not None:
+            features.append("artifact_consistency_v1")
 
         files = {
             "content.json": rendered.structured_json,
@@ -116,6 +120,13 @@ class PackageService:
             files["metadata.json"]["artifact_roles"]["metadata_template_report.json"] = (
                 "metadata_template_report"
             )
+        if artifact_consistency_report is not None:
+            files["artifact_consistency_report.json"] = (
+                artifact_consistency_report.model_dump(mode="json")
+            )
+            files["metadata.json"]["artifact_roles"][
+                "artifact_consistency_report.json"
+            ] = "artifact_consistency_report"
         optional_paths: set[str] = set()
         if include_assertion_report and conversion_assertion_report is not None:
             assertion_path = "reports/conversion_assertion_report.json"
@@ -168,6 +179,24 @@ class PackageService:
             verifier_report.model_dump_json(indent=2),
             encoding="utf-8",
         )
+
+        final_manifest_files = [*written_files, verifier_path]
+        manifest = ManifestService().build_manifest(
+            package_id=package_id,
+            package_version="1.0.0",
+            task_id=task_id,
+            doc_id=doc_id,
+            schema=schema,
+            template_id=template.template_id,
+            package_dir=package_dir,
+            file_paths=final_manifest_files,
+            optional_paths=optional_paths,
+        )
+        manifest_path.write_text(
+            manifest.model_dump_json(indent=2),
+            encoding="utf-8",
+        )
+        verifier_report = PackageVerifierService().verify_package(package_dir)
 
         zip_path = package_dir / "standard_package.zip"
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as archive:

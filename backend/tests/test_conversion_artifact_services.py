@@ -268,6 +268,7 @@ def test_package_service_writes_manifest_zip_and_verifier_passes(tmp_path):
     assert manifest_files["content_organization_report.json"]["role"] == (
         "content_organization_report"
     )
+    assert manifest_files["verifier_report.json"]["role"] == "verifier_report"
 
     with zipfile.ZipFile(package_result.metadata.zip_path) as archive:
         assert {

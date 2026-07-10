@@ -198,6 +198,15 @@ def test_registered_schema_pack_applies_metadata_template(execution_client):
     assert content_org["document_summary"] == summary
     assert content_org["provider_trace"]["requested_provider"] == "internal"
     assert content_org["provider_trace"]["used_provider"] == "internal"
+    consistency = json.loads(
+        Path(report_paths["artifact_consistency_report"]).read_text(encoding="utf-8")
+    )
+    assert consistency["passed"] is True
+    report_response = client.get(
+        f"/api/v1/tasks/{task_id}/reports/artifact-consistency"
+    )
+    assert report_response.status_code == 200
+    assert report_response.json() == consistency
 
 
 def test_registered_task_topic11_missing_endpoint_uses_same_fallback(

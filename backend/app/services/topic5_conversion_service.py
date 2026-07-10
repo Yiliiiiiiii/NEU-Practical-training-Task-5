@@ -4,6 +4,7 @@ from typing import Any
 from app.config import Settings
 from app.schemas.reports import MappingReport
 from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertResponse
+from app.services.artifact_consistency_service import ArtifactConsistencyService
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.chunk_organizer_service import ChunkOrganizerService
@@ -185,6 +186,13 @@ class Topic5ConversionService:
             require_content_organization=True,
             metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
+        artifact_consistency_report = ArtifactConsistencyService().verify(
+            canonical=canonical,
+            structured_json=rendered.structured_json,
+            markdown=rendered.markdown,
+            chunks=rendered.chunks,
+            document_summary=document_summary,
+        )
         conversion_assertion_report = None
         if request.output_assertions is not None:
             assertion_report = ConversionAssertionService().evaluate(
@@ -223,6 +231,7 @@ class Topic5ConversionService:
                 metadata_result=metadata_result,
                 metadata_template=request.metadata_template,
                 document_summary=document_summary,
+                artifact_consistency_report=artifact_consistency_report,
             )
             manifest = package_result.manifest.model_dump(mode="json")
             package_zip_path = package_result.metadata.zip_path
@@ -254,6 +263,7 @@ class Topic5ConversionService:
             summary_faithfulness_passed=(
                 document_summary.faithfulness_passed if document_summary else None
             ),
+            artifact_consistency_passed=artifact_consistency_report.passed,
         )
         return Topic5ConvertResponse(
             task_id=task_id,
@@ -280,6 +290,9 @@ class Topic5ConversionService:
                 else None
             ),
             document_summary=document_summary_payload,
+            artifact_consistency_report=artifact_consistency_report.model_dump(
+                mode="json"
+            ),
         )
 
     @staticmethod
@@ -294,13 +307,14 @@ class Topic5ConversionService:
         metadata_passed: bool | None = None,
         strict_metadata_template: bool = False,
         summary_faithfulness_passed: bool | None = None,
+        artifact_consistency_passed: bool | None = None,
     ) -> str:
         review_required_count = len(mapping_report.review_required_items)
         unmapped_required_count = sum(
             1 for item in mapping_report.unmapped if item.get("required")
         )
 
-        if create_package and verifier_passed is False:
+        if create_package and verifier_passed is False and artifact_consistency_passed is not False:
             return "failed"
 
         if strict_output_assertions and assertion_error_count:
@@ -316,6 +330,7 @@ class Topic5ConversionService:
             or assertion_error_count
             or metadata_passed is False
             or summary_faithfulness_passed is False
+            or artifact_consistency_passed is False
         ):
             return "review_required"
 

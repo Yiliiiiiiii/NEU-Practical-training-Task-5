@@ -1,0 +1,24 @@
+Topic 5 hard-gap batch 1 - artifact consistency verification
+Date: 2026-07-10 (Asia/Shanghai)
+
+Focused command:
+backend/.venv/Scripts/python.exe -m pytest backend/tests/test_artifact_consistency_service.py backend/tests/test_conversion_artifact_services.py backend/tests/test_topic5_convert_api.py -q
+
+Result:
+54 passed in 7.58s
+
+Registered execution command:
+backend/.venv/Scripts/python.exe -m pytest backend/tests/test_task_execution_api.py -q
+
+Result:
+11 passed in 7.22s
+
+Full command:
+backend/.venv/Scripts/python.exe scripts/verify_all.py --check-openapi
+
+Result:
+- backend: 1004 passed in 83.35s
+- Ruff: all checks passed
+- frontend production build: passed (1596 modules)
+- OpenAPI export: 65 paths
+- total command exit code: 0

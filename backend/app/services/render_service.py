@@ -1,3 +1,5 @@
+import hashlib
+import json
 from dataclasses import dataclass
 from typing import Any
 
@@ -55,35 +57,75 @@ class RenderService:
         )
 
     def _markdown(self, canonical: CanonicalModel) -> str:
-        lines: list[str] = []
+        lines = [
+            (
+                '<!-- topic5:document:start '
+                f'doc_id="{self._marker_value(canonical.doc_id)}" '
+                f'schema_id="{self._marker_value(canonical.schema_id)}" -->'
+            )
+        ]
         document_summary = canonical.doc_meta.get("document_summary")
         summary_text = (
             str(document_summary.get("text") or "")
             if isinstance(document_summary, dict)
             else ""
         )
-        summary_inserted = False
+        lines.extend(
+            [
+                "## Document Summary",
+                '<!-- topic5:summary:start -->',
+                self._escape_protocol_text(summary_text),
+                '<!-- topic5:summary:end -->',
+                "## Structured Data",
+                '<!-- topic5:structured-data:start -->',
+                "```json",
+                json.dumps(
+                    {
+                        "data": {
+                            field_id: field.value
+                            for field_id, field in canonical.fields.items()
+                        },
+                        "document_metadata": canonical.doc_meta.get(
+                            "document_metadata", {}
+                        ),
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                    sort_keys=True,
+                ),
+                "```",
+                '<!-- topic5:structured-data:end -->',
+                "## Content",
+            ]
+        )
         for block in canonical.blocks:
-            text = block.text.strip()
-            if not text:
-                continue
-            if block.type == "heading":
-                level = min(max(block.level or 1, 1), 6)
-                lines.append(f"{'#' * level} {text}")
-            elif block.type == "list":
-                for item in text.splitlines():
-                    lines.append(f"- {item}")
-            elif block.type == "table":
-                lines.extend(self._markdown_table(block))
-            else:
-                lines.append(text)
-            lines.append("")
-            if summary_text and not summary_inserted:
-                lines.extend(["## Document Summary", "", summary_text, ""])
-                summary_inserted = True
-        if summary_text and not summary_inserted:
-            lines.extend(["## Document Summary", "", summary_text, ""])
-        return "\n".join(lines).strip() + "\n"
+            text = block.text
+            block_hash = self._text_hash(text)
+            lines.append(
+                '<!-- topic5:block:start '
+                f'id="{self._marker_value(block.block_id)}" hash="{block_hash}" -->'
+            )
+            lines.extend(self.markdown_block_content(block))
+            lines.append(
+                f'<!-- topic5:block:end id="{self._marker_value(block.block_id)}" -->'
+            )
+        lines.append("<!-- topic5:document:end -->")
+        return "\n".join(lines) + "\n"
+
+    @classmethod
+    def markdown_block_content(cls, block: CanonicalBlock) -> list[str]:
+        text = block.text
+        if block.type == "heading":
+            level = min(max(block.level or 1, 1), 6)
+            return [f"{'#' * level} {cls._escape_protocol_text(text.strip())}"]
+        if block.type == "list":
+            return [f"- {cls._escape_protocol_text(item)}" for item in text.splitlines()]
+        if block.type == "table":
+            return cls._markdown_table(block)
+        if block.type == "code":
+            fence = "````" if "```" in text else "```"
+            return [fence, cls._escape_protocol_text(text), fence]
+        return [cls._escape_protocol_text(text)]
 
     @staticmethod
     def _markdown_table(block: CanonicalBlock) -> list[str]:
@@ -93,10 +135,36 @@ class RenderService:
                 key, value = line.split(":", 1)
                 rows.append((key.strip(), value.strip()))
         if not rows:
-            return [block.text]
+            return [RenderService._escape_protocol_text(block.text)]
         output = ["| Field | Value |", "| --- | --- |"]
-        output.extend(f"| {key} | {value} |" for key, value in rows)
+        output.extend(
+            f"| {RenderService._table_cell(key)} | {RenderService._table_cell(value)} |"
+            for key, value in rows
+        )
         return output
+
+    @staticmethod
+    def _text_hash(text: str) -> str:
+        return f"sha256:{hashlib.sha256(text.encode('utf-8')).hexdigest()}"
+
+    @staticmethod
+    def _marker_value(value: str) -> str:
+        return value.replace("&", "&amp;").replace('"', "&quot;")
+
+    @staticmethod
+    def _escape_protocol_text(text: str) -> str:
+        return text.replace("<!-- topic5:", "&lt;!-- topic5:")
+
+    @staticmethod
+    def _table_cell(text: str) -> str:
+        return (
+            RenderService._escape_protocol_text(text)
+            .replace("\\", "\\\\")
+            .replace("|", "\\|")
+            .replace("\r\n", "<br>")
+            .replace("\r", "<br>")
+            .replace("\n", "<br>")
+        )
 
     def _chunks(self, canonical: CanonicalModel, chunk_size: int) -> list[dict[str, Any]]:
         chunks: list[dict[str, Any]] = []

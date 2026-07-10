@@ -99,9 +99,9 @@
 
 **Interfaces:** versioned request/response contracts; resolver returns chunks and a sanitized trace; invalid external output falls back or raises in strict mode.
 
-- [ ] Add failing internal/valid mock/timeout/HTTP/schema/block/entity/hallucination/strict/config/offline/secret tests.
-- [ ] Implement runtime-only networking and full external-output validation.
-- [ ] Run tests and commit.
+- [x] Add failing internal/valid mock/timeout/HTTP/schema/block/entity/hallucination/strict/config/offline/secret tests.
+- [x] Implement runtime-only networking and full external-output validation.
+- [x] Run tests and commit.
 
 ### Task 6: Canonical cross-artifact consistency
 
@@ -112,10 +112,10 @@
 
 **Interface:** `ArtifactConsistencyService.verify(*, canonical, structured_json, markdown, chunks, document_summary) -> ArtifactConsistencyReport`.
 
-- [ ] Add failing JSON/Markdown/block/chunk/summary/metadata tampering and legacy tests.
-- [ ] Add deterministic Markdown markers and consistency verification.
-- [ ] Add feature-dependent reports, roles, checksums, and verifier requirements.
-- [ ] Run negative/package tests and commit.
+- [x] Add failing JSON/Markdown/block/chunk/summary/metadata tampering and legacy tests.
+- [x] Add deterministic Markdown markers and consistency verification.
+- [x] Add feature-dependent reports, roles, checksums, and verifier requirements.
+- [x] Run negative/package tests and commit.
 
 ### Task 7: Expanded deterministic evidence and gate
 
@@ -137,4 +137,3 @@
 - [ ] Run full backend/Ruff/frontend/OpenAPI/SchemaPack/inline/evaluator/gate commands.
 - [ ] Review scope, secrets, compatibility, evidence accuracy, and untracked user files.
 - [ ] Commit documentation/evidence and record all commit SHAs.
-

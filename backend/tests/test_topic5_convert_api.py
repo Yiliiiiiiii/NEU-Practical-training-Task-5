@@ -66,7 +66,10 @@ def test_topic5_convert_accepts_inline_config(topic5_client):
     assert payload["content_json"]["data"]["title"]
     assert payload["content_json"]["data"]["issuer"]
     assert payload["content_json"]["data"]["body"]
-    assert payload["content_markdown"].startswith("# ")
+    assert payload["content_markdown"].startswith(
+        '<!-- topic5:document:start doc_id="uir_announcement_001"'
+    )
+    assert payload["artifact_consistency_report"]["passed"] is True
     assert payload["chunks"]
     assert payload["mapping_report"]["summary"]["input_mode"] == "inline_topic5_config"
     assert payload["mapping_report"]["summary"]["mapping_input_name"] == "mapping_template"
@@ -125,7 +128,10 @@ def test_topic5_document_summary_is_shared_across_json_markdown_and_report(
     assert summary["source_chunk_ids"]
     assert body["content_json"]["document_summary"] == summary
     assert body["content_organization_report"]["document_summary"] == summary
-    assert f"## Document Summary\n\n{summary['text']}" in body["content_markdown"]
+    assert (
+        f"<!-- topic5:summary:start -->\n{summary['text']}\n"
+        "<!-- topic5:summary:end -->"
+    ) in body["content_markdown"]
 
 
 def test_topic5_document_summary_can_be_disabled(topic5_client):
@@ -144,7 +150,11 @@ def test_topic5_document_summary_can_be_disabled(topic5_client):
     body = response.json()
     assert body["document_summary"] is None
     assert body["content_json"]["document_summary"] is None
-    assert "## Document Summary" not in body["content_markdown"]
+    assert (
+        "<!-- topic5:summary:start -->\n\n<!-- topic5:summary:end -->"
+        in body["content_markdown"]
+    )
+    assert body["artifact_consistency_report"]["summary_consistent"] is True
 
 
 def test_topic5_document_summary_is_deterministic_across_three_runs(topic5_client):
@@ -314,9 +324,57 @@ def test_topic5_package_contains_metadata_template_artifact_and_feature(topic5_c
     assert report["passed"] is True
     assert metadata["document_summary"] == body["document_summary"]
     assert "document_summary_v1" in metadata["features"]
+    assert "artifact_consistency_v1" in metadata["features"]
+    consistency_report = json.loads(
+        (package_dir / "artifact_consistency_report.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert consistency_report == body["artifact_consistency_report"]
+    assert consistency_report["passed"] is True
     assert "metadata_template_report.json" in {
         item["path"] for item in body["manifest"]["files"]
     }
+    manifested = {item["path"] for item in body["manifest"]["files"]}
+    assert "artifact_consistency_report.json" in manifested
+    assert "verifier_report.json" in manifested
+
+
+def test_package_verifier_rejects_missing_declared_consistency_report(
+    topic5_client,
+):
+    client, _storage_root = topic5_client
+    response = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    )
+    package_dir = Path(response.json()["package_zip_path"]).parent
+    (package_dir / "artifact_consistency_report.json").unlink()
+
+    report = PackageVerifierService().verify_package(package_dir)
+
+    assert report.passed is False
+    assert any(
+        issue.path == "artifact_consistency_report.json"
+        and issue.code == "required_file_missing"
+        for issue in report.errors
+    )
+
+
+def test_package_verifier_rejects_failed_consistency_report(topic5_client):
+    client, _storage_root = topic5_client
+    response = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    )
+    package_dir = Path(response.json()["package_zip_path"]).parent
+    report_path = package_dir / "artifact_consistency_report.json"
+    consistency = json.loads(report_path.read_text(encoding="utf-8"))
+    consistency["passed"] = False
+    report_path.write_text(json.dumps(consistency), encoding="utf-8")
+
+    report = PackageVerifierService().verify_package(package_dir)
+
+    assert report.passed is False
+    assert any(issue.code == "artifact_consistency_failed" for issue in report.errors)
 
 
 def test_package_verifier_rejects_missing_declared_metadata_report(topic5_client):

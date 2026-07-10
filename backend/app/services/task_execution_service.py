@@ -17,6 +17,7 @@ from app.schemas.reports import MappingReport
 from app.schemas.schema_pack_contract import SchemaPackManifest
 from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
+from app.services.artifact_consistency_service import ArtifactConsistencyService
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
@@ -73,6 +74,9 @@ class TaskExecutionService:
         "metadata-template": "metadata_template_report",
         "metadata_template": "metadata_template_report",
         "metadata_template_report": "metadata_template_report",
+        "artifact-consistency": "artifact_consistency_report",
+        "artifact_consistency": "artifact_consistency_report",
+        "artifact_consistency_report": "artifact_consistency_report",
     }
 
     def __init__(
@@ -392,6 +396,13 @@ class TaskExecutionService:
             require_content_organization=True,
             metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
+        artifact_consistency_report = ArtifactConsistencyService().verify(
+            canonical=canonical,
+            structured_json=rendered.structured_json,
+            markdown=rendered.markdown,
+            chunks=rendered.chunks,
+            document_summary=document_summary,
+        )
         conversion_assertion_report: dict[str, Any] | None = None
         conversion_assertion_report_path: str | None = None
         if assertion_config is not None and schema_pack_manifest is not None:
@@ -448,6 +459,7 @@ class TaskExecutionService:
             metadata_result=metadata_result,
             metadata_template=metadata_template,
             document_summary=document_summary,
+            artifact_consistency_report=artifact_consistency_report,
         )
 
         lineage_graph: dict[str, Any] | None = None
@@ -544,6 +556,9 @@ class TaskExecutionService:
             lineage_graph=lineage_graph,
             lineage_summary=lineage_summary,
             metadata_result=metadata_result,
+            artifact_consistency_report=artifact_consistency_report.model_dump(
+                mode="json"
+            ),
         )
         finished_at = self._now()
         review_required_count = len(mapping_report.review_required_items)
@@ -569,6 +584,7 @@ class TaskExecutionService:
             summary_faithfulness_passed=(
                 document_summary.faithfulness_passed if document_summary else None
             ),
+            artifact_consistency_passed=artifact_consistency_report.passed,
         )
         artifacts: dict[str, str] = {}
         assertion_report_path = report_paths.get("conversion_assertion_report")
@@ -593,6 +609,7 @@ class TaskExecutionService:
                     if document_summary
                     else None
                 ),
+                "artifact_consistency_passed": artifact_consistency_report.passed,
                 "lineage_warnings": lineage_warnings,
             }
         )
@@ -717,6 +734,7 @@ class TaskExecutionService:
         lineage_graph: dict[str, Any] | None = None,
         lineage_summary: dict[str, Any] | None = None,
         metadata_result: MetadataRenderResult | None = None,
+        artifact_consistency_report: dict[str, Any] | None = None,
     ) -> dict[str, str]:
         base = f"tasks/{task_id}"
         report_paths = {
@@ -779,6 +797,13 @@ class TaskExecutionService:
                     metadata_result.report.model_dump(mode="json"),
                 )
             )
+        if artifact_consistency_report is not None:
+            report_paths["artifact_consistency_report"] = str(
+                self.storage.save_json(
+                    f"{base}/artifact_consistency_report.json",
+                    artifact_consistency_report,
+                )
+            )
         return report_paths
 
     @staticmethod
@@ -791,8 +816,9 @@ class TaskExecutionService:
         metadata_passed: bool | None = None,
         strict_metadata_template: bool = False,
         summary_faithfulness_passed: bool | None = None,
+        artifact_consistency_passed: bool | None = None,
     ) -> str:
-        if not package_passed:
+        if not package_passed and artifact_consistency_passed is not False:
             return "failed"
         if strict_output_assertions and assertion_error_count:
             return "failed"
@@ -804,6 +830,7 @@ class TaskExecutionService:
             or assertion_error_count
             or metadata_passed is False
             or summary_faithfulness_passed is False
+            or artifact_consistency_passed is False
         ):
             return "review_required"
         return "completed"

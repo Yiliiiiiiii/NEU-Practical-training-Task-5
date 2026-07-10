@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from app.schemas.artifact_consistency import ArtifactConsistencyReport
 from app.schemas.metadata_template import MetadataTemplateReport
 from app.schemas.package import Manifest
 from app.schemas.reports import ConsistencyReport, ReportIssue
@@ -128,6 +129,10 @@ class PackageVerifierService:
             self._check_metadata_template_report(
                 package_path / "metadata_template_report.json", errors
             )
+        if "artifact_consistency_report.json" in feature_files:
+            self._check_artifact_consistency_report(
+                package_path / "artifact_consistency_report.json", errors
+            )
         self._check_jsonl(package_path / "chunks.jsonl", "chunks_jsonl_invalid", errors)
         markdown_path = package_path / "content.md"
         if markdown_path.is_file() and not markdown_path.read_text(encoding="utf-8").strip():
@@ -175,7 +180,39 @@ class PackageVerifierService:
         required: set[str] = set()
         if "metadata_template_v1" in features:
             required.add("metadata_template_report.json")
+        if "artifact_consistency_v1" in features:
+            required.add("artifact_consistency_report.json")
         return required
+
+    @staticmethod
+    def _check_artifact_consistency_report(
+        path: Path, errors: list[ReportIssue]
+    ) -> None:
+        if not path.is_file():
+            return
+        try:
+            report = ArtifactConsistencyReport.model_validate_json(
+                path.read_text(encoding="utf-8")
+            )
+        except (ValueError, TypeError) as exc:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message=str(exc),
+                    path=path.name,
+                    code="artifact_consistency_report_invalid",
+                )
+            )
+            return
+        if not report.passed:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="Artifact consistency report did not pass.",
+                    path=path.name,
+                    code="artifact_consistency_failed",
+                )
+            )
 
     @staticmethod
     def _check_metadata_template_report(

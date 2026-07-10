@@ -78,6 +78,7 @@ class ManifestService:
             "validation_report.json": "validation_report",
             "content_organization_report.json": "content_organization_report",
             "metadata_template_report.json": "metadata_template_report",
+            "artifact_consistency_report.json": "artifact_consistency_report",
             "metadata.json": "package_metadata",
             "canonical.json": "canonical",
             "verifier_report.json": "verifier_report",
