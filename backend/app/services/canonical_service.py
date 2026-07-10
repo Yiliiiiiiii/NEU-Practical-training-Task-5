@@ -3,6 +3,7 @@ from typing import Any
 
 from app.schemas.canonical import CanonicalAsset, CanonicalBlock, CanonicalField, CanonicalModel
 from app.schemas.mapping_template import MappingTemplate
+from app.schemas.metadata_template import MetadataRenderResult, MetadataTemplateConfig
 from app.schemas.reports import MappingReport
 from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRBlock, UIRDocument
@@ -19,6 +20,8 @@ class CanonicalService:
         transform_result: TransformResult,
         mapping_report: MappingReport,
         execution_snapshot: dict[str, Any],
+        metadata_result: MetadataRenderResult | None = None,
+        metadata_template: MetadataTemplateConfig | None = None,
     ) -> CanonicalModel:
         mappings_by_target = {
             mapping["target_field_id"]: mapping
@@ -36,12 +39,38 @@ class CanonicalService:
                 source_blocks=mapping.get("source_blocks", []),
             )
 
+        document_metadata = (
+            metadata_result.model_dump(mode="json")["document_metadata"]
+            if metadata_result is not None
+            else {}
+        )
+        metadata_template_ref = (
+            {
+                "template_id": metadata_template.template_id,
+                "schema_id": metadata_template.schema_id,
+                "version": metadata_template.version,
+            }
+            if metadata_template is not None
+            else None
+        )
+        metadata_report = (
+            metadata_result.report.model_dump(mode="json")
+            if metadata_result is not None
+            else None
+        )
+
         return CanonicalModel(
             canonical_version="1.0",
             task_id=task_id,
             doc_id=uir.doc_id,
             schema_id=schema.schema_id,
             doc_meta={
+                "source_metadata": uir.metadata,
+                "document_metadata": document_metadata,
+                "metadata_template": metadata_template_ref,
+                "metadata_template_report": metadata_report,
+                "entities": [entity.model_dump(mode="json") for entity in uir.entities],
+                # Compatibility alias retained for Package 1.1 consumers.
                 "metadata": uir.metadata,
                 "template_id": template.template_id,
                 "mapping_summary": mapping_report.summary,

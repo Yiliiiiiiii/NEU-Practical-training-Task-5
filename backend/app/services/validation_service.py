@@ -1,5 +1,6 @@
 import re
 
+from app.schemas.metadata_template import MetadataTemplateIssue
 from app.schemas.reports import ReportIssue, ValidationReport
 from app.schemas.target_schema import TargetField, TargetSchema
 from app.services.render_service import RenderedArtifacts
@@ -13,8 +14,20 @@ class ValidationService:
         schema: TargetSchema,
         rendered: RenderedArtifacts,
         require_content_organization: bool = False,
+        metadata_issues: list[MetadataTemplateIssue] | None = None,
     ) -> ValidationReport:
-        issues: list[ReportIssue] = []
+        issues = [
+            ReportIssue(
+                level="error",
+                message=issue.message,
+                stage=issue.stage,
+                field_id=issue.field_id,
+                path=issue.path,
+                code=issue.error_code,
+                failure_type="metadata_template",
+            )
+            for issue in metadata_issues or []
+        ]
         data = rendered.structured_json.get("data", {})
 
         for field in schema.fields:

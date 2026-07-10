@@ -11,9 +11,9 @@ import yaml
 from app.schemas.content_organization import ContentOrganizationOptions
 from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
+from app.schemas.metadata_template import MetadataTemplateConfig
 from app.schemas.schema_pack_contract import SchemaPackManifest, validate_semver
 from app.schemas.target_schema import TargetSchema
-from app.schemas.topic5_convert import MetadataTemplateConfig
 
 STANDARD_METADATA_FIELDS = {
     "document_id",
@@ -140,26 +140,6 @@ class SchemaPackContractValidator:
         except Exception as exc:
             errors.append(f"metadata_template.json is invalid: {exc}")
             return
-
-        seen: set[str] = set()
-        for index, item in enumerate(template.metadata_fields):
-            field_id = item.get("field_id") if isinstance(item, dict) else None
-            if not isinstance(field_id, str) or not field_id.strip():
-                errors.append(
-                    f"metadata_template.json.metadata_fields[{index}].field_id is missing"
-                )
-                continue
-            if field_id in seen:
-                errors.append(
-                    "metadata_template.json.metadata_fields contains duplicate field_id "
-                    f"{field_id}"
-                )
-            seen.add(field_id)
-            if "required" in item and not isinstance(item["required"], bool):
-                errors.append(
-                    f"metadata_template.json.metadata_fields[{index}].required "
-                    "must be boolean"
-                )
 
     @staticmethod
     def _validate_content_org(

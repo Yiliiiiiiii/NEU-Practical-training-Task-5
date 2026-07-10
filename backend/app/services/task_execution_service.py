@@ -11,6 +11,7 @@ from app.config import Settings
 from app.db.models import ConversionTask, Document, KnowledgeCandidateRecord
 from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
+from app.schemas.metadata_template import MetadataRenderResult, MetadataTemplateConfig
 from app.schemas.reports import MappingReport
 from app.schemas.schema_pack_contract import SchemaPackManifest
 from app.schemas.target_schema import TargetSchema
@@ -24,6 +25,7 @@ from app.services.effective_template_service import EffectiveTemplateService
 from app.services.lineage_graph_service import LineageGraphService
 from app.services.llm_fallback_service import LLMFallbackService
 from app.services.mapping_service import MappingService
+from app.services.metadata_template_service import MetadataTemplateService
 from app.services.package_service import PackageService
 from app.services.render_service import RenderedArtifacts, RenderService
 from app.services.review_knowledge_workflow_service import ReviewKnowledgeWorkflowService
@@ -65,6 +67,9 @@ class TaskExecutionService:
         "assertions": "conversion_assertion_report",
         "conversion-assertions": "conversion_assertion_report",
         "conversion_assertion_report": "conversion_assertion_report",
+        "metadata-template": "metadata_template_report",
+        "metadata_template": "metadata_template_report",
+        "metadata_template_report": "metadata_template_report",
     }
 
     def __init__(
@@ -216,6 +221,17 @@ class TaskExecutionService:
             except LookupError as exc:
                 raise LookupError(f"template not found: {task.template_id}") from exc
         self.template_service.validate_template(template, schema)
+        metadata_template_payload = options.get("metadata_template")
+        metadata_template = (
+            MetadataTemplateConfig.model_validate(metadata_template_payload)
+            if isinstance(metadata_template_payload, dict)
+            else None
+        )
+        if (
+            metadata_template is not None
+            and metadata_template.schema_id != schema.schema_id
+        ):
+            raise ValueError("metadata template schema_id does not match target schema")
         review_knowledge_service = ReviewKnowledgeWorkflowService(
             self.db,
             self.template_service,
@@ -254,6 +270,22 @@ class TaskExecutionService:
             template=template,
             mapping_report=mapping_report,
         )
+        metadata_result = None
+        if metadata_template is not None:
+            metadata_result = MetadataTemplateService().render(
+                uir=uir,
+                transformed_fields=transform_result.data,
+                template=metadata_template,
+                system_context={
+                    "doc_id": document.doc_id,
+                    "schema_id": schema.schema_id,
+                    "schema_version": schema.version,
+                    "template_id": template.template_id,
+                    "template_version": template.version,
+                    "metadata_template_id": metadata_template.template_id,
+                    "metadata_template_version": metadata_template.version,
+                },
+            )
 
         started_at = (task.started_at or self._now()).isoformat()
         execution_snapshot = {
@@ -285,6 +317,8 @@ class TaskExecutionService:
             transform_result=transform_result,
             mapping_report=mapping_report,
             execution_snapshot=execution_snapshot,
+            metadata_result=metadata_result,
+            metadata_template=metadata_template,
         )
         rendered = RenderService().render(
             canonical,
@@ -318,6 +352,7 @@ class TaskExecutionService:
             schema,
             rendered,
             require_content_organization=True,
+            metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
         conversion_assertion_report: dict[str, Any] | None = None
         conversion_assertion_report_path: str | None = None
@@ -372,6 +407,8 @@ class TaskExecutionService:
             include_assertion_report=bool(
                 options.get("include_assertion_report_in_package", False)
             ),
+            metadata_result=metadata_result,
+            metadata_template=metadata_template,
         )
 
         lineage_graph: dict[str, Any] | None = None
@@ -467,6 +504,7 @@ class TaskExecutionService:
             conversion_assertion_report_path=conversion_assertion_report_path,
             lineage_graph=lineage_graph,
             lineage_summary=lineage_summary,
+            metadata_result=metadata_result,
         )
         finished_at = self._now()
         review_required_count = len(mapping_report.review_required_items)
@@ -485,6 +523,10 @@ class TaskExecutionService:
             strict_output_assertions=bool(
                 options.get("strict_output_assertions", False)
             ),
+            metadata_passed=(metadata_result.passed if metadata_result else None),
+            strict_metadata_template=bool(
+                options.get("strict_metadata_template", False)
+            ),
         )
         artifacts: dict[str, str] = {}
         assertion_report_path = report_paths.get("conversion_assertion_report")
@@ -501,6 +543,9 @@ class TaskExecutionService:
                 "unmapped_required_count": unmapped_required_count,
                 "validation_passed": validation_report.passed,
                 "package_verifier_passed": package_result.verifier_report.passed,
+                "metadata_template_passed": (
+                    metadata_result.passed if metadata_result else None
+                ),
                 "lineage_warnings": lineage_warnings,
             }
         )
@@ -624,6 +669,7 @@ class TaskExecutionService:
         conversion_assertion_report_path: str | None = None,
         lineage_graph: dict[str, Any] | None = None,
         lineage_summary: dict[str, Any] | None = None,
+        metadata_result: MetadataRenderResult | None = None,
     ) -> dict[str, str]:
         base = f"tasks/{task_id}"
         report_paths = {
@@ -679,6 +725,13 @@ class TaskExecutionService:
             report_paths["conversion_assertion_report"] = (
                 conversion_assertion_report_path
             )
+        if metadata_result is not None:
+            report_paths["metadata_template_report"] = str(
+                self.storage.save_json(
+                    f"{base}/metadata_template_report.json",
+                    metadata_result.report.model_dump(mode="json"),
+                )
+            )
         return report_paths
 
     @staticmethod
@@ -688,12 +741,21 @@ class TaskExecutionService:
         unmapped_required_count: int,
         assertion_error_count: int = 0,
         strict_output_assertions: bool = False,
+        metadata_passed: bool | None = None,
+        strict_metadata_template: bool = False,
     ) -> str:
         if not package_passed:
             return "failed"
         if strict_output_assertions and assertion_error_count:
             return "failed"
-        if review_required_count or unmapped_required_count or assertion_error_count:
+        if strict_metadata_template and metadata_passed is False:
+            return "failed"
+        if (
+            review_required_count
+            or unmapped_required_count
+            or assertion_error_count
+            or metadata_passed is False
+        ):
             return "review_required"
         return "completed"
 

@@ -8,6 +8,7 @@ from app.schemas.common import StrictBaseModel
 class ReportIssue(StrictBaseModel):
     level: str
     message: str
+    stage: str | None = None
     field_id: str | None = None
     path: str | None = None
     code: str | None = None

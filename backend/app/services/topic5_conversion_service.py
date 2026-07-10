@@ -9,6 +9,7 @@ from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.conversion_assertion_service import ConversionAssertionService
 from app.services.mapping_repair_service import MappingRepairService
 from app.services.mapping_service import MappingService
+from app.services.metadata_template_service import MetadataTemplateService
 from app.services.package_service import PackageService
 from app.services.render_service import RenderedArtifacts, RenderService
 from app.services.schema_service import SchemaService
@@ -85,6 +86,22 @@ class Topic5ConversionService:
             template,
             mapping_report,
         )
+        metadata_result = None
+        if request.metadata_template is not None:
+            metadata_result = MetadataTemplateService().render(
+                uir=request.uir,
+                transformed_fields=transform_result.data,
+                template=request.metadata_template,
+                system_context={
+                    "doc_id": doc_id,
+                    "schema_id": schema.schema_id,
+                    "schema_version": schema.version,
+                    "template_id": template.template_id,
+                    "template_version": template.version,
+                    "metadata_template_id": request.metadata_template.template_id,
+                    "metadata_template_version": request.metadata_template.version,
+                },
+            )
         execution_snapshot = {
             "task_id": task_id,
             "doc_id": doc_id,
@@ -104,6 +121,8 @@ class Topic5ConversionService:
             transform_result=transform_result,
             mapping_report=mapping_report,
             execution_snapshot=execution_snapshot,
+            metadata_result=metadata_result,
+            metadata_template=request.metadata_template,
         )
         rendered = RenderService().render(
             canonical,
@@ -133,6 +152,7 @@ class Topic5ConversionService:
             schema,
             rendered,
             require_content_organization=True,
+            metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
         conversion_assertion_report = None
         if request.output_assertions is not None:
@@ -169,6 +189,8 @@ class Topic5ConversionService:
                 include_assertion_report=bool(
                     options.get("include_assertion_report_in_package", False)
                 ),
+                metadata_result=metadata_result,
+                metadata_template=request.metadata_template,
             )
             manifest = package_result.manifest.model_dump(mode="json")
             package_zip_path = package_result.metadata.zip_path
@@ -193,6 +215,10 @@ class Topic5ConversionService:
             strict_output_assertions=bool(
                 options.get("strict_output_assertions", False)
             ),
+            metadata_passed=(metadata_result.passed if metadata_result else None),
+            strict_metadata_template=bool(
+                options.get("strict_metadata_template", False)
+            ),
         )
         return Topic5ConvertResponse(
             task_id=task_id,
@@ -212,6 +238,12 @@ class Topic5ConversionService:
             package_metadata=package_metadata,
             verifier_report=verifier_report,
             conversion_assertion_report=conversion_assertion_report,
+            document_metadata=(metadata_result.document_metadata if metadata_result else {}),
+            metadata_template_report=(
+                metadata_result.report.model_dump(mode="json")
+                if metadata_result
+                else None
+            ),
         )
 
     @staticmethod
@@ -223,6 +255,8 @@ class Topic5ConversionService:
         create_package: bool,
         assertion_error_count: int = 0,
         strict_output_assertions: bool = False,
+        metadata_passed: bool | None = None,
+        strict_metadata_template: bool = False,
     ) -> str:
         review_required_count = len(mapping_report.review_required_items)
         unmapped_required_count = sum(
@@ -235,11 +269,15 @@ class Topic5ConversionService:
         if strict_output_assertions and assertion_error_count:
             return "failed"
 
+        if strict_metadata_template and metadata_passed is False:
+            return "failed"
+
         if (
             review_required_count
             or unmapped_required_count
             or not validation_passed
             or assertion_error_count
+            or metadata_passed is False
         ):
             return "review_required"
 

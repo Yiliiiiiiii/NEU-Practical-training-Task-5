@@ -11,6 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from app.config import Settings
 from app.db.models import Base
 from app.main import create_app
+from tests.topic5_helpers import announcement_uir
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCTION_UIR = ROOT / "examples" / "production_like" / "uir" / "policy"
@@ -157,6 +158,25 @@ def test_task_manifest_report_lists_verified_files(execution_client):
     payload = response.json()
     assert payload["files"]
     assert all("sha256" in item for item in payload["files"])
+
+
+def test_registered_schema_pack_applies_metadata_template(execution_client):
+    client, _storage_root = execution_client
+    task_id = create_schema_pack_task(client, "announcement_doc", announcement_uir())
+
+    response = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert response.status_code == 200, response.text
+    report_paths = response.json()["report_paths"]
+    content = json.loads(Path(report_paths["content_json"]).read_text(encoding="utf-8"))
+    metadata_report = json.loads(
+        Path(report_paths["metadata_template_report"]).read_text(encoding="utf-8")
+    )
+    assert content["document_metadata"] == {
+        "language": "zh-CN",
+        "source": "example",
+    }
+    assert metadata_report["passed"] is True
 
 
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):

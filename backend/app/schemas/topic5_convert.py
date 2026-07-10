@@ -60,6 +60,12 @@ class Topic5ConvertRequest(StrictBaseModel):
         ):
             raise ValueError("output_assertions.schema_id must match target_schema.schema_id")
 
+        if (
+            self.metadata_template is not None
+            and self.metadata_template.schema_id != self.target_schema.schema_id
+        ):
+            raise ValueError("metadata_template.schema_id must match target_schema.schema_id")
+
         return self
 
     @property

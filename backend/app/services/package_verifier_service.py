@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from app.schemas.metadata_template import MetadataTemplateReport
 from app.schemas.package import Manifest
 from app.schemas.reports import ConsistencyReport, ReportIssue
 from app.services.manifest_service import ManifestService
@@ -42,7 +43,8 @@ class PackageVerifierService:
 
         manifest = Manifest.model_validate(json.loads(manifest_path.read_text(encoding="utf-8")))
         manifest_paths = {file.path for file in manifest.files}
-        for required_file in self.REQUIRED_FILES:
+        feature_files = self._feature_required_files(package_path, errors)
+        for required_file in self.REQUIRED_FILES | feature_files:
             if required_file == "manifest.json":
                 continue
             if not (package_path / required_file).is_file():
@@ -56,12 +58,12 @@ class PackageVerifierService:
                 )
             if required_file not in manifest_paths:
                 issue = ReportIssue(
-                    level="error" if strict else "warning",
+                    level="error" if strict or required_file in feature_files else "warning",
                     message="Required file is not listed in manifest.",
                     path=required_file,
                     code="required_file_not_manifested",
                 )
-                if strict:
+                if strict or required_file in feature_files:
                     errors.append(issue)
                 else:
                     warnings.append(issue)
@@ -122,6 +124,10 @@ class PackageVerifierService:
             "content_organization_report_invalid",
             errors,
         )
+        if "metadata_template_report.json" in feature_files:
+            self._check_metadata_template_report(
+                package_path / "metadata_template_report.json", errors
+            )
         self._check_jsonl(package_path / "chunks.jsonl", "chunks_jsonl_invalid", errors)
         markdown_path = package_path / "content.md"
         if markdown_path.is_file() and not markdown_path.read_text(encoding="utf-8").strip():
@@ -141,6 +147,53 @@ class PackageVerifierService:
             errors=errors,
             warnings=warnings,
         )
+
+    @staticmethod
+    def _feature_required_files(
+        package_path: Path, errors: list[ReportIssue]
+    ) -> set[str]:
+        metadata_path = package_path / "metadata.json"
+        if not metadata_path.is_file():
+            return set()
+        try:
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            return set()
+        features = metadata.get("features", []) if isinstance(metadata, dict) else []
+        if not isinstance(features, list) or not all(
+            isinstance(item, str) for item in features
+        ):
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="metadata features must be a string array.",
+                    path="metadata.json.features",
+                    code="package_features_invalid",
+                )
+            )
+            return set()
+        required: set[str] = set()
+        if "metadata_template_v1" in features:
+            required.add("metadata_template_report.json")
+        return required
+
+    @staticmethod
+    def _check_metadata_template_report(
+        path: Path, errors: list[ReportIssue]
+    ) -> None:
+        if not path.is_file():
+            return
+        try:
+            MetadataTemplateReport.model_validate_json(path.read_text(encoding="utf-8"))
+        except (ValueError, TypeError) as exc:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message=str(exc),
+                    path=path.name,
+                    code="metadata_template_report_invalid",
+                )
+            )
 
     @staticmethod
     def _check_json(path: Path, code: str, errors: list[ReportIssue]) -> None:

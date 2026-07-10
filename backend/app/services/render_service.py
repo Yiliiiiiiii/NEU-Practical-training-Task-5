@@ -13,8 +13,24 @@ class RenderedArtifacts:
 
 class RenderService:
     def render(self, canonical: CanonicalModel, chunk_size: int = 1200) -> RenderedArtifacts:
-        source_metadata = canonical.doc_meta.get("metadata", {})
+        source_metadata = canonical.doc_meta.get(
+            "source_metadata", canonical.doc_meta.get("metadata", {})
+        )
         source_metadata = source_metadata if isinstance(source_metadata, dict) else {}
+        document_metadata = canonical.doc_meta.get("document_metadata", {})
+        document_metadata = (
+            document_metadata if isinstance(document_metadata, dict) else {}
+        )
+        metadata_template = canonical.doc_meta.get("metadata_template")
+        content_metadata_template = (
+            {
+                key: metadata_template[key]
+                for key in ("template_id", "version")
+                if key in metadata_template
+            }
+            if isinstance(metadata_template, dict)
+            else None
+        )
         structured = {
             "task_id": canonical.task_id,
             "doc_id": canonical.doc_id,
@@ -24,6 +40,8 @@ class RenderService:
                 for field_id, field in canonical.fields.items()
             },
             "metadata": {**source_metadata, **canonical.doc_meta},
+            "document_metadata": document_metadata,
+            "metadata_template": content_metadata_template,
             "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
             "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
             "execution_snapshot": canonical.doc_meta.get("execution_snapshot", {}),

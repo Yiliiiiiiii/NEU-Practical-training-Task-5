@@ -6,6 +6,7 @@ from pathlib import Path
 from app.schemas.canonical import CanonicalModel
 from app.schemas.content_organization import ContentOrganizationReport
 from app.schemas.mapping_template import MappingTemplate
+from app.schemas.metadata_template import MetadataRenderResult, MetadataTemplateConfig
 from app.schemas.package import Manifest, OutputPackageMetadata
 from app.schemas.reports import ConsistencyReport, MappingReport, ValidationReport
 from app.schemas.target_schema import TargetSchema
@@ -39,10 +40,28 @@ class PackageService:
         content_organization_report: ContentOrganizationReport,
         conversion_assertion_report: dict | None = None,
         include_assertion_report: bool = False,
+        metadata_result: MetadataRenderResult | None = None,
+        metadata_template: MetadataTemplateConfig | None = None,
     ) -> PackageResult:
         package_id = f"pkg_{task_id}"
         package_dir = self.output_root / "packages" / package_id
         package_dir.mkdir(parents=True, exist_ok=True)
+
+        document_metadata = (
+            metadata_result.model_dump(mode="json")["document_metadata"]
+            if metadata_result is not None
+            else {}
+        )
+        metadata_template_ref = (
+            {
+                "template_id": metadata_template.template_id,
+                "schema_id": metadata_template.schema_id,
+                "version": metadata_template.version,
+            }
+            if metadata_template is not None
+            else None
+        )
+        features = ["metadata_template_v1"] if metadata_result is not None else []
 
         files = {
             "content.json": rendered.structured_json,
@@ -60,6 +79,14 @@ class PackageService:
                 "schema_version": schema.version,
                 "template_id": template.template_id,
                 "template_version": template.version,
+                "document_metadata": document_metadata,
+                "metadata_template": metadata_template_ref,
+                "metadata_field_trace": (
+                    metadata_result.report.model_dump(mode="json")["field_traces"]
+                    if metadata_result is not None
+                    else []
+                ),
+                "features": features,
                 "artifact_roles": {
                     "content.json": "structured_json",
                     "content.md": "markdown",
@@ -73,6 +100,13 @@ class PackageService:
                 },
             },
         }
+        if metadata_result is not None:
+            files["metadata_template_report.json"] = metadata_result.report.model_dump(
+                mode="json"
+            )
+            files["metadata.json"]["artifact_roles"]["metadata_template_report.json"] = (
+                "metadata_template_report"
+            )
         optional_paths: set[str] = set()
         if include_assertion_report and conversion_assertion_report is not None:
             assertion_path = "reports/conversion_assertion_report.json"
