@@ -1,6 +1,6 @@
 from typing import Any
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
 from app.schemas.common import StrictBaseModel
 
@@ -33,6 +33,24 @@ class UIRAsset(StrictBaseModel):
     sha256: str | None = None
 
 
+class UIREntity(StrictBaseModel):
+    mention: str = Field(min_length=1)
+    canonical_name: str | None = None
+    entity_type: str = "unknown"
+    normalized_id: str | None = None
+    link_status: str = Field(default="unlinked", pattern=r"^(linked|unlinked|nil)$")
+    confidence: float | None = Field(default=None, ge=0.0, le=1.0)
+    source_block_ids: list[str] = Field(default_factory=list)
+    source_agent: str | None = None
+    evidence: dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_linked_identity(self) -> "UIREntity":
+        if self.link_status == "linked" and not self.normalized_id:
+            raise ValueError("linked entity requires normalized_id")
+        return self
+
+
 class UIRDocument(StrictBaseModel):
     uir_version: str
     doc_id: str
@@ -40,4 +58,5 @@ class UIRDocument(StrictBaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
     blocks: list[UIRBlock] = Field(default_factory=list)
     assets: list[UIRAsset] = Field(default_factory=list)
+    entities: list[UIREntity] = Field(default_factory=list)
     normalization_records: list[dict[str, Any]] = Field(default_factory=list)

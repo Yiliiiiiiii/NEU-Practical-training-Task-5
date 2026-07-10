@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://topic5.local/contracts/topic11_chunk_request.schema.json",
+  "title": "Topic 5 to Topic 11 Chunk Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "doc_id",
+    "schema_id",
+    "blocks",
+    "entities",
+    "document_metadata",
+    "chunk_config"
+  ],
+  "properties": {
+    "contract_version": {"const": "1.0"},
+    "doc_id": {"type": "string", "minLength": 1},
+    "schema_id": {"type": "string", "minLength": 1},
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["block_id", "type", "text", "source_blocks", "protected"],
+        "properties": {
+          "block_id": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "minLength": 1},
+          "text": {"type": "string"},
+          "source_blocks": {"type": "array", "items": {"type": "string"}},
+          "protected": {"type": "boolean"}
+        }
+      }
+    },
+    "entities": {"type": "array", "items": {"type": "object"}},
+    "document_metadata": {"type": "object"},
+    "chunk_config": {"type": "object"}
+  }
+}

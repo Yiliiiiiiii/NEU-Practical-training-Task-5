@@ -1,23 +1,24 @@
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import Field, model_validator
 
 from app.schemas.common import StrictBaseModel
+from app.schemas.content_organization import ContentOrganizationOptions
 from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
+from app.schemas.metadata_template import MetadataTemplateConfig
 from app.schemas.target_schema import TargetSchema
 from app.schemas.uir import UIRDocument
 
 
-class MetadataTemplateConfig(StrictBaseModel):
-    template_id: str
-    schema_id: str
-    version: str = "1.0.0"
-    metadata_fields: list[dict[str, Any]] = Field(default_factory=list)
-
-
-class ContentOrganizationConfig(StrictBaseModel):
-    chunk_strategy: str = "source_block_aware"
+class ContentOrganizationConfig(ContentOrganizationOptions):
+    chunk_strategy: Literal[
+        "fixed_window",
+        "heading_aware",
+        "source_block_aware",
+        "table_protect",
+        "parent_child",
+    ] = "source_block_aware"
     target_tokens: int = 1200
     min_tokens: int = 1
     max_tokens: int = 1400
@@ -26,8 +27,8 @@ class ContentOrganizationConfig(StrictBaseModel):
     protect_lists: bool = True
     protect_code_blocks: bool = True
     enable_parent_child: bool = False
-    summary_mode: str = "deterministic"
-    keyword_mode: str = "deterministic"
+    summary_mode: Literal["none", "deterministic"] = "deterministic"
+    keyword_mode: Literal["none", "deterministic"] = "deterministic"
 
 
 class Topic5ConvertRequest(StrictBaseModel):
@@ -94,3 +95,7 @@ class Topic5ConvertResponse(StrictBaseModel):
     package_metadata: dict[str, Any] | None = None
     verifier_report: dict[str, Any] | None = None
     conversion_assertion_report: dict[str, Any] | None = None
+    document_metadata: dict[str, Any] | None = None
+    metadata_template_report: dict[str, Any] | None = None
+    document_summary: dict[str, Any] | None = None
+    artifact_consistency_report: dict[str, Any] | None = None
