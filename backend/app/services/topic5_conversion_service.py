@@ -1,11 +1,13 @@
 from pathlib import Path
 from typing import Any
 
+from app.config import Settings
 from app.schemas.reports import MappingReport
 from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertResponse
 from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.chunk_organizer_service import ChunkOrganizerService
+from app.services.chunk_providers.resolver import ChunkProviderResolver
 from app.services.conversion_assertion_service import ConversionAssertionService
 from app.services.document_summary_service import DocumentSummaryService
 from app.services.mapping_repair_service import MappingRepairService
@@ -135,8 +137,13 @@ class Topic5ConversionService:
             rendered,
             metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
+        provider_result = ChunkProviderResolver(settings=Settings()).resolve(
+            canonical=canonical,
+            options=request.content_organization,
+            legacy_chunks=rendered.chunks,
+        )
         organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
-            chunks=rendered.chunks,
+            chunks=provider_result.chunks,
             canonical_model=canonical,
             schema=schema,
             mapping_report=mapping_report,
@@ -147,6 +154,10 @@ class Topic5ConversionService:
             template_id=template.template_id,
             template_version=template.version,
             options=content_organization,
+            use_provided_chunks=True,
+        )
+        content_organization_report.provider_trace = provider_result.trace.model_dump(
+            mode="json"
         )
         document_summary = DocumentSummaryService().build(
             canonical=canonical,

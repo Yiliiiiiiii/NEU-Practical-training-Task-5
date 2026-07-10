@@ -74,12 +74,13 @@ class ChunkOrganizerService:
         template_id: str,
         template_version: str | None = None,
         options: ContentOrganizationOptions | dict[str, Any] | None = None,
+        use_provided_chunks: bool = False,
     ) -> tuple[list[dict[str, Any]], ContentOrganizationReport]:
         warnings: list[str] = []
         organization_options = self._normalize_options(options)
         tag_options = organization_options or ContentOrganizationOptions()
         raw_chunks = chunks
-        if organization_options is not None:
+        if organization_options is not None and not use_provided_chunks:
             raw_chunks = self._build_strategy_chunks(
                 canonical_model=canonical_model,
                 doc_id=doc_id,
@@ -299,6 +300,21 @@ class ChunkOrganizerService:
             parent_key = (title_path[0],) if title_path else ("document",)
             chunk["parent_chunk_id"] = parent_by_title.get(parent_key, fallback_parent)
         return parent_chunks + child_chunks
+
+    def build_strategy_chunks(
+        self,
+        *,
+        canonical_model: CanonicalModel,
+        doc_id: str,
+        task_id: str,
+        options: ContentOrganizationOptions,
+    ) -> list[dict[str, Any]]:
+        return self._build_strategy_chunks(
+            canonical_model=canonical_model,
+            doc_id=doc_id,
+            task_id=task_id,
+            options=options,
+        )
 
     @staticmethod
     def _parent_child_enabled(options: ContentOrganizationOptions) -> bool:

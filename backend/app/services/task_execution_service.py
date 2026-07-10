@@ -21,6 +21,7 @@ from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
 from app.services.chunk_organizer_service import ChunkOrganizerService
+from app.services.chunk_providers.resolver import ChunkProviderResolver
 from app.services.conversion_assertion_service import ConversionAssertionService
 from app.services.document_summary_service import DocumentSummaryService
 from app.services.effective_template_service import EffectiveTemplateService
@@ -332,8 +333,19 @@ class TaskExecutionService:
             rendered,
             metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
+        content_org_payload = options.get("content_organization")
+        content_org_options = (
+            ContentOrganizationOptions.model_validate(content_org_payload)
+            if isinstance(content_org_payload, dict)
+            else None
+        )
+        provider_result = ChunkProviderResolver(settings=self.settings).resolve(
+            canonical=canonical,
+            options=content_org_options,
+            legacy_chunks=rendered.chunks,
+        )
         organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
-            chunks=rendered.chunks,
+            chunks=provider_result.chunks,
             canonical_model=canonical,
             schema=schema,
             mapping_report=mapping_report,
@@ -343,12 +355,15 @@ class TaskExecutionService:
             schema_id=schema.schema_id,
             template_id=template.template_id,
             template_version=template.version,
-            options=options.get("content_organization"),
+            options=content_org_options,
+            use_provided_chunks=True,
         )
-        content_org_payload = options.get("content_organization")
+        content_organization_report.provider_trace = provider_result.trace.model_dump(
+            mode="json"
+        )
         summary_config = (
-            ContentOrganizationOptions.model_validate(content_org_payload).summary
-            if isinstance(content_org_payload, dict)
+            content_org_options.summary
+            if content_org_options is not None
             else SummaryConfig()
         )
         document_summary = DocumentSummaryService().build(

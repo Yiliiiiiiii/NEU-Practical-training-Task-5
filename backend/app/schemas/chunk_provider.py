@@ -19,6 +19,8 @@ class ChunkProviderBlock(StrictBaseModel):
     text: str
     source_blocks: list[str] = Field(default_factory=list)
     protected: bool = False
+    level: int | None = None
+    source_anchor: dict[str, Any] | None = None
 
 
 class ChunkProviderRequest(StrictBaseModel):
@@ -38,6 +40,11 @@ class ChunkProviderChunk(StrictBaseModel):
     entity_ids: list[str] = Field(default_factory=list)
     parent_chunk_id: str | None = None
     title_path: list[str] = Field(default_factory=list)
+    strategy: str | None = None
+    chunk_index: int | None = None
+    granularity: str | None = None
+    quality_flags: list[str] = Field(default_factory=list)
+    organization_trace: dict[str, Any] = Field(default_factory=dict)
 
 
 class ChunkProviderResponse(StrictBaseModel):

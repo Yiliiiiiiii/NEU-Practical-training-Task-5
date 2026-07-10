@@ -32,7 +32,12 @@
           },
           "entity_ids": {"type": "array", "items": {"type": "string"}},
           "parent_chunk_id": {"type": ["string", "null"]},
-          "title_path": {"type": "array", "items": {"type": "string"}}
+          "title_path": {"type": "array", "items": {"type": "string"}},
+          "strategy": {"type": ["string", "null"]},
+          "chunk_index": {"type": ["integer", "null"]},
+          "granularity": {"type": ["string", "null"]},
+          "quality_flags": {"type": "array", "items": {"type": "string"}},
+          "organization_trace": {"type": "object"}
         }
       }
     },

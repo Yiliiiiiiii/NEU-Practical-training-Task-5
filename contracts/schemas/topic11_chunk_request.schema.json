@@ -28,7 +28,9 @@
           "type": {"type": "string", "minLength": 1},
           "text": {"type": "string"},
           "source_blocks": {"type": "array", "items": {"type": "string"}},
-          "protected": {"type": "boolean"}
+          "protected": {"type": "boolean"},
+          "level": {"type": ["integer", "null"]},
+          "source_anchor": {"type": ["object", "null"]}
         }
       }
     },

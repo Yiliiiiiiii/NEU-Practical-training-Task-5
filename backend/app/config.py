@@ -30,6 +30,9 @@ class Settings(BaseSettings):
     deepseek_max_suggestions_per_request: int = Field(default=20, ge=0)
     deepseek_strict_json: bool = True
     offline_mode: bool = False
+    topic11_base_url: str = ""
+    topic11_timeout_seconds: float = Field(default=10.0, ge=0.1)
+    topic11_api_key: str = ""
     max_upload_bytes: int = Field(default=10 * 1024 * 1024, ge=1)
     api_key_auth_enabled: bool = False
     api_keys: str = ""

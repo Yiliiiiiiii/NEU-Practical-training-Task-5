@@ -440,6 +440,69 @@ def test_topic5_inline_content_tag_rules_require_no_backend_edit(topic5_client):
     )
 
 
+def test_topic5_inline_uses_internal_chunk_provider_by_default(topic5_client):
+    client, _storage_root = topic5_client
+
+    response = client.post("/api/v1/topic5/convert", json=announcement_convert_request())
+
+    assert response.status_code == 200
+    trace = response.json()["content_organization_report"]["provider_trace"]
+    assert trace["requested_provider"] == "internal"
+    assert trace["used_provider"] == "internal"
+    assert trace["external_requested"] is False
+    assert trace["fallback_used"] is False
+
+
+def test_topic5_inline_topic11_missing_endpoint_falls_back(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"]["provider"] = "topic11"
+    payload["content_organization"]["fallback_to_internal"] = True
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    trace = response.json()["content_organization_report"]["provider_trace"]
+    assert trace["requested_provider"] == "topic11"
+    assert trace["used_provider"] == "internal"
+    assert trace["fallback_used"] is True
+    assert trace["fallback_reason"] == "topic11_endpoint_missing"
+
+
+def test_topic5_inline_strict_topic11_missing_endpoint_is_422(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"]["provider"] = "topic11"
+    payload["content_organization"]["strict_provider"] = True
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 422
+    assert response.json()["detail"] == "topic11_endpoint_missing"
+
+
+def test_topic11_api_key_is_not_written_to_package(
+    topic5_client, monkeypatch: pytest.MonkeyPatch
+):
+    client, _storage_root = topic5_client
+    secret = "topic11-package-secret"
+    monkeypatch.setenv("TOPIC11_API_KEY", secret)
+    payload = announcement_convert_request()
+    payload["content_organization"]["provider"] = "topic11"
+    payload["content_organization"]["fallback_to_internal"] = True
+
+    response = client.post("/api/v1/topic5/convert/package", json=payload)
+
+    assert response.status_code == 200
+    package_dir = Path(response.json()["package_zip_path"]).parent
+    serialized = "\n".join(
+        path.read_text(encoding="utf-8", errors="ignore")
+        for path in package_dir.rglob("*")
+        if path.is_file() and path.suffix != ".zip"
+    )
+    assert secret not in serialized
+
+
 def test_topic5_request_accepts_legacy_mapping_template():
     request = Topic5ConvertRequest.model_validate(announcement_convert_request())
 

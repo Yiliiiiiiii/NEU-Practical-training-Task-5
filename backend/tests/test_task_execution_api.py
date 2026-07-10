@@ -196,6 +196,37 @@ def test_registered_schema_pack_applies_metadata_template(execution_client):
     assert summary["text"]
     assert summary["faithfulness_passed"] is True
     assert content_org["document_summary"] == summary
+    assert content_org["provider_trace"]["requested_provider"] == "internal"
+    assert content_org["provider_trace"]["used_provider"] == "internal"
+
+
+def test_registered_task_topic11_missing_endpoint_uses_same_fallback(
+    execution_client,
+):
+    client, _storage_root = execution_client
+    task_id = create_schema_pack_task(
+        client,
+        "announcement_doc",
+        announcement_uir(),
+        options={
+            "content_organization": {
+                "provider": "topic11",
+                "fallback_to_internal": True,
+            }
+        },
+    )
+
+    response = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert response.status_code == 200, response.text
+    report = json.loads(
+        Path(response.json()["report_paths"]["content_organization_report"]).read_text(
+            encoding="utf-8"
+        )
+    )
+    assert report["provider_trace"]["requested_provider"] == "topic11"
+    assert report["provider_trace"]["used_provider"] == "internal"
+    assert report["provider_trace"]["fallback_reason"] == "topic11_endpoint_missing"
 
 
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):
