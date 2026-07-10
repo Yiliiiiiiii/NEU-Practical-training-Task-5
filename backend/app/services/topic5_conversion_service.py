@@ -2,7 +2,6 @@ from pathlib import Path
 from typing import Any
 
 from app.config import Settings
-from app.schemas.reports import MappingReport
 from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertResponse
 from app.services.artifact_consistency_service import ArtifactConsistencyService
 from app.services.candidate_service import CandidateService
@@ -10,6 +9,10 @@ from app.services.canonical_service import CanonicalService
 from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.chunk_providers.resolver import ChunkProviderResolver
 from app.services.conversion_assertion_service import ConversionAssertionService
+from app.services.conversion_status_service import (
+    ConversionStatusInput,
+    ConversionStatusService,
+)
 from app.services.document_summary_service import DocumentSummaryService
 from app.services.mapping_repair_service import MappingRepairService
 from app.services.mapping_service import MappingService
@@ -243,27 +246,33 @@ class Topic5ConversionService:
             if isinstance(verifier_report, dict)
             else None
         )
-        status = self._final_status(
-            mapping_report=mapping_report,
-            validation_passed=validation_report.passed,
-            verifier_passed=verifier_passed,
-            create_package=create_package,
-            assertion_error_count=(
-                int(conversion_assertion_report.get("error_count", 0))
-                if conversion_assertion_report
-                else 0
-            ),
-            strict_output_assertions=bool(
-                options.get("strict_output_assertions", False)
-            ),
-            metadata_passed=(metadata_result.passed if metadata_result else None),
-            strict_metadata_template=bool(
-                options.get("strict_metadata_template", False)
-            ),
-            summary_faithfulness_passed=(
-                document_summary.faithfulness_passed if document_summary else None
-            ),
-            artifact_consistency_passed=artifact_consistency_report.passed,
+        status = ConversionStatusService.determine(
+            ConversionStatusInput(
+                package_verifier_passed=verifier_passed,
+                mapping_review_item_count=len(mapping_report.review_required_items),
+                unmapped_required_source_present_count=sum(
+                    1 for item in mapping_report.unmapped if item.get("required")
+                ),
+                schema_validation_passed=validation_report.passed,
+                assertion_error_count=(
+                    int(conversion_assertion_report.get("error_count", 0))
+                    if conversion_assertion_report
+                    else 0
+                ),
+                strict_output_assertions=bool(
+                    options.get("strict_output_assertions", False)
+                ),
+                metadata_passed=(metadata_result.passed if metadata_result else None),
+                strict_metadata=bool(options.get("strict_metadata_template", False)),
+                summary_faithfulness_passed=(
+                    document_summary.faithfulness_passed if document_summary else None
+                ),
+                artifact_consistency_passed=artifact_consistency_report.passed,
+                provider_fallback_used=provider_result.trace.fallback_used,
+                provider_fallback_requires_review=bool(
+                    options.get("provider_fallback_requires_review", False)
+                ),
+            )
         )
         return Topic5ConvertResponse(
             task_id=task_id,
@@ -294,44 +303,3 @@ class Topic5ConversionService:
                 mode="json"
             ),
         )
-
-    @staticmethod
-    def _final_status(
-        *,
-        mapping_report: MappingReport,
-        validation_passed: bool,
-        verifier_passed: bool | None,
-        create_package: bool,
-        assertion_error_count: int = 0,
-        strict_output_assertions: bool = False,
-        metadata_passed: bool | None = None,
-        strict_metadata_template: bool = False,
-        summary_faithfulness_passed: bool | None = None,
-        artifact_consistency_passed: bool | None = None,
-    ) -> str:
-        review_required_count = len(mapping_report.review_required_items)
-        unmapped_required_count = sum(
-            1 for item in mapping_report.unmapped if item.get("required")
-        )
-
-        if create_package and verifier_passed is False and artifact_consistency_passed is not False:
-            return "failed"
-
-        if strict_output_assertions and assertion_error_count:
-            return "failed"
-
-        if strict_metadata_template and metadata_passed is False:
-            return "failed"
-
-        if (
-            review_required_count
-            or unmapped_required_count
-            or not validation_passed
-            or assertion_error_count
-            or metadata_passed is False
-            or summary_faithfulness_passed is False
-            or artifact_consistency_passed is False
-        ):
-            return "review_required"
-
-        return "completed"

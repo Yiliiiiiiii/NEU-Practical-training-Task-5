@@ -238,6 +238,66 @@ def test_registered_task_topic11_missing_endpoint_uses_same_fallback(
     assert report["provider_trace"]["fallback_reason"] == "topic11_endpoint_missing"
 
 
+def test_registered_schema_validation_failure_requires_review(
+    execution_client,
+    monkeypatch,
+):
+    from app.services.validation_service import ValidationService
+
+    client, _storage_root = execution_client
+    original_validate = ValidationService.validate
+
+    def fail_schema_validation(self, *args, **kwargs):
+        report = original_validate(self, *args, **kwargs)
+        return report.model_copy(update={"passed": False})
+
+    monkeypatch.setattr(ValidationService, "validate", fail_schema_validation)
+    task_id = create_schema_pack_task(client, "announcement_doc", announcement_uir())
+
+    response = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert response.status_code == 200, response.text
+    payload = response.json()
+    validation_report = json.loads(
+        Path(payload["report_paths"]["validation_report"]).read_text(encoding="utf-8")
+    )
+    assert validation_report["passed"] is False
+    assert payload["status"] == "review_required"
+
+
+def test_registered_package_verifier_failure_overrides_consistency_failure(
+    execution_client,
+    monkeypatch,
+):
+    from app.services.artifact_consistency_service import ArtifactConsistencyService
+
+    client, _storage_root = execution_client
+    original_verify = ArtifactConsistencyService.verify
+
+    def fail_consistency(self, **kwargs):
+        report = original_verify(self, **kwargs)
+        return report.model_copy(update={"passed": False})
+
+    monkeypatch.setattr(ArtifactConsistencyService, "verify", fail_consistency)
+    task_id = create_schema_pack_task(client, "announcement_doc", announcement_uir())
+
+    response = client.post(f"/api/v1/tasks/{task_id}/execute")
+
+    assert response.status_code == 200, response.text
+    payload = response.json()
+    consistency_report = json.loads(
+        Path(payload["report_paths"]["artifact_consistency_report"]).read_text(
+            encoding="utf-8"
+        )
+    )
+    verifier_report = json.loads(
+        Path(payload["report_paths"]["verifier_report"]).read_text(encoding="utf-8")
+    )
+    assert consistency_report["passed"] is False
+    assert verifier_report["passed"] is False
+    assert payload["status"] == "failed"
+
+
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):
     client, _storage_root = execution_client
     doc_id = import_policy_document(client, "policy_002_alias_variants.json")

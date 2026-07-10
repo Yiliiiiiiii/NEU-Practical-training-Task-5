@@ -24,6 +24,10 @@ from app.services.catalog_governance_service import CatalogGovernanceService
 from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.chunk_providers.resolver import ChunkProviderResolver
 from app.services.conversion_assertion_service import ConversionAssertionService
+from app.services.conversion_status_service import (
+    ConversionStatusInput,
+    ConversionStatusService,
+)
 from app.services.document_summary_service import DocumentSummaryService
 from app.services.effective_template_service import EffectiveTemplateService
 from app.services.lineage_graph_service import LineageGraphService
@@ -565,26 +569,31 @@ class TaskExecutionService:
         unmapped_required_count = sum(
             1 for item in mapping_report.unmapped if item.get("required")
         )
-        status = self._final_status(
-            package_passed=package_result.verifier_report.passed,
-            review_required_count=review_required_count,
-            unmapped_required_count=unmapped_required_count,
-            assertion_error_count=(
-                int(conversion_assertion_report.get("error_count", 0))
-                if conversion_assertion_report
-                else 0
-            ),
-            strict_output_assertions=bool(
-                options.get("strict_output_assertions", False)
-            ),
-            metadata_passed=(metadata_result.passed if metadata_result else None),
-            strict_metadata_template=bool(
-                options.get("strict_metadata_template", False)
-            ),
-            summary_faithfulness_passed=(
-                document_summary.faithfulness_passed if document_summary else None
-            ),
-            artifact_consistency_passed=artifact_consistency_report.passed,
+        status = ConversionStatusService.determine(
+            ConversionStatusInput(
+                package_verifier_passed=package_result.verifier_report.passed,
+                mapping_review_item_count=review_required_count,
+                unmapped_required_source_present_count=unmapped_required_count,
+                schema_validation_passed=validation_report.passed,
+                assertion_error_count=(
+                    int(conversion_assertion_report.get("error_count", 0))
+                    if conversion_assertion_report
+                    else 0
+                ),
+                strict_output_assertions=bool(
+                    options.get("strict_output_assertions", False)
+                ),
+                metadata_passed=(metadata_result.passed if metadata_result else None),
+                strict_metadata=bool(options.get("strict_metadata_template", False)),
+                summary_faithfulness_passed=(
+                    document_summary.faithfulness_passed if document_summary else None
+                ),
+                artifact_consistency_passed=artifact_consistency_report.passed,
+                provider_fallback_used=provider_result.trace.fallback_used,
+                provider_fallback_requires_review=bool(
+                    options.get("provider_fallback_requires_review", False)
+                ),
+            )
         )
         artifacts: dict[str, str] = {}
         assertion_report_path = report_paths.get("conversion_assertion_report")
@@ -805,35 +814,6 @@ class TaskExecutionService:
                 )
             )
         return report_paths
-
-    @staticmethod
-    def _final_status(
-        package_passed: bool,
-        review_required_count: int,
-        unmapped_required_count: int,
-        assertion_error_count: int = 0,
-        strict_output_assertions: bool = False,
-        metadata_passed: bool | None = None,
-        strict_metadata_template: bool = False,
-        summary_faithfulness_passed: bool | None = None,
-        artifact_consistency_passed: bool | None = None,
-    ) -> str:
-        if not package_passed and artifact_consistency_passed is not False:
-            return "failed"
-        if strict_output_assertions and assertion_error_count:
-            return "failed"
-        if strict_metadata_template and metadata_passed is False:
-            return "failed"
-        if (
-            review_required_count
-            or unmapped_required_count
-            or assertion_error_count
-            or metadata_passed is False
-            or summary_faithfulness_passed is False
-            or artifact_consistency_passed is False
-        ):
-            return "review_required"
-        return "completed"
 
     def _mark_failed(self, task: ConversionTask, error_code: str, message: str) -> None:
         now = self._now()

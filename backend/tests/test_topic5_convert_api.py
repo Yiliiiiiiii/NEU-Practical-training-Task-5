@@ -14,10 +14,8 @@ from sqlalchemy.orm import sessionmaker
 from app.config import Settings
 from app.db.models import Base
 from app.main import create_app
-from app.schemas.reports import MappingReport
 from app.schemas.topic5_convert import Topic5ConvertRequest
 from app.services.package_verifier_service import PackageVerifierService
-from app.services.topic5_conversion_service import Topic5ConversionService
 from tests.topic5_helpers import announcement_convert_request
 
 
@@ -644,21 +642,28 @@ def test_topic5_convert_review_required_when_validation_fails(topic5_client):
     assert body["validation_report"]["passed"] is False
 
 
-def test_topic5_final_status_failed_when_package_verifier_fails():
-    report = MappingReport(
-        task_id="task",
-        schema_id="announcement_doc",
-        summary={},
-        mappings=[],
-        unmapped=[],
-        review_required_items=[],
+def test_topic5_package_verifier_failure_overrides_artifact_consistency_failure(
+    topic5_client,
+    monkeypatch,
+):
+    from app.services.artifact_consistency_service import ArtifactConsistencyService
+
+    client, _storage_root = topic5_client
+    original_verify = ArtifactConsistencyService.verify
+
+    def fail_consistency(self, **kwargs):
+        report = original_verify(self, **kwargs)
+        return report.model_copy(update={"passed": False})
+
+    monkeypatch.setattr(ArtifactConsistencyService, "verify", fail_consistency)
+
+    response = client.post(
+        "/api/v1/topic5/convert/package",
+        json=announcement_convert_request(),
     )
 
-    status = Topic5ConversionService._final_status(
-        mapping_report=report,
-        validation_passed=True,
-        verifier_passed=False,
-        create_package=True,
-    )
-
-    assert status == "failed"
+    assert response.status_code == 200, response.text
+    payload = response.json()
+    assert payload["artifact_consistency_report"]["passed"] is False
+    assert payload["verifier_report"]["passed"] is False
+    assert payload["status"] == "failed"
