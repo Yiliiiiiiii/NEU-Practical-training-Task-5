@@ -16,8 +16,23 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.eval_topic5_field_operations import build_report as field_report  # noqa: E402
+from scripts.eval_topic5_artifact_consistency import (  # noqa: E402
+    build_report as artifact_consistency_report,
+)
+from scripts.eval_topic5_entity_passthrough import (  # noqa: E402
+    build_report as entity_passthrough_report,
+)
+from scripts.eval_topic5_metadata_contract import (  # noqa: E402
+    build_report as metadata_contract_report,
+)
 from scripts.eval_topic5_schema_localization import (  # noqa: E402
     build_report as localization_report,
+)
+from scripts.eval_topic5_summary_faithfulness import (  # noqa: E402
+    build_report as summary_faithfulness_report,
+)
+from scripts.eval_topic5_topic11_adapter import (  # noqa: E402
+    build_report as topic11_adapter_report,
 )
 
 DEFAULT_OUTPUT = ROOT / "docs" / "交接" / "evidence" / "hard_gap_batch_1" / "operations"
@@ -46,13 +61,20 @@ COMPONENT_TESTS = {
         "backend/tests/test_topic5_convert_api.py",
     ],
 }
+EVALUATOR_BUILDERS = {
+    "metadata": metadata_contract_report,
+    "summary": summary_faithfulness_report,
+    "consistency": artifact_consistency_report,
+    "entity": entity_passthrough_report,
+    "topic11": topic11_adapter_report,
+}
 
 
 def run_component_checks() -> dict[str, dict[str, Any]]:
     results: dict[str, dict[str, Any]] = {}
     for name, paths in COMPONENT_TESTS.items():
         command = [
-            str(BACKEND / ".venv" / "Scripts" / "python.exe"),
+            sys.executable,
             "-m",
             "pytest",
             *paths,
@@ -74,38 +96,120 @@ def run_component_checks() -> dict[str, dict[str, Any]]:
     return results
 
 
+def build_evaluator_reports() -> dict[str, dict[str, Any]]:
+    return {name: builder() for name, builder in EVALUATOR_BUILDERS.items()}
+
+
+def skipped_component_checks() -> dict[str, dict[str, Any]]:
+    return {
+        name: {
+            "passed": False,
+            "status": "skipped",
+            "return_code": None,
+            "summary": "skipped by caller",
+        }
+        for name in COMPONENT_TESTS
+    }
+
+
+def _validated_evaluator_reports(
+    reports: dict[str, dict[str, Any]] | None,
+) -> dict[str, dict[str, Any]]:
+    reports = reports or {}
+    missing = sorted(EVALUATOR_BUILDERS.keys() - reports.keys())
+    if missing:
+        raise ValueError(f"missing evaluator report(s): {', '.join(missing)}")
+    for name, builder in EVALUATOR_BUILDERS.items():
+        report = reports[name]
+        expected = builder()
+        required = expected.keys() - {"generated_at"}
+        absent = sorted(required - report.keys())
+        if absent:
+            raise ValueError(
+                f"{name} evaluator report is missing field(s): {', '.join(absent)}"
+            )
+        mismatched = sorted(
+            field
+            for field in required
+            if not _same_json_value(report[field], expected[field])
+        )
+        if mismatched:
+            raise ValueError(
+                f"{name} evaluator report differs from registered builder in "
+                f"field(s): {', '.join(mismatched)}"
+            )
+    return reports
+
+
+def _same_json_value(actual: Any, expected: Any) -> bool:
+    try:
+        return json.dumps(
+            actual,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        ) == json.dumps(
+            expected,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        )
+    except (TypeError, ValueError):
+        return False
+
+
 def evaluate_gate(
     *,
     operations: dict[str, Any],
     localization: dict[str, Any],
     tag_quality: dict[str, Any],
     components: dict[str, dict[str, Any]],
+    evaluator_reports: dict[str, dict[str, Any]] | None = None,
     verification: dict[str, Any],
 ) -> dict[str, Any]:
     metrics = tag_quality.get("metrics", {})
-
-    def passed(name: str) -> bool:
-        return bool(components.get(name, {}).get("passed"))
+    reports = _validated_evaluator_reports(evaluator_reports)
+    metadata = reports["metadata"]
+    summary = reports["summary"]
+    consistency = reports["consistency"]
+    entity = reports["entity"]
+    topic11 = reports["topic11"]
 
     values = {
-        "metadata_template_effective": passed("metadata"),
-        "metadata_required_localization_rate": 1.0 if passed("metadata") else 0.0,
+        "metadata_template_effective": bool(metadata["metadata_template_effective"]),
+        "metadata_required_localization_rate": float(
+            metadata["metadata_required_localization_rate"]
+        ),
         "content_tag_metric": float(metrics.get("content_tag_f1", 0.0)),
         "management_tag_rule_accuracy": float(metrics.get("management_tag_f1", 0.0)),
         "quality_tag_metric": float(metrics.get("quality_tag_f1", 0.0)),
         "global_quality_tag_pollution_count": int(metrics.get("unknown_tag_count", -1)),
-        "document_summary_faithfulness": 1.0 if passed("summary") else 0.0,
-        "document_summary_source_coverage": 1.0 if passed("summary") else 0.0,
-        "document_summary_new_fact_violations": 0 if passed("summary") else 1,
-        "artifact_consistency_pass_rate": 1.0 if passed("consistency") else 0.0,
-        "markdown_block_coverage": 1.0 if passed("consistency") else 0.0,
-        "chunk_source_coverage": 1.0 if passed("consistency") else 0.0,
-        "tampering_detection_rate": 1.0 if passed("consistency") else 0.0,
-        "entity_passthrough_coverage": 1.0 if passed("entity") else 0.0,
-        "invented_entity_id_count": 0 if passed("entity") else 1,
-        "topic11_invalid_output_acceptance_count": 0 if passed("topic11") else 1,
-        "topic11_fallback_success_rate": 1.0 if passed("topic11") else 0.0,
-        "secret_leak_count": 0 if passed("topic11") else 1,
+        "document_summary_faithfulness": float(
+            summary["document_summary_faithfulness"]
+        ),
+        "document_summary_source_coverage": float(
+            summary["document_summary_source_coverage"]
+        ),
+        "document_summary_new_fact_violations": int(
+            summary["document_summary_new_fact_violations"]
+        ),
+        "artifact_consistency_pass_rate": float(
+            consistency["artifact_consistency_pass_rate"]
+        ),
+        "markdown_block_coverage": float(consistency["markdown_block_coverage"]),
+        "chunk_source_coverage": float(consistency["chunk_source_coverage"]),
+        "tampering_detection_rate": float(consistency["tampering_detection_rate"]),
+        "entity_passthrough_coverage": float(entity["entity_passthrough_coverage"]),
+        "invented_entity_id_count": int(entity["invented_entity_id_count"]),
+        "topic11_invalid_output_acceptance_count": int(
+            topic11["topic11_invalid_output_acceptance_count"]
+        ),
+        "topic11_fallback_success_rate": float(
+            topic11["topic11_fallback_success_rate"]
+        ),
+        "secret_leak_count": int(topic11["secret_leak_count"]),
         "field_operation_accuracy": float(operations["field_operation_accuracy"]),
         "rename_accuracy": float(operations["rename_accuracy"]),
         "merge_accuracy": float(operations["merge_accuracy"]),
@@ -114,8 +218,8 @@ def evaluate_gate(
         "schema_localization_rate": float(localization["schema_localization_rate"]),
         "error_code_accuracy": float(localization["error_code_accuracy"]),
         "stage_accuracy": float(localization["stage_accuracy"]),
-        "legacy_request_regression": 0 if passed("legacy") else 1,
-        "legacy_package_regression": 0 if passed("legacy") else 1,
+        "legacy_request_regression": int(topic11["legacy_request_regression"]),
+        "legacy_package_regression": int(topic11["legacy_package_regression"]),
         "full_backend_tests_passed": bool(verification.get("full_backend_tests_passed")),
         "ruff_clean": bool(verification.get("ruff_clean")),
         "frontend_tests_passed": bool(verification.get("frontend_tests_passed")),
@@ -166,8 +270,13 @@ def evaluate_gate(
         "datasets": {
             "field_operations": operations["dataset_sha256"],
             "schema_localization": localization["dataset_sha256"],
+            **{
+                name: report["dataset_sha256"]
+                for name, report in reports.items()
+            },
         },
         "component_checks": components,
+        "evaluator_reports": reports,
     }
 
 
@@ -202,7 +311,7 @@ def main() -> None:
     if not args.verification.is_file():
         raise SystemExit(f"verification summary is missing: {args.verification}")
     components = (
-        {name: {"passed": True, "summary": "skipped by caller"} for name in COMPONENT_TESTS}
+        skipped_component_checks()
         if args.skip_component_tests
         else run_component_checks()
     )
@@ -211,6 +320,7 @@ def main() -> None:
         localization=localization_report(),
         tag_quality=json.loads(args.tag_report.read_text(encoding="utf-8")),
         components=components,
+        evaluator_reports=build_evaluator_reports(),
         verification=json.loads(args.verification.read_text(encoding="utf-8")),
     )
     args.out_dir.mkdir(parents=True, exist_ok=True)

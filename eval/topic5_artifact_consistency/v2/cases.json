@@ -1,0 +1,108 @@
+{
+  "dataset_id": "topic5_artifact_consistency",
+  "version": "2.0.0",
+  "base": {
+    "canonical": {
+      "canonical_version": "1.0",
+      "task_id": "artifact-eval",
+      "doc_id": "artifact-eval",
+      "schema_id": "artifact_eval",
+      "doc_meta": {
+        "document_metadata": {"language": "en-US"},
+        "entities": [
+          {
+            "mention": "OpenAI",
+            "canonical_name": "OpenAI",
+            "entity_type": "organization",
+            "normalized_id": "org:openai",
+            "link_status": "linked",
+            "confidence": 1.0,
+            "source_block_ids": ["b1"],
+            "source_agent": "topic7",
+            "evidence": {}
+          }
+        ]
+      },
+      "fields": {
+        "title": {"value": "Notice", "type": "string", "source_blocks": ["b1"]}
+      },
+      "blocks": [
+        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
+        {"block_id": "b2", "type": "table", "text": "Field: Value", "source_blocks": ["b2"]}
+      ]
+    },
+    "document_summary": {
+      "text": "OpenAI published the notice.",
+      "mode": "extractive",
+      "source_block_ids": ["b1"],
+      "source_chunk_ids": ["c1"],
+      "sentence_traces": [
+        {
+          "summary_sentence": "OpenAI published the notice.",
+          "source_block_id": "b1",
+          "source_text_span": "OpenAI published the notice."
+        }
+      ],
+      "char_count": 28,
+      "faithfulness_passed": true,
+      "warnings": []
+    },
+    "chunks": [
+      {
+        "chunk_id": "c1",
+        "parent_chunk_id": null,
+        "index": 0,
+        "chunk_index": 0,
+        "text": "OpenAI published the notice.",
+        "source_block_ids": ["b1"],
+        "source_links": [{"block_id": "b1", "source_path": "blocks[0]"}],
+        "entity_tags": [
+          {"mention": "OpenAI", "text": "OpenAI", "normalized_id": "org:openai", "source_block_ids": ["b1"], "link_status": "linked"}
+        ]
+      },
+      {
+        "chunk_id": "c2",
+        "parent_chunk_id": null,
+        "index": 1,
+        "chunk_index": 1,
+        "text": "Field: Value",
+        "source_block_ids": ["b2"],
+        "source_links": [{"block_id": "b2", "source_path": "blocks[1]"}],
+        "entity_tags": []
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "consistent_artifacts",
+      "category": "baseline",
+      "mutation": "none",
+      "expected_report_passed": true
+    },
+    {
+      "case_id": "structured_field_tampering",
+      "category": "tampering",
+      "mutation": "structured_field_change",
+      "field_id": "title",
+      "replacement": "Changed",
+      "expected_report_passed": false,
+      "expected_error_code": "json_field_mismatch"
+    },
+    {
+      "case_id": "markdown_block_tampering",
+      "category": "tampering",
+      "mutation": "markdown_block_omission",
+      "block_id": "b2",
+      "expected_report_passed": false,
+      "expected_error_code": "markdown_block_missing"
+    },
+    {
+      "case_id": "chunk_source_tampering",
+      "category": "tampering",
+      "mutation": "chunk_unknown_source",
+      "chunk_index": 0,
+      "expected_report_passed": false,
+      "expected_error_code": "chunk_source_unknown"
+    }
+  ]
+}

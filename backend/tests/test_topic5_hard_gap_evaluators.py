@@ -5,7 +5,10 @@ import json
 from pathlib import Path
 
 import pytest
-from scripts.check_topic5_hard_gap_batch_1_gate import evaluate_gate
+from scripts.check_topic5_hard_gap_batch_1_gate import (
+    build_evaluator_reports,
+    evaluate_gate,
+)
 from scripts.eval_topic5_field_operations import build_report as field_report
 from scripts.eval_topic5_field_operations import load_fixture as load_field_fixture
 from scripts.eval_topic5_schema_localization import (
@@ -84,12 +87,14 @@ def test_gate_passes_all_thresholds_and_fails_mutated_metric() -> None:
         "frontend_tests_passed": True,
         "openapi_export_passed": True,
     }
+    evaluator_reports = build_evaluator_reports()
 
     passed = evaluate_gate(
         operations=operations,
         localization=localization,
         tag_quality=tag_quality,
         components=components,
+        evaluator_reports=evaluator_reports,
         verification=verification,
     )
     assert passed["conclusion"] == "passed"
@@ -101,6 +106,7 @@ def test_gate_passes_all_thresholds_and_fails_mutated_metric() -> None:
         localization=localization,
         tag_quality=tag_quality,
         components=components,
+        evaluator_reports=evaluator_reports,
         verification=verification,
     )
     assert failed["conclusion"] == "failed"

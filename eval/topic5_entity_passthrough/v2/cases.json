@@ -1,0 +1,72 @@
+{
+  "dataset_id": "topic5_entity_passthrough",
+  "version": "2.0.0",
+  "cases": [
+    {
+      "case_id": "linked_entity_single_source",
+      "entities": [
+        {
+          "mention": "OpenAI",
+          "canonical_name": "OpenAI",
+          "entity_type": "organization",
+          "normalized_id": "org:openai",
+          "link_status": "linked",
+          "confidence": 0.99,
+          "source_block_ids": ["b1"],
+          "source_agent": "topic7"
+        }
+      ],
+      "blocks": [
+        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
+        {"block_id": "b2", "type": "paragraph", "text": "A separate paragraph.", "source_blocks": ["b2"]}
+      ],
+      "chunks": [
+        {"chunk_id": "c1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
+        {"chunk_id": "c2", "text": "A separate paragraph.", "source_block_ids": ["b2"]}
+      ],
+      "expected_entity_keys_by_chunk": [["org:openai"], []]
+    },
+    {
+      "case_id": "linked_entity_multiple_sources",
+      "entities": [
+        {
+          "mention": "OpenAI",
+          "entity_type": "organization",
+          "normalized_id": "org:openai",
+          "link_status": "linked",
+          "source_block_ids": ["b1", "b2"]
+        }
+      ],
+      "blocks": [
+        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
+        {"block_id": "b2", "type": "paragraph", "text": "The university acknowledged OpenAI.", "source_blocks": ["b2"]}
+      ],
+      "chunks": [
+        {"chunk_id": "c1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
+        {"chunk_id": "c2", "text": "The university acknowledged OpenAI.", "source_block_ids": ["b2"]}
+      ],
+      "expected_entity_keys_by_chunk": [["org:openai"], ["org:openai"]]
+    },
+    {
+      "case_id": "unlinked_entity_keeps_nil_id",
+      "entities": [
+        {
+          "mention": "OpenAI",
+          "entity_type": "organization",
+          "normalized_id": null,
+          "link_status": "unlinked",
+          "source_block_ids": []
+        }
+      ],
+      "blocks": [
+        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
+        {"block_id": "b2", "type": "paragraph", "text": "A separate paragraph.", "source_blocks": ["b2"]}
+      ],
+      "chunks": [
+        {"chunk_id": "c1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
+        {"chunk_id": "c2", "text": "A separate paragraph.", "source_block_ids": ["b2"]}
+      ],
+      "expected_entity_keys_by_chunk": [["mention:OpenAI:unlinked"], []]
+    }
+  ]
+}

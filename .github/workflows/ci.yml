@@ -5,38 +5,33 @@ on:
   pull_request:
 
 jobs:
-  backend:
-    runs-on: windows-latest
+  topic5-batch-2-verification:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          python -m pip install -r requirements.txt
-      - name: Ruff
-        run: |
-          cd backend
-          python -m ruff check .
-      - name: Pytest
-        run: |
-          cd backend
-          python -m pytest -q
-
-  frontend:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
+          python-version: "3.13"
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install backend dependencies
+        run: python -m pip install -r backend/requirements.txt
       - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
-      - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
+        working-directory: frontend
+        run: npm ci
+      - name: Run Topic 5 Batch 2 verification
+        run: python scripts/run_topic5_batch_2_verification.py
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: topic5-batch-2-${{ runner.os }}
+          path: reports/topic5_batch_2/verification
+          if-no-files-found: warn

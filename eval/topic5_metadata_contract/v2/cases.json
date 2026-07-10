@@ -1,0 +1,56 @@
+{
+  "dataset_id": "topic5_metadata_contract",
+  "version": "2.0.0",
+  "cases": [
+    {
+      "case_id": "metadata_source_value",
+      "category": "effectiveness",
+      "metadata": {"language": "zh-CN"},
+      "metadata_fields": [
+        {"field_id": "language", "type": "string"}
+      ],
+      "expected_passed": true,
+      "expected_document_metadata": {"language": "zh-CN"}
+    },
+    {
+      "case_id": "metadata_default_value",
+      "category": "effectiveness",
+      "metadata": {},
+      "metadata_fields": [
+        {"field_id": "language", "type": "string", "default": "en-US"}
+      ],
+      "expected_passed": true,
+      "expected_document_metadata": {"language": "en-US"}
+    },
+    {
+      "case_id": "metadata_required_missing",
+      "category": "localization",
+      "metadata": {},
+      "metadata_fields": [
+        {"field_id": "classification", "type": "string", "required": true}
+      ],
+      "expected_passed": false,
+      "expected_document_metadata": {},
+      "expected_issue": {
+        "stage": "metadata_template",
+        "path": "document_metadata.classification",
+        "error_code": "metadata_required_missing"
+      }
+    },
+    {
+      "case_id": "metadata_type_mismatch",
+      "category": "localization",
+      "metadata": {"retention_years": "seven"},
+      "metadata_fields": [
+        {"field_id": "retention_years", "type": "integer"}
+      ],
+      "expected_passed": false,
+      "expected_document_metadata": {},
+      "expected_issue": {
+        "stage": "metadata_template",
+        "path": "document_metadata.retention_years",
+        "error_code": "metadata_type_mismatch"
+      }
+    }
+  ]
+}

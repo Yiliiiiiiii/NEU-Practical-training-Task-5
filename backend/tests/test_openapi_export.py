@@ -33,3 +33,18 @@ def test_openapi_export_includes_demo_workflow_paths(tmp_path):
         "/api/v1/tasks/{task_id}/package/download",
     ]:
         assert path in schema["paths"]
+
+
+def test_openapi_check_detects_drift_without_rewriting_expected_file(tmp_path):
+    module = load_export_module()
+    expected = tmp_path / "openapi.json"
+    module.export_openapi(expected)
+    original = expected.read_bytes()
+
+    assert module.check_openapi_drift(expected) is True
+    assert expected.read_bytes() == original
+
+    expected.write_text("{}\n", encoding="utf-8")
+    drifted = expected.read_bytes()
+    assert module.check_openapi_drift(expected) is False
+    assert expected.read_bytes() == drifted

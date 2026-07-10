@@ -1,0 +1,72 @@
+{
+  "dataset_id": "topic5_topic11_adapter",
+  "version": "2.0.0",
+  "base": {
+    "canonical": {
+      "canonical_version": "1.0",
+      "task_id": "topic11-eval",
+      "doc_id": "topic11-eval",
+      "schema_id": "topic11_eval",
+      "doc_meta": {
+        "entities": [
+          {
+            "mention": "OpenAI",
+            "entity_type": "organization",
+            "normalized_id": "org:openai",
+            "link_status": "linked",
+            "source_block_ids": ["b1"]
+          }
+        ]
+      },
+      "blocks": [
+        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
+        {"block_id": "table1", "type": "table", "text": "Field: Value", "source_blocks": ["table1"]}
+      ]
+    },
+    "legacy_chunks": [
+      {"chunk_id": "legacy-b1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
+      {"chunk_id": "legacy-table1", "text": "Field: Value", "source_block_ids": ["table1"]}
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "timeout_fallback",
+      "category": "fallback",
+      "error_code": "topic11_timeout",
+      "expected_fallback_reason": "topic11_timeout"
+    },
+    {
+      "case_id": "http_error_fallback",
+      "category": "fallback",
+      "error_code": "topic11_http_error",
+      "expected_fallback_reason": "topic11_http_error"
+    },
+    {
+      "case_id": "unknown_source_rejected",
+      "category": "invalid",
+      "chunks": [
+        {"chunk_id": "bad", "text": "Unknown text", "source_block_ids": ["unknown"]}
+      ],
+      "expected_fallback_reason": "topic11_unknown_source_block"
+    },
+    {
+      "case_id": "invented_fact_rejected",
+      "category": "invalid",
+      "chunks": [
+        {"chunk_id": "bad", "text": "A fact absent from source.", "source_block_ids": ["b1"]},
+        {"chunk_id": "table", "text": "Field: Value", "source_block_ids": ["table1"]}
+      ],
+      "expected_fallback_reason": "topic11_chunk_text_not_derivable"
+    },
+    {
+      "case_id": "secret_redacted_on_timeout",
+      "category": "secret",
+      "secret": "topic11-evaluator-secret",
+      "expected_fallback_reason": "topic11_timeout"
+    },
+    {
+      "case_id": "legacy_chunks_unchanged",
+      "category": "legacy"
+    }
+  ]
+}
