@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.config import Settings
 from app.db.models import ConversionTask, Document, KnowledgeCandidateRecord
+from app.schemas.content_organization import ContentOrganizationOptions, SummaryConfig
 from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.metadata_template import MetadataRenderResult, MetadataTemplateConfig
@@ -21,6 +22,7 @@ from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
 from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.conversion_assertion_service import ConversionAssertionService
+from app.services.document_summary_service import DocumentSummaryService
 from app.services.effective_template_service import EffectiveTemplateService
 from app.services.lineage_graph_service import LineageGraphService
 from app.services.llm_fallback_service import LLMFallbackService
@@ -343,9 +345,29 @@ class TaskExecutionService:
             template_version=template.version,
             options=options.get("content_organization"),
         )
+        content_org_payload = options.get("content_organization")
+        summary_config = (
+            ContentOrganizationOptions.model_validate(content_org_payload).summary
+            if isinstance(content_org_payload, dict)
+            else SummaryConfig()
+        )
+        document_summary = DocumentSummaryService().build(
+            canonical=canonical,
+            chunks=organized_chunks,
+            config=summary_config,
+        )
+        document_summary_payload = (
+            document_summary.model_dump(mode="json") if document_summary else None
+        )
+        canonical.doc_meta["document_summary"] = document_summary_payload
+        content_organization_report.document_summary = document_summary_payload
+        summary_rendered = RenderService().render(
+            canonical,
+            chunk_size=int(options.get("chunk_size", 1200)),
+        )
         rendered = RenderedArtifacts(
-            structured_json=rendered.structured_json,
-            markdown=rendered.markdown,
+            structured_json=summary_rendered.structured_json,
+            markdown=summary_rendered.markdown,
             chunks=organized_chunks,
         )
         validation_report = ValidationService().validate(
@@ -410,6 +432,7 @@ class TaskExecutionService:
             ),
             metadata_result=metadata_result,
             metadata_template=metadata_template,
+            document_summary=document_summary,
         )
 
         lineage_graph: dict[str, Any] | None = None
@@ -528,6 +551,9 @@ class TaskExecutionService:
             strict_metadata_template=bool(
                 options.get("strict_metadata_template", False)
             ),
+            summary_faithfulness_passed=(
+                document_summary.faithfulness_passed if document_summary else None
+            ),
         )
         artifacts: dict[str, str] = {}
         assertion_report_path = report_paths.get("conversion_assertion_report")
@@ -546,6 +572,11 @@ class TaskExecutionService:
                 "package_verifier_passed": package_result.verifier_report.passed,
                 "metadata_template_passed": (
                     metadata_result.passed if metadata_result else None
+                ),
+                "document_summary_faithfulness_passed": (
+                    document_summary.faithfulness_passed
+                    if document_summary
+                    else None
                 ),
                 "lineage_warnings": lineage_warnings,
             }
@@ -744,6 +775,7 @@ class TaskExecutionService:
         strict_output_assertions: bool = False,
         metadata_passed: bool | None = None,
         strict_metadata_template: bool = False,
+        summary_faithfulness_passed: bool | None = None,
     ) -> str:
         if not package_passed:
             return "failed"
@@ -756,6 +788,7 @@ class TaskExecutionService:
             or unmapped_required_count
             or assertion_error_count
             or metadata_passed is False
+            or summary_faithfulness_passed is False
         ):
             return "review_required"
         return "completed"

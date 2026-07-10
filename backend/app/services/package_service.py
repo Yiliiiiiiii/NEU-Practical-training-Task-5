@@ -5,6 +5,7 @@ from pathlib import Path
 
 from app.schemas.canonical import CanonicalModel
 from app.schemas.content_organization import ContentOrganizationReport
+from app.schemas.document_summary import DocumentSummary
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.metadata_template import MetadataRenderResult, MetadataTemplateConfig
 from app.schemas.package import Manifest, OutputPackageMetadata
@@ -42,6 +43,7 @@ class PackageService:
         include_assertion_report: bool = False,
         metadata_result: MetadataRenderResult | None = None,
         metadata_template: MetadataTemplateConfig | None = None,
+        document_summary: DocumentSummary | None = None,
     ) -> PackageResult:
         package_id = f"pkg_{task_id}"
         package_dir = self.output_root / "packages" / package_id
@@ -62,6 +64,8 @@ class PackageService:
             else None
         )
         features = ["metadata_template_v1"] if metadata_result is not None else []
+        if document_summary is not None:
+            features.append("document_summary_v1")
 
         files = {
             "content.json": rendered.structured_json,
@@ -87,6 +91,11 @@ class PackageService:
                     else []
                 ),
                 "features": features,
+                "document_summary": (
+                    document_summary.model_dump(mode="json")
+                    if document_summary is not None
+                    else None
+                ),
                 "artifact_roles": {
                     "content.json": "structured_json",
                     "content.md": "markdown",

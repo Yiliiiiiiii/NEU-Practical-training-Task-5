@@ -13,6 +13,7 @@ from app.schemas.content_organization import (
 )
 from app.schemas.reports import MappingReport, ValidationReport
 from app.schemas.target_schema import TargetField, TargetSchema
+from app.schemas.uir import UIREntity
 from app.services.tag_rule_service import TagRuleService
 
 
@@ -82,7 +83,7 @@ class ChunkOrganizerService:
             raw_chunks = self._build_strategy_chunks(
                 canonical_model=canonical_model,
                 doc_id=doc_id,
-                task_id=task_id,
+                task_id=doc_id,
                 options=organization_options,
             )
 
@@ -98,6 +99,7 @@ class ChunkOrganizerService:
         entity_candidates = self._entity_candidates(
             canonical_model=canonical_model,
             fields_by_id=fields_by_id,
+            enable_legacy_inference=tag_options.enable_legacy_entity_inference,
         )
 
         organized: list[dict[str, Any]] = []
@@ -275,7 +277,7 @@ class ChunkOrganizerService:
         child_chunks = self._block_aware_chunks(
             canonical_model=canonical_model,
             doc_id=doc_id,
-            task_id=task_id,
+            task_id=doc_id,
             options=options,
             granularity="child" if self._parent_child_enabled(options) else None,
         )
@@ -284,7 +286,7 @@ class ChunkOrganizerService:
         parent_chunks = self._parent_chunks(
             canonical_model=canonical_model,
             doc_id=doc_id,
-            task_id=task_id,
+            task_id=doc_id,
             options=options,
         )
         parent_by_title = {
@@ -751,8 +753,31 @@ class ChunkOrganizerService:
         *,
         canonical_model: CanonicalModel,
         fields_by_id: dict[str, TargetField],
+        enable_legacy_inference: bool,
     ) -> list[tuple[EntityTag, list[str]]]:
         candidates: list[tuple[EntityTag, list[str]]] = []
+        entities = canonical_model.doc_meta.get("entities", [])
+        if isinstance(entities, list):
+            for payload in entities:
+                if not isinstance(payload, dict):
+                    continue
+                entity = UIREntity.model_validate(payload)
+                tag = EntityTag(
+                    text=entity.mention,
+                    mention=entity.mention,
+                    canonical_name=entity.canonical_name,
+                    entity_type=entity.entity_type,
+                    normalized_id=entity.normalized_id,
+                    link_status=entity.link_status,
+                    source="upstream",
+                    confidence=entity.confidence,
+                    source_block_ids=entity.source_block_ids,
+                    source_agent=entity.source_agent,
+                )
+                candidates.append((tag, entity.source_block_ids))
+        if not enable_legacy_inference:
+            return candidates
+
         for field_id, field_value in canonical_model.fields.items():
             target_field = fields_by_id.get(field_id)
             field_label = " ".join(
@@ -813,8 +838,16 @@ class ChunkOrganizerService:
         for tag, entity_source_blocks in entity_candidates:
             source_matches = bool(source_block_set.intersection(entity_source_blocks))
             text_matches = tag.text and tag.text in text
-            if source_matches or text_matches:
-                tags[(tag.text, tag.entity_type)] = tag
+            if source_matches or (not entity_source_blocks and text_matches):
+                key = "|".join(
+                    (
+                        tag.text,
+                        tag.entity_type,
+                        tag.normalized_id or "",
+                        tag.link_status,
+                    )
+                )
+                tags[(key, tag.entity_type)] = tag
         return [tags[key] for key in sorted(tags)]
 
     @classmethod

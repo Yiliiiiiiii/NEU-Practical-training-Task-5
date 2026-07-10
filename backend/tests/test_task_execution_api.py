@@ -189,6 +189,13 @@ def test_registered_schema_pack_applies_metadata_template(execution_client):
         )
         for chunk in chunks
     )
+    summary = content["document_summary"]
+    content_org = json.loads(
+        Path(report_paths["content_organization_report"]).read_text(encoding="utf-8")
+    )
+    assert summary["text"]
+    assert summary["faithfulness_passed"] is True
+    assert content_org["document_summary"] == summary
 
 
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):

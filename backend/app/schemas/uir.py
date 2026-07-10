@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Self
 
 from pydantic import Field, model_validator
 
@@ -60,3 +60,14 @@ class UIRDocument(StrictBaseModel):
     assets: list[UIRAsset] = Field(default_factory=list)
     entities: list[UIREntity] = Field(default_factory=list)
     normalization_records: list[dict[str, Any]] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_entity_source_blocks(self) -> Self:
+        block_ids = {block.block_id for block in self.blocks}
+        for entity in self.entities:
+            unknown = sorted(set(entity.source_block_ids) - block_ids)
+            if unknown:
+                raise ValueError(
+                    f"entity source_block_ids contains unknown block_id {unknown[0]}"
+                )
+        return self

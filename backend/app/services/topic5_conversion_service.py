@@ -7,6 +7,7 @@ from app.services.candidate_service import CandidateService
 from app.services.canonical_service import CanonicalService
 from app.services.chunk_organizer_service import ChunkOrganizerService
 from app.services.conversion_assertion_service import ConversionAssertionService
+from app.services.document_summary_service import DocumentSummaryService
 from app.services.mapping_repair_service import MappingRepairService
 from app.services.mapping_service import MappingService
 from app.services.metadata_template_service import MetadataTemplateService
@@ -147,9 +148,23 @@ class Topic5ConversionService:
             template_version=template.version,
             options=content_organization,
         )
+        document_summary = DocumentSummaryService().build(
+            canonical=canonical,
+            chunks=organized_chunks,
+            config=request.content_organization.summary,
+        )
+        document_summary_payload = (
+            document_summary.model_dump(mode="json") if document_summary else None
+        )
+        canonical.doc_meta["document_summary"] = document_summary_payload
+        content_organization_report.document_summary = document_summary_payload
+        summary_rendered = RenderService().render(
+            canonical,
+            chunk_size=int(options.get("chunk_size", 1200)),
+        )
         rendered = RenderedArtifacts(
-            structured_json=rendered.structured_json,
-            markdown=rendered.markdown,
+            structured_json=summary_rendered.structured_json,
+            markdown=summary_rendered.markdown,
             chunks=organized_chunks,
         )
         validation_report = ValidationService().validate(
@@ -196,6 +211,7 @@ class Topic5ConversionService:
                 ),
                 metadata_result=metadata_result,
                 metadata_template=request.metadata_template,
+                document_summary=document_summary,
             )
             manifest = package_result.manifest.model_dump(mode="json")
             package_zip_path = package_result.metadata.zip_path
@@ -224,6 +240,9 @@ class Topic5ConversionService:
             strict_metadata_template=bool(
                 options.get("strict_metadata_template", False)
             ),
+            summary_faithfulness_passed=(
+                document_summary.faithfulness_passed if document_summary else None
+            ),
         )
         return Topic5ConvertResponse(
             task_id=task_id,
@@ -249,6 +268,7 @@ class Topic5ConversionService:
                 if metadata_result
                 else None
             ),
+            document_summary=document_summary_payload,
         )
 
     @staticmethod
@@ -262,6 +282,7 @@ class Topic5ConversionService:
         strict_output_assertions: bool = False,
         metadata_passed: bool | None = None,
         strict_metadata_template: bool = False,
+        summary_faithfulness_passed: bool | None = None,
     ) -> str:
         review_required_count = len(mapping_report.review_required_items)
         unmapped_required_count = sum(
@@ -283,6 +304,7 @@ class Topic5ConversionService:
             or not validation_passed
             or assertion_error_count
             or metadata_passed is False
+            or summary_faithfulness_passed is False
         ):
             return "review_required"
 

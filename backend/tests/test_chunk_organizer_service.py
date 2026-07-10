@@ -41,7 +41,22 @@ def make_canonical() -> CanonicalModel:
         task_id="task_policy",
         doc_id="doc_policy",
         schema_id="policy_doc",
-        doc_meta={"metadata": {"issuer": "市数据管理局"}},
+        doc_meta={
+            "metadata": {"issuer": "市数据管理局"},
+            "entities": [
+                {
+                    "mention": "市数据管理局",
+                    "canonical_name": "市数据管理局",
+                    "entity_type": "organization",
+                    "normalized_id": "org:city-data-office",
+                    "link_status": "linked",
+                    "confidence": 1.0,
+                    "source_block_ids": ["blk_001"],
+                    "source_agent": "fixture",
+                    "evidence": {},
+                }
+            ],
+        },
         fields={
             "issuer": CanonicalField(
                 value="市数据管理局",

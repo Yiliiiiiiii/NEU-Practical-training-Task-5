@@ -109,6 +109,85 @@ def test_topic5_metadata_template_controls_response_and_content_json(topic5_clie
     assert body["metadata_template_report"]["field_traces"]
 
 
+def test_topic5_document_summary_is_shared_across_json_markdown_and_report(
+    topic5_client,
+):
+    client, _storage_root = topic5_client
+
+    response = client.post("/api/v1/topic5/convert", json=announcement_convert_request())
+
+    assert response.status_code == 200
+    body = response.json()
+    summary = body["document_summary"]
+    assert summary["text"]
+    assert summary["faithfulness_passed"] is True
+    assert summary["source_block_ids"]
+    assert summary["source_chunk_ids"]
+    assert body["content_json"]["document_summary"] == summary
+    assert body["content_organization_report"]["document_summary"] == summary
+    assert f"## Document Summary\n\n{summary['text']}" in body["content_markdown"]
+
+
+def test_topic5_document_summary_can_be_disabled(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"]["summary"] = {
+        "chunk_mode": "deterministic",
+        "document_mode": "none",
+        "document_max_sentences": 5,
+        "document_max_chars": 500,
+    }
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_summary"] is None
+    assert body["content_json"]["document_summary"] is None
+    assert "## Document Summary" not in body["content_markdown"]
+
+
+def test_topic5_document_summary_is_deterministic_across_three_runs(topic5_client):
+    client, _storage_root = topic5_client
+
+    summaries = [
+        client.post("/api/v1/topic5/convert", json=announcement_convert_request())
+        .json()["document_summary"]
+        for _index in range(3)
+    ]
+
+    assert summaries[0] == summaries[1] == summaries[2]
+
+
+def test_topic5_inline_passes_upstream_entity_to_only_relevant_chunk(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["uir"]["entities"] = [
+        {
+            "mention": "信息化办公室",
+            "canonical_name": "信息化办公室",
+            "entity_type": "organization",
+            "normalized_id": "org:it-office",
+            "link_status": "linked",
+            "confidence": 1.0,
+            "source_block_ids": ["b2"],
+            "source_agent": "topic7",
+            "evidence": {"source": "upstream"},
+        }
+    ]
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    chunks = response.json()["chunks"]
+    relevant = [chunk for chunk in chunks if "b2" in chunk["source_block_ids"]]
+    unrelated = [chunk for chunk in chunks if "b2" not in chunk["source_block_ids"]]
+    assert relevant
+    assert relevant[0]["entity_tags"][0]["normalized_id"] == "org:it-office"
+    assert relevant[0]["entity_tags"][0]["source"] == "upstream"
+    assert all(chunk["entity_tags"] == [] for chunk in unrelated)
+
+
 def test_topic5_same_uir_with_two_templates_changes_document_metadata(topic5_client):
     client, _storage_root = topic5_client
     first = announcement_convert_request()
@@ -233,6 +312,8 @@ def test_topic5_package_contains_metadata_template_artifact_and_feature(topic5_c
     )
     assert "metadata_template_v1" in metadata["features"]
     assert report["passed"] is True
+    assert metadata["document_summary"] == body["document_summary"]
+    assert "document_summary_v1" in metadata["features"]
     assert "metadata_template_report.json" in {
         item["path"] for item in body["manifest"]["files"]
     }

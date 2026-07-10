@@ -22,6 +22,7 @@ class RenderService:
             document_metadata if isinstance(document_metadata, dict) else {}
         )
         metadata_template = canonical.doc_meta.get("metadata_template")
+        document_summary = canonical.doc_meta.get("document_summary")
         content_metadata_template = (
             {
                 key: metadata_template[key]
@@ -42,6 +43,7 @@ class RenderService:
             "metadata": {**source_metadata, **canonical.doc_meta},
             "document_metadata": document_metadata,
             "metadata_template": content_metadata_template,
+            "document_summary": document_summary,
             "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
             "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
             "execution_snapshot": canonical.doc_meta.get("execution_snapshot", {}),
@@ -54,6 +56,13 @@ class RenderService:
 
     def _markdown(self, canonical: CanonicalModel) -> str:
         lines: list[str] = []
+        document_summary = canonical.doc_meta.get("document_summary")
+        summary_text = (
+            str(document_summary.get("text") or "")
+            if isinstance(document_summary, dict)
+            else ""
+        )
+        summary_inserted = False
         for block in canonical.blocks:
             text = block.text.strip()
             if not text:
@@ -69,6 +78,11 @@ class RenderService:
             else:
                 lines.append(text)
             lines.append("")
+            if summary_text and not summary_inserted:
+                lines.extend(["## Document Summary", "", summary_text, ""])
+                summary_inserted = True
+        if summary_text and not summary_inserted:
+            lines.extend(["## Document Summary", "", summary_text, ""])
         return "\n".join(lines).strip() + "\n"
 
     @staticmethod
