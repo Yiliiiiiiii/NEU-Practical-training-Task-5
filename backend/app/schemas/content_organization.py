@@ -132,7 +132,26 @@ QualityRuleName = Literal[
 
 
 class QualityTagRules(StrictBaseModel):
-    enabled_builtin_rules: list[QualityRuleName] = Field(default_factory=list)
+    enabled_builtin_rules: list[QualityRuleName] = Field(
+        default_factory=lambda: [
+            "source_linked",
+            "anchor_linked",
+            "length_ok",
+            "summarized",
+            "keyworded",
+            "entity_linked",
+            "empty_text",
+            "short_chunk",
+            "overlong_chunk",
+            "oversized_protected_block",
+            "summary_missing",
+            "keyword_missing",
+            "source_unlinked",
+            "mapping_review_required",
+            "validation_error",
+            "entity_unlinked",
+        ]
+    )
 
 
 class TagRules(StrictBaseModel):

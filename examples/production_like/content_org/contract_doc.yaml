@@ -1,0 +1,14 @@
+tag_rules:
+  content:
+    base_tags: [contract]
+    rules:
+      - {rule_id: contract-party, tag: party, any_terms: [甲方, 乙方, 双方, 委托方, 受托方]}
+      - {rule_id: contract-amount, tag: amount, any_terms: [金额, 价款, 费用, 付款, 结算]}
+      - {rule_id: contract-term, tag: term, any_terms: [期限, 生效, 终止, 履行]}
+      - {rule_id: contract-liability, tag: liability, any_terms: [违约, 责任, 赔偿]}
+  management:
+    metadata_rules:
+      - {rule_id: schema-id, tag_template: "schema:{value}", source_path: schema.schema_id}
+      - {rule_id: template-version, tag_template: "template_version:{value}", source_path: package.template_version}
+  quality:
+    enabled_builtin_rules: [source_linked, anchor_linked]

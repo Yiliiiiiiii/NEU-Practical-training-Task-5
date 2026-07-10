@@ -328,6 +328,7 @@ class TaskExecutionService:
             task.task_id,
             schema,
             rendered,
+            metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
         organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
             chunks=rendered.chunks,

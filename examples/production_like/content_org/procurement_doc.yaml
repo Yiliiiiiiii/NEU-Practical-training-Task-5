@@ -1,0 +1,10 @@
+tag_rules:
+  content:
+    base_tags: [procurement]
+    rules: []
+  management:
+    metadata_rules:
+      - {rule_id: schema-id, tag_template: "schema:{value}", source_path: schema.schema_id}
+      - {rule_id: template-version, tag_template: "template_version:{value}", source_path: package.template_version}
+  quality:
+    enabled_builtin_rules: [source_linked, anchor_linked]

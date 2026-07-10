@@ -9,3 +9,64 @@ protect_code_blocks: true
 enable_parent_child: false
 summary_mode: deterministic
 keyword_mode: deterministic
+summary:
+  chunk_mode: deterministic
+  document_mode: extractive
+  document_max_sentences: 5
+  document_max_chars: 500
+tag_rules:
+  content:
+    base_tags:
+      - event_notice
+    rules:
+      - rule_id: event-schedule
+        tag: schedule
+        any_terms:
+          - date
+          - time
+          - 时间
+          - 日期
+      - rule_id: event-registration
+        tag: registration
+        any_terms:
+          - register
+          - registration
+          - 报名
+      - rule_id: event-venue
+        tag: venue
+        any_terms:
+          - venue
+          - location
+          - 地点
+  management:
+    static_tags:
+      - domain:event
+    metadata_rules:
+      - rule_id: metadata-language
+        tag_template: "language:{value}"
+        source_path: document_metadata.language
+        omit_if_missing: true
+      - rule_id: metadata-source
+        tag_template: "source:{value}"
+        source_path: document_metadata.source
+        omit_if_missing: true
+  quality:
+    enabled_builtin_rules:
+      - source_linked
+      - anchor_linked
+      - empty_text
+      - short_chunk
+      - overlong_chunk
+      - length_ok
+      - summarized
+      - summary_missing
+      - keyworded
+      - keyword_missing
+      - mapping_review_required
+      - validation_error
+      - oversized_protected_block
+      - entity_linked
+      - entity_unlinked
+provider: internal
+fallback_to_internal: true
+strict_provider: false

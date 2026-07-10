@@ -179,6 +179,26 @@ def test_organizer_adds_summary_keywords_tags_links_and_entities_stably():
             )
         ],
     )
+    options = ContentOrganizationOptions(
+        chunk_strategy="source_block_aware",
+        min_tokens=1,
+        target_tokens=1200,
+        max_tokens=1400,
+        overlap_tokens=0,
+        tag_rules={
+            "content": {
+                "base_tags": ["policy"],
+                "rules": [
+                    {"tag": "scope", "any_terms": ["适用", "范围", "对象"]},
+                    {
+                        "tag": "responsibility",
+                        "any_terms": ["责任", "部门", "负责"],
+                    },
+                ],
+            },
+            "management": {"static_tags": ["domain:governance"]},
+        },
+    )
 
     first_chunks, first_report = service.organize_chunks(
         chunks=base_chunks,
@@ -191,6 +211,7 @@ def test_organizer_adds_summary_keywords_tags_links_and_entities_stably():
         schema_id="policy_doc",
         template_id="policy_doc_base_v1",
         template_version="1.0.0",
+        options=options,
     )
     second_chunks, second_report = service.organize_chunks(
         chunks=base_chunks,
@@ -203,6 +224,7 @@ def test_organizer_adds_summary_keywords_tags_links_and_entities_stably():
         schema_id="policy_doc",
         template_id="policy_doc_base_v1",
         template_version="1.0.0",
+        options=options,
     )
 
     chunk = first_chunks[0]
@@ -211,8 +233,9 @@ def test_organizer_adds_summary_keywords_tags_links_and_entities_stably():
     assert chunk["summary"]
     assert chunk["keywords"]
     assert {"policy", "scope", "responsibility"}.issubset(set(chunk["tags"]["content"]))
-    assert "validation_has_errors" in chunk["tags"]["quality"]
+    assert "validation_error" not in chunk["tags"]["quality"]
     assert "mapping_review_required" in chunk["tags"]["quality"]
+    assert first_report.document_quality_flags[0]["tag"] == "validation_error"
     assert chunk["source_links"][0]["block_id"] == "blk_001"
     assert chunk["source_links"][0]["page_no"] == 2
     assert chunk["entity_tags"][0]["text"] == "市数据管理局"

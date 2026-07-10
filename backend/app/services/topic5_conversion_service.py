@@ -128,7 +128,12 @@ class Topic5ConversionService:
             canonical,
             chunk_size=int(options.get("chunk_size", 1200)),
         )
-        preliminary_validation = ValidationService().validate(task_id, schema, rendered)
+        preliminary_validation = ValidationService().validate(
+            task_id,
+            schema,
+            rendered,
+            metadata_issues=(metadata_result.report.issues if metadata_result else None),
+        )
         organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
             chunks=rendered.chunks,
             canonical_model=canonical,

@@ -212,43 +212,31 @@ def _known_tags(gold_rows: list[dict[str, Any]]) -> dict[str, set[str]]:
         known["quality"].update(
             str(tag) for tag in row.get("expected_quality_tags", [])
         )
-    for rules in RETRIEVAL.ChunkOrganizerService.CONTENT_TAG_RULES.values():
-        known["content"].update(str(tag) for tag in rules)
-    known["management"].update(
-        {
-            "schema_version:1.0.0",
-            "template_version:1.0.0",
-        }
-    )
-    known["quality"].update(
-        {
-            "anchor_linked",
-            "empty_text",
-            "keyworded",
-            "length_ok",
-            "mapping_review_required",
-            "overlong_chunk",
-            "oversized_protected_block",
-            "oversized_chunk",
-            "short_chunk",
-            "source_linked",
-            "summarized",
-            "validation_has_errors",
-            "validation_passed",
-        }
-    )
+    for schema_id in RETRIEVAL.CATALOG:
+        config = RETRIEVAL.default_options(DEFAULT_STRATEGY, schema_id)
+        tag_rules = config.get("tag_rules", {})
+        content = tag_rules.get("content", {})
+        known["content"].update(str(tag) for tag in content.get("base_tags", []))
+        known["content"].update(
+            str(rule["tag"])
+            for rule in content.get("rules", [])
+            if isinstance(rule, dict) and rule.get("tag")
+        )
+        management = tag_rules.get("management", {})
+        known["management"].update(
+            str(tag) for tag in management.get("static_tags", [])
+        )
+        quality = tag_rules.get("quality", {})
+        known["quality"].update(
+            str(tag) for tag in quality.get("enabled_builtin_rules", [])
+        )
     return known
 
 
 KNOWN_TAG_PREFIXES = {
     "content": (),
     "management": (
-        "chunk_index:",
-        "doc:",
         "schema:",
-        "schema_version:",
-        "task:",
-        "template:",
         "template_version:",
     ),
     "quality": (),

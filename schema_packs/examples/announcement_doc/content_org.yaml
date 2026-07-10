@@ -9,3 +9,57 @@ protect_code_blocks: true
 enable_parent_child: false
 summary_mode: deterministic
 keyword_mode: deterministic
+summary:
+  chunk_mode: deterministic
+  document_mode: extractive
+  document_max_sentences: 5
+  document_max_chars: 500
+tag_rules:
+  content:
+    base_tags:
+      - announcement
+    rules:
+      - rule_id: announcement-maintenance
+        tag: maintenance
+        any_terms:
+          - 维护
+          - maintenance
+          - system upgrade
+      - rule_id: announcement-availability
+        tag: availability
+        any_terms:
+          - 不可用
+          - unavailable
+          - service interruption
+  management:
+    static_tags:
+      - domain:campus
+    metadata_rules:
+      - rule_id: metadata-language
+        tag_template: "language:{value}"
+        source_path: document_metadata.language
+        omit_if_missing: true
+      - rule_id: metadata-source
+        tag_template: "source:{value}"
+        source_path: document_metadata.source
+        omit_if_missing: true
+  quality:
+    enabled_builtin_rules:
+      - source_linked
+      - anchor_linked
+      - empty_text
+      - short_chunk
+      - overlong_chunk
+      - length_ok
+      - summarized
+      - summary_missing
+      - keyworded
+      - keyword_missing
+      - mapping_review_required
+      - validation_error
+      - oversized_protected_block
+      - entity_linked
+      - entity_unlinked
+provider: internal
+fallback_to_internal: true
+strict_provider: false

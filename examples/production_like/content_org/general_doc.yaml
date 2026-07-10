@@ -1,0 +1,13 @@
+tag_rules:
+  content:
+    base_tags: [general]
+    rules:
+      - {rule_id: general-overview, tag: overview, any_terms: [概述, 简介, 背景]}
+      - {rule_id: general-requirement, tag: requirement, any_terms: [要求, 标准, 指标]}
+      - {rule_id: general-result, tag: result, any_terms: [结果, 结论, 产出]}
+  management:
+    metadata_rules:
+      - {rule_id: schema-id, tag_template: "schema:{value}", source_path: schema.schema_id}
+      - {rule_id: template-version, tag_template: "template_version:{value}", source_path: package.template_version}
+  quality:
+    enabled_builtin_rules: [source_linked, anchor_linked]

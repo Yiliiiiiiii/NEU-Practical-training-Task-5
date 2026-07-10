@@ -153,6 +153,20 @@ def test_topic5_required_metadata_missing_is_review_required_and_localized(
     )
     assert validation_issue["stage"] == "metadata_template"
     assert validation_issue["path"] == "document_metadata.classification"
+    assert body["content_organization_report"]["document_quality_flags"] == [
+        {
+            "tag": "validation_error",
+            "rule_id": "quality:validation_error",
+            "scope": "document",
+            "evidence": "Required document metadata field is missing.",
+            "source_block_ids": [],
+            "related_field_ids": ["classification"],
+            "related_issue_codes": ["metadata_required_missing"],
+        }
+    ]
+    assert all(
+        "validation_error" not in chunk["quality_tags"] for chunk in body["chunks"]
+    )
 
 
 def test_topic5_strict_required_metadata_missing_fails(topic5_client):
@@ -298,6 +312,51 @@ def test_topic5_convert_accepts_preferred_mapping_rules(topic5_client):
     body = response.json()
     assert body["status"] == "completed"
     assert body["mapping_report"]["summary"]["mapping_input_name"] == "mapping_rules"
+
+
+def test_topic5_inline_content_tag_rules_require_no_backend_edit(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"]["tag_rules"] = {
+        "content": {
+            "base_tags": ["announcement"],
+            "rules": [
+                {
+                    "rule_id": "inline-maintenance",
+                    "tag": "maintenance",
+                    "any_terms": ["维护"],
+                }
+            ],
+        },
+        "management": {
+            "static_tags": ["domain:campus"],
+            "metadata_rules": [
+                {
+                    "rule_id": "inline-language",
+                    "tag_template": "language:{value}",
+                    "source_path": "document_metadata.language",
+                }
+            ],
+        },
+        "quality": {"enabled_builtin_rules": ["source_linked", "anchor_linked"]},
+    }
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    chunks = response.json()["chunks"]
+    assert any("maintenance" in chunk["content_tags"] for chunk in chunks)
+    assert all(
+        chunk["management_tags"] == ["domain:campus", "language:zh-CN"]
+        for chunk in chunks
+    )
+    assert all(
+        not any(
+            tag.startswith(("task:", "doc:", "chunk_index:"))
+            for tag in chunk["management_tags"]
+        )
+        for chunk in chunks
+    )
 
 
 def test_topic5_request_accepts_legacy_mapping_template():

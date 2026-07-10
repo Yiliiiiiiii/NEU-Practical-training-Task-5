@@ -13,6 +13,7 @@ from app.schemas.content_organization import (
 )
 from app.schemas.reports import MappingReport, ValidationReport
 from app.schemas.target_schema import TargetField, TargetSchema
+from app.services.tag_rule_service import TagRuleService
 
 
 class ChunkOrganizerService:
@@ -41,30 +42,6 @@ class ChunkOrganizerService:
         "to",
         "in",
         "for",
-    }
-    CONTENT_TAG_RULES = {
-        "policy_doc": {
-            "scope": ["适用", "范围", "对象", "适用于"],
-            "responsibility": ["职责", "负责", "部门", "责任"],
-            "procedure": ["流程", "步骤", "审批", "执行"],
-            "compliance": ["合规", "禁止", "不得", "必须", "应当"],
-        },
-        "contract_doc": {
-            "party": ["甲方", "乙方", "双方", "委托方", "受托方"],
-            "amount": ["金额", "价款", "费用", "付款", "结算"],
-            "term": ["期限", "生效", "终止", "履行"],
-            "liability": ["违约", "责任", "赔偿"],
-        },
-        "meeting_doc": {
-            "attendee": ["参会", "出席", "列席"],
-            "decision": ["决定", "决议", "通过"],
-            "action_item": ["任务", "跟进", "负责人", "截止"],
-        },
-        "general_doc": {
-            "overview": ["概述", "简介", "背景"],
-            "requirement": ["要求", "标准", "指标"],
-            "result": ["结果", "结论", "产出"],
-        },
     }
     ENTITY_HINTS = (
         "entity",
@@ -99,6 +76,7 @@ class ChunkOrganizerService:
     ) -> tuple[list[dict[str, Any]], ContentOrganizationReport]:
         warnings: list[str] = []
         organization_options = self._normalize_options(options)
+        tag_options = organization_options or ContentOrganizationOptions()
         raw_chunks = chunks
         if organization_options is not None:
             raw_chunks = self._build_strategy_chunks(
@@ -123,6 +101,7 @@ class ChunkOrganizerService:
         )
 
         organized: list[dict[str, Any]] = []
+        tag_service = TagRuleService()
         for index, chunk in enumerate(raw_chunks):
             text = str(chunk.get("text") or "")
             token_estimate = self.estimate_tokens(text)
@@ -152,31 +131,58 @@ class ChunkOrganizerService:
                     if flag
                 }
             )
-            tags = ChunkTags(
-                content=self._content_tags(text, schema_id),
-                management=self._management_tags(
-                    task_id=task_id,
-                    doc_id=doc_id,
-                    schema=schema,
-                    template_id=template_id,
-                    template_version=template_version,
-                    index=index,
-                ),
-                quality=self._quality_tags(
-                    text=text,
-                    token_estimate=token_estimate,
-                    source_block_ids=source_block_ids,
-                    source_links=source_links,
-                    summary=summary,
-                    keywords=keywords,
-                    quality_flags=quality_flags,
-                    mapping_report=mapping_report,
-                    validation_report=validation_report,
-                ),
-            )
+            chunk_id = str(chunk.get("chunk_id") or f"chunk_{doc_id}_{index:04d}")
             title_path = list(chunk.get("title_path", []))
+            entity_tags = self._chunk_entity_tags(
+                text=text,
+                source_block_ids=source_block_ids,
+                entity_candidates=entity_candidates,
+            )
+            block_types = sorted(
+                {
+                    blocks_by_id[block_id].type
+                    for block_id in source_block_ids
+                    if block_id in blocks_by_id
+                }
+            )
+            content_tags, content_tag_traces = tag_service.content_tags(
+                text=text,
+                title_path=title_path,
+                block_types=block_types,
+                source_block_ids=source_block_ids,
+                schema_id=schema_id,
+                options=tag_options,
+            )
+            management_tags, management_tag_traces = tag_service.management_tags(
+                canonical=canonical_model,
+                schema=schema,
+                template_id=template_id,
+                template_version=template_version,
+                source_block_ids=source_block_ids,
+                options=tag_options,
+            )
+            quality_tags, quality_tag_traces = tag_service.quality_tags(
+                chunk_id=chunk_id,
+                text=text,
+                token_estimate=token_estimate,
+                source_block_ids=source_block_ids,
+                source_links=source_links,
+                summary=summary,
+                keywords=keywords,
+                quality_flags=quality_flags,
+                entity_tags=[tag.model_dump(mode="json") for tag in entity_tags],
+                canonical=canonical_model,
+                mapping_report=mapping_report,
+                validation_report=validation_report,
+                options=tag_options,
+            )
+            tags = ChunkTags(
+                content=content_tags,
+                management=management_tags,
+                quality=quality_tags,
+            )
             organized_chunk = OrganizedChunk(
-                chunk_id=str(chunk.get("chunk_id") or f"chunk_{doc_id}_{index:04d}"),
+                chunk_id=chunk_id,
                 parent_chunk_id=chunk.get("parent_chunk_id"),
                 doc_id=doc_id,
                 task_id=task_id,
@@ -201,16 +207,17 @@ class ChunkOrganizerService:
                 tags=tags,
                 keywords=keywords,
                 summary=summary,
-                entity_tags=self._chunk_entity_tags(
-                    text=text,
-                    source_block_ids=source_block_ids,
-                    entity_candidates=entity_candidates,
-                ),
+                entity_tags=entity_tags,
                 organization_trace={
                     "summary_strategy": "first_sentence_or_prefix",
                     "keyword_strategy": "frequency_with_stopwords",
                     "tag_strategy": "schema_and_rule_based",
                     "source_link_strategy": "canonical_block_anchor_or_path",
+                    "tag_traces": [
+                        *content_tag_traces,
+                        *management_tag_traces,
+                        *quality_tag_traces,
+                    ],
                     **{
                         key: value
                         for key, value in chunk.get("organization_trace", {}).items()
@@ -220,6 +227,13 @@ class ChunkOrganizerService:
             )
             organized.append(organized_chunk.model_dump(mode="json"))
 
+        document_quality_flags = tag_service.document_quality_flags(
+            chunks=organized,
+            canonical=canonical_model,
+            mapping_report=mapping_report,
+            validation_report=validation_report,
+            options=tag_options,
+        )
         report = self._report(
             task_id=task_id,
             doc_id=doc_id,
@@ -228,6 +242,8 @@ class ChunkOrganizerService:
             organized=organized,
             options=organization_options,
             warnings=warnings,
+            document_quality_flags=document_quality_flags,
+            tag_options=tag_options,
         )
         return organized, report
 
@@ -730,81 +746,6 @@ class ChunkOrganizerService:
         return links
 
     @classmethod
-    def _content_tags(cls, text: str, schema_id: str) -> list[str]:
-        tags = {schema_id.removesuffix("_doc") or "general"}
-        rules = cls.CONTENT_TAG_RULES.get(schema_id, {})
-        for tag, needles in rules.items():
-            if any(needle in text for needle in needles):
-                tags.add(tag)
-        if not tags:
-            tags.add("general")
-        return sorted(tags)
-
-    @staticmethod
-    def _management_tags(
-        *,
-        task_id: str,
-        doc_id: str,
-        schema: TargetSchema,
-        template_id: str,
-        template_version: str | None,
-        index: int,
-    ) -> list[str]:
-        tags = [
-            f"schema:{schema.schema_id}",
-            f"schema_version:{schema.version}",
-            f"template:{template_id}",
-            f"doc:{doc_id}",
-            f"task:{task_id}",
-            f"chunk_index:{index}",
-        ]
-        if template_version:
-            tags.append(f"template_version:{template_version}")
-        return sorted(tags)
-
-    @classmethod
-    def _quality_tags(
-        cls,
-        *,
-        text: str,
-        token_estimate: int,
-        source_block_ids: list[str],
-        source_links: list[SourceLink],
-        summary: str,
-        keywords: list[str],
-        quality_flags: list[str],
-        mapping_report: MappingReport,
-        validation_report: ValidationReport | None,
-    ) -> list[str]:
-        tags: set[str] = set(quality_flags)
-        if source_block_ids:
-            tags.add("source_linked")
-        if source_links:
-            tags.add("anchor_linked")
-        if validation_report is not None:
-            if any(issue.level == "error" for issue in validation_report.issues):
-                tags.add("validation_has_errors")
-            else:
-                tags.add("validation_passed")
-        if mapping_report.review_required_items:
-            tags.add("mapping_review_required")
-        if not text:
-            tags.add("empty_text")
-        if token_estimate > 1000:
-            tags.add("overlong_chunk")
-        if token_estimate > 1000 and "oversized_chunk" not in quality_flags:
-            tags.add("oversized_chunk")
-        if 0 < token_estimate < 10:
-            tags.add("short_chunk")
-        if 10 <= token_estimate <= 1000:
-            tags.add("length_ok")
-        if summary:
-            tags.add("summarized")
-        if keywords:
-            tags.add("keyworded")
-        return sorted(tags)
-
-    @classmethod
     def _entity_candidates(
         cls,
         *,
@@ -929,6 +870,8 @@ class ChunkOrganizerService:
         organized: list[dict[str, Any]],
         options: ContentOrganizationOptions | None,
         warnings: list[str],
+        document_quality_flags: list[dict[str, Any]],
+        tag_options: ContentOrganizationOptions,
     ) -> ContentOrganizationReport:
         content_tags = Counter(
             tag
@@ -985,6 +928,22 @@ class ChunkOrganizerService:
                 if chunk.get("tags", {}).get("quality")
             ),
             warnings=warnings,
+            document_quality_flags=document_quality_flags,
+            tag_rule_summary={
+                "content_base_tag_count": len(
+                    tag_options.tag_rules.content.base_tags
+                ),
+                "content_rule_count": len(tag_options.tag_rules.content.rules),
+                "management_static_tag_count": len(
+                    tag_options.tag_rules.management.static_tags
+                ),
+                "management_metadata_rule_count": len(
+                    tag_options.tag_rules.management.metadata_rules
+                ),
+                "quality_builtin_rule_count": len(
+                    tag_options.tag_rules.quality.enabled_builtin_rules
+                ),
+            },
             summary={
                 "schema_id": schema_id,
                 "template_id": template_id,

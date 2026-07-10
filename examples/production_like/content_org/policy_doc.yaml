@@ -1,0 +1,14 @@
+tag_rules:
+  content:
+    base_tags: [policy]
+    rules:
+      - {rule_id: policy-scope, tag: scope, any_terms: [适用, 范围, 对象, 适用于]}
+      - {rule_id: policy-responsibility, tag: responsibility, any_terms: [职责, 负责, 部门, 责任]}
+      - {rule_id: policy-procedure, tag: procedure, any_terms: [流程, 步骤, 审批, 执行]}
+      - {rule_id: policy-compliance, tag: compliance, any_terms: [合规, 禁止, 不得, 必须, 应当]}
+  management:
+    metadata_rules:
+      - {rule_id: schema-id, tag_template: "schema:{value}", source_path: schema.schema_id}
+      - {rule_id: template-version, tag_template: "template_version:{value}", source_path: package.template_version}
+  quality:
+    enabled_builtin_rules: [source_linked, anchor_linked]

@@ -11,6 +11,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 BACKEND_DIR = ROOT / "backend"
 if str(BACKEND_DIR) not in sys.path:
@@ -25,8 +27,10 @@ UIR_DIR = ROOT / "examples" / "real_world" / "uir"
 QUERY_PATH = ROOT / "examples" / "real_world" / "retrieval_queries.jsonl"
 REPORT_JSON = "chunk_retrieval_eval_report.json"
 REPORT_MD = "chunk_retrieval_eval_report.md"
+CONTENT_ORG_DIR = ROOT / "examples" / "production_like" / "content_org"
 
 CATALOG = {
+    "contract_doc": ("contract_doc", "contract_doc_base_v1"),
     "general_doc": ("general_doc", "general_doc_base_v1"),
     "meeting_doc": ("meeting_doc", "meeting_doc_base_v1"),
     "policy_doc": ("policy_doc", "policy_doc_base_v1"),
@@ -174,7 +178,15 @@ def load_uirs(uir_dir: Path = UIR_DIR) -> dict[str, dict[str, Any]]:
     return docs
 
 
-def default_options(strategy: str) -> dict[str, Any]:
+def default_options(strategy: str, schema_id: str) -> dict[str, Any]:
+    config_path = CONTENT_ORG_DIR / f"{schema_id}.yaml"
+    configured = (
+        yaml.safe_load(config_path.read_text(encoding="utf-8"))
+        if config_path.is_file()
+        else {}
+    )
+    if not isinstance(configured, dict):
+        raise ValueError(f"content organization config must be an object: {config_path}")
     return {
         "chunk_strategy": strategy,
         "target_tokens": 160,
@@ -188,6 +200,7 @@ def default_options(strategy: str) -> dict[str, Any]:
         "enable_light_semantic_boundary": True,
         "summary_mode": "deterministic",
         "keyword_mode": "deterministic",
+        **configured,
     }
 
 
@@ -227,7 +240,7 @@ def generate_chunks_for_strategy(
             schema_id=schema_id,
             template_id=template_id,
             template_version="1.0.0",
-            options=default_options(strategy),
+            options=default_options(strategy, schema_id),
         )
         chunks_by_doc[doc_id] = chunks
     return chunks_by_doc

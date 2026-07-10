@@ -1,0 +1,13 @@
+tag_rules:
+  content:
+    base_tags: [meeting]
+    rules:
+      - {rule_id: meeting-attendee, tag: attendee, any_terms: [参会, 出席, 列席]}
+      - {rule_id: meeting-decision, tag: decision, any_terms: [决定, 决议, 通过]}
+      - {rule_id: meeting-action, tag: action_item, any_terms: [任务, 跟进, 负责人, 截止]}
+  management:
+    metadata_rules:
+      - {rule_id: schema-id, tag_template: "schema:{value}", source_path: schema.schema_id}
+      - {rule_id: template-version, tag_template: "template_version:{value}", source_path: package.template_version}
+  quality:
+    enabled_builtin_rules: [source_linked, anchor_linked]

@@ -177,6 +177,18 @@ def test_registered_schema_pack_applies_metadata_template(execution_client):
         "source": "example",
     }
     assert metadata_report["passed"] is True
+    chunks = json.loads(Path(report_paths["chunks"]).read_text(encoding="utf-8"))[
+        "items"
+    ]
+    assert any("maintenance" in chunk["content_tags"] for chunk in chunks)
+    assert all("domain:campus" in chunk["management_tags"] for chunk in chunks)
+    assert all(
+        not any(
+            tag.startswith(("task:", "doc:", "chunk_index:"))
+            for tag in chunk["management_tags"]
+        )
+        for chunk in chunks
+    )
 
 
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):
