@@ -19,6 +19,8 @@ def _uir() -> UIRDocument:
             "title": "  Notice  ",
             "parts": "alpha; beta，gamma",
             "nested": {"owner": "OpenAI"},
+            "amount": "1,234.5",
+            "enabled": "true",
             "date": "2026/07/10",
             "kind": "公告",
         },
@@ -104,6 +106,26 @@ def _field(field_id: str, type_: str = "string") -> TargetField:
             _field("language"),
             "zh-CN",
         ),
+        (
+            TransformRule(
+                rule_id="number",
+                operation="normalize_number",
+                source_field="metadata.amount",
+                target_field_id="amount",
+            ),
+            _field("amount", "number"),
+            1234.5,
+        ),
+        (
+            TransformRule(
+                rule_id="boolean",
+                operation="normalize_boolean",
+                source_field="metadata.enabled",
+                target_field_id="enabled",
+            ),
+            _field("enabled", "boolean"),
+            True,
+        ),
     ],
 )
 def test_field_operation_service_executes_supported_rules(
@@ -169,6 +191,56 @@ def test_field_operation_service_rejects_unsupported_operation() -> None:
 
     assert outcome.applied is False
     assert outcome.error == "unsupported_operation"
+
+
+def test_field_operation_service_rejects_unsafe_implicit_coercion() -> None:
+    uir = _uir().model_copy(
+        update={"metadata": {"left": {"value": 1}, "right": "text"}}
+    )
+    rule = TransformRule(
+        rule_id="merge-complex",
+        operation="merge",
+        source_fields=["metadata.left", "metadata.right"],
+        target_field_id="body",
+    )
+
+    outcome = FieldOperationService().apply(
+        rule=rule,
+        uir=uir,
+        target_field=_field("body", "text"),
+        current_value=None,
+    )
+
+    assert outcome.applied is False
+    assert outcome.error == "unsafe_implicit_coercion"
+
+
+def test_field_operation_service_rejects_duplicate_sources_and_target_type() -> None:
+    duplicate = FieldOperationService().apply(
+        rule=TransformRule(
+            rule_id="duplicate",
+            operation="merge",
+            source_fields=["blocks.b1.text", "blocks.b1.text"],
+            target_field_id="body",
+        ),
+        uir=_uir(),
+        target_field=_field("body", "text"),
+        current_value=None,
+    )
+    wrong_type = FieldOperationService().apply(
+        rule=TransformRule(
+            rule_id="wrong-type",
+            operation="rename",
+            source_field="metadata.amount",
+            target_field_id="title",
+        ),
+        uir=_uir().model_copy(update={"metadata": {"amount": 123}}),
+        target_field=_field("title", "string"),
+        current_value=None,
+    )
+
+    assert duplicate.error == "duplicate_source_path"
+    assert wrong_type.error == "target_type_invalid"
 
 
 def test_transform_service_applies_rules_after_mapped_values() -> None:

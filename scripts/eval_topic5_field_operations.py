@@ -79,6 +79,7 @@ def evaluate_variant(group: dict[str, Any], variant: list[Any]) -> dict[str, Any
     block_values: list[str] = []
     params: dict[str, Any] = {}
     current_value: Any = None
+    explicit_source_fields: list[str] = []
     expected_applied = True
     expected_error: str | None = None
 
@@ -107,14 +108,37 @@ def evaluate_variant(group: dict[str, Any], variant: list[Any]) -> dict[str, Any
         case_id, source_path, target_type, metadata, expected = variant
         source_field = source_path
     elif category == "unsafe":
-        case_id, source_field, expected_error = variant
-        metadata = {"owner": "value"}
+        if len(variant) == 3:
+            case_id, source_field, expected_error = variant
+            metadata = {"owner": "value"}
+        else:
+            (
+                case_id,
+                operation,
+                source_spec,
+                source_value,
+                target_type,
+                params,
+                expected_error,
+            ) = variant
+            if operation == "contract_missing_target":
+                return _evaluate_missing_target_contract(case_id, category)
+            if isinstance(source_spec, list):
+                explicit_source_fields = [str(item) for item in source_spec]
+                metadata = _metadata_for_sources(explicit_source_fields, source_value)
+                source_field = None
+            else:
+                source_field = source_spec
+                if source_field == "metadata.source":
+                    metadata = {"source": source_value}
+                else:
+                    metadata = {}
         expected = None
         expected_applied = False
     else:
         raise ValueError(f"unsupported fixture category: {category}")
 
-    source_fields = (
+    source_fields = explicit_source_fields or (
         [f"blocks.b{index}.text" for index in range(1, len(block_values) + 1)]
         if category == "merge"
         else []
@@ -160,6 +184,42 @@ def _metadata_for_path(path: str, value: Any) -> dict[str, Any]:
         cursor = child
     cursor[parts[-1]] = value
     return result
+
+
+def _metadata_for_sources(paths: list[str], values: Any) -> dict[str, Any]:
+    if len(set(paths)) != len(paths):
+        value = values[0] if isinstance(values, list) else values
+        return _metadata_for_path(paths[0], value)
+    source_values = values if isinstance(values, list) else [values] * len(paths)
+    result: dict[str, Any] = {}
+    for path, value in zip(paths, source_values, strict=True):
+        result.update(_metadata_for_path(path, value))
+    return result
+
+
+def _evaluate_missing_target_contract(
+    case_id: str, category: str
+) -> dict[str, Any]:
+    try:
+        TransformRule(
+            rule_id=case_id,
+            operation="rename",
+            source_field="metadata.source",
+        )
+    except ValueError:
+        actual_error = "target_required"
+    else:
+        actual_error = None
+    return {
+        "case_id": case_id,
+        "category": category,
+        "operation": "contract_missing_target",
+        "passed": actual_error == "target_required",
+        "expected": None,
+        "actual": None,
+        "expected_error": "target_required",
+        "actual_error": actual_error,
+    }
 
 
 def build_report(fixture_path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:

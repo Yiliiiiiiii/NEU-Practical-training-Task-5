@@ -185,7 +185,7 @@ The project demonstrates benchmark-level automatic field mapping performance wit
 ## Topic 5 Hard-Gap Batch 1 Acceptance
 
 The batch 1 machine gate passes all declared conditions. Evidence is under
-`docs/交接/evidence/hard_gap_batch_1/`. The fixed operation dataset contains 110 cases;
+`docs/交接/evidence/hard_gap_batch_1/`. The fixed operation dataset contains 119 cases;
 the exact schema-localization dataset contains 40 cases. Field-operation accuracy is
 1.000, unsafe accepted operations are 0, and stage/path/error-code localization is 1.000.
 

@@ -26,7 +26,7 @@ Topic 6 quality score, LLM judge, or publication router was added.
 
 | Evidence | Result |
 | --- | ---: |
-| Field-operation cases | 110 |
+| Field-operation cases | 119 |
 | Field-operation accuracy | 1.000 |
 | Rename / merge / split accuracy | 1.000 / 1.000 / 1.000 |
 | Unsafe operation acceptance count | 0 |

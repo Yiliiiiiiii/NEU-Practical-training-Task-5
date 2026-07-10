@@ -316,7 +316,7 @@ Topic 11 chunk-provider contract, and canonical JSON/Markdown/chunk consistency 
 New feature-aware packages include checksummed metadata and consistency reports while
 legacy requests and Package 1.1 packages remain supported.
 
-The fixed evidence sets contain 110 field-operation cases and 40 exact schema issue
+The fixed evidence sets contain 119 field-operation cases and 40 exact schema issue
 localization cases. Reproduce the acceptance evidence with:
 
 ```powershell

@@ -22,8 +22,10 @@ class FieldOperationService:
         "default",
         "enum_map",
         "merge",
+        "normalize_boolean",
         "normalize_date",
         "normalize_datetime",
+        "normalize_number",
         "rename",
         "split",
         "trim",
@@ -46,9 +48,13 @@ class FieldOperationService:
         if operation == "default":
             if current_value is not None:
                 return FieldOperationOutcome(applied=False, value=current_value)
-            return FieldOperationOutcome(applied=True, value=rule.params.get("value"))
+            return self._success(rule.params.get("value"), target_field)
 
         paths = rule.source_fields or ([rule.source_field] if rule.source_field else [])
+        if len(paths) != len(set(paths)):
+            return FieldOperationOutcome(
+                applied=False, error="duplicate_source_path"
+            )
         if not paths:
             source_values = [current_value]
         else:
@@ -62,10 +68,17 @@ class FieldOperationService:
         if operation == "merge":
             separator = str(rule.params.get("separator", "\n"))
             skip_empty = bool(rule.params.get("skip_empty", True))
-            values = [str(value) for value in source_values if value is not None]
+            if any(
+                value is not None and not isinstance(value, str)
+                for value in source_values
+            ):
+                return FieldOperationOutcome(
+                    applied=False, error="unsafe_implicit_coercion"
+                )
+            values = [value for value in source_values if isinstance(value, str)]
             if skip_empty:
                 values = [value for value in values if value.strip()]
-            return FieldOperationOutcome(applied=True, value=separator.join(values))
+            return self._success(separator.join(values), target_field)
 
         value = source_values[0] if source_values else current_value
         if operation == "split":
@@ -77,30 +90,74 @@ class FieldOperationService:
             ):
                 return FieldOperationOutcome(applied=False, error="parameters_invalid")
             pattern = "|".join(re.escape(item) for item in separators)
-            return FieldOperationOutcome(
-                applied=True,
-                value=[item.strip() for item in re.split(pattern, value) if item.strip()],
+            return self._success(
+                [item.strip() for item in re.split(pattern, value) if item.strip()],
+                target_field,
             )
         if operation == "trim":
             if not isinstance(value, str):
                 return FieldOperationOutcome(applied=False, error="source_type_invalid")
-            return FieldOperationOutcome(applied=True, value=value.strip())
+            return self._success(value.strip(), target_field)
         if operation == "enum_map":
             mapping = rule.params.get("map", {})
             if not isinstance(mapping, dict):
                 return FieldOperationOutcome(applied=False, error="parameters_invalid")
             if value not in mapping:
                 return FieldOperationOutcome(applied=False, error="enum_value_unmapped")
-            return FieldOperationOutcome(applied=True, value=mapping[value])
-        if operation in {"normalize_date", "date_format", "normalize_datetime"}:
+            return self._success(mapping[value], target_field)
+        if operation == "normalize_boolean":
+            normalized = self._normalize_boolean(value)
+            if normalized is None:
+                return FieldOperationOutcome(
+                    applied=False, error="boolean_format_error"
+                )
+            return self._success(normalized, target_field)
+        if operation in {
+            "normalize_date",
+            "date_format",
+            "normalize_datetime",
+            "normalize_number",
+        }:
             from app.services.transform_service import TransformService
 
             normalized, issue = TransformService()._coerce_value(value, target_field, {})
-            return FieldOperationOutcome(
-                applied=issue is None,
-                value=normalized,
-                error=str(issue.get("code")) if issue else None,
-            )
+            if issue:
+                return FieldOperationOutcome(
+                    applied=False, value=normalized, error=str(issue.get("code"))
+                )
+            return self._success(normalized, target_field)
+        return self._success(value, target_field)
+
+    @staticmethod
+    def _normalize_boolean(value: Any) -> bool | None:
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, str):
+            normalized = value.strip().lower()
+            if normalized in {"true", "yes", "1"}:
+                return True
+            if normalized in {"false", "no", "0"}:
+                return False
+        return None
+
+    @staticmethod
+    def _success(value: Any, target_field: TargetField) -> FieldOperationOutcome:
+        matches = {
+            "any": True,
+            "string": isinstance(value, str),
+            "text": isinstance(value, str),
+            "enum": isinstance(value, str),
+            "date": isinstance(value, str),
+            "datetime": isinstance(value, str),
+            "number": isinstance(value, int | float) and not isinstance(value, bool),
+            "boolean": isinstance(value, bool),
+            "object": isinstance(value, dict),
+        }.get(
+            target_field.type,
+            isinstance(value, list) if target_field.type.startswith("array") else True,
+        )
+        if not matches:
+            return FieldOperationOutcome(applied=False, error="target_type_invalid")
         return FieldOperationOutcome(applied=True, value=value)
 
     def _resolve_source(

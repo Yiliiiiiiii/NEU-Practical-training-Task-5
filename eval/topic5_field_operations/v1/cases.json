@@ -92,8 +92,8 @@
         ["trim_02", "trim", "string", "\tissuer\n", {}, "issuer"],
         ["trim_03", "trim", "string", "  中文  ", {}, "中文"],
         ["rename_convert_01", "rename", "string", "exact", {}, "exact"],
-        ["rename_convert_02", "rename", "number", 12.345, {}, 12.345],
-        ["rename_convert_03", "rename", "boolean", true, {}, true],
+        ["rename_convert_02", "normalize_number", "number", "12.345", {}, 12.345],
+        ["rename_convert_03", "normalize_boolean", "boolean", "true", {}, true],
         ["rename_convert_04", "rename", "array[string]", ["a", "b"], {}, ["a", "b"]],
         ["rename_convert_05", "rename", "object", {"a": 1}, {}, {"a": 1}],
         ["rename_convert_06", "rename", "string", "00123", {}, "00123"]
@@ -156,7 +156,16 @@
         ["unsafe_17", "metadata.owner[0]", "unsafe_source_path"],
         ["unsafe_18", "metadata.${owner}", "unsafe_source_path"],
         ["unsafe_19", "metadata.owner|filter", "unsafe_source_path"],
-        ["unsafe_20", "metadata.owner value", "unsafe_source_path"]
+        ["unsafe_20", "metadata.owner value", "unsafe_source_path"],
+        ["unsafe_21", "python_eval", null, null, "string", {}, "unsupported_operation"],
+        ["unsafe_22", "rename", "metadata.missing", null, "string", {}, "source_missing"],
+        ["unsafe_23", "split", "metadata.source", 12, "array[string]", {"separators":[","]}, "source_type_invalid"],
+        ["unsafe_24", "enum_map", "metadata.source", "unknown", "enum", {"map":{"notice":"notice"}}, "enum_value_unmapped"],
+        ["unsafe_25", "merge", ["metadata.left","metadata.right"], [{"value":1},"text"], "text", {}, "unsafe_implicit_coercion"],
+        ["unsafe_26", "rename", "metadata.source", 12, "string", {}, "target_type_invalid"],
+        ["unsafe_27", "merge", ["metadata.source","metadata.source"], "text", "text", {}, "duplicate_source_path"],
+        ["unsafe_28", "blocked_semantic_pair", "metadata.source", "publish_date->event_time", "string", {}, "unsupported_operation"],
+        ["unsafe_29", "contract_missing_target", null, null, "string", {}, "target_required"]
       ]
     }
   ]

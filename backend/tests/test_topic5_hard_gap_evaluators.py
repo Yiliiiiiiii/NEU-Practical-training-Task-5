@@ -18,10 +18,10 @@ from scripts.eval_topic5_schema_localization import (
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_field_operation_evaluator_has_fixed_110_case_denominator() -> None:
+def test_field_operation_evaluator_has_fixed_119_case_denominator() -> None:
     report = field_report()
 
-    assert report["case_count"] == 110
+    assert report["case_count"] == 119
     assert report["field_operation_accuracy"] >= 0.95
     assert report["rename_accuracy"] >= 0.95
     assert report["merge_accuracy"] >= 0.95
