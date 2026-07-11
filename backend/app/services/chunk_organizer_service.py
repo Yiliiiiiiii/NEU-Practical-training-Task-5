@@ -78,13 +78,18 @@ class ChunkOrganizerService:
     ) -> tuple[list[dict[str, Any]], ContentOrganizationReport]:
         warnings: list[str] = []
         organization_options = self._normalize_options(options)
+        if (
+            organization_options is not None
+            and organization_options.legacy_summary_mode_used
+        ):
+            warnings.append("summary_mode is deprecated; use summary.chunk_mode")
         tag_options = organization_options or ContentOrganizationOptions()
         raw_chunks = chunks
         if organization_options is not None and not use_provided_chunks:
             raw_chunks = self._build_strategy_chunks(
                 canonical_model=canonical_model,
                 doc_id=doc_id,
-                task_id=doc_id,
+                task_id=task_id,
                 options=organization_options,
             )
 
@@ -125,7 +130,10 @@ class ChunkOrganizerService:
                 metadata=canonical_model.doc_meta.get("metadata", {}),
                 title_path=chunk.get("title_path", []),
             ) if organization_options is None or organization_options.keyword_mode != "none" else []
-            if organization_options is not None and organization_options.summary_mode == "none":
+            if (
+                organization_options is not None
+                and organization_options.summary.chunk_mode == "none"
+            ):
                 summary = ""
             quality_flags = sorted(
                 {
@@ -278,7 +286,7 @@ class ChunkOrganizerService:
         child_chunks = self._block_aware_chunks(
             canonical_model=canonical_model,
             doc_id=doc_id,
-            task_id=doc_id,
+            task_id=task_id,
             options=options,
             granularity="child" if self._parent_child_enabled(options) else None,
         )
@@ -287,7 +295,7 @@ class ChunkOrganizerService:
         parent_chunks = self._parent_chunks(
             canonical_model=canonical_model,
             doc_id=doc_id,
-            task_id=doc_id,
+            task_id=task_id,
             options=options,
         )
         parent_by_title = {

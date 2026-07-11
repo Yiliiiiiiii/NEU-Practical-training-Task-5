@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import httpx
 import pytest
@@ -15,6 +16,8 @@ from app.services.chunk_providers.base import (
 )
 from app.services.chunk_providers.resolver import ChunkProviderResolver
 from app.services.chunk_providers.topic11_http import Topic11HttpChunkProvider
+
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def _canonical() -> CanonicalModel:
@@ -124,6 +127,36 @@ def test_internal_provider_is_offline_default() -> None:
     assert result.trace.external_requested is False
     assert result.trace.fallback_used is False
     assert result.chunks
+
+
+def test_internal_provider_chunk_ids_use_canonical_task_id() -> None:
+    canonical = _canonical()
+    result = ChunkProviderResolver(settings=Settings(offline_mode=True)).resolve(
+        canonical=canonical,
+        options=_options(provider="internal"),
+        legacy_chunks=_legacy_chunks(),
+    )
+
+    assert result.chunks
+    assert all(
+        chunk["chunk_id"].startswith(f"chunk_{canonical.task_id}_")
+        for chunk in result.chunks
+    )
+    assert all(canonical.doc_id not in chunk["chunk_id"] for chunk in result.chunks)
+
+
+def test_topic11_request_contract_carries_real_task_id() -> None:
+    canonical = _canonical()
+    request = ChunkProviderResolver.build_request(canonical, _options())
+    contract = json.loads(
+        (ROOT / "contracts" / "schemas" / "topic11_chunk_request.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert request.task_id == canonical.task_id
+    assert "task_id" in contract["required"]
+    assert contract["properties"]["task_id"]["minLength"] == 1
 
 
 def test_topic11_valid_response_is_used() -> None:

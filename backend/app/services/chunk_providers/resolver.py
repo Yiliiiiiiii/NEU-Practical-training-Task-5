@@ -95,6 +95,7 @@ class ChunkProviderResolver:
         options: ContentOrganizationOptions,
     ) -> ChunkProviderRequest:
         return ChunkProviderRequest(
+            task_id=canonical.task_id,
             doc_id=canonical.doc_id,
             schema_id=canonical.schema_id,
             blocks=[

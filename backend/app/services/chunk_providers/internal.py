@@ -17,7 +17,7 @@ class InternalDeterministicChunkProvider:
         options = ContentOrganizationOptions.model_validate(request.chunk_config)
         canonical = CanonicalModel(
             canonical_version="1.0",
-            task_id=f"internal-provider-{request.doc_id}",
+            task_id=request.task_id,
             doc_id=request.doc_id,
             schema_id=request.schema_id,
             doc_meta={

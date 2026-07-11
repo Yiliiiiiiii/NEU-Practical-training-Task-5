@@ -273,6 +273,65 @@ def test_chunk_options_defaults_are_backward_compatible():
     assert options.enable_parent_child is False
 
 
+def test_legacy_summary_mode_migrates_when_nested_chunk_mode_is_omitted():
+    options = ContentOrganizationOptions.model_validate({"summary_mode": "none"})
+
+    assert options.summary.chunk_mode == "none"
+    assert options.model_dump(mode="json")["summary_mode"] == "none"
+
+
+def test_nested_summary_mode_is_the_source_of_truth_without_legacy_input():
+    options = ContentOrganizationOptions.model_validate(
+        {"summary": {"chunk_mode": "none"}}
+    )
+
+    assert options.summary.chunk_mode == "none"
+    assert options.model_dump(mode="json")["summary_mode"] == "none"
+
+
+def test_identical_legacy_and_nested_summary_modes_are_accepted():
+    options = ContentOrganizationOptions.model_validate(
+        {
+            "summary_mode": "none",
+            "summary": {"chunk_mode": "none"},
+        }
+    )
+
+    assert options.summary.chunk_mode == "none"
+
+
+def test_conflicting_explicit_legacy_and_nested_summary_modes_are_rejected():
+    with pytest.raises(
+        ValidationError,
+        match="summary_mode conflicts with explicitly supplied summary.chunk_mode",
+    ):
+        ContentOrganizationOptions.model_validate(
+            {
+                "summary_mode": "none",
+                "summary": {"chunk_mode": "deterministic"},
+            }
+        )
+
+
+def test_legacy_summary_mode_adds_deterministic_deprecation_warning():
+    _chunks, report = ChunkOrganizerService().organize_chunks(
+        chunks=[],
+        canonical_model=make_canonical(),
+        schema=make_schema(),
+        mapping_report=make_mapping_report(),
+        validation_report=None,
+        task_id="task_policy",
+        doc_id="doc_policy",
+        schema_id="policy_doc",
+        template_id="policy_doc_base_v1",
+        options={"summary_mode": "none"},
+    )
+
+    assert report.warnings == [
+        "summary_mode is deprecated; use summary.chunk_mode",
+    ]
+
+
 def test_chunk_options_reject_invalid_token_ranges():
     with pytest.raises(ValidationError):
         ContentOrganizationOptions(min_tokens=200, target_tokens=100, max_tokens=300)
@@ -396,3 +455,30 @@ def test_parent_child_chunks_have_parent_ids():
     assert all(chunk["parent_chunk_id"] in parent_ids for chunk in child_chunks)
     assert report.summary["parent_chunk_count"] == len(parent_chunks)
     assert report.summary["child_chunk_count"] == len(child_chunks)
+
+
+def test_internal_chunk_ids_use_real_task_id_and_preserve_document_id():
+    chunks, _report = ChunkOrganizerService().organize_chunks(
+        chunks=[],
+        canonical_model=make_structured_canonical(),
+        schema=make_schema(),
+        mapping_report=make_mapping_report(),
+        validation_report=None,
+        task_id="real_task_id",
+        doc_id="different_doc_id",
+        schema_id="policy_doc",
+        template_id="policy_doc_base_v1",
+        options=ContentOrganizationOptions(
+            chunk_strategy="parent_child",
+            min_tokens=1,
+            target_tokens=12,
+            max_tokens=28,
+            overlap_tokens=0,
+            enable_parent_child=True,
+        ),
+    )
+
+    assert chunks
+    assert all(chunk["chunk_id"].startswith("chunk_real_task_id_") for chunk in chunks)
+    assert all(chunk["task_id"] == "real_task_id" for chunk in chunks)
+    assert all(chunk["doc_id"] == "different_doc_id" for chunk in chunks)

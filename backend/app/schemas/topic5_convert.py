@@ -27,7 +27,6 @@ class ContentOrganizationConfig(ContentOrganizationOptions):
     protect_lists: bool = True
     protect_code_blocks: bool = True
     enable_parent_child: bool = False
-    summary_mode: Literal["none", "deterministic"] = "deterministic"
     keyword_mode: Literal["none", "deterministic"] = "deterministic"
 
 

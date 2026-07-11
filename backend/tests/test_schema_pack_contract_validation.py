@@ -73,6 +73,20 @@ def test_validate_event_notice_schema_pack_passes():
     assert result["errors"] == []
 
 
+def test_bundled_content_organization_contracts_use_nested_summary_modes():
+    for schema_pack_id in ("announcement_doc", "event_notice_doc"):
+        content_org = _read_yaml(
+            ROOT / "schema_packs" / "examples" / schema_pack_id / "content_org.yaml"
+        )
+
+        assert "summary_mode" not in content_org
+        assert content_org["summary"]["chunk_mode"] == "deterministic"
+        assert content_org["summary"]["document_mode"] == "extractive"
+        assert _run_validator(
+            ROOT / "schema_packs" / "examples" / schema_pack_id
+        )["status"] == "passed"
+
+
 def test_validate_schema_pack_fails_on_missing_mapping_rules(tmp_path):
     source = ROOT / "schema_packs" / "examples" / "announcement_doc"
     pack = tmp_path / "announcement_doc"

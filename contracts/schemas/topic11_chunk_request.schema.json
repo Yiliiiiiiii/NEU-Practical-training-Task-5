@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": [
     "contract_version",
+    "task_id",
     "doc_id",
     "schema_id",
     "blocks",
@@ -15,6 +16,7 @@
   ],
   "properties": {
     "contract_version": {"const": "1.0"},
+    "task_id": {"type": "string", "minLength": 1},
     "doc_id": {"type": "string", "minLength": 1},
     "schema_id": {"type": "string", "minLength": 1},
     "blocks": {

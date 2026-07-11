@@ -1,7 +1,7 @@
 import re
 from typing import Any, Literal
 
-from pydantic import Field, field_validator, model_validator
+from pydantic import Field, PrivateAttr, field_validator, model_validator
 
 from app.schemas.common import StrictBaseModel
 
@@ -161,6 +161,8 @@ class TagRules(StrictBaseModel):
 
 
 class ContentOrganizationOptions(StrictBaseModel):
+    _legacy_summary_mode_used: bool = PrivateAttr(default=False)
+
     chunk_strategy: Literal[
         "fixed_window",
         "heading_aware",
@@ -186,6 +188,48 @@ class ContentOrganizationOptions(StrictBaseModel):
     strict_provider: bool = False
     enable_legacy_entity_inference: bool = False
 
+    @model_validator(mode="before")
+    @classmethod
+    def migrate_legacy_summary_mode(cls, value: Any) -> Any:
+        if not isinstance(value, dict) or "summary_mode" not in value:
+            return value
+
+        payload = dict(value)
+        legacy_mode = payload["summary_mode"]
+        raw_summary = payload.get("summary")
+        if isinstance(raw_summary, SummaryConfig):
+            nested_mode_is_explicit = "chunk_mode" in raw_summary.model_fields_set
+            nested_mode = raw_summary.chunk_mode
+        elif isinstance(raw_summary, dict):
+            nested_mode_is_explicit = "chunk_mode" in raw_summary
+            nested_mode = raw_summary.get("chunk_mode")
+        else:
+            nested_mode_is_explicit = False
+            nested_mode = None
+
+        if nested_mode_is_explicit and nested_mode != legacy_mode:
+            raise ValueError(
+                "summary_mode conflicts with explicitly supplied summary.chunk_mode"
+            )
+        if not nested_mode_is_explicit:
+            if isinstance(raw_summary, SummaryConfig):
+                payload["summary"] = raw_summary.model_copy(
+                    update={"chunk_mode": legacy_mode}
+                )
+            elif raw_summary is None and "summary" in payload:
+                return payload
+            else:
+                nested_summary = dict(raw_summary or {})
+                nested_summary["chunk_mode"] = legacy_mode
+                payload["summary"] = nested_summary
+        return payload
+
+    @model_validator(mode="after")
+    def synchronize_legacy_summary_mode(self):
+        self._legacy_summary_mode_used = "summary_mode" in self.model_fields_set
+        self.summary_mode = self.summary.chunk_mode
+        return self
+
     @model_validator(mode="after")
     def validate_token_window(self):
         if self.max_tokens < self.min_tokens:
@@ -195,6 +239,10 @@ class ContentOrganizationOptions(StrictBaseModel):
         if self.overlap_tokens >= self.target_tokens:
             raise ValueError("overlap_tokens must be less than target_tokens")
         return self
+
+    @property
+    def legacy_summary_mode_used(self) -> bool:
+        return self._legacy_summary_mode_used
 
 
 class OrganizedChunk(StrictBaseModel):
