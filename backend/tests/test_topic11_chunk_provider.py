@@ -322,6 +322,49 @@ def test_missing_protected_table_is_rejected() -> None:
     assert result.trace.fallback_reason == "topic11_protected_block_missing"
 
 
+def test_missing_ordinary_nonempty_paragraph_is_rejected() -> None:
+    external = FakeProvider(
+        _response(
+            {
+                "chunk_id": "external-table",
+                "text": "Field: Value",
+                "source_block_ids": ["table1"],
+            }
+        )
+    )
+    resolver = ChunkProviderResolver(settings=Settings(), external_provider=external)
+
+    result = resolver.resolve(
+        canonical=_canonical(), options=_options(), legacy_chunks=_legacy_chunks()
+    )
+
+    assert result.trace.fallback_reason == "topic11_canonical_block_missing"
+
+
+def test_protected_table_text_must_be_preserved_exactly() -> None:
+    external = FakeProvider(
+        _response(
+            {
+                "chunk_id": "external-1",
+                "text": "OpenAI published the notice.",
+                "source_block_ids": ["b1"],
+            },
+            {
+                "chunk_id": "external-table",
+                "text": "Field",
+                "source_block_ids": ["table1"],
+            },
+        )
+    )
+    resolver = ChunkProviderResolver(settings=Settings(), external_provider=external)
+
+    result = resolver.resolve(
+        canonical=_canonical(), options=_options(), legacy_chunks=_legacy_chunks()
+    )
+
+    assert result.trace.fallback_reason == "topic11_protected_block_integrity"
+
+
 def test_strict_provider_mode_returns_failure_without_fallback() -> None:
     resolver = ChunkProviderResolver(
         settings=Settings(),

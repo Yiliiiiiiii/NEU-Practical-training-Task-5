@@ -409,6 +409,14 @@ class TaskExecutionService:
             markdown=rendered.markdown,
             chunks=rendered.chunks,
             document_summary=document_summary,
+            block_exclusions=(
+                [
+                    item.model_dump(mode="json")
+                    for item in content_org_options.block_exclusions
+                ]
+                if content_org_options is not None
+                else []
+            ),
         )
         conversion_assertion_report: dict[str, Any] | None = None
         conversion_assertion_report_path: str | None = None

@@ -26,5 +26,12 @@ class ArtifactConsistencyReport(StrictBaseModel):
     field_coverage: float = Field(ge=0.0, le=1.0)
     block_coverage: float = Field(ge=0.0, le=1.0)
     chunk_source_coverage: float = Field(ge=0.0, le=1.0)
+    chunk_source_validity: float = Field(default=1.0, ge=0.0, le=1.0)
+    canonical_block_coverage: float = Field(default=1.0, ge=0.0, le=1.0)
+    nonempty_block_coverage: float = Field(default=1.0, ge=0.0, le=1.0)
+    protected_block_integrity: float = Field(default=1.0, ge=0.0, le=1.0)
+    duplicate_content_ratio: float = Field(default=0.0, ge=0.0, le=1.0)
+    unexplained_chunk_text_count: int = Field(default=0, ge=0)
+    unknown_source_count: int = Field(default=0, ge=0)
     summary_consistent: bool
     metadata_consistent: bool

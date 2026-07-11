@@ -39,6 +39,7 @@ class ArtifactConsistencyService:
         markdown: str,
         chunks: list[dict[str, Any]],
         document_summary: DocumentSummary | None,
+        block_exclusions: list[dict[str, Any]] | None = None,
     ) -> ArtifactConsistencyReport:
         errors: list[ArtifactConsistencyIssue] = []
         checks: list[ArtifactConsistencyCheck] = []
@@ -52,7 +53,12 @@ class ArtifactConsistencyService:
         summary_consistent = self._check_summary(
             structured_json, markdown, document_summary, errors
         )
-        sourced_chunks = self._check_chunks(canonical, chunks, errors)
+        chunk_metrics = self._check_chunks(
+            canonical,
+            chunks,
+            errors,
+            block_exclusions=block_exclusions or [],
+        )
 
         checks.extend(
             [
@@ -61,7 +67,18 @@ class ArtifactConsistencyService:
                 self._check("markdown_structured_data", markdown_data_consistent),
                 self._check("markdown_blocks", block_matches == len(canonical.blocks)),
                 self._check("document_summary", summary_consistent),
-                self._check("chunk_sources", sourced_chunks == len(chunks)),
+                self._check(
+                    "chunk_sources",
+                    chunk_metrics["sourced_chunks"] == len(chunks),
+                ),
+                self._check(
+                    "canonical_block_coverage",
+                    chunk_metrics["nonempty_block_coverage"] == 1.0,
+                ),
+                self._check(
+                    "protected_block_integrity",
+                    chunk_metrics["protected_block_integrity"] == 1.0,
+                ),
             ]
         )
         return ArtifactConsistencyReport(
@@ -71,7 +88,20 @@ class ArtifactConsistencyService:
             warnings=[],
             field_coverage=self._coverage(field_matches, len(canonical.fields)),
             block_coverage=self._coverage(block_matches, len(canonical.blocks)),
-            chunk_source_coverage=self._coverage(sourced_chunks, len(chunks)),
+            chunk_source_coverage=self._coverage(
+                chunk_metrics["sourced_chunks"], len(chunks)
+            ),
+            chunk_source_validity=self._coverage(
+                chunk_metrics["sourced_chunks"], len(chunks)
+            ),
+            canonical_block_coverage=chunk_metrics["canonical_block_coverage"],
+            nonempty_block_coverage=chunk_metrics["nonempty_block_coverage"],
+            protected_block_integrity=chunk_metrics["protected_block_integrity"],
+            duplicate_content_ratio=chunk_metrics["duplicate_content_ratio"],
+            unexplained_chunk_text_count=chunk_metrics[
+                "unexplained_chunk_text_count"
+            ],
+            unknown_source_count=chunk_metrics["unknown_source_count"],
             summary_consistent=summary_consistent,
             metadata_consistent=metadata_consistent,
         )
@@ -277,7 +307,9 @@ class ArtifactConsistencyService:
         canonical: CanonicalModel,
         chunks: list[dict[str, Any]],
         errors: list[ArtifactConsistencyIssue],
-    ) -> int:
+        *,
+        block_exclusions: list[dict[str, Any]],
+    ) -> dict[str, Any]:
         blocks = {block.block_id: block for block in canonical.blocks}
         chunk_ids = {
             str(chunk.get("chunk_id"))
@@ -285,6 +317,11 @@ class ArtifactConsistencyService:
             if chunk.get("chunk_id")
         }
         sourced = 0
+        unknown_source_count = 0
+        unexplained_count = 0
+        referenced_blocks: set[str] = set()
+        protected_integrity: set[str] = set()
+        normalized_text_counts: dict[str, int] = {}
         seen_indices: set[int] = set()
         entities = canonical.doc_meta.get("entities", [])
         entities = entities if isinstance(entities, list) else []
@@ -294,6 +331,8 @@ class ArtifactConsistencyService:
             source_ids = [str(value) for value in chunk.get("source_block_ids", [])]
             known_ids = [value for value in source_ids if value in blocks]
             unknown_ids = [value for value in source_ids if value not in blocks]
+            unknown_source_count += len(unknown_ids)
+            referenced_blocks.update(known_ids)
             if unknown_ids or not source_ids:
                 self._error(
                     errors,
@@ -317,13 +356,26 @@ class ArtifactConsistencyService:
 
             source_text = "\n".join(blocks[item].text for item in known_ids)
             chunk_text = str(chunk.get("text") or "")
+            normalized_chunk_text = self._normalize(chunk_text)
+            if normalized_chunk_text:
+                normalized_text_counts[normalized_chunk_text] = (
+                    normalized_text_counts.get(normalized_chunk_text, 0) + 1
+                )
             if known_ids and not self._derivable(chunk_text, source_text):
+                unexplained_count += 1
                 self._error(
                     errors,
                     f"{path}.text",
                     "chunk_text_not_derivable",
                     "Chunk text is not derivable from its declared source blocks.",
                 )
+            for block_id in known_ids:
+                block = blocks[block_id]
+                if self._is_protected(block) and (
+                    len(known_ids) == 1
+                    and normalized_chunk_text == self._normalize(block.text)
+                ):
+                    protected_integrity.add(block_id)
 
             parent_id = chunk.get("parent_chunk_id")
             if parent_id and str(parent_id) not in chunk_ids:
@@ -353,7 +405,72 @@ class ArtifactConsistencyService:
                 path=path,
                 errors=errors,
             )
-        return sourced
+        valid_exclusions = {
+            str(item.get("block_id"))
+            for item in block_exclusions
+            if isinstance(item, dict)
+            and str(item.get("block_id") or "") in blocks
+            and str(item.get("exclusion_reason") or "").strip()
+            and str(item.get("rule_id") or "").strip()
+        }
+        all_ids = set(blocks)
+        nonempty_ids = {
+            block_id for block_id, block in blocks.items() if block.text.strip()
+        }
+        required_nonempty = nonempty_ids - valid_exclusions
+        missing_nonempty = required_nonempty - referenced_blocks
+        for block_id in sorted(missing_nonempty):
+            self._error(
+                errors,
+                f"canonical.blocks.{block_id}",
+                "canonical_block_missing_from_chunks",
+                "Non-empty canonical block is not represented in chunks.",
+            )
+        protected_ids = {
+            block_id for block_id, block in blocks.items() if self._is_protected(block)
+        }
+        for block_id in sorted(protected_ids - protected_integrity):
+            self._error(
+                errors,
+                f"canonical.blocks.{block_id}",
+                "protected_block_integrity_failed",
+                "Protected block text is not preserved exactly in one chunk.",
+            )
+        duplicate_count = sum(
+            count - 1 for count in normalized_text_counts.values() if count > 1
+        )
+        if duplicate_count:
+            self._error(
+                errors,
+                "chunks",
+                "chunk_content_duplicate",
+                "Duplicate non-empty chunk content is not allowed.",
+            )
+        return {
+            "sourced_chunks": sourced,
+            "canonical_block_coverage": self._coverage(
+                len(referenced_blocks & all_ids), len(all_ids)
+            ),
+            "nonempty_block_coverage": self._coverage(
+                len(required_nonempty & referenced_blocks), len(required_nonempty)
+            ),
+            "protected_block_integrity": self._coverage(
+                len(protected_ids & protected_integrity), len(protected_ids)
+            ),
+            "duplicate_content_ratio": (
+                duplicate_count / len(chunks) if chunks else 0.0
+            ),
+            "unexplained_chunk_text_count": unexplained_count,
+            "unknown_source_count": unknown_source_count,
+        }
+
+    @staticmethod
+    def _normalize(value: str) -> str:
+        return " ".join(value.split())
+
+    @staticmethod
+    def _is_protected(block: Any) -> bool:
+        return block.type in {"table", "list", "code", "code_block"}
 
     def _check_entity_tags(
         self,

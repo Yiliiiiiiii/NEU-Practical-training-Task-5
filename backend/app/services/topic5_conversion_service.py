@@ -201,6 +201,10 @@ class Topic5ConversionService:
             markdown=rendered.markdown,
             chunks=rendered.chunks,
             document_summary=document_summary,
+            block_exclusions=[
+                item.model_dump(mode="json")
+                for item in request.content_organization.block_exclusions
+            ],
         )
         conversion_assertion_report = None
         if request.output_assertions is not None:

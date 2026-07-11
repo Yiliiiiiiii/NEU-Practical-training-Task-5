@@ -166,6 +166,12 @@ class TagRules(StrictBaseModel):
     quality: QualityTagRules = Field(default_factory=QualityTagRules)
 
 
+class BlockExclusion(StrictBaseModel):
+    block_id: str = Field(min_length=1)
+    exclusion_reason: str = Field(min_length=1)
+    rule_id: str = Field(min_length=1)
+
+
 class ContentOrganizationOptions(StrictBaseModel):
     _legacy_summary_mode_used: bool = PrivateAttr(default=False)
 
@@ -200,6 +206,7 @@ class ContentOrganizationOptions(StrictBaseModel):
     fallback_to_internal: bool = True
     strict_provider: bool = False
     enable_legacy_entity_inference: bool = False
+    block_exclusions: list[BlockExclusion] = Field(default_factory=list)
 
     @model_validator(mode="wrap")
     @classmethod

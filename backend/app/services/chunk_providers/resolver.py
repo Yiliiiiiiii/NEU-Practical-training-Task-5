@@ -175,6 +175,24 @@ class ChunkProviderResolver:
         }
         if protected_blocks - referenced_blocks:
             raise ChunkProviderError("topic11_protected_block_missing")
+        nonempty_blocks = {
+            block.block_id for block in canonical.blocks if block.text.strip()
+        }
+        exclusions = {
+            exclusion.block_id
+            for exclusion in options.block_exclusions
+            if exclusion.block_id in blocks
+        }
+        if (nonempty_blocks - exclusions) - referenced_blocks:
+            raise ChunkProviderError("topic11_canonical_block_missing")
+        for block_id in protected_blocks:
+            block_text = cls._normalize(blocks[block_id].text)
+            if not any(
+                chunk.source_block_ids == [block_id]
+                and cls._normalize(chunk.text) == block_text
+                for chunk in response.chunks
+            ):
+                raise ChunkProviderError("topic11_protected_block_integrity")
 
     @staticmethod
     def _normalize(value: str) -> str:
