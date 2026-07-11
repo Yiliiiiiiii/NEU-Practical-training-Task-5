@@ -134,6 +134,84 @@ def test_canonical_and_render_services_preserve_sources_and_chunks():
     assert all(chunk["source_block_ids"] for chunk in rendered.chunks)
 
 
+def test_render_service_sanitizes_only_arbitrary_metadata_branches():
+    from app.schemas.canonical import CanonicalBlock, CanonicalField, CanonicalModel
+    from app.services.render_service import RenderService
+
+    operational_values = {
+        "metadata_report": "private metadata report",
+        "mapping_trace": {"source": "private mapping trace"},
+        "processing_duration_ms": 42,
+        "bearer_token": "private bearer token",
+        "doc_id": "private document id",
+        "SCHEMA_ID": "private schema id",
+    }
+    target_values = {
+        key: CanonicalField(value={key: f"business {key}"}, type="object")
+        for key in operational_values
+    }
+    canonical = CanonicalModel(
+        canonical_version="1.0",
+        task_id="task_boundary",
+        doc_id="doc_boundary",
+        schema_id="boundary_doc",
+        doc_meta={
+            "source_metadata": {
+                "safe_source": "keep",
+                "nested": {"safe_nested": "keep", **operational_values},
+            },
+            "document_metadata": {
+                "safe_document": "keep",
+                "nested": {"safe_nested": "keep", **operational_values},
+            },
+            "document_summary": {
+                "text": "Keep summary",
+                "nested": {"safe_nested": "keep", **operational_values},
+            },
+        },
+        fields=target_values,
+        blocks=[
+            CanonicalBlock(
+                block_id="block_1",
+                type="paragraph",
+                text="Business content",
+                source_blocks=["source_1"],
+                source_anchor={
+                    "page": 1,
+                    "nested": {"safe_nested": "keep", **operational_values},
+                },
+            )
+        ],
+    )
+
+    content = RenderService().render(canonical).structured_json
+
+    assert content["source_metadata"] == {
+        "safe_source": "keep",
+        "nested": {"safe_nested": "keep"},
+    }
+    assert content["document_metadata"] == {
+        "safe_document": "keep",
+        "nested": {"safe_nested": "keep"},
+    }
+    assert content["document_summary"] == {
+        "text": "Keep summary",
+        "nested": {"safe_nested": "keep"},
+    }
+    assert content["blocks"][0]["source_anchor"] == {
+        "page": 1,
+        "nested": {"safe_nested": "keep"},
+    }
+    assert content["metadata"] == {
+        "safe_source": "keep",
+        "nested": {"safe_nested": "keep"},
+        "safe_document": "keep",
+    }
+    assert content["data"] == {
+        key: {key: f"business {key}"} for key in operational_values
+    }
+
+
 def test_validation_service_checks_schema_and_render_outputs():
     from app.services.render_service import RenderedArtifacts
     from app.services.validation_service import ValidationService

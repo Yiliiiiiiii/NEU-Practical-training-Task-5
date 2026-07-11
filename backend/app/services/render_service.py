@@ -5,52 +5,56 @@ from typing import Any
 
 from app.schemas.canonical import CanonicalBlock, CanonicalModel
 
-_FORBIDDEN_BUSINESS_KEYS = {
+_INTERNAL_METADATA_KEYS = {
     "access_token",
     "api_key",
-    "artifact_consistency_report",
     "authorization",
-    "content_organization_report",
-    "conversion_assertion_report",
     "credentials",
+    "doc_id",
     "duration_ms",
     "elapsed_ms",
-    "execution_snapshot",
-    "execution_trace",
     "field_traces",
-    "mapping_report",
     "mapping_summary",
-    "metadata_template_report",
     "package_id",
     "password",
-    "provider_trace",
     "refresh_token",
     "report_paths",
     "runtime_duration_ms",
+    "schema_id",
     "secret",
     "task_id",
-    "transform_report",
     "transform_summary",
-    "validation_report",
-    "verifier_report",
 }
-_FORBIDDEN_BUSINESS_SUFFIXES = (
-    "_access_token",
-    "_api_key",
-    "_password",
-    "_refresh_token",
+_OPERATIONAL_METADATA_SUFFIXES = (
+    "_duration",
+    "_duration_ms",
+    "_report",
+    "_reports",
     "_report_path",
     "_report_paths",
+    "_snapshot",
+    "_snapshots",
+    "_trace",
+)
+_CREDENTIAL_METADATA_SUFFIXES = (
+    "_access_token",
+    "_api_key",
+    "_authorization",
+    "_credential",
+    "_credentials",
+    "_password",
+    "_refresh_token",
     "_secret",
+    "_token",
 )
 
 
-def _is_forbidden_business_key(key: object) -> bool:
+def _is_internal_metadata_key(key: object) -> bool:
     if not isinstance(key, str):
         return False
     normalized = key.casefold()
-    return normalized in _FORBIDDEN_BUSINESS_KEYS or normalized.endswith(
-        _FORBIDDEN_BUSINESS_SUFFIXES
+    return normalized in _INTERNAL_METADATA_KEYS or normalized.endswith(
+        _OPERATIONAL_METADATA_SUFFIXES + _CREDENTIAL_METADATA_SUFFIXES
     )
 
 
@@ -85,25 +89,24 @@ class RenderService:
         content_document_summary = (
             document_summary if isinstance(document_summary, dict) else {}
         )
-        source_metadata = self._business_value(source_metadata)
-        document_metadata = self._business_value(document_metadata)
-        structured = self._business_value(
-            {
-                "source_metadata": source_metadata,
-                "document_metadata": document_metadata,
-                "metadata_template": content_metadata_template,
-                "document_summary": content_document_summary,
-                "data": {
-                    field_id: field.value
-                    for field_id, field in canonical.fields.items()
-                },
-                "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
-                "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
-                # Deprecated Package 1.1 alias. New consumers should use the two
-                # explicit metadata fields above.
-                "metadata": {**source_metadata, **document_metadata},
-            }
-        )
+        source_metadata = self._sanitize_metadata_value(source_metadata)
+        document_metadata = self._sanitize_metadata_value(document_metadata)
+        structured = {
+            "source_metadata": source_metadata,
+            "document_metadata": document_metadata,
+            "metadata_template": content_metadata_template,
+            "document_summary": self._sanitize_metadata_value(
+                content_document_summary
+            ),
+            "data": {
+                field_id: field.value for field_id, field in canonical.fields.items()
+            },
+            "blocks": [self._content_block(block) for block in canonical.blocks],
+            "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
+            # Deprecated Package 1.1 alias. New consumers should use the two
+            # explicit metadata fields above.
+            "metadata": {**source_metadata, **document_metadata},
+        }
         return RenderedArtifacts(
             structured_json=structured,
             markdown=self._markdown(canonical),
@@ -111,16 +114,24 @@ class RenderService:
         )
 
     @classmethod
-    def _business_value(cls, value: Any) -> Any:
+    def _sanitize_metadata_value(cls, value: Any) -> Any:
         if isinstance(value, dict):
             return {
-                key: cls._business_value(child)
+                key: cls._sanitize_metadata_value(child)
                 for key, child in value.items()
-                if not _is_forbidden_business_key(key)
+                if not _is_internal_metadata_key(key)
             }
         if isinstance(value, list):
-            return [cls._business_value(child) for child in value]
+            return [cls._sanitize_metadata_value(child) for child in value]
         return value
+
+    @classmethod
+    def _content_block(cls, block: CanonicalBlock) -> dict[str, Any]:
+        payload = block.model_dump(mode="json")
+        source_anchor = payload.get("source_anchor")
+        if isinstance(source_anchor, dict):
+            payload["source_anchor"] = cls._sanitize_metadata_value(source_anchor)
+        return payload
 
     def _markdown(self, canonical: CanonicalModel) -> str:
         lines = [
