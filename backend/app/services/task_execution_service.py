@@ -280,6 +280,9 @@ class TaskExecutionService:
             schema=schema,
             template=template,
             mapping_report=mapping_report,
+            enable_legacy_transform_heuristics=bool(
+                options.get("enable_legacy_transform_heuristics", False)
+            ),
         )
         metadata_result = None
         if metadata_template is not None:

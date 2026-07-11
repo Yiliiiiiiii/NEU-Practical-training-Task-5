@@ -24,6 +24,7 @@ def test_list_normalizer_splits_numbered_items_and_filters_noise() -> None:
         source,
         field("application_conditions"),
         {},
+        enable_legacy_transform_heuristics=True,
     )
 
     assert normalized == ["依法登记注册", "近三年无重大违法记录"]
@@ -37,11 +38,13 @@ def test_list_normalizer_preserves_order_and_wraps_single_item() -> None:
         "审议年度预算、研究安全生产；部署民生工作",
         field("topics"),
         {},
+        enable_legacy_transform_heuristics=True,
     )
     single, single_error = service._coerce_value(
         "面向本市中小企业",
         field("applicable_scope"),
         {},
+        enable_legacy_transform_heuristics=True,
     )
 
     assert topics == ["审议年度预算", "研究安全生产", "部署民生工作"]
@@ -66,11 +69,13 @@ def test_organization_cleaner_removes_labels_but_keeps_joint_publishers() -> Non
         "发布机构：工业和信息化部、国家发展改革委",
         field("issuer", "string"),
         {},
+        enable_legacy_transform_heuristics=True,
     )
     site, site_error = service._coerce_value(
         "来源：市政务服务局网站",
         field("issuing_body", "string"),
         {},
+        enable_legacy_transform_heuristics=True,
     )
 
     assert issuer == "工业和信息化部、国家发展改革委"

@@ -20,6 +20,9 @@ class TaskService:
             raise LookupError("document not found")
 
         options = dict(request.options)
+        options["enable_legacy_transform_heuristics"] = (
+            request.enable_legacy_transform_heuristics
+        )
         if request.schema_pack_id is not None:
             options["schema_pack_id"] = request.schema_pack_id
 

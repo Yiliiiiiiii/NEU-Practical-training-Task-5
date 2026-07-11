@@ -160,6 +160,9 @@ def create_external_uir_task(
                 template_id=request.template_id,
                 schema_version=request.schema_version,
                 template_version=request.template_version,
+                enable_legacy_transform_heuristics=(
+                    request.enable_legacy_transform_heuristics
+                ),
                 options=options,
             )
         )

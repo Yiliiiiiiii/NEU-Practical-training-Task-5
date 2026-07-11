@@ -70,6 +70,8 @@ class TransformService:
         schema: TargetSchema,
         template: MappingTemplate,
         mapping_report: MappingReport,
+        *,
+        enable_legacy_transform_heuristics: bool = False,
     ) -> TransformResult:
         data: dict[str, Any] = {}
         traces: list[dict[str, Any]] = []
@@ -85,6 +87,9 @@ class TransformService:
                 raw_value,
                 field,
                 template.enum_maps.get(field.field_id, {}),
+                enable_legacy_transform_heuristics=(
+                    enable_legacy_transform_heuristics
+                ),
             )
             if error is not None:
                 errors.append(error)
@@ -97,6 +102,15 @@ class TransformService:
                 "operation": self._operation_for(field),
                 "status": "ok",
             }
+            legacy_heuristic = self._legacy_heuristic_for(
+                raw_value,
+                value,
+                field,
+                enum_map=template.enum_maps.get(field.field_id, {}),
+                enabled=enable_legacy_transform_heuristics,
+            )
+            if legacy_heuristic is not None:
+                trace["legacy_heuristic"] = legacy_heuristic
             if value != raw_value:
                 trace.update(
                     {
@@ -180,6 +194,21 @@ class TransformService:
                     }
                 )
 
+        legacy_target_field_ids = sorted({
+            trace["target_field_id"]
+            for trace in traces
+            if "legacy_heuristic" in trace
+        })
+        warnings = []
+        if legacy_target_field_ids:
+            warnings.append(
+                {
+                    "code": "legacy_transform_heuristic_used",
+                    "message": "Legacy transform heuristics were applied.",
+                    "target_field_ids": legacy_target_field_ids,
+                }
+            )
+
         return TransformResult(
             data=data,
             report={
@@ -194,7 +223,7 @@ class TransformService:
                 },
                 "traces": traces,
                 "errors": errors,
-                "warnings": [],
+                "warnings": warnings,
             },
         )
 
@@ -203,13 +232,19 @@ class TransformService:
         value: Any,
         field: TargetField,
         enum_map: dict[str, str],
+        *,
+        enable_legacy_transform_heuristics: bool = False,
     ) -> tuple[Any, dict[str, Any] | None]:
         if value is None:
             return None, None
         if field.type == "enum":
             if isinstance(value, str) and value in enum_map:
                 return enum_map[value], None
-            if field.field_id == "doc_type" and isinstance(value, str):
+            if (
+                enable_legacy_transform_heuristics
+                and field.field_id == "doc_type"
+                and isinstance(value, str)
+            ):
                 normalized = self.DOC_TYPE_ENUM_MAP.get(value.strip())
                 if normalized is not None:
                     return normalized, None
@@ -238,14 +273,55 @@ class TransformService:
                 isinstance(value, str)
                 and field.type == "array[string]"
                 and field.field_id in self.SPLIT_ARRAY_FIELDS
+                and enable_legacy_transform_heuristics
             ):
                 return self._split_array_string(value), None
             return [value], None
-        if field.field_id == "contact" and isinstance(value, str):
+        if (
+            enable_legacy_transform_heuristics
+            and field.field_id == "contact"
+            and isinstance(value, str)
+        ):
             return self._normalize_contact(value), None
-        if field.field_id in self.ORGANIZATION_FIELDS and isinstance(value, str):
+        if (
+            enable_legacy_transform_heuristics
+            and field.field_id in self.ORGANIZATION_FIELDS
+            and isinstance(value, str)
+        ):
             return self._clean_organization(value), None
         return value, None
+
+    @classmethod
+    def _legacy_heuristic_for(
+        cls,
+        source_value: Any,
+        normalized_value: Any,
+        field: TargetField,
+        *,
+        enum_map: dict[str, str],
+        enabled: bool,
+    ) -> str | None:
+        if not enabled or normalized_value == source_value:
+            return None
+        if (
+            field.field_id == "doc_type"
+            and field.type == "enum"
+            and isinstance(source_value, str)
+            and source_value not in enum_map
+            and cls.DOC_TYPE_ENUM_MAP.get(source_value.strip()) == normalized_value
+        ):
+            return "document_type_map"
+        if (
+            field.type == "array[string]"
+            and field.field_id in cls.SPLIT_ARRAY_FIELDS
+            and isinstance(source_value, str)
+        ):
+            return "field_specific_array_split"
+        if field.field_id == "contact" and isinstance(source_value, str):
+            return "contact_cleanup"
+        if field.field_id in cls.ORGANIZATION_FIELDS and isinstance(source_value, str):
+            return "organization_cleanup"
+        return None
 
     @staticmethod
     def _normalize_date(value: Any, field: TargetField) -> tuple[Any, dict[str, Any] | None]:

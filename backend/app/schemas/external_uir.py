@@ -156,6 +156,7 @@ class ExternalUIRCreateTaskRequest(StrictBaseModel):
     template_id: str
     schema_version: str = "1.0.0"
     template_version: str = "1.0.0"
+    enable_legacy_transform_heuristics: bool = False
     options: dict[str, Any] = Field(default_factory=dict)
     route_report: SchemaRouteDecision | None = None
     adapter_report: AdapterReport | None = None

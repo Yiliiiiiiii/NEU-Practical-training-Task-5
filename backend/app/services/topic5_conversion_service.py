@@ -46,6 +46,9 @@ class Topic5ConversionService:
         content_organization = request.content_organization.model_dump(mode="json")
 
         options: dict[str, Any] = dict(request.options)
+        options["enable_legacy_transform_heuristics"] = (
+            request.enable_legacy_transform_heuristics
+        )
         options.setdefault("enable_llm_fallback", False)
         options.setdefault("enable_lineage", False)
         options.setdefault("topic5_inline_config", True)
@@ -92,6 +95,9 @@ class Topic5ConversionService:
             schema,
             template,
             mapping_report,
+            enable_legacy_transform_heuristics=(
+                request.enable_legacy_transform_heuristics
+            ),
         )
         metadata_result = None
         if request.metadata_template is not None:

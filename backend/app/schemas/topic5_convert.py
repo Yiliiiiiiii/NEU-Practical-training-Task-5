@@ -40,6 +40,7 @@ class Topic5ConvertRequest(StrictBaseModel):
         default_factory=ContentOrganizationConfig
     )
     output_assertions: ConversionAssertionConfig | None = None
+    enable_legacy_transform_heuristics: bool = False
     options: dict[str, Any] = Field(default_factory=dict)
 
     @model_validator(mode="after")

@@ -30,7 +30,12 @@ def test_normalizes_spaced_and_dotted_dates() -> None:
 def test_splits_supported_array_fields_and_cleans_contact() -> None:
     service = TransformService()
 
-    assert service._coerce_value("张三、李四；王五", field("attendees", "array[string]"), {}) == (
+    assert service._coerce_value(
+        "张三、李四；王五",
+        field("attendees", "array[string]"),
+        {},
+        enable_legacy_transform_heuristics=True,
+    ) == (
         ["张三", "李四", "王五"],
         None,
     )
@@ -38,8 +43,14 @@ def test_splits_supported_array_fields_and_cleans_contact() -> None:
         "市发改委、市财政局",
         field("departments", "array[string]"),
         {},
+        enable_legacy_transform_heuristics=True,
     ) == (["市发改委", "市财政局"], None)
-    assert service._coerce_value("021 - 12345678", field("contact", "string"), {}) == (
+    assert service._coerce_value(
+        "021 - 12345678",
+        field("contact", "string"),
+        {},
+        enable_legacy_transform_heuristics=True,
+    ) == (
         "021-12345678",
         None,
     )

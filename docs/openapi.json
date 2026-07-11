@@ -1804,6 +1804,11 @@
             "title": "Doc Id",
             "type": "string"
           },
+          "enable_legacy_transform_heuristics": {
+            "default": false,
+            "title": "Enable Legacy Transform Heuristics",
+            "type": "boolean"
+          },
           "options": {
             "title": "Options",
             "type": "object"
@@ -4655,6 +4660,11 @@
             "title": "Doc Id",
             "type": "string"
           },
+          "enable_legacy_transform_heuristics": {
+            "default": false,
+            "title": "Enable Legacy Transform Heuristics",
+            "type": "boolean"
+          },
           "options": {
             "title": "Options",
             "type": "object"
@@ -5051,6 +5061,11 @@
         "properties": {
           "content_organization": {
             "$ref": "#/components/schemas/ContentOrganizationConfig"
+          },
+          "enable_legacy_transform_heuristics": {
+            "default": false,
+            "title": "Enable Legacy Transform Heuristics",
+            "type": "boolean"
           },
           "mapping_rules": {
             "anyOf": [

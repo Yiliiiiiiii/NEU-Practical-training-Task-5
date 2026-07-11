@@ -57,6 +57,7 @@ class TaskCreateRequest(StrictBaseModel):
     schema_version: str = "1.0.0"
     template_version: str = "1.0.0"
     schema_pack_id: str | None = None
+    enable_legacy_transform_heuristics: bool = False
     options: dict[str, Any] = Field(default_factory=dict)
 
 
