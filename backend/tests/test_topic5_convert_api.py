@@ -215,6 +215,9 @@ def test_topic5_document_summary_is_shared_across_json_markdown_and_report(
     assert summary["faithfulness_passed"] is True
     assert summary["source_block_ids"]
     assert summary["source_chunk_ids"]
+    assert set(summary["source_chunk_ids"]) <= {
+        chunk["chunk_id"] for chunk in body["chunks"]
+    }
     assert body["content_json"]["document_summary"] == summary
     assert body["content_organization_report"]["document_summary"] == summary
     assert (
@@ -249,13 +252,25 @@ def test_topic5_document_summary_can_be_disabled(topic5_client):
 def test_topic5_document_summary_is_deterministic_across_three_runs(topic5_client):
     client, _storage_root = topic5_client
 
-    summaries = [
-        client.post("/api/v1/topic5/convert", json=announcement_convert_request())
-        .json()["document_summary"]
+    bodies = [
+        client.post("/api/v1/topic5/convert", json=announcement_convert_request()).json()
         for _index in range(3)
     ]
+    semantic_summaries = []
+    for body in bodies:
+        summary = body["document_summary"]
+        assert set(summary["source_chunk_ids"]) <= {
+            chunk["chunk_id"] for chunk in body["chunks"]
+        }
+        semantic_summaries.append(
+            {
+                key: value
+                for key, value in summary.items()
+                if key != "source_chunk_ids"
+            }
+        )
 
-    assert summaries[0] == summaries[1] == summaries[2]
+    assert semantic_summaries[0] == semantic_summaries[1] == semantic_summaries[2]
 
 
 def test_topic5_nested_summary_config_does_not_emit_legacy_warning(topic5_client):

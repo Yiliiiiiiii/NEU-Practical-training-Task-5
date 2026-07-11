@@ -35,6 +35,22 @@ def test_openapi_export_includes_demo_workflow_paths(tmp_path):
         assert path in schema["paths"]
 
 
+def test_openapi_marks_legacy_summary_mode_as_deprecated_input(tmp_path):
+    module = load_export_module()
+
+    schema = module.export_openapi(tmp_path / "openapi.json")
+    content_organization = schema["components"]["schemas"][
+        "ContentOrganizationConfig"
+    ]
+
+    assert content_organization["properties"]["summary_mode"]["deprecated"] is True
+    assert content_organization["properties"]["summary_mode"]["enum"] == [
+        "none",
+        "deterministic",
+    ]
+    assert "summary" in content_organization["properties"]
+
+
 def test_openapi_check_detects_drift_without_rewriting_expected_file(tmp_path):
     module = load_export_module()
     expected = tmp_path / "openapi.json"

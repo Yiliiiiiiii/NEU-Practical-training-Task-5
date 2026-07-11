@@ -750,6 +750,7 @@
           },
           "summary_mode": {
             "default": "deterministic",
+            "deprecated": true,
             "enum": [
               "none",
               "deterministic"

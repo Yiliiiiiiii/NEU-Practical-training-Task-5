@@ -58,7 +58,7 @@ class DocumentSummaryService:
         )
         source_block_set = set(source_block_ids)
         source_chunk_ids = self._dedupe(
-            self._semantic_chunk_id(chunk, doc_id=canonical.doc_id)
+            str(chunk.get("chunk_id"))
             for chunk in chunks
             if chunk.get("chunk_id")
             and source_block_set.intersection(
@@ -142,12 +142,3 @@ class DocumentSummaryService:
                 seen.add(value)
                 output.append(value)
         return output
-
-    @staticmethod
-    def _semantic_chunk_id(chunk: dict[str, Any], *, doc_id: str) -> str:
-        chunk_id = str(chunk.get("chunk_id"))
-        task_id = chunk.get("task_id")
-        task_prefix = f"chunk_{task_id}_" if task_id else ""
-        if task_prefix and chunk_id.startswith(task_prefix):
-            return f"chunk_{doc_id}_{chunk_id.removeprefix(task_prefix)}"
-        return chunk_id

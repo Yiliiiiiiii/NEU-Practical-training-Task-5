@@ -289,6 +289,25 @@ def test_nested_summary_mode_is_the_source_of_truth_without_legacy_input():
     assert "summary_mode" not in options.model_dump(mode="json")
 
 
+def test_validation_schema_accepts_deprecated_legacy_summary_mode_input():
+    schema = ContentOrganizationOptions.model_json_schema(
+        mode="validation",
+        by_alias=True,
+    )
+
+    assert schema["properties"]["summary_mode"] == {
+        "default": "deterministic",
+        "deprecated": True,
+        "enum": ["none", "deterministic"],
+        "title": "Summary Mode",
+        "type": "string",
+    }
+    assert "summary_mode" not in ContentOrganizationOptions.model_json_schema(
+        mode="serialization",
+        by_alias=True,
+    )["properties"]
+
+
 @pytest.mark.parametrize(
     "payload",
     [

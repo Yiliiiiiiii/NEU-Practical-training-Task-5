@@ -185,6 +185,14 @@ class ContentOrganizationOptions(StrictBaseModel):
     protect_code_blocks: bool = True
     enable_parent_child: bool = False
     enable_light_semantic_boundary: bool = True
+    legacy_summary_mode_input: Literal["none", "deterministic"] = Field(
+        default="deterministic",
+        validation_alias="summary_mode",
+        exclude=True,
+        deprecated=True,
+        repr=False,
+        title="Summary Mode",
+    )
     keyword_mode: Literal["none", "deterministic"] = "deterministic"
     summary: SummaryConfig = Field(default_factory=SummaryConfig)
     tag_rules: TagRules = Field(default_factory=TagRules)
@@ -202,7 +210,7 @@ class ContentOrganizationOptions(StrictBaseModel):
             return handler(value)
 
         payload = dict(value)
-        legacy_mode = payload.pop("summary_mode")
+        legacy_mode = payload["summary_mode"]
         raw_summary = payload.get("summary")
         if isinstance(raw_summary, SummaryConfig):
             nested_mode_is_explicit = "chunk_mode" in raw_summary.model_fields_set
