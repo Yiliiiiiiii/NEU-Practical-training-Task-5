@@ -268,6 +268,11 @@ class PackageVerifierService:
                 if isinstance(raw_options, dict)
                 else []
             )
+            exclusion_rules = (
+                raw_options.get("block_exclusion_rules", [])
+                if isinstance(raw_options, dict)
+                else []
+            )
             stored = ArtifactConsistencyReport.model_validate_json(
                 (package_path / "artifact_consistency_report.json").read_text(
                     encoding="utf-8"
@@ -280,6 +285,12 @@ class PackageVerifierService:
                 chunks=chunks,
                 document_summary=summary,
                 block_exclusions=exclusions if isinstance(exclusions, list) else [],
+                block_exclusion_rule_ids={
+                    str(rule.get("rule_id"))
+                    for rule in exclusion_rules
+                    if isinstance(rule, dict)
+                    and str(rule.get("rule_id") or "").strip()
+                },
             )
         except (OSError, ValueError, TypeError, KeyError) as exc:
             errors.append(

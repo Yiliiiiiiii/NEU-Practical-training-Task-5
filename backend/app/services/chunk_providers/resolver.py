@@ -52,6 +52,7 @@ class ChunkProviderResolver:
                 ),
             )
 
+        self._validate_exclusions(canonical=canonical, options=options)
         request = self.build_request(canonical, options)
         if options.provider == "internal":
             invocation = self.internal_provider.provide(request)
@@ -131,6 +132,34 @@ class ChunkProviderResolver:
         )
 
     @classmethod
+    def _validate_exclusions(
+        cls,
+        *,
+        canonical: CanonicalModel,
+        options: ContentOrganizationOptions,
+    ) -> None:
+        blocks = {block.block_id: block for block in canonical.blocks}
+        for exclusion in options.block_exclusions:
+            block = blocks.get(exclusion.block_id)
+            if block is None:
+                raise ChunkProviderError("topic11_exclusion_block_unknown")
+            if cls._is_protected(block.type, options):
+                raise ChunkProviderError("topic11_protected_block_exclusion")
+
+    @staticmethod
+    def _is_protected(
+        block_type: str, options: ContentOrganizationOptions
+    ) -> bool:
+        return (
+            (options.protect_tables and block_type == "table")
+            or (options.protect_lists and block_type == "list")
+            or (
+                options.protect_code_blocks
+                and block_type in {"code", "code_block"}
+            )
+        )
+
+    @classmethod
     def _validate(
         cls,
         response: ChunkProviderResponse,
@@ -149,6 +178,8 @@ class ChunkProviderResolver:
         chunk_ids = {chunk.chunk_id for chunk in response.chunks}
         referenced_blocks: set[str] = set()
         for chunk in response.chunks:
+            if not chunk.text.strip():
+                raise ChunkProviderError("topic11_chunk_text_empty")
             unknown_blocks = set(chunk.source_block_ids) - blocks.keys()
             if unknown_blocks:
                 raise ChunkProviderError("topic11_unknown_source_block")
@@ -166,30 +197,39 @@ class ChunkProviderResolver:
         protected_blocks = {
             block.block_id
             for block in canonical.blocks
-            if (options.protect_tables and block.type == "table")
-            or (options.protect_lists and block.type == "list")
-            or (
-                options.protect_code_blocks
-                and block.type in {"code", "code_block"}
-            )
+            if cls._is_protected(block.type, options)
         }
         if protected_blocks - referenced_blocks:
             raise ChunkProviderError("topic11_protected_block_missing")
         nonempty_blocks = {
             block.block_id for block in canonical.blocks if block.text.strip()
         }
+        protected_exclusions = {
+            exclusion.block_id
+            for exclusion in options.block_exclusions
+            if exclusion.block_id in protected_blocks
+        }
+        if protected_exclusions:
+            raise ChunkProviderError("topic11_protected_block_exclusion")
         exclusions = {
             exclusion.block_id
             for exclusion in options.block_exclusions
-            if exclusion.block_id in blocks
+            if exclusion.block_id in blocks and exclusion.block_id not in protected_blocks
         }
         if (nonempty_blocks - exclusions) - referenced_blocks:
             raise ChunkProviderError("topic11_canonical_block_missing")
         for block_id in protected_blocks:
-            block_text = cls._normalize(blocks[block_id].text)
+            block_text = blocks[block_id].text
             if not any(
-                chunk.source_block_ids == [block_id]
-                and cls._normalize(chunk.text) == block_text
+                (
+                    chunk.source_block_ids == [block_id]
+                    and chunk.text == block_text
+                )
+                or (
+                    len(chunk.source_block_ids) > 1
+                    and block_id in chunk.source_block_ids
+                    and block_text in chunk.text
+                )
                 for chunk in response.chunks
             ):
                 raise ChunkProviderError("topic11_protected_block_integrity")

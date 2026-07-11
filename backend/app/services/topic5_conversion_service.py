@@ -205,6 +205,10 @@ class Topic5ConversionService:
                 item.model_dump(mode="json")
                 for item in request.content_organization.block_exclusions
             ],
+            block_exclusion_rule_ids={
+                rule.rule_id
+                for rule in request.content_organization.block_exclusion_rules
+            },
         )
         conversion_assertion_report = None
         if request.output_assertions is not None:

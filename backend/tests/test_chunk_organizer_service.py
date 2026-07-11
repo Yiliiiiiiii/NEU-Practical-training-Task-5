@@ -273,6 +273,43 @@ def test_chunk_options_defaults_are_backward_compatible():
     assert options.enable_parent_child is False
 
 
+@pytest.mark.parametrize(
+    "field",
+    ["exclusion_reason", "rule_id"],
+)
+def test_block_exclusion_rejects_whitespace_only_contract_fields(field):
+    exclusion = {
+        "block_id": "b1",
+        "exclusion_reason": "business rule",
+        "rule_id": "rule-1",
+    }
+    exclusion[field] = "   "
+
+    with pytest.raises(ValidationError):
+        ContentOrganizationOptions.model_validate(
+            {
+                "block_exclusion_rules": [{"rule_id": "rule-1"}],
+                "block_exclusions": [exclusion],
+            }
+        )
+
+
+def test_block_exclusion_rule_must_be_registered():
+    with pytest.raises(ValidationError, match="registered"):
+        ContentOrganizationOptions.model_validate(
+            {
+                "block_exclusion_rules": [{"rule_id": "allowed-rule"}],
+                "block_exclusions": [
+                    {
+                        "block_id": "b1",
+                        "exclusion_reason": "business rule",
+                        "rule_id": "unknown-rule",
+                    }
+                ],
+            }
+        )
+
+
 def test_legacy_summary_mode_migrates_when_nested_chunk_mode_is_omitted():
     options = ContentOrganizationOptions.model_validate({"summary_mode": "none"})
 

@@ -417,6 +417,14 @@ class TaskExecutionService:
                 if content_org_options is not None
                 else []
             ),
+            block_exclusion_rule_ids=(
+                {
+                    rule.rule_id
+                    for rule in content_org_options.block_exclusion_rules
+                }
+                if content_org_options is not None
+                else set()
+            ),
         )
         conversion_assertion_report: dict[str, Any] | None = None
         conversion_assertion_report_path: str | None = None

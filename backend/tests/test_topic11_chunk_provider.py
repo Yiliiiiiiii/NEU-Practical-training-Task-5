@@ -341,6 +341,30 @@ def test_missing_ordinary_nonempty_paragraph_is_rejected() -> None:
     assert result.trace.fallback_reason == "topic11_canonical_block_missing"
 
 
+def test_whitespace_chunk_does_not_cover_ordinary_paragraph() -> None:
+    external = FakeProvider(
+        _response(
+            {
+                "chunk_id": "external-1",
+                "text": " \n\t",
+                "source_block_ids": ["b1"],
+            },
+            {
+                "chunk_id": "external-table",
+                "text": "Field: Value",
+                "source_block_ids": ["table1"],
+            },
+        )
+    )
+    resolver = ChunkProviderResolver(settings=Settings(), external_provider=external)
+
+    result = resolver.resolve(
+        canonical=_canonical(), options=_options(), legacy_chunks=_legacy_chunks()
+    )
+
+    assert result.trace.fallback_reason == "topic11_chunk_text_empty"
+
+
 def test_protected_table_text_must_be_preserved_exactly() -> None:
     external = FakeProvider(
         _response(
@@ -363,6 +387,62 @@ def test_protected_table_text_must_be_preserved_exactly() -> None:
     )
 
     assert result.trace.fallback_reason == "topic11_protected_block_integrity"
+
+
+def test_protected_table_newlines_and_indentation_cannot_change() -> None:
+    canonical = _canonical()
+    canonical.blocks[1].text = "Field:\n  Value"
+    external = FakeProvider(
+        _response(
+            {
+                "chunk_id": "external-1",
+                "text": "OpenAI published the notice.",
+                "source_block_ids": ["b1"],
+            },
+            {
+                "chunk_id": "external-table",
+                "text": "Field: Value",
+                "source_block_ids": ["table1"],
+            },
+        )
+    )
+    resolver = ChunkProviderResolver(settings=Settings(), external_provider=external)
+
+    result = resolver.resolve(
+        canonical=canonical, options=_options(), legacy_chunks=_legacy_chunks()
+    )
+
+    assert result.trace.fallback_reason == "topic11_protected_block_integrity"
+
+
+def test_protected_block_cannot_be_excluded_by_registered_rule() -> None:
+    external = FakeProvider(
+        _response(
+            {
+                "chunk_id": "external-1",
+                "text": "OpenAI published the notice.",
+                "source_block_ids": ["b1"],
+            }
+        )
+    )
+    options = _options(
+        block_exclusion_rules=[{"rule_id": "exclude-v1"}],
+        block_exclusions=[
+            {
+                "block_id": "table1",
+                "exclusion_reason": "attempted protected exclusion",
+                "rule_id": "exclude-v1",
+            }
+        ],
+    )
+    resolver = ChunkProviderResolver(settings=Settings(), external_provider=external)
+
+    with pytest.raises(ChunkProviderError) as exc_info:
+        resolver.resolve(
+            canonical=_canonical(), options=options, legacy_chunks=_legacy_chunks()
+        )
+
+    assert exc_info.value.code == "topic11_protected_block_exclusion"
 
 
 def test_strict_provider_mode_returns_failure_without_fallback() -> None:

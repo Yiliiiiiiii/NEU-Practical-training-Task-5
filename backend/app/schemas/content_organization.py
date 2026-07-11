@@ -171,6 +171,27 @@ class BlockExclusion(StrictBaseModel):
     exclusion_reason: str = Field(min_length=1)
     rule_id: str = Field(min_length=1)
 
+    @field_validator("block_id", "exclusion_reason", "rule_id")
+    @classmethod
+    def strip_nonempty_value(cls, value: str) -> str:
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("block exclusion values must not be blank")
+        return stripped
+
+
+class BlockExclusionRule(StrictBaseModel):
+    rule_id: str = Field(min_length=1)
+    description: str | None = None
+
+    @field_validator("rule_id")
+    @classmethod
+    def strip_rule_id(cls, value: str) -> str:
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("block exclusion rule_id must not be blank")
+        return stripped
+
 
 class ContentOrganizationOptions(StrictBaseModel):
     _legacy_summary_mode_used: bool = PrivateAttr(default=False)
@@ -206,7 +227,26 @@ class ContentOrganizationOptions(StrictBaseModel):
     fallback_to_internal: bool = True
     strict_provider: bool = False
     enable_legacy_entity_inference: bool = False
+    block_exclusion_rules: list[BlockExclusionRule] = Field(default_factory=list)
     block_exclusions: list[BlockExclusion] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_block_exclusion_registry(self):
+        registered = [rule.rule_id for rule in self.block_exclusion_rules]
+        if len(registered) != len(set(registered)):
+            raise ValueError("block exclusion rule registry contains duplicates")
+        unknown = sorted(
+            {
+                exclusion.rule_id
+                for exclusion in self.block_exclusions
+                if exclusion.rule_id not in registered
+            }
+        )
+        if unknown:
+            raise ValueError(
+                "block exclusion rule_id must be registered: " + ", ".join(unknown)
+            )
+        return self
 
     @model_validator(mode="wrap")
     @classmethod

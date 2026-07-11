@@ -684,9 +684,42 @@
         "title": "BlockExclusion",
         "type": "object"
       },
+      "BlockExclusionRule": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "rule_id": {
+            "minLength": 1,
+            "title": "Rule Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule_id"
+        ],
+        "title": "BlockExclusionRule",
+        "type": "object"
+      },
       "ContentOrganizationConfig": {
         "additionalProperties": false,
         "properties": {
+          "block_exclusion_rules": {
+            "items": {
+              "$ref": "#/components/schemas/BlockExclusionRule"
+            },
+            "title": "Block Exclusion Rules",
+            "type": "array"
+          },
           "block_exclusions": {
             "items": {
               "$ref": "#/components/schemas/BlockExclusion"

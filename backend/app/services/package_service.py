@@ -75,6 +75,9 @@ class PackageService:
                 chunks=rendered.chunks,
                 document_summary=document_summary,
                 block_exclusions=self._report_exclusions(content_organization_report),
+                block_exclusion_rule_ids=self._report_exclusion_rule_ids(
+                    content_organization_report
+                ),
             )
             files, optional_paths = self._semantic_files(
                 package_id=package_id,
@@ -180,6 +183,20 @@ class PackageService:
         options = report.summary.get("options", {})
         exclusions = options.get("block_exclusions", []) if isinstance(options, dict) else []
         return exclusions if isinstance(exclusions, list) else []
+
+    @staticmethod
+    def _report_exclusion_rule_ids(report: ContentOrganizationReport) -> set[str]:
+        options = report.summary.get("options", {})
+        rules = (
+            options.get("block_exclusion_rules", [])
+            if isinstance(options, dict)
+            else []
+        )
+        return {
+            str(rule.get("rule_id"))
+            for rule in rules
+            if isinstance(rule, dict) and str(rule.get("rule_id") or "").strip()
+        }
 
     @staticmethod
     def _semantic_files(

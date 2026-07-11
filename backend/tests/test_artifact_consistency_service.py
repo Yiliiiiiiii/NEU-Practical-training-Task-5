@@ -255,6 +255,18 @@ def test_nonempty_ordinary_block_omission_is_detected() -> None:
     assert report.protected_block_integrity == 0.0
 
 
+def test_whitespace_chunk_text_does_not_earn_block_coverage() -> None:
+    chunks = copy.deepcopy(_chunks())
+    chunks[0]["text"] = "  \n\t"
+
+    report = _verify(chunks=chunks)
+
+    assert "chunk_text_empty" in _codes(report)
+    assert "canonical_block_missing_from_chunks" in _codes(report)
+    assert report.chunk_source_validity == 0.5
+    assert report.nonempty_block_coverage == 0.5
+
+
 def test_exact_configured_block_exclusion_is_allowed() -> None:
     canonical, structured, markdown, chunks, summary = _artifacts()
 
@@ -271,6 +283,7 @@ def test_exact_configured_block_exclusion_is_allowed() -> None:
                 "rule_id": "exclude-paragraph-v1",
             }
         ],
+        block_exclusion_rule_ids={"exclude-paragraph-v1"},
     )
 
     assert report.passed is True
@@ -294,6 +307,7 @@ def test_invalid_or_nonmatching_exclusion_does_not_hide_omission() -> None:
                 "rule_id": "exclude-unknown-v1",
             },
         ],
+        block_exclusion_rule_ids={"exclude-unknown-v1"},
     )
 
     assert "canonical_block_missing_from_chunks" in _codes(report)
@@ -317,8 +331,83 @@ def test_duplicate_and_unexplained_chunk_text_metrics_are_strict() -> None:
 
     assert report.duplicate_content_ratio == 0.25
     assert report.unexplained_chunk_text_count == 1
-    assert "chunk_content_duplicate" in _codes(report)
+    assert "chunk_content_duplicate" not in _codes(report)
     assert "chunk_text_not_derivable" in _codes(report)
+
+
+def test_intentional_parent_child_overlap_is_not_counted_as_duplicate() -> None:
+    chunks = copy.deepcopy(_chunks())
+    parent = copy.deepcopy(chunks[0])
+    parent["chunk_id"] = "parent"
+    parent["index"] = 2
+    parent["chunk_index"] = 2
+    chunks[0]["parent_chunk_id"] = "parent"
+    chunks.append(parent)
+
+    report = _verify(chunks=chunks)
+
+    assert report.passed is True
+    assert report.duplicate_content_ratio == 0.0
+
+
+def test_unregistered_exclusion_rule_does_not_hide_omission() -> None:
+    canonical, structured, markdown, chunks, summary = _artifacts()
+
+    report = ArtifactConsistencyService().verify(
+        canonical=canonical,
+        structured_json=structured,
+        markdown=markdown,
+        chunks=chunks[1:],
+        document_summary=summary,
+        block_exclusions=[
+            {
+                "block_id": "b1",
+                "exclusion_reason": "configured reason",
+                "rule_id": "not-registered",
+            }
+        ],
+        block_exclusion_rule_ids={"registered-rule"},
+    )
+
+    assert "canonical_block_missing_from_chunks" in _codes(report)
+
+
+def test_protected_block_cannot_be_excluded() -> None:
+    canonical, structured, markdown, chunks, summary = _artifacts()
+
+    report = ArtifactConsistencyService().verify(
+        canonical=canonical,
+        structured_json=structured,
+        markdown=markdown,
+        chunks=chunks[:1],
+        document_summary=summary,
+        block_exclusions=[
+            {
+                "block_id": "b2",
+                "exclusion_reason": "not permitted",
+                "rule_id": "registered-rule",
+            }
+        ],
+        block_exclusion_rule_ids={"registered-rule"},
+    )
+
+    assert "protected_block_integrity_failed" in _codes(report)
+
+
+def test_protected_block_newlines_and_indentation_must_be_exact() -> None:
+    canonical, structured, markdown, chunks, summary = _artifacts()
+    canonical.blocks[1].text = "Field:\n  Value"
+    chunks[1]["text"] = "Field: Value"
+
+    report = ArtifactConsistencyService().verify(
+        canonical=canonical,
+        structured_json=structured,
+        markdown=markdown,
+        chunks=chunks,
+        document_summary=summary,
+    )
+
+    assert "protected_block_integrity_failed" in _codes(report)
 
 
 def test_chunk_text_not_derived_from_source_is_detected() -> None:
