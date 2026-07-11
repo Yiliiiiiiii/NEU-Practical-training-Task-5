@@ -75,3 +75,48 @@ def test_absent_optional_checks_do_not_prevent_completion() -> None:
     )
 
     assert ConversionStatusService.determine(status_input) == "completed"
+
+
+def test_required_unmapped_only_requires_review_when_source_is_present() -> None:
+    source_absent = [{"required": True, "source_present": False}]
+    source_present = [{"required": True, "source_present": True}]
+
+    absent_count = ConversionStatusService.count_required_unmapped_source_present(
+        source_absent
+    )
+    present_count = ConversionStatusService.count_required_unmapped_source_present(
+        source_present
+    )
+
+    assert absent_count == 0
+    assert present_count == 1
+    assert (
+        ConversionStatusService.determine(
+            ConversionStatusInput(
+                unmapped_required_source_present_count=absent_count,
+            )
+        )
+        == "completed"
+    )
+    assert (
+        ConversionStatusService.determine(
+            ConversionStatusInput(
+                unmapped_required_source_present_count=present_count,
+            )
+        )
+        == "review_required"
+    )
+
+
+def test_required_unmapped_source_present_count_uses_strict_booleans() -> None:
+    unmapped = [
+        {"required": True, "source_present": True},
+        {"required": True, "source_present": False},
+        {"required": True},
+        {"required": 1, "source_present": True},
+        {"required": True, "source_present": 1},
+    ]
+
+    assert (
+        ConversionStatusService.count_required_unmapped_source_present(unmapped) == 1
+    )

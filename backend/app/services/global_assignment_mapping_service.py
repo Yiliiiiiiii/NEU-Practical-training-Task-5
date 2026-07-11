@@ -157,8 +157,16 @@ class GlobalAssignmentMappingService:
         resolved_targets = {
             item["target_field_id"] for item in [*mappings, *review_required]
         }
+        source_present_targets = {
+            row["target"].field_id
+            for row in pair_rows
+            if row["features"].final_score >= min_candidate_score
+        }
         unmapped = [
-            self._unmapped_dict(field)
+            self._unmapped_dict(
+                field,
+                source_present=field.field_id in source_present_targets,
+            )
             for field in schema.fields
             if field.required and field.field_id not in resolved_targets
         ]
@@ -277,11 +285,16 @@ class GlobalAssignmentMappingService:
         }
 
     @staticmethod
-    def _unmapped_dict(field: TargetField) -> dict[str, Any]:
+    def _unmapped_dict(
+        field: TargetField,
+        *,
+        source_present: bool,
+    ) -> dict[str, Any]:
         return {
             "target_field_id": field.field_id,
             "target_field_name": field.name,
             "required": field.required,
+            "source_present": source_present,
             "reason": "required field was not confirmed by global assignment",
             "status": "failed",
             "confidence": 0.0,

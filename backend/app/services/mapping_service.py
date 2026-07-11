@@ -179,6 +179,11 @@ class MappingService:
                 "target_field_id": field.field_id,
                 "target_field_name": field.name,
                 "required": field.required,
+                "source_present": self._source_present(
+                    field,
+                    template,
+                    candidates,
+                ),
                 "reason": "required field was not confirmed by deterministic mapping",
                 "status": "failed",
                 "confidence": 0.0,
@@ -242,6 +247,37 @@ class MappingService:
             mappings=mappings,
             unmapped=unmapped,
             review_required_items=review_required,
+        )
+
+    def _source_present(
+        self,
+        field: TargetField,
+        template: MappingTemplate,
+        candidates: list[FieldCandidate],
+    ) -> bool:
+        target_descriptors = {
+            self.normalize_name(value)
+            for value in (
+                field.field_id,
+                field.name,
+                field.display_name,
+                *field.aliases,
+                *template.aliases.get(field.field_id, []),
+            )
+            if value
+        }
+        return any(
+            target_descriptors
+            & {
+                self.normalize_name(value)
+                for value in (
+                    candidate.source_name,
+                    candidate.display_name,
+                    *candidate.target_hints,
+                )
+                if value
+            }
+            for candidate in candidates
         )
 
     def _find_exact(

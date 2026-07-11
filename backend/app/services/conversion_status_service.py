@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Literal
+from typing import Any, Literal
 
 type ConversionStatus = Literal["failed", "review_required", "completed"]
 
@@ -24,6 +24,16 @@ class ConversionStatusInput:
 
 
 class ConversionStatusService:
+    @staticmethod
+    def count_required_unmapped_source_present(
+        unmapped: list[dict[str, Any]],
+    ) -> int:
+        return sum(
+            1
+            for item in unmapped
+            if item.get("required") is True and item.get("source_present") is True
+        )
+
     @staticmethod
     def determine(status_input: ConversionStatusInput) -> ConversionStatus:
         if (

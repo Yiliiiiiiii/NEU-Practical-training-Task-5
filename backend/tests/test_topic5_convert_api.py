@@ -606,7 +606,9 @@ def test_topic5_request_rejects_unsafe_metadata_source_path(topic5_client):
     assert response.status_code == 422
 
 
-def test_topic5_convert_review_required_when_required_field_unmapped(topic5_client):
+def test_topic5_convert_source_absent_unmapped_reviews_for_schema_validation(
+    topic5_client,
+):
     client, _storage_root = topic5_client
     payload = announcement_convert_request()
     payload["target_schema"]["fields"].append(
@@ -627,6 +629,13 @@ def test_topic5_convert_review_required_when_required_field_unmapped(topic5_clie
     body = response.json()
     assert body["status"] == "review_required"
     assert body["mapping_report"]["summary"]["required_unmapped_count"] >= 1
+    audience = next(
+        item
+        for item in body["mapping_report"]["unmapped"]
+        if item["target_field_id"] == "audience"
+    )
+    assert audience["source_present"] is False
+    assert body["validation_report"]["passed"] is False
 
 
 def test_topic5_convert_review_required_when_validation_fails(topic5_client):

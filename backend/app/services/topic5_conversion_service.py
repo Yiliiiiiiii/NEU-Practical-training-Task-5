@@ -250,8 +250,10 @@ class Topic5ConversionService:
             ConversionStatusInput(
                 package_verifier_passed=verifier_passed,
                 mapping_review_item_count=len(mapping_report.review_required_items),
-                unmapped_required_source_present_count=sum(
-                    1 for item in mapping_report.unmapped if item.get("required")
+                unmapped_required_source_present_count=(
+                    ConversionStatusService.count_required_unmapped_source_present(
+                        mapping_report.unmapped
+                    )
                 ),
                 schema_validation_passed=validation_report.passed,
                 assertion_error_count=(

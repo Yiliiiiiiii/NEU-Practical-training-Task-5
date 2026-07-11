@@ -131,7 +131,36 @@ def test_global_assignment_required_unmapped_fields_are_reported() -> None:
 
     assert report.mappings == []
     assert report.unmapped[0]["target_field_id"] == "title"
+    assert report.unmapped[0]["source_present"] is False
     assert report.summary["required_unmapped_count"] == 1
+
+
+def test_global_assignment_tracks_source_present_at_candidate_threshold() -> None:
+    report = GlobalAssignmentMappingService().map_fields(
+        task_id="task-global",
+        uir=make_uir(),
+        schema=make_schema(field("title", required=True)),
+        template=template(),
+        candidates=[candidate("title", "title", "$.metadata.title", "Event")],
+        options={"auto_accept_threshold": 1.1, "review_threshold": 1.1},
+    )
+
+    assert report.mappings == []
+    assert report.review_required_items == []
+    assert report.unmapped[0]["source_present"] is True
+
+
+def test_global_assignment_does_not_proxy_source_presence_from_candidates() -> None:
+    report = GlobalAssignmentMappingService().map_fields(
+        task_id="task-global",
+        uir=make_uir(),
+        schema=make_schema(field("title", required=True)),
+        template=template(),
+        candidates=[candidate("other", "other", "$.metadata.other", "Event")],
+        options={"min_candidate_score": 1.1},
+    )
+
+    assert report.unmapped[0]["source_present"] is False
 
 
 def test_global_assignment_negative_pair_is_blocked() -> None:

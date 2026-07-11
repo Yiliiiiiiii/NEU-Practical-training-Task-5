@@ -573,7 +573,11 @@ class TaskExecutionService:
             ConversionStatusInput(
                 package_verifier_passed=package_result.verifier_report.passed,
                 mapping_review_item_count=review_required_count,
-                unmapped_required_source_present_count=unmapped_required_count,
+                unmapped_required_source_present_count=(
+                    ConversionStatusService.count_required_unmapped_source_present(
+                        mapping_report.unmapped
+                    )
+                ),
                 schema_validation_passed=validation_report.passed,
                 assertion_error_count=(
                     int(conversion_assertion_report.get("error_count", 0))

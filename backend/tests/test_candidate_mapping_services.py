@@ -336,9 +336,73 @@ def test_mapping_service_records_unmapped_required_fields():
     unmapped = next(item for item in report.unmapped if item["target_field_id"] == "meeting_date")
     assert "required_field_unmapped" in unmapped["risk_flags"]
     assert unmapped["status"] == "failed"
+    assert unmapped["source_present"] is False
     assert unmapped["review_required_reason"]
     assert report.summary["unmapped_required_fields"] >= 1
     assert report.summary["required_unmapped_count"] >= 1
+
+
+def test_mapping_service_marks_source_present_from_generic_target_hints() -> None:
+    from app.schemas.mapping import FieldCandidate
+    from app.schemas.mapping_template import MappingTemplate
+    from app.schemas.target_schema import TargetField, TargetSchema
+    from app.services.mapping_service import MappingService
+
+    uir = load_uir("meeting/meeting_003_missing_required.json")
+    schema = TargetSchema(
+        schema_id="generic_doc",
+        name="Generic document",
+        version="1.0.0",
+        fields=[
+            TargetField(
+                field_id="primary",
+                name="primary",
+                display_name="Primary",
+                type="string",
+                aliases=["shared source"],
+            ),
+            TargetField(
+                field_id="secondary",
+                name="secondary",
+                display_name="Secondary",
+                type="string",
+                required=True,
+            ),
+        ],
+    )
+    template = MappingTemplate(
+        template_id="generic_doc_v1",
+        schema_id="generic_doc",
+        name="Generic document",
+        version="1.0.0",
+    )
+    candidates = [
+        FieldCandidate(
+            candidate_id="candidate-shared",
+            task_id="task-source-present",
+            doc_id=uir.doc_id,
+            source_path="$.metadata.shared_source",
+            source_name="shared source",
+            display_name="Shared source",
+            value_sample="value",
+            inferred_type="string",
+            confidence=0.9,
+            target_hints=["secondary"],
+        )
+    ]
+
+    report = MappingService().map_fields(
+        task_id="task-source-present",
+        uir=uir,
+        schema=schema,
+        template=template,
+        candidates=candidates,
+    )
+
+    unmapped = next(
+        item for item in report.unmapped if item["target_field_id"] == "secondary"
+    )
+    assert unmapped["source_present"] is True
 
 
 def test_mapping_service_does_not_high_confidence_accept_badcase_source():
