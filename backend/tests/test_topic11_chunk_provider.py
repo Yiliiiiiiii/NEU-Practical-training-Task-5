@@ -5,10 +5,11 @@ from pathlib import Path
 
 import httpx
 import pytest
+from pydantic import ValidationError
 
 from app.config import Settings
 from app.schemas.canonical import CanonicalBlock, CanonicalModel
-from app.schemas.chunk_provider import ChunkProviderResponse
+from app.schemas.chunk_provider import ChunkProviderRequest, ChunkProviderResponse
 from app.schemas.content_organization import ContentOrganizationOptions
 from app.services.chunk_providers.base import (
     ChunkProviderError,
@@ -155,8 +156,30 @@ def test_topic11_request_contract_carries_real_task_id() -> None:
     )
 
     assert request.task_id == canonical.task_id
+    assert request.contract_version == "1.1"
+    assert contract["properties"]["contract_version"]["const"] == "1.1"
     assert "task_id" in contract["required"]
     assert contract["properties"]["task_id"]["minLength"] == 1
+
+
+def test_topic11_request_rejects_empty_task_id_at_runtime() -> None:
+    payload = ChunkProviderResolver.build_request(
+        _canonical(), _options()
+    ).model_dump(mode="json")
+    payload["task_id"] = ""
+
+    with pytest.raises(ValidationError):
+        ChunkProviderRequest.model_validate(payload)
+
+
+def test_topic11_request_v1_0_cannot_claim_v1_1_shape() -> None:
+    payload = ChunkProviderResolver.build_request(
+        _canonical(), _options()
+    ).model_dump(mode="json")
+    payload["contract_version"] = "1.0"
+
+    with pytest.raises(ValidationError):
+        ChunkProviderRequest.model_validate(payload)
 
 
 def test_topic11_valid_response_is_used() -> None:

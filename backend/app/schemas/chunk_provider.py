@@ -24,8 +24,8 @@ class ChunkProviderBlock(StrictBaseModel):
 
 
 class ChunkProviderRequest(StrictBaseModel):
-    contract_version: Literal["1.0"] = "1.0"
-    task_id: str
+    contract_version: Literal["1.1"] = "1.1"
+    task_id: str = Field(min_length=1)
     doc_id: str
     schema_id: str
     blocks: list[ChunkProviderBlock] = Field(default_factory=list)

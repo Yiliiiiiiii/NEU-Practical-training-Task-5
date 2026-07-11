@@ -140,8 +140,11 @@
     "protect_lists": true,
     "protect_code_blocks": true,
     "enable_parent_child": false,
-    "summary_mode": "deterministic",
-    "keyword_mode": "deterministic"
+    "keyword_mode": "deterministic",
+    "summary": {
+      "chunk_mode": "deterministic",
+      "document_mode": "extractive"
+    }
   },
   "output_assertions": {
     "contract_version": "1.0",

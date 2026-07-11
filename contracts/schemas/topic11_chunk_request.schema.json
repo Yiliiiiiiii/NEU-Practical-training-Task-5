@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://topic5.local/contracts/topic11_chunk_request.schema.json",
-  "title": "Topic 5 to Topic 11 Chunk Request",
+  "$id": "https://topic5.local/contracts/topic11_chunk_request.v1.1.schema.json",
+  "title": "Topic 5 to Topic 11 Chunk Request v1.1",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -15,7 +15,7 @@
     "chunk_config"
   ],
   "properties": {
-    "contract_version": {"const": "1.0"},
+    "contract_version": {"const": "1.1"},
     "task_id": {"type": "string", "minLength": 1},
     "doc_id": {"type": "string", "minLength": 1},
     "schema_id": {"type": "string", "minLength": 1},

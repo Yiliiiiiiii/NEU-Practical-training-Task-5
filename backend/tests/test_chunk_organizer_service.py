@@ -2,7 +2,7 @@ import pytest
 from pydantic import ValidationError
 
 from app.schemas.canonical import CanonicalBlock, CanonicalField, CanonicalModel
-from app.schemas.content_organization import ContentOrganizationOptions
+from app.schemas.content_organization import ContentOrganizationOptions, SummaryConfig
 from app.schemas.reports import MappingReport, ReportIssue, ValidationReport
 from app.schemas.target_schema import TargetSchema
 from app.services.chunk_organizer_service import ChunkOrganizerService
@@ -286,7 +286,61 @@ def test_nested_summary_mode_is_the_source_of_truth_without_legacy_input():
     )
 
     assert options.summary.chunk_mode == "none"
-    assert options.model_dump(mode="json")["summary_mode"] == "none"
+    assert "summary_mode" not in options.model_dump(mode="json")
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        {},
+        {"summary": {"chunk_mode": "none"}},
+    ],
+)
+def test_compatibility_serialization_does_not_invent_legacy_input(payload):
+    options = ContentOrganizationOptions.model_validate(payload)
+    round_tripped = ContentOrganizationOptions.model_validate(
+        options.model_dump(mode="json")
+    )
+
+    assert round_tripped.legacy_summary_mode_used is False
+    assert "summary_mode" not in round_tripped.model_dump(mode="json")
+
+
+def test_legacy_provenance_survives_compatibility_serialization():
+    options = ContentOrganizationOptions.model_validate({"summary_mode": "none"})
+    round_tripped = ContentOrganizationOptions.model_validate(
+        options.model_dump(mode="json")
+    )
+
+    assert round_tripped.legacy_summary_mode_used is True
+    assert round_tripped.model_dump(mode="json")["summary_mode"] == "none"
+
+
+def test_model_copy_cannot_diverge_legacy_alias_from_nested_source_of_truth():
+    legacy = ContentOrganizationOptions.model_validate(
+        {"summary_mode": "deterministic"}
+    )
+    nested_update = legacy.model_copy(
+        update={"summary": SummaryConfig(chunk_mode="none")}
+    )
+    alias_update = nested_update.model_copy(update={"summary_mode": "deterministic"})
+
+    assert nested_update.summary_mode == "none"
+    assert nested_update.model_dump(mode="json")["summary_mode"] == "none"
+    assert alias_update.summary.chunk_mode == "none"
+    assert alias_update.summary_mode == "none"
+    assert alias_update.model_dump(mode="json")["summary_mode"] == "none"
+    assert alias_update.legacy_summary_mode_used is True
+
+    nested_only = ContentOrganizationOptions.model_validate(
+        {"summary": {"chunk_mode": "none"}}
+    )
+    ignored_alias_update = nested_only.model_copy(
+        update={"summary_mode": "deterministic"}
+    )
+    assert ignored_alias_update.summary_mode == "none"
+    assert "summary_mode" not in ignored_alias_update.model_dump(mode="json")
+    assert ignored_alias_update.legacy_summary_mode_used is False
 
 
 def test_identical_legacy_and_nested_summary_modes_are_accepted():

@@ -1,7 +1,13 @@
 import re
 from typing import Any, Literal
 
-from pydantic import Field, PrivateAttr, field_validator, model_validator
+from pydantic import (
+    Field,
+    PrivateAttr,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 from app.schemas.common import StrictBaseModel
 
@@ -179,7 +185,6 @@ class ContentOrganizationOptions(StrictBaseModel):
     protect_code_blocks: bool = True
     enable_parent_child: bool = False
     enable_light_semantic_boundary: bool = True
-    summary_mode: Literal["none", "deterministic"] = "deterministic"
     keyword_mode: Literal["none", "deterministic"] = "deterministic"
     summary: SummaryConfig = Field(default_factory=SummaryConfig)
     tag_rules: TagRules = Field(default_factory=TagRules)
@@ -188,14 +193,16 @@ class ContentOrganizationOptions(StrictBaseModel):
     strict_provider: bool = False
     enable_legacy_entity_inference: bool = False
 
-    @model_validator(mode="before")
+    @model_validator(mode="wrap")
     @classmethod
-    def migrate_legacy_summary_mode(cls, value: Any) -> Any:
+    def migrate_legacy_summary_mode(cls, value: Any, handler):
+        if isinstance(value, cls):
+            return handler(value)
         if not isinstance(value, dict) or "summary_mode" not in value:
-            return value
+            return handler(value)
 
         payload = dict(value)
-        legacy_mode = payload["summary_mode"]
+        legacy_mode = payload.pop("summary_mode")
         raw_summary = payload.get("summary")
         if isinstance(raw_summary, SummaryConfig):
             nested_mode_is_explicit = "chunk_mode" in raw_summary.model_fields_set
@@ -217,18 +224,14 @@ class ContentOrganizationOptions(StrictBaseModel):
                     update={"chunk_mode": legacy_mode}
                 )
             elif raw_summary is None and "summary" in payload:
-                return payload
+                return handler(payload)
             else:
                 nested_summary = dict(raw_summary or {})
                 nested_summary["chunk_mode"] = legacy_mode
                 payload["summary"] = nested_summary
-        return payload
-
-    @model_validator(mode="after")
-    def synchronize_legacy_summary_mode(self):
-        self._legacy_summary_mode_used = "summary_mode" in self.model_fields_set
-        self.summary_mode = self.summary.chunk_mode
-        return self
+        result = handler(payload)
+        result._legacy_summary_mode_used = True
+        return result
 
     @model_validator(mode="after")
     def validate_token_window(self):
@@ -243,6 +246,18 @@ class ContentOrganizationOptions(StrictBaseModel):
     @property
     def legacy_summary_mode_used(self) -> bool:
         return self._legacy_summary_mode_used
+
+    @property
+    def summary_mode(self) -> Literal["none", "deterministic"]:
+        return self.summary.chunk_mode
+
+    @model_serializer(mode="wrap")
+    def serialize_legacy_summary_mode(self, handler):
+        payload = handler(self)
+        payload.pop("summary_mode", None)
+        if self._legacy_summary_mode_used:
+            payload["summary_mode"] = self.summary.chunk_mode
+        return payload
 
 
 class OrganizedChunk(StrictBaseModel):

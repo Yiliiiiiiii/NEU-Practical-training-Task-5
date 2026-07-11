@@ -258,6 +258,50 @@ def test_topic5_document_summary_is_deterministic_across_three_runs(topic5_clien
     assert summaries[0] == summaries[1] == summaries[2]
 
 
+def test_topic5_nested_summary_config_does_not_emit_legacy_warning(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"].pop("summary_mode", None)
+    payload["content_organization"]["summary"] = {
+        "chunk_mode": "deterministic",
+        "document_mode": "extractive",
+    }
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    assert "summary_mode is deprecated; use summary.chunk_mode" not in response.json()[
+        "content_organization_report"
+    ]["warnings"]
+
+
+def test_topic5_default_summary_config_does_not_emit_legacy_warning(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"] = {}
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    assert "summary_mode is deprecated; use summary.chunk_mode" not in response.json()[
+        "content_organization_report"
+    ]["warnings"]
+
+
+def test_topic5_legacy_summary_config_emits_deprecation_warning(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["content_organization"].pop("summary", None)
+    payload["content_organization"]["summary_mode"] = "deterministic"
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    assert response.json()["content_organization_report"]["warnings"] == [
+        "summary_mode is deprecated; use summary.chunk_mode"
+    ]
+
+
 def test_topic5_inline_passes_upstream_entity_to_only_relevant_chunk(topic5_client):
     client, _storage_root = topic5_client
     payload = announcement_convert_request()
