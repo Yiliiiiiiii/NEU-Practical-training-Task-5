@@ -94,12 +94,15 @@ def test_hard_gap_semantic_artifacts_are_identical_across_three_runs(
             Topic5ConvertRequest.model_validate(copy.deepcopy(request_payload)),
             create_package=False,
         )
+        actual_chunk_ids = {chunk["chunk_id"] for chunk in result.chunks}
+        assert set(result.document_summary["source_chunk_ids"]) <= actual_chunk_ids
         hashes.append(_semantic_hashes(result))
 
     assert hashes[0] == hashes[1] == hashes[2]
 
 
 def _semantic_hashes(result) -> dict[str, str]:
+    task_id = result.task_id
     content = {
         "data": result.content_json["data"],
         "document_metadata": result.content_json["document_metadata"],
@@ -115,16 +118,31 @@ def _semantic_hashes(result) -> dict[str, str]:
         }
         chunks.append(semantic_chunk)
     return {
-        "content_semantic_hash": _hash(content),
+        "content_semantic_hash": _hash(_normalize_run_identity(content, task_id)),
         "document_metadata_hash": _hash(result.document_metadata),
-        "summary_hash": _hash(result.document_summary),
-        "chunk_semantic_hashes": _hash(chunks),
+        "summary_hash": _hash(
+            _normalize_run_identity(result.document_summary, task_id)
+        ),
+        "chunk_semantic_hashes": _hash(_normalize_run_identity(chunks, task_id)),
         "tag_traces": _hash(
             [chunk["organization_trace"]["tag_traces"] for chunk in result.chunks]
         ),
         "entity_tags": _hash([chunk["entity_tags"] for chunk in result.chunks]),
         "consistency_checks": _hash(result.artifact_consistency_report["checks"]),
     }
+
+
+def _normalize_run_identity(value: object, task_id: str) -> object:
+    if isinstance(value, dict):
+        return {
+            key: _normalize_run_identity(item, task_id)
+            for key, item in value.items()
+        }
+    if isinstance(value, list):
+        return [_normalize_run_identity(item, task_id) for item in value]
+    if isinstance(value, str):
+        return value.replace(task_id, "<task_id>")
+    return value
 
 
 def _hash(value: object) -> str:
