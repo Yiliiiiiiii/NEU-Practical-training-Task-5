@@ -103,10 +103,11 @@ def test_hard_gap_semantic_artifacts_are_identical_across_three_runs(
 
 def _semantic_hashes(result) -> dict[str, str]:
     task_id = result.task_id
+    summary = _normalize_summary_identity(result.document_summary, task_id)
     content = {
         "data": result.content_json["data"],
         "document_metadata": result.content_json["document_metadata"],
-        "document_summary": result.content_json["document_summary"],
+        "document_summary": summary,
         "blocks": result.content_json["blocks"],
     }
     chunks = []
@@ -116,14 +117,12 @@ def _semantic_hashes(result) -> dict[str, str]:
             for key, value in chunk.items()
             if key not in {"task_id"}
         }
-        chunks.append(semantic_chunk)
+        chunks.append(_normalize_chunk_identity(semantic_chunk, task_id))
     return {
-        "content_semantic_hash": _hash(_normalize_run_identity(content, task_id)),
+        "content_semantic_hash": _hash(content),
         "document_metadata_hash": _hash(result.document_metadata),
-        "summary_hash": _hash(
-            _normalize_run_identity(result.document_summary, task_id)
-        ),
-        "chunk_semantic_hashes": _hash(_normalize_run_identity(chunks, task_id)),
+        "summary_hash": _hash(summary),
+        "chunk_semantic_hashes": _hash(chunks),
         "tag_traces": _hash(
             [chunk["organization_trace"]["tag_traces"] for chunk in result.chunks]
         ),
@@ -132,17 +131,40 @@ def _semantic_hashes(result) -> dict[str, str]:
     }
 
 
-def _normalize_run_identity(value: object, task_id: str) -> object:
-    if isinstance(value, dict):
-        return {
-            key: _normalize_run_identity(item, task_id)
-            for key, item in value.items()
-        }
-    if isinstance(value, list):
-        return [_normalize_run_identity(item, task_id) for item in value]
-    if isinstance(value, str):
-        return value.replace(task_id, "<task_id>")
-    return value
+def test_run_identity_normalization_does_not_rewrite_business_text() -> None:
+    task_id = "topic5_run_a"
+    value = {"title": f"customer {task_id}", "chunk_id": f"chunk_{task_id}_0001"}
+
+    normalized = _normalize_chunk_identity(value, task_id)
+
+    assert normalized["title"] == f"customer {task_id}"
+    assert normalized["chunk_id"] == "chunk_<task_id>_0001"
+
+
+def _normalize_summary_identity(summary: dict, task_id: str) -> dict:
+    normalized = copy.deepcopy(summary)
+    normalized["source_chunk_ids"] = [
+        _normalize_chunk_reference(chunk_id, task_id)
+        for chunk_id in summary["source_chunk_ids"]
+    ]
+    return normalized
+
+
+def _normalize_chunk_identity(chunk: dict, task_id: str) -> dict:
+    normalized = copy.deepcopy(chunk)
+    normalized["chunk_id"] = _normalize_chunk_reference(chunk["chunk_id"], task_id)
+    if chunk.get("parent_chunk_id"):
+        normalized["parent_chunk_id"] = _normalize_chunk_reference(
+            chunk["parent_chunk_id"], task_id
+        )
+    return normalized
+
+
+def _normalize_chunk_reference(chunk_id: str, task_id: str) -> str:
+    prefix = f"chunk_{task_id}_"
+    if chunk_id.startswith(prefix):
+        return f"chunk_<task_id>_{chunk_id.removeprefix(prefix)}"
+    return chunk_id
 
 
 def _hash(value: object) -> str:
