@@ -18,6 +18,47 @@ from app.schemas.topic5_convert import Topic5ConvertRequest
 from app.services.package_verifier_service import PackageVerifierService
 from tests.topic5_helpers import announcement_convert_request
 
+BUSINESS_CONTENT_KEYS = {
+    "source_metadata",
+    "document_metadata",
+    "metadata_template",
+    "document_summary",
+    "data",
+    "blocks",
+    "assets",
+    "metadata",  # Deprecated compatibility alias.
+}
+FORBIDDEN_BUSINESS_KEYS = {
+    "task_id",
+    "package_id",
+    "execution_snapshot",
+    "mapping_summary",
+    "transform_summary",
+    "metadata_template_report",
+    "report_paths",
+    "runtime_duration_ms",
+    "api_key",
+    "topic11_api_key",
+    "mapping_report_path",
+    "secret",
+    "password",
+    "access_token",
+}
+
+
+def _forbidden_key_paths(value: object, path: str = "$") -> list[str]:
+    matches: list[str] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_path = f"{path}.{key}"
+            if key.lower() in FORBIDDEN_BUSINESS_KEYS:
+                matches.append(child_path)
+            matches.extend(_forbidden_key_paths(child, child_path))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            matches.extend(_forbidden_key_paths(child, f"{path}[{index}]"))
+    return matches
+
 
 @pytest.fixture
 def topic5_client(tmp_path) -> Iterator[tuple[TestClient, Path]]:
@@ -78,6 +119,33 @@ def test_topic5_convert_accepts_inline_config(topic5_client):
     assert payload["package_zip_path"] is None
 
 
+def test_inline_business_content_has_explicit_shape_and_no_operational_keys(
+    topic5_client,
+):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["uir"]["metadata"]["safe_nested"] = {
+        "label": "business value",
+        "execution_snapshot": {"api_key": "inline-secret"},
+        "topic11_api_key": "provider-secret",
+        "runtime_duration_ms": 42,
+    }
+
+    response = client.post("/api/v1/topic5/convert", json=payload)
+
+    assert response.status_code == 200
+    body = response.json()
+    content = body["content_json"]
+    assert set(content) == BUSINESS_CONTENT_KEYS
+    assert _forbidden_key_paths(content) == []
+    assert content["source_metadata"]["safe_nested"] == {"label": "business value"}
+    assert content["metadata"] == {
+        **content["source_metadata"],
+        **content["document_metadata"],
+    }
+    assert body["metadata_template_report"]["field_traces"]
+
+
 def test_topic5_convert_package_creates_verified_package(topic5_client):
     client, _storage_root = topic5_client
 
@@ -91,6 +159,29 @@ def test_topic5_convert_package_creates_verified_package(topic5_client):
     assert Path(payload["package_zip_path"]).is_file()
     assert payload["package_metadata"]["status"] == "completed"
     assert payload["verifier_report"]["passed"] is True
+
+
+def test_packaged_content_has_explicit_shape_and_no_operational_keys(topic5_client):
+    client, _storage_root = topic5_client
+    payload = announcement_convert_request()
+    payload["uir"]["metadata"]["nested"] = {
+        "safe": "business value",
+        "report_paths": {"mapping": "private/path.json"},
+        "mapping_report_path": "private/mapping.json",
+        "secret": "package-secret",
+    }
+
+    response = client.post("/api/v1/topic5/convert/package", json=payload)
+
+    assert response.status_code == 200
+    body = response.json()
+    package_dir = Path(body["package_zip_path"]).parent
+    content = json.loads((package_dir / "content.json").read_text(encoding="utf-8"))
+    assert set(content) == BUSINESS_CONTENT_KEYS
+    assert _forbidden_key_paths(content) == []
+    assert content["source_metadata"]["nested"] == {"safe": "business value"}
+    assert (package_dir / "mapping_report.json").is_file()
+    assert (package_dir / "metadata_template_report.json").is_file()
 
 
 def test_topic5_metadata_template_controls_response_and_content_json(topic5_client):
@@ -147,7 +238,7 @@ def test_topic5_document_summary_can_be_disabled(topic5_client):
     assert response.status_code == 200
     body = response.json()
     assert body["document_summary"] is None
-    assert body["content_json"]["document_summary"] is None
+    assert body["content_json"]["document_summary"] == {}
     assert (
         "<!-- topic5:summary:start -->\n\n<!-- topic5:summary:end -->"
         in body["content_markdown"]
@@ -298,6 +389,7 @@ def test_topic5_legacy_request_without_metadata_template_remains_valid(topic5_cl
     assert body["document_metadata"] == {}
     assert body["metadata_template_report"] is None
     assert body["content_json"]["document_metadata"] == {}
+    assert body["content_json"]["metadata_template"] == {}
 
 
 def test_topic5_package_contains_metadata_template_artifact_and_feature(topic5_client):

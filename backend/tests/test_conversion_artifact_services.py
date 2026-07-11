@@ -120,7 +120,12 @@ def test_canonical_and_render_services_preserve_sources_and_chunks():
     assert rendered.structured_json["metadata"]["retrieved_at"] == (
         "2026-07-10T00:00:00Z"
     )
-    assert rendered.structured_json["metadata"]["execution_snapshot"] == {
+    assert rendered.structured_json["source_metadata"]["retrieved_at"] == (
+        "2026-07-10T00:00:00Z"
+    )
+    assert "execution_snapshot" not in rendered.structured_json["metadata"]
+    assert "execution_snapshot" not in rendered.structured_json["source_metadata"]
+    assert canonical.doc_meta["execution_snapshot"] == {
         "engine_version": "test"
     }
     assert "# 接口目录维护说明" in rendered.markdown

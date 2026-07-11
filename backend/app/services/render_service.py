@@ -5,6 +5,54 @@ from typing import Any
 
 from app.schemas.canonical import CanonicalBlock, CanonicalModel
 
+_FORBIDDEN_BUSINESS_KEYS = {
+    "access_token",
+    "api_key",
+    "artifact_consistency_report",
+    "authorization",
+    "content_organization_report",
+    "conversion_assertion_report",
+    "credentials",
+    "duration_ms",
+    "elapsed_ms",
+    "execution_snapshot",
+    "execution_trace",
+    "field_traces",
+    "mapping_report",
+    "mapping_summary",
+    "metadata_template_report",
+    "package_id",
+    "password",
+    "provider_trace",
+    "refresh_token",
+    "report_paths",
+    "runtime_duration_ms",
+    "secret",
+    "task_id",
+    "transform_report",
+    "transform_summary",
+    "validation_report",
+    "verifier_report",
+}
+_FORBIDDEN_BUSINESS_SUFFIXES = (
+    "_access_token",
+    "_api_key",
+    "_password",
+    "_refresh_token",
+    "_report_path",
+    "_report_paths",
+    "_secret",
+)
+
+
+def _is_forbidden_business_key(key: object) -> bool:
+    if not isinstance(key, str):
+        return False
+    normalized = key.casefold()
+    return normalized in _FORBIDDEN_BUSINESS_KEYS or normalized.endswith(
+        _FORBIDDEN_BUSINESS_SUFFIXES
+    )
+
 
 @dataclass(frozen=True)
 class RenderedArtifacts:
@@ -32,29 +80,47 @@ class RenderService:
                 if key in metadata_template
             }
             if isinstance(metadata_template, dict)
-            else None
+            else {}
         )
-        structured = {
-            "task_id": canonical.task_id,
-            "doc_id": canonical.doc_id,
-            "schema_id": canonical.schema_id,
-            "data": {
-                field_id: field.value
-                for field_id, field in canonical.fields.items()
-            },
-            "metadata": {**source_metadata, **canonical.doc_meta},
-            "document_metadata": document_metadata,
-            "metadata_template": content_metadata_template,
-            "document_summary": document_summary,
-            "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
-            "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
-            "execution_snapshot": canonical.doc_meta.get("execution_snapshot", {}),
-        }
+        content_document_summary = (
+            document_summary if isinstance(document_summary, dict) else {}
+        )
+        source_metadata = self._business_value(source_metadata)
+        document_metadata = self._business_value(document_metadata)
+        structured = self._business_value(
+            {
+                "source_metadata": source_metadata,
+                "document_metadata": document_metadata,
+                "metadata_template": content_metadata_template,
+                "document_summary": content_document_summary,
+                "data": {
+                    field_id: field.value
+                    for field_id, field in canonical.fields.items()
+                },
+                "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
+                "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
+                # Deprecated Package 1.1 alias. New consumers should use the two
+                # explicit metadata fields above.
+                "metadata": {**source_metadata, **document_metadata},
+            }
+        )
         return RenderedArtifacts(
             structured_json=structured,
             markdown=self._markdown(canonical),
             chunks=self._chunks(canonical, chunk_size=chunk_size),
         )
+
+    @classmethod
+    def _business_value(cls, value: Any) -> Any:
+        if isinstance(value, dict):
+            return {
+                key: cls._business_value(child)
+                for key, child in value.items()
+                if not _is_forbidden_business_key(key)
+            }
+        if isinstance(value, list):
+            return [cls._business_value(child) for child in value]
+        return value
 
     def _markdown(self, canonical: CanonicalModel) -> str:
         lines = [

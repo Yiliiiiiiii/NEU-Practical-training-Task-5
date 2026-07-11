@@ -248,7 +248,7 @@ class ArtifactConsistencyService:
         errors: list[ArtifactConsistencyIssue],
     ) -> bool:
         expected_payload = (
-            document_summary.model_dump(mode="json") if document_summary else None
+            document_summary.model_dump(mode="json") if document_summary else {}
         )
         json_payload = structured.get("document_summary")
         json_matches = json_payload == expected_payload
