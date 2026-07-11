@@ -95,6 +95,14 @@ class TransformService:
                 errors.append(error)
                 if error.get("level") != "warning":
                     continue
+            generic_value = value
+            if enable_legacy_transform_heuristics:
+                generic_value, _ = self._coerce_value(
+                    raw_value,
+                    field,
+                    template.enum_maps.get(field.field_id, {}),
+                    enable_legacy_transform_heuristics=False,
+                )
             data[field.field_id] = value
             trace = {
                 "target_field_id": field.field_id,
@@ -105,8 +113,8 @@ class TransformService:
             legacy_heuristic = self._legacy_heuristic_for(
                 raw_value,
                 value,
+                generic_value,
                 field,
-                enum_map=template.enum_maps.get(field.field_id, {}),
                 enabled=enable_legacy_transform_heuristics,
             )
             if legacy_heuristic is not None:
@@ -116,13 +124,15 @@ class TransformService:
                     {
                         "source_value": raw_value,
                         "normalized_value": value,
-                        "normalizer": self._normalizer_for(field),
+                        "normalizer": self._normalizer_for(
+                            field,
+                            legacy_heuristic=legacy_heuristic,
+                        ),
                     }
                 )
             if (
                 isinstance(raw_value, str)
-                and field.type == "array[string]"
-                and field.field_id in self.SPLIT_ARRAY_FIELDS
+                and legacy_heuristic == "field_specific_array_split"
             ):
                 trace["quality_flags"] = self._list_quality_flags(raw_value, value)
             traces.append(trace)
@@ -296,18 +306,17 @@ class TransformService:
         cls,
         source_value: Any,
         normalized_value: Any,
+        generic_value: Any,
         field: TargetField,
         *,
-        enum_map: dict[str, str],
         enabled: bool,
     ) -> str | None:
-        if not enabled or normalized_value == source_value:
+        if not enabled or normalized_value == generic_value:
             return None
         if (
             field.field_id == "doc_type"
             and field.type == "enum"
             and isinstance(source_value, str)
-            and source_value not in enum_map
             and cls.DOC_TYPE_ENUM_MAP.get(source_value.strip()) == normalized_value
         ):
             return "document_type_map"
@@ -529,11 +538,18 @@ class TransformService:
         return tens * 10 + ones
 
     @classmethod
-    def _normalizer_for(cls, field: TargetField) -> str:
+    def _normalizer_for(
+        cls,
+        field: TargetField,
+        *,
+        legacy_heuristic: str | None = None,
+    ) -> str:
         if field.type == "date":
             return "zh_date_normalizer_v2"
-        if field.type == "array[string]" and field.field_id in cls.SPLIT_ARRAY_FIELDS:
+        if legacy_heuristic == "field_specific_array_split":
             return "list_field_normalizer_v2"
+        if field.type.startswith("array"):
+            return "target_type_array_wrap"
         if field.field_id in cls.ORGANIZATION_FIELDS:
             return "organization_field_cleaner_v1"
         return cls._operation_for(field)
