@@ -503,6 +503,11 @@ class PackageVerifierService:
                     if isinstance(rule, dict)
                     and str(rule.get("rule_id") or "").strip()
                 },
+                protect_tables=bool(raw_options.get("protect_tables", True)),
+                protect_lists=bool(raw_options.get("protect_lists", True)),
+                protect_code_blocks=bool(
+                    raw_options.get("protect_code_blocks", True)
+                ),
             )
             recomputed = recomputed.model_copy(
                 update={

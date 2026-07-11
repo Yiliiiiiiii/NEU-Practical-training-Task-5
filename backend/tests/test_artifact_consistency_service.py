@@ -242,6 +242,7 @@ def test_unknown_chunk_source_block_is_detected() -> None:
     assert "chunk_source_unknown" in _codes(report)
     assert report.unknown_source_count == 1
     assert report.chunk_source_validity == 0.5
+    assert report.unexplained_chunk_text_count == 1
 
 
 def test_nonempty_ordinary_block_omission_is_detected() -> None:
@@ -350,6 +351,38 @@ def test_intentional_parent_child_overlap_is_not_counted_as_duplicate() -> None:
     assert report.duplicate_content_ratio == 0.0
 
 
+def test_duplicate_chunk_ids_are_rejected_independently() -> None:
+    chunks = copy.deepcopy(_chunks())
+    duplicate = copy.deepcopy(chunks[0])
+    duplicate["index"] = 2
+    duplicate["chunk_index"] = 2
+    chunks.append(duplicate)
+
+    report = _verify(chunks=chunks)
+
+    assert "chunk_id_duplicate" in _codes(report)
+    assert report.duplicate_content_ratio > 0.0
+
+
+def test_sibling_duplicate_text_is_counted() -> None:
+    chunks = copy.deepcopy(_chunks())
+    parent = copy.deepcopy(chunks[0])
+    parent["chunk_id"] = "parent"
+    parent["index"] = 2
+    parent["chunk_index"] = 2
+    sibling = copy.deepcopy(chunks[0])
+    sibling["chunk_id"] = "sibling"
+    sibling["parent_chunk_id"] = "parent"
+    sibling["index"] = 3
+    sibling["chunk_index"] = 3
+    chunks[0]["parent_chunk_id"] = "parent"
+    chunks.extend([parent, sibling])
+
+    report = _verify(chunks=chunks)
+
+    assert report.duplicate_content_ratio == 0.25
+
+
 def test_unregistered_exclusion_rule_does_not_hide_omission() -> None:
     canonical, structured, markdown, chunks, summary = _artifacts()
 
@@ -392,6 +425,31 @@ def test_protected_block_cannot_be_excluded() -> None:
     )
 
     assert "protected_block_integrity_failed" in _codes(report)
+
+
+def test_table_exclusion_is_allowed_when_table_protection_is_disabled() -> None:
+    canonical, structured, markdown, chunks, summary = _artifacts()
+
+    report = ArtifactConsistencyService().verify(
+        canonical=canonical,
+        structured_json=structured,
+        markdown=markdown,
+        chunks=chunks[:1],
+        document_summary=summary,
+        block_exclusions=[
+            {
+                "block_id": "b2",
+                "exclusion_reason": "configured table exclusion",
+                "rule_id": "exclude-table-v1",
+            }
+        ],
+        block_exclusion_rule_ids={"exclude-table-v1"},
+        protect_tables=False,
+    )
+
+    assert report.passed is True
+    assert report.nonempty_block_coverage == 1.0
+    assert report.protected_block_integrity == 1.0
 
 
 def test_protected_block_newlines_and_indentation_must_be_exact() -> None:

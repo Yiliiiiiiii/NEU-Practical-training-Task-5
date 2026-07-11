@@ -445,6 +445,37 @@ def test_protected_block_cannot_be_excluded_by_registered_rule() -> None:
     assert exc_info.value.code == "topic11_protected_block_exclusion"
 
 
+def test_registered_table_exclusion_is_allowed_when_protection_is_disabled() -> None:
+    external = FakeProvider(
+        _response(
+            {
+                "chunk_id": "external-1",
+                "text": "OpenAI published the notice.",
+                "source_block_ids": ["b1"],
+            }
+        )
+    )
+    options = _options(
+        protect_tables=False,
+        block_exclusion_rules=[{"rule_id": "exclude-v1"}],
+        block_exclusions=[
+            {
+                "block_id": "table1",
+                "exclusion_reason": "configured table exclusion",
+                "rule_id": "exclude-v1",
+            }
+        ],
+    )
+    resolver = ChunkProviderResolver(settings=Settings(), external_provider=external)
+
+    result = resolver.resolve(
+        canonical=_canonical(), options=options, legacy_chunks=_legacy_chunks()
+    )
+
+    assert result.trace.used_provider == "topic11"
+    assert result.trace.fallback_used is False
+
+
 def test_strict_provider_mode_returns_failure_without_fallback() -> None:
     resolver = ChunkProviderResolver(
         settings=Settings(),

@@ -81,6 +81,7 @@ class PackageService:
                 block_exclusion_rule_ids=self._report_exclusion_rule_ids(
                     content_organization_report
                 ),
+                **self._report_protection_flags(content_organization_report),
             )
             files, optional_paths = self._semantic_files(
                 package_id=package_id,
@@ -211,6 +212,16 @@ class PackageService:
             str(rule.get("rule_id"))
             for rule in rules
             if isinstance(rule, dict) and str(rule.get("rule_id") or "").strip()
+        }
+
+    @staticmethod
+    def _report_protection_flags(report: ContentOrganizationReport) -> dict[str, bool]:
+        options = report.summary.get("options", {})
+        options = options if isinstance(options, dict) else {}
+        return {
+            "protect_tables": bool(options.get("protect_tables", True)),
+            "protect_lists": bool(options.get("protect_lists", True)),
+            "protect_code_blocks": bool(options.get("protect_code_blocks", True)),
         }
 
     @staticmethod

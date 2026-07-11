@@ -425,6 +425,21 @@ class TaskExecutionService:
                 if content_org_options is not None
                 else set()
             ),
+            protect_tables=(
+                content_org_options.protect_tables
+                if content_org_options is not None
+                else True
+            ),
+            protect_lists=(
+                content_org_options.protect_lists
+                if content_org_options is not None
+                else True
+            ),
+            protect_code_blocks=(
+                content_org_options.protect_code_blocks
+                if content_org_options is not None
+                else True
+            ),
         )
         conversion_assertion_report: dict[str, Any] | None = None
         conversion_assertion_report_path: str | None = None

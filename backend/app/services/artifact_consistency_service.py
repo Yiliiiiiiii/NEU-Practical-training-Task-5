@@ -41,6 +41,9 @@ class ArtifactConsistencyService:
         document_summary: DocumentSummary | None,
         block_exclusions: list[dict[str, Any]] | None = None,
         block_exclusion_rule_ids: set[str] | None = None,
+        protect_tables: bool = True,
+        protect_lists: bool = True,
+        protect_code_blocks: bool = True,
     ) -> ArtifactConsistencyReport:
         errors: list[ArtifactConsistencyIssue] = []
         checks: list[ArtifactConsistencyCheck] = []
@@ -60,6 +63,9 @@ class ArtifactConsistencyService:
             errors,
             block_exclusions=block_exclusions or [],
             block_exclusion_rule_ids=block_exclusion_rule_ids or set(),
+            protect_tables=protect_tables,
+            protect_lists=protect_lists,
+            protect_code_blocks=protect_code_blocks,
         )
 
         checks.extend(
@@ -312,6 +318,9 @@ class ArtifactConsistencyService:
         *,
         block_exclusions: list[dict[str, Any]],
         block_exclusion_rule_ids: set[str],
+        protect_tables: bool,
+        protect_lists: bool,
+        protect_code_blocks: bool,
     ) -> dict[str, Any]:
         blocks = {block.block_id: block for block in canonical.blocks}
         chunk_ids = {
@@ -326,11 +335,22 @@ class ArtifactConsistencyService:
         protected_integrity: set[str] = set()
         normalized_text_chunks: dict[str, list[dict[str, Any]]] = {}
         seen_indices: set[int] = set()
+        seen_chunk_ids: set[str] = set()
         entities = canonical.doc_meta.get("entities", [])
         entities = entities if isinstance(entities, list) else []
 
         for position, chunk in enumerate(chunks):
             path = f"chunks[{position}]"
+            chunk_id = str(chunk.get("chunk_id") or "")
+            if chunk_id and chunk_id in seen_chunk_ids:
+                self._error(
+                    errors,
+                    f"{path}.chunk_id",
+                    "chunk_id_duplicate",
+                    "Chunk identifiers must be unique.",
+                )
+            elif chunk_id:
+                seen_chunk_ids.add(chunk_id)
             source_ids = [str(value) for value in chunk.get("source_block_ids", [])]
             known_ids = [value for value in source_ids if value in blocks]
             unknown_ids = [value for value in source_ids if value not in blocks]
@@ -375,7 +395,7 @@ class ArtifactConsistencyService:
                     "chunk_text_empty",
                     "Chunk text must contain non-whitespace source content.",
                 )
-            elif known_ids and not text_is_derivable:
+            elif not text_is_derivable:
                 unexplained_count += 1
                 self._error(
                     errors,
@@ -388,7 +408,12 @@ class ArtifactConsistencyService:
                 referenced_blocks.update(known_ids)
             for block_id in known_ids:
                 block = blocks[block_id]
-                if self._is_protected(block) and (
+                if self._is_protected(
+                    block,
+                    protect_tables=protect_tables,
+                    protect_lists=protect_lists,
+                    protect_code_blocks=protect_code_blocks,
+                ) and (
                     (len(known_ids) == 1 and chunk_text == block.text)
                     or (len(known_ids) > 1 and block.text in chunk_text)
                 ):
@@ -430,7 +455,12 @@ class ArtifactConsistencyService:
             and str(item.get("exclusion_reason") or "").strip()
             and str(item.get("rule_id") or "").strip()
             in block_exclusion_rule_ids
-            and not self._is_protected(blocks[str(item.get("block_id"))])
+            and not self._is_protected(
+                blocks[str(item.get("block_id"))],
+                protect_tables=protect_tables,
+                protect_lists=protect_lists,
+                protect_code_blocks=protect_code_blocks,
+            )
         }
         all_ids = set(blocks)
         nonempty_ids = {
@@ -446,7 +476,14 @@ class ArtifactConsistencyService:
                 "Non-empty canonical block is not represented in chunks.",
             )
         protected_ids = {
-            block_id for block_id, block in blocks.items() if self._is_protected(block)
+            block_id
+            for block_id, block in blocks.items()
+            if self._is_protected(
+                block,
+                protect_tables=protect_tables,
+                protect_lists=protect_lists,
+                protect_code_blocks=protect_code_blocks,
+            )
         }
         for block_id in sorted(protected_ids - protected_integrity):
             self._error(
@@ -455,8 +492,13 @@ class ArtifactConsistencyService:
                 "protected_block_integrity_failed",
                 "Protected block text is not preserved exactly in one chunk.",
             )
+        parent_by_id = {
+            str(chunk.get("chunk_id")): str(chunk.get("parent_chunk_id") or "")
+            for chunk in chunks
+            if chunk.get("chunk_id")
+        }
         duplicate_count = sum(
-            self._unrelated_duplicate_count(group)
+            self._unrelated_duplicate_count(group, parent_by_id)
             for group in normalized_text_chunks.values()
             if len(group) > 1
         )
@@ -483,32 +525,58 @@ class ArtifactConsistencyService:
         return " ".join(value.split())
 
     @staticmethod
-    def _unrelated_duplicate_count(chunks: list[dict[str, Any]]) -> int:
-        ids = [str(chunk.get("chunk_id") or index) for index, chunk in enumerate(chunks)]
-        parent = {chunk_id: chunk_id for chunk_id in ids}
-
-        def find(value: str) -> str:
-            while parent[value] != value:
-                parent[value] = parent[parent[value]]
-                value = parent[value]
-            return value
-
-        def union(left: str, right: str) -> None:
-            left_root, right_root = find(left), find(right)
-            if left_root != right_root:
-                parent[right_root] = left_root
-
-        known_ids = set(ids)
-        for chunk, chunk_id in zip(chunks, ids, strict=True):
-            parent_id = str(chunk.get("parent_chunk_id") or "")
-            if parent_id in known_ids:
-                union(chunk_id, parent_id)
-        component_count = len({find(chunk_id) for chunk_id in ids})
-        return max(component_count - 1, 0)
+    def _unrelated_duplicate_count(
+        chunks: list[dict[str, Any]], parent_by_id: dict[str, str]
+    ) -> int:
+        duplicate_count = 0
+        for index, chunk in enumerate(chunks):
+            chunk_id = str(chunk.get("chunk_id") or "")
+            if any(
+                not ArtifactConsistencyService._ancestor_related(
+                    chunk_id,
+                    str(previous.get("chunk_id") or ""),
+                    parent_by_id,
+                )
+                for previous in chunks[:index]
+            ):
+                duplicate_count += 1
+        return duplicate_count
 
     @staticmethod
-    def _is_protected(block: Any) -> bool:
-        return block.type in {"table", "list", "code", "code_block"}
+    def _ancestor_related(
+        left_id: str, right_id: str, parent_by_id: dict[str, str]
+    ) -> bool:
+        if not left_id or not right_id or left_id == right_id:
+            return False
+
+        def is_ancestor(ancestor_id: str, child_id: str) -> bool:
+            visited: set[str] = set()
+            current = parent_by_id.get(child_id, "")
+            while current and current not in visited:
+                if current == ancestor_id:
+                    return True
+                visited.add(current)
+                current = parent_by_id.get(current, "")
+            return False
+
+        return is_ancestor(left_id, right_id) or is_ancestor(right_id, left_id)
+
+    @staticmethod
+    def _is_protected(
+        block: Any,
+        *,
+        protect_tables: bool,
+        protect_lists: bool,
+        protect_code_blocks: bool,
+    ) -> bool:
+        return (
+            (protect_tables and block.type == "table")
+            or (protect_lists and block.type == "list")
+            or (
+                protect_code_blocks
+                and block.type in {"code", "code_block"}
+            )
+        )
 
     def _check_entity_tags(
         self,

@@ -209,6 +209,9 @@ class Topic5ConversionService:
                 rule.rule_id
                 for rule in request.content_organization.block_exclusion_rules
             },
+            protect_tables=request.content_organization.protect_tables,
+            protect_lists=request.content_organization.protect_lists,
+            protect_code_blocks=request.content_organization.protect_code_blocks,
         )
         conversion_assertion_report = None
         if request.output_assertions is not None:
