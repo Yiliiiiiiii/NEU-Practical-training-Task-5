@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import os
 import zipfile
 from collections.abc import Iterator
 from pathlib import Path, PurePosixPath
@@ -519,6 +520,71 @@ def test_package_verifier_recomputes_consistency_after_rehashed_tampering(
     assert any(issue.code == "artifact_consistency_recomputed_failed" for issue in report.errors)
 
 
+@pytest.mark.parametrize(
+    "artifact_name",
+    ["metadata.json", "canonical.json", "chunks.jsonl"],
+)
+def test_rehashed_operational_tampering_breaks_artifact_input_binding(
+    topic5_client, artifact_name
+):
+    client, _storage_root = topic5_client
+    body = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    ).json()
+    package_dir = Path(body["package_zip_path"]).parent
+    artifact_path = package_dir / artifact_name
+    if artifact_name == "chunks.jsonl":
+        rows = [
+            json.loads(line)
+            for line in artifact_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        rows[0]["chunk_id"] = "tampered_chunk_id"
+        artifact_path.write_text(
+            "\n".join(json.dumps(row) for row in rows), encoding="utf-8"
+        )
+    else:
+        payload = json.loads(artifact_path.read_text(encoding="utf-8"))
+        key = "task_id" if artifact_name == "metadata.json" else "doc_id"
+        payload[key] = f"tampered_{key}"
+        artifact_path.write_text(json.dumps(payload), encoding="utf-8")
+    manifest_path = package_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for item in manifest["files"]:
+        if item["path"] == artifact_name:
+            item["sha256"] = ManifestService.sha256_file(artifact_path)
+            item["bytes"] = artifact_path.stat().st_size
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    report = PackageVerifierService().verify_package(package_dir, strict=True)
+
+    assert report.passed is False
+    assert any(issue.code == "artifact_input_binding_mismatch" for issue in report.errors)
+
+
+def test_strict_verifier_rejects_unmanifested_contract_artifact(topic5_client):
+    client, _storage_root = topic5_client
+    body = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    ).json()
+    package_dir = Path(body["package_zip_path"]).parent
+    manifest_path = package_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["files"] = [
+        item for item in manifest["files"] if item["path"] != "transform_report.json"
+    ]
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    report = PackageVerifierService().verify_package(package_dir, strict=True)
+
+    assert report.passed is False
+    assert any(
+        issue.path == "transform_report.json"
+        and issue.code in {"required_file_not_manifested", "unmanifested_file"}
+        for issue in report.errors
+    )
+
+
 def test_package_response_verifier_is_byte_equivalent_to_stored_report(topic5_client):
     client, _storage_root = topic5_client
     response = client.post(
@@ -621,6 +687,29 @@ def test_failed_replacement_preserves_prior_valid_package(
     assert ManifestService.sha256_file(zip_path) == prior_hash
 
 
+def test_existing_valid_package_is_never_destructively_replaced(
+    topic5_client, monkeypatch
+):
+    client, _storage_root = topic5_client
+    monkeypatch.setattr(
+        "app.services.topic5_conversion_service.new_id", lambda _prefix: "immutable-task"
+    )
+    first = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    ).json()
+    zip_path = Path(first["package_zip_path"])
+    prior_hash = ManifestService.sha256_file(zip_path)
+
+    with pytest.raises(PackageBuildError) as exc_info:
+        client.post(
+            "/api/v1/topic5/convert/package", json=announcement_convert_request()
+        )
+
+    assert exc_info.value.stage == "final_rename"
+    assert zip_path.is_file()
+    assert ManifestService.sha256_file(zip_path) == prior_hash
+
+
 def test_zip_writer_is_deterministic_and_uses_safe_sorted_entries(tmp_path):
     first = tmp_path / "first"
     second = tmp_path / "second"
@@ -639,6 +728,25 @@ def test_zip_writer_is_deterministic_and_uses_safe_sorted_entries(tmp_path):
             not name.startswith("/") and ".." not in PurePosixPath(name).parts
             for name in archive.namelist()
         )
+
+
+def test_zip_writer_rejects_external_symlink(tmp_path):
+    package_dir = tmp_path / "package"
+    package_dir.mkdir()
+    outside = tmp_path / "outside.json"
+    outside.write_text('{"secret": true}', encoding="utf-8")
+    link = package_dir / "linked.json"
+    try:
+        os.symlink(outside, link)
+    except (OSError, NotImplementedError) as exc:
+        pytest.skip(f"symlink creation unavailable: {exc}")
+
+    with pytest.raises(PackageBuildError) as exc_info:
+        PackageService._write_deterministic_zip(
+            package_dir, package_dir / "standard_package.zip"
+        )
+
+    assert exc_info.value.stage == "zip_create"
 
 
 def test_package_verifier_rejects_missing_declared_consistency_report(
@@ -979,3 +1087,5 @@ def test_topic5_package_verifier_failure_overrides_artifact_consistency_failure(
     assert payload["artifact_consistency_report"]["passed"] is False
     assert payload["verifier_report"]["passed"] is False
     assert payload["status"] == "failed"
+    assert payload["package_zip_path"] is None
+    assert payload["package_metadata"]["zip_path"] is None

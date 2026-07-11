@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import shutil
+import stat
 import tempfile
 import uuid
 import zipfile
@@ -29,6 +31,7 @@ class PackageResult:
     metadata: OutputPackageMetadata
     verifier_report: ConsistencyReport
     manifest: Manifest
+    artifact_consistency_report: ArtifactConsistencyReport
 
 
 class PackageBuildError(RuntimeError):
@@ -99,6 +102,16 @@ class PackageService:
                 artifact_consistency_report=report,
             )
             written_files = self._write_semantic_files(temp_dir, files, rendered)
+            report = self._bind_artifact_consistency_report(temp_dir, report)
+            PackageService._atomic_write_text(
+                temp_dir / "artifact_consistency_report.json",
+                json.dumps(
+                    report.model_dump(mode="json"),
+                    ensure_ascii=False,
+                    indent=2,
+                    sort_keys=True,
+                ),
+            )
             current_stage = "manifest_write"
             manifest = ManifestService().build_manifest(
                 package_id=package_id,
@@ -134,7 +147,7 @@ class PackageService:
                         schema_id=schema.schema_id,
                         template_id=template.template_id,
                         package_version="1.0.0",
-                        zip_path=str(final_dir / "standard_package.zip"),
+                        zip_path=None,
                         status="failed",
                         created_at=manifest.created_at,
                         manifest_sha256=manifest_hash,
@@ -142,6 +155,7 @@ class PackageService:
                     ),
                     verifier_report=verifier_report,
                     manifest=manifest,
+                    artifact_consistency_report=report,
                 )
             current_stage = "zip_create"
             zip_path = temp_dir / "standard_package.zip"
@@ -169,6 +183,7 @@ class PackageService:
                 metadata=metadata,
                 verifier_report=verifier_report,
                 manifest=manifest,
+                artifact_consistency_report=report,
             )
         except PackageBuildError:
             raise
@@ -197,6 +212,35 @@ class PackageService:
             for rule in rules
             if isinstance(rule, dict) and str(rule.get("rule_id") or "").strip()
         }
+
+    @staticmethod
+    def _bind_artifact_consistency_report(
+        package_dir: Path, report: ArtifactConsistencyReport
+    ) -> ArtifactConsistencyReport:
+        names = (
+            "canonical.json",
+            "content.json",
+            "content.md",
+            "chunks.jsonl",
+            "metadata.json",
+        )
+        hashes = {
+            name: ManifestService.sha256_file(package_dir / name) for name in names
+        }
+        fingerprint = hashlib.sha256(
+            json.dumps(
+                hashes,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            ).encode("utf-8")
+        ).hexdigest()
+        return report.model_copy(
+            update={
+                "artifact_input_hashes": hashes,
+                "artifact_input_fingerprint": fingerprint,
+            }
+        )
 
     @staticmethod
     def _semantic_files(
@@ -346,13 +390,7 @@ class PackageService:
     def _write_deterministic_zip(cls, package_dir: Path, zip_path: Path) -> None:
         temporary = zip_path.with_name(f".{zip_path.name}.{uuid.uuid4().hex}.tmp")
         try:
-            paths = sorted(
-                path
-                for path in package_dir.rglob("*")
-                if path.is_file()
-                and path != temporary
-                and path.name != "standard_package.zip"
-            )
+            paths = cls._safe_package_files(package_dir)
             with zipfile.ZipFile(
                 temporary, "w", compression=zipfile.ZIP_DEFLATED
             ) as archive:
@@ -372,7 +410,7 @@ class PackageService:
                     info.compress_type = zipfile.ZIP_DEFLATED
                     info.create_system = 3
                     info.external_attr = 0o100644 << 16
-                    archive.writestr(info, path.read_bytes())
+                    archive.writestr(info, cls._read_regular_file(path))
             with temporary.open("rb") as handle:
                 try:
                     os.fsync(handle.fileno())
@@ -389,25 +427,61 @@ class PackageService:
 
     @staticmethod
     def _finalize_directory(temp_dir: Path, final_dir: Path, temp_root: Path) -> None:
-        backup = temp_root / f"{final_dir.name}-backup-{uuid.uuid4().hex}"
-        moved_prior = False
-        completed = False
+        del temp_root
+        if final_dir.exists():
+            raise PackageBuildError(
+                "final_rename", "a verified package with this package_id already exists"
+            )
         try:
-            if final_dir.exists():
-                os.replace(final_dir, backup)
-                moved_prior = True
-            os.replace(temp_dir, final_dir)
-            completed = True
+            # Unlike os.replace, rename will not destructively replace a non-empty
+            # package directory if one appears concurrently.
+            os.rename(temp_dir, final_dir)
         except Exception as exc:
-            if moved_prior and backup.exists() and not final_dir.exists():
-                try:
-                    os.replace(backup, final_dir)
-                except Exception as rollback_exc:
-                    raise PackageBuildError(
-                        "final_rename",
-                        f"{exc}; prior package preserved at {backup}: {rollback_exc}",
-                    ) from exc
             raise PackageBuildError("final_rename", str(exc)) from exc
+
+    @classmethod
+    def _safe_package_files(cls, package_dir: Path) -> list[Path]:
+        root = package_dir.resolve(strict=True)
+        files: list[Path] = []
+        for path in package_dir.rglob("*"):
+            if cls._is_link_or_reparse(path):
+                raise PackageBuildError("zip_create", f"unsafe linked entry: {path}")
+            try:
+                resolved = path.resolve(strict=True)
+            except OSError as exc:
+                raise PackageBuildError("zip_create", str(exc)) from exc
+            if root not in resolved.parents and resolved != root:
+                raise PackageBuildError("zip_create", f"entry escapes package root: {path}")
+            if path.is_file() and path.name != "standard_package.zip":
+                files.append(path)
+        return sorted(files, key=lambda path: path.relative_to(package_dir).as_posix())
+
+    @staticmethod
+    def _is_link_or_reparse(path: Path) -> bool:
+        try:
+            details = path.lstat()
+        except OSError:
+            return True
+        reparse_flag = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+        file_attributes = getattr(details, "st_file_attributes", 0)
+        return stat.S_ISLNK(details.st_mode) or bool(file_attributes & reparse_flag)
+
+    @classmethod
+    def _read_regular_file(cls, path: Path) -> bytes:
+        if cls._is_link_or_reparse(path):
+            raise PackageBuildError("zip_create", f"unsafe linked entry: {path}")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
+        if hasattr(os, "O_NOFOLLOW"):
+            flags |= os.O_NOFOLLOW
+        descriptor = os.open(path, flags)
+        try:
+            details = os.fstat(descriptor)
+            if not stat.S_ISREG(details.st_mode):
+                raise PackageBuildError("zip_create", f"entry is not regular: {path}")
+            with os.fdopen(descriptor, "rb", closefd=False) as handle:
+                data = handle.read()
         finally:
-            if completed and backup.exists():
-                shutil.rmtree(backup, ignore_errors=True)
+            os.close(descriptor)
+        if cls._is_link_or_reparse(path):
+            raise PackageBuildError("zip_create", f"entry changed during read: {path}")
+        return data

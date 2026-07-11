@@ -1,4 +1,7 @@
+import hashlib
 import json
+import os
+import stat
 from pathlib import Path, PurePosixPath
 
 from app.schemas.artifact_consistency import ArtifactConsistencyReport
@@ -6,7 +9,7 @@ from app.schemas.canonical import CanonicalModel
 from app.schemas.document_summary import DocumentSummary
 from app.schemas.metadata_template import MetadataTemplateReport
 from app.schemas.package import Manifest
-from app.schemas.reports import ConsistencyReport, ReportIssue
+from app.schemas.reports import ConsistencyCheck, ConsistencyReport, ReportIssue
 from app.services.artifact_consistency_service import ArtifactConsistencyService
 from app.services.manifest_service import ManifestService
 
@@ -22,12 +25,25 @@ class PackageVerifierService:
         "metadata.json",
         "manifest.json",
     }
+    STRICT_REQUIRED_FILES = {
+        "canonical.json",
+        "transform_report.json",
+        "artifact_consistency_report.json",
+    }
+    MANIFEST_EXCLUDED_FILES = {
+        "manifest.json",
+        "verifier_report.json",
+        "standard_package.zip",
+    }
 
     def verify_package(self, package_dir: str | Path, *, strict: bool = False) -> ConsistencyReport:
         package_path = Path(package_dir)
         manifest_path = package_path / "manifest.json"
         errors: list[ReportIssue] = []
         warnings: list[ReportIssue] = []
+        actual_files = self._scan_package_tree(package_path, errors)
+        if any(issue.code == "package_link_unsafe" for issue in errors):
+            return ConsistencyReport(task_id="unknown", passed=False, errors=errors)
 
         if not manifest_path.is_file():
             return ConsistencyReport(
@@ -64,10 +80,16 @@ class PackageVerifierService:
                 manifest_sha256=ManifestService.sha256_file(manifest_path),
             )
         manifest_sha256 = ManifestService.sha256_file(manifest_path)
+        self._check_stored_verifier_manifest_binding(
+            package_path, manifest_sha256, errors
+        )
         self._check_manifest_paths(manifest, errors)
         manifest_paths = {file.path for file in manifest.files}
         feature_files = self._feature_required_files(package_path, errors)
-        for required_file in self.REQUIRED_FILES | feature_files:
+        required_files = self.REQUIRED_FILES | feature_files
+        if strict:
+            required_files |= self.STRICT_REQUIRED_FILES
+        for required_file in required_files:
             if required_file == "manifest.json":
                 continue
             if not (package_path / required_file).is_file():
@@ -105,7 +127,12 @@ class PackageVerifierService:
                     )
                 )
                 continue
-            if path.is_file() and ManifestService.sha256_file(path) != file_info.sha256:
+            actual_sha256 = (
+                self._sha256_regular_file(path, package_path, errors)
+                if path.is_file()
+                else None
+            )
+            if path.is_file() and actual_sha256 != file_info.sha256:
                 errors.append(
                     ReportIssue(
                         level="error",
@@ -142,6 +169,18 @@ class PackageVerifierService:
                     )
                 )
 
+        if strict:
+            for actual_path in sorted(actual_files - self.MANIFEST_EXCLUDED_FILES):
+                if actual_path not in manifest_paths:
+                    errors.append(
+                        ReportIssue(
+                            level="error",
+                            message="Package file is not covered by the manifest.",
+                            path=actual_path,
+                            code="unmanifested_file",
+                        )
+                    )
+
         self._check_json(package_path / "content.json", "content_json_invalid", errors)
         self._check_json(package_path / "metadata.json", "metadata_json_invalid", errors)
         self._check_json(
@@ -173,11 +212,166 @@ class PackageVerifierService:
         return ConsistencyReport(
             task_id=manifest.task_id,
             passed=not errors,
-            checks=[],
+            checks=[
+                ConsistencyCheck(
+                    check_name="artifact_consistency_report_identity",
+                    passed=(package_path / "artifact_consistency_report.json").is_file(),
+                    details={
+                        "sha256": (
+                            self._sha256_regular_file(
+                                package_path / "artifact_consistency_report.json",
+                                package_path,
+                                [],
+                            )
+                            if (package_path / "artifact_consistency_report.json").is_file()
+                            else None
+                        )
+                    },
+                )
+            ],
             errors=errors,
             warnings=warnings,
             manifest_sha256=manifest_sha256,
         )
+
+    @classmethod
+    def _scan_package_tree(
+        cls, package_path: Path, errors: list[ReportIssue]
+    ) -> set[str]:
+        actual_files: set[str] = set()
+        if not package_path.exists() or cls._is_link_or_reparse(package_path):
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="Package root is missing or is a link/reparse point.",
+                    path=str(package_path),
+                    code="package_link_unsafe",
+                )
+            )
+            return actual_files
+        root = package_path.resolve(strict=True)
+        for path in package_path.rglob("*"):
+            relative = path.relative_to(package_path).as_posix()
+            if cls._is_link_or_reparse(path):
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="Package contains a link or reparse point.",
+                        path=relative,
+                        code="package_link_unsafe",
+                    )
+                )
+                continue
+            try:
+                resolved = path.resolve(strict=True)
+            except OSError as exc:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message=str(exc),
+                        path=relative,
+                        code="package_entry_unsafe",
+                    )
+                )
+                continue
+            if root not in resolved.parents and resolved != root:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="Package entry escapes the package root.",
+                        path=relative,
+                        code="package_entry_unsafe",
+                    )
+                )
+            elif path.is_file():
+                actual_files.add(relative)
+        return actual_files
+
+    @classmethod
+    def _check_stored_verifier_manifest_binding(
+        cls,
+        package_path: Path,
+        manifest_sha256: str,
+        errors: list[ReportIssue],
+    ) -> None:
+        verifier_path = package_path / "verifier_report.json"
+        if not verifier_path.is_file():
+            return
+        try:
+            stored = ConsistencyReport.model_validate_json(
+                cls._read_regular_file(verifier_path, package_path)
+            )
+        except (OSError, ValueError, TypeError) as exc:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message=str(exc),
+                    path="verifier_report.json",
+                    code="stored_verifier_invalid",
+                )
+            )
+            return
+        if stored.manifest_sha256 != manifest_sha256:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="Stored verifier report is bound to a different manifest.",
+                    path="verifier_report.json",
+                    code="verifier_manifest_binding_mismatch",
+                )
+            )
+
+    @staticmethod
+    def _is_link_or_reparse(path: Path) -> bool:
+        try:
+            details = path.lstat()
+        except OSError:
+            return True
+        reparse_flag = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+        return stat.S_ISLNK(details.st_mode) or bool(
+            getattr(details, "st_file_attributes", 0) & reparse_flag
+        )
+
+    @classmethod
+    def _read_regular_file(cls, path: Path, package_root: Path) -> bytes:
+        root = package_root.resolve(strict=True)
+        if cls._is_link_or_reparse(path):
+            raise OSError(f"unsafe linked package entry: {path}")
+        resolved = path.resolve(strict=True)
+        if root not in resolved.parents:
+            raise OSError(f"package entry escapes root: {path}")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
+        if hasattr(os, "O_NOFOLLOW"):
+            flags |= os.O_NOFOLLOW
+        descriptor = os.open(path, flags)
+        try:
+            details = os.fstat(descriptor)
+            if not stat.S_ISREG(details.st_mode):
+                raise OSError(f"package entry is not regular: {path}")
+            with os.fdopen(descriptor, "rb", closefd=False) as handle:
+                data = handle.read()
+        finally:
+            os.close(descriptor)
+        if cls._is_link_or_reparse(path):
+            raise OSError(f"package entry changed during read: {path}")
+        return data
+
+    @classmethod
+    def _sha256_regular_file(
+        cls, path: Path, package_root: Path, errors: list[ReportIssue]
+    ) -> str | None:
+        try:
+            return hashlib.sha256(cls._read_regular_file(path, package_root)).hexdigest()
+        except OSError as exc:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message=str(exc),
+                    path=path.name,
+                    code="package_entry_unsafe",
+                )
+            )
+            return None
 
     @staticmethod
     def _check_manifest_paths(
@@ -197,6 +391,7 @@ class PackageVerifierService:
                         code="manifest_path_unsafe",
                     )
                 )
+
             if value in seen:
                 errors.append(
                     ReportIssue(
@@ -229,28 +424,45 @@ class PackageVerifierService:
             and str(path) == value
         )
 
-    @staticmethod
+    @classmethod
     def _recompute_artifact_consistency(
-        package_path: Path, errors: list[ReportIssue]
+        cls, package_path: Path, errors: list[ReportIssue]
     ) -> None:
         try:
+            input_names = (
+                "canonical.json",
+                "content.json",
+                "content.md",
+                "chunks.jsonl",
+                "metadata.json",
+            )
+            input_bytes = {
+                name: cls._read_regular_file(package_path / name, package_path)
+                for name in input_names
+            }
+            input_hashes = {
+                name: hashlib.sha256(value).hexdigest()
+                for name, value in input_bytes.items()
+            }
+            input_fingerprint = hashlib.sha256(
+                json.dumps(
+                    input_hashes,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                ).encode("utf-8")
+            ).hexdigest()
             canonical = CanonicalModel.model_validate_json(
-                (package_path / "canonical.json").read_text(encoding="utf-8")
+                input_bytes["canonical.json"]
             )
-            structured = json.loads(
-                (package_path / "content.json").read_text(encoding="utf-8")
-            )
-            markdown = (package_path / "content.md").read_text(encoding="utf-8")
+            structured = json.loads(input_bytes["content.json"])
+            markdown = input_bytes["content.md"].decode("utf-8")
             chunks = [
                 json.loads(line)
-                for line in (package_path / "chunks.jsonl")
-                .read_text(encoding="utf-8")
-                .splitlines()
+                for line in input_bytes["chunks.jsonl"].decode("utf-8").splitlines()
                 if line.strip()
             ]
-            metadata = json.loads(
-                (package_path / "metadata.json").read_text(encoding="utf-8")
-            )
+            metadata = json.loads(input_bytes["metadata.json"])
             organization = json.loads(
                 (package_path / "content_organization_report.json").read_text(
                     encoding="utf-8"
@@ -292,6 +504,12 @@ class PackageVerifierService:
                     and str(rule.get("rule_id") or "").strip()
                 },
             )
+            recomputed = recomputed.model_copy(
+                update={
+                    "artifact_input_hashes": input_hashes,
+                    "artifact_input_fingerprint": input_fingerprint,
+                }
+            )
         except (OSError, ValueError, TypeError, KeyError) as exc:
             errors.append(
                 ReportIssue(
@@ -302,6 +520,18 @@ class PackageVerifierService:
                 )
             )
             return
+        if (
+            stored.artifact_input_hashes != input_hashes
+            or stored.artifact_input_fingerprint != input_fingerprint
+        ):
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="Packaged artifact inputs do not match the bound report inputs.",
+                    path="artifact_consistency_report.json",
+                    code="artifact_input_binding_mismatch",
+                )
+            )
         if not recomputed.passed:
             errors.append(
                 ReportIssue(

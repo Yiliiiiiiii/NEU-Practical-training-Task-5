@@ -254,6 +254,9 @@ class Topic5ConversionService:
             package_zip_path = package_result.metadata.zip_path
             package_metadata = package_result.metadata.model_dump(mode="json")
             verifier_report = package_result.verifier_report.model_dump(mode="json")
+            artifact_consistency_report = (
+                package_result.artifact_consistency_report
+            )
 
         verifier_passed = (
             bool(verifier_report.get("passed"))

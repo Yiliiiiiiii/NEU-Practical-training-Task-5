@@ -30,7 +30,7 @@ class OutputPackageMetadata(StrictBaseModel):
     schema_id: str
     template_id: str
     package_version: str
-    zip_path: str
+    zip_path: str | None
     status: str
     sha256: str | None = None
     manifest_sha256: str | None = None

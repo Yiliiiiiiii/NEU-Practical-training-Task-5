@@ -296,6 +296,7 @@ def test_registered_package_verifier_failure_overrides_consistency_failure(
     assert consistency_report["passed"] is False
     assert verifier_report["passed"] is False
     assert payload["status"] == "failed"
+    assert payload["package_zip_path"] is None
 
 
 def test_execute_task_marks_review_required_for_alias_variants(execution_client):

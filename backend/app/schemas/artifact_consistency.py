@@ -33,5 +33,7 @@ class ArtifactConsistencyReport(StrictBaseModel):
     duplicate_content_ratio: float | None = Field(default=None, ge=0.0, le=1.0)
     unexplained_chunk_text_count: int | None = Field(default=None, ge=0)
     unknown_source_count: int | None = Field(default=None, ge=0)
+    artifact_input_hashes: dict[str, str] = Field(default_factory=dict)
+    artifact_input_fingerprint: str | None = None
     summary_consistent: bool
     metadata_consistent: bool

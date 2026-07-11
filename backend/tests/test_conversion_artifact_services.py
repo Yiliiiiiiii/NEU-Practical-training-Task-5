@@ -2,6 +2,8 @@ import json
 import zipfile
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCTION_LIKE_DIR = ROOT / "examples" / "production_like"
 SCHEMAS_DIR = PRODUCTION_LIKE_DIR / "schemas"
@@ -558,3 +560,39 @@ def test_package_verifier_rejects_manifest_path_traversal_without_reading_outsid
 
     assert report.passed is False
     assert any(error.code == "manifest_path_unsafe" for error in report.errors)
+
+
+def test_package_verifier_rejects_external_symlink(tmp_path):
+    import os
+
+    from app.services.package_verifier_service import PackageVerifierService
+
+    package_dir = tmp_path / "symlink_package"
+    package_dir.mkdir()
+    outside = tmp_path / "outside.json"
+    outside.write_text('{"secret": true}', encoding="utf-8")
+    link = package_dir / "linked.json"
+    try:
+        os.symlink(outside, link)
+    except (OSError, NotImplementedError) as exc:
+        pytest.skip(f"symlink creation unavailable: {exc}")
+    (package_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "manifest_version": "1.1",
+                "package_id": "pkg_symlink",
+                "package_version": "1.0.0",
+                "task_id": "task_symlink",
+                "doc_id": "doc_symlink",
+                "created_at": "2026-06-25T00:00:00+00:00",
+                "files": [],
+                "generator": {"name": "test", "version": "0"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    report = PackageVerifierService().verify_package(package_dir, strict=True)
+
+    assert report.passed is False
+    assert any(error.code == "package_link_unsafe" for error in report.errors)
