@@ -657,9 +657,43 @@
         "title": "BatchReviewResponse",
         "type": "object"
       },
+      "BlockExclusion": {
+        "additionalProperties": false,
+        "properties": {
+          "block_id": {
+            "minLength": 1,
+            "title": "Block Id",
+            "type": "string"
+          },
+          "exclusion_reason": {
+            "minLength": 1,
+            "title": "Exclusion Reason",
+            "type": "string"
+          },
+          "rule_id": {
+            "minLength": 1,
+            "title": "Rule Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "block_id",
+          "exclusion_reason",
+          "rule_id"
+        ],
+        "title": "BlockExclusion",
+        "type": "object"
+      },
       "ContentOrganizationConfig": {
         "additionalProperties": false,
         "properties": {
+          "block_exclusions": {
+            "items": {
+              "$ref": "#/components/schemas/BlockExclusion"
+            },
+            "title": "Block Exclusions",
+            "type": "array"
+          },
           "chunk_strategy": {
             "default": "source_block_aware",
             "enum": [

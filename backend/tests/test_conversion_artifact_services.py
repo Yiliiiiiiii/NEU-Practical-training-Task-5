@@ -351,7 +351,16 @@ def test_package_service_writes_manifest_zip_and_verifier_passes(tmp_path):
     assert manifest_files["content_organization_report.json"]["role"] == (
         "content_organization_report"
     )
-    assert manifest_files["verifier_report.json"]["role"] == "verifier_report"
+    assert "verifier_report.json" not in manifest_files
+    assert "manifest.json" not in manifest_files
+    assert "standard_package.zip" not in manifest_files
+    stored_report = json.loads(
+        (package_dir / "verifier_report.json").read_text(encoding="utf-8")
+    )
+    assert stored_report == package_result.verifier_report.model_dump(mode="json")
+    assert stored_report["manifest_sha256"] == package_result.metadata.manifest_sha256
+    assert package_result.metadata.verifier_report_sha256
+    assert package_result.metadata.zip_sha256 == package_result.metadata.sha256
 
     with zipfile.ZipFile(package_result.metadata.zip_path) as archive:
         assert {
@@ -508,3 +517,44 @@ def test_package_verifier_fails_when_required_file_missing(tmp_path):
 
     assert report.passed is False
     assert any(error.code == "required_file_missing" for error in report.errors)
+
+
+def test_package_verifier_rejects_manifest_path_traversal_without_reading_outside(
+    tmp_path,
+):
+    from app.services.manifest_service import ManifestService
+    from app.services.package_verifier_service import PackageVerifierService
+
+    package_dir = tmp_path / "unsafe"
+    package_dir.mkdir()
+    outside = tmp_path / "outside.json"
+    outside.write_text('{"secret": true}', encoding="utf-8")
+    (package_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "manifest_version": "1.1",
+                "package_id": "pkg_unsafe",
+                "package_version": "1.0.0",
+                "task_id": "task_unsafe",
+                "doc_id": "doc_unsafe",
+                "created_at": "2026-06-25T00:00:00+00:00",
+                "files": [
+                    {
+                        "path": "../outside.json",
+                        "required": True,
+                        "media_type": "application/json",
+                        "sha256": ManifestService.sha256_file(outside),
+                        "bytes": outside.stat().st_size,
+                        "role": "supporting",
+                    }
+                ],
+                "generator": {"name": "test", "version": "0"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    report = PackageVerifierService().verify_package(package_dir, strict=True)
+
+    assert report.passed is False
+    assert any(error.code == "manifest_path_unsafe" for error in report.errors)

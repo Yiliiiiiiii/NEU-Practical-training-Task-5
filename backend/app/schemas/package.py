@@ -33,4 +33,7 @@ class OutputPackageMetadata(StrictBaseModel):
     zip_path: str
     status: str
     sha256: str | None = None
+    manifest_sha256: str | None = None
+    verifier_report_sha256: str | None = None
+    zip_sha256: str | None = None
     created_at: str

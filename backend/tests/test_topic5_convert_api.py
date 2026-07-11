@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import copy
 import json
+import zipfile
 from collections.abc import Iterator
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 import pytest
 from fastapi.testclient import TestClient
@@ -15,6 +16,8 @@ from app.config import Settings
 from app.db.models import Base
 from app.main import create_app
 from app.schemas.topic5_convert import Topic5ConvertRequest
+from app.services.manifest_service import ManifestService
+from app.services.package_service import PackageBuildError, PackageService
 from app.services.package_verifier_service import PackageVerifierService
 from tests.topic5_helpers import announcement_convert_request
 
@@ -486,7 +489,156 @@ def test_topic5_package_contains_metadata_template_artifact_and_feature(topic5_c
     }
     manifested = {item["path"] for item in body["manifest"]["files"]}
     assert "artifact_consistency_report.json" in manifested
-    assert "verifier_report.json" in manifested
+    assert "verifier_report.json" not in manifested
+
+
+def test_package_verifier_recomputes_consistency_after_rehashed_tampering(
+    topic5_client,
+):
+    client, _storage_root = topic5_client
+    response = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    )
+    body = response.json()
+    package_dir = Path(body["package_zip_path"]).parent
+    content_path = package_dir / "content.json"
+    content = json.loads(content_path.read_text(encoding="utf-8"))
+    content["data"]["title"] = "tampered but rehashed"
+    content_path.write_text(json.dumps(content), encoding="utf-8")
+    manifest_path = package_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for item in manifest["files"]:
+        if item["path"] == "content.json":
+            item["sha256"] = ManifestService.sha256_file(content_path)
+            item["bytes"] = content_path.stat().st_size
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    report = PackageVerifierService().verify_package(package_dir, strict=True)
+
+    assert report.passed is False
+    assert any(issue.code == "artifact_consistency_recomputed_failed" for issue in report.errors)
+
+
+def test_package_response_verifier_is_byte_equivalent_to_stored_report(topic5_client):
+    client, _storage_root = topic5_client
+    response = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    )
+    body = response.json()
+    package_dir = Path(body["package_zip_path"]).parent
+    stored = json.loads(
+        (package_dir / "verifier_report.json").read_text(encoding="utf-8")
+    )
+
+    assert body["verifier_report"] == stored
+    assert body["package_metadata"]["manifest_sha256"] == stored["manifest_sha256"]
+    assert body["package_metadata"]["verifier_report_sha256"]
+    assert body["package_metadata"]["zip_sha256"]
+
+
+@pytest.mark.parametrize(
+    ("stage", "method_name"),
+    [
+        ("content_write", "_write_semantic_files"),
+        ("verifier", "verify_package"),
+        ("zip", "_write_deterministic_zip"),
+        ("final_rename", "_finalize_directory"),
+    ],
+)
+def test_package_faults_leave_no_partial_package(
+    topic5_client, monkeypatch, stage, method_name
+):
+    client, storage_root = topic5_client
+
+    def fail(*_args, **_kwargs):
+        raise OSError(f"injected {stage}")
+
+    target = PackageVerifierService if stage == "verifier" else PackageService
+    monkeypatch.setattr(target, method_name, fail)
+
+    expected_stage = {
+        "content_write": "content_write",
+        "verifier": "package_verify",
+        "zip": "zip_create",
+        "final_rename": "final_rename",
+    }[stage]
+    with pytest.raises(PackageBuildError) as exc_info:
+        client.post(
+            "/api/v1/topic5/convert/package", json=announcement_convert_request()
+        )
+
+    assert exc_info.value.stage == expected_stage
+    packages = storage_root / "packages"
+    assert not list(packages.glob("pkg_*"))
+    assert not list((packages / ".tmp").iterdir())
+
+
+def test_manifest_write_fault_leaves_no_partial_package(topic5_client, monkeypatch):
+    client, storage_root = topic5_client
+    original = PackageService._atomic_write_text
+
+    def fail_manifest(path, value):
+        if Path(path).name == "manifest.json":
+            raise OSError("injected manifest write")
+        return original(path, value)
+
+    monkeypatch.setattr(PackageService, "_atomic_write_text", fail_manifest)
+
+    with pytest.raises(PackageBuildError) as exc_info:
+        client.post(
+            "/api/v1/topic5/convert/package", json=announcement_convert_request()
+        )
+
+    assert exc_info.value.stage == "manifest_write"
+    packages = storage_root / "packages"
+    assert not list(packages.glob("pkg_*"))
+    assert not list((packages / ".tmp").iterdir())
+
+
+def test_failed_replacement_preserves_prior_valid_package(
+    topic5_client, monkeypatch
+):
+    client, _storage_root = topic5_client
+    monkeypatch.setattr(
+        "app.services.topic5_conversion_service.new_id", lambda _prefix: "fixed-task"
+    )
+    first = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    ).json()
+    zip_path = Path(first["package_zip_path"])
+    prior_hash = ManifestService.sha256_file(zip_path)
+
+    def fail_final(*_args, **_kwargs):
+        raise OSError("injected final rename")
+
+    monkeypatch.setattr(PackageService, "_finalize_directory", fail_final)
+    with pytest.raises(PackageBuildError):
+        client.post(
+            "/api/v1/topic5/convert/package", json=announcement_convert_request()
+        )
+
+    assert zip_path.is_file()
+    assert ManifestService.sha256_file(zip_path) == prior_hash
+
+
+def test_zip_writer_is_deterministic_and_uses_safe_sorted_entries(tmp_path):
+    first = tmp_path / "first"
+    second = tmp_path / "second"
+    for root in (first, second):
+        (root / "reports").mkdir(parents=True)
+        (root / "z.json").write_text("{}", encoding="utf-8")
+        (root / "reports" / "a.json").write_text("{\"a\":1}", encoding="utf-8")
+        PackageService._write_deterministic_zip(root, root / "standard_package.zip")
+
+    assert (first / "standard_package.zip").read_bytes() == (
+        second / "standard_package.zip"
+    ).read_bytes()
+    with zipfile.ZipFile(first / "standard_package.zip") as archive:
+        assert archive.namelist() == sorted(archive.namelist())
+        assert all(
+            not name.startswith("/") and ".." not in PurePosixPath(name).parts
+            for name in archive.namelist()
+        )
 
 
 def test_package_verifier_rejects_missing_declared_consistency_report(

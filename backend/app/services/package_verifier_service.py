@@ -1,10 +1,13 @@
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from app.schemas.artifact_consistency import ArtifactConsistencyReport
+from app.schemas.canonical import CanonicalModel
+from app.schemas.document_summary import DocumentSummary
 from app.schemas.metadata_template import MetadataTemplateReport
 from app.schemas.package import Manifest
 from app.schemas.reports import ConsistencyReport, ReportIssue
+from app.services.artifact_consistency_service import ArtifactConsistencyService
 from app.services.manifest_service import ManifestService
 
 
@@ -42,7 +45,26 @@ class PackageVerifierService:
                 warnings=[],
             )
 
-        manifest = Manifest.model_validate(json.loads(manifest_path.read_text(encoding="utf-8")))
+        try:
+            manifest = Manifest.model_validate(
+                json.loads(manifest_path.read_text(encoding="utf-8"))
+            )
+        except (ValueError, TypeError) as exc:
+            return ConsistencyReport(
+                task_id="unknown",
+                passed=False,
+                errors=[
+                    ReportIssue(
+                        level="error",
+                        message=str(exc),
+                        path="manifest.json",
+                        code="manifest_invalid",
+                    )
+                ],
+                manifest_sha256=ManifestService.sha256_file(manifest_path),
+            )
+        manifest_sha256 = ManifestService.sha256_file(manifest_path)
+        self._check_manifest_paths(manifest, errors)
         manifest_paths = {file.path for file in manifest.files}
         feature_files = self._feature_required_files(package_path, errors)
         for required_file in self.REQUIRED_FILES | feature_files:
@@ -70,6 +92,8 @@ class PackageVerifierService:
                     warnings.append(issue)
 
         for file_info in manifest.files:
+            if not self._is_safe_manifest_path(file_info.path):
+                continue
             path = package_path / file_info.path
             if file_info.required and not path.is_file():
                 errors.append(
@@ -133,6 +157,7 @@ class PackageVerifierService:
             self._check_artifact_consistency_report(
                 package_path / "artifact_consistency_report.json", errors
             )
+            self._recompute_artifact_consistency(package_path, errors)
         self._check_jsonl(package_path / "chunks.jsonl", "chunks_jsonl_invalid", errors)
         markdown_path = package_path / "content.md"
         if markdown_path.is_file() and not markdown_path.read_text(encoding="utf-8").strip():
@@ -151,7 +176,139 @@ class PackageVerifierService:
             checks=[],
             errors=errors,
             warnings=warnings,
+            manifest_sha256=manifest_sha256,
         )
+
+    @staticmethod
+    def _check_manifest_paths(
+        manifest: Manifest, errors: list[ReportIssue]
+    ) -> None:
+        seen: set[str] = set()
+        excluded = {"manifest.json", "verifier_report.json", "standard_package.zip"}
+        for file_info in manifest.files:
+            value = file_info.path
+            safe = PackageVerifierService._is_safe_manifest_path(value)
+            if not safe:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="Manifest path is not a safe normalized relative path.",
+                        path=value,
+                        code="manifest_path_unsafe",
+                    )
+                )
+            if value in seen:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="Manifest path is duplicated.",
+                        path=value,
+                        code="manifest_path_duplicate",
+                    )
+                )
+            if value in excluded:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="Manifest contains a self-referential or finalization artifact.",
+                        path=value,
+                        code="manifest_path_excluded",
+                    )
+                )
+            seen.add(value)
+
+    @staticmethod
+    def _is_safe_manifest_path(value: str) -> bool:
+        path = PurePosixPath(value)
+        return (
+            bool(value)
+            and "\\" not in value
+            and not path.is_absolute()
+            and ":" not in value
+            and ".." not in path.parts
+            and str(path) == value
+        )
+
+    @staticmethod
+    def _recompute_artifact_consistency(
+        package_path: Path, errors: list[ReportIssue]
+    ) -> None:
+        try:
+            canonical = CanonicalModel.model_validate_json(
+                (package_path / "canonical.json").read_text(encoding="utf-8")
+            )
+            structured = json.loads(
+                (package_path / "content.json").read_text(encoding="utf-8")
+            )
+            markdown = (package_path / "content.md").read_text(encoding="utf-8")
+            chunks = [
+                json.loads(line)
+                for line in (package_path / "chunks.jsonl")
+                .read_text(encoding="utf-8")
+                .splitlines()
+                if line.strip()
+            ]
+            metadata = json.loads(
+                (package_path / "metadata.json").read_text(encoding="utf-8")
+            )
+            organization = json.loads(
+                (package_path / "content_organization_report.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            summary_payload = metadata.get("document_summary")
+            summary = (
+                DocumentSummary.model_validate(summary_payload)
+                if isinstance(summary_payload, dict) and summary_payload
+                else None
+            )
+            raw_options = organization.get("summary", {}).get("options", {})
+            exclusions = (
+                raw_options.get("block_exclusions", [])
+                if isinstance(raw_options, dict)
+                else []
+            )
+            stored = ArtifactConsistencyReport.model_validate_json(
+                (package_path / "artifact_consistency_report.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            recomputed = ArtifactConsistencyService().verify(
+                canonical=canonical,
+                structured_json=structured,
+                markdown=markdown,
+                chunks=chunks,
+                document_summary=summary,
+                block_exclusions=exclusions if isinstance(exclusions, list) else [],
+            )
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message=str(exc),
+                    path="artifact_consistency_report.json",
+                    code="artifact_consistency_recompute_error",
+                )
+            )
+            return
+        if not recomputed.passed:
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="Artifact consistency failed when recomputed from package files.",
+                    path="artifact_consistency_report.json",
+                    code="artifact_consistency_recomputed_failed",
+                )
+            )
+        if stored.model_dump(mode="json") != recomputed.model_dump(mode="json"):
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message="Stored artifact consistency report is stale.",
+                    path="artifact_consistency_report.json",
+                    code="artifact_consistency_report_stale",
+                )
+            )
 
     @staticmethod
     def _feature_required_files(

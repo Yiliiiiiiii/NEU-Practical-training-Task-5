@@ -79,8 +79,8 @@ def test_hard_gap_golden_package_covers_batch_features(
     assert {
         "artifact_consistency_report.json",
         "metadata_template_report.json",
-        "verifier_report.json",
     }.issubset(manifest_paths)
+    assert "verifier_report.json" not in manifest_paths
     assert PackageVerifierService().verify_package(package_dir, strict=True).passed
 
 

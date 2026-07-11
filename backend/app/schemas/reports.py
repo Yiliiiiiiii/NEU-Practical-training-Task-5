@@ -50,6 +50,7 @@ class ConsistencyReport(StrictBaseModel):
     checks: list[ConsistencyCheck] = Field(default_factory=list)
     errors: list[ReportIssue] = Field(default_factory=list)
     warnings: list[ReportIssue] = Field(default_factory=list)
+    manifest_sha256: str | None = None
 
 
 class ConversionTrace(StrictBaseModel):
