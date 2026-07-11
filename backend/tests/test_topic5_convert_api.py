@@ -602,6 +602,39 @@ def test_package_response_verifier_is_byte_equivalent_to_stored_report(topic5_cl
     assert body["package_metadata"]["zip_sha256"]
 
 
+@pytest.mark.parametrize("mutation", ["missing", "changed"])
+def test_strict_verifier_requires_exact_stored_verifier_report(
+    topic5_client, mutation
+):
+    client, _storage_root = topic5_client
+    body = client.post(
+        "/api/v1/topic5/convert/package", json=announcement_convert_request()
+    ).json()
+    package_dir = Path(body["package_zip_path"]).parent
+    verifier_path = package_dir / "verifier_report.json"
+    if mutation == "missing":
+        verifier_path.unlink()
+    else:
+        stored = json.loads(verifier_path.read_text(encoding="utf-8"))
+        stored["passed"] = False
+        stored["errors"] = [
+            {
+                "level": "error",
+                "message": "changed stored verifier result",
+                "code": "changed_stored_verifier",
+            }
+        ]
+        verifier_path.write_text(json.dumps(stored), encoding="utf-8")
+
+    report = PackageVerifierService().verify_package(package_dir, strict=True)
+
+    assert report.passed is False
+    assert any(
+        issue.code in {"stored_verifier_missing", "stored_verifier_mismatch"}
+        for issue in report.errors
+    )
+
+
 @pytest.mark.parametrize(
     ("stage", "method_name"),
     [

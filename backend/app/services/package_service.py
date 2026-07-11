@@ -129,7 +129,9 @@ class PackageService:
             self._atomic_write_text(manifest_path, manifest.model_dump_json(indent=2))
             current_stage = "package_verify"
             verifier_report = PackageVerifierService().verify_package(
-                temp_dir, strict=True
+                temp_dir,
+                strict=True,
+                require_stored_verifier=False,
             )
             self._atomic_write_text(
                 temp_dir / "verifier_report.json",

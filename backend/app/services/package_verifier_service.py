@@ -36,7 +36,13 @@ class PackageVerifierService:
         "standard_package.zip",
     }
 
-    def verify_package(self, package_dir: str | Path, *, strict: bool = False) -> ConsistencyReport:
+    def verify_package(
+        self,
+        package_dir: str | Path,
+        *,
+        strict: bool = False,
+        require_stored_verifier: bool | None = None,
+    ) -> ConsistencyReport:
         package_path = Path(package_dir)
         manifest_path = package_path / "manifest.json"
         errors: list[ReportIssue] = []
@@ -80,8 +86,11 @@ class PackageVerifierService:
                 manifest_sha256=ManifestService.sha256_file(manifest_path),
             )
         manifest_sha256 = ManifestService.sha256_file(manifest_path)
-        self._check_stored_verifier_manifest_binding(
-            package_path, manifest_sha256, errors
+        stored_verifier = self._load_stored_verifier(
+            package_path,
+            manifest_sha256,
+            errors,
+            required=(strict if require_stored_verifier is None else require_stored_verifier),
         )
         self._check_manifest_paths(manifest, errors)
         manifest_paths = {file.path for file in manifest.files}
@@ -209,30 +218,51 @@ class PackageVerifierService:
                 )
             )
 
-        return ConsistencyReport(
+        checks = [
+            ConsistencyCheck(
+                check_name="artifact_consistency_report_identity",
+                passed=(package_path / "artifact_consistency_report.json").is_file(),
+                details={
+                    "sha256": (
+                        self._sha256_regular_file(
+                            package_path / "artifact_consistency_report.json",
+                            package_path,
+                            [],
+                        )
+                        if (package_path / "artifact_consistency_report.json").is_file()
+                        else None
+                    )
+                },
+            )
+        ]
+        recomputed_report = ConsistencyReport(
             task_id=manifest.task_id,
             passed=not errors,
-            checks=[
-                ConsistencyCheck(
-                    check_name="artifact_consistency_report_identity",
-                    passed=(package_path / "artifact_consistency_report.json").is_file(),
-                    details={
-                        "sha256": (
-                            self._sha256_regular_file(
-                                package_path / "artifact_consistency_report.json",
-                                package_path,
-                                [],
-                            )
-                            if (package_path / "artifact_consistency_report.json").is_file()
-                            else None
-                        )
-                    },
-                )
-            ],
+            checks=checks,
             errors=errors,
             warnings=warnings,
             manifest_sha256=manifest_sha256,
         )
+        if (
+            stored_verifier is not None
+            and stored_verifier.model_dump(mode="json")
+            != recomputed_report.model_dump(mode="json")
+        ):
+            errors.append(
+                ReportIssue(
+                    level="error",
+                    message=(
+                        "Stored verifier report does not match independent package "
+                        "verification."
+                    ),
+                    path="verifier_report.json",
+                    code="stored_verifier_mismatch",
+                )
+            )
+            return recomputed_report.model_copy(
+                update={"passed": False, "errors": errors}
+            )
+        return recomputed_report
 
     @classmethod
     def _scan_package_tree(
@@ -288,15 +318,26 @@ class PackageVerifierService:
         return actual_files
 
     @classmethod
-    def _check_stored_verifier_manifest_binding(
+    def _load_stored_verifier(
         cls,
         package_path: Path,
         manifest_sha256: str,
         errors: list[ReportIssue],
-    ) -> None:
+        *,
+        required: bool,
+    ) -> ConsistencyReport | None:
         verifier_path = package_path / "verifier_report.json"
         if not verifier_path.is_file():
-            return
+            if required:
+                errors.append(
+                    ReportIssue(
+                        level="error",
+                        message="verifier_report.json is required for final verification.",
+                        path="verifier_report.json",
+                        code="stored_verifier_missing",
+                    )
+                )
+            return None
         try:
             stored = ConsistencyReport.model_validate_json(
                 cls._read_regular_file(verifier_path, package_path)
@@ -310,7 +351,7 @@ class PackageVerifierService:
                     code="stored_verifier_invalid",
                 )
             )
-            return
+            return None
         if stored.manifest_sha256 != manifest_sha256:
             errors.append(
                 ReportIssue(
@@ -320,6 +361,7 @@ class PackageVerifierService:
                     code="verifier_manifest_binding_mismatch",
                 )
             )
+        return stored
 
     @staticmethod
     def _is_link_or_reparse(path: Path) -> bool:
