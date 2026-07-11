@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -107,7 +108,9 @@ def _semantic_hashes(result) -> dict[str, str]:
     content = {
         "data": result.content_json["data"],
         "document_metadata": result.content_json["document_metadata"],
-        "document_summary": summary,
+        "document_summary": _normalize_summary_identity(
+            result.content_json["document_summary"], task_id
+        ),
         "blocks": result.content_json["blocks"],
     }
     chunks = []
@@ -139,6 +142,30 @@ def test_run_identity_normalization_does_not_rewrite_business_text() -> None:
 
     assert normalized["title"] == f"customer {task_id}"
     assert normalized["chunk_id"] == "chunk_<task_id>_0001"
+
+
+def test_content_semantic_hash_uses_the_content_artifact_summary() -> None:
+    def result_with_content_summary(text: str) -> SimpleNamespace:
+        summary = {"text": "top-level", "source_chunk_ids": []}
+        return SimpleNamespace(
+            task_id="topic5_run_a",
+            content_json={
+                "data": {},
+                "document_metadata": {},
+                "document_summary": {"text": text, "source_chunk_ids": []},
+                "blocks": [],
+            },
+            document_metadata={},
+            document_summary=summary,
+            chunks=[],
+            artifact_consistency_report={"checks": []},
+        )
+
+    first = _semantic_hashes(result_with_content_summary("content-a"))
+    second = _semantic_hashes(result_with_content_summary("content-b"))
+
+    assert first["content_semantic_hash"] != second["content_semantic_hash"]
+    assert first["summary_hash"] == second["summary_hash"]
 
 
 def _normalize_summary_identity(summary: dict, task_id: str) -> dict:
