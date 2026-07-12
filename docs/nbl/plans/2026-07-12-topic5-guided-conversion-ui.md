@@ -51,7 +51,7 @@
 ## Task 1: Establish Routing, Types, API, and Shared Formatters
 
 **Status:**
-- [ ] Task complete
+- [x] Task complete
 
 **Dependencies:** None
 **Parallelizable:** No (route and shared contracts are prerequisites for page integration)
