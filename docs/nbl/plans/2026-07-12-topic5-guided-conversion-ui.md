@@ -152,7 +152,7 @@ git commit -m "feat: add guided conversion app foundation"
 ## Task 2: Build Shell and Route Dispatch
 
 **Status:**
-- [ ] Task complete
+- [x] Task complete
 
 **Dependencies:** Task 1
 **Parallelizable:** No (all pages render within the shell)
