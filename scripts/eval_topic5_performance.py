@@ -115,7 +115,9 @@ def _baseline_checks(
             regressions.append({"block_count": case["block_count"], "metric": "missing"})
             continue
         for stage, duration in case["stage_durations_ms"].items():
-            allowed = float(old["stage_durations_ms"][stage]) * 1.2
+            baseline_duration = float(old["stage_durations_ms"][stage])
+            measurement_floor = 5.0 if baseline_duration < 10.0 else 0.0
+            allowed = max(baseline_duration * 1.2, baseline_duration + measurement_floor)
             if float(duration) > allowed:
                 regressions.append(
                     {

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import platform
 import re
 import subprocess
@@ -28,6 +29,16 @@ TOPIC5_TASK_SCRIPTS = (
     "scripts/eval_topic5_topic11_adapter.py",
     "scripts/check_topic5_hard_gap_batch_1_gate.py",
     "scripts/check_topic5_batch_2_acceptance_gate.py",
+    "scripts/check_topic5_batch_2_gate.py",
+    "scripts/eval_downstream_contracts.py",
+    "scripts/eval_topic5_batch2_regressions.py",
+    "scripts/eval_topic5_concurrency.py",
+    "scripts/eval_topic5_package_faults.py",
+    "scripts/eval_topic5_performance.py",
+    "scripts/eval_topic5_replay.py",
+    "scripts/eval_topic5_runtime_equivalence.py",
+    "scripts/eval_topic5_tag_quality_v2.py",
+    "scripts/generate_topic5_batch_2_status.py",
     "scripts/run_topic5_batch_2_verification.py",
     "scripts/export_openapi.py",
 )
@@ -43,6 +54,151 @@ class CommandSpec:
 
 def npm_executable(current_platform: str | None = None) -> str:
     return "npm.cmd" if (current_platform or sys.platform) == "win32" else "npm"
+
+
+def extended_evaluator_specs(output_dir: Path) -> list[CommandSpec]:
+    evaluator_output = output_dir / "evaluator_reports"
+    specs = [
+        CommandSpec(
+            "evaluator-tag-quality-v2",
+            (
+                sys.executable,
+                "scripts/eval_topic5_tag_quality_v2.py",
+                "--output",
+                str(evaluator_output / "tag_quality_v2.json"),
+            ),
+            ROOT,
+        ),
+        CommandSpec(
+            "evaluator-field-operations",
+            (
+                sys.executable,
+                "scripts/eval_topic5_field_operations.py",
+                "--out-dir",
+                str(evaluator_output),
+            ),
+            ROOT,
+        ),
+        CommandSpec(
+            "evaluator-schema-localization",
+            (
+                sys.executable,
+                "scripts/eval_topic5_schema_localization.py",
+                "--out-dir",
+                str(evaluator_output),
+            ),
+            ROOT,
+        ),
+    ]
+    specs.extend(
+        CommandSpec(
+            f"evaluator-mapping-v2-{split}",
+            (
+                sys.executable,
+                "scripts/eval_topic5_mapping_v2.py",
+                "--split",
+                split,
+                "--output",
+                str(evaluator_output / f"mapping_v2_{split}.json"),
+                "--fail-on-targets",
+            ),
+            ROOT,
+        )
+        for split in ("dev", "test")
+    )
+    specs.extend(
+        [
+            CommandSpec(
+                "mapping-v2-gate",
+                (
+                    sys.executable,
+                    "scripts/check_topic5_mapping_v2_gate.py",
+                    "--output",
+                    str(evaluator_output / "mapping_v2_gate.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-runtime-equivalence",
+                (
+                    sys.executable,
+                    "scripts/eval_topic5_runtime_equivalence.py",
+                    "--output",
+                    str(evaluator_output / "runtime_equivalence.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-replay",
+                (
+                    sys.executable,
+                    "scripts/eval_topic5_replay.py",
+                    "--output",
+                    str(evaluator_output / "replay.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-batch2-regressions",
+                (
+                    sys.executable,
+                    "scripts/eval_topic5_batch2_regressions.py",
+                    "--output",
+                    str(evaluator_output / "batch2_regressions.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-package-faults",
+                (
+                    sys.executable,
+                    "scripts/eval_topic5_package_faults.py",
+                    "--output",
+                    str(evaluator_output / "package_faults.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-concurrency",
+                (
+                    sys.executable,
+                    "scripts/eval_topic5_concurrency.py",
+                    "--output",
+                    str(evaluator_output / "concurrency.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-performance",
+                (
+                    sys.executable,
+                    "scripts/eval_topic5_performance.py",
+                    "--baseline",
+                    str(
+                        ROOT
+                        / "eval"
+                        / "topic5_performance"
+                        / "v1"
+                        / "baseline.json"
+                    ),
+                    "--output",
+                    str(evaluator_output / "performance.json"),
+                ),
+                ROOT,
+            ),
+            CommandSpec(
+                "evaluator-downstream-contracts",
+                (
+                    sys.executable,
+                    "scripts/eval_downstream_contracts.py",
+                    "--output",
+                    str(evaluator_output / "downstream_contracts.json"),
+                ),
+                ROOT,
+            ),
+        ]
+    )
+    return specs
 
 
 def command_specs(output_dir: Path = DEFAULT_OUTPUT) -> list[CommandSpec]:
@@ -111,6 +267,7 @@ def command_specs(output_dir: Path = DEFAULT_OUTPUT) -> list[CommandSpec]:
             ),
             ROOT,
         ),
+        *extended_evaluator_specs(output_dir),
     ]
 
 
@@ -251,6 +408,8 @@ def write_summary(
 ) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
     mandatory = [record for record in records if record["mandatory"]]
+    github_actions = os.getenv("GITHUB_ACTIONS", "").lower() == "true"
+    github_sha = os.getenv("GITHUB_SHA") if github_actions else None
     payload = {
         "generated_at": datetime.now(UTC).isoformat(),
         "commit_sha": commit_sha,
@@ -274,6 +433,11 @@ def write_summary(
         "batch2_acceptance_gate_passed": _named_passed(
             records, "batch2-acceptance-gate"
         ),
+        "github_ci_passed": github_actions
+        and github_sha == commit_sha
+        and bool(mandatory)
+        and all(record["passed"] for record in mandatory),
+        "github_ci_commit_sha": github_sha,
     }
     path = output_dir / "verification_summary.json"
     path.write_text(
@@ -312,7 +476,42 @@ def main() -> None:
         records=records,
         tool_versions=tool_versions(),
     )
+    final_gate_command = [
+        sys.executable,
+        "scripts/check_topic5_batch_2_gate.py",
+        "--report-dir",
+        str(args.output_dir),
+        "--verification",
+        str(summary_path),
+        "--output",
+        str(args.output_dir / "final_gate.json"),
+    ]
+    if os.getenv("GITHUB_ACTIONS", "").lower() != "true":
+        final_gate_command.append("--allow-pending-github-ci")
+    records.append(
+        run_command(
+            CommandSpec("batch2-final-gate", tuple(final_gate_command), ROOT),
+            args.output_dir / "raw_logs",
+        )
+    )
+    summary_path = write_summary(
+        args.output_dir,
+        commit_sha=commit_sha,
+        dirty=dirty,
+        allow_dirty=args.allow_dirty,
+        records=records,
+        tool_versions=tool_versions(),
+    )
     payload = json.loads(summary_path.read_text(encoding="utf-8"))
+    final_gate = json.loads(
+        (args.output_dir / "final_gate.json").read_text(encoding="utf-8")
+    )
+    payload["batch2_final_gate_passed"] = final_gate["passed"]
+    payload["batch2_final_gate_status"] = final_gate["status"]
+    summary_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     print(f"wrote verification summary to {summary_path}")
     raise SystemExit(0 if payload["passed"] else 1)
 

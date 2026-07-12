@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import importlib.util
 import json
@@ -129,9 +130,13 @@ def run_evaluation(*, commit_sha: str | None = None) -> dict[str, Any]:
 
 
 def main() -> int:
-    report = run_evaluation()
-    DEFAULT_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    DEFAULT_OUTPUT.write_text(
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--commit-sha")
+    args = parser.parse_args()
+    report = run_evaluation(commit_sha=args.commit_sha)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(
         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
