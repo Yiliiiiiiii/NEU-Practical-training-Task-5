@@ -16,6 +16,10 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = ROOT / "eval" / "topic5_mapping_v2"
+DEFAULT_CALIBRATION = (
+    ROOT / "eval" / "topic5_mapping_engine_v2" / "calibration.json"
+)
+DEFAULT_REPORT_DIR = ROOT / "eval" / "topic5_mapping_engine_v2" / "reports"
 BASELINE_ENGINE_COMMIT = "70ff30236d90a3c9de0534a8f6313e5bb559cbf5"
 
 
@@ -535,7 +539,10 @@ def calculate_metrics(
 
 
 def current_engine_predictions(
-    dataset: MappingV2Dataset, split: str
+    dataset: MappingV2Dataset,
+    split: str,
+    *,
+    calibration: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     backend = ROOT / "backend"
     if str(backend) not in sys.path:
@@ -567,8 +574,10 @@ def current_engine_predictions(
                 MappingTemplate.model_validate(dataset.rules[schema_id]),
                 candidates,
                 {
+                    "mapping_mode": "global_assignment",
                     "enable_llm_fallback": False,
                     "negative_pairs": negatives_by_doc[doc_id],
+                    "calibration": calibration,
                 },
             )
             .model_dump(mode="json")
@@ -604,7 +613,16 @@ def current_engine_predictions(
 def run_evaluation(root: Path, *, split: str) -> dict[str, Any]:
     dataset = load_dataset(root)
     validation = validate_dataset(dataset)
-    predictions = current_engine_predictions(dataset, split)
+    calibration = load_json(DEFAULT_CALIBRATION)
+    if calibration.get("fit_split") != "dev":
+        raise ValueError("mapping calibration was not fit on dev")
+    if calibration.get("test_labels_used_for_fit") is not False:
+        raise ValueError("mapping calibration used test labels during fitting")
+    if calibration.get("dataset_sha256") != dataset.hashes.get("dataset_sha256"):
+        raise ValueError("mapping calibration dataset identity mismatch")
+    predictions = current_engine_predictions(
+        dataset, split, calibration=calibration
+    )
     dev_schema_ids = {
         str(row["schema_id"]) for row in dataset.manifest if row.get("split") == "dev"
     }
@@ -631,7 +649,9 @@ def run_evaluation(root: Path, *, split: str) -> dict[str, Any]:
     if split == "test":
         dev = calculate_metrics(
             gold=dataset.gold["dev"],
-            predictions=current_engine_predictions(dataset, "dev"),
+            predictions=current_engine_predictions(
+                dataset, "dev", calibration=calibration
+            ),
             negative_pairs=dataset.negative_pairs,
             no_match_cases=dataset.no_match_cases,
             required_fields=dataset.required_fields,
@@ -664,6 +684,7 @@ def run_evaluation(root: Path, *, split: str) -> dict[str, Any]:
     )
     return {
         "status": "passed" if passed else "failed",
+        "commit_sha": git_head(),
         "baseline_source_commit": dataset.hashes["baseline_engine_commit"],
         "split": split,
         "dataset": {
@@ -672,12 +693,26 @@ def run_evaluation(root: Path, *, split: str) -> dict[str, Any]:
             "sha256": dataset.hashes["dataset_sha256"],
             "group_hashes": dataset.hashes["groups"],
         },
-        "engine": {
-            "name": "current_mapping_service",
-            "mapping_mode": "legacy",
-            "llm_fallback": False,
-        },
         "validation": validation,
+        "engine": {
+            "name": "mapping_engine_v2",
+            "mapping_mode": "global_assignment",
+            "assignment_algorithm": "maximum_weight_bipartite",
+            "llm_fallback": False,
+            "calibration_artifact": str(DEFAULT_CALIBRATION.relative_to(ROOT)),
+            "calibration_method": calibration["method"],
+            "calibration_fit_split": calibration["fit_split"],
+            "calibration_fit_engine_commit": calibration["fit_engine_commit"],
+            "thresholds": calibration["thresholds"],
+            "brier_score": calibration["brier_score"],
+            "expected_calibration_error": calibration[
+                "expected_calibration_error"
+            ],
+            "reliability_bins": calibration["reliability_bins"],
+            "precision_coverage_curve": calibration[
+                "precision_coverage_curve"
+            ],
+        },
         "metrics": metrics,
         "targets": targets,
         "external_blind": {
@@ -704,7 +739,7 @@ def main() -> None:
     args = parser.parse_args()
     try:
         report = run_evaluation(args.dataset, split=args.split)
-        output = args.output or args.dataset / "reports" / f"baseline_{args.split}.json"
+        output = args.output or DEFAULT_REPORT_DIR / f"{args.split}.json"
         write_json(output, report)
     except Exception as exc:
         print(str(exc), file=sys.stderr)
