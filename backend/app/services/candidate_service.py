@@ -232,12 +232,14 @@ class CandidateService:
         r"(?P<key>[\u4e00-\u9fff][\u4e00-\u9fffA-Za-z0-9（）()·\s]{1,19}?)"
         r"\s*[:：]\s*(?P<value>.{1,1000})\s*$"
     )
+    GENERIC_LABELED_BLOCK_PATTERN = re.compile(
+        r"^\s*(?P<key>[^:：|]{1,120}?)\s*(?:[:：|])\s*" r"(?P<value>.{1,1000})\s*$"
+    )
     DOCUMENT_NUMBER_LABEL_PATTERN = re.compile(
         r"(?:发文字号|文号|文件编号)\s*[:：]\s*(?P<value>[^\s，。；;]{3,80})"
     )
     DOCUMENT_NUMBER_PATTERN = re.compile(
-        r"(?P<value>[A-Za-z\u4e00-\u9fff]{1,12}"
-        r"[〔\[（(]\d{4}[〕\]）)]\s*\d+\s*号)"
+        r"(?P<value>[A-Za-z\u4e00-\u9fff]{1,12}" r"[〔\[（(]\d{4}[〕\]）)]\s*\d+\s*号)"
     )
     LABELED_DATE_PATTERN = re.compile(
         rf"(?P<label>创建日期|形成日期|发布日期|公布日期|发布时间|发布于|公开日期|"
@@ -398,9 +400,7 @@ class CandidateService:
                     )
                 )
 
-        has_content = any(
-            self.normalize_name(item.source_name) == "content" for item in candidates
-        )
+        has_content = any(self.normalize_name(item.source_name) == "content" for item in candidates)
         has_named_text_block = any(item.source_path.endswith(".text") for item in candidates)
         if not has_content and not has_named_text_block:
             content_parts: list[str] = []
@@ -451,9 +451,9 @@ class CandidateService:
         elif use_legacy_domain_rules and uir.metadata.get("domain") == "general_doc":
             candidates.extend(self._general_semantic_candidates(task_id, uir, seen_names))
 
-        self._add_traceable_block_candidates(task_id, uir, candidates, seen_names)
         if candidate_profile:
             self._add_profile_candidates(task_id, uir, candidates, seen_names, candidate_profile)
+        self._add_traceable_block_candidates(task_id, uir, candidates, seen_names)
         return candidates
 
     def _add_profile_candidates(
@@ -687,9 +687,7 @@ class CandidateService:
                 body_blocks: list[str] = []
                 body_text: list[str] = []
                 for child in uir.blocks[index + 1 :]:
-                    child_text = (
-                        child.text.strip() if isinstance(child.text, str) else ""
-                    )
+                    child_text = child.text.strip() if isinstance(child.text, str) else ""
                     if section_pattern.fullmatch(child_text) or re.fullmatch(
                         r"^[一二三四五六七八九十]+[、.．]\s*[^。；]{2,20}\s*$",
                         child_text,
@@ -761,15 +759,17 @@ class CandidateService:
                         )
                 pending_list_heading = None
 
-            if block.type.lower() != "paragraph" or not text:
+            if block.type.lower() not in {"paragraph", "key_value", "table"} or not text:
                 continue
 
             key_value_match = self.KEY_VALUE_PATTERN.fullmatch(text)
+            if key_value_match is None:
+                key_value_match = self.GENERIC_LABELED_BLOCK_PATTERN.fullmatch(text)
             if key_value_match is not None:
                 key = key_value_match.group("key").strip()
                 value = key_value_match.group("value").strip()
                 if (
-                    2 <= len(key) <= 20
+                    2 <= len(key) <= 120
                     and 1 <= len(value) <= 1000
                     and key not in self.KEY_VALUE_NOISE_NAMES
                     and key not in regex_owned_labels
@@ -783,8 +783,7 @@ class CandidateService:
                         confidence=0.8,
                         display_name=(
                             "attendees"
-                            if domain == "meeting_doc"
-                            and self.normalize_name(key) == "出席"
+                            if domain == "meeting_doc" and self.normalize_name(key) == "出席"
                             else None
                         ),
                     )
@@ -807,9 +806,7 @@ class CandidateService:
                     quality_flags=quality_flags,
                 )
 
-        level_one_headings = [
-            item for item in headings if self._is_true_level_one_heading(item[2])
-        ]
+        level_one_headings = [item for item in headings if self._is_true_level_one_heading(item[2])]
         if level_one_headings:
             _level, _index, title_block, title_text = min(
                 level_one_headings, key=lambda item: item[1]
@@ -826,9 +823,7 @@ class CandidateService:
                     )
 
     @classmethod
-    def _has_authoritative_structured_title(
-        cls, candidates: tuple[FieldCandidate, ...]
-    ) -> bool:
+    def _has_authoritative_structured_title(cls, candidates: tuple[FieldCandidate, ...]) -> bool:
         for candidate in candidates:
             source_name = cls.normalize_name(candidate.source_name)
             if (
@@ -912,14 +907,10 @@ class CandidateService:
         return value[: cls.MAX_VALUE_SAMPLE_LENGTH]
 
     @classmethod
-    def _bounded_matches(
-        cls, pattern: re.Pattern[str], text: str
-    ) -> list[re.Match[str]]:
+    def _bounded_matches(cls, pattern: re.Pattern[str], text: str) -> list[re.Match[str]]:
         return list(islice(pattern.finditer(text), cls.MAX_REGEX_MATCHES_PER_PATTERN))
 
-    def _paragraph_regex_values(
-        self, text: str
-    ) -> list[tuple[str, str, str, float, list[str]]]:
+    def _paragraph_regex_values(self, text: str) -> list[tuple[str, str, str, float, list[str]]]:
         values: list[tuple[str, str, str, float, list[str]]] = []
         labeled_patterns = (
             (
@@ -967,9 +958,7 @@ class CandidateService:
                 )
         for match in self._bounded_matches(self.LABELED_DATE_PATTERN, text):
             display_name = (
-                "meeting_date"
-                if match.group("label") in self.MEETING_DATE_LABELS
-                else "date"
+                "meeting_date" if match.group("label") in self.MEETING_DATE_LABELS else "date"
             )
             values.append(
                 (
@@ -991,9 +980,7 @@ class CandidateService:
         seen_names: dict[str, int],
     ) -> FieldCandidate | None:
         patterns = [
-            re.compile(
-                r"\d\s*\d\s*\d\s*\d\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"
-            ),
+            re.compile(r"\d\s*\d\s*\d\s*\d\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日"),
             re.compile(r"\d{4}\s*[年/-]\s*\d{1,2}\s*[月/-]\s*\d{1,2}\s*日?"),
             re.compile(
                 r"[二〇○零一二三四五六七八九十]\s*"
@@ -1005,9 +992,7 @@ class CandidateService:
             ),
             re.compile(r"\d{1,2}\s*月\s*\d{1,2}\s*日"),
         ]
-        matches: list[
-            tuple[int, int, str, str, float, str, str, list[str]]
-        ] = []
+        matches: list[tuple[int, int, str, str, float, str, str, list[str]]] = []
         for index, block in enumerate(uir.blocks):
             text = block.text or ""
             if not text or any(
@@ -1057,24 +1042,10 @@ class CandidateService:
                     continue
                 raw_date = match.group(0).strip()
                 normalized_date = re.sub(r"\s+", "", raw_date)
-                partial_date = "年" not in raw_date and not re.match(
-                    r"\d{4}[-/]", raw_date
-                )
-                score = (
-                    5
-                    if explicit
-                    else 4
-                    if "主持召开" in text
-                    else 3
-                    if meeting_context
-                    else 2
-                )
+                partial_date = "年" not in raw_date and not re.match(r"\d{4}[-/]", raw_date)
+                score = 5 if explicit else 4 if "主持召开" in text else 3 if meeting_context else 2
                 confidence = (
-                    0.9
-                    if explicit or "主持召开" in text
-                    else 0.8
-                    if generic_labeled
-                    else 0.75
+                    0.9 if explicit or "主持召开" in text else 0.8 if generic_labeled else 0.75
                 )
                 if standalone_chinese_date:
                     confidence = 0.82
@@ -1317,9 +1288,7 @@ class CandidateService:
             if not any(item.display_name == "meeting_number" for item in candidates):
                 document_number_match = document_number_pattern.search(text)
                 if document_number_match is not None:
-                    document_number = re.sub(
-                        r"\s+", "", document_number_match.group("value")
-                    )
+                    document_number = re.sub(r"\s+", "", document_number_match.group("value"))
                     candidates.append(
                         self._candidate(
                             task_id=task_id,
@@ -1510,8 +1479,7 @@ class CandidateService:
             r"(?P<topic>[^。；;]{2,500})"
         )
         numbered_pattern = re.compile(
-            r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*"
-            r"(?P<topic>[^。；;]{2,500})"
+            r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*" r"(?P<topic>[^。；;]{2,500})"
         )
         for index, block in enumerate(uir.blocks):
             text = block.text.strip() if isinstance(block.text, str) else ""
@@ -1777,8 +1745,7 @@ class CandidateService:
             r"^\s*(?:面向|适用于)\s*(?P<value>[^。；;]{2,500})[。；;]?\s*$"
         )
         condition_sentence_pattern = re.compile(
-            r"(?P<value>(?:申请[^。；;]{0,50}(?:应具备|必须满足)|符合以下条件)"
-            r"[^。]{2,800})"
+            r"(?P<value>(?:申请[^。；;]{0,50}(?:应具备|必须满足)|符合以下条件)" r"[^。]{2,800})"
         )
         labeled_general_pattern = re.compile(
             r"^\s*(?P<label>申报主体要求|申报主体|项目负责人要求|申报方式|申报流程)"
@@ -1813,10 +1780,7 @@ class CandidateService:
                 text,
             )
             section_lookup = re.sub(r"[（(].*?[）)]", "", section_name).strip()
-            if (
-                section_lookup in self.GENERAL_CONDITION_NAMES
-                and index + 1 < len(uir.blocks)
-            ):
+            if section_lookup in self.GENERAL_CONDITION_NAMES and index + 1 < len(uir.blocks):
                 child = uir.blocks[index + 1]
                 value = self._block_text(child.text, child.attributes)
                 if value:
@@ -1856,8 +1820,7 @@ class CandidateService:
                 for child in uir.blocks[index + 1 : index + 8]:
                     child_text = child.text.strip() if isinstance(child.text, str) else ""
                     if re.fullmatch(
-                        r"^\s*[一二三四五六七八九十]+\s*[、.．]\s*"
-                        r"[^。；]{2,30}\s*$",
+                        r"^\s*[一二三四五六七八九十]+\s*[、.．]\s*" r"[^。；]{2,30}\s*$",
                         child_text,
                     ):
                         break
@@ -1887,8 +1850,8 @@ class CandidateService:
                                 if target_field in {"application_materials", "process_steps"}
                                 else None
                             ),
+                        )
                     )
-                )
             addressee_match = re.fullmatch(
                 r"(?P<value>各有关单位|各有关部门|各单位|各部门|有关单位)\s*[:：]",
                 text,
@@ -1917,9 +1880,7 @@ class CandidateService:
                 value = labeled_field.group("value").strip()
                 if label in self.GENERAL_CONTACT_LABELS:
                     quality_flags = (
-                        ["medium_risk_garbled_contact"]
-                        if "?" in value or "？" in value
-                        else []
+                        ["medium_risk_garbled_contact"] if "?" in value or "？" in value else []
                     )
                     candidates.append(
                         self._candidate(
@@ -2035,9 +1996,7 @@ class CandidateService:
             if labeled_general is not None:
                 label = labeled_general.group("label")
                 target_field = (
-                    "process_steps"
-                    if label in {"申报方式", "申报流程"}
-                    else "service_object"
+                    "process_steps" if label in {"申报方式", "申报流程"} else "service_object"
                 )
                 candidates.append(
                     self._candidate(
@@ -2113,9 +2072,7 @@ class CandidateService:
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path=(
-                            f"$.blocks.{block.block_id}.text#application_conditions"
-                        ),
+                        source_path=(f"$.blocks.{block.block_id}.text#application_conditions"),
                         source_name="经营范围中需含货物进出口",
                         value=text,
                         source_blocks=[block.block_id],
@@ -2137,13 +2094,9 @@ class CandidateService:
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path=(
-                            f"$.blocks.{block.block_id}.text#application_conditions"
-                        ),
+                        source_path=(f"$.blocks.{block.block_id}.text#application_conditions"),
                         source_name=(
-                            role_match.group("label")
-                            if role_match is not None
-                            else "申请条件"
+                            role_match.group("label") if role_match is not None else "申请条件"
                         ),
                         value=condition_sentence.group("value").strip(),
                         source_blocks=[block.block_id],
@@ -2207,9 +2160,7 @@ class CandidateService:
                         quality_flags=["medium_risk_section_scope"],
                     )
                 )
-        candidates.extend(
-            self._generic_front_matter_guide_candidates(task_id, uir, seen_names)
-        )
+        candidates.extend(self._generic_front_matter_guide_candidates(task_id, uir, seen_names))
         return candidates
 
     def _generic_front_matter_guide_candidates(
@@ -2219,9 +2170,7 @@ class CandidateService:
         seen_names: dict[str, int],
     ) -> list[FieldCandidate]:
         early_blocks = [
-            block
-            for block in uir.blocks[:12]
-            if isinstance(block.text, str) and block.text.strip()
+            block for block in uir.blocks[:12] if isinstance(block.text, str) and block.text.strip()
         ]
         if len(early_blocks) < 3:
             return []
@@ -2341,9 +2290,7 @@ class CandidateService:
             self._candidate(
                 task_id=task_id,
                 uir=uir,
-                source_path=(
-                    f"$.blocks.{condition_block.block_id}.text#application_conditions"
-                ),
+                source_path=(f"$.blocks.{condition_block.block_id}.text#application_conditions"),
                 source_name=condition_name,
                 value=condition_value,
                 source_blocks=[condition_block.block_id],
@@ -2405,8 +2352,7 @@ class CandidateService:
             for key in uir.metadata
         )
         has_index_issuer_label = any(
-            "发文机构" in self._block_text(block.text, block.attributes)
-            for block in blocks
+            "发文机构" in self._block_text(block.text, block.attributes) for block in blocks
         )
 
         for block in blocks:
@@ -2442,8 +2388,7 @@ class CandidateService:
                 break
 
         label_value_pattern = re.compile(
-            r"(?P<label>[\u4e00-\u9fffA-Za-z0-9（）()]{2,20})"
-            r"\s*[:：]\s*(?P<value>.{1,1000})"
+            r"(?P<label>[\u4e00-\u9fffA-Za-z0-9（）()]{2,20})" r"\s*[:：]\s*(?P<value>.{1,1000})"
         )
         for block in blocks:
             text = block.text.strip() if isinstance(block.text, str) else ""
@@ -2604,9 +2549,7 @@ class CandidateService:
         if not has_issuer:
             title = uir.metadata.get("title")
             first_text = (
-                blocks[0].text.strip()
-                if blocks and isinstance(blocks[0].text, str)
-                else ""
+                blocks[0].text.strip() if blocks and isinstance(blocks[0].text, str) else ""
             )
             if (
                 isinstance(title, str)
@@ -2780,8 +2723,7 @@ class CandidateService:
                     break
 
             header_match = re.fullmatch(
-                r"(?P<issuer>[\u4e00-\u9fff\s]{2,40}?)"
-                r"(?:公告|令)?\s*20\d{2}\s*年第\s*\d+\s*号",
+                r"(?P<issuer>[\u4e00-\u9fff\s]{2,40}?)" r"(?:公告|令)?\s*20\d{2}\s*年第\s*\d+\s*号",
                 text,
             )
             if header_match is not None:
@@ -2950,9 +2892,7 @@ class CandidateService:
                             self._candidate(
                                 task_id=task_id,
                                 uir=uir,
-                                source_path=(
-                                    f"$.blocks.{block.block_id}.text#publish_date"
-                                ),
+                                source_path=(f"$.blocks.{block.block_id}.text#publish_date"),
                                 source_name="signed date",
                                 value=date_value,
                                 source_blocks=[block.block_id],
@@ -2971,11 +2911,7 @@ class CandidateService:
 
         for block in blocks:
             text = block.text.strip() if isinstance(block.text, str) else ""
-            if (
-                "工业和信息化部负责" not in text
-                or "等部门" not in text
-                or "负责" not in text
-            ):
+            if "工业和信息化部负责" not in text or "等部门" not in text or "负责" not in text:
                 continue
             candidates.append(
                 self._candidate(
@@ -2998,12 +2934,10 @@ class CandidateService:
 
         for index, block in enumerate(blocks):
             text = block.text.strip() if isinstance(block.text, str) else ""
-            section_name = re.sub(
-                r"^\s*第[一二三四五六七八九十\d]+[章节条]\s*", "", text
-            ).strip()
-            section_name = re.split(
-                r"\s+第[一二三四五六七八九十\d]+条", section_name, maxsplit=1
-            )[0].strip()
+            section_name = re.sub(r"^\s*第[一二三四五六七八九十\d]+[章节条]\s*", "", text).strip()
+            section_name = re.split(r"\s+第[一二三四五六七八九十\d]+条", section_name, maxsplit=1)[
+                0
+            ].strip()
             section_name = re.sub(
                 r"^\s*(?:[一二三四五六七八九十]+|\d+)\s*[、.．]\s*",
                 "",
@@ -3016,11 +2950,10 @@ class CandidateService:
             body_blocks: list[str] = []
             body_text: list[str] = []
             for child in blocks[index + 1 : index + 12]:
-                child_text = (
-                    child.text.strip() if isinstance(child.text, str) else ""
-                )
+                child_text = child.text.strip() if isinstance(child.text, str) else ""
                 child_section = re.sub(
-                    r"^\s*第[一二三四五六七八九十\d]+[章节条]\s*", "",
+                    r"^\s*第[一二三四五六七八九十\d]+[章节条]\s*",
+                    "",
                     child_text,
                 ).strip()
                 child_section = re.sub(
@@ -3112,9 +3045,7 @@ class CandidateService:
                 issuer_values: list[str] = []
                 issuer_blocks: list[str] = []
                 for previous in reversed(blocks[max(0, index - 8) : index]):
-                    previous_text = (
-                        previous.text.strip() if isinstance(previous.text, str) else ""
-                    )
+                    previous_text = previous.text.strip() if isinstance(previous.text, str) else ""
                     organizations = self._policy_organizations(previous_text)
                     if not organizations:
                         break
@@ -3187,8 +3118,7 @@ class CandidateService:
                     break
 
         has_any_issuer_candidate = any(
-            item.display_name == "issuer" or "issuer" in item.target_hints
-            for item in candidates
+            item.display_name == "issuer" or "issuer" in item.target_hints for item in candidates
         )
         source_site = uir.metadata.get("source_site")
         if not has_any_issuer_candidate and isinstance(source_site, str) and source_site:
@@ -3211,9 +3141,7 @@ class CandidateService:
             )
 
         source_url = uir.metadata.get("source_url")
-        has_publish_date = bool(
-            existing_names.intersection(self.POLICY_PUBLISH_DATE_SOURCE_NAMES)
-        )
+        has_publish_date = bool(existing_names.intersection(self.POLICY_PUBLISH_DATE_SOURCE_NAMES))
         if (
             not has_publish_date
             and isinstance(source_url, str)
@@ -3222,11 +3150,7 @@ class CandidateService:
             compact_match = self.POLICY_URL_PUBLISH_DATE_PATTERN.search(source_url)
             slash_match = self.POLICY_URL_SLASH_DATE_PATTERN.search(source_url)
             attachment_match = self.POLICY_ATTACHMENT_DATE_PATTERN.search(source_url)
-            if (
-                compact_match is not None
-                or slash_match is not None
-                or attachment_match is not None
-            ):
+            if compact_match is not None or slash_match is not None or attachment_match is not None:
                 if attachment_match is not None:
                     raw_date = attachment_match.group("date")
                     publish_date = f"20{raw_date[:2]}-{raw_date[2:4]}-{raw_date[4:6]}"
@@ -3459,9 +3383,7 @@ class CandidateService:
                     self._candidate(
                         task_id=task_id,
                         uir=uir,
-                        source_path=(
-                            f"$.blocks.{block.block_id}.text#responsible_departments"
-                        ),
+                        source_path=(f"$.blocks.{block.block_id}.text#responsible_departments"),
                         source_name="负责",
                         value=text,
                         source_blocks=[block.block_id],

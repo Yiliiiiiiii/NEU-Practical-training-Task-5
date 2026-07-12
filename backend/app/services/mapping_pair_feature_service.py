@@ -6,55 +6,14 @@ from app.schemas.mapping import FieldCandidate
 from app.schemas.mapping_features import MappingPairFeatures
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.target_schema import TargetField
+from app.schemas.uir import UIRDocument
 from app.services.candidate_service import CandidateService
+from app.services.field_descriptor_service import FieldDescriptorService
 
 
 class MappingPairFeatureService:
-    EVIDENCE_TYPE_WEIGHTS = {
-        "official_issuer_metadata": 1.0,
-        "official_publication_metadata": 1.0,
-        "official_source_url": 1.0,
-        "official_source_metadata": 0.85,
-        "official_publication_url": 0.9,
-        "official_attachment_url": 0.95,
-        "official_page_banner": 0.95,
-        "policy_signature": 0.95,
-        "policy_signature_date": 1.0,
-        "policy_signature_issuer_alias": 0.35,
-        "policy_publish_date_label": 0.95,
-        "policy_issuer_label": 0.9,
-        "policy_effective_date_sentence": 0.95,
-        "policy_valid_until_sentence": 0.95,
-        "policy_measures_section": 0.95,
-        "policy_document_number": 0.95,
-        "policy_target_audience_label": 0.95,
-        "policy_notice_addressee": 0.5,
-        "service_object_section": 0.95,
-        "service_object_labeled_sentence": 0.95,
-        "general_contact_label": 0.95,
-        "process_steps_labeled_sentence": 0.95,
-        "application_conditions_section": 0.95,
-        "agenda_section": 0.9,
-        "explicit_meeting_date": 0.95,
-        "meeting_number_pattern": 0.9,
-        "meeting_opening": 0.9,
-        "meeting_opening_alias": 0.4,
-        "policy_title_issuer": 0.9,
-        "policy_title_issuer_alias": 0.4,
-        "official_page_url_alias": 0.4,
-        "official_page_banner_alias": 0.4,
-        "derived_meeting_date_alias": 0.4,
-        "aggregate_blocks": 1.0,
-        "key_value": 0.85,
-        "table": 0.9,
-        "metadata": 0.8,
-        "page_publisher_field": 0.45,
-        "page_publisher_metadata": 0.45,
-        "page_column": 0.4,
-        "paragraph_regex": 0.9,
-        "candidate_profile": 0.9,
-        "block": 0.8,
-    }
+    def __init__(self, descriptor_service: FieldDescriptorService | None = None) -> None:
+        self.descriptor_service = descriptor_service or FieldDescriptorService()
 
     def build(
         self,
@@ -63,16 +22,24 @@ class MappingPairFeatureService:
         template: MappingTemplate,
         *,
         negative_pairs: list[dict[str, Any]] | None = None,
+        uir: UIRDocument | None = None,
     ) -> MappingPairFeatures:
         reasons: list[str] = []
         risk_flags: list[str] = []
+        target_descriptor = self.descriptor_service.target_descriptor(target, template)
+        candidate_descriptor = self.descriptor_service.candidate_descriptor(candidate, uir)
         lexical_score = self._lexical_score(candidate, target, template)
         alias_score = self._alias_score(candidate, target, template, reasons)
         type_score = self._type_score(candidate.inferred_type, target.type)
         value_score = self._value_score(candidate.value_sample, target.type)
         path_score = self._path_score(candidate, target)
-        context_score = self._context_score(candidate)
-        evidence_score = self._evidence_score(candidate)
+        context_score = self._context_score(
+            candidate,
+            has_context=bool(
+                candidate_descriptor.section_title_path or candidate_descriptor.neighbor_labels
+            ),
+        )
+        evidence_score = self._evidence_score(candidate, template)
         negative_score = self._negative_score(
             candidate,
             target,
@@ -85,16 +52,19 @@ class MappingPairFeatureService:
             risk_flags.append("type_mismatch")
         if value_score < 0.5:
             risk_flags.append("value_shape_mismatch")
+        if target_descriptor.required:
+            reasons.append("required_target")
 
+        scoring = template.scoring
+        effective_source_quality = (source_quality_score + evidence_score) / 2.0
         final_score = (
-            lexical_score * 0.25
-            + alias_score * 0.20
-            + evidence_score * 0.20
-            + type_score * 0.10
-            + value_score * 0.10
-            + path_score * 0.05
-            + context_score * 0.05
-            + source_quality_score * 0.05
+            lexical_score * scoring.lexical_weight
+            + alias_score * scoring.alias_weight
+            + type_score * scoring.type_weight
+            + value_score * scoring.value_shape_weight
+            + path_score * scoring.path_weight
+            + context_score * scoring.context_weight
+            + effective_source_quality * scoring.source_quality_weight
             - negative_score
         )
         return MappingPairFeatures(
@@ -248,17 +218,23 @@ class MappingPairFeatureService:
         return 0.4
 
     @staticmethod
-    def _context_score(candidate: FieldCandidate) -> float:
+    def _context_score(candidate: FieldCandidate, *, has_context: bool = False) -> float:
+        if has_context:
+            return 1.0
         if candidate.source_blocks:
             return 0.9
         if candidate.source_path.startswith("$.metadata."):
             return 0.75
         return 0.5
 
-    def _evidence_score(self, candidate: FieldCandidate) -> float:
-        if candidate.evidence_type:
-            return self.EVIDENCE_TYPE_WEIGHTS.get(candidate.evidence_type, 0.7)
-        return 0.7 if candidate.source_blocks else 0.6
+    @staticmethod
+    def _evidence_score(candidate: FieldCandidate, template: MappingTemplate) -> float:
+        evidence_type = candidate.evidence_type
+        if evidence_type in template.evidence_weights:
+            return template.evidence_weights[evidence_type]
+        if evidence_type and template.unknown_evidence_policy == "reject":
+            raise ValueError(f"unknown mapping evidence type: {evidence_type}")
+        return template.neutral_evidence_weight
 
     def _negative_score(
         self,
@@ -269,13 +245,15 @@ class MappingPairFeatureService:
         for negative in negative_pairs:
             if negative.get("target_field_id") != target.field_id:
                 continue
+            source_path = negative.get("source_path")
+            if isinstance(source_path, str) and source_path == candidate.source_path:
+                return 1.0
             pattern = negative.get("source_pattern")
-            if not isinstance(pattern, str):
-                continue
-            if re.search(pattern, candidate.source_name, flags=re.IGNORECASE):
-                return 1.0
-            if re.search(pattern, candidate.source_path, flags=re.IGNORECASE):
-                return 1.0
+            if isinstance(pattern, str):
+                if re.search(pattern, candidate.source_name, flags=re.IGNORECASE):
+                    return 1.0
+                if re.search(pattern, candidate.source_path, flags=re.IGNORECASE):
+                    return 1.0
         return 0.0
 
     @staticmethod

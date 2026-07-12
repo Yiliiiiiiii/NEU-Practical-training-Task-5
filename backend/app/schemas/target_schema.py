@@ -12,6 +12,8 @@ class TargetField(StrictBaseModel):
     type: str
     required: bool = False
     aliases: list[str] = Field(default_factory=list)
+    description: str | None = None
+    parent_path: str | None = None
     constraints: dict[str, Any] = Field(default_factory=dict)
 
 

@@ -189,9 +189,7 @@ class SchemaPackContractValidator:
                 errors.append(f"router_rules.yaml.version is invalid: {exc}")
         for name in ("keywords", "field_labels"):
             value = payload.get(name, [])
-            if not isinstance(value, list) or not all(
-                isinstance(item, str) for item in value
-            ):
+            if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
                 errors.append(f"router_rules.yaml.{name} must be an array of strings")
         for name in ("risks", "scoring", "thresholds"):
             if name in payload and not isinstance(payload[name], dict):
@@ -229,13 +227,9 @@ class SchemaPackContractValidator:
             )
         template_version = metadata.get("version")
         if template_version and mapping.get("version") != template_version:
-            errors.append(
-                "mapping_rules.yaml.version does not match metadata_template.version"
-            )
+            errors.append("mapping_rules.yaml.version does not match metadata_template.version")
         if template_version and router.get("version") not in {None, template_version}:
-            errors.append(
-                "router_rules.yaml.version does not match metadata_template.version"
-            )
+            errors.append("router_rules.yaml.version does not match metadata_template.version")
 
     @staticmethod
     def _validate_mapping_contract(
@@ -260,6 +254,12 @@ class SchemaPackContractValidator:
             "enum_maps",
             "thresholds",
             "candidate_hints",
+            "scoring",
+            "evidence_weights",
+            "unknown_evidence_policy",
+            "neutral_evidence_weight",
+            "constraints",
+            "calibration",
         }
         for name in sorted(str(key) for key in mapping if key not in allowed):
             errors.append(f"mapping_rules.yaml.{name} is unsupported")
@@ -270,11 +270,7 @@ class SchemaPackContractValidator:
                 missing_required = True
         if not missing_required:
             regex_rules = [
-                {
-                    key: item[key]
-                    for key in ("target_field_id", "pattern", "group")
-                    if key in item
-                }
+                {key: item[key] for key in ("target_field_id", "pattern", "group") if key in item}
                 for item in mapping.get("regex_rules", [])
                 if isinstance(item, dict)
             ]
@@ -291,15 +287,20 @@ class SchemaPackContractValidator:
                         "transform_rules": mapping.get("transform_rules", []),
                         "defaults": mapping.get("defaults", {}),
                         "enum_maps": mapping.get("enum_maps", {}),
+                        "scoring": mapping.get("scoring", {}),
+                        "evidence_weights": mapping.get("evidence_weights", {}),
+                        "unknown_evidence_policy": mapping.get(
+                            "unknown_evidence_policy", "neutral"
+                        ),
+                        "neutral_evidence_weight": mapping.get("neutral_evidence_weight", 0.7),
+                        "constraints": mapping.get("constraints", {}),
                     },
                     strict=True,
                 )
             except Exception as exc:
                 errors.append(f"mapping_rules.yaml is invalid: {exc}")
         valid_fields = (
-            {field.field_id for field in target_schema.fields}
-            if target_schema
-            else set()
+            {field.field_id for field in target_schema.fields} if target_schema else set()
         )
         aliases = mapping.get("aliases", {})
         if not isinstance(aliases, dict):
@@ -325,12 +326,12 @@ class SchemaPackContractValidator:
         for collection in ("thresholds", "candidate_hints"):
             if collection in mapping and not isinstance(mapping[collection], dict):
                 errors.append(f"mapping_rules.yaml.{collection} must be an object")
+        if "calibration" in mapping and not isinstance(mapping["calibration"], dict):
+            errors.append("mapping_rules.yaml.calibration must be an object")
         thresholds = mapping.get("thresholds", {})
         if isinstance(thresholds, dict):
             allowed_thresholds = {"auto_accept", "review_required"}
-            for name in sorted(
-                str(key) for key in thresholds if key not in allowed_thresholds
-            ):
+            for name in sorted(str(key) for key in thresholds if key not in allowed_thresholds):
                 errors.append(f"mapping_rules.yaml.thresholds.{name} is unsupported")
             for name, value in thresholds.items():
                 if (
@@ -338,13 +339,9 @@ class SchemaPackContractValidator:
                     or isinstance(value, bool)
                     or not isfinite(float(value))
                 ):
-                    errors.append(
-                        f"mapping_rules.yaml.thresholds.{name} must be a finite number"
-                    )
+                    errors.append(f"mapping_rules.yaml.thresholds.{name} must be a finite number")
                 elif not 0.0 <= float(value) <= 1.0:
-                    errors.append(
-                        f"mapping_rules.yaml.thresholds.{name} must be between 0 and 1"
-                    )
+                    errors.append(f"mapping_rules.yaml.thresholds.{name} must be between 0 and 1")
             auto_accept = thresholds.get("auto_accept")
             review_required = thresholds.get("review_required")
             if (
@@ -357,8 +354,7 @@ class SchemaPackContractValidator:
                 and review_required > auto_accept
             ):
                 errors.append(
-                    "mapping_rules.yaml.thresholds.review_required cannot exceed "
-                    "auto_accept"
+                    "mapping_rules.yaml.thresholds.review_required cannot exceed " "auto_accept"
                 )
         regex_collections = (
             ("regex_rules", "pattern"),
@@ -376,8 +372,7 @@ class SchemaPackContractValidator:
                 target = item.get("target_field_id")
                 if not isinstance(target, str) or not target:
                     errors.append(
-                        f"mapping_rules.yaml.{collection}[{index}].target_field_id "
-                        "is missing"
+                        f"mapping_rules.yaml.{collection}[{index}].target_field_id " "is missing"
                     )
                 elif valid_fields and target not in valid_fields:
                     errors.append(
@@ -403,9 +398,7 @@ class SchemaPackContractValidator:
         else:
             for index, item in enumerate(transform_rules):
                 if not isinstance(item, dict):
-                    errors.append(
-                        f"mapping_rules.yaml.transform_rules[{index}] must be an object"
-                    )
+                    errors.append(f"mapping_rules.yaml.transform_rules[{index}] must be an object")
                     continue
                 target_fields = item.get("target_fields", [])
                 target_fields = target_fields if isinstance(target_fields, list) else []
@@ -426,8 +419,7 @@ class SchemaPackContractValidator:
             regex_targets = {
                 item.get("target_field_id")
                 for item in mapping.get("regex_rules", [])
-                if isinstance(item, dict)
-                and isinstance(item.get("target_field_id"), str)
+                if isinstance(item, dict) and isinstance(item.get("target_field_id"), str)
             }
             for field in target_schema.fields:
                 if (
@@ -435,9 +427,7 @@ class SchemaPackContractValidator:
                     and not aliases.get(field.field_id)
                     and field.field_id not in regex_targets
                 ):
-                    errors.append(
-                        f"required field {field.field_id} has no alias or regex rule"
-                    )
+                    errors.append(f"required field {field.field_id} has no alias or regex rule")
 
     @staticmethod
     def _validate_assertion_fields(

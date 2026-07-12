@@ -8,6 +8,9 @@ from app.schemas.mapping_template import MappingTemplate
 from app.schemas.reports import MappingReport
 from app.schemas.target_schema import TargetField, TargetSchema
 from app.schemas.uir import UIRDocument
+from app.services.global_assignment_solver import GlobalAssignmentSolver
+from app.services.mapping_confidence_calibrator import MappingConfidenceCalibrator
+from app.services.mapping_constraint_service import MappingConstraintService
 from app.services.mapping_pair_feature_service import MappingPairFeatureService
 from app.services.mapping_service import MappingService
 
@@ -20,8 +23,12 @@ class GlobalAssignmentMappingService:
     def __init__(
         self,
         pair_feature_service: MappingPairFeatureService | None = None,
+        assignment_solver: GlobalAssignmentSolver | None = None,
+        constraint_service: MappingConstraintService | None = None,
     ) -> None:
         self.pair_feature_service = pair_feature_service or MappingPairFeatureService()
+        self.assignment_solver = assignment_solver or GlobalAssignmentSolver()
+        self.constraint_service = constraint_service or MappingConstraintService()
         self.mapping_service = MappingService()
 
     def map_fields(
@@ -36,16 +43,28 @@ class GlobalAssignmentMappingService:
         options = options or {}
         thresholds = options.get("thresholds", {})
         thresholds = thresholds if isinstance(thresholds, dict) else {}
+        calibration_payload = options.get("calibration")
+        calibration_payload = calibration_payload if isinstance(calibration_payload, dict) else None
+        calibrator = MappingConfidenceCalibrator(calibration_payload)
+        calibrated_thresholds = (
+            calibration_payload.get("thresholds", {}) if calibration_payload is not None else {}
+        )
         auto_accept_threshold = float(
             options.get(
                 "auto_accept_threshold",
-                thresholds.get("auto_accept", self.DEFAULT_AUTO_ACCEPT_THRESHOLD),
+                thresholds.get(
+                    "auto_accept",
+                    calibrated_thresholds.get("auto_accept", self.DEFAULT_AUTO_ACCEPT_THRESHOLD),
+                ),
             )
         )
         review_threshold = float(
             options.get(
                 "review_threshold",
-                thresholds.get("review_required", self.DEFAULT_REVIEW_THRESHOLD),
+                thresholds.get(
+                    "review_required",
+                    calibrated_thresholds.get("review_required", self.DEFAULT_REVIEW_THRESHOLD),
+                ),
             )
         )
         min_candidate_score = float(
@@ -53,6 +72,7 @@ class GlobalAssignmentMappingService:
         )
         negative_pairs = options.get("negative_pairs", [])
         negative_pairs = negative_pairs if isinstance(negative_pairs, list) else []
+        constraint_policy = self.constraint_service.policy(template.constraints, options)
 
         pair_rows: list[dict[str, Any]] = []
         for target in schema.fields:
@@ -62,105 +82,151 @@ class GlobalAssignmentMappingService:
                     target,
                     template,
                     negative_pairs=negative_pairs,
+                    uir=uir,
                 )
-                if (
-                    features.final_score >= min_candidate_score
-                    or features.negative_score >= 1.0
-                ):
+                target_minimum = self.constraint_service.minimum_score(
+                    target, constraint_policy, min_candidate_score
+                )
+                if self.constraint_service.type_is_compatible(
+                    features.type_score, constraint_policy
+                ) and (features.final_score >= target_minimum or features.negative_score >= 1.0):
                     pair_rows.append(
                         {
                             "target": target,
                             "candidate": candidate,
                             "features": features,
+                            "allow_source_reuse": (
+                                self.constraint_service.source_reuse_allowed(
+                                    candidate, target, constraint_policy
+                                )
+                            ),
+                            "operation": self.constraint_service.operation(
+                                candidate, target, constraint_policy
+                            ),
                         }
                     )
 
-        pair_rows.sort(
-            key=lambda row: (
-                -row["features"].final_score,
-                -float(row["candidate"].confidence_hint or row["candidate"].confidence),
-                row["target"].field_id,
-                row["candidate"].source_path,
-            )
-        )
-
-        used_targets: set[str] = set()
-        used_sources: set[str] = set()
         mappings: list[dict[str, Any]] = []
         review_required: list[dict[str, Any]] = []
-        conflict_skipped_count = 0
         strategy_counts: Counter[str] = Counter()
+        assigned_rows = self.assignment_solver.solve(pair_rows)
+        alternatives_by_target: dict[str, list[dict[str, Any]]] = {}
+        for target in schema.fields:
+            alternatives_by_target[target.field_id] = sorted(
+                [
+                    row
+                    for row in pair_rows
+                    if row["target"].field_id == target.field_id
+                    and row["features"].negative_score < 1.0
+                ],
+                key=lambda row: (
+                    -row["features"].final_score,
+                    row["candidate"].source_path,
+                    row["candidate"].candidate_id,
+                ),
+            )
+        selected_keys = {
+            (row["target"].field_id, row["candidate"].source_path) for row in assigned_rows
+        }
+        conflict_skipped_count = sum(
+            1
+            for row in pair_rows
+            if row["features"].negative_score < 1.0
+            and (row["target"].field_id, row["candidate"].source_path) not in selected_keys
+        )
 
-        for row in pair_rows:
+        for row in assigned_rows:
             target: TargetField = row["target"]
             candidate: FieldCandidate = row["candidate"]
             features = row["features"]
-            if target.field_id in used_targets or candidate.source_path in used_sources:
-                conflict_skipped_count += 1
-                continue
+            confidence = calibrator.calibrate(features.final_score)
+            alternatives = [
+                alternative
+                for alternative in alternatives_by_target[target.field_id]
+                if alternative["candidate"].source_path != candidate.source_path
+            ][:3]
+            score_margin = features.final_score - (
+                alternatives[0]["features"].final_score if alternatives else 0.0
+            )
 
-            if features.negative_score >= 1.0:
-                review_required.append(
-                    self._mapping_dict(
-                        task_id,
-                        candidate,
-                        target,
-                        confidence=0.0,
-                        status="blocked",
-                        need_review=True,
-                        features=features,
-                        evidence_message="negative pair blocked automatic mapping",
-                    )
-                )
-                used_targets.add(target.field_id)
-                strategy_counts["global_assignment_blocked"] += 1
-                continue
-
-            if features.final_score >= auto_accept_threshold:
+            if confidence >= auto_accept_threshold:
                 mappings.append(
                     self._mapping_dict(
                         task_id,
                         candidate,
                         target,
-                        confidence=features.final_score,
+                        confidence=confidence,
                         status="accepted",
                         need_review=False,
                         features=features,
-                        evidence_message=(
-                            f"global assignment score {features.final_score:.3f}"
-                        ),
+                        operation=row["operation"],
+                        alternatives=alternatives,
+                        score_margin=score_margin,
+                        evidence_message=(f"global assignment score {features.final_score:.3f}"),
                     )
                 )
-                used_targets.add(target.field_id)
-                used_sources.add(candidate.source_path)
                 strategy_counts["global_assignment"] += 1
                 continue
 
-            if features.final_score >= review_threshold:
+            if confidence >= review_threshold:
                 review_required.append(
                     self._mapping_dict(
                         task_id,
                         candidate,
                         target,
-                        confidence=features.final_score,
+                        confidence=confidence,
                         status="review_required",
                         need_review=True,
                         features=features,
+                        operation=row["operation"],
+                        alternatives=alternatives,
+                        score_margin=score_margin,
                         evidence_message=(
                             f"global assignment review score {features.final_score:.3f}"
                         ),
                     )
                 )
-                used_targets.add(target.field_id)
                 strategy_counts["global_assignment_review"] += 1
 
+        assigned_target_ids = {row["target"].field_id for row in assigned_rows}
+        blocked_by_target: dict[str, dict[str, Any]] = {}
+        for row in sorted(
+            pair_rows,
+            key=lambda item: (
+                item["target"].field_id,
+                item["candidate"].source_path,
+                item["candidate"].candidate_id,
+            ),
+        ):
+            target_id = row["target"].field_id
+            if target_id not in assigned_target_ids and row["features"].negative_score >= 1.0:
+                blocked_by_target.setdefault(target_id, row)
+        for row in blocked_by_target.values():
+            review_required.append(
+                self._mapping_dict(
+                    task_id,
+                    row["candidate"],
+                    row["target"],
+                    confidence=0.0,
+                    status="blocked",
+                    need_review=True,
+                    features=row["features"],
+                    operation=row["operation"],
+                    evidence_message="negative pair blocked automatic mapping",
+                )
+            )
+            strategy_counts["global_assignment_blocked"] += 1
+
         resolved_targets = {
-            item["target_field_id"] for item in [*mappings, *review_required]
+            item["target_field_id"]
+            for item in [*mappings, *review_required]
+            if item.get("status") != "blocked"
         }
         source_present_targets = {
             row["target"].field_id
             for row in pair_rows
             if row["features"].final_score >= min_candidate_score
+            and row["features"].negative_score < 1.0
         }
         unmapped = [
             self._unmapped_dict(
@@ -187,6 +253,8 @@ class GlobalAssignmentMappingService:
             summary={
                 "template_id": template.template_id,
                 "mapping_mode": "global_assignment",
+                "assignment_algorithm": "maximum_weight_bipartite",
+                "assignment_dummy_node_count": len(schema.fields),
                 "total_candidates": len(candidates),
                 "total_target_fields": len(schema.fields),
                 "pair_count": len(pair_rows),
@@ -227,6 +295,9 @@ class GlobalAssignmentMappingService:
         status: str,
         need_review: bool,
         features: Any,
+        operation: str = "one_to_one",
+        alternatives: list[dict[str, Any]] | None = None,
+        score_margin: float = 0.0,
         evidence_message: str,
     ) -> dict[str, Any]:
         mapping = self.mapping_service._mapping(
@@ -250,6 +321,7 @@ class GlobalAssignmentMappingService:
         data.update(
             {
                 "status": status,
+                "operation": operation,
                 "need_review": need_review,
                 "risk_flags": risk_flags,
                 "confidence_tier": self.mapping_service.confidence_tier(confidence),
@@ -260,6 +332,39 @@ class GlobalAssignmentMappingService:
                 ),
             }
         )
+        alternative_rows = [
+            {
+                "candidate_id": row["candidate"].candidate_id,
+                "source_path": row["candidate"].source_path,
+                "source_name": row["candidate"].source_name,
+                "score": row["features"].final_score,
+            }
+            for row in alternatives or []
+        ]
+        data["rejected_candidates"] = alternative_rows
+        data["ranking_trace"]["calibrated_confidence"] = confidence
+        data["ranking_trace"]["score_margin"] = round(score_margin, 4)
+        data["decision_trace"] = {
+            "top_candidate": {
+                "candidate_id": candidate.candidate_id,
+                "source_path": candidate.source_path,
+                "source_name": candidate.source_name,
+            },
+            "top_alternatives": alternative_rows,
+            "calibrated_confidence": confidence,
+            "score_margin": round(score_margin, 4),
+            "feature_trace": self._feature_trace(features),
+            "risk_flags": risk_flags,
+            "negative_pair_checks": {
+                "checked": True,
+                "blocked": status == "blocked",
+            },
+            "review_reason": data.get("review_required_reason"),
+            "source_backlinks": {
+                "source_path": candidate.source_path,
+                "source_blocks": list(candidate.source_blocks),
+            },
+        }
         if status == "blocked":
             data["badcase_filter"] = {
                 "checked": True,

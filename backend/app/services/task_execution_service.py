@@ -125,9 +125,7 @@ class TaskExecutionService:
         )
         if claimed != 1:
             self.db.rollback()
-            raise ValueError(
-                "task has already been executed; create a new task to rerun"
-            )
+            raise ValueError("task has already been executed; create a new task to rerun")
         self.db.commit()
         self.db.refresh(task)
 
@@ -238,10 +236,7 @@ class TaskExecutionService:
             if isinstance(metadata_template_payload, dict)
             else None
         )
-        if (
-            metadata_template is not None
-            and metadata_template.schema_id != schema.schema_id
-        ):
+        if metadata_template is not None and metadata_template.schema_id != schema.schema_id:
             raise ValueError("metadata template schema_id does not match target schema")
         review_knowledge_service = ReviewKnowledgeWorkflowService(
             self.db,
@@ -314,9 +309,7 @@ class TaskExecutionService:
             "options": options,
             "llm": {
                 **llm_fallback_service.safe_config_snapshot(
-                    strict_failure=bool(
-                        options.get("strict_llm", self.settings.llm_strict_failure)
-                    )
+                    strict_failure=bool(options.get("strict_llm", self.settings.llm_strict_failure))
                 ),
                 "task_requested": bool(options.get("enable_llm_fallback", False)),
             },
@@ -369,13 +362,9 @@ class TaskExecutionService:
             options=content_org_options,
             use_provided_chunks=True,
         )
-        content_organization_report.provider_trace = provider_result.trace.model_dump(
-            mode="json"
-        )
+        content_organization_report.provider_trace = provider_result.trace.model_dump(mode="json")
         summary_config = (
-            content_org_options.summary
-            if content_org_options is not None
-            else SummaryConfig()
+            content_org_options.summary if content_org_options is not None else SummaryConfig()
         )
         document_summary = DocumentSummaryService().build(
             canonical=canonical,
@@ -410,35 +399,23 @@ class TaskExecutionService:
             chunks=rendered.chunks,
             document_summary=document_summary,
             block_exclusions=(
-                [
-                    item.model_dump(mode="json")
-                    for item in content_org_options.block_exclusions
-                ]
+                [item.model_dump(mode="json") for item in content_org_options.block_exclusions]
                 if content_org_options is not None
                 else []
             ),
             block_exclusion_rule_ids=(
-                {
-                    rule.rule_id
-                    for rule in content_org_options.block_exclusion_rules
-                }
+                {rule.rule_id for rule in content_org_options.block_exclusion_rules}
                 if content_org_options is not None
                 else set()
             ),
             protect_tables=(
-                content_org_options.protect_tables
-                if content_org_options is not None
-                else True
+                content_org_options.protect_tables if content_org_options is not None else True
             ),
             protect_lists=(
-                content_org_options.protect_lists
-                if content_org_options is not None
-                else True
+                content_org_options.protect_lists if content_org_options is not None else True
             ),
             protect_code_blocks=(
-                content_org_options.protect_code_blocks
-                if content_org_options is not None
-                else True
+                content_org_options.protect_code_blocks if content_org_options is not None else True
             ),
         )
         conversion_assertion_report: dict[str, Any] | None = None
@@ -464,14 +441,10 @@ class TaskExecutionService:
                 {
                     "status": "running",
                     "artifacts": {
-                        "conversion_assertion_report": (
-                            conversion_assertion_report_path
-                        )
+                        "conversion_assertion_report": (conversion_assertion_report_path)
                     },
                     "report_paths": {
-                        "conversion_assertion_report": (
-                            conversion_assertion_report_path
-                        )
+                        "conversion_assertion_report": (conversion_assertion_report_path)
                     },
                 }
             )
@@ -594,15 +567,11 @@ class TaskExecutionService:
             lineage_graph=lineage_graph,
             lineage_summary=lineage_summary,
             metadata_result=metadata_result,
-            artifact_consistency_report=artifact_consistency_report.model_dump(
-                mode="json"
-            ),
+            artifact_consistency_report=artifact_consistency_report.model_dump(mode="json"),
         )
         finished_at = self._now()
         review_required_count = len(mapping_report.review_required_items)
-        unmapped_required_count = sum(
-            1 for item in mapping_report.unmapped if item.get("required")
-        )
+        unmapped_required_count = sum(1 for item in mapping_report.unmapped if item.get("required"))
         status = ConversionStatusService.determine(
             ConversionStatusInput(
                 package_verifier_passed=package_result.verifier_report.passed,
@@ -618,9 +587,7 @@ class TaskExecutionService:
                     if conversion_assertion_report
                     else 0
                 ),
-                strict_output_assertions=bool(
-                    options.get("strict_output_assertions", False)
-                ),
+                strict_output_assertions=bool(options.get("strict_output_assertions", False)),
                 metadata_passed=(metadata_result.passed if metadata_result else None),
                 strict_metadata=bool(options.get("strict_metadata_template", False)),
                 summary_faithfulness_passed=(
@@ -648,13 +615,9 @@ class TaskExecutionService:
                 "unmapped_required_count": unmapped_required_count,
                 "validation_passed": validation_report.passed,
                 "package_verifier_passed": package_result.verifier_report.passed,
-                "metadata_template_passed": (
-                    metadata_result.passed if metadata_result else None
-                ),
+                "metadata_template_passed": (metadata_result.passed if metadata_result else None),
                 "document_summary_faithfulness_passed": (
-                    document_summary.faithfulness_passed
-                    if document_summary
-                    else None
+                    document_summary.faithfulness_passed if document_summary else None
                 ),
                 "artifact_consistency_passed": artifact_consistency_report.passed,
                 "lineage_warnings": lineage_warnings,
@@ -715,11 +678,7 @@ class TaskExecutionService:
 
         mapping_payload = self.schema_pack_service.load_mapping_rules(schema_pack_id)
         regex_rules = [
-            {
-                key: item[key]
-                for key in ("target_field_id", "pattern", "group")
-                if key in item
-            }
+            {key: item[key] for key in ("target_field_id", "pattern", "group") if key in item}
             for item in mapping_payload.get("regex_rules", [])
             if isinstance(item, dict)
         ]
@@ -734,6 +693,13 @@ class TaskExecutionService:
                 "transform_rules": mapping_payload.get("transform_rules", []),
                 "defaults": mapping_payload.get("defaults", {}),
                 "enum_maps": mapping_payload.get("enum_maps", {}),
+                "scoring": mapping_payload.get("scoring", {}),
+                "evidence_weights": mapping_payload.get("evidence_weights", {}),
+                "unknown_evidence_policy": mapping_payload.get(
+                    "unknown_evidence_policy", "neutral"
+                ),
+                "neutral_evidence_weight": mapping_payload.get("neutral_evidence_weight", 0.7),
+                "constraints": mapping_payload.get("constraints", {}),
             }
         )
         if template.template_id != task.template_id:
@@ -757,6 +723,7 @@ class TaskExecutionService:
         )
         options.setdefault("negative_pairs", mapping_payload.get("negative_pairs", []))
         options.setdefault("thresholds", mapping_payload.get("thresholds", {}))
+        options.setdefault("calibration", mapping_payload.get("calibration"))
         options.setdefault("candidate_profile", mapping_payload.get("candidate_hints", {}))
         options["schema_pack_id"] = manifest.schema_pack_id
         options["schema_pack_version"] = manifest.schema_pack_version
@@ -834,9 +801,7 @@ class TaskExecutionService:
                 )
             )
         if conversion_assertion_report_path is not None:
-            report_paths["conversion_assertion_report"] = (
-                conversion_assertion_report_path
-            )
+            report_paths["conversion_assertion_report"] = conversion_assertion_report_path
         if metadata_result is not None:
             report_paths["metadata_template_report"] = str(
                 self.storage.save_json(

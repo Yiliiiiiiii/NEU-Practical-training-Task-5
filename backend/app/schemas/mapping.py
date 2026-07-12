@@ -50,6 +50,7 @@ class FieldMapping(StrictBaseModel):
     confidence: float
     confidence_tier: str | None = None
     status: str
+    operation: str = "one_to_one"
     need_review: bool = False
     value_sample: Any | None = None
     source_blocks: list[str] = Field(default_factory=list)
@@ -61,6 +62,7 @@ class FieldMapping(StrictBaseModel):
     llm_metadata: dict[str, Any] | None = None
     ranking_trace: dict[str, float] = Field(default_factory=dict)
     rejected_candidates: list[dict[str, Any]] = Field(default_factory=list)
+    decision_trace: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("status", mode="before")
     @classmethod
@@ -77,10 +79,7 @@ class FieldMapping(StrictBaseModel):
         if not isinstance(value, list):
             return value
         return [
-            {"type": "legacy", "message": item}
-            if isinstance(item, str)
-            else item
-            for item in value
+            {"type": "legacy", "message": item} if isinstance(item, str) else item for item in value
         ]
 
     @model_validator(mode="after")
