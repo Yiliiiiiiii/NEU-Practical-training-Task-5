@@ -1,28 +1,19 @@
+from __future__ import annotations
+
+from dataclasses import replace
 from pathlib import Path
-from typing import Any
 
 from app.config import Settings
 from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertResponse
-from app.services.artifact_consistency_service import ArtifactConsistencyService
-from app.services.candidate_service import CandidateService
-from app.services.canonical_service import CanonicalService
-from app.services.chunk_organizer_service import ChunkOrganizerService
-from app.services.chunk_providers.resolver import ChunkProviderResolver
-from app.services.conversion_assertion_service import ConversionAssertionService
-from app.services.conversion_status_service import (
-    ConversionStatusInput,
-    ConversionStatusService,
-)
-from app.services.document_summary_service import DocumentSummaryService
-from app.services.mapping_repair_service import MappingRepairService
-from app.services.mapping_service import MappingService
-from app.services.metadata_template_service import MetadataTemplateService
+from app.schemas.topic5_execution import Topic5ExecutionOptions
+from app.services.conversion_status_service import ConversionStatusService
 from app.services.package_service import PackageService
-from app.services.render_service import RenderedArtifacts, RenderService
 from app.services.schema_service import SchemaService
 from app.services.template_service import TemplateService
-from app.services.transform_service import TransformService
-from app.services.validation_service import ValidationService
+from app.services.topic5_conversion_engine import (
+    ConversionEngineContext,
+    Topic5ConversionEngine,
+)
 from app.utils.ids import new_id
 
 
@@ -43,285 +34,123 @@ class Topic5ConversionService:
             request.effective_mapping_template,
             schema,
         )
-        content_organization = request.content_organization.model_dump(mode="json")
-
-        options: dict[str, Any] = dict(request.options)
-        options["enable_legacy_transform_heuristics"] = (
+        legacy_options = dict(request.options)
+        legacy_options["enable_legacy_transform_heuristics"] = (
             request.enable_legacy_transform_heuristics
         )
-        options.setdefault("enable_llm_fallback", False)
-        options.setdefault("enable_lineage", False)
-        options.setdefault("topic5_inline_config", True)
-        options["content_organization"] = content_organization
-        options.setdefault("no_code_schema_pack_onboarding", schema.schema_id == "announcement_doc")
-        if request.metadata_template is not None:
-            options["metadata_template"] = request.metadata_template.model_dump(mode="json")
-
-        candidates = CandidateService().extract_candidates(
-            task_id,
-            request.uir,
-            candidate_profile=options.get("candidate_profile"),
-            enable_legacy_domain_rules=False,
+        legacy_options.setdefault("enable_llm_fallback", False)
+        legacy_options.setdefault("enable_lineage", False)
+        legacy_options.setdefault(
+            "no_code_schema_pack_onboarding", schema.schema_id == "announcement_doc"
         )
-        mapping_report = MappingService().map_fields(
-            task_id=task_id,
+        execution_options, option_warnings = Topic5ExecutionOptions.parse_legacy(
+            legacy_options
+        )
+        engine_result = Topic5ConversionEngine().convert(
             uir=request.uir,
-            schema=schema,
-            template=template,
-            candidates=candidates,
-            options=options,
-        )
-        mapping_repair_report = None
-        if options.get("enable_mapping_repair"):
-            mapping_report, mapping_repair_report = MappingRepairService().repair(
+            target_schema=schema,
+            metadata_template=request.metadata_template,
+            mapping_rules=template,
+            content_organization=request.content_organization,
+            execution_options=execution_options,
+            output_assertions=request.output_assertions,
+            engine_context=ConversionEngineContext(
                 task_id=task_id,
-                uir=request.uir,
-                schema=schema,
-                template=template,
-                candidates=candidates,
-                mapping_report=mapping_report,
-                options=options,
-            )
-        mapping_report.summary["input_mode"] = "inline_topic5_config"
-        mapping_report.summary["mapping_input_name"] = request.mapping_input_name
-        mapping_report.summary["thresholds"] = options.get("thresholds", {})
-        mapping_report.summary["no_code_schema_pack_onboarding"] = bool(
-            options.get("no_code_schema_pack_onboarding")
-        )
-
-        transform_result = TransformService().transform(
-            task_id,
-            request.uir,
-            schema,
-            template,
-            mapping_report,
-            enable_legacy_transform_heuristics=(
-                request.enable_legacy_transform_heuristics
+                doc_id=doc_id,
+                input_mode="inline_topic5_config",
+                mapping_input_name=request.mapping_input_name,
+                settings=Settings(),
+                schema_pack_id=execution_options.schema_pack_id,
+                schema_pack_version=execution_options.schema_pack_version,
+                option_warnings=option_warnings,
             ),
         )
-        metadata_result = None
-        if request.metadata_template is not None:
-            metadata_result = MetadataTemplateService().render(
-                uir=request.uir,
-                transformed_fields=transform_result.data,
-                template=request.metadata_template,
-                system_context={
-                    "doc_id": doc_id,
-                    "schema_id": schema.schema_id,
-                    "schema_version": schema.version,
-                    "template_id": template.template_id,
-                    "template_version": template.version,
-                    "metadata_template_id": request.metadata_template.template_id,
-                    "metadata_template_version": request.metadata_template.version,
-                },
-            )
-        execution_snapshot = {
-            "task_id": task_id,
-            "doc_id": doc_id,
-            "schema_id": schema.schema_id,
-            "schema_version": schema.version,
-            "template_id": template.template_id,
-            "template_version": template.version,
-            "input_mode": "inline_topic5_config",
-            "mapping_input_name": request.mapping_input_name,
-            "options": options,
-        }
-        canonical = CanonicalService().build_canonical(
-            task_id=task_id,
-            uir=request.uir,
-            schema=schema,
-            template=template,
-            transform_result=transform_result,
-            mapping_report=mapping_report,
-            execution_snapshot=execution_snapshot,
-            metadata_result=metadata_result,
-            metadata_template=request.metadata_template,
-        )
-        rendered = RenderService().render(
-            canonical,
-            chunk_size=int(options.get("chunk_size", 1200)),
-        )
-        preliminary_validation = ValidationService().validate(
-            task_id,
-            schema,
-            rendered,
-            metadata_issues=(metadata_result.report.issues if metadata_result else None),
-        )
-        provider_result = ChunkProviderResolver(settings=Settings()).resolve(
-            canonical=canonical,
-            options=request.content_organization,
-            legacy_chunks=rendered.chunks,
-        )
-        organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
-            chunks=provider_result.chunks,
-            canonical_model=canonical,
-            schema=schema,
-            mapping_report=mapping_report,
-            validation_report=preliminary_validation,
-            task_id=task_id,
-            doc_id=doc_id,
-            schema_id=schema.schema_id,
-            template_id=template.template_id,
-            template_version=template.version,
-            options=content_organization,
-            use_provided_chunks=True,
-        )
-        content_organization_report.provider_trace = provider_result.trace.model_dump(
-            mode="json"
-        )
-        document_summary = DocumentSummaryService().build(
-            canonical=canonical,
-            chunks=organized_chunks,
-            config=request.content_organization.summary,
-        )
-        document_summary_payload = (
-            document_summary.model_dump(mode="json") if document_summary else None
-        )
-        canonical.doc_meta["document_summary"] = document_summary_payload
-        content_organization_report.document_summary = document_summary_payload
-        summary_rendered = RenderService().render(
-            canonical,
-            chunk_size=int(options.get("chunk_size", 1200)),
-        )
-        rendered = RenderedArtifacts(
-            structured_json=summary_rendered.structured_json,
-            markdown=summary_rendered.markdown,
-            chunks=organized_chunks,
-        )
-        validation_report = ValidationService().validate(
-            task_id,
-            schema,
-            rendered,
-            require_content_organization=True,
-            metadata_issues=(metadata_result.report.issues if metadata_result else None),
-        )
-        artifact_consistency_report = ArtifactConsistencyService().verify(
-            canonical=canonical,
-            structured_json=rendered.structured_json,
-            markdown=rendered.markdown,
-            chunks=rendered.chunks,
-            document_summary=document_summary,
-            block_exclusions=[
-                item.model_dump(mode="json")
-                for item in request.content_organization.block_exclusions
-            ],
-            block_exclusion_rule_ids={
-                rule.rule_id
-                for rule in request.content_organization.block_exclusion_rules
-            },
-            protect_tables=request.content_organization.protect_tables,
-            protect_lists=request.content_organization.protect_lists,
-            protect_code_blocks=request.content_organization.protect_code_blocks,
-        )
-        conversion_assertion_report = None
-        if request.output_assertions is not None:
-            assertion_report = ConversionAssertionService().evaluate(
-                task_id=task_id,
-                schema_pack_id=str(options.get("schema_pack_id") or schema.schema_id),
-                schema_pack_version=str(
-                    options.get("schema_pack_version") or schema.version
-                ),
-                schema_id=schema.schema_id,
-                content_json=rendered.structured_json,
-                assertion_config=request.output_assertions,
-                mapping_report=mapping_report.model_dump(mode="json"),
-            )
-            conversion_assertion_report = assertion_report.model_dump(mode="json")
 
         manifest = None
         package_zip_path = None
         package_metadata = None
         verifier_report = None
+        artifact_consistency_report = engine_result.artifact_consistency_report
         if create_package:
             package_result = PackageService(self.storage_root).create_package(
                 task_id=task_id,
                 doc_id=doc_id,
                 schema=schema,
                 template=template,
-                canonical=canonical,
-                rendered=rendered,
-                mapping_report=mapping_report,
-                transform_report=transform_result.report,
-                validation_report=validation_report,
-                content_organization_report=content_organization_report,
-                conversion_assertion_report=conversion_assertion_report,
-                include_assertion_report=bool(
-                    options.get("include_assertion_report_in_package", False)
+                canonical=engine_result.canonical,
+                rendered=engine_result.rendered,
+                mapping_report=engine_result.mapping_report,
+                transform_report=engine_result.transform_result.report,
+                validation_report=engine_result.validation_report,
+                content_organization_report=(
+                    engine_result.content_organization_report
                 ),
-                metadata_result=metadata_result,
+                conversion_assertion_report=(
+                    engine_result.conversion_assertion_report
+                ),
+                include_assertion_report=(
+                    execution_options.include_assertion_report_in_package
+                ),
+                metadata_result=engine_result.metadata_result,
                 metadata_template=request.metadata_template,
-                document_summary=document_summary,
+                document_summary=engine_result.document_summary,
                 artifact_consistency_report=artifact_consistency_report,
             )
             manifest = package_result.manifest.model_dump(mode="json")
             package_zip_path = package_result.metadata.zip_path
             package_metadata = package_result.metadata.model_dump(mode="json")
             verifier_report = package_result.verifier_report.model_dump(mode="json")
-            artifact_consistency_report = (
-                package_result.artifact_consistency_report
-            )
+            artifact_consistency_report = package_result.artifact_consistency_report
 
-        verifier_passed = (
-            bool(verifier_report.get("passed"))
-            if isinstance(verifier_report, dict)
+        status_input = replace(
+            engine_result.status_input,
+            package_verifier_passed=(
+                bool(verifier_report.get("passed"))
+                if isinstance(verifier_report, dict)
+                else None
+            ),
+            artifact_consistency_passed=artifact_consistency_report.passed,
+        )
+        status = ConversionStatusService.determine(status_input)
+        summary_payload = (
+            engine_result.document_summary.model_dump(mode="json")
+            if engine_result.document_summary
             else None
         )
-        status = ConversionStatusService.determine(
-            ConversionStatusInput(
-                package_verifier_passed=verifier_passed,
-                mapping_review_item_count=len(mapping_report.review_required_items),
-                unmapped_required_source_present_count=(
-                    ConversionStatusService.count_required_unmapped_source_present(
-                        mapping_report.unmapped
-                    )
-                ),
-                schema_validation_passed=validation_report.passed,
-                assertion_error_count=(
-                    int(conversion_assertion_report.get("error_count", 0))
-                    if conversion_assertion_report
-                    else 0
-                ),
-                strict_output_assertions=bool(
-                    options.get("strict_output_assertions", False)
-                ),
-                metadata_passed=(metadata_result.passed if metadata_result else None),
-                strict_metadata=bool(options.get("strict_metadata_template", False)),
-                summary_faithfulness_passed=(
-                    document_summary.faithfulness_passed if document_summary else None
-                ),
-                artifact_consistency_passed=artifact_consistency_report.passed,
-                provider_fallback_used=provider_result.trace.fallback_used,
-                provider_fallback_requires_review=bool(
-                    options.get("provider_fallback_requires_review", False)
-                ),
-            )
-        )
+        metadata_result = engine_result.metadata_result
         return Topic5ConvertResponse(
             task_id=task_id,
             status=status,
             schema_id=schema.schema_id,
             template_id=template.template_id,
-            content_json=rendered.structured_json,
-            content_markdown=rendered.markdown,
-            chunks=rendered.chunks,
-            mapping_report=mapping_report.model_dump(mode="json"),
-            transform_report=transform_result.report,
-            validation_report=validation_report.model_dump(mode="json"),
-            content_organization_report=content_organization_report.model_dump(mode="json"),
-            mapping_repair_report=mapping_repair_report,
+            content_json=engine_result.rendered.structured_json,
+            content_markdown=engine_result.rendered.markdown,
+            chunks=engine_result.rendered.chunks,
+            mapping_report=engine_result.mapping_report.model_dump(mode="json"),
+            transform_report=engine_result.transform_result.report,
+            validation_report=engine_result.validation_report.model_dump(mode="json"),
+            content_organization_report=(
+                engine_result.content_organization_report.model_dump(mode="json")
+            ),
+            mapping_repair_report=engine_result.mapping_repair_report,
             manifest=manifest,
             package_zip_path=package_zip_path,
             package_metadata=package_metadata,
             verifier_report=verifier_report,
-            conversion_assertion_report=conversion_assertion_report,
-            document_metadata=(metadata_result.document_metadata if metadata_result else {}),
+            conversion_assertion_report=engine_result.conversion_assertion_report,
+            document_metadata=(
+                metadata_result.document_metadata if metadata_result else {}
+            ),
             metadata_template_report=(
                 metadata_result.report.model_dump(mode="json")
                 if metadata_result
                 else None
             ),
-            document_summary=document_summary_payload,
+            document_summary=summary_payload,
             artifact_consistency_report=artifact_consistency_report.model_dump(
                 mode="json"
             ),
+            conversion_fingerprints=engine_result.conversion_fingerprints,
+            semantic_artifact_hashes=engine_result.semantic_artifact_hashes,
+            execution_option_warnings=option_warnings,
         )

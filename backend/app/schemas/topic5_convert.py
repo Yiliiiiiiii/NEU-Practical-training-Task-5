@@ -8,6 +8,7 @@ from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.metadata_template import MetadataTemplateConfig
 from app.schemas.target_schema import TargetSchema
+from app.schemas.topic5_execution import Topic5ExecutionOptions
 from app.schemas.uir import UIRDocument
 
 
@@ -45,6 +46,7 @@ class Topic5ConvertRequest(StrictBaseModel):
 
     @model_validator(mode="after")
     def validate_mapping_rules(self) -> "Topic5ConvertRequest":
+        Topic5ExecutionOptions.parse_legacy(self.options)
         if self.mapping_rules is None and self.mapping_template is None:
             raise ValueError("mapping_rules is required")
 
@@ -105,3 +107,6 @@ class Topic5ConvertResponse(StrictBaseModel):
     metadata_template_report: dict[str, Any] | None = None
     document_summary: dict[str, Any] | None = None
     artifact_consistency_report: dict[str, Any] | None = None
+    conversion_fingerprints: dict[str, str] = Field(default_factory=dict)
+    semantic_artifact_hashes: dict[str, str] = Field(default_factory=dict)
+    execution_option_warnings: list[dict[str, str]] = Field(default_factory=list)

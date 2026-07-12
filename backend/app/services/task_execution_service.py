@@ -1,5 +1,5 @@
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -9,41 +9,33 @@ from sqlalchemy.orm import Session
 
 from app.config import Settings
 from app.db.models import ConversionTask, Document, KnowledgeCandidateRecord
-from app.schemas.content_organization import ContentOrganizationOptions, SummaryConfig
+from app.schemas.content_organization import ContentOrganizationOptions
 from app.schemas.conversion_assertions import ConversionAssertionConfig
 from app.schemas.mapping_template import MappingTemplate
 from app.schemas.metadata_template import MetadataRenderResult, MetadataTemplateConfig
 from app.schemas.reports import MappingReport
 from app.schemas.schema_pack_contract import SchemaPackManifest
 from app.schemas.target_schema import TargetSchema
+from app.schemas.topic5_execution import Topic5ExecutionOptions
 from app.schemas.uir import UIRDocument
-from app.services.artifact_consistency_service import ArtifactConsistencyService
-from app.services.candidate_service import CandidateService
-from app.services.canonical_service import CanonicalService
 from app.services.catalog_governance_service import CatalogGovernanceService
-from app.services.chunk_organizer_service import ChunkOrganizerService
-from app.services.chunk_providers.resolver import ChunkProviderResolver
-from app.services.conversion_assertion_service import ConversionAssertionService
 from app.services.conversion_status_service import (
-    ConversionStatusInput,
     ConversionStatusService,
 )
-from app.services.document_summary_service import DocumentSummaryService
 from app.services.effective_template_service import EffectiveTemplateService
 from app.services.lineage_graph_service import LineageGraphService
 from app.services.llm_fallback_service import LLMFallbackService
-from app.services.mapping_service import MappingService
-from app.services.metadata_template_service import MetadataTemplateService
 from app.services.package_service import PackageService
-from app.services.render_service import RenderedArtifacts, RenderService
 from app.services.review_knowledge_workflow_service import ReviewKnowledgeWorkflowService
 from app.services.schema_pack_service import SchemaPackService
 from app.services.schema_service import SchemaService
 from app.services.storage_service import StorageService
 from app.services.task_service import TaskService
 from app.services.template_service import TemplateService
-from app.services.transform_service import TransformService
-from app.services.validation_service import ValidationService
+from app.services.topic5_conversion_engine import (
+    ConversionEngineContext,
+    Topic5ConversionEngine,
+)
 
 
 @dataclass(frozen=True)
@@ -81,6 +73,7 @@ class TaskExecutionService:
         "artifact-consistency": "artifact_consistency_report",
         "artifact_consistency": "artifact_consistency_report",
         "artifact_consistency_report": "artifact_consistency_report",
+        "fingerprints": "fingerprints",
     }
 
     def __init__(
@@ -249,188 +242,84 @@ class TaskExecutionService:
         effective_result = EffectiveTemplateService().resolve(template, active_packs)
         template = effective_result.template
 
-        candidates = CandidateService().extract_candidates(
-            task.task_id,
-            uir,
-            candidate_profile=options.get("candidate_profile"),
-            enable_legacy_domain_rules=not bool(schema_pack_manifest),
-        )
         llm_fallback_service = LLMFallbackService(self.settings)
-        mapping_report = MappingService(llm_fallback_service=llm_fallback_service).map_fields(
-            task_id=task.task_id,
-            uir=uir,
-            schema=schema,
-            template=template,
-            candidates=candidates,
-            options=options,
+        started_at = (task.started_at or self._now()).isoformat()
+        content_org_payload = options.get("content_organization")
+        content_org_options = (
+            ContentOrganizationOptions.model_validate(content_org_payload)
+            if isinstance(content_org_payload, dict)
+            else ContentOrganizationOptions()
         )
+        engine_option_payload = {
+            key: value
+            for key, value in options.items()
+            if key not in {"content_organization", "metadata_template"}
+        }
+        engine_option_payload.setdefault("enable_lineage", True)
+        engine_option_payload.setdefault(
+            "enable_legacy_candidate_heuristics", not bool(schema_pack_manifest)
+        )
+        execution_options, option_warnings = Topic5ExecutionOptions.parse_legacy(
+            engine_option_payload
+        )
+        engine_result = Topic5ConversionEngine().convert(
+            uir=uir,
+            target_schema=schema,
+            metadata_template=metadata_template,
+            mapping_rules=template,
+            content_organization=content_org_options,
+            execution_options=execution_options,
+            output_assertions=assertion_config,
+            engine_context=ConversionEngineContext(
+                task_id=task.task_id,
+                doc_id=document.doc_id,
+                input_mode="registered_task",
+                mapping_input_name="mapping_rules",
+                settings=self.settings,
+                schema_pack_id=(
+                    schema_pack_manifest.schema_pack_id
+                    if schema_pack_manifest is not None
+                    else schema.schema_id
+                ),
+                schema_pack_version=(
+                    schema_pack_manifest.schema_pack_version
+                    if schema_pack_manifest is not None
+                    else schema.version
+                ),
+                execution_snapshot_fields={
+                    "applied_knowledge_pack_ids": effective_result.applied_pack_ids,
+                    "input_hash": task.input_hash,
+                    "llm": {
+                        **llm_fallback_service.safe_config_snapshot(
+                            strict_failure=execution_options.strict_llm
+                        ),
+                        "task_requested": execution_options.enable_llm_fallback,
+                    },
+                    "started_at": started_at,
+                },
+                option_warnings=option_warnings,
+            ),
+        )
+        candidates = engine_result.candidates
+        mapping_report = engine_result.mapping_report
         review_records = review_knowledge_service.create_pending_reviews(
             task=task,
             doc_id=document.doc_id,
             mapping_report=mapping_report,
         )
-        transform_result = TransformService().transform(
-            task_id=task.task_id,
-            uir=uir,
-            schema=schema,
-            template=template,
-            mapping_report=mapping_report,
-            enable_legacy_transform_heuristics=bool(
-                options.get("enable_legacy_transform_heuristics", False)
-            ),
-        )
-        metadata_result = None
-        if metadata_template is not None:
-            metadata_result = MetadataTemplateService().render(
-                uir=uir,
-                transformed_fields=transform_result.data,
-                template=metadata_template,
-                system_context={
-                    "doc_id": document.doc_id,
-                    "schema_id": schema.schema_id,
-                    "schema_version": schema.version,
-                    "template_id": template.template_id,
-                    "template_version": template.version,
-                    "metadata_template_id": metadata_template.template_id,
-                    "metadata_template_version": metadata_template.version,
-                },
-            )
-
-        started_at = (task.started_at or self._now()).isoformat()
-        execution_snapshot = {
-            "task_id": task.task_id,
-            "doc_id": document.doc_id,
-            "schema_id": task.schema_id,
-            "schema_version": task.schema_version,
-            "template_id": task.template_id,
-            "template_version": task.template_version,
-            "applied_knowledge_pack_ids": effective_result.applied_pack_ids,
-            "input_hash": task.input_hash,
-            "options": options,
-            "llm": {
-                **llm_fallback_service.safe_config_snapshot(
-                    strict_failure=bool(options.get("strict_llm", self.settings.llm_strict_failure))
-                ),
-                "task_requested": bool(options.get("enable_llm_fallback", False)),
-            },
-            "started_at": started_at,
-        }
+        transform_result = engine_result.transform_result
+        metadata_result = engine_result.metadata_result
+        execution_snapshot = engine_result.execution_snapshot
         snapshot_path = f"tasks/{task.task_id}/execution_snapshot.json"
-        canonical = CanonicalService().build_canonical(
-            task_id=task.task_id,
-            uir=uir,
-            schema=schema,
-            template=template,
-            transform_result=transform_result,
-            mapping_report=mapping_report,
-            execution_snapshot=execution_snapshot,
-            metadata_result=metadata_result,
-            metadata_template=metadata_template,
-        )
-        rendered = RenderService().render(
-            canonical,
-            chunk_size=int(options.get("chunk_size", 1200)),
-        )
-        preliminary_validation_report = ValidationService().validate(
-            task.task_id,
-            schema,
-            rendered,
-            metadata_issues=(metadata_result.report.issues if metadata_result else None),
-        )
-        content_org_payload = options.get("content_organization")
-        content_org_options = (
-            ContentOrganizationOptions.model_validate(content_org_payload)
-            if isinstance(content_org_payload, dict)
-            else None
-        )
-        provider_result = ChunkProviderResolver(settings=self.settings).resolve(
-            canonical=canonical,
-            options=content_org_options,
-            legacy_chunks=rendered.chunks,
-        )
-        organized_chunks, content_organization_report = ChunkOrganizerService().organize_chunks(
-            chunks=provider_result.chunks,
-            canonical_model=canonical,
-            schema=schema,
-            mapping_report=mapping_report,
-            validation_report=preliminary_validation_report,
-            task_id=task.task_id,
-            doc_id=document.doc_id,
-            schema_id=schema.schema_id,
-            template_id=template.template_id,
-            template_version=template.version,
-            options=content_org_options,
-            use_provided_chunks=True,
-        )
-        content_organization_report.provider_trace = provider_result.trace.model_dump(mode="json")
-        summary_config = (
-            content_org_options.summary if content_org_options is not None else SummaryConfig()
-        )
-        document_summary = DocumentSummaryService().build(
-            canonical=canonical,
-            chunks=organized_chunks,
-            config=summary_config,
-        )
-        document_summary_payload = (
-            document_summary.model_dump(mode="json") if document_summary else None
-        )
-        canonical.doc_meta["document_summary"] = document_summary_payload
-        content_organization_report.document_summary = document_summary_payload
-        summary_rendered = RenderService().render(
-            canonical,
-            chunk_size=int(options.get("chunk_size", 1200)),
-        )
-        rendered = RenderedArtifacts(
-            structured_json=summary_rendered.structured_json,
-            markdown=summary_rendered.markdown,
-            chunks=organized_chunks,
-        )
-        validation_report = ValidationService().validate(
-            task.task_id,
-            schema,
-            rendered,
-            require_content_organization=True,
-            metadata_issues=(metadata_result.report.issues if metadata_result else None),
-        )
-        artifact_consistency_report = ArtifactConsistencyService().verify(
-            canonical=canonical,
-            structured_json=rendered.structured_json,
-            markdown=rendered.markdown,
-            chunks=rendered.chunks,
-            document_summary=document_summary,
-            block_exclusions=(
-                [item.model_dump(mode="json") for item in content_org_options.block_exclusions]
-                if content_org_options is not None
-                else []
-            ),
-            block_exclusion_rule_ids=(
-                {rule.rule_id for rule in content_org_options.block_exclusion_rules}
-                if content_org_options is not None
-                else set()
-            ),
-            protect_tables=(
-                content_org_options.protect_tables if content_org_options is not None else True
-            ),
-            protect_lists=(
-                content_org_options.protect_lists if content_org_options is not None else True
-            ),
-            protect_code_blocks=(
-                content_org_options.protect_code_blocks if content_org_options is not None else True
-            ),
-        )
-        conversion_assertion_report: dict[str, Any] | None = None
+        canonical = engine_result.canonical
+        rendered = engine_result.rendered
+        validation_report = engine_result.validation_report
+        content_organization_report = engine_result.content_organization_report
+        document_summary = engine_result.document_summary
+        artifact_consistency_report = engine_result.artifact_consistency_report
+        conversion_assertion_report = engine_result.conversion_assertion_report
         conversion_assertion_report_path: str | None = None
-        if assertion_config is not None and schema_pack_manifest is not None:
-            assertion_report = ConversionAssertionService().evaluate(
-                task_id=task.task_id,
-                schema_pack_id=schema_pack_manifest.schema_pack_id,
-                schema_pack_version=schema_pack_manifest.schema_pack_version,
-                schema_id=schema.schema_id,
-                content_json=rendered.structured_json,
-                assertion_config=assertion_config,
-                mapping_report=mapping_report.model_dump(mode="json"),
-            )
-            conversion_assertion_report = assertion_report.model_dump(mode="json")
+        if conversion_assertion_report is not None:
             conversion_assertion_report_path = str(
                 self.storage.save_json(
                     f"tasks/{task.task_id}/conversion_assertion_report.json",
@@ -464,8 +353,8 @@ class TaskExecutionService:
             validation_report=validation_report,
             content_organization_report=content_organization_report,
             conversion_assertion_report=conversion_assertion_report,
-            include_assertion_report=bool(
-                options.get("include_assertion_report_in_package", False)
+            include_assertion_report=(
+                execution_options.include_assertion_report_in_package
             ),
             metadata_result=metadata_result,
             metadata_template=metadata_template,
@@ -476,8 +365,8 @@ class TaskExecutionService:
         lineage_graph: dict[str, Any] | None = None
         lineage_summary: dict[str, Any] | None = None
         lineage_warnings: list[str] = []
-        if bool(options.get("enable_lineage", True)):
-            external_options = options.get("external_uir")
+        if execution_options.enable_lineage:
+            external_options = execution_options.external_uir
             adapter_report = (
                 external_options.get("adapter_report")
                 if isinstance(external_options, dict)
@@ -547,7 +436,7 @@ class TaskExecutionService:
                 lineage_graph = graph.model_dump(mode="json")
                 lineage_summary = graph.summary
             except Exception as exc:
-                if bool(options.get("strict_lineage", False)):
+                if execution_options.strict_lineage:
                     raise
                 lineage_warnings.append(str(exc))
 
@@ -568,36 +457,19 @@ class TaskExecutionService:
             lineage_summary=lineage_summary,
             metadata_result=metadata_result,
             artifact_consistency_report=artifact_consistency_report.model_dump(mode="json"),
+            fingerprints={
+                "conversion": engine_result.conversion_fingerprints,
+                "semantic_artifacts": engine_result.semantic_artifact_hashes,
+            },
         )
         finished_at = self._now()
         review_required_count = len(mapping_report.review_required_items)
         unmapped_required_count = sum(1 for item in mapping_report.unmapped if item.get("required"))
         status = ConversionStatusService.determine(
-            ConversionStatusInput(
+            replace(
+                engine_result.status_input,
                 package_verifier_passed=package_result.verifier_report.passed,
-                mapping_review_item_count=review_required_count,
-                unmapped_required_source_present_count=(
-                    ConversionStatusService.count_required_unmapped_source_present(
-                        mapping_report.unmapped
-                    )
-                ),
-                schema_validation_passed=validation_report.passed,
-                assertion_error_count=(
-                    int(conversion_assertion_report.get("error_count", 0))
-                    if conversion_assertion_report
-                    else 0
-                ),
-                strict_output_assertions=bool(options.get("strict_output_assertions", False)),
-                metadata_passed=(metadata_result.passed if metadata_result else None),
-                strict_metadata=bool(options.get("strict_metadata_template", False)),
-                summary_faithfulness_passed=(
-                    document_summary.faithfulness_passed if document_summary else None
-                ),
                 artifact_consistency_passed=artifact_consistency_report.passed,
-                provider_fallback_used=provider_result.trace.fallback_used,
-                provider_fallback_requires_review=bool(
-                    options.get("provider_fallback_requires_review", False)
-                ),
             )
         )
         artifacts: dict[str, str] = {}
@@ -621,6 +493,10 @@ class TaskExecutionService:
                 ),
                 "artifact_consistency_passed": artifact_consistency_report.passed,
                 "lineage_warnings": lineage_warnings,
+                "conversion_fingerprints": engine_result.conversion_fingerprints,
+                "semantic_artifact_hashes": (
+                    engine_result.semantic_artifact_hashes
+                ),
             }
         )
         self.storage.save_json(snapshot_path, execution_snapshot)
@@ -749,6 +625,7 @@ class TaskExecutionService:
         lineage_summary: dict[str, Any] | None = None,
         metadata_result: MetadataRenderResult | None = None,
         artifact_consistency_report: dict[str, Any] | None = None,
+        fingerprints: dict[str, Any] | None = None,
     ) -> dict[str, str]:
         base = f"tasks/{task_id}"
         report_paths = {
@@ -814,6 +691,13 @@ class TaskExecutionService:
                 self.storage.save_json(
                     f"{base}/artifact_consistency_report.json",
                     artifact_consistency_report,
+                )
+            )
+        if fingerprints is not None:
+            report_paths["fingerprints"] = str(
+                self.storage.save_json(
+                    f"{base}/fingerprints.json",
+                    fingerprints,
                 )
             )
         return report_paths
