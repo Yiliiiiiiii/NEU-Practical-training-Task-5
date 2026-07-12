@@ -2,7 +2,7 @@ command: F:\p2\backend\.venv\Scripts\python.exe -m ruff check scripts/topic5_eva
 cwd: F:\p2
 status: passed
 return_code: 0
-duration_seconds: 0.113781
+duration_seconds: 0.124127
 
 [stdout]
 All checks passed!

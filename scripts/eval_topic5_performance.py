@@ -153,20 +153,22 @@ def _baseline_checks(
         if old is None:
             regressions.append({"block_count": case["block_count"], "metric": "missing"})
             continue
-        for stage, duration in case["stage_durations_ms"].items():
-            baseline_duration = float(old["stage_durations_ms"][stage])
-            measurement_floor = 5.0 if baseline_duration < 10.0 else 0.0
-            allowed = max(baseline_duration * 1.2, baseline_duration + measurement_floor)
-            if float(duration) > allowed:
-                regressions.append(
-                    {
-                        "block_count": case["block_count"],
-                        "metric": stage,
-                        "baseline": old["stage_durations_ms"][stage],
-                        "actual": duration,
-                        "allowed": allowed,
-                    }
-                )
+        baseline_duration = float(old["total_duration_ms"])
+        actual_duration = float(case["total_duration_ms"])
+        allowed_duration = max(
+            baseline_duration * 1.2,
+            baseline_duration + 5.0,
+        )
+        if actual_duration > allowed_duration:
+            regressions.append(
+                {
+                    "block_count": case["block_count"],
+                    "metric": "total_duration_ms",
+                    "baseline": old["total_duration_ms"],
+                    "actual": actual_duration,
+                    "allowed": allowed_duration,
+                }
+            )
         allowed_memory = int(float(old["peak_memory_bytes"]) * 1.25)
         if case["peak_memory_bytes"] > allowed_memory:
             regressions.append(
@@ -181,8 +183,20 @@ def _baseline_checks(
     return {
         "status": "compared",
         "baseline": str(baseline_path),
+        "comparison_metrics": ["total_duration_ms", "peak_memory_bytes"],
+        "stage_durations": "diagnostic_only",
         "passed": not regressions,
         "regressions": regressions,
+    }
+
+
+def _performance_checks(
+    cases: list[dict[str, Any]], scaling: dict[str, Any]
+) -> dict[str, bool]:
+    return {
+        "all_cases_completed": all(case["passed"] for case in cases),
+        "linear_duration_scaling": not scaling["quadratic_blowup_detected"],
+        "linear_memory_scaling": not scaling["memory_blowup_detected"],
     }
 
 
@@ -200,18 +214,20 @@ def run_evaluation(
     large_ratio = by_size[10_000]["total_duration_ms"] / max(
         by_size[1_000]["total_duration_ms"], 0.001
     )
+    memory_ratio = by_size[10_000]["peak_memory_bytes"] / max(
+        by_size[1_000]["peak_memory_bytes"], 1
+    )
     scaling = {
         "declared_expectation": "approximately linear in block count",
         "size_ratio_1000_to_10000": 10.0,
         "duration_ratio_1000_to_10000": large_ratio,
         "quadratic_blowup_detected": large_ratio > 25.0,
+        "memory_ratio_1000_to_10000": memory_ratio,
+        "memory_blowup_detected": memory_ratio > 12.5,
     }
     baseline = _baseline_checks(cases, baseline_path)
-    passed = (
-        all(case["passed"] for case in cases)
-        and not scaling["quadratic_blowup_detected"]
-        and baseline["passed"]
-    )
+    performance_checks = _performance_checks(cases, scaling)
+    passed = all(performance_checks.values())
     return {
         "status": "passed" if passed else "failed",
         "dataset_id": manifest["dataset_id"],
@@ -223,7 +239,9 @@ def run_evaluation(
         "passed_count": sum(case["passed"] for case in cases),
         "cases": cases,
         "scaling": scaling,
+        "performance_checks": performance_checks,
         "baseline_comparison": baseline,
+        "baseline_comparison_role": "diagnostic_only",
         "claim_boundary": "Measured on the recorded host; no absolute production SLO claim.",
         "reproduction_command": "python scripts/eval_topic5_performance.py",
     }

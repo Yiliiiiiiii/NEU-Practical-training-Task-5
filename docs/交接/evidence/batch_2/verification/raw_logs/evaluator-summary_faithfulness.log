@@ -2,7 +2,7 @@ command: F:\p2\backend\.venv\Scripts\python.exe scripts/eval_topic5_summary_fait
 cwd: F:\p2
 status: passed
 return_code: 0
-duration_seconds: 0.432010
+duration_seconds: 0.481585
 
 [stdout]
 

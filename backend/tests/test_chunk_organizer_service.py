@@ -592,3 +592,34 @@ def test_internal_chunk_ids_use_real_task_id_and_preserve_document_id():
     assert all(chunk["chunk_id"].startswith("chunk_real_task_id_") for chunk in chunks)
     assert all(chunk["task_id"] == "real_task_id" for chunk in chunks)
     assert all(chunk["doc_id"] == "different_doc_id" for chunk in chunks)
+
+
+def test_summary_prefers_key_value_lines_within_source_relative_limit():
+    text = """Service guide
+
+1.申报对象：人力资源服务企业
+
+2.支付方式：后支持
+
+3.扶持形式：奖补"""
+
+    summary = ChunkOrganizerService.summarize_text(text)
+
+    assert "1.申报对象：人力资源服务企业" in summary
+    assert "2.支付方式：后支持" in summary
+    assert len(summary) <= 120
+
+
+def test_summary_condenses_metadata_dense_chunk_to_one_nonempty_field():
+    text = """会议纪要
+索引号：6207250037/2025-00278
+文号：
+关键词：
+发布机构：政府办
+公开形式：
+公开目录：
+生成日期：2025-11-14"""
+
+    summary = ChunkOrganizerService.summarize_text(text)
+
+    assert summary == "索引号：6207250037/2025-00278\n发布机构：政府办"

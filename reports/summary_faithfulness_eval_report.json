@@ -1,65 +1,13 @@
 {
-  "failed": 2,
-  "failures": [
-    {
-      "chunk_ids": [
-        "chunk_retrieval_heading_aware_real_general_004_tianhe_service_guide_0001",
-        "chunk_retrieval_heading_aware_real_general_004_tianhe_service_guide_0003"
-      ],
-      "doc_id": "real_general_004_tianhe_service_guide",
-      "empty_summary": false,
-      "missing_must_include": [
-        "1.申报对象：人力资源服务企业",
-        "2.支付方式：后支持"
-      ],
-      "must_include_hit_rate": 0.0,
-      "must_not_include_violations": [],
-      "new_amount_violations": [],
-      "new_date_violations": [],
-      "new_org_violations": [],
-      "overlong_summary": false,
-      "passed": false,
-      "source_block_ids": [
-        "real_general_004_tianhe_service_guide_b002",
-        "real_general_004_tianhe_service_guide_b007",
-        "real_general_004_tianhe_service_guide_b008"
-      ],
-      "summary": "天河区高端专业服务业政策兑现事项办事指南\n人力资源服务发展壮大支持 （免申即享） 一、基本信息 1.",
-      "table_number_violations": []
-    },
-    {
-      "chunk_ids": [
-        "chunk_retrieval_heading_aware_real_meeting_004_shandan_2025_11_minutes_0000",
-        "chunk_retrieval_heading_aware_real_meeting_004_shandan_2025_11_minutes_0001"
-      ],
-      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
-      "empty_summary": false,
-      "missing_must_include": [],
-      "must_include_hit_rate": 1.0,
-      "must_not_include_violations": [],
-      "new_amount_violations": [],
-      "new_date_violations": [],
-      "new_org_violations": [],
-      "overlong_summary": true,
-      "passed": false,
-      "source_block_ids": [
-        "real_meeting_004_shandan_2025_11_minutes_b002",
-        "real_meeting_004_shandan_2025_11_minutes_b003",
-        "real_meeting_004_shandan_2025_11_minutes_b001",
-        "real_meeting_004_shandan_2025_11_minutes_b011",
-        "real_meeting_004_shandan_2025_11_minutes_b044"
-      ],
-      "summary": "十九届县政府第97次常务会议纪要 索引号： 6207250037/2025-00278 文号： 关键词： 发布机构： 政府办 公开形式： 公开目录： 生成日期： 2025-11-14 16:31:47 有效性：\n索引号: 6207250037/2025-00278 | 发文字号 关键词: 发布机构 | 政府办 公开形式: 公开目录 生成日期: 2025-11-14 16:31:47 | 是否有效",
-      "table_number_violations": []
-    }
-  ],
+  "failed": 0,
+  "failures": [],
   "metrics": {
     "changed_table_number_count": 0,
     "empty_summary_count": 0,
-    "failed": 2,
-    "failed_count": 2,
-    "faithfulness_pass_rate": 0.9,
-    "must_include_hit_rate": 0.95,
+    "failed": 0,
+    "failed_count": 0,
+    "faithfulness_pass_rate": 1.0,
+    "must_include_hit_rate": 1.0,
     "must_not_include_violation_count": 0,
     "new_amount_violation": 0,
     "new_amount_violation_count": 0,
@@ -67,13 +15,13 @@
     "new_date_violation_count": 0,
     "new_org_violation": 0,
     "new_org_violation_count": 0,
-    "overlong_summary_count": 1,
-    "pass_rate": 0.9,
-    "passed": 18,
-    "passed_count": 18
+    "overlong_summary_count": 0,
+    "pass_rate": 1.0,
+    "passed": 20,
+    "passed_count": 20
   },
-  "pass_rate": 0.9,
-  "passed": 18,
+  "pass_rate": 1.0,
+  "passed": 20,
   "sample_count": 20,
   "samples": [
     {
@@ -129,23 +77,20 @@
       ],
       "doc_id": "real_general_004_tianhe_service_guide",
       "empty_summary": false,
-      "missing_must_include": [
-        "1.申报对象：人力资源服务企业",
-        "2.支付方式：后支持"
-      ],
-      "must_include_hit_rate": 0.0,
+      "missing_must_include": [],
+      "must_include_hit_rate": 1.0,
       "must_not_include_violations": [],
       "new_amount_violations": [],
       "new_date_violations": [],
       "new_org_violations": [],
       "overlong_summary": false,
-      "passed": false,
+      "passed": true,
       "source_block_ids": [
         "real_general_004_tianhe_service_guide_b002",
         "real_general_004_tianhe_service_guide_b007",
         "real_general_004_tianhe_service_guide_b008"
       ],
-      "summary": "天河区高端专业服务业政策兑现事项办事指南\n人力资源服务发展壮大支持 （免申即享） 一、基本信息 1.",
+      "summary": "天河区高端专业服务业政策兑现事项办事指南\n1.申报对象：人力资源服务企业\n2.支付方式：后支持\n3.扶持形式：奖补\n4.资金额度：每家企业每季度最高支持150 万元，每年累计\n5.承诺办结时限：信息确认截止后12 个工作日\n6.主管部门：广州市天河区人力资源和社会保障局",
       "table_number_violations": []
     },
     {
@@ -183,8 +128,8 @@
       "new_amount_violations": [],
       "new_date_violations": [],
       "new_org_violations": [],
-      "overlong_summary": true,
-      "passed": false,
+      "overlong_summary": false,
+      "passed": true,
       "source_block_ids": [
         "real_meeting_004_shandan_2025_11_minutes_b002",
         "real_meeting_004_shandan_2025_11_minutes_b003",
@@ -192,7 +137,7 @@
         "real_meeting_004_shandan_2025_11_minutes_b011",
         "real_meeting_004_shandan_2025_11_minutes_b044"
       ],
-      "summary": "十九届县政府第97次常务会议纪要 索引号： 6207250037/2025-00278 文号： 关键词： 发布机构： 政府办 公开形式： 公开目录： 生成日期： 2025-11-14 16:31:47 有效性：\n索引号: 6207250037/2025-00278 | 发文字号 关键词: 发布机构 | 政府办 公开形式: 公开目录 生成日期: 2025-11-14 16:31:47 | 是否有效",
+      "summary": "索引号： 6207250037/2025-00278\n发布机构： 政府办\n索引号: 6207250037/2025-00278 | 发文字号 关键词: 发布机构 | 政府办 公开形式: 公开目录 生成日期: 2025-11-14 16:31:47 | 是否有效",
       "table_number_violations": []
     },
     {
@@ -500,7 +445,7 @@
         "real_procurement_003_radiation_monitoring_award_b008",
         "real_procurement_003_radiation_monitoring_award_b017"
       ],
-      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 地方公告 » 中标公告\n核与辐射环境应急监测能力建设项目环保监测设备采购项目中标公告 2025年04月11日 10:29 来源： 【 打印 】\n公告信息： 采购项目名称: 核与辐射环境应急监测能力建设项目环保监测设备采购项目 品目 采购单位: 北京市核与辐射安全中心 行政区域: 北京市 | 公告时间 | 2025年04月11日 10:29 评审专家名单: 郭世文、郑保义、陈宁、吴玉...\n供应商名称: 供应商地址 | 统一信用代码 | 中标金额 | 中标成交备注信息 联合光科（北京）科技有限公司: 北京市北京经济技术开发区科创十三街29号院一区2号楼13层1302-C18 | 91110108MA017GDTX5 | 400...",
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 地方公告 » 中标公告\n核与辐射环境应急监测能力建设项目环保监测设备采购项目中标公告 2025年04月11日 10:29 来源： 【 打印 】\n采购项目名称: 核与辐射环境应急监测能力建设项目环保监测设备采购项目\n供应商名称: 供应商地址 | 统一信用代码 | 中标金额 | 中标成交备注信息 联合光科（北京）科技有限公司: 北京市北京经济技术开发区科创十三街29号院一区2号楼13层1302-C18 | 91110108MA017GDTX5 | 400...",
       "table_number_violations": []
     },
     {
@@ -527,7 +472,7 @@
         "real_procurement_004_veterinary_platform_award_b008",
         "real_procurement_004_veterinary_platform_award_b027"
       ],
-      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 中央公告 » 中标公告\n中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目中标公告 2025年05月23日 20:13 来源： 【 打印 】\n公告信息： 采购项目名称: 中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目 品目: 服务/信息技术服务/运行维护服务/安全运维服务,服务/信息技术服务/运行维护服务/软件运维服务,服务/信息技术服务/运行维护服务/硬...\n序号: 供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准 1: 1包-北京安信天行科技有限公司 | 基础运维和安全运维 | 基础运维和安全运维，详见招标文件要求。",
+      "summary": "财政部唯一指定政府采购信息网络发布媒体 国家级政府采购专业网站 服务热线：400-810-1996 | 服务投诉：010-63819289 当前位置： 首页 » 政采公告 » 中央公告 » 中标公告\n中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目中标公告 2025年05月23日 20:13 来源： 【 打印 】\n采购项目名称: 中国动物疫病预防控制中心2025年兽医卫生综合信息平台集成运维服务项目\n序号: 供应商名称 | 服务名称 | 服务范围 | 服务要求 | 服务时间 | 服务标准 1: 1包-北京安信天行科技有限公司 | 基础运维和安全运维 | 基础运维和安全运维，详见招标文件要求。",
       "table_number_violations": []
     },
     {

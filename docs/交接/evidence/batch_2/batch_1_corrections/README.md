@@ -2,4 +2,4 @@
 
 Measured regression and corrected Batch 1 evaluator outputs.
 
-Source commit: `f335a7225b91d4bee6ca7af707d9d21204fc2e43`.
+Source commit: `1ea69dbfa5624d3d1066cff0a42473e7eb3a29e2`.

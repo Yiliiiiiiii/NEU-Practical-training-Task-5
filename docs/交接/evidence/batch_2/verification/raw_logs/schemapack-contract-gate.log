@@ -2,7 +2,7 @@ command: F:\p2\backend\.venv\Scripts\python.exe scripts/check_schema_pack_contra
 cwd: F:\p2
 status: passed
 return_code: 0
-duration_seconds: 19.334125
+duration_seconds: 20.385885
 
 [stdout]
 {

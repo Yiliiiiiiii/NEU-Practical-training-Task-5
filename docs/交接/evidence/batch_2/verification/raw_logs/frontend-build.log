@@ -2,7 +2,7 @@ command: npm.cmd run build
 cwd: F:\p2\frontend
 status: passed
 return_code: 0
-duration_seconds: 6.375310
+duration_seconds: 6.972116
 
 [stdout]
 
@@ -17,6 +17,6 @@ computing gzip size...
 [2mdist/[22m[32mindex.html                 [39m[1m[2m  0.42 kB[22m[1m[22m[2m │ gzip:  0.31 kB[22m
 [2mdist/[22m[35massets/index-DCJiJ_DI.css  [39m[1m[2m 33.11 kB[22m[1m[22m[2m │ gzip:  6.37 kB[22m
 [2mdist/[22m[36massets/index-B5ZyVaS9.js   [39m[1m[2m225.87 kB[22m[1m[22m[2m │ gzip: 67.84 kB[22m
-[32m✓ built in 2.36s[39m
+[32m✓ built in 2.69s[39m
 
 [stderr]

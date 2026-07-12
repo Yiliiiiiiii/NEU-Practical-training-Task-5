@@ -694,16 +694,6 @@
         },
         {
           "error_code": "required_file_missing",
-          "path": "canonical.json",
-          "stage": "package_verifier"
-        },
-        {
-          "error_code": "required_file_not_manifested",
-          "path": "canonical.json",
-          "stage": "package_verifier"
-        },
-        {
-          "error_code": "required_file_missing",
           "path": "transform_report.json",
           "stage": "package_verifier"
         },
@@ -720,6 +710,16 @@
         {
           "error_code": "required_file_not_manifested",
           "path": "artifact_consistency_report.json",
+          "stage": "package_verifier"
+        },
+        {
+          "error_code": "required_file_missing",
+          "path": "canonical.json",
+          "stage": "package_verifier"
+        },
+        {
+          "error_code": "required_file_not_manifested",
+          "path": "canonical.json",
           "stage": "package_verifier"
         },
         {
@@ -747,16 +747,6 @@
         },
         {
           "error_code": "required_file_missing",
-          "path": "canonical.json",
-          "stage": "package_verifier"
-        },
-        {
-          "error_code": "required_file_not_manifested",
-          "path": "canonical.json",
-          "stage": "package_verifier"
-        },
-        {
-          "error_code": "required_file_missing",
           "path": "transform_report.json",
           "stage": "package_verifier"
         },
@@ -773,6 +763,16 @@
         {
           "error_code": "required_file_not_manifested",
           "path": "artifact_consistency_report.json",
+          "stage": "package_verifier"
+        },
+        {
+          "error_code": "required_file_missing",
+          "path": "canonical.json",
+          "stage": "package_verifier"
+        },
+        {
+          "error_code": "required_file_not_manifested",
+          "path": "canonical.json",
           "stage": "package_verifier"
         },
         {
@@ -793,13 +793,13 @@
     }
   ],
   "claim_boundary": "Measures exact stage/path/error-code localization for declared Topic 5 validators; it does not measure semantic document quality.",
-  "commit_sha": "f335a7225b91d4bee6ca7af707d9d21204fc2e43",
+  "commit_sha": "1ea69dbfa5624d3d1066cff0a42473e7eb3a29e2",
   "dataset_id": "topic5_schema_localization_v1",
   "dataset_sha256": "e4c05817e52533d390f8c7f4580bbfd9485579cdae814379f5cff13cafebd7bb",
   "dataset_version": "1.0.0",
   "error_code_accuracy": 1.0,
   "failed_cases": [],
-  "generated_at": "2026-07-12T06:06:37.443516+00:00",
+  "generated_at": "2026-07-12T13:08:38.106713+00:00",
   "localized_count": 40,
   "path_accuracy": 1.0,
   "reproduction_command": "backend/.venv/Scripts/python.exe scripts/eval_topic5_schema_localization.py",

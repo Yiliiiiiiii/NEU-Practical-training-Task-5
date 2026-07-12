@@ -1,17 +1,23 @@
 {
   "baseline_comparison": {
     "baseline": "F:\\p2\\eval\\topic5_performance\\v1\\baseline.json",
+    "comparison_metrics": [
+      "total_duration_ms",
+      "peak_memory_bytes"
+    ],
     "passed": true,
     "regressions": [],
+    "stage_durations": "diagnostic_only",
     "status": "compared"
   },
+  "baseline_comparison_role": "diagnostic_only",
   "case_count": 4,
   "cases": [
     {
       "artifact_bytes": 30426,
       "attempt_total_durations_ms": [
-        87.981,
-        36.023
+        94.569,
+        42.899
       ],
       "block_count": 10,
       "candidate_count": 11,
@@ -19,28 +25,28 @@
       "fixture": "10.json",
       "measurement_repetitions": 2,
       "passed": true,
-      "peak_memory_bytes": 453285,
+      "peak_memory_bytes": 452554,
       "stage_durations_ms": {
-        "candidate_extraction": 12.141,
-        "canonical": 0.396,
-        "chunk": 19.16,
-        "mapping": 5.021,
-        "metadata": 0.105,
-        "render": 0.593,
-        "total": 62.002,
-        "transform": 2.997,
-        "validation": 0.172,
-        "validation_and_consistency": 1.23,
-        "verification": 1.058
+        "candidate_extraction": 14.6,
+        "canonical": 0.463,
+        "chunk": 18.287,
+        "mapping": 7.045,
+        "metadata": 0.143,
+        "render": 0.774,
+        "total": 68.734,
+        "transform": 3.435,
+        "validation": 0.215,
+        "validation_and_consistency": 1.158,
+        "verification": 0.943
       },
       "status": "completed",
-      "total_duration_ms": 62.002
+      "total_duration_ms": 68.734
     },
     {
       "artifact_bytes": 292999,
       "attempt_total_durations_ms": [
-        247.514,
-        226.025
+        279.642,
+        253.362
       ],
       "block_count": 100,
       "candidate_count": 43,
@@ -48,28 +54,28 @@
       "fixture": "100.json",
       "measurement_repetitions": 2,
       "passed": true,
-      "peak_memory_bytes": 2537141,
+      "peak_memory_bytes": 2523939,
       "stage_durations_ms": {
-        "candidate_extraction": 9.435,
-        "canonical": 1.484,
-        "chunk": 54.838,
-        "mapping": 20.672,
-        "metadata": 0.104,
-        "render": 2.213,
-        "total": 236.769,
-        "transform": 0.229,
-        "validation": 0.504,
-        "validation_and_consistency": 6.482,
-        "verification": 5.978
+        "candidate_extraction": 7.832,
+        "canonical": 1.565,
+        "chunk": 64.716,
+        "mapping": 20.836,
+        "metadata": 0.11,
+        "render": 2.26,
+        "total": 266.502,
+        "transform": 0.214,
+        "validation": 0.562,
+        "validation_and_consistency": 7.261,
+        "verification": 6.7
       },
       "status": "completed",
-      "total_duration_ms": 236.769
+      "total_duration_ms": 266.502
     },
     {
       "artifact_bytes": 2927999,
       "attempt_total_durations_ms": [
-        2570.111,
-        2594.152
+        2857.152,
+        2625.779
       ],
       "block_count": 1000,
       "candidate_count": 403,
@@ -77,28 +83,28 @@
       "fixture": "1000.json",
       "measurement_repetitions": 2,
       "passed": true,
-      "peak_memory_bytes": 24874646,
+      "peak_memory_bytes": 24879310,
       "stage_durations_ms": {
-        "candidate_extraction": 98.304,
-        "canonical": 13.304,
-        "chunk": 588.79,
-        "mapping": 215.994,
-        "metadata": 0.13,
-        "render": 20.876,
-        "total": 2582.131,
-        "transform": 0.226,
-        "validation": 4.561,
-        "validation_and_consistency": 78.888,
-        "verification": 74.328
+        "candidate_extraction": 88.855,
+        "canonical": 14.108,
+        "chunk": 635.08,
+        "mapping": 228.117,
+        "metadata": 0.128,
+        "render": 23.936,
+        "total": 2741.466,
+        "transform": 0.251,
+        "validation": 5.62,
+        "validation_and_consistency": 87.453,
+        "verification": 81.833
       },
       "status": "completed",
-      "total_duration_ms": 2582.131
+      "total_duration_ms": 2741.466
     },
     {
       "artifact_bytes": 29383957,
       "attempt_total_durations_ms": [
-        31350.105,
-        31140.518
+        35873.986,
+        37766.79
       ],
       "block_count": 10000,
       "candidate_count": 4003,
@@ -106,26 +112,26 @@
       "fixture": "10000.json",
       "measurement_repetitions": 2,
       "passed": true,
-      "peak_memory_bytes": 248083628,
+      "peak_memory_bytes": 248084286,
       "stage_durations_ms": {
-        "candidate_extraction": 886.592,
-        "canonical": 133.478,
-        "chunk": 9185.353,
-        "mapping": 2030.47,
-        "metadata": 0.133,
-        "render": 208.362,
-        "total": 31245.311,
-        "transform": 0.327,
-        "validation": 57.498,
-        "validation_and_consistency": 1579.41,
-        "verification": 1521.911
+        "candidate_extraction": 1077.136,
+        "canonical": 151.767,
+        "chunk": 11478.697,
+        "mapping": 2483.037,
+        "metadata": 0.104,
+        "render": 259.578,
+        "total": 36820.388,
+        "transform": 0.258,
+        "validation": 54.974,
+        "validation_and_consistency": 1705.967,
+        "verification": 1650.993
       },
       "status": "completed",
-      "total_duration_ms": 31245.311
+      "total_duration_ms": 36820.388
     }
   ],
   "claim_boundary": "Measured on the recorded host; no absolute production SLO claim.",
-  "commit_sha": "f335a7225b91d4bee6ca7af707d9d21204fc2e43",
+  "commit_sha": "1ea69dbfa5624d3d1066cff0a42473e7eb3a29e2",
   "dataset_id": "topic5_performance",
   "dataset_version": "1.0.0",
   "environment": {
@@ -138,10 +144,17 @@
   },
   "measurement_repetitions": 2,
   "passed_count": 4,
+  "performance_checks": {
+    "all_cases_completed": true,
+    "linear_duration_scaling": true,
+    "linear_memory_scaling": true
+  },
   "reproduction_command": "python scripts/eval_topic5_performance.py",
   "scaling": {
     "declared_expectation": "approximately linear in block count",
-    "duration_ratio_1000_to_10000": 12.100590946005452,
+    "duration_ratio_1000_to_10000": 13.430911782236219,
+    "memory_blowup_detected": false,
+    "memory_ratio_1000_to_10000": 9.971509901199028,
     "quadratic_blowup_detected": false,
     "size_ratio_1000_to_10000": 10.0
   },

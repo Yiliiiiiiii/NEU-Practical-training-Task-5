@@ -1,4 +1,5 @@
 {
+  "allow_dirty": true,
   "batch_2_passed": false,
   "branch": "feat/topic5-batch-2-reliability",
   "claims": {
@@ -7,11 +8,12 @@
     "performance_scope": "recorded host only; no absolute production SLO",
     "public_mapping_v2_thresholds_passed": true
   },
-  "commit_sha": "f335a7225b91d4bee6ca7af707d9d21204fc2e43",
+  "commit_sha": "1ea69dbfa5624d3d1066cff0a42473e7eb3a29e2",
+  "dirty_tree": true,
   "failed_conditions": [
     "github_ci_passed"
   ],
-  "generated_at": "2026-07-12T06:11:43.127760+00:00",
+  "generated_at": "2026-07-12T13:10:52.423244+00:00",
   "local_acceptance_passed": true,
   "metrics": {
     "artifact_consistency_rate": 1.0,
@@ -76,7 +78,7 @@
   },
   "status": "pending_external_ci",
   "verification": {
-    "backend_test_count": 1224,
+    "backend_test_count": 1229,
     "backend_tests_passed": true,
     "frontend_build_passed": true,
     "frontend_test_count": 24,

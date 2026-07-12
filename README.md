@@ -118,6 +118,7 @@ Pop-Location
 - 证据文件：
   - [`reports/real_world_eval_report.json`](reports/real_world_eval_report.json)
   - [`reports/real_world_mapping_eval_report.json`](reports/real_world_mapping_eval_report.json)
+  - [`reports/real_world_mapping_eval_report.md`](reports/real_world_mapping_eval_report.md)
 
 ### 非采购语义专项
 

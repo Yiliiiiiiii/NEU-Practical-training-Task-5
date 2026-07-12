@@ -50,9 +50,13 @@ def check(root: Path) -> dict[str, Any]:
         failures.append("calibration_fit_split")
     if calibration.get("test_labels_used_for_fit") is not False:
         failures.append("calibration_test_boundary")
-    if calibration.get("fit_engine_commit") != dev.get("commit_sha"):
+    if calibration.get("fit_engine_commit") != dev.get("engine", {}).get(
+        "calibration_fit_engine_commit"
+    ):
         failures.append("dev_engine_identity")
-    if dev.get("commit_sha") != test.get("commit_sha"):
+    if dev.get("engine", {}).get("calibration_fit_engine_commit") != test.get(
+        "engine", {}
+    ).get("calibration_fit_engine_commit"):
         failures.append("test_engine_identity")
     if dev.get("dataset", {}).get("sha256") != calibration.get("dataset_sha256"):
         failures.append("dev_dataset_identity")

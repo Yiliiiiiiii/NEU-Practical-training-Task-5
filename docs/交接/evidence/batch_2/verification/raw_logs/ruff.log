@@ -2,7 +2,7 @@ command: F:\p2\backend\.venv\Scripts\python.exe -m ruff check .
 cwd: F:\p2\backend
 status: passed
 return_code: 0
-duration_seconds: 0.122957
+duration_seconds: 0.230848
 
 [stdout]
 All checks passed!

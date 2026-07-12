@@ -33,7 +33,7 @@
   "brier_score": 0.0,
   "claim_boundary": "frozen_public_dev_calibration_only",
   "dataset_id": "topic5_mapping_v2",
-  "dataset_sha256": "2e527fb7127e26eb8fbe7f8c579620501624d7922cc8413ed3d424d0d29e8805",
+  "dataset_sha256": "69a939bbdddc9894b645951621e75b186f7c07f824df13955ab2fe253b22755c",
   "dataset_version": "2.0.0",
   "dev_gold_positive_count": 265,
   "dev_gold_sha256": "31b14d7ea4fcb7c640219de5e743c58f2dd273e48b55b813c5e8a6bf49d959e8",

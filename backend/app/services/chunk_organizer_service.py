@@ -18,6 +18,15 @@ from app.services.tag_rule_service import TagRuleService
 
 
 class ChunkOrganizerService:
+    NUMBERED_KEY_VALUE_LINE_RE = re.compile(
+        r"^\s*\d+[.\u3001]\s*[^:\uFF1A]+[\uFF1A:]"
+    )
+    NONEMPTY_METADATA_LINE_RE = re.compile(
+        r"^\s*[^:\uFF1A]{1,20}[\uFF1A:]\s*\S"
+    )
+    EMPTY_METADATA_LINE_RE = re.compile(
+        r"^\s*[^:\uFF1A]{1,20}[\uFF1A:]\s*$"
+    )
     STOPWORDS = {
         "的",
         "了",
@@ -690,6 +699,42 @@ class ChunkOrganizerService:
         cleaned = cls._normalize_spaces(text)
         if not cleaned:
             return ""
+        lines = text.splitlines()
+        selected_lines: list[str] = []
+        seen_lines: set[str] = set()
+        selected_length = 0
+        for raw_line in lines:
+            if not cls.NUMBERED_KEY_VALUE_LINE_RE.match(raw_line):
+                continue
+            line = cls._normalize_spaces(raw_line)
+            if not line or line in seen_lines:
+                continue
+            proposed_length = selected_length + len(line) + bool(selected_lines)
+            if proposed_length > max_chars:
+                break
+            selected_lines.append(line)
+            seen_lines.add(line)
+            selected_length = proposed_length
+        if selected_lines:
+            return "\n".join(selected_lines)
+        metadata_lines: list[str] = []
+        empty_metadata_count = 0
+        for raw_line in lines:
+            if cls.EMPTY_METADATA_LINE_RE.match(raw_line):
+                empty_metadata_count += 1
+            elif cls.NONEMPTY_METADATA_LINE_RE.match(raw_line):
+                metadata_lines.append(cls._normalize_spaces(raw_line))
+        if empty_metadata_count >= 3 and len(metadata_lines) >= 2:
+            selected_metadata: list[str] = []
+            selected_length = 0
+            for line in metadata_lines:
+                proposed_length = selected_length + len(line) + bool(selected_metadata)
+                if proposed_length > min(max_chars, 48):
+                    break
+                selected_metadata.append(line)
+                selected_length = proposed_length
+            if selected_metadata:
+                return "\n".join(selected_metadata)
         sentences = [
             sentence.strip()
             for sentence in re.findall(r"[^。！？!?；;\n.]+[。！？!?；;.]*", cleaned)

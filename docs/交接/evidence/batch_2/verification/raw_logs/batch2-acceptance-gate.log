@@ -2,7 +2,7 @@ command: F:\p2\backend\.venv\Scripts\python.exe scripts/check_topic5_batch_2_acc
 cwd: F:\p2
 status: passed
 return_code: 0
-duration_seconds: 1.111742
+duration_seconds: 1.008912
 
 [stdout]
 

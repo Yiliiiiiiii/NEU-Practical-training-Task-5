@@ -2,15 +2,16 @@
 
 > Generated from `docs/交接/topic5_current_status.json`. Do not edit measured values manually.
 
-- Commit: `f335a7225b91d4bee6ca7af707d9d21204fc2e43`
+- Commit: `1ea69dbfa5624d3d1066cff0a42473e7eb3a29e2`
 - Branch: `feat/topic5-batch-2-reliability`
 - Batch 2 status: `pending_external_ci`
 - Local acceptance: `True`
+- Verification worktree dirty: `True`
 - Exact-head GitHub CI: `False`
 
 ## Verification
 
-- Backend tests: 1224 passed
+- Backend tests: 1229 passed
 - Backend and Topic 5 Ruff: True
 - Frontend tests: True
 - Frontend build: True

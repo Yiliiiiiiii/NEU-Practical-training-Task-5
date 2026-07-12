@@ -46,6 +46,8 @@ def build_status(
         "batch_2_passed": final_gate["passed"],
         "local_acceptance_passed": final_gate["local_acceptance_passed"],
         "failed_conditions": final_gate["failed_conditions"],
+        "dirty_tree": bool(verification.get("dirty_tree", False)),
+        "allow_dirty": bool(verification.get("allow_dirty", False)),
         "metrics": final_gate["values"],
         "verification": {
             "backend_test_count": _test_count(verification, "backend-tests"),
@@ -95,6 +97,7 @@ def _project_markdown(status: dict[str, Any]) -> str:
             f"- Branch: `{status['branch']}`",
             f"- Batch 2 status: `{status['status']}`",
             f"- Local acceptance: `{status['local_acceptance_passed']}`",
+            f"- Verification worktree dirty: `{status['dirty_tree']}`",
             f"- Exact-head GitHub CI: `{verification['github_ci_passed']}`",
             "",
             "## Verification",
@@ -137,6 +140,7 @@ def _handoff_markdown(status: dict[str, Any]) -> str:
             "",
             f"Current commit: `{status['commit_sha']}`.",
             f"Machine gate status: `{status['status']}`.",
+            f"Verification worktree dirty: `{status['dirty_tree']}`.",
             "",
             "All locally reproducible Batch 2 evaluator, backend, frontend, OpenAPI, and SchemaPack checks pass."
             if status["local_acceptance_passed"]
