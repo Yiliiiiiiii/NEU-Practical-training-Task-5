@@ -412,7 +412,7 @@ git commit -m "feat: add conversion execution and task results"
 ## Task 5: Implement Tasks, Review, SchemaPacks, Evidence, Settings, and Overview
 
 **Status:**
-- [ ] Task complete
+- [x] Task complete
 
 **Dependencies:** Task 2
 **Parallelizable:** Yes (can proceed alongside Task 3/4 after the shell interface is stable; integrate after Task 4)
