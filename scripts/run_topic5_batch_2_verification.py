@@ -326,6 +326,8 @@ def run_command(spec: CommandSpec, log_dir: Path) -> dict[str, Any]:
             check=False,
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
         )
     except FileNotFoundError as exc:
         result = skipped_result(spec, str(exc))
@@ -390,6 +392,8 @@ def _version(command: list[str]) -> str:
             check=False,
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
         )
     except FileNotFoundError:
         return "unavailable"

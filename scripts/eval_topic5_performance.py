@@ -101,12 +101,51 @@ def _run_fixture(path: Path) -> dict[str, Any]:
     }
 
 
+def _measure_fixture(path: Path, repetitions: int) -> dict[str, Any]:
+    attempts = [_run_fixture(path) for _index in range(repetitions)]
+    first = attempts[0]
+    stage_names = first["stage_durations_ms"]
+    result = {
+        **first,
+        "stage_durations_ms": {
+            stage: round(
+                sum(item["stage_durations_ms"][stage] for item in attempts)
+                / repetitions,
+                3,
+            )
+            for stage in stage_names
+        },
+        "peak_memory_bytes": max(item["peak_memory_bytes"] for item in attempts),
+        "passed": all(item["passed"] for item in attempts),
+        "measurement_repetitions": repetitions,
+        "attempt_total_durations_ms": [
+            item["total_duration_ms"] for item in attempts
+        ],
+    }
+    result["total_duration_ms"] = result["stage_durations_ms"]["total"]
+    return result
+
+
 def _baseline_checks(
     cases: list[dict[str, Any]], baseline_path: Path | None
 ) -> dict[str, Any]:
     if baseline_path is None:
         return {"status": "captured", "passed": True, "regressions": []}
     baseline = load_json(baseline_path)
+    expected_repetitions = cases[0]["measurement_repetitions"]
+    if baseline.get("measurement_repetitions") != expected_repetitions:
+        return {
+            "status": "compared",
+            "baseline": str(baseline_path),
+            "passed": False,
+            "regressions": [
+                {
+                    "metric": "measurement_repetitions",
+                    "baseline": baseline.get("measurement_repetitions"),
+                    "actual": expected_repetitions,
+                }
+            ],
+        }
     prior = {case["block_count"]: case for case in baseline["cases"]}
     regressions = []
     for case in cases:
@@ -147,10 +186,14 @@ def _baseline_checks(
     }
 
 
-def run_evaluation(*, baseline_path: Path | None = None) -> dict[str, Any]:
+def run_evaluation(
+    *, baseline_path: Path | None = None, repetitions: int = 2
+) -> dict[str, Any]:
+    if repetitions < 1:
+        raise ValueError("repetitions must be positive")
     manifest = load_json(DATASET / "manifest.json")
     cases = [
-        _run_fixture(DATASET / "fixtures" / item["path"])
+        _measure_fixture(DATASET / "fixtures" / item["path"], repetitions)
         for item in manifest["fixtures"]
     ]
     by_size = {case["block_count"]: case for case in cases}
@@ -176,6 +219,7 @@ def run_evaluation(*, baseline_path: Path | None = None) -> dict[str, Any]:
         "commit_sha": _git_head(),
         "environment": _environment(),
         "case_count": len(cases),
+        "measurement_repetitions": repetitions,
         "passed_count": sum(case["passed"] for case in cases),
         "cases": cases,
         "scaling": scaling,
@@ -189,8 +233,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--baseline", type=Path)
+    parser.add_argument("--repetitions", type=int, default=2)
     args = parser.parse_args()
-    report = run_evaluation(baseline_path=args.baseline)
+    report = run_evaluation(
+        baseline_path=args.baseline, repetitions=args.repetitions
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
