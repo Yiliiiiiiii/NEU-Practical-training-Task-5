@@ -178,6 +178,48 @@ def _write_evidence_indexes(status: dict[str, Any]) -> None:
         )
 
 
+def _copy_evidence_artifacts(verification_dir: Path) -> None:
+    evaluators = verification_dir / "evaluator_reports"
+    copies = {
+        "batch_1_corrections": [
+            evaluators / "metadata_contract.json",
+            evaluators / "summary_faithfulness.json",
+            evaluators / "artifact_consistency.json",
+            evaluators / "entity_passthrough.json",
+            evaluators / "topic11_adapter.json",
+            evaluators / "batch2_regressions.json",
+        ],
+        "mapping_v2": [
+            evaluators / "mapping_v2_dev.json",
+            evaluators / "mapping_v2_test.json",
+            evaluators / "mapping_v2_gate.json",
+            evaluators / "tag_quality_v2.json",
+            evaluators / "field_operations.json",
+            evaluators / "schema_localization.json",
+        ],
+        "runtime_equivalence": [evaluators / "runtime_equivalence.json"],
+        "replay": [evaluators / "replay.json"],
+        "package_reliability": [evaluators / "package_faults.json"],
+        "performance": [evaluators / "performance.json"],
+        "downstream": [evaluators / "downstream_contracts.json"],
+        "verification": [verification_dir / "verification_summary.json"],
+    }
+    for section, paths in copies.items():
+        target = EVIDENCE / section
+        target.mkdir(parents=True, exist_ok=True)
+        for source in paths:
+            shutil.copy2(source, target / source.name)
+    raw_target = EVIDENCE / "verification" / "raw_logs"
+    if raw_target.exists():
+        shutil.rmtree(raw_target)
+    shutil.copytree(verification_dir / "raw_logs", raw_target)
+    for path in raw_target.glob("*.log"):
+        path.write_text(
+            path.read_text(encoding="utf-8").rstrip() + "\n",
+            encoding="utf-8",
+        )
+
+
 def generate(verification_dir: Path) -> dict[str, Any]:
     final_gate = _json(verification_dir / "final_gate.json")
     verification = _json(verification_dir / "verification_summary.json")
@@ -195,6 +237,7 @@ def generate(verification_dir: Path) -> dict[str, Any]:
         _handoff_markdown(status), encoding="utf-8"
     )
     _write_evidence_indexes(status)
+    _copy_evidence_artifacts(verification_dir)
     final_dir = EVIDENCE / "final"
     shutil.copy2(verification_dir / "final_gate.json", final_dir / "gate.json")
     (final_dir / "acceptance.md").write_text(

@@ -1,0 +1,9 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/eval_topic5_entity_passthrough.py --output F:\p2\reports\topic5_batch_2\verification\evaluator_reports\entity_passthrough.json
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 0.475097
+
+[stdout]
+
+[stderr]

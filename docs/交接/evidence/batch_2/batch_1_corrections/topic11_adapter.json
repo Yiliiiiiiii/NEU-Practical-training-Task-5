@@ -1,0 +1,140 @@
+{
+  "case_count": 6,
+  "cases": [
+    {
+      "case_id": "timeout_fallback",
+      "category": "fallback",
+      "fallback_succeeded": true,
+      "invalid_output_accepted": false,
+      "legacy_compatible": null,
+      "passed": true,
+      "secret_leaked": false,
+      "trace": {
+        "external_requested": true,
+        "external_used": false,
+        "fallback_reason": "topic11_timeout",
+        "fallback_used": true,
+        "latency_ms": null,
+        "provider_version": "internal-1.0",
+        "requested_provider": "topic11",
+        "used_provider": "internal",
+        "validation_passed": true
+      }
+    },
+    {
+      "case_id": "http_error_fallback",
+      "category": "fallback",
+      "fallback_succeeded": true,
+      "invalid_output_accepted": false,
+      "legacy_compatible": null,
+      "passed": true,
+      "secret_leaked": false,
+      "trace": {
+        "external_requested": true,
+        "external_used": false,
+        "fallback_reason": "topic11_http_error",
+        "fallback_used": true,
+        "latency_ms": null,
+        "provider_version": "internal-1.0",
+        "requested_provider": "topic11",
+        "used_provider": "internal",
+        "validation_passed": true
+      }
+    },
+    {
+      "case_id": "unknown_source_rejected",
+      "category": "invalid",
+      "fallback_succeeded": true,
+      "invalid_output_accepted": false,
+      "legacy_compatible": null,
+      "passed": true,
+      "secret_leaked": false,
+      "trace": {
+        "external_requested": true,
+        "external_used": false,
+        "fallback_reason": "topic11_unknown_source_block",
+        "fallback_used": true,
+        "latency_ms": null,
+        "provider_version": "internal-1.0",
+        "requested_provider": "topic11",
+        "used_provider": "internal",
+        "validation_passed": true
+      }
+    },
+    {
+      "case_id": "invented_fact_rejected",
+      "category": "invalid",
+      "fallback_succeeded": true,
+      "invalid_output_accepted": false,
+      "legacy_compatible": null,
+      "passed": true,
+      "secret_leaked": false,
+      "trace": {
+        "external_requested": true,
+        "external_used": false,
+        "fallback_reason": "topic11_chunk_text_not_derivable",
+        "fallback_used": true,
+        "latency_ms": null,
+        "provider_version": "internal-1.0",
+        "requested_provider": "topic11",
+        "used_provider": "internal",
+        "validation_passed": true
+      }
+    },
+    {
+      "case_id": "secret_redacted_on_timeout",
+      "category": "secret",
+      "fallback_succeeded": true,
+      "invalid_output_accepted": false,
+      "legacy_compatible": null,
+      "passed": true,
+      "secret_leaked": false,
+      "trace": {
+        "external_requested": true,
+        "external_used": false,
+        "fallback_reason": "topic11_timeout",
+        "fallback_used": true,
+        "latency_ms": null,
+        "provider_version": "internal-1.0",
+        "requested_provider": "topic11",
+        "used_provider": "internal",
+        "validation_passed": true
+      }
+    },
+    {
+      "case_id": "legacy_chunks_unchanged",
+      "category": "legacy",
+      "fallback_succeeded": null,
+      "invalid_output_accepted": false,
+      "legacy_compatible": true,
+      "passed": true,
+      "secret_leaked": false,
+      "trace": {
+        "external_requested": false,
+        "external_used": false,
+        "fallback_reason": null,
+        "fallback_used": false,
+        "latency_ms": null,
+        "provider_version": "legacy-render-1.0",
+        "requested_provider": "internal",
+        "used_provider": "internal",
+        "validation_passed": true
+      }
+    }
+  ],
+  "claim_boundary": "Measures deterministic offline Topic 11 adapter contracts with fixture and mock transports; it makes no live-service availability claim.",
+  "commit_sha": "f335a7225b91d4bee6ca7af707d9d21204fc2e43",
+  "dataset_id": "topic5_topic11_adapter",
+  "dataset_sha256": "d2b558c07c6b7acaa9d29e8d8f027f4a4b10c952ab7af8b69a20693a65f776da",
+  "dataset_version": "2.0.0",
+  "failed_cases": [],
+  "generated_at": "2026-07-12T06:06:34.634615+00:00",
+  "legacy_compatibility_rate": 1.0,
+  "legacy_package_regression": 0,
+  "legacy_request_regression": 0,
+  "passed_count": 6,
+  "reproduction_command": "python scripts/eval_topic5_topic11_adapter.py",
+  "secret_leak_count": 0,
+  "topic11_fallback_success_rate": 1.0,
+  "topic11_invalid_output_acceptance_count": 0
+}

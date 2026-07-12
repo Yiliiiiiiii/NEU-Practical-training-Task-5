@@ -1,0 +1,9 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/check_topic5_batch_2_acceptance_gate.py --report-dir F:\p2\reports\topic5_batch_2\verification\evaluator_reports --output F:\p2\reports\topic5_batch_2\verification\acceptance_gate.json
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 1.111742
+
+[stdout]
+
+[stderr]

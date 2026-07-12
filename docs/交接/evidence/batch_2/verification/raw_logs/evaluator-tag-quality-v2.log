@@ -1,0 +1,9 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/eval_topic5_tag_quality_v2.py --output F:\p2\reports\topic5_batch_2\verification\evaluator_reports\tag_quality_v2.json
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 0.653956
+
+[stdout]
+
+[stderr]

@@ -1,0 +1,63 @@
+{
+  "case_count": 6,
+  "cases": [
+    {
+      "actual_stage": "content_write",
+      "case_id": "content",
+      "expected_stage": "content_write",
+      "partial_final_package_count": 0,
+      "passed": true,
+      "temporary_entry_count": 0
+    },
+    {
+      "actual_stage": "manifest_write",
+      "case_id": "manifest",
+      "expected_stage": "manifest_write",
+      "partial_final_package_count": 0,
+      "passed": true,
+      "temporary_entry_count": 0
+    },
+    {
+      "actual_stage": "package_verify",
+      "case_id": "verifier",
+      "expected_stage": "package_verify",
+      "partial_final_package_count": 0,
+      "passed": true,
+      "temporary_entry_count": 0
+    },
+    {
+      "actual_stage": "zip_create",
+      "case_id": "zip",
+      "expected_stage": "zip_create",
+      "partial_final_package_count": 0,
+      "passed": true,
+      "temporary_entry_count": 0
+    },
+    {
+      "actual_stage": "final_rename",
+      "case_id": "final_rename",
+      "expected_stage": "final_rename",
+      "partial_final_package_count": 0,
+      "passed": true,
+      "temporary_entry_count": 0
+    },
+    {
+      "actual_stage": "final_rename",
+      "case_id": "prior_package_preservation",
+      "expected_stage": "final_rename",
+      "passed": true,
+      "prior_package_hash_after": "3a713ae014b816ef2970efa50713e7f88974ac6a71f78dd7e93716f9b7124697",
+      "prior_package_hash_before": "3a713ae014b816ef2970efa50713e7f88974ac6a71f78dd7e93716f9b7124697",
+      "temporary_entry_count": 0
+    }
+  ],
+  "commit_sha": "f335a7225b91d4bee6ca7af707d9d21204fc2e43",
+  "dataset_id": "topic5_package_faults",
+  "dataset_version": "1.0.0",
+  "partial_package_survival_count": 0,
+  "passed_count": 6,
+  "prior_package_preservation_rate": 1.0,
+  "reproduction_command": "python scripts/eval_topic5_package_faults.py",
+  "status": "passed",
+  "temporary_cleanup_failure_count": 0
+}

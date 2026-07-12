@@ -1,0 +1,9 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/eval_topic5_topic11_adapter.py --output F:\p2\reports\topic5_batch_2\verification\evaluator_reports\topic11_adapter.json
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 0.694796
+
+[stdout]
+
+[stderr]

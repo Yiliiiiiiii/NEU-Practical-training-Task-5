@@ -1,0 +1,10 @@
+command: F:\p2\backend\.venv\Scripts\python.exe -m ruff check scripts/topic5_eval_common.py scripts/eval_topic5_metadata_contract.py scripts/eval_topic5_summary_faithfulness.py scripts/eval_topic5_artifact_consistency.py scripts/eval_topic5_entity_passthrough.py scripts/eval_topic5_topic11_adapter.py scripts/check_topic5_hard_gap_batch_1_gate.py scripts/check_topic5_batch_2_acceptance_gate.py scripts/check_topic5_batch_2_gate.py scripts/eval_downstream_contracts.py scripts/eval_topic5_batch2_regressions.py scripts/eval_topic5_concurrency.py scripts/eval_topic5_package_faults.py scripts/eval_topic5_performance.py scripts/eval_topic5_replay.py scripts/eval_topic5_runtime_equivalence.py scripts/eval_topic5_tag_quality_v2.py scripts/generate_topic5_batch_2_status.py scripts/run_topic5_batch_2_verification.py scripts/export_openapi.py
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 0.113781
+
+[stdout]
+All checks passed!
+
+[stderr]

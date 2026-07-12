@@ -1,0 +1,10 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/export_openapi.py --check
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 2.253626
+
+[stdout]
+OpenAPI schema is current: F:\p2\docs\openapi.json
+
+[stderr]

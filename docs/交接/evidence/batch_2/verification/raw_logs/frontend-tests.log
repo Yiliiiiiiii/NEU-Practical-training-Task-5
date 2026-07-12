@@ -1,0 +1,30 @@
+command: npm.cmd run test
+cwd: F:\p2\frontend
+status: passed
+return_code: 0
+duration_seconds: 5.168122
+
+[stdout]
+
+> schemapack-agent-frontend@0.1.0 test
+> vitest --run --passWithNoTests
+
+
+[1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90mF:/p2/frontend[39m
+
+ [32m✓[39m src/reviewBatchSafety.test.ts [2m([22m[2m3 tests[22m[2m)[22m[90m 4[2mms[22m[39m
+ [32m✓[39m src/schemaDraftSamples.test.ts [2m([22m[2m3 tests[22m[2m)[22m[90m 5[2mms[22m[39m
+ [32m✓[39m src/routeSelection.test.ts [2m([22m[2m3 tests[22m[2m)[22m[90m 3[2mms[22m[39m
+ [32m✓[39m src/evidence.test.ts [2m([22m[2m3 tests[22m[2m)[22m[90m 3[2mms[22m[39m
+ [32m✓[39m src/evaluationView.test.ts [2m([22m[2m2 tests[22m[2m)[22m[90m 13[2mms[22m[39m
+ [32m✓[39m src/components/DownstreamReadinessPanel.test.tsx [2m([22m[2m1 test[22m[2m)[22m[90m 38[2mms[22m[39m
+ [32m✓[39m src/__tests__/EvaluationCenter.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[90m 234[2mms[22m[39m
+ [32m✓[39m src/__tests__/LineagePanel.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[90m 281[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m      Tests [22m [1m[32m24 passed[39m[22m[90m (24)[39m
+[2m   Start at [22m 14:06:00
+[2m   Duration [22m 3.55s[2m (transform 593ms, setup 0ms, collect 1.89s, tests 582ms, environment 6.32s, prepare 1.69s)[22m
+
+
+[stderr]

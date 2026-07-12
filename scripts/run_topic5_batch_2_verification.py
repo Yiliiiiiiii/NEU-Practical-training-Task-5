@@ -360,7 +360,7 @@ def _safe_name(value: str) -> str:
 
 def _render_raw_log(result: dict[str, Any]) -> str:
     command = subprocess.list2cmdline(result["command"])
-    return (
+    rendered = (
         f"command: {command}\n"
         f"cwd: {result['cwd']}\n"
         f"status: {result['status']}\n"
@@ -371,6 +371,7 @@ def _render_raw_log(result: dict[str, Any]) -> str:
         "\n[stderr]\n"
         f"{result['stderr']}\n"
     )
+    return rendered.rstrip() + "\n"
 
 
 def tool_versions() -> dict[str, str]:

@@ -1,0 +1,9 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/eval_topic5_mapping_v2.py --split dev --output F:\p2\reports\topic5_batch_2\verification\evaluator_reports\mapping_v2_dev.json --fail-on-targets
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 1.903532
+
+[stdout]
+
+[stderr]

@@ -1,0 +1,93 @@
+{
+  "case_count": 4,
+  "cases": [
+    {
+      "actual_document_metadata": {
+        "language": "zh-CN"
+      },
+      "actual_issues": [],
+      "actual_passed": true,
+      "case_id": "metadata_source_value",
+      "category": "effectiveness",
+      "expected_document_metadata": {
+        "language": "zh-CN"
+      },
+      "expected_issue": null,
+      "expected_passed": true,
+      "issue_localized": true,
+      "passed": true
+    },
+    {
+      "actual_document_metadata": {
+        "language": "en-US"
+      },
+      "actual_issues": [],
+      "actual_passed": true,
+      "case_id": "metadata_default_value",
+      "category": "effectiveness",
+      "expected_document_metadata": {
+        "language": "en-US"
+      },
+      "expected_issue": null,
+      "expected_passed": true,
+      "issue_localized": true,
+      "passed": true
+    },
+    {
+      "actual_document_metadata": {},
+      "actual_issues": [
+        {
+          "error_code": "metadata_required_missing",
+          "path": "document_metadata.classification",
+          "stage": "metadata_template"
+        }
+      ],
+      "actual_passed": false,
+      "case_id": "metadata_required_missing",
+      "category": "localization",
+      "expected_document_metadata": {},
+      "expected_issue": {
+        "error_code": "metadata_required_missing",
+        "path": "document_metadata.classification",
+        "stage": "metadata_template"
+      },
+      "expected_passed": false,
+      "issue_localized": true,
+      "passed": true
+    },
+    {
+      "actual_document_metadata": {},
+      "actual_issues": [
+        {
+          "error_code": "metadata_type_mismatch",
+          "path": "document_metadata.retention_years",
+          "stage": "metadata_template"
+        }
+      ],
+      "actual_passed": false,
+      "case_id": "metadata_type_mismatch",
+      "category": "localization",
+      "expected_document_metadata": {},
+      "expected_issue": {
+        "error_code": "metadata_type_mismatch",
+        "path": "document_metadata.retention_years",
+        "stage": "metadata_template"
+      },
+      "expected_passed": false,
+      "issue_localized": true,
+      "passed": true
+    }
+  ],
+  "claim_boundary": "Measures declared metadata-template rendering and exact issue localization; it does not measure upstream extraction quality.",
+  "commit_sha": "f335a7225b91d4bee6ca7af707d9d21204fc2e43",
+  "dataset_id": "topic5_metadata_contract",
+  "dataset_sha256": "905529b002bfb6f30694567c740c707dfd8fb5ee125f01f9cd5a82e104b6aee6",
+  "dataset_version": "2.0.0",
+  "failed_cases": [],
+  "generated_at": "2026-07-12T06:06:32.606571+00:00",
+  "metadata_required_localization_rate": 1.0,
+  "metadata_template_effective": true,
+  "metadata_template_effectiveness_rate": 1.0,
+  "passed_count": 4,
+  "reproduction_command": "python scripts/eval_topic5_metadata_contract.py"
+}

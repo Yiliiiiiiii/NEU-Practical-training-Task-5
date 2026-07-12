@@ -1,0 +1,9 @@
+command: F:\p2\backend\.venv\Scripts\python.exe scripts/eval_topic5_schema_localization.py --out-dir F:\p2\reports\topic5_batch_2\verification\evaluator_reports
+cwd: F:\p2
+status: passed
+return_code: 0
+duration_seconds: 0.558160
+
+[stdout]
+
+[stderr]
