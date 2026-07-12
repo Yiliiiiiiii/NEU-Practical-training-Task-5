@@ -1,0 +1,295 @@
+{
+  "content_organization": {
+    "chunk_strategy": "source_block_aware",
+    "enable_parent_child": false,
+    "keyword_mode": "deterministic",
+    "max_tokens": 1400,
+    "min_tokens": 1,
+    "overlap_tokens": 0,
+    "protect_code_blocks": true,
+    "protect_lists": true,
+    "protect_tables": true,
+    "summary": {
+      "chunk_mode": "deterministic",
+      "document_mode": "none"
+    },
+    "target_tokens": 1200
+  },
+  "mapping_rules": {
+    "aliases": {
+      "body": [
+        "正文",
+        "内容",
+        "公告内容"
+      ],
+      "issuer": [
+        "发布单位",
+        "发布机构",
+        "公告单位"
+      ],
+      "publish_date": [
+        "发布日期",
+        "发布时间",
+        "公开日期"
+      ],
+      "title": [
+        "标题",
+        "公告标题",
+        "通知标题",
+        "document_title"
+      ]
+    },
+    "defaults": {},
+    "enum_maps": {},
+    "name": "Announcement Document Base Template",
+    "regex_rules": [
+      {
+        "group": 1,
+        "pattern": "(?:发布日期|发布时间|公开日期)\\s*[:：]\\s*(\\d{4}[-/.年]\\d{1,2}[-/.月]\\d{1,2})",
+        "target_field_id": "publish_date"
+      }
+    ],
+    "schema_id": "announcement_doc",
+    "template_id": "announcement_doc_base_v1",
+    "transform_rules": [
+      {
+        "operation": "normalize_date",
+        "rule_id": "normalize_publish_date",
+        "target_field_id": "publish_date"
+      },
+      {
+        "operation": "trim",
+        "rule_id": "trim_title",
+        "target_field_id": "title"
+      },
+      {
+        "operation": "trim",
+        "rule_id": "trim_issuer",
+        "target_field_id": "issuer"
+      }
+    ],
+    "version": "1.0.0"
+  },
+  "metadata_template": {
+    "metadata_fields": [
+      {
+        "default": null,
+        "field_id": "source",
+        "required": false
+      },
+      {
+        "default": "zh-CN",
+        "field_id": "language",
+        "required": false
+      }
+    ],
+    "schema_id": "announcement_doc",
+    "template_id": "announcement_doc_base_v1",
+    "version": "1.0.0"
+  },
+  "options": {
+    "candidate_profile": {
+      "labeled_values": {
+        "issuer": [
+          "发布单位",
+          "发布机构"
+        ],
+        "publish_date": [
+          "发布日期",
+          "发布时间"
+        ]
+      }
+    },
+    "chunk_size": 1200,
+    "enable_llm_fallback": false,
+    "negative_pairs": [
+      {
+        "reason": "网页抓取时间不是发布日期",
+        "severity": "block",
+        "source_pattern": "抓取时间|retrieved_at",
+        "target_field_id": "publish_date"
+      }
+    ],
+    "no_code_schema_pack_onboarding": true,
+    "thresholds": {
+      "auto_accept": 0.82,
+      "review_required": 0.62
+    }
+  },
+  "target_schema": {
+    "description": "Example target schema for no-code SchemaPack onboarding.",
+    "fields": [
+      {
+        "aliases": [
+          "标题",
+          "公告名称",
+          "通知标题"
+        ],
+        "constraints": {},
+        "display_name": "公告标题",
+        "field_id": "title",
+        "name": "title",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "aliases": [
+          "发布单位",
+          "发布机构",
+          "公告单位"
+        ],
+        "constraints": {},
+        "display_name": "发布单位",
+        "field_id": "issuer",
+        "name": "issuer",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "aliases": [
+          "发布日期",
+          "发布时间",
+          "公开日期"
+        ],
+        "constraints": {},
+        "display_name": "发布日期",
+        "field_id": "publish_date",
+        "name": "publish_date",
+        "required": false,
+        "type": "date"
+      },
+      {
+        "aliases": [
+          "正文",
+          "内容",
+          "公告内容"
+        ],
+        "constraints": {},
+        "display_name": "正文",
+        "field_id": "body",
+        "name": "body",
+        "required": true,
+        "type": "text"
+      }
+    ],
+    "name": "Announcement Document",
+    "schema_id": "announcement_doc",
+    "version": "1.0.0"
+  },
+  "uir": {
+    "assets": [],
+    "blocks": [
+      {
+        "attributes": {
+          "candidate_label": "candidate-0",
+          "field_name": "title"
+        },
+        "block_id": "b00001",
+        "level": 2,
+        "text": "Section 1",
+        "type": "heading"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1",
+          "field_name": "issuer"
+        },
+        "block_id": "b00002",
+        "text": "Issuer: Reliability Office",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2",
+          "field_name": "publish_date"
+        },
+        "block_id": "b00003",
+        "text": "Publish date: 2026-07-12",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00004",
+        "text": "Checklist item 3: preserve source linkage",
+        "type": "list_item"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00005",
+        "text": "metric | value\nblocks | deterministic",
+        "type": "table"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5",
+          "field_name": "body"
+        },
+        "block_id": "b00006",
+        "text": "Body paragraph 5 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00007",
+        "text": "Body paragraph 6 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00008",
+        "text": "Body paragraph 7 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00009",
+        "text": "Body paragraph 8 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00010",
+        "text": "Body paragraph 9 with deterministic benchmark content.",
+        "type": "paragraph"
+      }
+    ],
+    "doc_id": "performance-10",
+    "entities": [
+      {
+        "canonical_name": "Reliability Office",
+        "confidence": 1.0,
+        "entity_type": "organization",
+        "evidence": {
+          "fixture": true
+        },
+        "link_status": "linked",
+        "mention": "Reliability Office 0",
+        "normalized_id": "org:reliability:0",
+        "source_agent": "topic5-performance-fixture",
+        "source_block_ids": [
+          "b00001"
+        ]
+      }
+    ],
+    "metadata": {
+      "document_title": "Reliability fixture 10",
+      "fixture_block_count": 10,
+      "language": "zh-CN",
+      "source": "topic5-performance-v1"
+    },
+    "normalization_records": [],
+    "uir_version": "1.0"
+  }
+}

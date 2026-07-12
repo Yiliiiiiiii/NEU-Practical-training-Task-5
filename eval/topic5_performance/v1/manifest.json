@@ -1,0 +1,31 @@
+{
+  "dataset_id": "topic5_performance",
+  "dataset_version": "1.0.0",
+  "fixtures": [
+    {
+      "block_count": 10,
+      "bytes": 7213,
+      "path": "10.json",
+      "sha256": "11916cd650702372347d2e7cd845ac141c0304c85b2849a583532a039fa00231"
+    },
+    {
+      "block_count": 100,
+      "bytes": 27804,
+      "path": "100.json",
+      "sha256": "7f7d807043852a8ea3163961016e656ac509850ca717f36e074fb53c9e33527c"
+    },
+    {
+      "block_count": 1000,
+      "bytes": 235808,
+      "path": "1000.json",
+      "sha256": "16a55581f9c26d250a383713877372ed2755f10f56dc769fa893c8a1ed68c4be"
+    },
+    {
+      "block_count": 10000,
+      "bytes": 2326072,
+      "path": "10000.json",
+      "sha256": "1401776132b6f3a5c048cc7e6a45c45fb08bd4d9e413bba1602037e899b835d5"
+    }
+  ],
+  "generator": "scripts/build_topic5_performance_fixtures.py"
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from time import perf_counter
 from typing import Any
 
 from app.config import Settings
@@ -71,6 +72,7 @@ class ConversionEngineResult:
     semantic_artifact_hashes: dict[str, str]
     execution_snapshot: dict[str, Any]
     candidates: list[Any]
+    stage_durations_ms: dict[str, float]
 
 
 class Topic5ConversionEngine:
@@ -86,6 +88,7 @@ class Topic5ConversionEngine:
         output_assertions: ConversionAssertionConfig | None,
         engine_context: ConversionEngineContext,
     ) -> ConversionEngineResult:
+        total_started = perf_counter()
         options = execution_options.runtime_dict()
         resource_limits = Topic5ResourceLimitService(engine_context.settings)
         resource_limits.validate_input(
@@ -94,6 +97,7 @@ class Topic5ConversionEngine:
             mapping_rules=mapping_rules,
             runtime_options=options,
         )
+        stage_started = perf_counter()
         candidates = CandidateService().extract_candidates(
             engine_context.task_id,
             uir,
@@ -102,6 +106,10 @@ class Topic5ConversionEngine:
                 execution_options.enable_legacy_candidate_heuristics
             ),
         )
+        stage_durations_ms = {
+            "candidate_extraction": round((perf_counter() - stage_started) * 1000, 3)
+        }
+        stage_started = perf_counter()
         mapping_report = MappingService(
             llm_fallback_service=LLMFallbackService(engine_context.settings)
         ).map_fields(
@@ -134,7 +142,11 @@ class Topic5ConversionEngine:
                 "execution_option_warnings": engine_context.option_warnings,
             }
         )
+        stage_durations_ms["mapping"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
 
+        stage_started = perf_counter()
         transform_result = TransformService().transform(
             engine_context.task_id,
             uir,
@@ -145,6 +157,10 @@ class Topic5ConversionEngine:
                 execution_options.enable_legacy_transform_heuristics
             ),
         )
+        stage_durations_ms["transform"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
+        stage_started = perf_counter()
         metadata_result = None
         if metadata_template is not None:
             metadata_result = MetadataTemplateService().render(
@@ -161,7 +177,11 @@ class Topic5ConversionEngine:
                     "metadata_template_version": metadata_template.version,
                 },
             )
+        stage_durations_ms["metadata"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
 
+        stage_started = perf_counter()
         execution_snapshot = {
             "task_id": engine_context.task_id,
             "doc_id": engine_context.doc_id,
@@ -185,6 +205,10 @@ class Topic5ConversionEngine:
             metadata_result=metadata_result,
             metadata_template=metadata_template,
         )
+        stage_durations_ms["canonical"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
+        stage_started = perf_counter()
         rendered = RenderService().render(
             canonical, chunk_size=execution_options.chunk_size
         )
@@ -194,6 +218,10 @@ class Topic5ConversionEngine:
             rendered,
             metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
+        stage_durations_ms["render"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
+        stage_started = perf_counter()
         provider_result = ChunkProviderResolver(
             settings=engine_context.settings
         ).resolve(
@@ -234,7 +262,11 @@ class Topic5ConversionEngine:
             markdown=summary_rendered.markdown,
             chunks=organized_chunks,
         )
+        stage_durations_ms["chunk"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
         resource_limits.validate_output(rendered=rendered)
+        stage_started = perf_counter()
         validation_report = ValidationService().validate(
             engine_context.task_id,
             target_schema,
@@ -242,6 +274,10 @@ class Topic5ConversionEngine:
             require_content_organization=True,
             metadata_issues=(metadata_result.report.issues if metadata_result else None),
         )
+        stage_durations_ms["validation"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
+        stage_started = perf_counter()
         artifact_consistency_report = ArtifactConsistencyService().verify(
             canonical=canonical,
             structured_json=rendered.structured_json,
@@ -258,6 +294,14 @@ class Topic5ConversionEngine:
             protect_tables=content_organization.protect_tables,
             protect_lists=content_organization.protect_lists,
             protect_code_blocks=content_organization.protect_code_blocks,
+        )
+        stage_durations_ms["verification"] = round(
+            (perf_counter() - stage_started) * 1000, 3
+        )
+        stage_durations_ms["validation_and_consistency"] = round(
+            stage_durations_ms["validation"]
+            + stage_durations_ms["verification"],
+            3,
         )
         conversion_assertion_report = None
         if output_assertions is not None:
@@ -366,6 +410,9 @@ class Topic5ConversionEngine:
             }
         )
         canonical.doc_meta["execution_snapshot"] = execution_snapshot
+        stage_durations_ms["total"] = round(
+            (perf_counter() - total_started) * 1000, 3
+        )
         return ConversionEngineResult(
             canonical=canonical,
             rendered=rendered,
@@ -384,4 +431,5 @@ class Topic5ConversionEngine:
             semantic_artifact_hashes=semantic_artifact_hashes,
             execution_snapshot=execution_snapshot,
             candidates=candidates,
+            stage_durations_ms=stage_durations_ms,
         )

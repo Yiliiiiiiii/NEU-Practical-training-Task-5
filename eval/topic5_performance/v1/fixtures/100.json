@@ -1,0 +1,1035 @@
+{
+  "content_organization": {
+    "chunk_strategy": "source_block_aware",
+    "enable_parent_child": false,
+    "keyword_mode": "deterministic",
+    "max_tokens": 1400,
+    "min_tokens": 1,
+    "overlap_tokens": 0,
+    "protect_code_blocks": true,
+    "protect_lists": true,
+    "protect_tables": true,
+    "summary": {
+      "chunk_mode": "deterministic",
+      "document_mode": "none"
+    },
+    "target_tokens": 1200
+  },
+  "mapping_rules": {
+    "aliases": {
+      "body": [
+        "正文",
+        "内容",
+        "公告内容"
+      ],
+      "issuer": [
+        "发布单位",
+        "发布机构",
+        "公告单位"
+      ],
+      "publish_date": [
+        "发布日期",
+        "发布时间",
+        "公开日期"
+      ],
+      "title": [
+        "标题",
+        "公告标题",
+        "通知标题",
+        "document_title"
+      ]
+    },
+    "defaults": {},
+    "enum_maps": {},
+    "name": "Announcement Document Base Template",
+    "regex_rules": [
+      {
+        "group": 1,
+        "pattern": "(?:发布日期|发布时间|公开日期)\\s*[:：]\\s*(\\d{4}[-/.年]\\d{1,2}[-/.月]\\d{1,2})",
+        "target_field_id": "publish_date"
+      }
+    ],
+    "schema_id": "announcement_doc",
+    "template_id": "announcement_doc_base_v1",
+    "transform_rules": [
+      {
+        "operation": "normalize_date",
+        "rule_id": "normalize_publish_date",
+        "target_field_id": "publish_date"
+      },
+      {
+        "operation": "trim",
+        "rule_id": "trim_title",
+        "target_field_id": "title"
+      },
+      {
+        "operation": "trim",
+        "rule_id": "trim_issuer",
+        "target_field_id": "issuer"
+      }
+    ],
+    "version": "1.0.0"
+  },
+  "metadata_template": {
+    "metadata_fields": [
+      {
+        "default": null,
+        "field_id": "source",
+        "required": false
+      },
+      {
+        "default": "zh-CN",
+        "field_id": "language",
+        "required": false
+      }
+    ],
+    "schema_id": "announcement_doc",
+    "template_id": "announcement_doc_base_v1",
+    "version": "1.0.0"
+  },
+  "options": {
+    "candidate_profile": {
+      "labeled_values": {
+        "issuer": [
+          "发布单位",
+          "发布机构"
+        ],
+        "publish_date": [
+          "发布日期",
+          "发布时间"
+        ]
+      }
+    },
+    "chunk_size": 1200,
+    "enable_llm_fallback": false,
+    "negative_pairs": [
+      {
+        "reason": "网页抓取时间不是发布日期",
+        "severity": "block",
+        "source_pattern": "抓取时间|retrieved_at",
+        "target_field_id": "publish_date"
+      }
+    ],
+    "no_code_schema_pack_onboarding": true,
+    "thresholds": {
+      "auto_accept": 0.82,
+      "review_required": 0.62
+    }
+  },
+  "target_schema": {
+    "description": "Example target schema for no-code SchemaPack onboarding.",
+    "fields": [
+      {
+        "aliases": [
+          "标题",
+          "公告名称",
+          "通知标题"
+        ],
+        "constraints": {},
+        "display_name": "公告标题",
+        "field_id": "title",
+        "name": "title",
+        "required": true,
+        "type": "string"
+      },
+      {
+        "aliases": [
+          "发布单位",
+          "发布机构",
+          "公告单位"
+        ],
+        "constraints": {},
+        "display_name": "发布单位",
+        "field_id": "issuer",
+        "name": "issuer",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "aliases": [
+          "发布日期",
+          "发布时间",
+          "公开日期"
+        ],
+        "constraints": {},
+        "display_name": "发布日期",
+        "field_id": "publish_date",
+        "name": "publish_date",
+        "required": false,
+        "type": "date"
+      },
+      {
+        "aliases": [
+          "正文",
+          "内容",
+          "公告内容"
+        ],
+        "constraints": {},
+        "display_name": "正文",
+        "field_id": "body",
+        "name": "body",
+        "required": true,
+        "type": "text"
+      }
+    ],
+    "name": "Announcement Document",
+    "schema_id": "announcement_doc",
+    "version": "1.0.0"
+  },
+  "uir": {
+    "assets": [],
+    "blocks": [
+      {
+        "attributes": {
+          "candidate_label": "candidate-0",
+          "field_name": "title"
+        },
+        "block_id": "b00001",
+        "level": 2,
+        "text": "Section 1",
+        "type": "heading"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1",
+          "field_name": "issuer"
+        },
+        "block_id": "b00002",
+        "text": "Issuer: Reliability Office",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2",
+          "field_name": "publish_date"
+        },
+        "block_id": "b00003",
+        "text": "Publish date: 2026-07-12",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00004",
+        "text": "Checklist item 3: preserve source linkage",
+        "type": "list_item"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00005",
+        "text": "metric | value\nblocks | deterministic",
+        "type": "table"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5",
+          "field_name": "body"
+        },
+        "block_id": "b00006",
+        "text": "Body paragraph 5 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00007",
+        "text": "Body paragraph 6 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00008",
+        "text": "Body paragraph 7 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00009",
+        "text": "Body paragraph 8 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00010",
+        "text": "Body paragraph 9 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00011",
+        "text": "Body paragraph 10 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00012",
+        "text": "Body paragraph 11 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00013",
+        "text": "Body paragraph 12 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00014",
+        "text": "Body paragraph 13 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00015",
+        "text": "Body paragraph 14 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00016",
+        "text": "Body paragraph 15 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00017",
+        "text": "Body paragraph 16 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00018",
+        "text": "Body paragraph 17 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00019",
+        "text": "Body paragraph 18 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00020",
+        "text": "Body paragraph 19 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6",
+          "field_name": "title"
+        },
+        "block_id": "b00021",
+        "level": 2,
+        "text": "Section 2",
+        "type": "heading"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0",
+          "field_name": "issuer"
+        },
+        "block_id": "b00022",
+        "text": "Issuer: Reliability Office",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1",
+          "field_name": "publish_date"
+        },
+        "block_id": "b00023",
+        "text": "Publish date: 2026-07-12",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00024",
+        "text": "Checklist item 23: preserve source linkage",
+        "type": "list_item"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00025",
+        "text": "metric | value\nblocks | deterministic",
+        "type": "table"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4",
+          "field_name": "body"
+        },
+        "block_id": "b00026",
+        "text": "Body paragraph 25 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00027",
+        "text": "Body paragraph 26 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00028",
+        "text": "Body paragraph 27 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00029",
+        "text": "Body paragraph 28 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00030",
+        "text": "Body paragraph 29 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00031",
+        "text": "Body paragraph 30 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00032",
+        "text": "Body paragraph 31 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00033",
+        "text": "Body paragraph 32 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00034",
+        "text": "Body paragraph 33 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00035",
+        "text": "Body paragraph 34 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00036",
+        "text": "Body paragraph 35 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00037",
+        "text": "Body paragraph 36 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00038",
+        "text": "Body paragraph 37 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00039",
+        "text": "Body paragraph 38 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00040",
+        "text": "Body paragraph 39 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5",
+          "field_name": "title"
+        },
+        "block_id": "b00041",
+        "level": 2,
+        "text": "Section 3",
+        "type": "heading"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6",
+          "field_name": "issuer"
+        },
+        "block_id": "b00042",
+        "text": "Issuer: Reliability Office",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0",
+          "field_name": "publish_date"
+        },
+        "block_id": "b00043",
+        "text": "Publish date: 2026-07-12",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00044",
+        "text": "Checklist item 43: preserve source linkage",
+        "type": "list_item"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00045",
+        "text": "metric | value\nblocks | deterministic",
+        "type": "table"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3",
+          "field_name": "body"
+        },
+        "block_id": "b00046",
+        "text": "Body paragraph 45 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00047",
+        "text": "Body paragraph 46 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00048",
+        "text": "Body paragraph 47 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00049",
+        "text": "Body paragraph 48 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00050",
+        "text": "Body paragraph 49 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00051",
+        "text": "Body paragraph 50 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00052",
+        "text": "Body paragraph 51 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00053",
+        "text": "Body paragraph 52 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00054",
+        "text": "Body paragraph 53 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00055",
+        "text": "Body paragraph 54 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00056",
+        "text": "Body paragraph 55 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00057",
+        "text": "Body paragraph 56 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00058",
+        "text": "Body paragraph 57 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00059",
+        "text": "Body paragraph 58 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00060",
+        "text": "Body paragraph 59 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4",
+          "field_name": "title"
+        },
+        "block_id": "b00061",
+        "level": 2,
+        "text": "Section 4",
+        "type": "heading"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5",
+          "field_name": "issuer"
+        },
+        "block_id": "b00062",
+        "text": "Issuer: Reliability Office",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6",
+          "field_name": "publish_date"
+        },
+        "block_id": "b00063",
+        "text": "Publish date: 2026-07-12",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00064",
+        "text": "Checklist item 63: preserve source linkage",
+        "type": "list_item"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00065",
+        "text": "metric | value\nblocks | deterministic",
+        "type": "table"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2",
+          "field_name": "body"
+        },
+        "block_id": "b00066",
+        "text": "Body paragraph 65 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00067",
+        "text": "Body paragraph 66 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00068",
+        "text": "Body paragraph 67 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00069",
+        "text": "Body paragraph 68 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00070",
+        "text": "Body paragraph 69 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00071",
+        "text": "Body paragraph 70 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00072",
+        "text": "Body paragraph 71 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00073",
+        "text": "Body paragraph 72 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00074",
+        "text": "Body paragraph 73 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00075",
+        "text": "Body paragraph 74 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00076",
+        "text": "Body paragraph 75 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00077",
+        "text": "Body paragraph 76 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00078",
+        "text": "Body paragraph 77 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00079",
+        "text": "Body paragraph 78 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00080",
+        "text": "Body paragraph 79 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3",
+          "field_name": "title"
+        },
+        "block_id": "b00081",
+        "level": 2,
+        "text": "Section 5",
+        "type": "heading"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4",
+          "field_name": "issuer"
+        },
+        "block_id": "b00082",
+        "text": "Issuer: Reliability Office",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5",
+          "field_name": "publish_date"
+        },
+        "block_id": "b00083",
+        "text": "Publish date: 2026-07-12",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00084",
+        "text": "Checklist item 83: preserve source linkage",
+        "type": "list_item"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00085",
+        "text": "metric | value\nblocks | deterministic",
+        "type": "table"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1",
+          "field_name": "body"
+        },
+        "block_id": "b00086",
+        "text": "Body paragraph 85 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00087",
+        "text": "Body paragraph 86 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00088",
+        "text": "Body paragraph 87 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00089",
+        "text": "Body paragraph 88 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00090",
+        "text": "Body paragraph 89 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00091",
+        "text": "Body paragraph 90 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00092",
+        "text": "Body paragraph 91 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00093",
+        "text": "Body paragraph 92 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-2"
+        },
+        "block_id": "b00094",
+        "text": "Body paragraph 93 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-3"
+        },
+        "block_id": "b00095",
+        "text": "Body paragraph 94 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-4"
+        },
+        "block_id": "b00096",
+        "text": "Body paragraph 95 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-5"
+        },
+        "block_id": "b00097",
+        "text": "Body paragraph 96 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-6"
+        },
+        "block_id": "b00098",
+        "text": "Body paragraph 97 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-0"
+        },
+        "block_id": "b00099",
+        "text": "Body paragraph 98 with deterministic benchmark content.",
+        "type": "paragraph"
+      },
+      {
+        "attributes": {
+          "candidate_label": "candidate-1"
+        },
+        "block_id": "b00100",
+        "text": "Body paragraph 99 with deterministic benchmark content.",
+        "type": "paragraph"
+      }
+    ],
+    "doc_id": "performance-100",
+    "entities": [
+      {
+        "canonical_name": "Reliability Office",
+        "confidence": 1.0,
+        "entity_type": "organization",
+        "evidence": {
+          "fixture": true
+        },
+        "link_status": "linked",
+        "mention": "Reliability Office 0",
+        "normalized_id": "org:reliability:0",
+        "source_agent": "topic5-performance-fixture",
+        "source_block_ids": [
+          "b00001"
+        ]
+      }
+    ],
+    "metadata": {
+      "document_title": "Reliability fixture 100",
+      "fixture_block_count": 100,
+      "language": "zh-CN",
+      "source": "topic5-performance-v1"
+    },
+    "normalization_records": [],
+    "uir_version": "1.0"
+  }
+}
