@@ -1,5 +1,6 @@
 import { AppShell } from "./layouts/AppShell";
 import { useRoute, type AppRoute } from "./app/router";
+import { ConversionPage } from "./pages/conversion/ConversionPage";
 
 type PlaceholderContent = {
   eyebrow: string;
@@ -95,7 +96,7 @@ export default function App() {
 
   return (
     <AppShell route={route}>
-      <PlaceholderPage content={placeholderFor(route)} />
+      {route.name === "conversion" ? <ConversionPage /> : <PlaceholderPage content={placeholderFor(route)} />}
     </AppShell>
   );
 }

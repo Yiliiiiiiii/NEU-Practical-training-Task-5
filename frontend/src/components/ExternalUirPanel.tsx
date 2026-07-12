@@ -13,21 +13,25 @@ import type {
 } from "../types";
 
 type ExternalUirPanelProps = {
-  currentDocId: string;
+  currentDocId?: string;
   working: boolean;
   onStandardUirPreview: (uirText: string) => void;
   onImported: (response: ExternalUirImportResponse) => void;
   onRecommendedRoute: (route: ExternalUirRouteReport) => void;
-  onTaskCreated: (response: TaskCreateResponse) => void;
+  onTaskCreated?: (response: TaskCreateResponse) => void;
+  onRouteConfirmationChange?: (confirmed: boolean) => void;
+  enableTaskCreation?: boolean;
 };
 
 export function ExternalUirPanel({
-  currentDocId,
+  currentDocId = "",
   working,
   onStandardUirPreview,
   onImported,
   onRecommendedRoute,
-  onTaskCreated
+  onTaskCreated,
+  onRouteConfirmationChange,
+  enableTaskCreation = false
 }: ExternalUirPanelProps) {
   const [sourceSystem, setSourceSystem] = useState("topic11");
   const [dialectHint, setDialectHint] = useState("auto");
@@ -47,7 +51,7 @@ export function ExternalUirPanel({
     ? resolveRouteSelection(recommendedRoute, routeOverride, routeConfirmed)
     : null;
   const canCreateTask = Boolean(
-    currentDocId && routeSelection?.canCreate
+    enableTaskCreation && currentDocId && routeSelection?.canCreate && onTaskCreated
   );
 
   const adapterSummary = useMemo(() => {
@@ -64,7 +68,7 @@ export function ExternalUirPanel({
       blocks: Array.isArray(result.standard_uir?.blocks) ? result.standard_uir.blocks.length : 0,
       traces: report.trace_items.length,
       traceCoverage: `${Math.round((report.trace_coverage ?? 0) * 100)}%`,
-      llmUsed: report.llm_used ? "true" : "false",
+      llmUsed: report.llm_used,
       autoAccepted: report.llm_auto_accepted_count
     };
   }, [result]);
@@ -99,8 +103,8 @@ export function ExternalUirPanel({
       setDetection(detected);
       setMessage(
         detected.selected_adapter
-          ? `Detected ${detected.selected_adapter.adapter_id}.`
-          : "Unsupported dialect. Manual review is required."
+          ? `已检测到 ${detected.selected_adapter.adapter_id}。`
+          : "未找到可用方言，需要人工复核。"
       );
     });
   }
@@ -117,13 +121,13 @@ export function ExternalUirPanel({
         llm_mode: allowLlm ? "deepseek" : null
       });
       setResult(converted);
-      setRouteOverride("");
-      setRouteConfirmed(false);
+      resetRouteConfirmation();
       onStandardUirPreview(JSON.stringify(converted.standard_uir, null, 2));
       if (converted.route_report) {
         onRecommendedRoute(converted.route_report);
       }
-      setMessage("External UIR converted. Review the preview before importing.");
+      setMessage("External UIR 已转换，请检查预览后再导入。"
+      );
     });
   }
 
@@ -145,20 +149,20 @@ export function ExternalUirPanel({
         warnings: imported.warnings,
         errors: []
       });
-      setRouteOverride("");
-      setRouteConfirmed(false);
+      resetRouteConfirmation();
       onImported(imported);
       if (imported.route_report) {
         onRecommendedRoute(imported.route_report);
       }
-      setMessage(`Imported ${imported.doc_id}. Create a task only after confirming the route.`);
+      setMessage(`已导入 ${imported.doc_id}。请继续选择 SchemaPack。`);
     });
   }
 
   async function createTaskFromRoute() {
-    if (!recommendedRoute || !routeSelection?.schemaId || !routeSelection.templateId) {
+    if (!recommendedRoute || !routeSelection?.schemaId || !routeSelection.templateId || !onTaskCreated) {
       setStatus("error");
-      setMessage("Select and confirm a schema/template before creating the task.");
+      setMessage("请先选择并确认 Schema / 模板。"
+      );
       return;
     }
     await runPanelAction(async () => {
@@ -170,10 +174,7 @@ export function ExternalUirPanel({
         adapter_report: result?.adapter_report ?? null
       });
       onTaskCreated(created);
-      setMessage(
-        created.review_required
-          ? "Task created. Route review is still required."
-          : "Task created from the recommended route."
+      setMessage(created.review_required ? "已创建任务，路由仍需复核。" : "已按所选路由创建任务。"
       );
     });
   }
@@ -181,9 +182,16 @@ export function ExternalUirPanel({
   function parsePayload(): Record<string, unknown> {
     const parsed = JSON.parse(jsonText);
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-      throw new Error("External UIR JSON must be an object.");
+      throw new Error("External UIR JSON 必须是对象。"
+      );
     }
     return parsed as Record<string, unknown>;
+  }
+
+  function resetRouteConfirmation() {
+    setRouteOverride("");
+    setRouteConfirmed(false);
+    onRouteConfirmationChange?.(false);
   }
 
   async function runPanelAction(action: () => Promise<void>) {
@@ -194,30 +202,30 @@ export function ExternalUirPanel({
       setStatus("ready");
     } catch (caught) {
       setStatus("error");
-      setMessage(caught instanceof Error ? caught.message : "External UIR operation failed.");
+      setMessage(caught instanceof Error ? caught.message : "External UIR 操作失败。"
+      );
     }
   }
 
   async function onFileSelected(file: File | null) {
-    if (!file) {
-      return;
+    if (file) {
+      setJsonText(await file.text());
     }
-    setJsonText(await file.text());
   }
 
   return (
-    <section className="external-uir-panel" aria-label="External UIR Adapter">
+    <section className="external-uir-panel" aria-label="External UIR 适配">
       <div className="external-uir-head">
         <div>
-          <h3>External UIR Adapter</h3>
-          <p>Convert upstream External UIR JSON into a standard UIRDocument.</p>
+          <h3>External UIR 适配</h3>
+          <p>将上游 External UIR JSON 转换为标准 UIRDocument。</p>
         </div>
-        <GitBranch size={18} />
+        <GitBranch size={18} aria-hidden="true" />
       </div>
 
       <div className="external-uir-grid">
         <div className="control-group">
-          <label htmlFor="external-source">Source System</label>
+          <label htmlFor="external-source">来源系统</label>
           <input
             id="external-source"
             value={sourceSystem}
@@ -225,13 +233,13 @@ export function ExternalUirPanel({
           />
         </div>
         <div className="control-group">
-          <label htmlFor="external-dialect">Dialect Hint</label>
+          <label htmlFor="external-dialect">方言提示</label>
           <select
             id="external-dialect"
             value={dialectHint}
             onChange={(event) => setDialectHint(event.target.value)}
           >
-            <option value="auto">auto</option>
+            <option value="auto">自动</option>
             {adapters.map((adapter) => (
               <option key={adapter.adapter_id} value={adapter.adapter_id}>
                 {adapter.adapter_id}
@@ -241,17 +249,20 @@ export function ExternalUirPanel({
         </div>
       </div>
 
-      <label className="file-button" htmlFor="external-json-file">
-        <FileInput size={16} />
-        Upload JSON
-      </label>
-      <input
-        id="external-json-file"
-        className="visually-hidden-input"
-        type="file"
-        accept="application/json,.json"
-        onChange={(event) => void onFileSelected(event.currentTarget.files?.[0] ?? null)}
-      />
+      <details>
+        <summary>兼容导入</summary>
+        <label className="file-button" htmlFor="external-json-file">
+          <FileInput size={16} aria-hidden="true" />
+          选择 JSON 文件
+        </label>
+        <input
+          id="external-json-file"
+          className="visually-hidden-input"
+          type="file"
+          accept="application/json,.json"
+          onChange={(event) => void onFileSelected(event.currentTarget.files?.[0] ?? null)}
+        />
+      </details>
 
       <div className="external-toggles">
         <label className="checkbox-field">
@@ -260,7 +271,7 @@ export function ExternalUirPanel({
             checked={routeSchema}
             onChange={(event) => setRouteSchema(event.target.checked)}
           />
-          <span>Route Schema</span>
+          <span>启用确定性 Schema 路由</span>
         </label>
         <label className="checkbox-field">
           <input
@@ -268,7 +279,7 @@ export function ExternalUirPanel({
             checked={allowLlm}
             onChange={(event) => setAllowLlm(event.target.checked)}
           />
-          <span>DeepSeek</span>
+          <span>允许 LLM 辅助</span>
         </label>
       </div>
 
@@ -283,12 +294,12 @@ export function ExternalUirPanel({
 
       <div className="external-actions">
         <button type="button" onClick={() => void detectAdapter()} disabled={working || status === "working"}>
-          <SearchCheck size={16} />
-          Detect
+          <SearchCheck size={16} aria-hidden="true" />
+          检测适配器
         </button>
         <button type="button" onClick={() => void convert()} disabled={working || status === "working"}>
-          <Wand2 size={16} />
-          Convert & Preview
+          <Wand2 size={16} aria-hidden="true" />
+          转换并预览
         </button>
         <button
           type="button"
@@ -296,37 +307,39 @@ export function ExternalUirPanel({
           onClick={() => void importStandardUir()}
           disabled={working || status === "working" || !result}
         >
-          <UploadCloud size={16} />
-          Import Standard UIR
+          <UploadCloud size={16} aria-hidden="true" />
+          导入标准 UIR
         </button>
-        <button
-          type="button"
-          className="accent"
-          onClick={() => void createTaskFromRoute()}
-          disabled={working || status === "working" || !canCreateTask}
-        >
-          <CheckCircle2 size={16} />
-          Create Task
-        </button>
+        {enableTaskCreation ? (
+          <button
+            type="button"
+            className="accent"
+            onClick={() => void createTaskFromRoute()}
+            disabled={working || status === "working" || !canCreateTask}
+          >
+            <CheckCircle2 size={16} aria-hidden="true" />
+            创建任务
+          </button>
+        ) : null}
       </div>
 
       {message ? <p className={`external-message external-${status}`}>{message}</p> : null}
 
       {adapterSummary ? (
         <div className="external-summary">
-          <span>adapter</span>
+          <span>适配器</span>
           <strong>{adapterSummary.adapter}</strong>
-          <span>dialect</span>
+          <span>方言</span>
           <strong>{adapterSummary.dialect}</strong>
-          <span>blocks</span>
+          <span>区块</span>
           <strong>{adapterSummary.blocks}</strong>
-          <span>trace</span>
+          <span>追溯项</span>
           <strong>{adapterSummary.traces}</strong>
-          <span>coverage</span>
+          <span>覆盖率</span>
           <strong>{adapterSummary.traceCoverage}</strong>
           <span>LLM</span>
-          <strong>{adapterSummary.llmUsed}</strong>
-          <span>auto accepted</span>
+          <strong>{adapterSummary.llmUsed ? "已使用" : "未使用"}</strong>
+          <span>自动采纳</span>
           <strong>{adapterSummary.autoAccepted}</strong>
         </div>
       ) : null}
@@ -334,55 +347,68 @@ export function ExternalUirPanel({
       {detection ? (
         <div className="external-detection">
           <div>
-            <span>Detected Adapter</span>
-            <strong>{detection.selected_adapter?.adapter_id ?? "unsupported"}</strong>
+            <span>检测到的适配器</span>
+            <strong>{detection.selected_adapter?.adapter_id ?? "不支持"}</strong>
             {detection.selected_adapter ? (
               <em>{Math.round(detection.selected_adapter.confidence * 100)}%</em>
             ) : null}
           </div>
-          {detection.review_required ? <small>review required</small> : null}
+          {detection.review_required ? <small>需要人工复核</small> : null}
           {detection.alternatives.length ? (
-            <p>
-              {detection.alternatives
-                .map((item) => `${item.adapter_id} ${Math.round(item.confidence * 100)}%`)
-                .join(" / ")}
-            </p>
+            <p>{detection.alternatives.map((item) => `${item.adapter_id} ${Math.round(item.confidence * 100)}%`).join(" / ")}</p>
           ) : null}
         </div>
       ) : null}
 
       {result?.warnings.length ? (
-        <div className="external-warning-list">
+        <div className="external-warning-list" aria-label="转换警告">
           {result.warnings.map((warning) => (
             <span key={warning}>{warning}</span>
           ))}
         </div>
       ) : null}
 
+      {result?.adapter_report.llm_used ? (
+        <details className="external-route-evidence">
+          <summary>LLM 建议（未自动采纳）</summary>
+          {result.adapter_report.assisted_suggestions.length ? (
+            result.adapter_report.assisted_suggestions.map((suggestion) => (
+              <p key={`${suggestion.external_path}-${suggestion.target_uir_location}`}>
+                <strong>{suggestion.external_path}</strong>
+                <span>{suggestion.reason}</span>
+                <small>{Math.round(suggestion.confidence * 100)}%</small>
+              </p>
+            ))
+          ) : (
+            <p>LLM 建议（未自动采纳）</p>
+          )}
+        </details>
+      ) : null}
+
       {recommendedRoute ? (
         <div className="external-route">
           <div className="external-route-head">
-            <span>Recommended</span>
+            <span>路由建议</span>
             <em>{Math.round(recommendedRoute.confidence * 100)}%</em>
           </div>
-          <div className="external-confidence" aria-label="Route confidence">
+          <div className="external-confidence" aria-label="路由置信度">
             <span style={{ width: `${Math.round(recommendedRoute.confidence * 100)}%` }} />
           </div>
           <strong>
-            {recommendedRoute.selected_schema_id ?? "No automatic selection"} /{" "}
-            {recommendedRoute.selected_template_id ?? "-"}
+            {recommendedRoute.selected_schema_id ?? "未自动选择"} / {recommendedRoute.selected_template_id ?? "-"}
           </strong>
           <label className="control-group" htmlFor="external-route-override">
-            <span>Schema / Template</span>
+            <span>人工选择 Schema / 模板</span>
             <select
               id="external-route-override"
               value={routeOverride}
               onChange={(event) => {
                 setRouteOverride(event.target.value);
                 setRouteConfirmed(false);
+                onRouteConfirmationChange?.(false);
               }}
             >
-              <option value="">Use recommended route</option>
+              <option value="">使用路由建议</option>
               {recommendedRoute.candidates.map((candidate) => (
                 <option key={candidate.schema_id} value={candidate.schema_id}>
                   {candidate.schema_id} / {candidate.template_id}
@@ -395,14 +421,12 @@ export function ExternalUirPanel({
               <div key={candidate.schema_id}>
                 <strong>{candidate.schema_id}</strong>
                 <em>{Math.round(candidate.confidence * 100)}%</em>
-                {candidate.risk_flags.length ? (
-                  <small>{candidate.risk_flags.join(", ")}</small>
-                ) : null}
+                {candidate.risk_flags.length ? <small>{candidate.risk_flags.join(", ")}</small> : null}
               </div>
             ))}
           </div>
           <details className="external-route-evidence">
-            <summary>Route evidence</summary>
+            <summary>路由证据</summary>
             {recommendedRoute.candidates[0]?.evidence.map((item, index) => (
               <p key={`${item.evidence_type}-${item.value}-${index}`}>
                 <strong>{item.evidence_type}</strong>
@@ -416,20 +440,21 @@ export function ExternalUirPanel({
               <input
                 type="checkbox"
                 checked={routeConfirmed}
-                onChange={(event) => setRouteConfirmed(event.target.checked)}
+                onChange={(event) => {
+                  setRouteConfirmed(event.target.checked);
+                  onRouteConfirmationChange?.(event.target.checked);
+                }}
               />
-              <span>Confirm reviewed schema/template selection</span>
+              <span>已人工确认 Schema / 模板选择</span>
             </label>
           ) : null}
-          <small className="external-task-notice">
-            Creates the task only. Execution remains a separate action.
-          </small>
+          {enableTaskCreation ? <small className="external-task-notice">仅创建任务，执行仍需单独操作。</small> : null}
         </div>
       ) : null}
 
       {result ? (
         <details className="json-details external-details">
-          <summary>Adapter report JSON</summary>
+          <summary>适配报告 JSON</summary>
           <pre>{JSON.stringify(result.adapter_report, null, 2)}</pre>
         </details>
       ) : null}
