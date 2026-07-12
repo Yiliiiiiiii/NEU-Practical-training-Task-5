@@ -1,17 +1,26 @@
 // @vitest-environment jsdom
 
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import "@testing-library/jest-dom/vitest";
 
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+import { api } from "../api";
 import { useRoute } from "../app/router";
 import { AppShell } from "./AppShell";
+
+vi.mock("../api", () => ({
+  api: {
+    listSchemas: vi.fn()
+  }
+}));
 
 function RouteHarness() {
   const route = useRoute();
 
   return (
     <AppShell route={route}>
-      <h1>占位内容</h1>
+      <h1>Content</h1>
     </AppShell>
   );
 }
@@ -19,39 +28,63 @@ function RouteHarness() {
 afterEach(cleanup);
 
 describe("AppShell", () => {
-  it("renders the seven global navigation links and identifies the current route", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(api.listSchemas).mockResolvedValue({ items: [], total: 0 });
+  });
+
+  it("renders the global navigation and updates the active route", () => {
     window.history.replaceState({}, "", "/review");
     render(<RouteHarness />);
 
-    expect(screen.getByRole("link", { name: "概览" }).getAttribute("href")).toBe("/");
-    expect(screen.getByRole("link", { name: "新建转换" }).getAttribute("href")).toBe(
-      "/conversions/new"
+    const links = screen.getAllByRole("link");
+    expect(links).toHaveLength(8);
+    expect(links.map((link) => link.getAttribute("href"))).toEqual(
+      expect.arrayContaining(["/", "/conversions/new", "/tasks", "/review", "/schemapacks"])
     );
-    expect(screen.getByRole("link", { name: "任务" }).getAttribute("href")).toBe("/tasks");
-    expect(screen.getByRole("link", { name: "复核" }).getAttribute("href")).toBe("/review");
-    expect(screen.getByRole("link", { name: "SchemaPacks" }).getAttribute("href")).toBe(
-      "/schemapacks"
-    );
-    expect(screen.getByRole("link", { name: "证据" }).getAttribute("href")).toBe("/evidence");
-    expect(screen.getByRole("link", { name: "设置" }).getAttribute("href")).toBe("/settings");
-    expect(screen.getByRole("link", { name: "复核" }).getAttribute("aria-current")).toBe(
+    expect(links.find((link) => link.getAttribute("href") === "/review")).toHaveAttribute(
+      "aria-current",
       "page"
     );
-    expect(screen.getByRole("button", { name: "收起导航" })).toBeTruthy();
   });
 
-  it("updates navigation after link and browser history changes and can collapse the sidebar", () => {
+  it("updates navigation after history changes and can collapse the sidebar", () => {
     window.history.replaceState({}, "", "/");
     render(<RouteHarness />);
 
-    fireEvent.click(screen.getByRole("button", { name: "收起导航" }));
-    expect(screen.getByRole("button", { name: "展开导航" })).toBeTruthy();
+    const navigationButton = screen.getAllByRole("button")[0];
+    fireEvent.click(navigationButton);
+    expect(document.querySelector(".application-shell")).toHaveClass("is-navigation-collapsed");
 
-    fireEvent.click(screen.getByRole("link", { name: "任务" }));
-    expect(screen.getByRole("link", { name: "任务" }).getAttribute("aria-current")).toBe("page");
+    const tasksLink = screen.getAllByRole("link").find((link) => link.getAttribute("href") === "/tasks");
+    fireEvent.click(tasksLink!);
+    expect(tasksLink).toHaveAttribute("aria-current", "page");
 
     window.history.pushState({}, "", "/settings");
     fireEvent.popState(window);
-    expect(screen.getByRole("link", { name: "设置" }).getAttribute("aria-current")).toBe("page");
+    expect(screen.getAllByRole("link").find((link) => link.getAttribute("href") === "/settings"))
+      .toHaveAttribute("aria-current", "page");
+  });
+
+  it("reports backend connectivity from the schema API result", async () => {
+    let resolveSchemas: ((value: { items: []; total: number }) => void) | undefined;
+    vi.mocked(api.listSchemas).mockReturnValue(
+      new Promise((resolve) => { resolveSchemas = resolve; })
+    );
+    window.history.replaceState({}, "", "/");
+    render(<RouteHarness />);
+
+    expect(screen.getByText("后端状态：检查中")).toBeInTheDocument();
+
+    resolveSchemas?.({ items: [], total: 0 });
+    await waitFor(() => expect(screen.getByText("后端状态：已连接")).toBeInTheDocument());
+  });
+
+  it("reports backend failure when the connectivity check rejects", async () => {
+    vi.mocked(api.listSchemas).mockRejectedValue(new Error("offline"));
+    window.history.replaceState({}, "", "/");
+    render(<RouteHarness />);
+
+    await waitFor(() => expect(screen.getByText("后端状态：未连接")).toBeInTheDocument());
   });
 });

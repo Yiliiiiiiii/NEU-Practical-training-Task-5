@@ -5,6 +5,7 @@ import { LineagePanel } from "../../components/LineagePanel";
 import { PageState } from "../../components/feedback/PageState";
 import { StatusBadge } from "../../components/status/StatusBadge";
 import type {
+  AuditLogListResponse,
   ChunksReport,
   ContentOrganizationReport,
   MappingReport,
@@ -21,7 +22,7 @@ import { PackageTab } from "./PackageTab";
 import { ValidationTab } from "./ValidationTab";
 
 type Tab = "overview" | "mapping" | "validation" | "content" | "package" | "lineage" | "execution";
-type ReportState<T> = { loading: boolean; data: T | null };
+type ReportState<T> = { loading: boolean; data: T | null; error?: string };
 
 const tabs: Array<{ id: Tab; label: string }> = [
   { id: "overview", label: "概览" },
@@ -53,6 +54,7 @@ export function TaskDetailPage({ taskId }: { taskId: string }) {
   const [manifest, setManifest] = useState<ReportState<PackageManifest>>(pending);
   const [verifier, setVerifier] = useState<ReportState<VerifierReport>>(pending);
   const [packageMetadata, setPackageMetadata] = useState<ReportState<PackageMetadata>>(pending);
+  const [auditLogs, setAuditLogs] = useState<ReportState<AuditLogListResponse>>(pending);
 
   useEffect(() => {
     let active = true;
@@ -66,6 +68,15 @@ export function TaskDetailPage({ taskId }: { taskId: string }) {
     setManifest(pending());
     setVerifier(pending());
     setPackageMetadata(pending());
+    setAuditLogs(pending());
+
+    void api.listAuditLogs(taskId)
+      .then((data) => active && setAuditLogs({ loading: false, data }))
+      .catch((caught) => active && setAuditLogs({
+        loading: false,
+        data: null,
+        error: caught instanceof Error ? caught.message : "审计记录读取失败。"
+      }));
 
     void api.getTask(taskId)
       .then((result) => {
@@ -153,7 +164,14 @@ export function TaskDetailPage({ taskId }: { taskId: string }) {
             {activeTab === "content" ? <ContentTab organization={contentOrganization.data} chunks={chunks.data} loading={contentOrganization.loading || chunks.loading} /> : null}
             {activeTab === "package" ? <PackageTab taskId={task.task_id} manifest={manifest.data} verifier={verifier.data} packageMetadata={packageMetadata.data} loading={manifest.loading || verifier.loading || packageMetadata.loading} packageDownloadUrl={api.packageDownloadUrl} /> : null}
             {activeTab === "lineage" ? <LineagePanel taskId={task.task_id} available={Boolean(task.report_paths.lineage_graph || task.report_paths.lineage)} /> : null}
-            {activeTab === "execution" ? <ExecutionTab task={task} /> : null}
+            {activeTab === "execution" ? (
+              <ExecutionTab
+                task={task}
+                auditLogs={auditLogs.data?.items ?? null}
+                auditLoading={auditLogs.loading}
+                auditError={auditLogs.error}
+              />
+            ) : null}
           </div>
         </>
       ) : null}

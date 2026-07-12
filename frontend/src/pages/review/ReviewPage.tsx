@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import { api } from "../../api";
+import { KnowledgeGovernancePanel } from "../../components/KnowledgeGovernancePanel";
 import { PageState } from "../../components/feedback/PageState";
 import type { ReviewImpactPreview, ReviewRecord } from "../../types";
 
@@ -166,12 +167,9 @@ export function ReviewPage() {
         <button type="button" onClick={() => void decide("reject")} disabled={working || !selectedReview}>
           拒绝
         </button>
-        <button type="button" disabled title="当前 API 不支持暂缓决策">
-          暂缓（当前 API 不支持）
-        </button>
-        <span>暂缓操作原因：当前 API 不支持。</span>
       </section>
       {message ? <p role="status">{message}</p> : null}
+      <KnowledgeGovernancePanel />
     </section>
   );
 }

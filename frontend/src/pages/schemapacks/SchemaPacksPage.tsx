@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 
 import { api } from "../../api";
 import { PageState } from "../../components/feedback/PageState";
@@ -9,12 +9,18 @@ import type { MappingTemplate, TargetSchema } from "../../types";
 
 type Tab = "catalog" | "draft";
 
+const tabs: Array<{ id: Tab; label: string }> = [
+  { id: "catalog", label: "目录" },
+  { id: "draft", label: "Schema Draft 实验室" }
+];
+
 function requiredCount(schema: TargetSchema) {
   return schema.fields ? schema.fields.filter((field) => field.required).length : null;
 }
 
 export function SchemaPacksPage() {
   const [tab, setTab] = useState<Tab>("catalog");
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [schemas, setSchemas] = useState<TargetSchema[]>([]);
   const [templates, setTemplates] = useState<MappingTemplate[]>([]);
   const [selectedSchemaId, setSelectedSchemaId] = useState("");
@@ -49,6 +55,17 @@ export function SchemaPacksPage() {
     [selectedSchemaId, templates]
   );
 
+  function moveTab(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const nextIndex =
+      event.key === "Home" ? 0 :
+      event.key === "End" ? tabs.length - 1 :
+      (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+    setTab(tabs[nextIndex].id);
+    tabRefs.current[nextIndex]?.focus();
+  }
+
   return (
     <section className="route-placeholder operations-page schemapacks-page" aria-labelledby="schemapacks-title">
       <p className="page-eyebrow">SchemaPacks</p>
@@ -58,11 +75,26 @@ export function SchemaPacksPage() {
       </p>
 
       <div className="operations-tabs schemapacks-tabs" role="tablist" aria-label="SchemaPacks 页面">
-        <button type="button" role="tab" aria-selected={tab === "catalog"} onClick={() => setTab("catalog")}>目录</button>
-        <button type="button" role="tab" aria-selected={tab === "draft"} onClick={() => setTab("draft")}>Schema Draft 实验室</button>
+        {tabs.map((item, index) => (
+          <button
+            key={item.id}
+            ref={(element) => { tabRefs.current[index] = element; }}
+            id={`schemapacks-tab-${item.id}`}
+            type="button"
+            role="tab"
+            aria-selected={tab === item.id}
+            aria-controls={`schemapacks-panel-${item.id}`}
+            tabIndex={tab === item.id ? 0 : -1}
+            onClick={() => setTab(item.id)}
+            onKeyDown={(event) => moveTab(event, index)}
+          >{item.label}</button>
+        ))}
       </div>
 
-      {tab === "draft" ? <SchemaDraftLabPanel /> : null}
+      <div id="schemapacks-panel-draft" role="tabpanel" aria-labelledby="schemapacks-tab-draft" hidden={tab !== "draft"}>
+        {tab === "draft" ? <SchemaDraftLabPanel /> : null}
+      </div>
+      <div id="schemapacks-panel-catalog" role="tabpanel" aria-labelledby="schemapacks-tab-catalog" hidden={tab !== "catalog"}>
       {tab === "catalog" && loading ? <PageState kind="loading" title="正在读取 SchemaPacks" /> : null}
       {tab === "catalog" && error ? <PageState kind="error" title="SchemaPack 目录读取失败" detail={error} /> : null}
       {tab === "catalog" && !loading && !error && !schemas.length && !templates.length ? (
@@ -140,6 +172,7 @@ export function SchemaPacksPage() {
           </section>
         </>
       ) : null}
+      </div>
     </section>
   );
 }

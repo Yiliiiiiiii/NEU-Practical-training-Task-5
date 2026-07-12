@@ -46,15 +46,50 @@ describe("TasksPage", () => {
     render(<TasksPage />);
 
     expect(await screen.findByText("task-alpha")).toBeInTheDocument();
-
-    fireEvent.change(screen.getByLabelText("搜索任务"), {
-      target: { value: "beta" }
-    });
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "beta" } });
 
     expect(screen.queryByText("task-alpha")).not.toBeInTheDocument();
     expect(screen.getByText("task-beta")).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: "打开 task-beta" }));
+    fireEvent.click(screen.getByRole("button", { name: /task-beta$/ }));
     expect(window.location.pathname).toBe("/tasks/task-beta");
+  });
+
+  it("loads every API page before applying local filters", async () => {
+    const firstPage = Array.from({ length: 100 }, (_, index) => ({
+      task_id: `task-${index + 1}`,
+      doc_id: `doc-${index + 1}`,
+      schema_id: "notice",
+      template_id: "notice-v1",
+      status: "completed"
+    }));
+    const secondPage = Array.from({ length: 5 }, (_, index) => ({
+      task_id: `task-${index + 101}`,
+      doc_id: `doc-${index + 101}`,
+      schema_id: "notice",
+      template_id: "notice-v1",
+      status: "completed"
+    }));
+    vi.mocked(api.listTasks).mockImplementation((page) =>
+      Promise.resolve({ items: page === 1 ? firstPage : secondPage, total: 105 })
+    );
+
+    render(<TasksPage />);
+
+    await screen.findByText("task-1");
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "task-105" } });
+
+    expect(await screen.findByText("task-105")).toBeInTheDocument();
+    expect(api.listTasks).toHaveBeenNthCalledWith(1, 1, 100);
+    expect(api.listTasks).toHaveBeenNthCalledWith(2, 2, 100);
+  });
+
+  it("does not expose package downloads from a completed task list row", async () => {
+    render(<TasksPage />);
+
+    await screen.findByText("task-beta");
+
+    expect(screen.queryByRole("link", { name: /Package/ })).not.toBeInTheDocument();
+    expect(screen.getAllByText(/任务详情.*Package/)).toHaveLength(2);
+    expect(api.packageDownloadUrl).not.toHaveBeenCalled();
   });
 });

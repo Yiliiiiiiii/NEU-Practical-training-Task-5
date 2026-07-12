@@ -18,6 +18,7 @@ vi.mock("../../api", () => ({
     getManifestReport: vi.fn(),
     getVerifierReport: vi.fn(),
     getPackage: vi.fn(),
+    listAuditLogs: vi.fn(),
     packageDownloadUrl: vi.fn((taskId: string) => `/downloads/${taskId}`)
   }
 }));
@@ -101,6 +102,21 @@ function prepareReports() {
     sha256: "package-sha",
     created_at: "2026-07-12T00:00:00Z"
   });
+  vi.mocked(api.listAuditLogs).mockResolvedValue({
+    total: 1,
+    items: [{
+      audit_id: "audit-1",
+      created_at: "2026-07-12T10:00:00Z",
+      action: "task.execute",
+      entity_type: "task",
+      entity_id: "task-1",
+      method: "POST",
+      path: "/api/v1/tasks/task-1/execute",
+      status_code: 200,
+      success: true,
+      metadata: { status: "completed" }
+    }]
+  });
 }
 
 beforeEach(() => {
@@ -164,5 +180,15 @@ describe("TaskDetailPage", () => {
     await waitFor(() => {
       expect(screen.getByText("映射报告尚未生成")).toBeInTheDocument();
     });
+  });
+
+  it("loads task audit logs independently and renders audit events", async () => {
+    render(<TaskDetailPage taskId="task-1" />);
+
+    await screen.findByText("task-1");
+    fireEvent.click(screen.getByRole("tab", { name: "执行" }));
+
+    expect(await screen.findByText("task.execute")).toBeInTheDocument();
+    expect(api.listAuditLogs).toHaveBeenCalledWith("task-1");
   });
 });

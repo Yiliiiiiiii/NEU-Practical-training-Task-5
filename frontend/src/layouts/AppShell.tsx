@@ -10,8 +10,9 @@ import {
   SquarePlus,
   type LucideIcon
 } from "lucide-react";
-import { useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 
+import { api } from "../api";
 import { navigate, type AppRoute } from "../app/router";
 
 type NavigationItem = {
@@ -82,8 +83,20 @@ function handleNavigation(event: MouseEvent<HTMLAnchorElement>, href: string) {
 
 export function AppShell({ route, children }: AppShellProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [backendStatus, setBackendStatus] = useState<"checking" | "connected" | "disconnected">("checking");
   const ToggleIcon = isCollapsed ? PanelLeftOpen : PanelLeftClose;
   const toggleLabel = isCollapsed ? "展开导航" : "收起导航";
+
+  useEffect(() => {
+    let active = true;
+    void api.listSchemas()
+      .then(() => active && setBackendStatus("connected"))
+      .catch(() => active && setBackendStatus("disconnected"));
+    return () => { active = false; };
+  }, []);
+
+  const backendStatusLabel =
+    backendStatus === "checking" ? "检查中" : backendStatus === "connected" ? "已连接" : "未连接";
 
   return (
     <div className={`application-shell${isCollapsed ? " is-navigation-collapsed" : ""}`}>
@@ -138,7 +151,7 @@ export function AppShell({ route, children }: AppShellProps) {
             <span>本地环境</span>
           </div>
           <div className="application-session" aria-label="应用状态">
-            <span className="backend-status"><i aria-hidden="true" />后端状态：未连接</span>
+            <span className="backend-status"><i aria-hidden="true" />后端状态：{backendStatusLabel}</span>
             <span>本地会话</span>
           </div>
         </header>

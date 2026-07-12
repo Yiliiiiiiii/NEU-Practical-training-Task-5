@@ -9,15 +9,27 @@ import { DataTable } from "../../components/tables/DataTable";
 import type { TaskListItem } from "../../types";
 
 const pageSize = 10;
+const apiPageSize = 100;
 
 type SortKey = "task_id" | "doc_id" | "schema_id" | "template_id" | "status";
 
-function canDownload(task: TaskListItem) {
-  return ["completed", "verified"].includes(task.status.toLowerCase());
-}
-
 function compareText(left: string, right: string) {
   return left.localeCompare(right, "zh-CN", { numeric: true, sensitivity: "base" });
+}
+
+async function listAllTasks() {
+  const firstPage = await api.listTasks(1, apiPageSize);
+  const items = [...firstPage.items];
+
+  for (let page = 2; items.length < firstPage.total; page += 1) {
+    const nextPage = await api.listTasks(page, apiPageSize);
+    if (!nextPage.items.length) {
+      throw new Error("任务列表分页数据不完整。");
+    }
+    items.push(...nextPage.items);
+  }
+
+  return { items, total: firstPage.total };
 }
 
 export function TasksPage() {
@@ -40,7 +52,7 @@ export function TasksPage() {
     setLoading(true);
     setError("");
     try {
-      const result = await api.listTasks();
+      const result = await listAllTasks();
       setTasks(result.items);
       setServerTotal(typeof result.total === "number" ? result.total : null);
       setPage(1);
@@ -186,16 +198,7 @@ export function TasksPage() {
                       >
                         打开
                       </button>
-                      {canDownload(task) ? (
-                        <a
-                          href={api.packageDownloadUrl(task.task_id)}
-                          aria-label={`下载 ${task.task_id} Package`}
-                        >
-                          下载 Package
-                        </a>
-                      ) : (
-                        <span title="仅已完成或已验证的任务可下载 Package">—</span>
-                      )}
+                      <span>请在任务详情完成验证后下载 Package</span>
                     </td>
                   </tr>
                 ))}
