@@ -131,7 +131,21 @@ describe("TaskDetailPage", () => {
     expect(link).toHaveAttribute("href", "/downloads/task-1");
   });
 
-  it("labels unaccepted LLM mapping suggestions clearly", async () => {
+  it("labels LLM mapping suggestions as unaccepted even when the backend marks them auto accepted", async () => {
+    vi.mocked(api.getMappingReport).mockResolvedValue({
+      task_id: "task-1",
+      schema_id: "notice",
+      summary: {},
+      mappings: [{
+        source_candidate: "标题",
+        source_path: "blocks[0].text",
+        target_field: "title",
+        suggested_by: "llm",
+        auto_accepted: true
+      }],
+      unmapped: [],
+      review_required_items: []
+    });
     render(<TaskDetailPage taskId="task-1" />);
 
     await screen.findByText("task-1");

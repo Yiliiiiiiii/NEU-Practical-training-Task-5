@@ -38,7 +38,7 @@ export function ReviewRunStep({
       <header className="conversion-step-header">
         <p>步骤 4</p>
         <h1 id="conversion-review-title">复核并运行</h1>
-        <p>运行时会按需要导入标准 UIR、创建任务并执行任务。</p>
+        <p>运行时会按需要导入标准 UIR、创建任务，并跳转到执行页面。</p>
       </header>
 
       <section className="conversion-review-section" aria-labelledby="conversion-review-input-title">

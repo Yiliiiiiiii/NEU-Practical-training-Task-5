@@ -5,6 +5,7 @@ import { navigate } from "../../app/router";
 import { WorkflowLayout } from "../../layouts/WorkflowLayout";
 import type {
   ContentOrganizationOptions,
+  ExternalUirAdapterReport,
   ExternalUirImportResponse,
   ExternalUirRouteReport,
   MappingTemplate,
@@ -42,6 +43,7 @@ export function ConversionPage() {
   const [validation, setValidation] = useState<UirValidationResult | null>(null);
   const [importedDocId, setImportedDocId] = useState("");
   const [externalRoute, setExternalRoute] = useState<ExternalUirRouteReport | null>(null);
+  const [externalAdapterReport, setExternalAdapterReport] = useState<ExternalUirAdapterReport | null>(null);
   const [externalRouteConfirmed, setExternalRouteConfirmed] = useState(false);
   const [externalWarnings, setExternalWarnings] = useState<string[]>([]);
   const [schemas, setSchemas] = useState<TargetSchema[]>([]);
@@ -135,6 +137,7 @@ export function ConversionPage() {
     setValidation(null);
     setImportedDocId("");
     setExternalRoute(null);
+    setExternalAdapterReport(null);
     setExternalRouteConfirmed(false);
     setExternalWarnings([]);
     setRunMessage("");
@@ -146,6 +149,7 @@ export function ConversionPage() {
     setValidation(validateUirText(value));
     setImportedDocId("");
     setExternalRoute(null);
+    setExternalAdapterReport(null);
     setExternalRouteConfirmed(false);
     setExternalWarnings([]);
     setRunMessage("");
@@ -162,6 +166,7 @@ export function ConversionPage() {
       const imported = await api.importDocument(document);
       setImportedDocId(imported.doc_id);
       setExternalRoute(null);
+      setExternalAdapterReport(null);
       setExternalRouteConfirmed(false);
     } finally {
       setWorking(false);
@@ -170,6 +175,9 @@ export function ConversionPage() {
 
   function receiveExternalImport(response: ExternalUirImportResponse) {
     setImportedDocId(response.doc_id);
+    setExternalRoute(response.route_report);
+    setExternalAdapterReport(response.adapter_report);
+    setExternalRouteConfirmed(false);
     setExternalWarnings(response.warnings);
     setRunMessage("");
   }
@@ -198,13 +206,19 @@ export function ConversionPage() {
         docId = imported.doc_id;
         setImportedDocId(docId);
       }
-      const created = await api.createTask({
+      const taskPayload = {
         doc_id: docId,
         schema_id: schemaPack.schema.schema_id,
         template_id: schemaPack.template.template_id,
         options: { content_organization: options }
-      });
-      await api.executeTask(created.task_id);
+      };
+      const created = externalRoute && externalAdapterReport
+        ? await api.createExternalUirTask({
+          ...taskPayload,
+          route_report: externalRoute,
+          adapter_report: externalAdapterReport
+        })
+        : await api.createTask(taskPayload);
       navigate(`/conversions/executing/${encodeURIComponent(created.task_id)}`);
     } catch (caught) {
       setRunMessage(caught instanceof Error ? caught.message : "转换运行失败。"

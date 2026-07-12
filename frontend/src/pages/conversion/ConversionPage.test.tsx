@@ -14,7 +14,10 @@ vi.mock("../../api", () => ({
     listTemplates: vi.fn(),
     listExternalUirAdapters: vi.fn(),
     importDocument: vi.fn(),
+    convertExternalUir: vi.fn(),
+    importExternalUir: vi.fn(),
     createTask: vi.fn(),
+    createExternalUirTask: vi.fn(),
     executeTask: vi.fn()
   }
 }));
@@ -24,6 +27,46 @@ const uirText = JSON.stringify({
   metadata: { title: "政策示例" },
   blocks: [{ block_id: "b-1", type: "paragraph", text: "正文" }]
 });
+
+const externalAdapterReport = {
+  adapter_id: "topic11",
+  adapter_version: "1.0.0",
+  source_system: "topic11",
+  external_doc_id: "external-doc",
+  generated_doc_id: "external-doc",
+  status: "converted",
+  trace_coverage: 1,
+  block_count: 1,
+  table_count: 0,
+  warning_count: 0,
+  error_count: 0,
+  trace_items: [],
+  assisted_suggestions: [],
+  llm_used: true,
+  llm_auto_accepted_count: 3,
+  warnings: [],
+  errors: [],
+  raw_payload_hash: "adapter-sha"
+};
+
+const externalRouteReport = {
+  selected_schema_id: "policy",
+  selected_template_id: "policy-template",
+  confidence: 0.92,
+  reason: "命中确定性路由规则",
+  alternatives: [],
+  review_required: true,
+  candidates: [{
+    schema_id: "policy",
+    template_id: "policy-template",
+    confidence: 0.92,
+    reasons: ["命中标题字段"],
+    evidence: [],
+    risk_flags: []
+  }],
+  decision_reason: "需要人工确认后才能创建任务",
+  route_version: "1.0.0"
+};
 
 beforeEach(() => {
   window.history.replaceState({}, "", "/conversions/new");
@@ -57,6 +100,12 @@ beforeEach(() => {
   vi.mocked(api.listExternalUirAdapters).mockResolvedValue({ items: [] });
   vi.mocked(api.importDocument).mockResolvedValue({ doc_id: "imported-doc", status: "imported", block_count: 1 });
   vi.mocked(api.createTask).mockResolvedValue({ task_id: "task-1", status: "pending" });
+  vi.mocked(api.createExternalUirTask).mockResolvedValue({
+    task_id: "external-task-1",
+    status: "pending",
+    review_required: true,
+    warnings: []
+  });
   vi.mocked(api.executeTask).mockResolvedValue({
     task_id: "task-1",
     status: "completed",
@@ -83,7 +132,7 @@ describe("ConversionPage", () => {
     expect(screen.getByRole("alert")).toHaveTextContent("JSON 格式无效。");
   });
 
-  it("blocks progression until UIR validation and runs the normal UIR task sequence", async () => {
+  it("blocks progression until UIR validation and creates a normal UIR task before navigating", async () => {
     render(<ConversionPage />);
 
     expect(screen.getByRole("button", { name: "下一步" })).toBeDisabled();
@@ -107,7 +156,55 @@ describe("ConversionPage", () => {
       schema_id: "policy",
       template_id: "policy-template"
     }));
-    expect(api.executeTask).toHaveBeenCalledWith("task-1");
+    expect(api.createExternalUirTask).not.toHaveBeenCalled();
+    expect(api.executeTask).not.toHaveBeenCalled();
     expect(window.location.pathname).toBe("/conversions/executing/task-1");
+  });
+
+  it("preserves imported External UIR route and adapter provenance when creating its task", async () => {
+    vi.mocked(api.convertExternalUir).mockResolvedValue({
+      standard_uir: JSON.parse(uirText),
+      adapter_report: externalAdapterReport,
+      route_report: externalRouteReport,
+      warnings: [],
+      errors: []
+    });
+    vi.mocked(api.importExternalUir).mockResolvedValue({
+      doc_id: "external-doc",
+      document: { doc_id: "external-doc", title: "外部文档", block_count: 1 },
+      adapter_report: externalAdapterReport,
+      route_report: externalRouteReport,
+      warnings: []
+    });
+    render(<ConversionPage />);
+
+    fireEvent.change(screen.getByRole("textbox", { name: "External UIR JSON" }), {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "转换并预览" }));
+
+    await waitFor(() => expect(api.convertExternalUir).toHaveBeenCalledTimes(1));
+    expect(screen.getByText("建议待人工处理（未自动采纳）")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "导入标准 UIR" }));
+    await waitFor(() => expect(api.importExternalUir).toHaveBeenCalledTimes(1));
+
+    fireEvent.click(await screen.findByRole("checkbox", { name: "已人工确认 Schema / 模板选择" }));
+    fireEvent.click(screen.getByRole("button", { name: "下一步" }));
+    fireEvent.click(await screen.findByRole("radio", { name: /政策 Schema/ }));
+    fireEvent.click(screen.getByRole("button", { name: "下一步" }));
+    fireEvent.click(screen.getByRole("button", { name: "下一步" }));
+    fireEvent.click(screen.getByRole("button", { name: "运行转换" }));
+
+    await waitFor(() => expect(api.createExternalUirTask).toHaveBeenCalledWith({
+      doc_id: "external-doc",
+      schema_id: "policy",
+      template_id: "policy-template",
+      options: expect.any(Object),
+      route_report: externalRouteReport,
+      adapter_report: externalAdapterReport
+    }));
+    expect(api.createTask).not.toHaveBeenCalled();
+    expect(api.executeTask).not.toHaveBeenCalled();
+    expect(window.location.pathname).toBe("/conversions/executing/external-task-1");
   });
 });

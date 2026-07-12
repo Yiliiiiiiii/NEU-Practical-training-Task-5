@@ -68,8 +68,7 @@ export function ExternalUirPanel({
       blocks: Array.isArray(result.standard_uir?.blocks) ? result.standard_uir.blocks.length : 0,
       traces: report.trace_items.length,
       traceCoverage: `${Math.round((report.trace_coverage ?? 0) * 100)}%`,
-      llmUsed: report.llm_used,
-      autoAccepted: report.llm_auto_accepted_count
+      llmUsed: report.llm_used
     };
   }, [result]);
 
@@ -337,10 +336,8 @@ export function ExternalUirPanel({
           <strong>{adapterSummary.traces}</strong>
           <span>覆盖率</span>
           <strong>{adapterSummary.traceCoverage}</strong>
-          <span>LLM</span>
-          <strong>{adapterSummary.llmUsed ? "已使用" : "未使用"}</strong>
-          <span>自动采纳</span>
-          <strong>{adapterSummary.autoAccepted}</strong>
+          <span>LLM 建议</span>
+          <strong>{adapterSummary.llmUsed ? "建议待人工处理（未自动采纳）" : "未使用"}</strong>
         </div>
       ) : null}
 

@@ -19,14 +19,17 @@ function valueOf(row: MappingRow, keys: string[]) {
 }
 
 function statusLabel(row: MappingRow) {
-  const flags = Array.isArray(row.risk_flags) ? row.risk_flags.map(String) : [];
+  const flags = Array.isArray(row.risk_flags) ? row.risk_flags.map((flag) => String(flag).toLowerCase()) : [];
   const status = String(row.status ?? "").toLowerCase();
   const llmSuggested = Boolean(
-    row.llm_metadata || row.suggested_by === "llm" || row.method === "llm_fallback" || flags.includes("llm_suggestion")
+    row.llm_metadata ||
+    String(row.suggested_by ?? "").toLowerCase().includes("llm") ||
+    String(row.method ?? "").toLowerCase().includes("llm") ||
+    flags.includes("llm_suggestion")
   );
+  if (llmSuggested) return "LLM 建议（未自动采纳）";
   if (row.collection === "unmapped" || status === "unmapped") return "未映射";
   if (status === "blocked" || flags.includes("badcase_blocked") || flags.includes("blocked")) return "已阻断";
-  if (llmSuggested && row.auto_accepted !== true) return "LLM 建议（未自动采纳）";
   if (row.collection === "review" || row.review_required === true || status === "review_required") return "需要复核";
   return "自动采纳";
 }
