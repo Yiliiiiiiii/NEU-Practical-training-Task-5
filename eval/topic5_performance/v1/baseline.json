@@ -1,0 +1,127 @@
+{
+  "baseline_comparison": {
+    "passed": true,
+    "regressions": [],
+    "status": "captured"
+  },
+  "case_count": 4,
+  "cases": [
+    {
+      "artifact_bytes": 30426,
+      "block_count": 10,
+      "candidate_count": 11,
+      "chunk_count": 10,
+      "fixture": "10.json",
+      "passed": true,
+      "peak_memory_bytes": 452565,
+      "stage_durations_ms": {
+        "candidate_extraction": 23.976,
+        "canonical": 0.372,
+        "chunk": 26.466,
+        "mapping": 6.952,
+        "metadata": 0.115,
+        "render": 0.752,
+        "total": 87.297,
+        "transform": 6.982,
+        "validation": 0.187,
+        "validation_and_consistency": 1.072,
+        "verification": 0.885
+      },
+      "status": "completed",
+      "total_duration_ms": 87.297
+    },
+    {
+      "artifact_bytes": 292999,
+      "block_count": 100,
+      "candidate_count": 43,
+      "chunk_count": 100,
+      "fixture": "100.json",
+      "passed": true,
+      "peak_memory_bytes": 2527522,
+      "stage_durations_ms": {
+        "candidate_extraction": 8.622,
+        "canonical": 1.504,
+        "chunk": 63.241,
+        "mapping": 21.361,
+        "metadata": 0.106,
+        "render": 3.08,
+        "total": 303.383,
+        "transform": 0.253,
+        "validation": 1.203,
+        "validation_and_consistency": 11.017,
+        "verification": 9.814
+      },
+      "status": "completed",
+      "total_duration_ms": 303.383
+    },
+    {
+      "artifact_bytes": 2927999,
+      "block_count": 1000,
+      "candidate_count": 403,
+      "chunk_count": 1000,
+      "fixture": "1000.json",
+      "passed": true,
+      "peak_memory_bytes": 24882305,
+      "stage_durations_ms": {
+        "candidate_extraction": 96.798,
+        "canonical": 12.567,
+        "chunk": 688.95,
+        "mapping": 239.839,
+        "metadata": 0.11,
+        "render": 24.59,
+        "total": 3171.769,
+        "transform": 0.183,
+        "validation": 5.123,
+        "validation_and_consistency": 94.356,
+        "verification": 89.233
+      },
+      "status": "completed",
+      "total_duration_ms": 3171.769
+    },
+    {
+      "artifact_bytes": 29383957,
+      "block_count": 10000,
+      "candidate_count": 4003,
+      "chunk_count": 10000,
+      "fixture": "10000.json",
+      "passed": true,
+      "peak_memory_bytes": 248084557,
+      "stage_durations_ms": {
+        "candidate_extraction": 1256.562,
+        "canonical": 188.559,
+        "chunk": 12564.397,
+        "mapping": 3019.91,
+        "metadata": 0.123,
+        "render": 366.233,
+        "total": 38521.327,
+        "transform": 0.306,
+        "validation": 65.657,
+        "validation_and_consistency": 1670.155,
+        "verification": 1604.498
+      },
+      "status": "completed",
+      "total_duration_ms": 38521.327
+    }
+  ],
+  "claim_boundary": "Measured on the recorded host; no absolute production SLO claim.",
+  "commit_sha": "7fb7e762471338340dfb84452f22e188d6c4fb29",
+  "dataset_id": "topic5_performance",
+  "dataset_version": "1.0.0",
+  "environment": {
+    "logical_cpu_count": 16,
+    "memory_measurement": "tracemalloc Python allocations",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.13.5",
+    "total_memory_bytes": null
+  },
+  "passed_count": 4,
+  "reproduction_command": "python scripts/eval_topic5_performance.py",
+  "scaling": {
+    "declared_expectation": "approximately linear in block count",
+    "duration_ratio_1000_to_10000": 12.145060690107004,
+    "quadratic_blowup_detected": false,
+    "size_ratio_1000_to_10000": 10.0
+  },
+  "status": "passed"
+}
