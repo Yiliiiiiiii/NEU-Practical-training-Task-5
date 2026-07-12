@@ -208,6 +208,36 @@ def ratio(numerator: int, denominator: int) -> float:
     return float(numerator) / float(denominator) if denominator else 0.0
 
 
+def multilabel_accuracy(expected: set[str], actual: set[str]) -> float:
+    """Return per-sample Jaccard accuracy for a multilabel prediction."""
+    union = expected | actual
+    return ratio(len(expected & actual), len(union)) if union else 1.0
+
+
+def _known_runtime_tags(runtime: Any, dataset: TagV2Dataset) -> dict[str, set[str]]:
+    known = {
+        category: {str(record["tag"]) for record in dataset.taxonomy[category]}
+        for category in ("content", "management", "quality")
+    }
+    for schema_id in runtime.RETRIEVAL.CATALOG:
+        config = runtime.RETRIEVAL.default_options("heading_aware", schema_id)
+        tag_rules = config.get("tag_rules", {})
+        content = tag_rules.get("content", {})
+        known["content"].update(map(str, content.get("base_tags", [])))
+        known["content"].update(
+            str(rule["tag"])
+            for rule in content.get("rules", [])
+            if isinstance(rule, dict) and rule.get("tag")
+        )
+        management = tag_rules.get("management", {})
+        known["management"].update(map(str, management.get("static_tags", [])))
+        quality = tag_rules.get("quality", {})
+        known["quality"].update(
+            map(str, quality.get("enabled_builtin_rules", []))
+        )
+    return known
+
+
 def _correctness(expected: set[str], actual: set[str]) -> dict[str, Any]:
     return {
         "correct": expected == actual,
@@ -248,11 +278,13 @@ def evaluate(root: Path, *, verify_hashes: bool = True) -> dict[str, Any]:
         verify_frozen_hashes(root)
     validate_dataset(dataset)
     runtime = _old_module()
+    known_tags = _known_runtime_tags(runtime, dataset)
     uirs = {str(ref["doc_id"]): _load_uir(ref) for ref in dataset.references}
     chunks = runtime.RETRIEVAL.generate_chunks_for_strategy(
         uirs, strategy="heading_aware"
     )
     content_tp = content_predicted = content_expected = unknown = 0
+    content_accuracies: list[float] = []
     details: list[dict[str, Any]] = []
     management_correct: list[bool] = []
     quality_correct: list[bool] = []
@@ -285,23 +317,22 @@ def evaluate(root: Path, *, verify_hashes: bool = True) -> dict[str, Any]:
         content_tp += len(actual["content"] & expected["content"])
         content_predicted += len(actual["content"])
         content_expected += len(expected["content"])
+        content_accuracies.append(
+            multilabel_accuracy(expected["content"], actual["content"])
+        )
         for category in actual:
-            known = {str(record["tag"]) for record in dataset.taxonomy[category]}
-            unknown += len(actual[category] - known)
+            unknown += len(actual[category] - known_tags[category])
         management_correct.append(actual["management"] == expected["management"])
         quality_correct.append(actual["quality"] == expected["quality"])
         actual_quality_traces = {
-            trace
-            for trace in actual_traces
-            if trace[1].startswith("quality:")
-            or trace[0]
-            in {str(record["tag"]) for record in dataset.taxonomy["quality"]}
+            trace for trace in actual_traces if trace[0] in actual["quality"]
         }
+        categorized_trace_tags = actual["content"] | actual["management"] | actual["quality"]
         actual_management_traces = {
             trace
             for trace in actual_traces
-            if not trace[1].startswith("content:")
-            and trace not in actual_quality_traces
+            if trace[0] in actual["management"]
+            or trace[0] not in categorized_trace_tags
         }
         management_trace_correct.append(
             trace_correctness(management_traces, actual_management_traces)
@@ -356,6 +387,11 @@ def evaluate(root: Path, *, verify_hashes: bool = True) -> dict[str, Any]:
         "sample_count": len(dataset.labels),
         "metrics": {
             "content_semantic": {
+                "accuracy": (
+                    sum(content_accuracies) / len(content_accuracies)
+                    if content_accuracies
+                    else 0.0
+                ),
                 "precision": precision,
                 "recall": recall,
                 "f1": ratio(2 * precision * recall, precision + recall),
@@ -383,6 +419,7 @@ def main() -> None:
         output.write_text(
             json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
+            newline="\n",
         )
     except Exception as exc:
         print(str(exc), file=sys.stderr)

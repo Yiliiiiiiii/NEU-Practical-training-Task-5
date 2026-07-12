@@ -40,7 +40,16 @@ def test_tag_v2_is_valid_hashed_and_separates_semantic_from_rules() -> None:
         "quality_scope_correctness",
         "unknown_tag_count",
     }
-    assert set(report["metrics"]["content_semantic"]) == {"precision", "recall", "f1"}
+    assert set(report["metrics"]["content_semantic"]) == {
+        "accuracy",
+        "precision",
+        "recall",
+        "f1",
+    }
+    assert report["metrics"]["content_semantic"]["accuracy"] >= 0.85
+    assert report["metrics"]["management_trace_correctness"]["rate"] == 1.0
+    assert report["metrics"]["management_scope_correctness"]["rate"] == 1.0
+    assert report["metrics"]["unknown_tag_count"] == 0
     assert "f1" not in report["metrics"]["management_rule_correctness"]
     assert report == module.evaluate(TAG_ROOT)
 
@@ -228,6 +237,15 @@ def test_trace_and_scope_correctness_reject_extra_actual_records() -> None:
     assert module.trace_correctness(expected, expected) is True
     assert module.trace_correctness(expected, actual) is False
     assert module.scope_correctness(expected, actual) is False
+
+
+def test_multilabel_accuracy_penalizes_extra_and_missing_tags() -> None:
+    module = load_module()
+
+    assert module.multilabel_accuracy({"policy"}, {"policy"}) == 1.0
+    assert module.multilabel_accuracy({"policy"}, {"policy", "scope"}) == 0.5
+    assert module.multilabel_accuracy({"policy", "scope"}, {"policy"}) == 0.5
+    assert module.multilabel_accuracy(set(), set()) == 1.0
 
 
 def test_taxonomy_defines_every_tag() -> None:

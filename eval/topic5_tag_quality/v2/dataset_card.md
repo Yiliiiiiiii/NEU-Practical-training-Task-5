@@ -12,7 +12,8 @@ Reviewer role is `independent_dataset_annotator`; claims are limited to
 ## Tag definitions
 
 Every tag and definition is machine-readable in `taxonomy.json`. Content tags are
-independent semantic labels scored with precision/recall/F1. Management and quality
+independent semantic labels scored with multilabel Jaccard accuracy and separately
+reported precision/recall/F1. Management and quality
 tags are deterministic contracts scored only for exact rule, trace, and scope.
 `schema:*` identifies the configured schema; `template_version:*` identifies its
 template version; `source_linked` requires source IDs; `anchor_linked` requires

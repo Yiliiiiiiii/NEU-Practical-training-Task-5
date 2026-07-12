@@ -22,6 +22,8 @@ python scripts/run_topic5_inline_convert.py --request examples/topic5_inline/eve
 
 Runtime boundaries: production runtime starts from UIR or External UIR JSON. It does not parse raw PDF, Word, Excel, images, or scanned documents. The project does not claim production-grade blind recall 0.85. The current stronger mapping metric is assisted recall 0.861, while auto recall still needs improvement. LLM and Codex paths remain report-only or dry-run and do not write production rules.
 
+逐能力的实现类型、适用数据、性能成本、确定性规则/LLM 取舍与私有化部署边界见 [`docs/topic5_capability_matrix.md`](docs/topic5_capability_matrix.md)。
+
 本项目实现课题 5“数据格式标准化转换智能体”。系统接收归一后的结构化中间表示 UIR、目标 Schema/元数据模板/映射规则和内容组织参数，完成字段映射、字段重命名/合并/拆分、Schema 校验、面向 RAG 的分段打标摘要，并封装为人读 Markdown 与机读 JSON/chunks 的标准成果包。
 
 输入为 UIR + Target Schema + Metadata Template + Mapping Rules + Content Organization Config。

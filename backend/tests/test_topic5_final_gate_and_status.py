@@ -47,6 +47,7 @@ def test_runner_contains_all_final_evaluators() -> None:
         "openapi-drift",
         "schemapack-contract-gate",
         "evaluator-tag-quality-v2",
+        "evaluator-llm-ambiguous-mapping",
         "evaluator-field-operations",
         "evaluator-schema-localization",
         "evaluator-mapping-v2-dev",

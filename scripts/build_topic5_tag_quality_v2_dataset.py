@@ -41,6 +41,7 @@ def dump_json(path: Path, value: Any) -> None:
     path.write_text(
         json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 
@@ -50,6 +51,7 @@ def dump_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
             json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows
         ),
         encoding="utf-8",
+        newline="\n",
     )
 
 
@@ -145,6 +147,7 @@ def _write_manifest(
     (output.parent / f"{output.name}.manifest.sha256").write_text(
         hashlib.sha256(manifest_path.read_bytes()).hexdigest() + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 
@@ -192,7 +195,8 @@ def build(output: Path, *, force: bool = False) -> None:
         "## Tag definitions",
         "",
         "Every tag and definition is machine-readable in `taxonomy.json`. Content tags are",
-        "independent semantic labels scored with precision/recall/F1. Management and quality",
+        "independent semantic labels scored with multilabel Jaccard accuracy and separately",
+        "reported precision/recall/F1. Management and quality",
         "tags are deterministic contracts scored only for exact rule, trace, and scope.",
         "`schema:*` identifies the configured schema; `template_version:*` identifies its",
         "template version; `source_linked` requires source IDs; `anchor_linked` requires",
@@ -205,7 +209,7 @@ def build(output: Path, *, force: bool = False) -> None:
         "",
     ]
     (output / "dataset_card.md").write_text(
-        "\n".join(card_lines), encoding="utf-8"
+        "\n".join(card_lines), encoding="utf-8", newline="\n"
     )
     # Provisional metadata lets the evaluator validate counts before the final hash freeze.
     payload_files = {

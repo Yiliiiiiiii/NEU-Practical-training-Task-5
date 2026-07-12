@@ -144,3 +144,7 @@ Metric wording must stay conservative: do not claim production-grade blind recal
 Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.
 
 The current field-mapping evaluation is published at `reports/real_world_mapping_eval_report.md`.
+
+## Capability implementation matrix
+
+The assignment-wide per-capability implementation, applicable input shape, performance/cost, deterministic-rule versus LLM rationale, and private-deployment behavior are documented in [`docs/topic5_capability_matrix.md`](../topic5_capability_matrix.md).
