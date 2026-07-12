@@ -111,6 +111,16 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("TaskDetailPage", () => {
+  it("exposes the task tabs and status with accessible Chinese labels", async () => {
+    render(<TaskDetailPage taskId="task-1" />);
+
+    await screen.findByText("task-1");
+    expect(screen.getByRole("tablist", { name: "任务详情标签" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "概览" })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByRole("tabpanel")).toHaveAttribute("aria-labelledby", "task-tab-overview");
+    expect(screen.getByRole("status", { name: "需要复核" })).toBeInTheDocument();
+  });
+
   it("only enables the verified Package download after the verifier passes", async () => {
     render(<TaskDetailPage taskId="task-1" />);
 

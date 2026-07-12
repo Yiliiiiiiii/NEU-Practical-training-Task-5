@@ -56,7 +56,6 @@ export function WorkflowLayout({
       <aside
         className="conversion-context-summary"
         aria-label="转换上下文摘要"
-        style={{ position: "sticky", top: "1rem", alignSelf: "start" }}
       >
         <h2>当前上下文</h2>
         <dl>

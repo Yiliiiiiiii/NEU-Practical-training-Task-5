@@ -8,7 +8,11 @@ export function StatusBadge({ status }: StatusBadgeProps) {
   const label = formatStatus(status);
 
   return (
-    <span className={`status-badge status-${status.toLowerCase()}`} role="status">
+    <span
+      className={`status-badge status-${status.toLowerCase()}`}
+      role="status"
+      aria-label={label}
+    >
       {label}
     </span>
   );

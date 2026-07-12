@@ -70,6 +70,19 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("ConversionPage", () => {
+  it("labels the JSON input and announces invalid UIR as an alert", () => {
+    render(<ConversionPage />);
+
+    expect(screen.getByRole("tablist", { name: "输入方式" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("tab", { name: "粘贴 UIR" }));
+    fireEvent.change(screen.getByRole("textbox", { name: "UIR JSON" }), {
+      target: { value: "{" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "校验 UIR" }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent("JSON 格式无效。");
+  });
+
   it("blocks progression until UIR validation and runs the normal UIR task sequence", async () => {
     render(<ConversionPage />);
 

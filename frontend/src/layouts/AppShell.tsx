@@ -120,6 +120,7 @@ export function AppShell({ route, children }: AppShellProps) {
                 href={href}
                 aria-current={active ? "page" : undefined}
                 aria-label={label}
+                title={label}
                 onClick={(event) => handleNavigation(event, href)}
               >
                 <Icon aria-hidden="true" size={18} strokeWidth={1.8} />
@@ -141,7 +142,7 @@ export function AppShell({ route, children }: AppShellProps) {
             <span>本地会话</span>
           </div>
         </header>
-        <main className="application-content">{children}</main>
+        <main className="application-content" aria-label="主工作区">{children}</main>
       </div>
     </div>
   );
