@@ -3,6 +3,7 @@
 import hashlib
 import json
 import re
+import stat
 import zipfile
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -25,7 +26,29 @@ def resolved_package_dir(package_path: Path) -> Iterator[Path]:
     if path.is_file() and path.suffix.lower() == ".zip":
         with TemporaryDirectory() as temp_dir:
             with zipfile.ZipFile(path) as archive:
-                archive.extractall(temp_dir)
+                root = Path(temp_dir).resolve()
+                for info in archive.infolist():
+                    relative = Path(info.filename)
+                    if (
+                        relative.is_absolute()
+                        or ".." in relative.parts
+                        or not info.filename
+                        or stat.S_ISLNK(info.external_attr >> 16)
+                    ):
+                        raise PackageReadError(
+                            f"unsafe ZIP entry: {info.filename}"
+                        )
+                    target = (root / relative).resolve()
+                    if root != target and root not in target.parents:
+                        raise PackageReadError(
+                            f"unsafe ZIP entry: {info.filename}"
+                        )
+                    if info.is_dir():
+                        target.mkdir(parents=True, exist_ok=True)
+                        continue
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    with archive.open(info) as source, target.open("wb") as output:
+                        output.write(source.read())
             yield Path(temp_dir)
         return
 
@@ -80,6 +103,25 @@ def validate_manifest_files(package_dir: Path, manifest: dict[str, Any]) -> None
             raise PackageReadError(f"checksum mismatch: {relative_path}")
 
 
+def validate_verified_package(package_dir: Path, manifest: dict[str, Any]) -> None:
+    verifier_path = package_dir / "verifier_report.json"
+    if not verifier_path.is_file():
+        raise PackageReadError("verifier_report.json is required")
+    try:
+        verifier = json.loads(verifier_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise PackageReadError(f"verifier_report.json is invalid: {exc}") from exc
+    if not isinstance(verifier, dict) or verifier.get("passed") is not True:
+        raise PackageReadError("package verifier did not pass")
+    expected_manifest_hash = verifier.get("manifest_sha256")
+    if (
+        isinstance(expected_manifest_hash, str)
+        and expected_manifest_hash
+        and sha256_file(package_dir / "manifest.json") != expected_manifest_hash
+    ):
+        raise PackageReadError("verifier manifest hash mismatch")
+
+
 def load_chunks(package_dir: Path) -> list[dict[str, Any]]:
     chunks_path = package_dir / "chunks.jsonl"
     if not chunks_path.is_file():
@@ -114,6 +156,7 @@ def read_validated_package(
     with resolved_package_dir(package_path) as package_dir:
         manifest = load_manifest(package_dir)
         validate_manifest_files(package_dir, manifest)
+        validate_verified_package(package_dir, manifest)
         manifest["_metadata"] = load_metadata(package_dir)
         chunks = load_chunks(package_dir)
         return manifest, chunks
@@ -206,6 +249,7 @@ def training_metadata(
         "title_path": chunk.get("title_path", []),
         "source_block_ids": chunk.get("source_block_ids", []),
         "source_links": chunk.get("source_links", []),
+        "entity_tags": chunk.get("entity_tags", []),
     }
 
 

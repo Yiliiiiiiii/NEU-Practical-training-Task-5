@@ -12,6 +12,7 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from package_consumption import (  # noqa: E402
     PackageReadError,
+    chunk_source_linked,
     filter_chunks_by_granularity,
     read_validated_package,
     training_metadata,
@@ -22,12 +23,16 @@ def export_training_corpus(
     package_path: Path,
     output_path: Path,
     granularity: str = "all",
+    fail_on_missing_source_links: bool = True,
 ) -> dict[str, Any]:
     try:
         manifest, chunks = read_validated_package(package_path)
     except PackageReadError as exc:
         raise SystemExit(str(exc)) from exc
     chunks = filter_chunks_by_granularity(chunks, granularity)
+    missing = sum(not chunk_source_linked(chunk) for chunk in chunks)
+    if missing and fail_on_missing_source_links:
+        raise PackageReadError(f"{missing} chunks are missing source links")
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     rows = [
@@ -53,6 +58,7 @@ def export_training_corpus(
         "schema_id": manifest.get("generator", {}).get("schema_id"),
         "template_id": manifest.get("generator", {}).get("template_id"),
         "contract_pass": bool(rows),
+        "missing_source_link_count": missing,
     }
 
 

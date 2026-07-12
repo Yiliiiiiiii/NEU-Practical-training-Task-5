@@ -13,10 +13,12 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from package_consumption import (  # noqa: E402
     PackageReadError,
+    load_chunks,
     load_manifest,
     load_metadata,
     resolved_package_dir,
     validate_manifest_files,
+    validate_verified_package,
 )
 
 FIELDNAMES = [
@@ -34,6 +36,8 @@ FIELDNAMES = [
     "source_block_ids",
     "confidence",
     "review_required",
+    "source_links",
+    "entity_tags",
 ]
 
 
@@ -93,13 +97,50 @@ def export_structured_csv(
     with resolved_package_dir(package_path) as package_dir:
         manifest = load_manifest(package_dir)
         validate_manifest_files(package_dir, manifest)
+        validate_verified_package(package_dir, manifest)
         metadata = load_metadata(package_dir)
         content = _load_content(package_dir)
         base = _base_metadata(manifest, metadata)
+        chunks = load_chunks(package_dir)
+    source_links = sorted(
+        {
+            json.dumps(link, ensure_ascii=False, sort_keys=True)
+            for chunk in chunks
+            for link in chunk.get("source_links", [])
+            if isinstance(link, dict)
+        }
+    )
+    entity_tags = sorted(
+        {
+            json.dumps(tag, ensure_ascii=False, sort_keys=True)
+            for chunk in chunks
+            for tag in chunk.get("entity_tags", [])
+            if isinstance(tag, dict)
+        }
+    )
+    lineage = {
+        "source_links": json.dumps(
+            [json.loads(item) for item in source_links],
+            ensure_ascii=False,
+            sort_keys=True,
+        ),
+        "entity_tags": json.dumps(
+            [json.loads(item) for item in entity_tags],
+            ensure_ascii=False,
+            sort_keys=True,
+        ),
+    }
     flattened = _flatten(content)
+    unsupported_nested_fields = sorted(
+        key for key, value in flattened if isinstance(value, list | dict)
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if mode == "wide":
-        row = {**base, **{key: _csv_value(value) for key, value in flattened}}
+        row = {
+            **base,
+            **lineage,
+            **{key: _csv_value(value) for key, value in flattened},
+        }
         fieldnames = list(row)
         rows = [row]
     else:
@@ -113,6 +154,7 @@ def export_structured_csv(
                 "source_block_ids": "",
                 "confidence": "",
                 "review_required": False,
+                **lineage,
             }
             for field_id, value in flattened
         ]
@@ -131,6 +173,10 @@ def export_structured_csv(
         "row_count": len(rows),
         "mode": mode,
         "contract_pass": bool(rows),
+        "unsupported_nested_fields": unsupported_nested_fields,
+        "nested_field_behavior": "serialized_as_canonical_json",
+        "source_link_count": len(source_links),
+        "entity_tag_count": len(entity_tags),
     }
 
 
