@@ -251,6 +251,19 @@ export type TaskCreateResponse = {
   status: string;
 };
 
+export type TaskListItem = {
+  task_id: string;
+  doc_id: string;
+  schema_id: string;
+  template_id: string;
+  status: string;
+};
+
+export type TaskListResponse = {
+  items: TaskListItem[];
+  total: number;
+};
+
 export type TaskExecuteResponse = {
   task_id: string;
   status: string;

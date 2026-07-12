@@ -38,6 +38,7 @@ import type {
   TaskCreateResponse,
   TaskDetailResponse,
   TaskExecuteResponse,
+  TaskListResponse,
   ValidationReport,
   VerifierReport
 } from "./types";
@@ -168,6 +169,8 @@ export const api = {
         ...payload
       })
     }),
+  listTasks: (page = 1, pageSize = 100) =>
+    request<TaskListResponse>(`/api/v1/tasks?page=${page}&page_size=${pageSize}`),
   executeTask: (taskId: string) =>
     request<TaskExecuteResponse>(`/api/v1/tasks/${taskId}/execute`, {
       method: "POST"
