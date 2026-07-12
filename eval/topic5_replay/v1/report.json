@@ -1,0 +1,140 @@
+{
+  "case_count": 3,
+  "cases": [
+    {
+      "case_id": "same_snapshot_same_engine",
+      "passed": true,
+      "result": {
+        "claim_boundary": "Topic 5 deterministic replay without package or scheduler mutation",
+        "conversion_differences": {},
+        "conversion_fingerprint_match": true,
+        "engine_version": {
+          "after": "topic5-conversion-engine/2.0.0",
+          "before": "topic5-conversion-engine/2.0.0"
+        },
+        "engine_version_match": true,
+        "replay_conversion_fingerprints": {
+          "content_organization_hash": "3d7b65f416255ad9438ec120bdcdef79ceb2526bccf3109b3a86018fe9d92075",
+          "conversion_fingerprint": "cf7e213d7e965b18ab58f844d8a01133f3f879efb46e37fe4a65c6f26f032a67",
+          "engine_version": "topic5-conversion-engine/2.0.0",
+          "execution_options_hash": "567d228eb8dd4e7ef52f254f390c2fdf4af5b2f6ca9dc0e4047125a9737757b6",
+          "input_uir_hash": "1406e4b59ecaa734aec4e43bd2348d4d00f4fbed1737b63fc6aafdc8e0404efb",
+          "mapping_rules_hash": "4dc5f91128c60702374921eeb719d73f24ec60877d067bb65407584667f531a6",
+          "metadata_template_hash": "c0755d76faee0ec220f240ed5b180449dde37d3c6a9ab6ef9784b1ad1a227fc4",
+          "target_schema_hash": "e734d3f1341c95d4fc89663015487cdd47e6c94600173ab98735975ad398bcc8"
+        },
+        "replay_semantic_artifact_hashes": {
+          "canonical_blocks": "8503bb65350d1f972bd791d97398f604c746ca765bc2bc823cc9e7612b46dae3",
+          "chunks": "ca4a2706f4ec93531ba902f37af0d0ed47658052d936f02ddd5f61ea66fba8f4",
+          "document_metadata": "179faafdcebf5d33087ed9afa428d3a2b8be586cad748aa4794c1c07820364cb",
+          "document_summary": "05ef899a7bf7a76feabf9d528306bce2e1960d60d8e939c77eb4b74a8102d0f2",
+          "entity_tags": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "reports": "ea6b144cf4e06c48bae1ef984761756fe2509c7fef2c07d8e4e166bd20a74f92",
+          "semantic_package_fingerprint": "aa7624db605ce97e2965ecce9a5702f468aba95f1867ccd9232b9e2fc61dc1be",
+          "structured_data": "d8c5550866a95ef6f44fd6bc0171caab61e070cc1d6ce0b0db024516abcfc62d",
+          "tag_traces": "adbfe74238771f74b932a53b5285a426069237a4487af9dee0c54f067d66693a"
+        },
+        "semantic_differences": {},
+        "semantic_match": true,
+        "status": "exact_match"
+      }
+    },
+    {
+      "case_id": "changed_schema_version",
+      "passed": true,
+      "result": {
+        "claim_boundary": "Topic 5 deterministic replay without package or scheduler mutation",
+        "conversion_differences": {
+          "conversion_fingerprint": {
+            "after": "d7f093896d47def0ab5d7ad22ccea795baa741fa8fdc9870f9ab77614c7b4fee",
+            "before": "cf7e213d7e965b18ab58f844d8a01133f3f879efb46e37fe4a65c6f26f032a67"
+          },
+          "target_schema_hash": {
+            "after": "05dcab958af6f98117ad82a2e6eabe78cc2a68a2c217d14d7b4b9a7f51e4b6f1",
+            "before": "e734d3f1341c95d4fc89663015487cdd47e6c94600173ab98735975ad398bcc8"
+          }
+        },
+        "conversion_fingerprint_match": false,
+        "engine_version": {
+          "after": "topic5-conversion-engine/2.0.0",
+          "before": "topic5-conversion-engine/2.0.0"
+        },
+        "engine_version_match": true,
+        "replay_conversion_fingerprints": {
+          "content_organization_hash": "3d7b65f416255ad9438ec120bdcdef79ceb2526bccf3109b3a86018fe9d92075",
+          "conversion_fingerprint": "d7f093896d47def0ab5d7ad22ccea795baa741fa8fdc9870f9ab77614c7b4fee",
+          "engine_version": "topic5-conversion-engine/2.0.0",
+          "execution_options_hash": "567d228eb8dd4e7ef52f254f390c2fdf4af5b2f6ca9dc0e4047125a9737757b6",
+          "input_uir_hash": "1406e4b59ecaa734aec4e43bd2348d4d00f4fbed1737b63fc6aafdc8e0404efb",
+          "mapping_rules_hash": "4dc5f91128c60702374921eeb719d73f24ec60877d067bb65407584667f531a6",
+          "metadata_template_hash": "c0755d76faee0ec220f240ed5b180449dde37d3c6a9ab6ef9784b1ad1a227fc4",
+          "target_schema_hash": "05dcab958af6f98117ad82a2e6eabe78cc2a68a2c217d14d7b4b9a7f51e4b6f1"
+        },
+        "replay_semantic_artifact_hashes": {
+          "canonical_blocks": "8503bb65350d1f972bd791d97398f604c746ca765bc2bc823cc9e7612b46dae3",
+          "chunks": "ca4a2706f4ec93531ba902f37af0d0ed47658052d936f02ddd5f61ea66fba8f4",
+          "document_metadata": "179faafdcebf5d33087ed9afa428d3a2b8be586cad748aa4794c1c07820364cb",
+          "document_summary": "05ef899a7bf7a76feabf9d528306bce2e1960d60d8e939c77eb4b74a8102d0f2",
+          "entity_tags": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "reports": "ea6b144cf4e06c48bae1ef984761756fe2509c7fef2c07d8e4e166bd20a74f92",
+          "semantic_package_fingerprint": "aa7624db605ce97e2965ecce9a5702f468aba95f1867ccd9232b9e2fc61dc1be",
+          "structured_data": "d8c5550866a95ef6f44fd6bc0171caab61e070cc1d6ce0b0db024516abcfc62d",
+          "tag_traces": "adbfe74238771f74b932a53b5285a426069237a4487af9dee0c54f067d66693a"
+        },
+        "semantic_differences": {},
+        "semantic_match": true,
+        "status": "different"
+      }
+    },
+    {
+      "case_id": "changed_engine_version",
+      "passed": true,
+      "result": {
+        "claim_boundary": "Topic 5 deterministic replay without package or scheduler mutation",
+        "conversion_differences": {},
+        "conversion_fingerprint_match": true,
+        "engine_version": {
+          "after": "topic5-conversion-engine/next",
+          "before": "topic5-conversion-engine/2.0.0"
+        },
+        "engine_version_match": false,
+        "replay_conversion_fingerprints": {
+          "content_organization_hash": "3d7b65f416255ad9438ec120bdcdef79ceb2526bccf3109b3a86018fe9d92075",
+          "conversion_fingerprint": "cf7e213d7e965b18ab58f844d8a01133f3f879efb46e37fe4a65c6f26f032a67",
+          "engine_version": "topic5-conversion-engine/2.0.0",
+          "execution_options_hash": "567d228eb8dd4e7ef52f254f390c2fdf4af5b2f6ca9dc0e4047125a9737757b6",
+          "input_uir_hash": "1406e4b59ecaa734aec4e43bd2348d4d00f4fbed1737b63fc6aafdc8e0404efb",
+          "mapping_rules_hash": "4dc5f91128c60702374921eeb719d73f24ec60877d067bb65407584667f531a6",
+          "metadata_template_hash": "c0755d76faee0ec220f240ed5b180449dde37d3c6a9ab6ef9784b1ad1a227fc4",
+          "target_schema_hash": "e734d3f1341c95d4fc89663015487cdd47e6c94600173ab98735975ad398bcc8"
+        },
+        "replay_semantic_artifact_hashes": {
+          "canonical_blocks": "8503bb65350d1f972bd791d97398f604c746ca765bc2bc823cc9e7612b46dae3",
+          "chunks": "ca4a2706f4ec93531ba902f37af0d0ed47658052d936f02ddd5f61ea66fba8f4",
+          "document_metadata": "179faafdcebf5d33087ed9afa428d3a2b8be586cad748aa4794c1c07820364cb",
+          "document_summary": "05ef899a7bf7a76feabf9d528306bce2e1960d60d8e939c77eb4b74a8102d0f2",
+          "entity_tags": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "reports": "ea6b144cf4e06c48bae1ef984761756fe2509c7fef2c07d8e4e166bd20a74f92",
+          "semantic_package_fingerprint": "aa7624db605ce97e2965ecce9a5702f468aba95f1867ccd9232b9e2fc61dc1be",
+          "structured_data": "d8c5550866a95ef6f44fd6bc0171caab61e070cc1d6ce0b0db024516abcfc62d",
+          "tag_traces": "adbfe74238771f74b932a53b5285a426069237a4487af9dee0c54f067d66693a"
+        },
+        "semantic_differences": {},
+        "semantic_match": true,
+        "status": "different"
+      }
+    }
+  ],
+  "claim_boundary": "Topic 5 snapshot replay only; no scheduler or package mutation",
+  "commit_sha": "348794fe5ca593989047d8bb07a097f60fdd6630",
+  "dataset_id": "topic5_replay",
+  "dataset_sha256": "bd0520ce760a8a5b10723ca092b1b60cee09e9928f9de832a2aedbafa71931bb",
+  "dataset_version": "1.0.0",
+  "engine_version": "topic5-conversion-engine/2.0.0",
+  "failed_cases": [],
+  "passed_count": 3,
+  "replay_semantic_match_rate": 1.0,
+  "reproduction_command": "python scripts/eval_topic5_replay.py",
+  "status": "passed",
+  "version_difference_detection_rate": 1.0
+}

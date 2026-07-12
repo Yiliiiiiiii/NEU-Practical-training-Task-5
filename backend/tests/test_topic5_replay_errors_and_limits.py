@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -22,6 +23,15 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def _replay_module():
     path = ROOT / "scripts" / "replay_topic5_snapshot.py"
+    spec = importlib.util.spec_from_file_location(path.stem, path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _replay_evaluator_module():
+    path = ROOT / "scripts" / "eval_topic5_replay.py"
     spec = importlib.util.spec_from_file_location(path.stem, path)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
@@ -175,3 +185,16 @@ def test_zip_limit_fails_atomically_and_leaves_no_final_package(tmp_path: Path) 
     packages = tmp_path / "packages"
     assert not list(packages.glob("pkg_*"))
     assert not list((packages / ".tmp").glob("*"))
+
+
+def test_replay_machine_report_is_reproducible() -> None:
+    report_path = ROOT / "eval" / "topic5_replay" / "v1" / "report.json"
+    frozen = json.loads(report_path.read_text(encoding="utf-8"))
+
+    rebuilt = _replay_evaluator_module().run_evaluation(
+        commit_sha=frozen["commit_sha"]
+    )
+
+    assert rebuilt == frozen
+    assert rebuilt["replay_semantic_match_rate"] == 1.0
+    assert rebuilt["version_difference_detection_rate"] == 1.0
