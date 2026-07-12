@@ -1,0 +1,52 @@
+{
+  "content": [
+    {
+      "definition": "General public-information or service-guide content.",
+      "tag": "general"
+    },
+    {
+      "definition": "Meeting minutes, agenda, or decision-record content.",
+      "tag": "meeting"
+    },
+    {
+      "definition": "Policy, regulation, guidance, or normative-rule content.",
+      "tag": "policy"
+    },
+    {
+      "definition": "Procurement notice, tender, or award content.",
+      "tag": "procurement"
+    }
+  ],
+  "management": [
+    {
+      "definition": "Deterministic schema identity tag for general_doc.",
+      "tag": "schema:general_doc"
+    },
+    {
+      "definition": "Deterministic schema identity tag for meeting_doc.",
+      "tag": "schema:meeting_doc"
+    },
+    {
+      "definition": "Deterministic schema identity tag for policy_doc.",
+      "tag": "schema:policy_doc"
+    },
+    {
+      "definition": "Deterministic schema identity tag for procurement_doc.",
+      "tag": "schema:procurement_doc"
+    },
+    {
+      "definition": "Deterministic mapping/content template version identity tag.",
+      "tag": "template_version:1.0.0"
+    }
+  ],
+  "quality": [
+    {
+      "definition": "Every evaluated chunk source link resolves to a canonical block anchor.",
+      "tag": "anchor_linked"
+    },
+    {
+      "definition": "Every evaluated chunk declares canonical source block identifiers.",
+      "tag": "source_linked"
+    }
+  ]
+}
