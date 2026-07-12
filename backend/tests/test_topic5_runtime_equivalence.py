@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 from pathlib import Path
 
@@ -18,6 +19,15 @@ from app.services.topic5_conversion_engine import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def _load_evaluator():
+    path = ROOT / "scripts" / "eval_topic5_runtime_equivalence.py"
+    spec = importlib.util.spec_from_file_location(path.stem, path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def _json(path: Path):
@@ -124,3 +134,17 @@ def test_inline_and_registered_contexts_have_identical_semantic_hashes(
 
     assert inline.conversion_fingerprints == registered.conversion_fingerprints
     assert inline.semantic_artifact_hashes == registered.semantic_artifact_hashes
+
+
+def test_runtime_equivalence_machine_report_is_reproducible() -> None:
+    evaluator = _load_evaluator()
+    frozen = _json(
+        ROOT / "eval" / "topic5_runtime_equivalence" / "v1" / "report.json"
+    )
+
+    rebuilt = evaluator.run_evaluation()
+
+    assert rebuilt == frozen
+    assert rebuilt["status"] == "passed"
+    assert rebuilt["case_count"] == 5
+    assert rebuilt["inline_registered_semantic_equivalence"] == 1.0
