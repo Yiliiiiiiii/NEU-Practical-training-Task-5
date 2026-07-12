@@ -5,9 +5,13 @@ const statusLabels: Record<string, string> = {
   failed: "失败",
   running: "进行中",
   pending: "待处理",
+  draft: "草案",
+  active: "已激活",
+  archived: "已归档",
   blocked: "已阻断",
   unmapped: "未映射",
-  unverified: "未验证"
+  unverified: "未验证",
+  unknown: "未知"
 };
 
 export function formatStatus(status: string): string {

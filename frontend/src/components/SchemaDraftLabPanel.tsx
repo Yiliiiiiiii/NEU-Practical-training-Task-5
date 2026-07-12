@@ -18,7 +18,7 @@ import type {
 export function SchemaDraftLabPanel() {
   const [sampleText, setSampleText] = useState("[]");
   const [schemaId, setSchemaId] = useState("candidate_doc");
-  const [schemaName, setSchemaName] = useState("Candidate Document Draft");
+  const [schemaName, setSchemaName] = useState("候选文档草案");
   const [templateId, setTemplateId] = useState("candidate_doc_draft_v1");
   const [discovery, setDiscovery] = useState<SchemaDraftDiscovery | null>(null);
   const [draftPackage, setDraftPackage] = useState<SchemaDraftPackage | null>(null);
@@ -32,7 +32,7 @@ export function SchemaDraftLabPanel() {
         parseSchemaDraftSamples(sampleText)
       );
       setDiscovery(result);
-      setMessage(`Discovered ${result.field_candidates.length} field candidates.`);
+      setMessage(`已发现 ${result.field_candidates.length} 个字段候选项。`);
     });
   }
 
@@ -47,7 +47,7 @@ export function SchemaDraftLabPanel() {
       setDiscovery(result.discovery);
       setDraftPackage(result);
       setExported(null);
-      setMessage(`Draft ${result.draft_id} generated for review.`);
+      setMessage(`草案 ${result.draft_id} 已生成，等待复核。`);
     });
   }
 
@@ -58,7 +58,7 @@ export function SchemaDraftLabPanel() {
     await runAction(async () => {
       const riskReport = await api.validateSchemaDraft(draftPackage.draft_id);
       setDraftPackage({ ...draftPackage, risk_report: riskReport });
-      setMessage(`Risk scan completed with ${riskReport.risk_count} findings.`);
+      setMessage(`风险扫描完成，发现 ${riskReport.risk_count} 项。`);
     });
   }
 
@@ -69,7 +69,7 @@ export function SchemaDraftLabPanel() {
     await runAction(async () => {
       const result = await api.exportSchemaDraft(draftPackage.draft_id);
       setExported(result);
-      setMessage("Draft artifacts exported.");
+      setMessage("草案产物已导出。");
     });
   }
 
@@ -82,7 +82,7 @@ export function SchemaDraftLabPanel() {
     );
     const documents = values.flatMap((value) => (Array.isArray(value) ? value : [value]));
     setSampleText(JSON.stringify(documents, null, 2));
-    setMessage(`${documents.length} sample documents loaded.`);
+    setMessage(`已加载 ${documents.length} 个样本文档。`);
   }
 
   async function runAction(action: () => Promise<void>) {
@@ -93,23 +93,23 @@ export function SchemaDraftLabPanel() {
       setStatus("ready");
     } catch (caught) {
       setStatus("error");
-      setMessage(caught instanceof Error ? caught.message : "Schema draft operation failed.");
+      setMessage(caught instanceof Error ? caught.message : "Schema 草案操作失败。");
     }
   }
 
   return (
-    <section className="schema-draft-panel" aria-label="Schema Draft Lab">
+    <section className="schema-draft-panel" aria-label="Schema Draft 实验室">
       <div className="schema-draft-head">
         <div>
-          <h3>Schema Draft Lab</h3>
-          <p>Field discovery and governed draft artifacts.</p>
+          <h3>Schema Draft 实验室</h3>
+          <p>字段发现与受治理的草案产物。</p>
         </div>
         <FlaskConical size={18} />
       </div>
 
       <div className="schema-draft-governance">
         <ShieldCheck size={16} />
-        <span>Drafts never activate automatically. Catalog review is required.</span>
+        <span>草案绝不会自动激活，必须经过目录复核。</span>
       </div>
 
       <div className="schema-draft-grid">
@@ -118,7 +118,7 @@ export function SchemaDraftLabPanel() {
           <input value={schemaId} onChange={(event) => setSchemaId(event.target.value)} />
         </label>
         <label className="control-group">
-          <span>Template ID</span>
+          <span>模板 ID</span>
           <input
             value={templateId}
             onChange={(event) => setTemplateId(event.target.value)}
@@ -126,13 +126,13 @@ export function SchemaDraftLabPanel() {
         </label>
       </div>
       <label className="control-group">
-        <span>Draft Name</span>
+        <span>草案名称</span>
         <input value={schemaName} onChange={(event) => setSchemaName(event.target.value)} />
       </label>
 
       <label className="file-button" htmlFor="schema-draft-files">
         <Files size={16} />
-        Load UIR Samples
+        加载 UIR 样本
       </label>
       <input
         id="schema-draft-files"
@@ -145,7 +145,7 @@ export function SchemaDraftLabPanel() {
 
       <textarea
         className="schema-draft-editor"
-        aria-label="Schema draft sample JSON"
+        aria-label="Schema 草案样本 JSON"
         value={sampleText}
         onChange={(event) => setSampleText(event.target.value)}
         spellCheck={false}
@@ -154,7 +154,7 @@ export function SchemaDraftLabPanel() {
       <div className="schema-draft-actions">
         <button type="button" onClick={() => void discover()} disabled={status === "working"}>
           <Search size={16} />
-          Discover
+          发现字段
         </button>
         <button
           type="button"
@@ -163,7 +163,7 @@ export function SchemaDraftLabPanel() {
           disabled={status === "working"}
         >
           <FlaskConical size={16} />
-          Generate Draft
+          生成草案
         </button>
         <button
           type="button"
@@ -171,7 +171,7 @@ export function SchemaDraftLabPanel() {
           disabled={status === "working" || !draftPackage}
         >
           <ShieldCheck size={16} />
-          Validate
+          验证
         </button>
         <button
           type="button"
@@ -179,7 +179,7 @@ export function SchemaDraftLabPanel() {
           disabled={status === "working" || !draftPackage}
         >
           <FileDown size={16} />
-          Export
+          导出
         </button>
       </div>
 
@@ -188,11 +188,11 @@ export function SchemaDraftLabPanel() {
       {discovery ? (
         <div className="schema-draft-results">
           <div className="schema-draft-metrics">
-            <span>samples</span>
+            <span>样本</span>
             <strong>{discovery.sample_count}</strong>
-            <span>candidates</span>
+            <span>候选项</span>
             <strong>{discovery.field_candidates.length}</strong>
-            <span>auto accepted</span>
+            <span>自动采纳</span>
             <strong>{discovery.llm_auto_accepted_count}</strong>
           </div>
           <div className="schema-draft-fields">
@@ -201,7 +201,7 @@ export function SchemaDraftLabPanel() {
                 <strong>{field.field_name}</strong>
                 <em>{Math.round(field.frequency * 100)}%</em>
                 <span>{field.source_labels.join(", ")}</span>
-                {field.review_required ? <small>review required</small> : null}
+                {field.review_required ? <small>需要复核</small> : null}
               </div>
             ))}
           </div>
@@ -210,16 +210,16 @@ export function SchemaDraftLabPanel() {
 
       {draftPackage ? (
         <div className="schema-draft-status">
-          <span>draft</span>
+          <span>草案</span>
           <strong>{draftPackage.draft_id}</strong>
-          <em>{draftPackage.risk_report.risk_count} risks</em>
-          <small>must not auto activate</small>
+          <em>{draftPackage.risk_report.risk_count} 项风险</em>
+          <small>不得自动激活</small>
         </div>
       ) : null}
 
       {exported ? (
         <details className="json-details schema-draft-export">
-          <summary>Exported artifacts</summary>
+          <summary>已导出的产物</summary>
           <pre>{JSON.stringify(exported, null, 2)}</pre>
         </details>
       ) : null}

@@ -135,7 +135,7 @@ export function LineagePanel({ taskId, available }: LineagePanelProps) {
             value={queryKind}
             onChange={(event) => changeKind(event.target.value as QueryKind)}
           >
-            <option value="field">Target field</option>
+            <option value="field">目标字段</option>
             <option value="chunk">Chunk</option>
             <option value="artifact">Artifact</option>
           </select>

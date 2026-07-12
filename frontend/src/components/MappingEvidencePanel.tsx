@@ -22,14 +22,14 @@ function evidenceText(item: Record<string, any>): string[] {
 
 export function MappingEvidencePanel({ report }: MappingEvidencePanelProps) {
   if (!report) {
-    return <div className="empty-state">暂无 Mapping 证据。</div>;
+    return <div className="empty-state">暂无映射证据。</div>;
   }
   const rows = [...report.review_required_items, ...report.mappings];
   return (
     <div className="evidence-panel mapping-evidence-panel">
       <div className="evidence-panel-head">
-        <span>{report.mappings.length} 已接受</span>
-        <span>{report.review_required_items.length} 待 Review</span>
+        <span>{report.mappings.length} 已采纳</span>
+        <span>{report.review_required_items.length} 待复核</span>
         <span>{report.unmapped.length} 未映射</span>
       </div>
       {rows.map((item, index) => (
@@ -61,8 +61,8 @@ function displayConfidence(value: string) {
     high: "高",
     medium: "中",
     low: "低",
-    accepted: "已接受",
-    review: "待 Review"
+    accepted: "已采纳",
+    review: "待复核"
   };
   return labels[value.toLowerCase()] ?? value;
 }

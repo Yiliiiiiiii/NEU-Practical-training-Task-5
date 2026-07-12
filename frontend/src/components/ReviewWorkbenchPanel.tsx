@@ -52,7 +52,7 @@ export function ReviewWorkbenchPanel() {
         current.filter((id) => reviewResult.items.some((item) => item.review_id === id))
       );
     } catch (caught) {
-      setMessage(caught instanceof Error ? caught.message : "Review Workbench failed.");
+      setMessage(caught instanceof Error ? caught.message : "复核工作台读取失败。");
     } finally {
       setWorking(false);
     }
@@ -63,7 +63,7 @@ export function ReviewWorkbenchPanel() {
     try {
       setImpact(await api.getReviewImpact(reviewId));
     } catch (caught) {
-      setMessage(caught instanceof Error ? caught.message : "Impact preview failed.");
+      setMessage(caught instanceof Error ? caught.message : "影响预览读取失败。");
     } finally {
       setWorking(false);
     }
@@ -76,7 +76,7 @@ export function ReviewWorkbenchPanel() {
     setWorking(true);
     try {
       await api.batchApproveReviews(selectedIds);
-      setMessage(`${selectedIds.length} reviews approved.`);
+      setMessage(`已采纳 ${selectedIds.length} 个复核建议。`);
       setSelectedIds([]);
       await load();
     } finally {
@@ -91,7 +91,7 @@ export function ReviewWorkbenchPanel() {
     setWorking(true);
     try {
       await api.batchRejectReviews(selectedIds);
-      setMessage(`${selectedIds.length} reviews rejected with negative knowledge.`);
+      setMessage(`已拒绝 ${selectedIds.length} 个复核建议，并保留负向知识。`);
       setSelectedIds([]);
       await load();
     } finally {
@@ -111,16 +111,16 @@ export function ReviewWorkbenchPanel() {
     <div className="governance-panel review-workbench">
       <div className="governance-toolbar">
         <div className="governance-summary">
-          <span>pending</span>
+          <span>待复核</span>
           <strong>{summary?.pending ?? 0}</strong>
-          <span>resolution</span>
+          <span>解决率</span>
           <strong>{Math.round((summary?.resolution_rate ?? 0) * 100)}%</strong>
-          <span>negative rules</span>
+          <span>负向规则</span>
           <strong>{summary?.negative_rule_count ?? 0}</strong>
-          <span>conflicts</span>
+          <span>冲突</span>
           <strong>{conflicts?.total ?? 0}</strong>
         </div>
-        <button type="button" className="icon-button" onClick={() => void load()} title="Refresh">
+        <button type="button" className="icon-button" onClick={() => void load()} title="刷新">
           <RefreshCw size={16} />
         </button>
       </div>
@@ -128,16 +128,16 @@ export function ReviewWorkbenchPanel() {
       <div className="review-filter-row">
         <Users size={16} />
         <label>
-          <span>Group by</span>
+          <span>分组方式</span>
           <select value={groupBy} onChange={(event) => setGroupBy(event.target.value)}>
             <option value="schema_id">Schema</option>
-            <option value="target_field">Target field</option>
-            <option value="source_label">Source label</option>
-            <option value="confidence_tier">Confidence</option>
-            <option value="risk_flag">Risk flag</option>
+            <option value="target_field">目标字段</option>
+            <option value="source_label">来源标签</option>
+            <option value="confidence_tier">置信度</option>
+            <option value="risk_flag">风险标记</option>
           </select>
         </label>
-        <small>{grouped?.items.length ?? 0} groups</small>
+        <small>{grouped?.items.length ?? 0} 个分组</small>
       </div>
 
       <div className="review-workbench-grid">
@@ -150,14 +150,14 @@ export function ReviewWorkbenchPanel() {
                 onChange={() => toggle(review.review_id)}
               />
               <span>
-                <strong>{review.source_field_name ?? "unknown"}</strong>
-                <small>{review.target_field_id ?? "unmapped"}</small>
+                <strong>{review.source_field_name ?? "未知来源字段"}</strong>
+                <small>{review.target_field_id ?? "未映射"}</small>
               </span>
               <em>{Math.round((review.confidence ?? 0) * 100)}%</em>
               <button
                 type="button"
                 className="icon-button"
-                title="Impact preview"
+                title="影响预览"
                 onClick={(event) => {
                   event.preventDefault();
                   void preview(review.review_id);
@@ -167,30 +167,30 @@ export function ReviewWorkbenchPanel() {
               </button>
             </label>
           ))}
-          {!reviews.length ? <p className="quiet">No pending reviews.</p> : null}
+          {!reviews.length ? <p className="quiet">当前没有待复核项。</p> : null}
         </div>
 
         <div className="review-evidence-pane">
           {selectedReview ? (
             <>
-              <span>Evidence</span>
-              <strong>{selectedReview.source_field_name ?? "unknown"}</strong>
-              <p>{selectedReview.source_path ?? "No source path"}</p>
-              <p>{selectedReview.reason ?? "No review reason"}</p>
+              <span>证据</span>
+              <strong>{selectedReview.source_field_name ?? "未知来源字段"}</strong>
+              <p>{selectedReview.source_path ?? "无来源路径"}</p>
+              <p>{selectedReview.reason ?? "无复核依据"}</p>
             </>
           ) : (
-            <p className="quiet">Select a review to inspect evidence.</p>
+            <p className="quiet">选择一项复核以查看证据。</p>
           )}
           {impact ? (
             <div className="review-impact">
-              <span>Impact preview</span>
-              <strong>{impact.would_affect.length} future mappings</strong>
+              <span>影响预览</span>
+              <strong>{impact.would_affect.length} 个后续映射</strong>
               {impact.risk_flags.length ? (
                 <small>{impact.risk_flags.join(", ")}</small>
               ) : null}
               {impact.badcase_hits.length ? (
                 <small className="risk-text">
-                  <ShieldAlert size={13} /> badcase hit
+                  <ShieldAlert size={13} /> badcase 命中
                 </small>
               ) : null}
             </div>
@@ -205,7 +205,7 @@ export function ReviewWorkbenchPanel() {
           disabled={working || !canBatchApprove(selectedReviews)}
           onClick={() => void batchApprove()}
         >
-          Approve Batch
+          批量采纳
         </button>
         <button
           type="button"
@@ -213,7 +213,7 @@ export function ReviewWorkbenchPanel() {
           onClick={() => void batchReject()}
         >
           <XCircle size={15} />
-          Reject Batch
+          批量拒绝
         </button>
       </div>
       {message ? <p className="quiet">{message}</p> : null}

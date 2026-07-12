@@ -116,10 +116,10 @@ describe("EvaluationCenterPanel", () => {
 
     render(<EvaluationCenterPanel />);
 
-    expect(await screen.findByText("Dataset Registry")).toBeInTheDocument();
-    expect(screen.getByText("Evaluation Runs")).toBeInTheDocument();
-    expect(screen.getByText("Metric Scorecard")).toBeInTheDocument();
-    expect(screen.getByText("Regression Gates")).toBeInTheDocument();
+    expect(await screen.findByText("数据集目录")).toBeInTheDocument();
+    expect(screen.getByText("评测运行")).toBeInTheDocument();
+    expect(screen.getByText("指标记分卡")).toBeInTheDocument();
+    expect(screen.getByText("回归门")).toBeInTheDocument();
     expect(screen.getAllByText("通过").length).toBeGreaterThan(0);
     expect(screen.getByText("需关注")).toBeInTheDocument();
     expect(screen.getByText("失败")).toBeInTheDocument();

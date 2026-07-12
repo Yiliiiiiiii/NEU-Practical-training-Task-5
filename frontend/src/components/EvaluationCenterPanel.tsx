@@ -133,10 +133,10 @@ export function EvaluationCenterPanel() {
         <SectionHeading
           id="dataset-registry-title"
           icon={<Database size={17} />}
-          title="Dataset Registry"
+          title="数据集目录"
           meta={`${datasets.length} 个数据集`}
         />
-        <div className="evaluation-table" role="table" aria-label="Dataset Registry">
+        <div className="evaluation-table" role="table" aria-label="数据集目录">
           <div className="evaluation-table-head" role="row">
             <span>数据集</span>
             <span>类型</span>
@@ -154,7 +154,7 @@ export function EvaluationCenterPanel() {
                 <span>{dataset.dataset_type}</span>
                 <span>
                   {dataset.doc_count}{" "}
-                  {dataset.dataset_type.includes("external") ? "fixtures" : "documents"}
+                  {dataset.dataset_type.includes("external") ? "样本" : "文档"}
                 </span>
                 <time>
                   {latestRun ? formatDate(latestRun.created_at) : "尚未登记"}
@@ -175,7 +175,7 @@ export function EvaluationCenterPanel() {
         <SectionHeading
           id="evaluation-runs-title"
           icon={<ListChecks size={17} />}
-          title="Evaluation Runs"
+          title="评测运行"
           meta={`${runs.length} 次执行`}
         />
         <div className="evaluation-run-list">
@@ -188,7 +188,7 @@ export function EvaluationCenterPanel() {
               </div>
               <dl>
                 <div>
-                  <dt>Dataset</dt>
+                  <dt>数据集</dt>
                   <dd>{run.dataset_id}</dd>
                 </div>
                 <div>
@@ -233,7 +233,7 @@ export function EvaluationCenterPanel() {
         <SectionHeading
           id="metric-scorecard-title"
           icon={<BarChart3 size={17} />}
-          title="Metric Scorecard"
+          title="指标记分卡"
           meta={`${scorecard?.cards.length ?? 0} 项指标`}
         />
         <div className="evaluation-card-grid">
@@ -263,7 +263,7 @@ export function EvaluationCenterPanel() {
         <SectionHeading
           id="regression-gates-title"
           icon={<ShieldCheck size={17} />}
-          title="Regression Gates"
+          title="回归门"
           meta={
             scorecard
               ? `${scorecard.summary.gates_passed}/${scorecard.summary.gates_total} 通过`
