@@ -41,8 +41,11 @@ class PackageBuildError(RuntimeError):
 
 
 class PackageService:
-    def __init__(self, output_root: str | Path) -> None:
+    def __init__(
+        self, output_root: str | Path, *, max_zip_bytes: int | None = None
+    ) -> None:
         self.output_root = Path(output_root)
+        self.max_zip_bytes = max_zip_bytes
 
     def create_package(
         self,
@@ -163,6 +166,14 @@ class PackageService:
             current_stage = "zip_create"
             zip_path = temp_dir / "standard_package.zip"
             self._write_deterministic_zip(temp_dir, zip_path)
+            if (
+                self.max_zip_bytes is not None
+                and zip_path.stat().st_size > self.max_zip_bytes
+            ):
+                raise PackageBuildError(
+                    "zip_create",
+                    f"ZIP exceeds maximum size {self.max_zip_bytes}",
+                )
             zip_hash = ManifestService.sha256_file(zip_path)
             current_stage = "final_rename"
             self._finalize_directory(temp_dir, final_dir, temp_root)

@@ -3256,7 +3256,118 @@
         "title": "ManagementTagRules",
         "type": "object"
       },
-      "MappingTemplate": {
+      "MappingCardinalityRule": {
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "enum": [
+              "one_to_many",
+              "many_to_one"
+            ],
+            "title": "Operation",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "source_paths": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source Paths",
+            "type": "array"
+          },
+          "target_field_id": {
+            "title": "Target Field Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation",
+          "target_field_id",
+          "source_paths",
+          "reason"
+        ],
+        "title": "MappingCardinalityRule",
+        "type": "object"
+      },
+      "MappingConstraintPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "cardinality_rules": {
+            "items": {
+              "$ref": "#/components/schemas/MappingCardinalityRule"
+            },
+            "title": "Cardinality Rules",
+            "type": "array"
+          },
+          "field_min_scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Field Min Scores",
+            "type": "object"
+          },
+          "min_type_score": {
+            "default": 0.0,
+            "title": "Min Type Score",
+            "type": "number"
+          },
+          "source_reuse_rules": {
+            "items": {
+              "$ref": "#/components/schemas/SourceReuseRule"
+            },
+            "title": "Source Reuse Rules",
+            "type": "array"
+          }
+        },
+        "title": "MappingConstraintPolicy",
+        "type": "object"
+      },
+      "MappingScoringPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "alias_weight": {
+            "default": 0.2,
+            "title": "Alias Weight",
+            "type": "number"
+          },
+          "context_weight": {
+            "default": 0.1,
+            "title": "Context Weight",
+            "type": "number"
+          },
+          "lexical_weight": {
+            "default": 0.25,
+            "title": "Lexical Weight",
+            "type": "number"
+          },
+          "path_weight": {
+            "default": 0.1,
+            "title": "Path Weight",
+            "type": "number"
+          },
+          "source_quality_weight": {
+            "default": 0.1,
+            "title": "Source Quality Weight",
+            "type": "number"
+          },
+          "type_weight": {
+            "default": 0.15,
+            "title": "Type Weight",
+            "type": "number"
+          },
+          "value_shape_weight": {
+            "default": 0.1,
+            "title": "Value Shape Weight",
+            "type": "number"
+          }
+        },
+        "title": "MappingScoringPolicy",
+        "type": "object"
+      },
+      "MappingTemplate-Input": {
         "additionalProperties": false,
         "properties": {
           "aliases": {
@@ -3268,6 +3379,9 @@
             },
             "title": "Aliases",
             "type": "object"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/MappingConstraintPolicy"
           },
           "defaults": {
             "title": "Defaults",
@@ -3283,9 +3397,21 @@
             "title": "Enum Maps",
             "type": "object"
           },
+          "evidence_weights": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Evidence Weights",
+            "type": "object"
+          },
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "neutral_evidence_weight": {
+            "default": 0.7,
+            "title": "Neutral Evidence Weight",
+            "type": "number"
           },
           "regex_rules": {
             "items": {
@@ -3298,6 +3424,9 @@
             "title": "Schema Id",
             "type": "string"
           },
+          "scoring": {
+            "$ref": "#/components/schemas/MappingScoringPolicy"
+          },
           "template_id": {
             "title": "Template Id",
             "type": "string"
@@ -3308,6 +3437,109 @@
             },
             "title": "Transform Rules",
             "type": "array"
+          },
+          "unknown_evidence_policy": {
+            "default": "neutral",
+            "enum": [
+              "neutral",
+              "reject"
+            ],
+            "title": "Unknown Evidence Policy",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "template_id",
+          "schema_id",
+          "name",
+          "version"
+        ],
+        "title": "MappingTemplate",
+        "type": "object"
+      },
+      "MappingTemplate-Output": {
+        "additionalProperties": false,
+        "properties": {
+          "aliases": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Aliases",
+            "type": "object"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/MappingConstraintPolicy"
+          },
+          "defaults": {
+            "title": "Defaults",
+            "type": "object"
+          },
+          "enum_maps": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "title": "Enum Maps",
+            "type": "object"
+          },
+          "evidence_weights": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Evidence Weights",
+            "type": "object"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "neutral_evidence_weight": {
+            "default": 0.7,
+            "title": "Neutral Evidence Weight",
+            "type": "number"
+          },
+          "regex_rules": {
+            "items": {
+              "$ref": "#/components/schemas/RegexRule"
+            },
+            "title": "Regex Rules",
+            "type": "array"
+          },
+          "schema_id": {
+            "title": "Schema Id",
+            "type": "string"
+          },
+          "scoring": {
+            "$ref": "#/components/schemas/MappingScoringPolicy"
+          },
+          "template_id": {
+            "title": "Template Id",
+            "type": "string"
+          },
+          "transform_rules": {
+            "items": {
+              "$ref": "#/components/schemas/TransformRule"
+            },
+            "title": "Transform Rules",
+            "type": "array"
+          },
+          "unknown_evidence_policy": {
+            "default": "neutral",
+            "enum": [
+              "neutral",
+              "reject"
+            ],
+            "title": "Unknown Evidence Policy",
+            "type": "string"
           },
           "version": {
             "title": "Version",
@@ -4572,6 +4804,33 @@
         "title": "SourceAnchor",
         "type": "object"
       },
+      "SourceReuseRule": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "source_path": {
+            "title": "Source Path",
+            "type": "string"
+          },
+          "target_field_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Target Field Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "source_path",
+          "target_field_ids",
+          "reason"
+        ],
+        "title": "SourceReuseRule",
+        "type": "object"
+      },
       "SummaryConfig": {
         "additionalProperties": false,
         "properties": {
@@ -4642,6 +4901,17 @@
             "title": "Constraints",
             "type": "object"
           },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
           "display_name": {
             "title": "Display Name",
             "type": "string"
@@ -4653,6 +4923,17 @@
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "parent_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Path"
           },
           "required": {
             "default": false,
@@ -5038,7 +5319,7 @@
             "type": "string"
           },
           "template": {
-            "$ref": "#/components/schemas/MappingTemplate"
+            "$ref": "#/components/schemas/MappingTemplate-Input"
           }
         },
         "required": [
@@ -5137,7 +5418,7 @@
           "mapping_rules": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/MappingTemplate"
+                "$ref": "#/components/schemas/MappingTemplate-Input"
               },
               {
                 "type": "null"
@@ -5147,7 +5428,7 @@
           "mapping_template": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/MappingTemplate"
+                "$ref": "#/components/schemas/MappingTemplate-Input"
               },
               {
                 "type": "null"
@@ -5236,6 +5517,13 @@
             ],
             "title": "Conversion Assertion Report"
           },
+          "conversion_fingerprints": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Conversion Fingerprints",
+            "type": "object"
+          },
           "document_metadata": {
             "anyOf": [
               {
@@ -5257,6 +5545,16 @@
               }
             ],
             "title": "Document Summary"
+          },
+          "execution_option_warnings": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "title": "Execution Option Warnings",
+            "type": "array"
           },
           "manifest": {
             "anyOf": [
@@ -5320,6 +5618,13 @@
           "schema_id": {
             "title": "Schema Id",
             "type": "string"
+          },
+          "semantic_artifact_hashes": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Semantic Artifact Hashes",
+            "type": "object"
           },
           "status": {
             "title": "Status",
@@ -6685,7 +6990,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MappingTemplate"
+                  "$ref": "#/components/schemas/MappingTemplate-Output"
                 }
               }
             },
@@ -8725,7 +9030,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MappingTemplate"
+                  "$ref": "#/components/schemas/MappingTemplate-Output"
                 }
               }
             },

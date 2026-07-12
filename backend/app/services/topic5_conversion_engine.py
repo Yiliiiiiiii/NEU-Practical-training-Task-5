@@ -34,6 +34,7 @@ from app.services.mapping_repair_service import MappingRepairService
 from app.services.mapping_service import MappingService
 from app.services.metadata_template_service import MetadataTemplateService
 from app.services.render_service import RenderedArtifacts, RenderService
+from app.services.topic5_resource_limit_service import Topic5ResourceLimitService
 from app.services.transform_service import TransformResult, TransformService
 from app.services.validation_service import ValidationService
 
@@ -86,6 +87,13 @@ class Topic5ConversionEngine:
         engine_context: ConversionEngineContext,
     ) -> ConversionEngineResult:
         options = execution_options.runtime_dict()
+        resource_limits = Topic5ResourceLimitService(engine_context.settings)
+        resource_limits.validate_input(
+            uir=uir,
+            target_schema=target_schema,
+            mapping_rules=mapping_rules,
+            runtime_options=options,
+        )
         candidates = CandidateService().extract_candidates(
             engine_context.task_id,
             uir,
@@ -226,6 +234,7 @@ class Topic5ConversionEngine:
             markdown=summary_rendered.markdown,
             chunks=organized_chunks,
         )
+        resource_limits.validate_output(rendered=rendered)
         validation_report = ValidationService().validate(
             engine_context.task_id,
             target_schema,
@@ -329,6 +338,34 @@ class Topic5ConversionEngine:
                 },
             )
         )
+        execution_snapshot.update(
+            {
+                "engine_version": ConversionFingerprintService.ENGINE_VERSION,
+                "conversion_fingerprints": conversion_fingerprints,
+                "semantic_artifact_hashes": semantic_artifact_hashes,
+                "replay_contract_version": "1.0",
+                "replay_contract": {
+                    "uir": uir.model_dump(mode="json"),
+                    "target_schema": target_schema.model_dump(mode="json"),
+                    "metadata_template": (
+                        metadata_template.model_dump(mode="json")
+                        if metadata_template is not None
+                        else None
+                    ),
+                    "mapping_rules": mapping_rules.model_dump(mode="json"),
+                    "content_organization": content_organization.model_dump(
+                        mode="json"
+                    ),
+                    "execution_options": execution_options.model_dump(mode="json"),
+                    "output_assertions": (
+                        output_assertions.model_dump(mode="json")
+                        if output_assertions is not None
+                        else None
+                    ),
+                },
+            }
+        )
+        canonical.doc_meta["execution_snapshot"] = execution_snapshot
         return ConversionEngineResult(
             canonical=canonical,
             rendered=rendered,

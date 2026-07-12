@@ -42,3 +42,14 @@ class Settings(BaseSettings):
     artifact_retention_days: int = Field(default=30, ge=1)
     artifact_retention_dry_run: bool = True
     package_download_requires_auth: bool = True
+    topic5_max_request_bytes: int = Field(default=10 * 1024 * 1024, ge=1)
+    topic5_max_uir_blocks: int = Field(default=10_000, ge=1)
+    topic5_max_block_text_characters: int = Field(default=1_000_000, ge=1)
+    topic5_max_assets: int = Field(default=1_000, ge=0)
+    topic5_max_entities: int = Field(default=10_000, ge=0)
+    topic5_max_target_fields: int = Field(default=1_000, ge=1)
+    topic5_max_mapping_rules: int = Field(default=10_000, ge=1)
+    topic5_max_regex_length: int = Field(default=1_000, ge=1)
+    topic5_max_chunks: int = Field(default=100_000, ge=1)
+    topic5_max_output_bytes: int = Field(default=100 * 1024 * 1024, ge=1)
+    topic5_max_zip_bytes: int = Field(default=200 * 1024 * 1024, ge=1)

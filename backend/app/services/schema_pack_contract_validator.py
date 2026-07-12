@@ -14,6 +14,7 @@ from app.schemas.mapping_template import MappingTemplate
 from app.schemas.metadata_template import MetadataTemplateConfig
 from app.schemas.schema_pack_contract import SchemaPackManifest, validate_semver
 from app.schemas.target_schema import TargetSchema
+from app.utils.regex_safety import validate_safe_regex
 
 STANDARD_METADATA_FIELDS = {
     "document_id",
@@ -386,7 +387,7 @@ class SchemaPackContractValidator:
                     )
                     continue
                 try:
-                    re.compile(pattern)
+                    validate_safe_regex(pattern)
                 except re.error as exc:
                     errors.append(
                         f"mapping_rules.yaml.{collection}[{index}].{pattern_key} is invalid: {exc}"

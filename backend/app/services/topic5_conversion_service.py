@@ -18,8 +18,11 @@ from app.utils.ids import new_id
 
 
 class Topic5ConversionService:
-    def __init__(self, storage_root: str | Path) -> None:
+    def __init__(
+        self, storage_root: str | Path, *, settings: Settings | None = None
+    ) -> None:
         self.storage_root = Path(storage_root)
+        self.settings = settings or Settings()
 
     def convert(
         self,
@@ -59,7 +62,7 @@ class Topic5ConversionService:
                 doc_id=doc_id,
                 input_mode="inline_topic5_config",
                 mapping_input_name=request.mapping_input_name,
-                settings=Settings(),
+                settings=self.settings,
                 schema_pack_id=execution_options.schema_pack_id,
                 schema_pack_version=execution_options.schema_pack_version,
                 option_warnings=option_warnings,
@@ -72,7 +75,10 @@ class Topic5ConversionService:
         verifier_report = None
         artifact_consistency_report = engine_result.artifact_consistency_report
         if create_package:
-            package_result = PackageService(self.storage_root).create_package(
+            package_result = PackageService(
+                self.storage_root,
+                max_zip_bytes=self.settings.topic5_max_zip_bytes,
+            ).create_package(
                 task_id=task_id,
                 doc_id=doc_id,
                 schema=schema,

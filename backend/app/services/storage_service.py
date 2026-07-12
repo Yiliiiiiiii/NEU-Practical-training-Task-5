@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 from pathlib import Path
 from typing import Any
 from uuid import uuid4
@@ -52,8 +53,17 @@ class StorageService:
     def _atomic_write_text(path: Path, text: str) -> None:
         temporary = path.with_name(f".{path.name}.{uuid4().hex}.tmp")
         try:
-            temporary.write_text(text, encoding="utf-8")
+            with temporary.open("w", encoding="utf-8", newline="") as handle:
+                handle.write(text)
+                handle.flush()
+                os.fsync(handle.fileno())
             temporary.replace(path)
+            if os.name != "nt":
+                descriptor = os.open(path.parent, os.O_RDONLY)
+                try:
+                    os.fsync(descriptor)
+                finally:
+                    os.close(descriptor)
         finally:
             if temporary.exists():
                 temporary.unlink()

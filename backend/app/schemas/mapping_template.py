@@ -11,6 +11,13 @@ class RegexRule(StrictBaseModel):
     pattern: str
     group: int = 0
 
+    @field_validator("pattern")
+    @classmethod
+    def pattern_must_be_safe(cls, value: str) -> str:
+        from app.utils.regex_safety import validate_safe_regex
+
+        return validate_safe_regex(value)
+
 
 class MappingScoringPolicy(StrictBaseModel):
     lexical_weight: float = 0.25

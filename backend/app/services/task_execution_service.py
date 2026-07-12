@@ -341,7 +341,10 @@ class TaskExecutionService:
             task.config_snapshot_path = snapshot_path
             task.updated_at = self._now()
             self.db.commit()
-        package_result = PackageService(self.storage.root).create_package(
+        package_result = PackageService(
+            self.storage.root,
+            max_zip_bytes=self.settings.topic5_max_zip_bytes,
+        ).create_package(
             task_id=task.task_id,
             doc_id=document.doc_id,
             schema=schema,

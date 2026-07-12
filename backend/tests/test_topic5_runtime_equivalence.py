@@ -142,7 +142,7 @@ def test_runtime_equivalence_machine_report_is_reproducible() -> None:
         ROOT / "eval" / "topic5_runtime_equivalence" / "v1" / "report.json"
     )
 
-    rebuilt = evaluator.run_evaluation()
+    rebuilt = evaluator.run_evaluation(commit_sha=frozen["commit_sha"])
 
     assert rebuilt == frozen
     assert rebuilt["status"] == "passed"

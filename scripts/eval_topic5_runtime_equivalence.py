@@ -102,7 +102,7 @@ def _git_head() -> str:
     ).strip()
 
 
-def run_evaluation() -> dict[str, Any]:
+def run_evaluation(*, commit_sha: str | None = None) -> dict[str, Any]:
     engine = Topic5ConversionEngine()
     options = Topic5ExecutionOptions(
         mapping_mode="legacy",
@@ -178,7 +178,7 @@ def run_evaluation() -> dict[str, Any]:
         "dataset_id": "topic5_runtime_equivalence",
         "dataset_version": "1.0.0",
         "dataset_sha256": dataset_sha,
-        "commit_sha": _git_head(),
+        "commit_sha": commit_sha or _git_head(),
         "engine_version": ConversionFingerprintService.ENGINE_VERSION,
         "case_count": len(cases),
         "passed_count": passed_count,
@@ -195,8 +195,9 @@ def run_evaluation() -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--commit-sha")
     args = parser.parse_args()
-    report = run_evaluation()
+    report = run_evaluation(commit_sha=args.commit_sha)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
