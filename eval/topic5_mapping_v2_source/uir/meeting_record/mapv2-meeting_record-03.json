@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "Agenda theme: ?????????? ? ??3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "主持会议人员: ??? ? ??3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Calendar date on which the meeting took place: 2026-05-16 ? ??3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "参会人员: ??????????? ? ??3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "Administrative contact: ????? ? ??3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Resolutions: ????????? ? ??3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "会务咨询联系人: Service Desk-3",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "?????????????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-meeting_record-03",
+  "metadata": {
+    "domain": "meeting_record",
+    "language": "zh-CN",
+    "source_organization": "org-2-2"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

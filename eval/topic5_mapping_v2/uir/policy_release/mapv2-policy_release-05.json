@@ -1,0 +1,70 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "发文机关 | ??????? ? ??5",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Publication day | 2026-02-11 ? ??5",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Eff. date | 2026-07-01 ? ??5",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "政策说明单位 | ????? ? ??5",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Official reference number assigned to this policy | ????2026?8? ? ??5",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "政策宣讲承办单位: Publicity Office-5",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "??????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-policy_release-05",
+  "metadata": {
+    "Complete title of the released policy instrument": "???????? ? ??5",
+    "domain": "policy_release",
+    "language": "zh-CN",
+    "source_organization": "org-1-4"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

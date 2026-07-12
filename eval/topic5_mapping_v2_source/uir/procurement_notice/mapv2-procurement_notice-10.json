@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "Final contracted amount after award: ?????????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "预算上限: ????????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Bid due date: 2026-03-04 ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Pub. date: 2026-04-18 ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "采购责任主体: ??????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Official procurement notice headline: ???????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "预算调整参考值: 88000-10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "????????????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-procurement_notice-10",
+  "metadata": {
+    "domain": "procurement_notice",
+    "language": "en-US",
+    "source_organization": "org-0-4"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

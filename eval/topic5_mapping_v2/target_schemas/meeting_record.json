@@ -1,0 +1,129 @@
+{
+  "description": "Frozen benchmark-only schema; grant_program is held out from tuning.",
+  "fields": [
+    {
+      "aliases": [
+        "会议议题",
+        "Meeting subject",
+        "Agenda theme",
+        "会议主要事项",
+        "Full subject discussed at the recorded meeting"
+      ],
+      "constraints": {},
+      "display_name": "Meeting Subject",
+      "field_id": "meeting_subject",
+      "name": "meeting_subject",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "会议主持",
+        "Meeting chair",
+        "Chair",
+        "主持会议人员",
+        "Person who formally chaired the meeting"
+      ],
+      "constraints": {},
+      "display_name": "Chairperson",
+      "field_id": "chairperson",
+      "name": "chairperson",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "召开日期",
+        "Meeting day",
+        "Mtg. date",
+        "会议举行时间",
+        "Calendar date on which the meeting took place"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Meeting Date",
+      "field_id": "meeting_date",
+      "name": "meeting_date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "参会人员",
+        "Participants",
+        "Attendee list",
+        "会议出席成员",
+        "People officially recorded as attending the meeting"
+      ],
+      "constraints": {},
+      "display_name": "Attendees",
+      "field_id": "attendees",
+      "name": "attendees",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "会务联系人",
+        "Administrative contact",
+        "Contact",
+        "会议咨询人员",
+        "Person to contact about meeting administration"
+      ],
+      "constraints": {},
+      "display_name": "Contact Person",
+      "field_id": "contact_person",
+      "name": "contact_person",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "议定事项",
+        "Meeting decisions",
+        "Resolutions",
+        "会议形成决定",
+        "Decisions formally adopted during the meeting"
+      ],
+      "constraints": {},
+      "display_name": "Decisions",
+      "field_id": "decisions",
+      "name": "decisions",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "json_schema": {
+    "properties": {
+      "attendees": {
+        "type": "string"
+      },
+      "chairperson": {
+        "type": "string"
+      },
+      "contact_person": {
+        "type": "string"
+      },
+      "decisions": {
+        "type": "string"
+      },
+      "meeting_date": {
+        "type": "string"
+      },
+      "meeting_subject": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "meeting_subject",
+      "chairperson",
+      "meeting_date",
+      "attendees"
+    ],
+    "type": "object"
+  },
+  "name": "Meeting Record Benchmark Schema",
+  "schema_id": "meeting_record",
+  "version": "2.0.0"
+}

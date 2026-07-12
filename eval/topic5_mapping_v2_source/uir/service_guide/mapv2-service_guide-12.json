@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "Help telephone: ???????? ? ??2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "Audience: ?????? ? ??2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "材料提交最后日期: 2026-01-15 ? ??2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Date on which this service guide becomes applicable: 2026-11-30 ? ??2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "办理机构: ?????? ? ??2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Service heading: 400-810-2026 ? ??2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "业务咨询联系人: Help Desk-12",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "?????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-service_guide-12",
+  "metadata": {
+    "domain": "service_guide",
+    "language": "en-US",
+    "source_organization": "org-4-1"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

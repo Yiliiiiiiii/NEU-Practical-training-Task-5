@@ -1,0 +1,54 @@
+{
+  "aliases": {
+    "attendees": [
+      "参会人员",
+      "Participants",
+      "Attendee list",
+      "会议出席成员",
+      "People officially recorded as attending the meeting"
+    ],
+    "chairperson": [
+      "会议主持",
+      "Meeting chair",
+      "Chair",
+      "主持会议人员",
+      "Person who formally chaired the meeting"
+    ],
+    "contact_person": [
+      "会务联系人",
+      "Administrative contact",
+      "Contact",
+      "会议咨询人员",
+      "Person to contact about meeting administration"
+    ],
+    "decisions": [
+      "议定事项",
+      "Meeting decisions",
+      "Resolutions",
+      "会议形成决定",
+      "Decisions formally adopted during the meeting"
+    ],
+    "meeting_date": [
+      "召开日期",
+      "Meeting day",
+      "Mtg. date",
+      "会议举行时间",
+      "Calendar date on which the meeting took place"
+    ],
+    "meeting_subject": [
+      "会议议题",
+      "Meeting subject",
+      "Agenda theme",
+      "会议主要事项",
+      "Full subject discussed at the recorded meeting"
+    ]
+  },
+  "defaults": {},
+  "enum_maps": {},
+  "name": "meeting_record frozen benchmark rules",
+  "regex_rules": [],
+  "schema_id": "meeting_record",
+  "template_id": "meeting_record_mapping_v2",
+  "transform_rules": [],
+  "version": "2.0.0"
+}

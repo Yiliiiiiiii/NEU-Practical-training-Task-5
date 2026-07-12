@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "Document reference | ???????? ? ??2",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "Interp. org. | ??????? ? ??2",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "正式生效日期 | 2026-02-11 ? ??2",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Date on which the policy was publicly released | 2026-07-01 ? ??2",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "发文机关 | ????? ? ??2",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Policy heading | ????2026?8? ? ??2",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "政策宣讲承办单位: Publicity Office-2",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "??????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-policy_release-02",
+  "metadata": {
+    "domain": "policy_release",
+    "language": "en-US",
+    "source_organization": "org-1-1"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

@@ -1,0 +1,54 @@
+{
+  "aliases": {
+    "award_amount": [
+      "成交总额",
+      "Award value",
+      "Final amt.",
+      "实际授予金额",
+      "Final contracted amount after award"
+    ],
+    "bid_deadline": [
+      "响应截止日",
+      "Bid due date",
+      "Submission ddl.",
+      "投标文件截止日期",
+      "Last date on which a bid may be submitted"
+    ],
+    "budget_amount": [
+      "预算上限",
+      "Planned budget",
+      "Budget cap",
+      "项目预算金额",
+      "Maximum amount allocated before award"
+    ],
+    "buyer_entity": [
+      "采购单位",
+      "Buying authority",
+      "Buyer org.",
+      "采购责任主体",
+      "Organization purchasing the goods or services"
+    ],
+    "notice_heading": [
+      "采购主题",
+      "Tender heading",
+      "Bid subject",
+      "采购事项名称",
+      "Official procurement notice headline"
+    ],
+    "publication_date": [
+      "公告公开日",
+      "Notice publication day",
+      "Pub. date",
+      "采购公告发布日期",
+      "Date this procurement notice appeared online"
+    ]
+  },
+  "defaults": {},
+  "enum_maps": {},
+  "name": "procurement_notice frozen benchmark rules",
+  "regex_rules": [],
+  "schema_id": "procurement_notice",
+  "template_id": "procurement_notice_mapping_v2",
+  "transform_rules": [],
+  "version": "2.0.0"
+}

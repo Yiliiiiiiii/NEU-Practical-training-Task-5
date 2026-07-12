@@ -1,0 +1,54 @@
+{
+  "aliases": {
+    "application_deadline": [
+      "申请截止日",
+      "Application due",
+      "Apply by",
+      "材料提交最后日期",
+      "Last day on which an application may be filed"
+    ],
+    "consultation_phone": [
+      "咨询电话",
+      "Help telephone",
+      "Tel.",
+      "业务咨询号码",
+      "Telephone number for questions about this service"
+    ],
+    "effective_date": [
+      "指南启用日",
+      "Guide effective day",
+      "Eff. date",
+      "服务规则生效日期",
+      "Date on which this service guide becomes applicable"
+    ],
+    "responsible_agency": [
+      "办理机构",
+      "Responsible agency",
+      "Service org.",
+      "事项主管部门",
+      "Agency responsible for delivering this service"
+    ],
+    "service_name": [
+      "服务事项",
+      "Service heading",
+      "Service item",
+      "办事服务名称",
+      "Official name of the public service described"
+    ],
+    "service_object": [
+      "服务对象",
+      "Eligible applicant",
+      "Audience",
+      "事项适用群体",
+      "People or organizations eligible for this service"
+    ]
+  },
+  "defaults": {},
+  "enum_maps": {},
+  "name": "service_guide frozen benchmark rules",
+  "regex_rules": [],
+  "schema_id": "service_guide",
+  "template_id": "service_guide_mapping_v2",
+  "transform_rules": [],
+  "version": "2.0.0"
+}

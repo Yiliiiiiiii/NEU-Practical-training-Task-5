@@ -1,0 +1,131 @@
+{
+  "description": "Frozen benchmark-only schema; grant_program is held out from tuning.",
+  "fields": [
+    {
+      "aliases": [
+        "服务事项",
+        "Service heading",
+        "Service item",
+        "办事服务名称",
+        "Official name of the public service described"
+      ],
+      "constraints": {},
+      "display_name": "Service Name",
+      "field_id": "service_name",
+      "name": "service_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "办理机构",
+        "Responsible agency",
+        "Service org.",
+        "事项主管部门",
+        "Agency responsible for delivering this service"
+      ],
+      "constraints": {},
+      "display_name": "Responsible Agency",
+      "field_id": "responsible_agency",
+      "name": "responsible_agency",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "指南启用日",
+        "Guide effective day",
+        "Eff. date",
+        "服务规则生效日期",
+        "Date on which this service guide becomes applicable"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Effective Date",
+      "field_id": "effective_date",
+      "name": "effective_date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "申请截止日",
+        "Application due",
+        "Apply by",
+        "材料提交最后日期",
+        "Last day on which an application may be filed"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Application Deadline",
+      "field_id": "application_deadline",
+      "name": "application_deadline",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "服务对象",
+        "Eligible applicant",
+        "Audience",
+        "事项适用群体",
+        "People or organizations eligible for this service"
+      ],
+      "constraints": {},
+      "display_name": "Service Object",
+      "field_id": "service_object",
+      "name": "service_object",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "咨询电话",
+        "Help telephone",
+        "Tel.",
+        "业务咨询号码",
+        "Telephone number for questions about this service"
+      ],
+      "constraints": {},
+      "display_name": "Consultation Phone",
+      "field_id": "consultation_phone",
+      "name": "consultation_phone",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "json_schema": {
+    "properties": {
+      "application_deadline": {
+        "type": "string"
+      },
+      "consultation_phone": {
+        "type": "string"
+      },
+      "effective_date": {
+        "type": "string"
+      },
+      "responsible_agency": {
+        "type": "string"
+      },
+      "service_name": {
+        "type": "string"
+      },
+      "service_object": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "service_name",
+      "responsible_agency",
+      "effective_date",
+      "application_deadline"
+    ],
+    "type": "object"
+  },
+  "name": "Service Guide Benchmark Schema",
+  "schema_id": "service_guide",
+  "version": "2.0.0"
+}

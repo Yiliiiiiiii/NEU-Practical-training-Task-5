@@ -1,0 +1,54 @@
+{
+  "aliases": {
+    "contact": [
+      "活动咨询",
+      "Event contact",
+      "Contact desk",
+      "活动联络人员",
+      "Contact point for questions about the event"
+    ],
+    "event_name": [
+      "活动名称",
+      "Event heading",
+      "Program title",
+      "活动主题事项",
+      "Official public name of the scheduled event"
+    ],
+    "organizer": [
+      "承办单位",
+      "Event organizer",
+      "Host org.",
+      "活动组织机构",
+      "Organization operationally arranging the event"
+    ],
+    "registration_deadline": [
+      "报名截止日",
+      "Registration due",
+      "Reg. ddl.",
+      "参与申请截止日期",
+      "Last date on which participants may register"
+    ],
+    "starts_at": [
+      "活动开始日",
+      "Event start",
+      "Start date",
+      "活动举办日期",
+      "Date on which the event begins"
+    ],
+    "venue": [
+      "举办地点",
+      "Event venue",
+      "Location",
+      "活动场地信息",
+      "Physical or virtual location where the event occurs"
+    ]
+  },
+  "defaults": {},
+  "enum_maps": {},
+  "name": "event_brief frozen benchmark rules",
+  "regex_rules": [],
+  "schema_id": "event_brief",
+  "template_id": "event_brief_mapping_v2",
+  "transform_rules": [],
+  "version": "2.0.0"
+}

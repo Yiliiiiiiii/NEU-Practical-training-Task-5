@@ -1,0 +1,69 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "Interpretation office: ???????? ? ??1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Eff. date: ??????? ? ??1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "文件公开时间: 2026-02-11 ? ??1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "Authority legally issuing this policy: 2026-07-01 ? ??1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "政策名称: ????? ? ??1",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "政策宣讲承办单位: Publicity Office-6",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "??????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-policy_release-06",
+  "metadata": {
+    "domain": "policy_release",
+    "language": "en-US",
+    "source_organization": "org-1-0"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

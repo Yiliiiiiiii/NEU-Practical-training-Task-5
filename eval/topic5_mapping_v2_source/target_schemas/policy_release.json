@@ -1,0 +1,131 @@
+{
+  "description": "Frozen benchmark-only schema; grant_program is held out from tuning.",
+  "fields": [
+    {
+      "aliases": [
+        "政策名称",
+        "Policy heading",
+        "Rule subject",
+        "规范性文件标题",
+        "Complete title of the released policy instrument"
+      ],
+      "constraints": {},
+      "display_name": "Policy Title",
+      "field_id": "policy_title",
+      "name": "policy_title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "发文机关",
+        "Issuing authority",
+        "Issuer org.",
+        "政策制定单位",
+        "Authority legally issuing this policy"
+      ],
+      "constraints": {},
+      "display_name": "Issuer",
+      "field_id": "issuer",
+      "name": "issuer",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "政策发布日期",
+        "Publication day",
+        "Pub. date",
+        "文件公开时间",
+        "Date on which the policy was publicly released"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Publish Date",
+      "field_id": "publish_date",
+      "name": "publish_date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "政策施行日",
+        "Effective from",
+        "Eff. date",
+        "正式生效日期",
+        "Date on which policy provisions become effective"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Effective Date",
+      "field_id": "effective_date",
+      "name": "effective_date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "解读机构",
+        "Interpretation office",
+        "Interp. org.",
+        "政策说明单位",
+        "Organization responsible for explaining the policy"
+      ],
+      "constraints": {},
+      "display_name": "Interpreting Body",
+      "field_id": "interpreting_body",
+      "name": "interpreting_body",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "发文字号",
+        "Document reference",
+        "Doc. no.",
+        "规范文件编号",
+        "Official reference number assigned to this policy"
+      ],
+      "constraints": {},
+      "display_name": "Document Number",
+      "field_id": "document_number",
+      "name": "document_number",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "json_schema": {
+    "properties": {
+      "document_number": {
+        "type": "string"
+      },
+      "effective_date": {
+        "type": "string"
+      },
+      "interpreting_body": {
+        "type": "string"
+      },
+      "issuer": {
+        "type": "string"
+      },
+      "policy_title": {
+        "type": "string"
+      },
+      "publish_date": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "policy_title",
+      "issuer",
+      "publish_date",
+      "effective_date"
+    ],
+    "type": "object"
+  },
+  "name": "Policy Release Benchmark Schema",
+  "schema_id": "policy_release",
+  "version": "2.0.0"
+}

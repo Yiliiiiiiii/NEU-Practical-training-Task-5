@@ -1,0 +1,131 @@
+{
+  "description": "Frozen benchmark-only schema; grant_program is held out from tuning.",
+  "fields": [
+    {
+      "aliases": [
+        "采购主题",
+        "Tender heading",
+        "Bid subject",
+        "采购事项名称",
+        "Official procurement notice headline"
+      ],
+      "constraints": {},
+      "display_name": "Notice Heading",
+      "field_id": "notice_heading",
+      "name": "notice_heading",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "采购单位",
+        "Buying authority",
+        "Buyer org.",
+        "采购责任主体",
+        "Organization purchasing the goods or services"
+      ],
+      "constraints": {},
+      "display_name": "Buyer Entity",
+      "field_id": "buyer_entity",
+      "name": "buyer_entity",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "公告公开日",
+        "Notice publication day",
+        "Pub. date",
+        "采购公告发布日期",
+        "Date this procurement notice appeared online"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Publication Date",
+      "field_id": "publication_date",
+      "name": "publication_date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "响应截止日",
+        "Bid due date",
+        "Submission ddl.",
+        "投标文件截止日期",
+        "Last date on which a bid may be submitted"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Bid Deadline",
+      "field_id": "bid_deadline",
+      "name": "bid_deadline",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "预算上限",
+        "Planned budget",
+        "Budget cap",
+        "项目预算金额",
+        "Maximum amount allocated before award"
+      ],
+      "constraints": {},
+      "display_name": "Budget Amount",
+      "field_id": "budget_amount",
+      "name": "budget_amount",
+      "required": false,
+      "type": "number"
+    },
+    {
+      "aliases": [
+        "成交总额",
+        "Award value",
+        "Final amt.",
+        "实际授予金额",
+        "Final contracted amount after award"
+      ],
+      "constraints": {},
+      "display_name": "Award Amount",
+      "field_id": "award_amount",
+      "name": "award_amount",
+      "required": false,
+      "type": "number"
+    }
+  ],
+  "json_schema": {
+    "properties": {
+      "award_amount": {
+        "type": "number"
+      },
+      "bid_deadline": {
+        "type": "string"
+      },
+      "budget_amount": {
+        "type": "number"
+      },
+      "buyer_entity": {
+        "type": "string"
+      },
+      "notice_heading": {
+        "type": "string"
+      },
+      "publication_date": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "notice_heading",
+      "buyer_entity",
+      "publication_date",
+      "bid_deadline"
+    ],
+    "type": "object"
+  },
+  "name": "Procurement Notice Benchmark Schema",
+  "schema_id": "procurement_notice",
+  "version": "2.0.0"
+}

@@ -1,0 +1,38 @@
+{
+  "event_brief": [
+    "event_name",
+    "organizer",
+    "starts_at",
+    "registration_deadline"
+  ],
+  "grant_program": [
+    "program_title",
+    "administering_body",
+    "announcement_date",
+    "submission_deadline"
+  ],
+  "meeting_record": [
+    "meeting_subject",
+    "chairperson",
+    "meeting_date",
+    "attendees"
+  ],
+  "policy_release": [
+    "policy_title",
+    "issuer",
+    "publish_date",
+    "effective_date"
+  ],
+  "procurement_notice": [
+    "notice_heading",
+    "buyer_entity",
+    "publication_date",
+    "bid_deadline"
+  ],
+  "service_guide": [
+    "service_name",
+    "responsible_agency",
+    "effective_date",
+    "application_deadline"
+  ]
+}

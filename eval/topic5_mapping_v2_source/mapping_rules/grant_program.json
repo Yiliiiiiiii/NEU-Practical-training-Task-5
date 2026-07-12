@@ -1,0 +1,54 @@
+{
+  "aliases": {
+    "administering_body": [
+      "计划管理机构",
+      "Grant administrator",
+      "Admin. org.",
+      "资助项目主管单位",
+      "Organization administering the funding program"
+    ],
+    "announcement_date": [
+      "计划公告日",
+      "Call publication day",
+      "Call date",
+      "资助通知发布时间",
+      "Date on which the funding call was announced"
+    ],
+    "award_amount": [
+      "核定资助金额",
+      "Approved grant",
+      "Award amt.",
+      "最终拨付金额",
+      "Funding amount finally approved for an awardee"
+    ],
+    "funding_ceiling": [
+      "资助额度上限",
+      "Funding ceiling",
+      "Max grant",
+      "单项最高支持金额",
+      "Maximum funding available to one approved project"
+    ],
+    "program_title": [
+      "资助计划名称",
+      "Grant heading",
+      "Funding subject",
+      "专项申报标题",
+      "Official title of the funding program"
+    ],
+    "submission_deadline": [
+      "申报截止日",
+      "Proposal due date",
+      "Submit by",
+      "项目申请最后日期",
+      "Last date on which grant proposals are accepted"
+    ]
+  },
+  "defaults": {},
+  "enum_maps": {},
+  "name": "grant_program frozen benchmark rules",
+  "regex_rules": [],
+  "schema_id": "grant_program",
+  "template_id": "grant_program_mapping_v2",
+  "transform_rules": [],
+  "version": "2.0.0"
+}

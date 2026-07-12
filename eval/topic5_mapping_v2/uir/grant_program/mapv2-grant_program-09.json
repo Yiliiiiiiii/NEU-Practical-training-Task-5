@@ -1,0 +1,70 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "Organization administering the funding program: ??????? ? ??4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "计划公告日: 2026-04-06 ? ??4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Proposal due date: 2026-06-20 ? ??4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "Max grant: ???????? ? ??4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "最终拨付金额: ??????? ? ??4",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "往年平均拨款: 75000-9",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "??????????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-grant_program-09",
+  "metadata": {
+    "domain": "grant_program",
+    "language": "zh-CN",
+    "source_organization": "org-5-3",
+    "专项申报标题": "???????? ? ??4"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

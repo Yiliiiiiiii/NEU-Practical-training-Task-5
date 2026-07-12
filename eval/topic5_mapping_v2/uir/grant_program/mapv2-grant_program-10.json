@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "Funding amount finally approved for an awardee: ???????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "资助额度上限: ??????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Proposal due date: 2026-04-06 ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Call date: 2026-06-20 ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "资助项目主管单位: ???????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Official title of the funding program: ??????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "往年平均拨款: 75000-10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "??????????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-grant_program-10",
+  "metadata": {
+    "domain": "grant_program",
+    "language": "en-US",
+    "source_organization": "org-5-4"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

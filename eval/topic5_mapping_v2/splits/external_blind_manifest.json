@@ -1,0 +1,6 @@
+{
+  "reason": "independent annotations are not available",
+  "required_annotation_format": "gold-compatible JSONL",
+  "runner": "scripts/run_topic5_mapping_v2_external_blind.py",
+  "status": "not_run"
+}

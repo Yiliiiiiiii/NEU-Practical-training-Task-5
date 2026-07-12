@@ -1,0 +1,54 @@
+{
+  "aliases": {
+    "document_number": [
+      "发文字号",
+      "Document reference",
+      "Doc. no.",
+      "规范文件编号",
+      "Official reference number assigned to this policy"
+    ],
+    "effective_date": [
+      "政策施行日",
+      "Effective from",
+      "Eff. date",
+      "正式生效日期",
+      "Date on which policy provisions become effective"
+    ],
+    "interpreting_body": [
+      "解读机构",
+      "Interpretation office",
+      "Interp. org.",
+      "政策说明单位",
+      "Organization responsible for explaining the policy"
+    ],
+    "issuer": [
+      "发文机关",
+      "Issuing authority",
+      "Issuer org.",
+      "政策制定单位",
+      "Authority legally issuing this policy"
+    ],
+    "policy_title": [
+      "政策名称",
+      "Policy heading",
+      "Rule subject",
+      "规范性文件标题",
+      "Complete title of the released policy instrument"
+    ],
+    "publish_date": [
+      "政策发布日期",
+      "Publication day",
+      "Pub. date",
+      "文件公开时间",
+      "Date on which the policy was publicly released"
+    ]
+  },
+  "defaults": {},
+  "enum_maps": {},
+  "name": "policy_release frozen benchmark rules",
+  "regex_rules": [],
+  "schema_id": "policy_release",
+  "template_id": "policy_release_mapping_v2",
+  "transform_rules": [],
+  "version": "2.0.0"
+}

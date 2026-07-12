@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "活动联络人员: ??????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "举办地点: ????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Registration due: 2026-08-09 ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Start date: 2026-07-25 ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "活动组织机构: ?????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Official public name of the scheduled event: ????? ? ??5",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "活动支持单位: Community Sponsor-10",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "?????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-event_brief-10",
+  "metadata": {
+    "domain": "event_brief",
+    "language": "en-US",
+    "source_organization": "org-3-4"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

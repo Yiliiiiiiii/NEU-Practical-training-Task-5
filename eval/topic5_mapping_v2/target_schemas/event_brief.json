@@ -1,0 +1,131 @@
+{
+  "description": "Frozen benchmark-only schema; grant_program is held out from tuning.",
+  "fields": [
+    {
+      "aliases": [
+        "活动名称",
+        "Event heading",
+        "Program title",
+        "活动主题事项",
+        "Official public name of the scheduled event"
+      ],
+      "constraints": {},
+      "display_name": "Event Name",
+      "field_id": "event_name",
+      "name": "event_name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "承办单位",
+        "Event organizer",
+        "Host org.",
+        "活动组织机构",
+        "Organization operationally arranging the event"
+      ],
+      "constraints": {},
+      "display_name": "Organizer",
+      "field_id": "organizer",
+      "name": "organizer",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "活动开始日",
+        "Event start",
+        "Start date",
+        "活动举办日期",
+        "Date on which the event begins"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Starts At",
+      "field_id": "starts_at",
+      "name": "starts_at",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "报名截止日",
+        "Registration due",
+        "Reg. ddl.",
+        "参与申请截止日期",
+        "Last date on which participants may register"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Registration Deadline",
+      "field_id": "registration_deadline",
+      "name": "registration_deadline",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "举办地点",
+        "Event venue",
+        "Location",
+        "活动场地信息",
+        "Physical or virtual location where the event occurs"
+      ],
+      "constraints": {},
+      "display_name": "Venue",
+      "field_id": "venue",
+      "name": "venue",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "活动咨询",
+        "Event contact",
+        "Contact desk",
+        "活动联络人员",
+        "Contact point for questions about the event"
+      ],
+      "constraints": {},
+      "display_name": "Contact",
+      "field_id": "contact",
+      "name": "contact",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "json_schema": {
+    "properties": {
+      "contact": {
+        "type": "string"
+      },
+      "event_name": {
+        "type": "string"
+      },
+      "organizer": {
+        "type": "string"
+      },
+      "registration_deadline": {
+        "type": "string"
+      },
+      "starts_at": {
+        "type": "string"
+      },
+      "venue": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "event_name",
+      "organizer",
+      "starts_at",
+      "registration_deadline"
+    ],
+    "type": "object"
+  },
+  "name": "Event Brief Benchmark Schema",
+  "schema_id": "event_brief",
+  "version": "2.0.0"
+}

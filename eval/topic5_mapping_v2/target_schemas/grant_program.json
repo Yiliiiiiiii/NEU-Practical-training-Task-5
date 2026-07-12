@@ -1,0 +1,131 @@
+{
+  "description": "Frozen benchmark-only schema; grant_program is held out from tuning.",
+  "fields": [
+    {
+      "aliases": [
+        "资助计划名称",
+        "Grant heading",
+        "Funding subject",
+        "专项申报标题",
+        "Official title of the funding program"
+      ],
+      "constraints": {},
+      "display_name": "Program Title",
+      "field_id": "program_title",
+      "name": "program_title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "计划管理机构",
+        "Grant administrator",
+        "Admin. org.",
+        "资助项目主管单位",
+        "Organization administering the funding program"
+      ],
+      "constraints": {},
+      "display_name": "Administering Body",
+      "field_id": "administering_body",
+      "name": "administering_body",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "aliases": [
+        "计划公告日",
+        "Call publication day",
+        "Call date",
+        "资助通知发布时间",
+        "Date on which the funding call was announced"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Announcement Date",
+      "field_id": "announcement_date",
+      "name": "announcement_date",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "申报截止日",
+        "Proposal due date",
+        "Submit by",
+        "项目申请最后日期",
+        "Last date on which grant proposals are accepted"
+      ],
+      "constraints": {
+        "format": "YYYY-MM-DD"
+      },
+      "display_name": "Submission Deadline",
+      "field_id": "submission_deadline",
+      "name": "submission_deadline",
+      "required": true,
+      "type": "date"
+    },
+    {
+      "aliases": [
+        "资助额度上限",
+        "Funding ceiling",
+        "Max grant",
+        "单项最高支持金额",
+        "Maximum funding available to one approved project"
+      ],
+      "constraints": {},
+      "display_name": "Funding Ceiling",
+      "field_id": "funding_ceiling",
+      "name": "funding_ceiling",
+      "required": false,
+      "type": "number"
+    },
+    {
+      "aliases": [
+        "核定资助金额",
+        "Approved grant",
+        "Award amt.",
+        "最终拨付金额",
+        "Funding amount finally approved for an awardee"
+      ],
+      "constraints": {},
+      "display_name": "Award Amount",
+      "field_id": "award_amount",
+      "name": "award_amount",
+      "required": false,
+      "type": "number"
+    }
+  ],
+  "json_schema": {
+    "properties": {
+      "administering_body": {
+        "type": "string"
+      },
+      "announcement_date": {
+        "type": "string"
+      },
+      "award_amount": {
+        "type": "number"
+      },
+      "funding_ceiling": {
+        "type": "number"
+      },
+      "program_title": {
+        "type": "string"
+      },
+      "submission_deadline": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "program_title",
+      "administering_body",
+      "announcement_date",
+      "submission_deadline"
+    ],
+    "type": "object"
+  },
+  "name": "Grant Program Benchmark Schema",
+  "schema_id": "grant_program",
+  "version": "2.0.0"
+}

@@ -1,0 +1,70 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "资助项目主管单位: ??????? ? ??3",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "Date on which the funding call was announced: 2026-04-06 ? ??3",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "申报截止日: 2026-06-20 ? ??3",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "Max grant: ???????? ? ??3",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "Award amt.: ??????? ? ??3",
+      "type": "key_value"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "往年平均拨款: 75000-13",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "??????????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-grant_program-13",
+  "metadata": {
+    "Funding subject": "???????? ? ??3",
+    "domain": "grant_program",
+    "language": "zh-CN",
+    "source_organization": "heldout-org-5-12"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}

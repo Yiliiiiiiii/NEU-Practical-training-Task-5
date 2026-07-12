@@ -1,0 +1,77 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b01",
+      "text": "会议形成决定 | ?????????? ? ??4",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b02",
+      "text": "Person to contact about meeting administration | ??? ? ??4",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b03",
+      "text": "参会人员 | 2026-05-16 ? ??4",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b04",
+      "text": "Meeting day | ??????????? ? ??4",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b05",
+      "text": "主持会议人员 | ????? ? ??4",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "source"
+      },
+      "block_id": "b06",
+      "text": "会议主要事项 | ????????? ? ??4",
+      "type": "table"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "distractor"
+      },
+      "block_id": "distractor",
+      "text": "会务咨询联系人: Service Desk-14",
+      "type": "paragraph"
+    },
+    {
+      "attributes": {
+        "benchmark_role": "no_match"
+      },
+      "block_id": "no_match_noise",
+      "text": "?????????????????????",
+      "type": "paragraph"
+    }
+  ],
+  "doc_id": "mapv2-meeting_record-14",
+  "metadata": {
+    "domain": "meeting_record",
+    "language": "en-US",
+    "source_organization": "heldout-org-2-13"
+  },
+  "normalization_records": [],
+  "uir_version": "1.0"
+}
