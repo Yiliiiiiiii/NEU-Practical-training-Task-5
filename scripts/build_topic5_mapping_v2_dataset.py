@@ -64,10 +64,12 @@ def write_hashes(output: Path) -> None:
     hashes_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     (output.parent / f"{output.name}.hashes.sha256").write_text(
         hashlib.sha256(hashes_path.read_bytes()).hexdigest() + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 

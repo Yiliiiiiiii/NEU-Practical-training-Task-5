@@ -182,6 +182,7 @@ def main() -> int:
     args.output.write_text(
         json.dumps(artifact, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     print(json.dumps(artifact, ensure_ascii=False, sort_keys=True))
     return 0

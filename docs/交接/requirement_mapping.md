@@ -142,3 +142,5 @@ Metric wording must stay conservative: do not claim production-grade blind recal
 | Preserve Topic 5 boundary | no score, grade, semantic judgment, LLM-as-Judge, or publication route | Done |
 
 Conversion output assertions are deterministic SchemaPack-scoped checks over Topic 5 converted output. They complement target-schema validation but do not implement Topic 6 quality scoring, grading, semantic fidelity evaluation, or routing recommendations.
+
+The current field-mapping evaluation is published at `reports/real_world_mapping_eval_report.md`.

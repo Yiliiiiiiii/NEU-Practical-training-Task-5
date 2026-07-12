@@ -107,7 +107,14 @@ def run_evaluation(*, commit_sha: str | None = None) -> dict[str, Any]:
             "result": engine_diff,
         },
     ]
-    dataset_sha = hashlib.sha256(request_path.read_bytes()).hexdigest()
+    dataset_sha = hashlib.sha256(
+        json.dumps(
+            json.loads(request_path.read_text(encoding="utf-8")),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+    ).hexdigest()
     passed_count = sum(case["passed"] for case in cases)
     return {
         "status": "passed" if passed_count == len(cases) else "failed",
@@ -139,6 +146,7 @@ def main() -> int:
     args.output.write_text(
         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     print(json.dumps(report, ensure_ascii=False, sort_keys=True))
     return 0 if report["status"] == "passed" else 1
