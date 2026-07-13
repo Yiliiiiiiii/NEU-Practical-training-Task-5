@@ -47,7 +47,7 @@ export function ExternalUirPanel({
   const [routeConfirmed, setRouteConfirmed] = useState(false);
   const [status, setStatus] = useState<"idle" | "working" | "ready" | "error">("idle");
   const [message, setMessage] = useState("");
-  const jsonRevision = useRef(0);
+  const conversionRevision = useRef(0);
 
   const recommendedRoute = result?.route_report ?? null;
   const routeSelection = recommendedRoute
@@ -95,7 +95,7 @@ export function ExternalUirPanel({
   }, []);
 
   async function detectAdapter() {
-    const revision = jsonRevision.current;
+    const revision = conversionRevision.current;
     await runPanelAction(async () => {
       const payload = parsePayload();
       const detected = await api.detectExternalUirAdapter({
@@ -103,7 +103,7 @@ export function ExternalUirPanel({
         source_system: sourceSystem,
         dialect_hint: dialectHint
       });
-      if (revision !== jsonRevision.current) {
+      if (revision !== conversionRevision.current) {
         return;
       }
       setDetection(detected);
@@ -112,11 +112,11 @@ export function ExternalUirPanel({
           ? `已检测到 ${detected.selected_adapter.adapter_id}。`
           : "未找到可用方言，需要人工复核。"
       );
-    }, () => revision === jsonRevision.current);
+    }, () => revision === conversionRevision.current);
   }
 
   async function convert() {
-    const revision = jsonRevision.current;
+    const revision = conversionRevision.current;
     await runPanelAction(async () => {
       const payload = parsePayload();
       const converted = await api.convertExternalUir({
@@ -127,7 +127,7 @@ export function ExternalUirPanel({
         allow_llm: allowLlm,
         llm_mode: allowLlm ? "deepseek" : null
       });
-      if (revision !== jsonRevision.current) {
+      if (revision !== conversionRevision.current) {
         return;
       }
       setResult(converted);
@@ -138,11 +138,11 @@ export function ExternalUirPanel({
       }
       setMessage("External UIR 已转换，请检查预览后再导入。"
       );
-    }, () => revision === jsonRevision.current);
+    }, () => revision === conversionRevision.current);
   }
 
   async function importStandardUir() {
-    const revision = jsonRevision.current;
+    const revision = conversionRevision.current;
     await runPanelAction(async () => {
       const payload = parsePayload();
       const imported = await api.importExternalUir({
@@ -153,7 +153,7 @@ export function ExternalUirPanel({
         allow_llm: allowLlm,
         llm_mode: allowLlm ? "deepseek" : null
       });
-      if (revision !== jsonRevision.current) {
+      if (revision !== conversionRevision.current) {
         return;
       }
       setResult({
@@ -169,7 +169,7 @@ export function ExternalUirPanel({
         onRecommendedRoute(imported.route_report);
       }
       setMessage(`已导入 ${imported.doc_id}。请继续选择 SchemaPack。`);
-    }, () => revision === jsonRevision.current);
+    }, () => revision === conversionRevision.current);
   }
 
   async function createTaskFromRoute() {
@@ -208,15 +208,39 @@ export function ExternalUirPanel({
     onRouteConfirmationChange?.(false);
   }
 
-  function updateJsonText(value: string) {
-    jsonRevision.current += 1;
-    setJsonText(value);
+  function invalidateConversionState() {
+    conversionRevision.current += 1;
     setDetection(null);
     setResult(null);
     resetRouteConfirmation();
     onExternalInputChange?.();
     setStatus("idle");
     setMessage("");
+  }
+
+  function updateJsonText(value: string) {
+    setJsonText(value);
+    invalidateConversionState();
+  }
+
+  function updateSourceSystem(value: string) {
+    setSourceSystem(value);
+    invalidateConversionState();
+  }
+
+  function updateDialectHint(value: string) {
+    setDialectHint(value);
+    invalidateConversionState();
+  }
+
+  function updateRouteSchema(value: boolean) {
+    setRouteSchema(value);
+    invalidateConversionState();
+  }
+
+  function updateAllowLlm(value: boolean) {
+    setAllowLlm(value);
+    invalidateConversionState();
   }
 
   async function runPanelAction(action: () => Promise<void>, isCurrent = () => true) {
@@ -240,9 +264,9 @@ export function ExternalUirPanel({
 
   async function onFileSelected(file: File | null) {
     if (file) {
-      const revision = jsonRevision.current;
+      const revision = conversionRevision.current;
       const fileText = await file.text();
-      if (revision === jsonRevision.current) {
+      if (revision === conversionRevision.current) {
         updateJsonText(fileText);
       }
     }
@@ -264,7 +288,7 @@ export function ExternalUirPanel({
           <input
             id="external-source"
             value={sourceSystem}
-            onChange={(event) => setSourceSystem(event.target.value)}
+            onChange={(event) => updateSourceSystem(event.target.value)}
           />
         </div>
         <div className="control-group">
@@ -272,7 +296,7 @@ export function ExternalUirPanel({
           <select
             id="external-dialect"
             value={dialectHint}
-            onChange={(event) => setDialectHint(event.target.value)}
+            onChange={(event) => updateDialectHint(event.target.value)}
           >
             <option value="auto">自动</option>
             {adapters.map((adapter) => (
@@ -304,7 +328,7 @@ export function ExternalUirPanel({
           <input
             type="checkbox"
             checked={routeSchema}
-            onChange={(event) => setRouteSchema(event.target.checked)}
+            onChange={(event) => updateRouteSchema(event.target.checked)}
           />
           <span>启用确定性 Schema 路由</span>
         </label>
@@ -312,7 +336,7 @@ export function ExternalUirPanel({
           <input
             type="checkbox"
             checked={allowLlm}
-            onChange={(event) => setAllowLlm(event.target.checked)}
+            onChange={(event) => updateAllowLlm(event.target.checked)}
           />
           <span>允许 LLM 辅助</span>
         </label>

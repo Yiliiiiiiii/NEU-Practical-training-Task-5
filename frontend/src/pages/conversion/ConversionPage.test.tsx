@@ -303,6 +303,144 @@ describe("ConversionPage", () => {
     expect(screen.queryByRole("checkbox", { name: "已人工确认 Schema / 模板选择" })).not.toBeInTheDocument();
   });
 
+  it("invalidates an External UIR preview when any conversion option changes", async () => {
+    vi.mocked(api.listExternalUirAdapters).mockResolvedValue({
+      items: [{
+        adapter_id: "topic11",
+        adapter_version: "1.0.0",
+        supported_dialects: [],
+        source_systems: ["topic11"],
+        supports_tables: true,
+        supports_sections: true,
+        supports_pages: true,
+        supports_bbox: false,
+        requires_llm: false,
+        description: "adapter"
+      }]
+    });
+    vi.mocked(api.convertExternalUir).mockResolvedValue({
+      standard_uir: JSON.parse(uirText),
+      adapter_report: externalAdapterReport,
+      route_report: externalRouteReport,
+      warnings: [],
+      errors: []
+    });
+    render(<ConversionPage />);
+
+    fireEvent.change(screen.getByRole("textbox", { name: "External UIR JSON" }), {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+
+    const convertButton = screen.getByRole("button", { name: "转换并预览" });
+    const importButton = screen.getByRole("button", { name: "导入标准 UIR" });
+    const changes = [
+      () => fireEvent.change(screen.getByLabelText("来源系统"), { target: { value: "topic12" } }),
+      () => fireEvent.change(screen.getByLabelText("方言提示"), { target: { value: "topic11" } }),
+      () => fireEvent.click(screen.getByRole("checkbox", { name: "启用确定性 Schema 路由" })),
+      () => fireEvent.click(screen.getByRole("checkbox", { name: "允许 LLM 辅助" }))
+    ];
+
+    for (const change of changes) {
+      fireEvent.click(convertButton);
+      await waitFor(() => expect(importButton).toBeEnabled());
+      change();
+      expect(importButton).toBeDisabled();
+    }
+  });
+
+  it("discards a late External UIR conversion after a conversion option changes", async () => {
+    let resolveConversion!: (value: {
+      standard_uir: Record<string, unknown>;
+      adapter_report: typeof externalAdapterReport;
+      route_report: typeof externalRouteReport;
+      warnings: string[];
+      errors: string[];
+    }) => void;
+    const conversion = new Promise<{
+      standard_uir: Record<string, unknown>;
+      adapter_report: typeof externalAdapterReport;
+      route_report: typeof externalRouteReport;
+      warnings: string[];
+      errors: string[];
+    }>((resolve) => {
+      resolveConversion = resolve;
+    });
+    vi.mocked(api.convertExternalUir).mockReturnValue(conversion);
+    render(<ConversionPage />);
+
+    fireEvent.change(screen.getByRole("textbox", { name: "External UIR JSON" }), {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "转换并预览" }));
+    await waitFor(() => expect(api.convertExternalUir).toHaveBeenCalledTimes(1));
+
+    fireEvent.click(screen.getByRole("checkbox", { name: "允许 LLM 辅助" }));
+    await act(async () => {
+      resolveConversion({
+        standard_uir: JSON.parse(uirText),
+        adapter_report: externalAdapterReport,
+        route_report: externalRouteReport,
+        warnings: [],
+        errors: []
+      });
+    });
+
+    expect(screen.getByRole("button", { name: "导入标准 UIR" })).toBeDisabled();
+    expect(screen.queryByRole("checkbox", { name: "已人工确认 Schema / 模板选择" })).not.toBeInTheDocument();
+  });
+
+  it("discards a late External UIR import after a conversion option changes", async () => {
+    let resolveImport!: (value: {
+      doc_id: string;
+      document: { doc_id: string; title: string; block_count: number };
+      adapter_report: typeof externalAdapterReport;
+      route_report: typeof externalRouteReport;
+      warnings: string[];
+    }) => void;
+    const imported = new Promise<{
+      doc_id: string;
+      document: { doc_id: string; title: string; block_count: number };
+      adapter_report: typeof externalAdapterReport;
+      route_report: typeof externalRouteReport;
+      warnings: string[];
+    }>((resolve) => {
+      resolveImport = resolve;
+    });
+    vi.mocked(api.convertExternalUir).mockResolvedValue({
+      standard_uir: JSON.parse(uirText),
+      adapter_report: externalAdapterReport,
+      route_report: externalRouteReport,
+      warnings: [],
+      errors: []
+    });
+    vi.mocked(api.importExternalUir).mockReturnValue(imported);
+    render(<ConversionPage />);
+
+    fireEvent.change(screen.getByRole("textbox", { name: "External UIR JSON" }), {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "转换并预览" }));
+    const importButton = screen.getByRole("button", { name: "导入标准 UIR" });
+    await waitFor(() => expect(importButton).toBeEnabled());
+    fireEvent.click(importButton);
+    await waitFor(() => expect(api.importExternalUir).toHaveBeenCalledTimes(1));
+
+    fireEvent.click(screen.getByRole("checkbox", { name: "允许 LLM 辅助" }));
+    await act(async () => {
+      resolveImport({
+        doc_id: "external-doc",
+        document: { doc_id: "external-doc", title: "外部文档", block_count: 1 },
+        adapter_report: externalAdapterReport,
+        route_report: externalRouteReport,
+        warnings: []
+      });
+    });
+
+    expect(importButton).toBeDisabled();
+    expect(screen.queryByRole("checkbox", { name: "已人工确认 Schema / 模板选择" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "下一步" })).toBeDisabled();
+  });
+
   it("records a manually confirmed SchemaPack override in the external route task payload", async () => {
     const manualRouteReport = {
       ...externalRouteReport,
