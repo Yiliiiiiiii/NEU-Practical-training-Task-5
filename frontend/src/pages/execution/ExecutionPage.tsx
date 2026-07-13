@@ -4,31 +4,59 @@ import { api } from "../../api";
 import { formatStatus } from "../../app/format";
 import { PageState } from "../../components/feedback/PageState";
 import { StatusBadge } from "../../components/status/StatusBadge";
-import type { TaskExecuteResponse } from "../../types";
+import type { TaskDetailResponse, TaskExecuteResponse } from "../../types";
+
+type ExecutionResult = TaskDetailResponse | TaskExecuteResponse;
+
+function isExecutionResponse(result: ExecutionResult): result is TaskExecuteResponse {
+  return "review_required_count" in result;
+}
+
+function canExecuteTask(status: string) {
+  return status === "created" || status === "pending";
+}
 
 export function ExecutionPage({ taskId }: { taskId: string }) {
-  const [result, setResult] = useState<TaskExecuteResponse | null>(null);
-  const [executing, setExecuting] = useState(true);
+  const [result, setResult] = useState<ExecutionResult | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [executing, setExecuting] = useState(false);
   const [error, setError] = useState("");
   const executionRequest = useRef<{ taskId: string; promise: Promise<TaskExecuteResponse> } | null>(null);
 
   useEffect(() => {
     let active = true;
     setResult(null);
-    setExecuting(true);
+    setLoading(true);
+    setExecuting(false);
     setError("");
-    if (executionRequest.current?.taskId !== taskId) {
-      executionRequest.current = { taskId, promise: api.executeTask(taskId) };
-    }
-    void executionRequest.current.promise
-      .then((result) => {
-        if (active) setResult(result);
+    void api.getTask(taskId)
+      .then(async (task) => {
+        if (!active) {
+          return;
+        }
+        if (!canExecuteTask(task.status)) {
+          setResult(task);
+          return;
+        }
+
+        setLoading(false);
+        setExecuting(true);
+        if (executionRequest.current?.taskId !== taskId) {
+          executionRequest.current = { taskId, promise: api.executeTask(taskId) };
+        }
+        const executed = await executionRequest.current.promise;
+        if (active) {
+          setResult(executed);
+        }
       })
       .catch((caught) => {
-        if (active) setError(caught instanceof Error ? caught.message : "转换执行失败。");
+        if (active) setError(caught instanceof Error ? caught.message : "任务状态读取或转换执行失败。");
       })
       .finally(() => {
-        if (active) setExecuting(false);
+        if (active) {
+          setLoading(false);
+          setExecuting(false);
+        }
       });
     return () => { active = false; };
   }, [taskId]);
@@ -41,6 +69,13 @@ export function ExecutionPage({ taskId }: { taskId: string }) {
         执行结果由服务端同步返回；页面不会推断或展示未经 API 提供的阶段信息。
       </p>
 
+      {loading ? (
+        <PageState
+          kind="loading"
+          title="正在读取任务状态"
+          detail="仅新建或待处理任务会执行转换；已结束任务将展示服务端事实状态。"
+        />
+      ) : null}
       {executing ? (
         <PageState
           kind="loading"
@@ -57,8 +92,12 @@ export function ExecutionPage({ taskId }: { taskId: string }) {
               <div><dt>任务</dt><dd>{result.task_id}</dd></div>
               <div><dt>状态</dt><dd><StatusBadge status={result.status} /></dd></div>
               <div><dt>结果说明</dt><dd>{formatStatus(result.status)}</dd></div>
-              <div><dt>待复核项</dt><dd>{result.review_required_count}</dd></div>
-              <div><dt>未映射必填项</dt><dd>{result.unmapped_required_count}</dd></div>
+              {isExecutionResponse(result) ? (
+                <>
+                  <div><dt>待复核项</dt><dd>{result.review_required_count}</dd></div>
+                  <div><dt>未映射必填项</dt><dd>{result.unmapped_required_count}</dd></div>
+                </>
+              ) : null}
             </dl>
           </section>
           <a href={`/tasks/${encodeURIComponent(result.task_id)}`}>查看任务详情</a>

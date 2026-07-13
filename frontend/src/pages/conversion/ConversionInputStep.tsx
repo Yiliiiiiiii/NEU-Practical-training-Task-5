@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { ExternalUirPanel } from "../../components/ExternalUirPanel";
 import { sampleUirText } from "../../sampleUir";
@@ -7,6 +7,8 @@ import type { UirDocumentInput, UirValidationResult } from "./uirValidation";
 
 type InputTab = "paste" | "external" | "example";
 
+const inputTabs: InputTab[] = ["paste", "external", "example"];
+
 type ConversionInputStepProps = {
   text: string;
   validation: UirValidationResult | null;
@@ -14,6 +16,7 @@ type ConversionInputStepProps = {
   working: boolean;
   onTextChange: (value: string) => void;
   onExternalStandardPreview: (value: string) => void;
+  onExternalInputChange: () => void;
   onValidate: () => void;
   onImport: (document: UirDocumentInput) => Promise<void>;
   onExternalImported: (response: ExternalUirImportResponse) => void;
@@ -28,6 +31,7 @@ export function ConversionInputStep({
   working,
   onTextChange,
   onExternalStandardPreview,
+  onExternalInputChange,
   onValidate,
   onImport,
   onExternalImported,
@@ -35,6 +39,11 @@ export function ConversionInputStep({
   onRouteConfirmationChange
 }: ConversionInputStepProps) {
   const [tab, setTab] = useState<InputTab>("external");
+  const tabRefs = useRef<Record<InputTab, HTMLButtonElement | null>>({
+    paste: null,
+    external: null,
+    example: null
+  });
   const [lineWrap, setLineWrap] = useState(true);
   const [message, setMessage] = useState("");
   const document = validation?.valid ? validation.document : null;
@@ -77,6 +86,29 @@ export function ConversionInputStep({
     }
   }
 
+  function activateTab(nextTab: InputTab) {
+    setTab(nextTab);
+    tabRefs.current[nextTab]?.focus();
+  }
+
+  function moveTabFocus(event: React.KeyboardEvent<HTMLButtonElement>, currentTab: InputTab) {
+    const index = inputTabs.indexOf(currentTab);
+    let nextTab: InputTab | null = null;
+    if (event.key === "ArrowLeft") {
+      nextTab = inputTabs[(index - 1 + inputTabs.length) % inputTabs.length];
+    } else if (event.key === "ArrowRight") {
+      nextTab = inputTabs[(index + 1) % inputTabs.length];
+    } else if (event.key === "Home") {
+      nextTab = inputTabs[0];
+    } else if (event.key === "End") {
+      nextTab = inputTabs[inputTabs.length - 1];
+    }
+    if (nextTab) {
+      event.preventDefault();
+      activateTab(nextTab);
+    }
+  }
+
   return (
     <section className="conversion-step-panel" aria-labelledby="conversion-input-title">
       <header className="conversion-step-header">
@@ -92,7 +124,10 @@ export function ConversionInputStep({
           role="tab"
           aria-selected={tab === "paste"}
           aria-controls="conversion-panel-paste"
-          onClick={() => setTab("paste")}
+          tabIndex={tab === "paste" ? 0 : -1}
+          ref={(element) => { tabRefs.current.paste = element; }}
+          onClick={() => activateTab("paste")}
+          onKeyDown={(event) => moveTabFocus(event, "paste")}
         >
           粘贴 UIR
         </button>
@@ -102,7 +137,10 @@ export function ConversionInputStep({
           role="tab"
           aria-selected={tab === "external"}
           aria-controls="conversion-panel-external"
-          onClick={() => setTab("external")}
+          tabIndex={tab === "external" ? 0 : -1}
+          ref={(element) => { tabRefs.current.external = element; }}
+          onClick={() => activateTab("external")}
+          onKeyDown={(event) => moveTabFocus(event, "external")}
         >
           External UIR
         </button>
@@ -112,7 +150,10 @@ export function ConversionInputStep({
           role="tab"
           aria-selected={tab === "example"}
           aria-controls="conversion-panel-example"
-          onClick={() => setTab("example")}
+          tabIndex={tab === "example" ? 0 : -1}
+          ref={(element) => { tabRefs.current.example = element; }}
+          onClick={() => activateTab("example")}
+          onKeyDown={(event) => moveTabFocus(event, "example")}
         >
           示例
         </button>
@@ -124,6 +165,7 @@ export function ConversionInputStep({
             currentDocId={importedDocId}
             working={working}
             onStandardUirPreview={onExternalStandardPreview}
+            onExternalInputChange={onExternalInputChange}
             onImported={onExternalImported}
             onRecommendedRoute={onRecommendedRoute}
             onRouteConfirmationChange={onRouteConfirmationChange}

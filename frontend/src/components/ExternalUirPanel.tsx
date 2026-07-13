@@ -1,5 +1,5 @@
 import { CheckCircle2, FileInput, GitBranch, SearchCheck, UploadCloud, Wand2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { api } from "../api";
 import { resolveRouteSelection } from "../routeSelection";
@@ -18,6 +18,7 @@ type ExternalUirPanelProps = {
   onStandardUirPreview: (uirText: string) => void;
   onImported: (response: ExternalUirImportResponse) => void;
   onRecommendedRoute: (route: ExternalUirRouteReport) => void;
+  onExternalInputChange?: () => void;
   onTaskCreated?: (response: TaskCreateResponse) => void;
   onRouteConfirmationChange?: (confirmed: boolean) => void;
   enableTaskCreation?: boolean;
@@ -29,6 +30,7 @@ export function ExternalUirPanel({
   onStandardUirPreview,
   onImported,
   onRecommendedRoute,
+  onExternalInputChange,
   onTaskCreated,
   onRouteConfirmationChange,
   enableTaskCreation = false
@@ -45,6 +47,7 @@ export function ExternalUirPanel({
   const [routeConfirmed, setRouteConfirmed] = useState(false);
   const [status, setStatus] = useState<"idle" | "working" | "ready" | "error">("idle");
   const [message, setMessage] = useState("");
+  const jsonRevision = useRef(0);
 
   const recommendedRoute = result?.route_report ?? null;
   const routeSelection = recommendedRoute
@@ -92,6 +95,7 @@ export function ExternalUirPanel({
   }, []);
 
   async function detectAdapter() {
+    const revision = jsonRevision.current;
     await runPanelAction(async () => {
       const payload = parsePayload();
       const detected = await api.detectExternalUirAdapter({
@@ -99,16 +103,20 @@ export function ExternalUirPanel({
         source_system: sourceSystem,
         dialect_hint: dialectHint
       });
+      if (revision !== jsonRevision.current) {
+        return;
+      }
       setDetection(detected);
       setMessage(
         detected.selected_adapter
           ? `已检测到 ${detected.selected_adapter.adapter_id}。`
           : "未找到可用方言，需要人工复核。"
       );
-    });
+    }, () => revision === jsonRevision.current);
   }
 
   async function convert() {
+    const revision = jsonRevision.current;
     await runPanelAction(async () => {
       const payload = parsePayload();
       const converted = await api.convertExternalUir({
@@ -119,6 +127,9 @@ export function ExternalUirPanel({
         allow_llm: allowLlm,
         llm_mode: allowLlm ? "deepseek" : null
       });
+      if (revision !== jsonRevision.current) {
+        return;
+      }
       setResult(converted);
       resetRouteConfirmation();
       onStandardUirPreview(JSON.stringify(converted.standard_uir, null, 2));
@@ -127,10 +138,11 @@ export function ExternalUirPanel({
       }
       setMessage("External UIR 已转换，请检查预览后再导入。"
       );
-    });
+    }, () => revision === jsonRevision.current);
   }
 
   async function importStandardUir() {
+    const revision = jsonRevision.current;
     await runPanelAction(async () => {
       const payload = parsePayload();
       const imported = await api.importExternalUir({
@@ -141,6 +153,9 @@ export function ExternalUirPanel({
         allow_llm: allowLlm,
         llm_mode: allowLlm ? "deepseek" : null
       });
+      if (revision !== jsonRevision.current) {
+        return;
+      }
       setResult({
         standard_uir: result?.standard_uir ?? {},
         adapter_report: imported.adapter_report,
@@ -154,7 +169,7 @@ export function ExternalUirPanel({
         onRecommendedRoute(imported.route_report);
       }
       setMessage(`已导入 ${imported.doc_id}。请继续选择 SchemaPack。`);
-    });
+    }, () => revision === jsonRevision.current);
   }
 
   async function createTaskFromRoute() {
@@ -193,13 +208,30 @@ export function ExternalUirPanel({
     onRouteConfirmationChange?.(false);
   }
 
-  async function runPanelAction(action: () => Promise<void>) {
+  function updateJsonText(value: string) {
+    jsonRevision.current += 1;
+    setJsonText(value);
+    setDetection(null);
+    setResult(null);
+    resetRouteConfirmation();
+    onExternalInputChange?.();
+    setStatus("idle");
+    setMessage("");
+  }
+
+  async function runPanelAction(action: () => Promise<void>, isCurrent = () => true) {
     setStatus("working");
     setMessage("");
     try {
       await action();
+      if (!isCurrent()) {
+        return;
+      }
       setStatus("ready");
     } catch (caught) {
+      if (!isCurrent()) {
+        return;
+      }
       setStatus("error");
       setMessage(caught instanceof Error ? caught.message : "External UIR 操作失败。"
       );
@@ -208,7 +240,11 @@ export function ExternalUirPanel({
 
   async function onFileSelected(file: File | null) {
     if (file) {
-      setJsonText(await file.text());
+      const revision = jsonRevision.current;
+      const fileText = await file.text();
+      if (revision === jsonRevision.current) {
+        updateJsonText(fileText);
+      }
     }
   }
 
@@ -286,7 +322,7 @@ export function ExternalUirPanel({
         className="external-json-editor"
         aria-label="External UIR JSON"
         value={jsonText}
-        onChange={(event) => setJsonText(event.target.value)}
+        onChange={(event) => updateJsonText(event.target.value)}
         placeholder='{"id":"external_doc_001","chunks":[{"type":"title","text":"..."}]}'
         spellCheck={false}
       />

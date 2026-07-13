@@ -35,6 +35,29 @@ function loadBrowserRecovery(): BrowserRecovery {
   }
 }
 
+function recordActualRouteSelection(
+  route: ExternalUirRouteReport,
+  schemaPack: SchemaPackSelection
+): ExternalUirRouteReport {
+  const schemaId = schemaPack.schema.schema_id;
+  const templateId = schemaPack.template.template_id;
+  const selectionSource = route.selected_schema_id === schemaId && route.selected_template_id === templateId
+    ? "recommended"
+    : "manual";
+  const recommendation = `${route.selected_schema_id ?? "未自动选择"} / ${route.selected_template_id ?? "-"}`;
+  const actualSelection = `${schemaId} / ${templateId}`;
+  const decisionReason = selectionSource === "manual"
+    ? `人工确认选择 ${actualSelection}；原始路由建议为 ${recommendation}。`
+    : `已确认使用路由建议 ${actualSelection}。`;
+
+  return {
+    ...route,
+    selected_schema_id: schemaId,
+    selected_template_id: templateId,
+    decision_reason: decisionReason
+  };
+}
+
 export function ConversionPage() {
   const [recovery] = useState(loadBrowserRecovery);
   const [step, setStep] = useState(1);
@@ -155,6 +178,18 @@ export function ConversionPage() {
     setRunMessage("");
   }
 
+  function invalidateExternalConversion() {
+    setInputKind("external");
+    setUirText("");
+    setValidation(null);
+    setImportedDocId("");
+    setExternalRoute(null);
+    setExternalAdapterReport(null);
+    setExternalRouteConfirmed(false);
+    setExternalWarnings([]);
+    setRunMessage("");
+  }
+
   function validateInput() {
     setValidation(validateUirText(uirText));
     setRunMessage("");
@@ -215,7 +250,7 @@ export function ConversionPage() {
       const created = externalRoute && externalAdapterReport
         ? await api.createExternalUirTask({
           ...taskPayload,
-          route_report: externalRoute,
+          route_report: recordActualRouteSelection(externalRoute, schemaPack),
           adapter_report: externalAdapterReport
         })
         : await api.createTask(taskPayload);
@@ -254,6 +289,7 @@ export function ConversionPage() {
           working={working}
           onTextChange={updateUirText}
           onExternalStandardPreview={receiveExternalStandardPreview}
+          onExternalInputChange={invalidateExternalConversion}
           onValidate={validateInput}
           onImport={importNormalUir}
           onExternalImported={receiveExternalImport}

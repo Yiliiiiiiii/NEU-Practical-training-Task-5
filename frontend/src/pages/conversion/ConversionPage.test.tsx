@@ -2,7 +2,7 @@
 
 import "@testing-library/jest-dom/vitest";
 
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { api } from "../../api";
@@ -13,6 +13,7 @@ vi.mock("../../api", () => ({
     listSchemas: vi.fn(),
     listTemplates: vi.fn(),
     listExternalUirAdapters: vi.fn(),
+    detectExternalUirAdapter: vi.fn(),
     importDocument: vi.fn(),
     convertExternalUir: vi.fn(),
     importExternalUir: vi.fn(),
@@ -98,6 +99,11 @@ beforeEach(() => {
     total: 1
   });
   vi.mocked(api.listExternalUirAdapters).mockResolvedValue({ items: [] });
+  vi.mocked(api.detectExternalUirAdapter).mockResolvedValue({
+    selected_adapter: { adapter_id: "topic11", confidence: 0.88 },
+    alternatives: [],
+    review_required: false
+  });
   vi.mocked(api.importDocument).mockResolvedValue({ doc_id: "imported-doc", status: "imported", block_count: 1 });
   vi.mocked(api.createTask).mockResolvedValue({ task_id: "task-1", status: "pending" });
   vi.mocked(api.createExternalUirTask).mockResolvedValue({
@@ -200,11 +206,217 @@ describe("ConversionPage", () => {
       schema_id: "policy",
       template_id: "policy-template",
       options: expect.any(Object),
-      route_report: externalRouteReport,
+      route_report: expect.objectContaining({
+        ...externalRouteReport,
+        decision_reason: "已确认使用路由建议 policy / policy-template。"
+      }),
       adapter_report: externalAdapterReport
     }));
     expect(api.createTask).not.toHaveBeenCalled();
     expect(api.executeTask).not.toHaveBeenCalled();
     expect(window.location.pathname).toBe("/conversions/executing/external-task-1");
+  });
+
+  it("invalidates external conversion state when its JSON input changes", async () => {
+    vi.mocked(api.convertExternalUir).mockResolvedValue({
+      standard_uir: JSON.parse(uirText),
+      adapter_report: externalAdapterReport,
+      route_report: externalRouteReport,
+      warnings: [],
+      errors: []
+    });
+    vi.mocked(api.importExternalUir).mockResolvedValue({
+      doc_id: "external-doc",
+      document: { doc_id: "external-doc", title: "外部文档", block_count: 1 },
+      adapter_report: externalAdapterReport,
+      route_report: externalRouteReport,
+      warnings: []
+    });
+    render(<ConversionPage />);
+
+    const externalJson = screen.getByRole("textbox", { name: "External UIR JSON" });
+    fireEvent.change(externalJson, {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "检测适配器" }));
+    expect(await screen.findByText("88%")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "转换并预览" }));
+
+    const importButton = screen.getByRole("button", { name: "导入标准 UIR" });
+    await waitFor(() => expect(importButton).toBeEnabled());
+    fireEvent.click(importButton);
+    await waitFor(() => expect(api.importExternalUir).toHaveBeenCalledTimes(1));
+    fireEvent.click(await screen.findByRole("checkbox", { name: "已人工确认 Schema / 模板选择" }));
+    expect(screen.getByRole("button", { name: "下一步" })).toBeEnabled();
+
+    fireEvent.change(externalJson, {
+      target: { value: JSON.stringify({ id: "external-doc-edited", chunks: [] }) }
+    });
+
+    expect(importButton).toBeDisabled();
+    expect(screen.queryByText("88%")).not.toBeInTheDocument();
+    expect(screen.queryByRole("checkbox", { name: "已人工确认 Schema / 模板选择" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "下一步" })).toBeDisabled();
+  });
+
+  it("discards a conversion response that finishes after the external JSON changes", async () => {
+    let resolveConversion!: (value: {
+      standard_uir: Record<string, unknown>;
+      adapter_report: typeof externalAdapterReport;
+      route_report: typeof externalRouteReport;
+      warnings: string[];
+      errors: string[];
+    }) => void;
+    const conversion = new Promise<{
+      standard_uir: Record<string, unknown>;
+      adapter_report: typeof externalAdapterReport;
+      route_report: typeof externalRouteReport;
+      warnings: string[];
+      errors: string[];
+    }>((resolve) => {
+      resolveConversion = resolve;
+    });
+    vi.mocked(api.convertExternalUir).mockReturnValue(conversion);
+    render(<ConversionPage />);
+
+    const externalJson = screen.getByRole("textbox", { name: "External UIR JSON" });
+    fireEvent.change(externalJson, {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "转换并预览" }));
+    await waitFor(() => expect(api.convertExternalUir).toHaveBeenCalledTimes(1));
+
+    fireEvent.change(externalJson, {
+      target: { value: JSON.stringify({ id: "external-doc-edited", chunks: [] }) }
+    });
+    await act(async () => {
+      resolveConversion({
+        standard_uir: JSON.parse(uirText),
+        adapter_report: externalAdapterReport,
+        route_report: externalRouteReport,
+        warnings: [],
+        errors: []
+      });
+    });
+
+    expect(screen.getByRole("button", { name: "导入标准 UIR" })).toBeDisabled();
+    expect(screen.queryByRole("checkbox", { name: "已人工确认 Schema / 模板选择" })).not.toBeInTheDocument();
+  });
+
+  it("records a manually confirmed SchemaPack override in the external route task payload", async () => {
+    const manualRouteReport = {
+      ...externalRouteReport,
+      candidates: [
+        {
+          ...externalRouteReport.candidates[0],
+          evidence: [{
+            evidence_type: "keyword" as const,
+            value: "政策",
+            source_path: "blocks[0].text",
+            weight: 0.92,
+            matched_schema: "policy"
+          }]
+        },
+        {
+          schema_id: "meeting",
+          template_id: "meeting-template",
+          confidence: 0.72,
+          reasons: ["人工选择的候选项"],
+          evidence: [],
+          risk_flags: []
+        }
+      ]
+    };
+    vi.mocked(api.listSchemas).mockResolvedValue({
+      items: [
+        {
+          schema_id: "policy",
+          name: "政策 Schema",
+          version: "1.0.0",
+          status: "active",
+          fields: []
+        },
+        {
+          schema_id: "meeting",
+          name: "会议 Schema",
+          version: "1.0.0",
+          status: "active",
+          fields: []
+        }
+      ],
+      total: 2
+    });
+    vi.mocked(api.listTemplates).mockResolvedValue({
+      items: [
+        {
+          template_id: "policy-template",
+          schema_id: "policy",
+          name: "政策模板",
+          version: "1.0.0",
+          status: "active"
+        },
+        {
+          template_id: "meeting-template",
+          schema_id: "meeting",
+          name: "会议模板",
+          version: "1.0.0",
+          status: "active"
+        }
+      ],
+      total: 2
+    });
+    vi.mocked(api.convertExternalUir).mockResolvedValue({
+      standard_uir: JSON.parse(uirText),
+      adapter_report: externalAdapterReport,
+      route_report: manualRouteReport,
+      warnings: [],
+      errors: []
+    });
+    vi.mocked(api.importExternalUir).mockResolvedValue({
+      doc_id: "external-doc",
+      document: { doc_id: "external-doc", title: "外部文档", block_count: 1 },
+      adapter_report: externalAdapterReport,
+      route_report: manualRouteReport,
+      warnings: []
+    });
+    render(<ConversionPage />);
+
+    fireEvent.change(screen.getByRole("textbox", { name: "External UIR JSON" }), {
+      target: { value: JSON.stringify({ id: "external-doc", chunks: [] }) }
+    });
+    fireEvent.click(screen.getByRole("button", { name: "转换并预览" }));
+    fireEvent.click(await screen.findByRole("button", { name: "导入标准 UIR" }));
+    await waitFor(() => expect(api.importExternalUir).toHaveBeenCalledTimes(1));
+    fireEvent.click(screen.getByRole("checkbox", { name: "已人工确认 Schema / 模板选择" }));
+    fireEvent.click(screen.getByRole("button", { name: "下一步" }));
+    fireEvent.click(await screen.findByRole("radio", { name: /会议 Schema/ }));
+    fireEvent.click(screen.getByRole("button", { name: "下一步" }));
+    fireEvent.click(screen.getByRole("button", { name: "下一步" }));
+
+    const schemaReview = screen.getByRole("heading", { name: "SchemaPack 复核" }).closest("section");
+    expect(schemaReview).not.toBeNull();
+    expect(within(schemaReview as HTMLElement).getByText("meeting")).toBeInTheDocument();
+    expect(within(schemaReview as HTMLElement).getByText("meeting-template")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "运行转换" }));
+
+    await waitFor(() => expect(api.createExternalUirTask).toHaveBeenCalledWith(expect.objectContaining({
+      doc_id: "external-doc",
+      schema_id: "meeting",
+      template_id: "meeting-template",
+      route_report: expect.objectContaining({
+        selected_schema_id: "meeting",
+        selected_template_id: "meeting-template",
+        decision_reason: "人工确认选择 meeting / meeting-template；原始路由建议为 policy / policy-template。",
+        candidates: expect.arrayContaining([
+          expect.objectContaining({
+            schema_id: "policy",
+            evidence: expect.arrayContaining([
+              expect.objectContaining({ value: "政策", source_path: "blocks[0].text" })
+            ])
+          })
+        ])
+      })
+    })));
   });
 });
