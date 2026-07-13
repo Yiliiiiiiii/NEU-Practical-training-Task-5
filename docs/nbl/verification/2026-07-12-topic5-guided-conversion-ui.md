@@ -2,10 +2,15 @@
 
 Initial verification: 2026-07-12
 Responsive completion: 2026-07-13
+Health and operational-state revalidation: 2026-07-13
 
-Branch: `codex/topic5-guided-conversion-ui-fix3`
+Branch: `codex/topic5-guided-conversion-ui-fix6`
 
-Starting SHA for responsive completion: `cab98348`
+Prior verification-report commit: `f1c46cd8`.
+
+Visual-acceptance branch baseline: `2bc99187`. This identifies the code used
+for the local browser evidence below; it is not a claim that this is the final
+merged tip or that all later fixes have been reverified.
 
 ## Scope And Runtime
 
@@ -19,16 +24,20 @@ python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
 `http://127.0.0.1:8000/health` returned `200 {"status":"ok"}`. The frontend
-was started with:
+was started on a free local port with:
 
 ```powershell
 Push-Location frontend
-npm run dev -- --port 5173
+npm run dev -- --port 5174 --strictPort
 Pop-Location
 ```
 
-The Vite `/api` proxy sent the browser's requests to the local backend. No
-fixture data, route mocking, or browser network mocking was used.
+The Vite `/api` and `/health` proxies sent the browser's same-origin requests
+to the local backend. The browser-origin check
+`http://127.0.0.1:5174/health` returned `200 {"status":"ok"}`, and each fresh
+Overview snapshot reported `后端状态：已连接`. No route or browser-network mocking
+was used. The supplemental pagination data described below was created only in
+this worktree's ignored local database and storage.
 
 Playwright prerequisite: `npx` resolved to
 `E:\Program Files\nodejs\npx.ps1`.
@@ -54,6 +63,12 @@ reported Validation passed and Package verifier passed; the Mapping tab kept
 one low-confidence candidate in the Review queue. The responsive execution,
 task-detail, Tasks, and Review screenshots below are from that task.
 
+For the operational-state revalidation, an isolated local UIR was imported as
+`qa_evidence_seed_001`, then 101 local tasks were created. The executed seed
+task, `task_d3874ae49803`, ended in `review_required` with its package verifier
+passed. These temporary local records exercise pagination and evidence loading;
+they are not product acceptance data and are not committed.
+
 ## Commands And Results
 
 ```powershell
@@ -64,9 +79,9 @@ npm run build
 Pop-Location
 ```
 
-The responsive completion reran the frontend test and build commands after
-the localized Evidence refresh-control fix. Their final results are recorded
-in the self-review section below.
+The health and operational-state revalidation reran the frontend test and
+build commands. Their branch-baseline results are recorded in the self-review
+section below; final merged-tip verification remains a separate follow-up.
 
 The README's documented repository gate is:
 
@@ -87,20 +102,32 @@ verification does **not** claim that repository verification passed.
 
 ## Screenshot Inventory
 
-All 41 artifacts are real browser viewport screenshots in
-`output/playwright/topic5-guided-conversion-ui/`. Coverage is stated exactly:
+All 46 artifacts are real browser screenshots in
+`output/playwright/topic5-guided-conversion-ui/`. Files 1-45 are viewport
+captures; file 46 is a full-page capture taken after setting the viewport to
+1280x900. Coverage is stated exactly:
 
-| Viewport | Captured views |
-| --- | --- |
-| 1440x1024 | 12 primary views: Overview; Conversion Steps 1-4; Execution; Task Overview, Mapping, and Package; Tasks; SchemaPacks; and Evidence. |
-| 1280x900 | 12 views: Conversion Steps 1-4; Execution; Task Overview, Mapping, and Package; Tasks; Review queue; SchemaPacks; and Evidence. |
-| 1024x768 | The same 12 named views as 1280x900. |
+| Primary view | 1440x1024 | 1280x900 | 1024x768 |
+| --- | --- | --- | --- |
+| Overview | 1, 44 | 42 | 43 |
+| Conversion Step 1 | 2 | 18 | 19 |
+| Conversion Step 2 | 3 | 20 | 21 |
+| Conversion Step 3 | 4 | 22 | 23 |
+| Conversion Step 4 | 5 | 24 | 25 |
+| Execution | 6 | 26 | 27 |
+| Task Overview | 7 | 28 | 29 |
+| Task Mapping | 8 | 30 | 31 |
+| Task Package | 9 | 32 | 33 |
+| Tasks | 10 | 34 | 35 |
+| Review queue | — | 36 | 37 |
+| SchemaPacks | 11 | 38 | 39 |
+| Evidence | 12 | 40, 45 | 41 |
 
-Review queue is captured only at 1280x900 and 1024x768, not at 1440x1024.
-Conversely, the root Overview has a 1440x1024 capture only; it is not falsely
-claimed as part of the paired responsive set. Files 13-17 are retained earlier
-supplemental responsive captures and remain listed without being counted toward
-the paired responsive coverage.
+Overview now has evidence at all three responsive widths, with file 44 adding
+an explicit post-health 1440x1024 capture. All named primary views have all
+three widths except Review queue, which is captured only at 1280x900 and
+1024x768. Files 13-17 remain earlier supplemental responsive captures; file
+46 is supplemental task-detail audit pagination evidence.
 
 | # | View | Viewport | Artifact |
 | --- | --- | --- | --- |
@@ -145,14 +172,19 @@ the paired responsive coverage.
 | 39 | SchemaPacks | 1024x768 | `output/playwright/topic5-guided-conversion-ui/39-schemapacks-1024x768.png` |
 | 40 | Evidence | 1280x900 | `output/playwright/topic5-guided-conversion-ui/40-evidence-1280x900.png` |
 | 41 | Evidence | 1024x768 | `output/playwright/topic5-guided-conversion-ui/41-evidence-1024x768.png` |
+| 42 | Overview (connected health) | 1280x900 | `output/playwright/topic5-guided-conversion-ui/42-overview-1280x900.png` |
+| 43 | Overview (connected health) | 1024x768 | `output/playwright/topic5-guided-conversion-ui/43-overview-1024x768.png` |
+| 44 | Overview (connected health) | 1440x1024 | `output/playwright/topic5-guided-conversion-ui/44-overview-health-1440x1024.png` |
+| 45 | Evidence task selector and loaded reports | 1280x900 | `output/playwright/topic5-guided-conversion-ui/45-evidence-all-tasks-loaded-1280x900.png` |
+| 46 | Task Detail Execution audit pagination (full page) | 1280x900 | `output/playwright/topic5-guided-conversion-ui/46-task-execution-audit-pagination-1280x900.png` |
 
 ## Visual And Accessibility Observations
 
-- The paired responsive set covers the same twelve named views at both widths:
-  Conversion Steps 1-4, Execution, Task Overview, Task Mapping, Task Package,
-  Tasks, Review, SchemaPacks, and Evidence. The root Overview is represented
-  only in the original 1440x1024 primary set. The current responsive task state
-  is `task_3937000fa803` / `review_required`.
+- Overview is now revalidated at 1280x900, 1024x768, and 1440x1024 with the
+  connected health state visibly resolved. The existing primary views retain
+  their three-width coverage except Review queue, which remains correctly
+  bounded to 1280x900 and 1024x768. The earlier responsive task state is
+  `task_3937000fa803` / `review_required`.
 - At 1024px, table-heavy Mapping and Package views keep their wide data inside
   their scrollable table regions; the application shell does not escape the
   viewport. Long hashes and the package path wrap within their cells.
@@ -164,40 +196,54 @@ the paired responsive coverage.
   wrapped the Chinese label vertically. Removing that incorrect class in
   `frontend/src/components/EvaluationCenterPanel.tsx` restores the normal
   icon-plus-label command without changing any API contract.
-- The header continued to display "backend disconnected" while proxied API
-  requests and the health probe succeeded. This is a pre-existing runtime
-  status behavior mismatch, not a layout/accessibility result, and was not
-  changed in this visual QA work.
+- A real development-runtime defect was found and fixed: the new `api.health()`
+  request uses `/health`, but Vite only proxied `/api`, so a browser with the
+  default empty API base received Vite's 404 rather than the backend health
+  response. `frontend/vite.config.ts` now proxies `/health` to the same local
+  target. Direct backend and browser-origin health requests both returned 200,
+  and the AppShell displayed `后端状态：已连接` in files 42-44. This changes no
+  backend request or response contract.
+- Evidence pagination was exercised with 101 isolated local tasks: the first
+  API page returned 100 items and the second returned one. The Evidence
+  selector contained the task beyond the first page, selected
+  `task_d3874ae49803`, and loaded its mapping, validation, chunk, package, and
+  lineage evidence; file 45 records the loaded report state.
+- The same task had 102 local audit events. Execution first displayed `已显示
+  100 / 共 102 条审计事件` and exposed `加载更多审计事件`; activating it produced
+  `已显示 102 / 共 102 条审计事件`. File 46 preserves the pre-activation full-page
+  state, including the summary and load-more control.
 
 ## Two-Stage Self Review
 
 ### 1. Coverage And Evidence Audit
 
-PASS. `Get-ChildItem` counted exactly 41 PNG files in
+PASS. `Get-ChildItem` counted exactly 46 PNG files in
 `output/playwright/topic5-guided-conversion-ui/`, and every file is listed in
-the inventory above. The primary 1440x1024 set contains 12 named views; files
-18-41 provide the same 12 named responsive views at 1280x900 and 1024x768,
-with Review queue replacing the root Overview. Review is not claimed at
-1440x1024, and root Overview is not claimed at the paired responsive widths.
-The real backend state is recorded above, including the generated task and its
+the inventory above. The matrix records Overview at all three widths and every
+other named primary view at all three widths except Review queue, which is not
+claimed at 1440x1024. The browser health snapshots and the isolated pagination
+runtime state are recorded above, including the generated task's
 `review_required` result.
 
 ### 2. Render And Change Audit
 
-PASS. Inspected the fresh 1024x768 captures for the workflow steps, execution,
-Task Overview, Mapping, Package, Tasks, Review, SchemaPacks, and Evidence,
-plus the 1280x900 Mapping capture. This found and verified the Evidence
-refresh-control fix. No further clipping, overlap, unreadable contrast, or
-application-shell escape was found. Focused `EvaluationCenter.test.tsx` passed
-3 tests; full `npm test` passed 16 files and 71 tests in 5.73 seconds; `npm
-run build` completed in 3.74 seconds. Repository-wide
-verification remains unclaimed due to the timeout documented above.
+PASS. Inspected the fresh connected Overview captures at 1280x900, 1024x768,
+and 1440x1024; the loaded Evidence capture; and the full-page Execution audit
+pagination capture. The AppShell remained legible at all requested widths, and
+the new evidence/audit controls reported their explicit text state without
+overlap or shell escape. On this visual-acceptance branch baseline, full
+`npm test` passed 21 files and 94 tests in 7.22 seconds; `npm run build`
+completed in 2.62 seconds. These branch-baseline numbers are not final
+merged-tip verification. Repository-wide verification remains unclaimed due to
+the timeout documented above.
 
 ## Changed Files And API Contract
 
-- Updated this report with the complete 41-file inventory and bounded claims.
-- Added 24 responsive screenshot artifacts (`18` through `41`).
-- Corrected the Evidence refresh control's inappropriate fixed-width icon
-  class; no API request or response contract changed.
+- Updated this report with the complete 46-file inventory, coverage matrix, and
+  bounded health/pagination claims.
+- Added five browser screenshot artifacts (`42` through `46`).
+- Added the Vite `/health` proxy beside the existing `/api` proxy so the
+  AppShell health probe reaches the real local backend; no backend API contract
+  changed.
 - Generated local runtime state (`frontend/node_modules`, `frontend/dist`,
   backend storage, logs, and Playwright session metadata) remains uncommitted.
