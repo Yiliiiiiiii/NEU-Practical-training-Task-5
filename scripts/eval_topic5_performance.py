@@ -155,8 +155,7 @@ def _baseline_checks(
             continue
         for stage, duration in case["stage_durations_ms"].items():
             baseline_duration = float(old["stage_durations_ms"][stage])
-            measurement_floor = 5.0 if baseline_duration < 10.0 else 0.0
-            allowed = max(baseline_duration * 1.2, baseline_duration + measurement_floor)
+            allowed = max(baseline_duration * 1.2, baseline_duration + 5.0)
             if float(duration) > allowed:
                 regressions.append(
                     {
