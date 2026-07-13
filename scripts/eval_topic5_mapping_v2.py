@@ -610,7 +610,9 @@ def current_engine_predictions(
     return predictions
 
 
-def run_evaluation(root: Path, *, split: str) -> dict[str, Any]:
+def run_evaluation(
+    root: Path, *, split: str, commit_sha: str | None = None
+) -> dict[str, Any]:
     dataset = load_dataset(root)
     validation = validate_dataset(dataset)
     calibration = load_json(DEFAULT_CALIBRATION)
@@ -684,7 +686,7 @@ def run_evaluation(root: Path, *, split: str) -> dict[str, Any]:
     )
     return {
         "status": "passed" if passed else "failed",
-        "commit_sha": git_head(),
+        "commit_sha": commit_sha or git_head(),
         "baseline_source_commit": dataset.hashes["baseline_engine_commit"],
         "split": split,
         "dataset": {
@@ -727,6 +729,7 @@ def write_json(path: Path, value: dict[str, Any]) -> None:
     path.write_text(
         json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 
@@ -735,10 +738,13 @@ def main() -> None:
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--split", choices=("dev", "test"), required=True)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--commit-sha")
     parser.add_argument("--fail-on-targets", action="store_true")
     args = parser.parse_args()
     try:
-        report = run_evaluation(args.dataset, split=args.split)
+        report = run_evaluation(
+            args.dataset, split=args.split, commit_sha=args.commit_sha
+        )
         output = args.output or DEFAULT_REPORT_DIR / f"{args.split}.json"
         write_json(output, report)
     except Exception as exc:

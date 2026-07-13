@@ -2,12 +2,13 @@
   "baseline_source_commit": "70ff30236d90a3c9de0534a8f6313e5bb559cbf5",
   "dataset": {
     "id": "topic5_tag_quality",
-    "payload_sha256": "3b7a47611f1b231250a3e74e79a61ca91c52421cfc119990089756d2b662adc8",
-    "sha256": "3b7a47611f1b231250a3e74e79a61ca91c52421cfc119990089756d2b662adc8",
+    "payload_sha256": "cb2f4d319dc347435c6f58b663676b879fcb95a314744f0d7241415be74316f0",
+    "sha256": "cb2f4d319dc347435c6f58b663676b879fcb95a314744f0d7241415be74316f0",
     "version": "2.0.0"
   },
   "metrics": {
     "content_semantic": {
+      "accuracy": 0.8583333333333334,
       "f1": 0.851063829787234,
       "precision": 0.7407407407407407,
       "recall": 1.0
@@ -17,12 +18,12 @@
       "rate": 1.0
     },
     "management_scope_correctness": {
-      "passed": false,
-      "rate": 0.75
+      "passed": true,
+      "rate": 1.0
     },
     "management_trace_correctness": {
-      "passed": false,
-      "rate": 0.75
+      "passed": true,
+      "rate": 1.0
     },
     "quality_rule_correctness": {
       "passed": true,
@@ -36,7 +37,7 @@
       "passed": true,
       "rate": 1.0
     },
-    "unknown_tag_count": 7
+    "unknown_tag_count": 0
   },
   "sample_count": 20,
   "samples": [

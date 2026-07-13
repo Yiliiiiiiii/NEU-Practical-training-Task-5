@@ -6,6 +6,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -34,6 +35,12 @@ def _test_count(verification: dict[str, Any], command_name: str) -> int | None:
     return int(matches[-1]) if matches else None
 
 
+def _git_branch() -> str:
+    return subprocess.check_output(
+        ["git", "branch", "--show-current"], cwd=ROOT, text=True
+    ).strip()
+
+
 def build_status(
     final_gate: dict[str, Any], verification: dict[str, Any]
 ) -> dict[str, Any]:
@@ -41,7 +48,7 @@ def build_status(
         "schema_version": "1.0.0",
         "generated_at": datetime.now(UTC).isoformat(),
         "commit_sha": final_gate["commit_sha"],
-        "branch": "feat/topic5-batch-2-reliability",
+        "branch": _git_branch(),
         "status": final_gate["status"],
         "batch_2_passed": final_gate["passed"],
         "local_acceptance_passed": final_gate["local_acceptance_passed"],
@@ -77,6 +84,14 @@ def build_status(
             "mapping_v2": "eval/topic5_mapping_engine_v2/reports/gate.json",
             "runtime_equivalence": "eval/topic5_runtime_equivalence/v1/report.json",
             "replay": "eval/topic5_replay/v1/report.json",
+            "tag_quality": (
+                "reports/topic5_batch_2/verification/evaluator_reports/"
+                "tag_quality_v2.json"
+            ),
+            "llm_ambiguous_mapping": (
+                "reports/topic5_batch_2/verification/evaluator_reports/"
+                "llm_ambiguous_mapping.json"
+            ),
             "package_reliability": "eval/topic5_package_faults/v1/report.json",
             "performance": "eval/topic5_performance/v1/baseline.json",
             "downstream": "eval/topic5_downstream/v1/report.json",
@@ -113,7 +128,10 @@ def _project_markdown(status: dict[str, Any]) -> str:
             "",
             f"- Mapping exact/F1: {metrics['auto_exact_field_accuracy']:.6f} / {metrics['auto_f1']:.6f}",
             f"- Mapping precision/recall: {metrics['auto_precision']:.6f} / {metrics['auto_recall']:.6f}",
-            f"- Tag content F1: {metrics['content_tag_f1']:.6f}",
+            f"- Tag multilabel Jaccard accuracy: {metrics['content_tag_accuracy']:.6f}",
+            f"- Tag precision/recall/F1 diagnostic: {metrics['content_tag_f1']:.6f} F1",
+            f"- LLM difficult cases review-only: {metrics['llm_review_required_count']}/{metrics['llm_ambiguous_case_count']}",
+            f"- LLM difficult cases auto accepted: {metrics['llm_auto_accepted_count']}",
             f"- Runtime equivalence: {metrics['inline_registered_semantic_equivalence']:.1f}",
             f"- Replay semantic match: {metrics['replay_semantic_match_rate']:.1f}",
             f"- Partial package survival: {metrics['partial_package_survival_count']}",
@@ -200,6 +218,7 @@ def _copy_evidence_artifacts(verification_dir: Path) -> None:
             evaluators / "tag_quality_v2.json",
             evaluators / "field_operations.json",
             evaluators / "schema_localization.json",
+            evaluators / "llm_ambiguous_mapping.json",
         ],
         "runtime_equivalence": [evaluators / "runtime_equivalence.json"],
         "replay": [evaluators / "replay.json"],

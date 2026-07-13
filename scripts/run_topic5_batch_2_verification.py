@@ -38,6 +38,7 @@ TOPIC5_TASK_SCRIPTS = (
     "scripts/eval_topic5_replay.py",
     "scripts/eval_topic5_runtime_equivalence.py",
     "scripts/eval_topic5_tag_quality_v2.py",
+    "scripts/eval_topic5_llm_ambiguous_mapping.py",
     "scripts/generate_topic5_batch_2_status.py",
     "scripts/run_topic5_batch_2_verification.py",
     "scripts/export_openapi.py",
@@ -66,6 +67,16 @@ def extended_evaluator_specs(output_dir: Path) -> list[CommandSpec]:
                 "scripts/eval_topic5_tag_quality_v2.py",
                 "--output",
                 str(evaluator_output / "tag_quality_v2.json"),
+            ),
+            ROOT,
+        ),
+        CommandSpec(
+            "evaluator-llm-ambiguous-mapping",
+            (
+                sys.executable,
+                "scripts/eval_topic5_llm_ambiguous_mapping.py",
+                "--output",
+                str(evaluator_output / "llm_ambiguous_mapping.json"),
             ),
             ROOT,
         ),
@@ -456,6 +467,30 @@ def _named_passed(records: list[dict[str, Any]], name: str) -> bool:
     return any(record["name"] == name and record["passed"] for record in records)
 
 
+def read_final_gate_result(
+    path: Path, command_record: dict[str, Any]
+) -> dict[str, Any]:
+    if not path.is_file():
+        failure = "final_gate_output_missing"
+    else:
+        try:
+            report = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            failure = "final_gate_output_invalid"
+        else:
+            if isinstance(report, dict):
+                return report
+            failure = "final_gate_output_invalid"
+    return {
+        "passed": False,
+        "status": "failed",
+        "failed_conditions": [failure],
+        "command_status": command_record.get("status"),
+        "command_return_code": command_record.get("return_code"),
+        "raw_log": command_record.get("raw_log"),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
@@ -493,12 +528,11 @@ def main() -> None:
     ]
     if os.getenv("GITHUB_ACTIONS", "").lower() != "true":
         final_gate_command.append("--allow-pending-github-ci")
-    records.append(
-        run_command(
-            CommandSpec("batch2-final-gate", tuple(final_gate_command), ROOT),
-            args.output_dir / "raw_logs",
-        )
+    final_gate_record = run_command(
+        CommandSpec("batch2-final-gate", tuple(final_gate_command), ROOT),
+        args.output_dir / "raw_logs",
     )
+    records.append(final_gate_record)
     summary_path = write_summary(
         args.output_dir,
         commit_sha=commit_sha,
@@ -508,11 +542,23 @@ def main() -> None:
         tool_versions=tool_versions(),
     )
     payload = json.loads(summary_path.read_text(encoding="utf-8"))
-    final_gate = json.loads(
-        (args.output_dir / "final_gate.json").read_text(encoding="utf-8")
+    final_gate = read_final_gate_result(
+        args.output_dir / "final_gate.json", final_gate_record
     )
     payload["batch2_final_gate_passed"] = final_gate["passed"]
     payload["batch2_final_gate_status"] = final_gate["status"]
+    payload["batch2_final_gate_failed_conditions"] = final_gate.get(
+        "failed_conditions", []
+    )
+    if final_gate.get("failed_conditions") in (
+        ["final_gate_output_missing"],
+        ["final_gate_output_invalid"],
+    ):
+        payload["batch2_final_gate_error"] = {
+            "command_status": final_gate.get("command_status"),
+            "command_return_code": final_gate.get("command_return_code"),
+            "raw_log": final_gate.get("raw_log"),
+        }
     summary_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",

@@ -1,1 +1,7 @@
 * text=auto eol=lf
+eval/topic5_mapping_v2/** text eol=lf
+eval/topic5_mapping_v2_source/** text eol=lf
+eval/topic5_mapping_engine_v2/** text eol=lf
+eval/topic5_replay/** text eol=lf
+eval/topic5_tag_quality/** text eol=lf
+examples/topic5_inline/** text eol=lf

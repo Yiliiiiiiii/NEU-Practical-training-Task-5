@@ -125,3 +125,39 @@ def test_schemapack_gate_is_configured_to_fail_on_gate() -> None:
     )
 
     assert "--fail-on-gate" in spec.command
+
+
+def test_missing_final_gate_output_is_reported_without_crashing(
+    tmp_path: Path,
+) -> None:
+    runner = _load_runner()
+    record = {
+        "status": "failed",
+        "return_code": 1,
+        "raw_log": str(tmp_path / "batch2-final-gate.log"),
+    }
+
+    result = runner.read_final_gate_result(tmp_path / "final_gate.json", record)
+
+    assert result["passed"] is False
+    assert result["status"] == "failed"
+    assert result["failed_conditions"] == ["final_gate_output_missing"]
+    assert result["command_return_code"] == 1
+    assert result["raw_log"] == record["raw_log"]
+
+
+def test_invalid_final_gate_output_is_reported_without_crashing(
+    tmp_path: Path,
+) -> None:
+    runner = _load_runner()
+    path = tmp_path / "final_gate.json"
+    path.write_text("not-json", encoding="utf-8")
+
+    result = runner.read_final_gate_result(
+        path,
+        {"status": "failed", "return_code": 2, "raw_log": "gate.log"},
+    )
+
+    assert result["passed"] is False
+    assert result["failed_conditions"] == ["final_gate_output_invalid"]
+    assert result["command_return_code"] == 2

@@ -65,6 +65,7 @@ def evaluate_gate(report_dir: Path, verification_path: Path) -> dict[str, Any]:
         "entity": _json(evaluator_dir / "entity_passthrough.json"),
         "topic11": _json(evaluator_dir / "topic11_adapter.json"),
         "tag": _json(evaluator_dir / "tag_quality_v2.json"),
+        "llm": _json(evaluator_dir / "llm_ambiguous_mapping.json"),
         "operations": _json(evaluator_dir / "field_operations.json"),
         "localization": _json(evaluator_dir / "schema_localization.json"),
         "regressions": _json(evaluator_dir / "batch2_regressions.json"),
@@ -103,11 +104,43 @@ def evaluate_gate(report_dir: Path, verification_path: Path) -> dict[str, Any]:
             "content_json_internal_key_leak_count"
         ],
         "tag_gold_frozen": _tag_gold_frozen(),
+        "content_tag_accuracy": tag_metrics["content_semantic"]["accuracy"],
         "content_tag_f1": tag_metrics["content_semantic"]["f1"],
         "management_rule_correctness": tag_metrics["management_rule_correctness"][
             "rate"
         ],
+        "management_trace_correctness": tag_metrics[
+            "management_trace_correctness"
+        ]["rate"],
+        "management_scope_correctness": tag_metrics[
+            "management_scope_correctness"
+        ]["rate"],
         "quality_scope_correctness": tag_metrics["quality_scope_correctness"]["rate"],
+        "unknown_tag_count": tag_metrics["unknown_tag_count"],
+        "llm_ambiguous_case_count": reports["llm"]["metrics"][
+            "ambiguous_case_count"
+        ],
+        "llm_fallback_exercised_count": reports["llm"]["metrics"][
+            "llm_fallback_exercised_count"
+        ],
+        "llm_review_required_count": reports["llm"]["metrics"][
+            "review_required_count"
+        ],
+        "llm_auto_accepted_count": reports["llm"]["metrics"][
+            "auto_accepted_count"
+        ],
+        "llm_confidence_bound_violations": reports["llm"]["metrics"][
+            "confidence_bound_violations"
+        ],
+        "llm_missing_reason_count": reports["llm"]["metrics"][
+            "missing_reason_count"
+        ],
+        "llm_missing_evidence_count": reports["llm"]["metrics"][
+            "missing_evidence_count"
+        ],
+        "llm_production_rule_catalog_unchanged": reports["llm"]["metrics"][
+            "production_rule_catalog_unchanged"
+        ],
         "metadata_effectiveness": reports["metadata"][
             "metadata_template_effectiveness_rate"
         ],
@@ -202,9 +235,28 @@ def evaluate_gate(report_dir: Path, verification_path: Path) -> dict[str, Any]:
         ]
         == 0,
         "tag_gold_frozen": values["tag_gold_frozen"] is True,
+        "content_tag_accuracy": values["content_tag_accuracy"] >= 0.85,
         "content_tag_f1": values["content_tag_f1"] >= 0.85,
         "management_rule_correctness": values["management_rule_correctness"] == 1.0,
+        "management_trace_correctness": values["management_trace_correctness"]
+        == 1.0,
+        "management_scope_correctness": values["management_scope_correctness"]
+        == 1.0,
         "quality_scope_correctness": values["quality_scope_correctness"] == 1.0,
+        "unknown_tag_count": values["unknown_tag_count"] == 0,
+        "llm_fallback_exercised": values["llm_ambiguous_case_count"] >= 1
+        and values["llm_fallback_exercised_count"]
+        == values["llm_ambiguous_case_count"],
+        "llm_review_only": values["llm_review_required_count"]
+        == values["llm_ambiguous_case_count"]
+        and values["llm_auto_accepted_count"] == 0,
+        "llm_evidence_complete": values["llm_confidence_bound_violations"] == 0
+        and values["llm_missing_reason_count"] == 0
+        and values["llm_missing_evidence_count"] == 0,
+        "llm_production_rule_catalog_unchanged": values[
+            "llm_production_rule_catalog_unchanged"
+        ]
+        is True,
         "metadata_effectiveness": values["metadata_effectiveness"] == 1.0,
         "metadata_localization": values["metadata_localization"] == 1.0,
         "summary_faithfulness": values["summary_faithfulness"] == 1.0,
