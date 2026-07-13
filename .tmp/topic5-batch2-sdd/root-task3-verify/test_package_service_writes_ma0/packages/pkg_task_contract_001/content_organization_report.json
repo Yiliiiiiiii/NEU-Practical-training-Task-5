@@ -1,0 +1,76 @@
+{
+  "chunk_count": 3,
+  "chunks_with_content_tags": 3,
+  "chunks_with_keywords": 3,
+  "chunks_with_quality_tags": 3,
+  "chunks_with_source_links": 3,
+  "chunks_with_summary": 3,
+  "doc_id": "contract_001_standard",
+  "document_quality_flags": [],
+  "document_summary": null,
+  "provider_trace": {},
+  "summary": {
+    "avg_token_estimate": 9.67,
+    "child_chunk_count": 3,
+    "chunk_count": 3,
+    "chunks": [
+      {
+        "chunk_id": "chunk_contract_001_standard_con001_b001_1",
+        "quality_flags": [],
+        "source_block_ids": [
+          "con001_b001"
+        ],
+        "token_estimate": 5
+      },
+      {
+        "chunk_id": "chunk_contract_001_standard_con001_b002_1",
+        "quality_flags": [],
+        "source_block_ids": [
+          "con001_b002"
+        ],
+        "token_estimate": 6
+      },
+      {
+        "chunk_id": "chunk_contract_001_standard_con001_b003_1",
+        "quality_flags": [],
+        "source_block_ids": [
+          "con001_b003"
+        ],
+        "token_estimate": 18
+      }
+    ],
+    "content_tag_counts": {
+      "contract": 3
+    },
+    "empty_chunk_count": 0,
+    "length_ok_count": 0,
+    "max_token_estimate": 18,
+    "min_token_estimate": 5,
+    "options": {},
+    "oversized_count": 0,
+    "oversized_protected_blocks_count": 0,
+    "parent_chunk_count": 0,
+    "protected_blocks_count": 0,
+    "quality_flags_summary": {},
+    "quality_tag_counts": {
+      "anchor_linked": 3,
+      "keyworded": 3,
+      "short_chunk": 3,
+      "source_linked": 3,
+      "summarized": 3
+    },
+    "schema_id": "contract_doc",
+    "source_linked_count": 3,
+    "strategy": "legacy",
+    "template_id": "contract_doc_base_v1"
+  },
+  "tag_rule_summary": {
+    "content_base_tag_count": 0,
+    "content_rule_count": 0,
+    "management_metadata_rule_count": 0,
+    "management_static_tag_count": 0,
+    "quality_builtin_rule_count": 16
+  },
+  "task_id": "task_contract_001",
+  "warnings": []
+}

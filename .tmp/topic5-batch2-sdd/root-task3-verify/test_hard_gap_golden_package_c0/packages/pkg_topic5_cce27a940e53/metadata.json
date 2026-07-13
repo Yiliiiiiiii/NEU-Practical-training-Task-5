@@ -1,0 +1,82 @@
+{
+  "artifact_roles": {
+    "artifact_consistency_report.json": "artifact_consistency_report",
+    "canonical.json": "canonical",
+    "chunks.jsonl": "chunks",
+    "content.json": "structured_json",
+    "content.md": "markdown",
+    "content_organization_report.json": "content_organization_report",
+    "mapping_report.json": "mapping_report",
+    "metadata.json": "package_metadata",
+    "metadata_template_report.json": "metadata_template_report",
+    "transform_report.json": "transform_report",
+    "validation_report.json": "validation_report"
+  },
+  "doc_id": "uir_announcement_001",
+  "document_metadata": {
+    "language": "zh-CN",
+    "source": "example"
+  },
+  "document_summary": {
+    "char_count": 11,
+    "faithfulness_passed": true,
+    "generated_by": "DocumentSummaryService",
+    "mode": "extractive",
+    "sentence_traces": [
+      {
+        "source_block_id": "b2",
+        "source_text_span": "发布单位：信息化办公室",
+        "summary_sentence": "发布单位：信息化办公室"
+      }
+    ],
+    "source_block_ids": [
+      "b2"
+    ],
+    "source_chunk_ids": [
+      "chunk_uir_announcement_001_0001"
+    ],
+    "text": "发布单位：信息化办公室",
+    "warnings": []
+  },
+  "features": [
+    "metadata_template_v1",
+    "document_summary_v1",
+    "artifact_consistency_v1"
+  ],
+  "metadata_field_trace": [
+    {
+      "default_used": false,
+      "field_id": "source",
+      "path": "document_metadata.source",
+      "resolved": true,
+      "source": {
+        "kind": "uir_metadata",
+        "path": "uir.metadata.source"
+      },
+      "value_type": "string"
+    },
+    {
+      "default_used": false,
+      "field_id": "language",
+      "path": "document_metadata.language",
+      "resolved": true,
+      "source": {
+        "kind": "uir_metadata",
+        "path": "uir.metadata.language"
+      },
+      "value_type": "string"
+    }
+  ],
+  "metadata_template": {
+    "schema_id": "announcement_doc",
+    "template_id": "announcement_doc_base_v1",
+    "version": "1.0.0"
+  },
+  "package_id": "pkg_topic5_cce27a940e53",
+  "package_version": "1.0.0",
+  "schema_id": "announcement_doc",
+  "schema_version": "1.0.0",
+  "task_id": "topic5_cce27a940e53",
+  "template_id": "announcement_doc_base_v1",
+  "template_version": "1.0.0"
+}

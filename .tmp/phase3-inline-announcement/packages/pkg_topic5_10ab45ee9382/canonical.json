@@ -1,0 +1,216 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "block_id": "b1",
+      "level": 1,
+      "source_anchor": null,
+      "source_blocks": [
+        "b1"
+      ],
+      "text": "关于开展系统维护的公告",
+      "text_hash": "sha256:d4cb93d3270107054082d5e65f16a48bff56858c5a03c032cf2c3cdaab44f983",
+      "type": "heading"
+    },
+    {
+      "block_id": "b2",
+      "level": null,
+      "source_anchor": null,
+      "source_blocks": [
+        "b2"
+      ],
+      "text": "发布单位：信息化办公室",
+      "text_hash": "sha256:3e4220cfbc819edc5b0baaec9cdd638ce6e7c65932649eca4433552f6b4955f6",
+      "type": "paragraph"
+    },
+    {
+      "block_id": "b3",
+      "level": null,
+      "source_anchor": null,
+      "source_blocks": [
+        "b3"
+      ],
+      "text": "发布日期：2026-07-09",
+      "text_hash": "sha256:5c80c6c5aaf2b33e26f184e58e6673368b2fd608f652a7b1751a46b43a7b8a8d",
+      "type": "paragraph"
+    },
+    {
+      "block_id": "b4",
+      "level": null,
+      "source_anchor": null,
+      "source_blocks": [
+        "b4"
+      ],
+      "text": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。",
+      "text_hash": "sha256:70ab3c58cd2215b554bbda6b35a608ed232bca5dff35bd488cd4809aa925e594",
+      "type": "paragraph"
+    }
+  ],
+  "canonical_version": "1.0",
+  "doc_id": "uir_announcement_001",
+  "doc_meta": {
+    "execution_snapshot": {
+      "doc_id": "uir_announcement_001",
+      "input_mode": "inline_topic5_config",
+      "mapping_input_name": "mapping_rules",
+      "options": {
+        "candidate_profile": {
+          "labeled_values": {
+            "issuer": [
+              "发布单位",
+              "发布机构"
+            ],
+            "publish_date": [
+              "发布日期",
+              "发布时间"
+            ]
+          }
+        },
+        "content_organization": {
+          "chunk_strategy": "source_block_aware",
+          "enable_parent_child": false,
+          "keyword_mode": "deterministic",
+          "max_tokens": 1400,
+          "min_tokens": 1,
+          "overlap_tokens": 0,
+          "protect_code_blocks": true,
+          "protect_lists": true,
+          "protect_tables": true,
+          "summary_mode": "deterministic",
+          "target_tokens": 1200
+        },
+        "enable_lineage": false,
+        "enable_llm_fallback": false,
+        "metadata_template": {
+          "metadata_fields": [
+            {
+              "default": null,
+              "field_id": "source",
+              "required": false
+            },
+            {
+              "default": "zh-CN",
+              "field_id": "language",
+              "required": false
+            }
+          ],
+          "schema_id": "announcement_doc",
+          "template_id": "announcement_doc_base_v1",
+          "version": "1.0.0"
+        },
+        "negative_pairs": [
+          {
+            "reason": "网页抓取时间不是发布日期",
+            "severity": "block",
+            "source_pattern": "抓取时间|retrieved_at",
+            "target_field_id": "publish_date"
+          }
+        ],
+        "no_code_schema_pack_onboarding": true,
+        "thresholds": {
+          "auto_accept": 0.82,
+          "review_required": 0.62
+        },
+        "topic5_inline_config": true
+      },
+      "schema_id": "announcement_doc",
+      "schema_version": "1.0.0",
+      "task_id": "topic5_10ab45ee9382",
+      "template_id": "announcement_doc_base_v1",
+      "template_version": "1.0.0"
+    },
+    "mapping_summary": {
+      "accepted_count": 4,
+      "average_confidence": 0.98,
+      "avg_confidence": 0.98,
+      "badcase_blocked_count": 0,
+      "failed_count": 0,
+      "input_mode": "inline_topic5_config",
+      "llm_suggestion_count": 0,
+      "mapped_count": 4,
+      "mapped_fields": 4,
+      "mapping_input_name": "mapping_rules",
+      "mapping_mode": "legacy",
+      "methods": {
+        "alias": 2,
+        "exact": 2
+      },
+      "no_code_schema_pack_onboarding": true,
+      "required_unmapped_count": 0,
+      "review_required": 0,
+      "review_required_count": 0,
+      "risk_flag_counts": {},
+      "strategy_counts": {
+        "alias": 2,
+        "exact": 2,
+        "fuzzy": 0,
+        "llm_fallback": 0,
+        "regex": 0,
+        "type": 0
+      },
+      "target_fields": 4,
+      "template_id": "announcement_doc_base_v1",
+      "thresholds": {
+        "auto_accept": 0.82,
+        "review_required": 0.62
+      },
+      "total_candidates": 9,
+      "total_target_fields": 4,
+      "unmapped_required_fields": 0,
+      "warnings": []
+    },
+    "metadata": {
+      "document_title": "关于开展系统维护的公告",
+      "language": "zh-CN",
+      "source": "example"
+    },
+    "template_id": "announcement_doc_base_v1",
+    "transform_summary": {
+      "error_count": 0,
+      "trace_count": 4,
+      "transformed_fields": 4
+    }
+  },
+  "fields": {
+    "body": {
+      "source_blocks": [
+        "b4"
+      ],
+      "source_candidates": [
+        "cand_topic5_10ab45ee9382_正文_1"
+      ],
+      "type": "text",
+      "value": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。"
+    },
+    "issuer": {
+      "source_blocks": [
+        "b2"
+      ],
+      "source_candidates": [
+        "cand_topic5_10ab45ee9382_issuer_1"
+      ],
+      "type": "string",
+      "value": "信息化办公室"
+    },
+    "publish_date": {
+      "source_blocks": [
+        "b3"
+      ],
+      "source_candidates": [
+        "cand_topic5_10ab45ee9382_publish_date_1"
+      ],
+      "type": "date",
+      "value": "2026-07-09"
+    },
+    "title": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_topic5_10ab45ee9382_document_title_1"
+      ],
+      "type": "string",
+      "value": "关于开展系统维护的公告"
+    }
+  },
+  "schema_id": "announcement_doc",
+  "task_id": "topic5_10ab45ee9382"
+}

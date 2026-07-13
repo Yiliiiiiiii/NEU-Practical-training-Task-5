@@ -1,0 +1,184 @@
+{
+  "chunk_count": 6,
+  "chunks_with_content_tags": 6,
+  "chunks_with_keywords": 6,
+  "chunks_with_quality_tags": 6,
+  "chunks_with_source_links": 6,
+  "chunks_with_summary": 6,
+  "doc_id": "uir_event_notice_001",
+  "document_quality_flags": [],
+  "document_summary": {
+    "char_count": 38,
+    "faithfulness_passed": true,
+    "generated_by": "DocumentSummaryService",
+    "mode": "extractive",
+    "sentence_traces": [
+      {
+        "source_block_id": "e2",
+        "source_text_span": "organizer: Information Security School",
+        "summary_sentence": "organizer: Information Security School"
+      }
+    ],
+    "source_block_ids": [
+      "e2"
+    ],
+    "source_chunk_ids": [
+      "chunk_uir_event_notice_001_0001"
+    ],
+    "text": "organizer: Information Security School",
+    "warnings": []
+  },
+  "provider_trace": {
+    "external_requested": false,
+    "external_used": false,
+    "fallback_reason": null,
+    "fallback_used": false,
+    "latency_ms": null,
+    "provider_version": "internal-1.0",
+    "requested_provider": "internal",
+    "used_provider": "internal",
+    "validation_passed": true
+  },
+  "summary": {
+    "avg_token_estimate": 11.5,
+    "child_chunk_count": 6,
+    "chunk_count": 6,
+    "chunks": [
+      {
+        "chunk_id": "chunk_uir_event_notice_001_0000",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e1"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "chunk_id": "chunk_uir_event_notice_001_0001",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e2"
+        ],
+        "token_estimate": 9
+      },
+      {
+        "chunk_id": "chunk_uir_event_notice_001_0002",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e3"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "chunk_id": "chunk_uir_event_notice_001_0003",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e4"
+        ],
+        "token_estimate": 6
+      },
+      {
+        "chunk_id": "chunk_uir_event_notice_001_0004",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e5"
+        ],
+        "token_estimate": 10
+      },
+      {
+        "chunk_id": "chunk_uir_event_notice_001_0005",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e6"
+        ],
+        "token_estimate": 30
+      }
+    ],
+    "content_tag_counts": {
+      "event_notice": 6
+    },
+    "empty_chunk_count": 0,
+    "length_ok_count": 6,
+    "max_token_estimate": 30,
+    "min_token_estimate": 6,
+    "options": {
+      "chunk_strategy": "source_block_aware",
+      "enable_legacy_entity_inference": false,
+      "enable_light_semantic_boundary": true,
+      "enable_parent_child": false,
+      "fallback_to_internal": true,
+      "keyword_mode": "deterministic",
+      "max_tokens": 1400,
+      "min_tokens": 1,
+      "overlap_tokens": 0,
+      "protect_code_blocks": true,
+      "protect_lists": true,
+      "protect_tables": true,
+      "provider": "internal",
+      "strict_provider": false,
+      "summary": {
+        "chunk_mode": "deterministic",
+        "document_max_chars": 500,
+        "document_max_sentences": 5,
+        "document_mode": "extractive"
+      },
+      "summary_mode": "deterministic",
+      "tag_rules": {
+        "content": {
+          "base_tags": [],
+          "rules": []
+        },
+        "management": {
+          "metadata_rules": [],
+          "static_tags": []
+        },
+        "quality": {
+          "enabled_builtin_rules": [
+            "source_linked",
+            "anchor_linked",
+            "length_ok",
+            "summarized",
+            "keyworded",
+            "entity_linked",
+            "empty_text",
+            "short_chunk",
+            "overlong_chunk",
+            "oversized_protected_block",
+            "summary_missing",
+            "keyword_missing",
+            "source_unlinked",
+            "mapping_review_required",
+            "validation_error",
+            "entity_unlinked"
+          ]
+        }
+      },
+      "target_tokens": 1200
+    },
+    "oversized_count": 0,
+    "oversized_protected_blocks_count": 0,
+    "parent_chunk_count": 0,
+    "protected_blocks_count": 0,
+    "quality_flags_summary": {},
+    "quality_tag_counts": {
+      "anchor_linked": 6,
+      "entity_linked": 1,
+      "keyworded": 6,
+      "length_ok": 6,
+      "source_linked": 6,
+      "summarized": 6
+    },
+    "schema_id": "event_notice_doc",
+    "source_linked_count": 6,
+    "strategy": "source_block_aware",
+    "template_id": "event_notice_doc_base_v1"
+  },
+  "tag_rule_summary": {
+    "content_base_tag_count": 0,
+    "content_rule_count": 0,
+    "management_metadata_rule_count": 0,
+    "management_static_tag_count": 0,
+    "quality_builtin_rule_count": 16
+  },
+  "task_id": "topic5_0aa430c27863",
+  "warnings": []
+}

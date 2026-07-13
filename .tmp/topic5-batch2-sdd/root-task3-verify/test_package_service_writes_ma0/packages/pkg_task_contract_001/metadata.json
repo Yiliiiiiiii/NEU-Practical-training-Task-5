@@ -1,0 +1,26 @@
+{
+  "artifact_roles": {
+    "canonical.json": "canonical",
+    "chunks.jsonl": "chunks",
+    "content.json": "structured_json",
+    "content.md": "markdown",
+    "content_organization_report.json": "content_organization_report",
+    "mapping_report.json": "mapping_report",
+    "metadata.json": "package_metadata",
+    "transform_report.json": "transform_report",
+    "validation_report.json": "validation_report"
+  },
+  "doc_id": "contract_001_standard",
+  "document_metadata": {},
+  "document_summary": null,
+  "features": [],
+  "metadata_field_trace": [],
+  "metadata_template": null,
+  "package_id": "pkg_task_contract_001",
+  "package_version": "1.0.0",
+  "schema_id": "contract_doc",
+  "schema_version": "1.0.0",
+  "task_id": "task_contract_001",
+  "template_id": "contract_doc_base_v1",
+  "template_version": "1.0.0"
+}

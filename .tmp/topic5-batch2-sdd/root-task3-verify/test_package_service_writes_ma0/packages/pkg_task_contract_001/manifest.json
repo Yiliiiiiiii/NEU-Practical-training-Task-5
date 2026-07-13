@@ -1,0 +1,97 @@
+{
+  "manifest_version": "1.1",
+  "package_id": "pkg_task_contract_001",
+  "package_version": "1.0.0",
+  "task_id": "task_contract_001",
+  "doc_id": "contract_001_standard",
+  "created_at": "2026-07-11T04:44:33.403398+00:00",
+  "files": [
+    {
+      "path": "canonical.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "c139cfc760ddf73d02529a03560cb4494050f5819e382537e69182c89d1bc1bb",
+      "bytes": 5379,
+      "role": "canonical"
+    },
+    {
+      "path": "chunks.jsonl",
+      "required": true,
+      "media_type": "application/jsonl",
+      "sha256": "fcaf2e11ef55e6b70c6dd1f8c96ecb13ca6aadb49cd27c29360ecc1594f52c22",
+      "bytes": 7905,
+      "role": "chunks"
+    },
+    {
+      "path": "content.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "f777a723c411afc4b915f0e9ff507dbf4c3d78216498b8c0f37e96ad279a8beb",
+      "bytes": 2749,
+      "role": "structured_json"
+    },
+    {
+      "path": "content.md",
+      "required": true,
+      "media_type": "text/markdown",
+      "sha256": "884658965596a0b4551504b389f08e6b5d4db5364cc2d08939674850a8b0be12",
+      "bytes": 1381,
+      "role": "markdown"
+    },
+    {
+      "path": "content_organization_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "4df408d89fd95ceac1f1a6674f3ac6d1032bd39d47fe1f8f05b676597ed1afcb",
+      "bytes": 2007,
+      "role": "content_organization_report"
+    },
+    {
+      "path": "mapping_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "cda572744663ad78655027309b7607c0ae4f291d173a1ac57e1495584cfe53eb",
+      "bytes": 11529,
+      "role": "mapping_report"
+    },
+    {
+      "path": "metadata.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "4624683634c96ff707d89983488bdfd3b73c5afd0c2701eec98b7dfd4d94d1c3",
+      "bytes": 850,
+      "role": "package_metadata"
+    },
+    {
+      "path": "transform_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "504c489b4075c68bf99342355547036c3ba6316ac0c6fa0f10f5bff2f6514915",
+      "bytes": 2342,
+      "role": "transform_report"
+    },
+    {
+      "path": "validation_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "a507350edf71b785cb639d2ad1e1d45abbd5fa6b5df054a466d23398ca7656fb",
+      "bytes": 266,
+      "role": "validation_report"
+    },
+    {
+      "path": "verifier_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "ede6f1d9f01291cd25877383dc2924237b356a63f193e1b45301ef5676b53571",
+      "bytes": 110,
+      "role": "verifier_report"
+    }
+  ],
+  "generator": {
+    "name": "SchemaPack Agent",
+    "version": "service-layer-0.1.0",
+    "schema_id": "contract_doc",
+    "schema_version": "1.0.0",
+    "template_id": "contract_doc_base_v1"
+  }
+}

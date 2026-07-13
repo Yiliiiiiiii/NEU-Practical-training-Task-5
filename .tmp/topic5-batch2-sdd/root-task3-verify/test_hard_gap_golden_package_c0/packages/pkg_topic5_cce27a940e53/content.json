@@ -1,0 +1,94 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "block_id": "b1",
+      "level": 1,
+      "source_anchor": null,
+      "source_blocks": [
+        "b1"
+      ],
+      "text": "关于开展系统维护的公告",
+      "text_hash": "sha256:d4cb93d3270107054082d5e65f16a48bff56858c5a03c032cf2c3cdaab44f983",
+      "type": "heading"
+    },
+    {
+      "block_id": "b2",
+      "level": null,
+      "source_anchor": null,
+      "source_blocks": [
+        "b2"
+      ],
+      "text": "发布单位：信息化办公室",
+      "text_hash": "sha256:3e4220cfbc819edc5b0baaec9cdd638ce6e7c65932649eca4433552f6b4955f6",
+      "type": "paragraph"
+    },
+    {
+      "block_id": "b3",
+      "level": null,
+      "source_anchor": null,
+      "source_blocks": [
+        "b3"
+      ],
+      "text": "发布日期：2026-07-09",
+      "text_hash": "sha256:5c80c6c5aaf2b33e26f184e58e6673368b2fd608f652a7b1751a46b43a7b8a8d",
+      "type": "paragraph"
+    },
+    {
+      "block_id": "b4",
+      "level": null,
+      "source_anchor": null,
+      "source_blocks": [
+        "b4"
+      ],
+      "text": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。",
+      "text_hash": "sha256:70ab3c58cd2215b554bbda6b35a608ed232bca5dff35bd488cd4809aa925e594",
+      "type": "paragraph"
+    }
+  ],
+  "data": {
+    "body": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。",
+    "issuer": "信息化办公室",
+    "publish_date": "2026-07-09",
+    "title": "关于开展系统维护的公告"
+  },
+  "document_metadata": {
+    "language": "zh-CN",
+    "source": "example"
+  },
+  "document_summary": {
+    "char_count": 11,
+    "faithfulness_passed": true,
+    "generated_by": "DocumentSummaryService",
+    "mode": "extractive",
+    "sentence_traces": [
+      {
+        "source_block_id": "b2",
+        "source_text_span": "发布单位：信息化办公室",
+        "summary_sentence": "发布单位：信息化办公室"
+      }
+    ],
+    "source_block_ids": [
+      "b2"
+    ],
+    "source_chunk_ids": [
+      "chunk_uir_announcement_001_0001"
+    ],
+    "text": "发布单位：信息化办公室",
+    "warnings": []
+  },
+  "metadata": {
+    "document_title": "关于开展系统维护的公告",
+    "language": "zh-CN",
+    "source": "example"
+  },
+  "metadata_template": {
+    "template_id": "announcement_doc_base_v1",
+    "version": "1.0.0"
+  },
+  "source_metadata": {
+    "document_title": "关于开展系统维护的公告",
+    "language": "zh-CN",
+    "source": "example"
+  }
+}

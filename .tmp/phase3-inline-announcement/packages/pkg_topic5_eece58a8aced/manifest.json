@@ -1,0 +1,89 @@
+{
+  "manifest_version": "1.1",
+  "package_id": "pkg_topic5_eece58a8aced",
+  "package_version": "1.0.0",
+  "task_id": "topic5_eece58a8aced",
+  "doc_id": "uir_announcement_001",
+  "created_at": "2026-07-10T01:51:40.920610+00:00",
+  "files": [
+    {
+      "path": "canonical.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "d937acfe77042f8df3bea3c55ed35c7a0686d27e5ce3b3a44a33221c2f00408f",
+      "bytes": 6146,
+      "role": "canonical"
+    },
+    {
+      "path": "chunks.jsonl",
+      "required": true,
+      "media_type": "application/jsonl",
+      "sha256": "2f217325d214f39db7c8488b158fb46ff04b0ce216797e14eae9e968de0a4eae",
+      "bytes": 7350,
+      "role": "chunks"
+    },
+    {
+      "path": "content.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "13cbd6337e1645487cecfbc035f978979e83b0c15270515241307d14a043dbf4",
+      "bytes": 7536,
+      "role": "structured_json"
+    },
+    {
+      "path": "content.md",
+      "required": true,
+      "media_type": "text/markdown",
+      "sha256": "b7345d0a2b0c3a301173deb104ede4dc0a64a4eb304d07e79752c4d783d96988",
+      "bytes": 224,
+      "role": "markdown"
+    },
+    {
+      "path": "content_organization_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "7abf456e2265bfa17fce7c4f505542f0bdf577fb4132f9ec2869ada740d84524",
+      "bytes": 2339,
+      "role": "content_organization_report"
+    },
+    {
+      "path": "mapping_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "f85f28b2fe4ff33bb5b93d8aa69fc2b9dbb93ab08f84ebbf541d5b6a31fcb5d9",
+      "bytes": 7332,
+      "role": "mapping_report"
+    },
+    {
+      "path": "metadata.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "ca13242e922db65daa4487ecab436ca980d2723a34f8af08ec4d1c6087c8a490",
+      "bytes": 724,
+      "role": "package_metadata"
+    },
+    {
+      "path": "transform_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "fc580893deecf2d9d8826e67595ca5b6c86ca5b7ed5eb7af935ac4843325780f",
+      "bytes": 1206,
+      "role": "transform_report"
+    },
+    {
+      "path": "validation_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "a61e712d881a337474e9cb6df4c2715b451bde948c986b32d1af1bfc7ddeebb7",
+      "bytes": 272,
+      "role": "validation_report"
+    }
+  ],
+  "generator": {
+    "name": "SchemaPack Agent",
+    "version": "service-layer-0.1.0",
+    "schema_id": "announcement_doc",
+    "schema_version": "1.0.0",
+    "template_id": "announcement_doc_base_v1"
+  }
+}

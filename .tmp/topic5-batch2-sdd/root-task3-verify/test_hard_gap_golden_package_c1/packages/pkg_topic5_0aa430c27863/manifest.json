@@ -1,0 +1,113 @@
+{
+  "manifest_version": "1.1",
+  "package_id": "pkg_topic5_0aa430c27863",
+  "package_version": "1.0.0",
+  "task_id": "topic5_0aa430c27863",
+  "doc_id": "uir_event_notice_001",
+  "created_at": "2026-07-11T04:44:44.013729+00:00",
+  "files": [
+    {
+      "path": "artifact_consistency_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "2074f2263a084d6c9f55e83f9182e4ab180e066059c21edd146cc19110e6f8e0",
+      "bytes": 812,
+      "role": "artifact_consistency_report"
+    },
+    {
+      "path": "canonical.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "ed420a83fe5eeb644a45d0f44cbd6c7938dd62397ca0f8fb0e6d58e5341f6ed8",
+      "bytes": 11416,
+      "role": "canonical"
+    },
+    {
+      "path": "chunks.jsonl",
+      "required": true,
+      "media_type": "application/jsonl",
+      "sha256": "3f340fcd509e10fc3d4740b001f9e3567304c4ba62f1210d6fe88671c144bfd2",
+      "bytes": 16214,
+      "role": "chunks"
+    },
+    {
+      "path": "content.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "fc9eb279f95ceda8337ca3a541db05bc97b059f9c6bcbad38f6a5cb1d3b30462",
+      "bytes": 3458,
+      "role": "structured_json"
+    },
+    {
+      "path": "content.md",
+      "required": true,
+      "media_type": "text/markdown",
+      "sha256": "6bd52f8d52a6c21d5aa13e091a8597275f5425c4cc23b988b8426c089add9194",
+      "bytes": 2052,
+      "role": "markdown"
+    },
+    {
+      "path": "content_organization_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "cf5b5e8ca61147daadf9807630df9f9c0d41a84858d42e9f15b32f02be59a2b5",
+      "bytes": 4985,
+      "role": "content_organization_report"
+    },
+    {
+      "path": "mapping_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "a8d70b23b2bed78ab7fe8315c5c87d4ea5b6049070ff333edc5924251621d59a",
+      "bytes": 10385,
+      "role": "mapping_report"
+    },
+    {
+      "path": "metadata.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "13c37498444df30ba40a090a9bf614209740eeb7bcc895aabdfb45e23af84bc1",
+      "bytes": 2371,
+      "role": "package_metadata"
+    },
+    {
+      "path": "metadata_template_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "736d17b168b2309fa6f170a7e5a54d2fd429997a6ad0bcdb6e0bf23ac1d1e8c7",
+      "bytes": 780,
+      "role": "metadata_template_report"
+    },
+    {
+      "path": "transform_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "9633614fc58bd4a97313ca01e30a366f5c2609f362dc8655db0df573d447bed1",
+      "bytes": 2191,
+      "role": "transform_report"
+    },
+    {
+      "path": "validation_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "c485182aa8d1ebca98d5eb94f9c12098c8fda9c3891cd0382ba18d0465b3f4e3",
+      "bytes": 272,
+      "role": "validation_report"
+    },
+    {
+      "path": "verifier_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "883cd3c1fd3e94ea7184e93aa4745c222dd3fdb858257626a0dc34cf5ed44d76",
+      "bytes": 112,
+      "role": "verifier_report"
+    }
+  ],
+  "generator": {
+    "name": "SchemaPack Agent",
+    "version": "service-layer-0.1.0",
+    "schema_id": "event_notice_doc",
+    "schema_version": "1.0.0",
+    "template_id": "event_notice_doc_base_v1"
+  }
+}

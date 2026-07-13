@@ -1,0 +1,33 @@
+{
+  "defaults_used": [],
+  "field_traces": [
+    {
+      "default_used": false,
+      "field_id": "source",
+      "path": "document_metadata.source",
+      "resolved": true,
+      "source": {
+        "kind": "uir_metadata",
+        "path": "uir.metadata.source"
+      },
+      "value_type": "string"
+    },
+    {
+      "default_used": false,
+      "field_id": "language",
+      "path": "document_metadata.language",
+      "resolved": true,
+      "source": {
+        "kind": "uir_metadata",
+        "path": "uir.metadata.language"
+      },
+      "value_type": "string"
+    }
+  ],
+  "issues": [],
+  "missing_required_fields": [],
+  "passed": true,
+  "schema_id": "announcement_doc",
+  "template_id": "announcement_doc_base_v1",
+  "version": "1.0.0"
+}

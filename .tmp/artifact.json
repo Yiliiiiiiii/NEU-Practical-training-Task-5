@@ -1,0 +1,74 @@
+{
+  "artifact_consistency_pass_rate": 1.0,
+  "case_count": 4,
+  "cases": [
+    {
+      "actual_report_passed": true,
+      "block_coverage": 1.0,
+      "case_id": "consistent_artifacts",
+      "category": "baseline",
+      "chunk_source_coverage": 1.0,
+      "error_codes": [],
+      "expected_report_passed": true,
+      "passed": true,
+      "tampering_detected": null
+    },
+    {
+      "actual_report_passed": false,
+      "block_coverage": 1.0,
+      "case_id": "structured_field_tampering",
+      "category": "tampering",
+      "chunk_source_coverage": 1.0,
+      "error_codes": [
+        "json_field_mismatch",
+        "markdown_structured_data_mismatch"
+      ],
+      "expected_report_passed": false,
+      "passed": true,
+      "tampering_detected": true
+    },
+    {
+      "actual_report_passed": false,
+      "block_coverage": 0.5,
+      "case_id": "markdown_block_tampering",
+      "category": "tampering",
+      "chunk_source_coverage": 1.0,
+      "error_codes": [
+        "markdown_block_missing",
+        "markdown_block_order_mismatch"
+      ],
+      "expected_report_passed": false,
+      "passed": true,
+      "tampering_detected": true
+    },
+    {
+      "actual_report_passed": false,
+      "block_coverage": 1.0,
+      "case_id": "chunk_source_tampering",
+      "category": "tampering",
+      "chunk_source_coverage": 0.5,
+      "error_codes": [
+        "chunk_source_unknown",
+        "chunk_source_link_mismatch",
+        "chunk_text_not_derivable",
+        "chunk_entity_irrelevant",
+        "canonical_block_missing_from_chunks"
+      ],
+      "expected_report_passed": false,
+      "passed": true,
+      "tampering_detected": true
+    }
+  ],
+  "chunk_source_coverage": 1.0,
+  "claim_boundary": "Measures declared JSON/Markdown/chunk consistency and deterministic tampering detection; it does not establish cryptographic package authenticity.",
+  "commit_sha": "a3e20db2368f9855e119e9acc4858e6d18fafe04",
+  "dataset_id": "topic5_artifact_consistency",
+  "dataset_sha256": "bb2640b9d110c986a43122753001d1514b2aed47e6f41792b39109f8bb6f9564",
+  "dataset_version": "2.0.0",
+  "failed_cases": [],
+  "generated_at": "2026-07-12T05:43:57.450253+00:00",
+  "markdown_block_coverage": 1.0,
+  "passed_count": 4,
+  "reproduction_command": "python scripts/eval_topic5_artifact_consistency.py",
+  "tampering_detection_rate": 1.0
+}

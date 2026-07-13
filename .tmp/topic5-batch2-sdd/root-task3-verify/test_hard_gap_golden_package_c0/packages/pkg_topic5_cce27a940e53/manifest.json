@@ -1,0 +1,113 @@
+{
+  "manifest_version": "1.1",
+  "package_id": "pkg_topic5_cce27a940e53",
+  "package_version": "1.0.0",
+  "task_id": "topic5_cce27a940e53",
+  "doc_id": "uir_announcement_001",
+  "created_at": "2026-07-11T04:44:43.834233+00:00",
+  "files": [
+    {
+      "path": "artifact_consistency_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "2074f2263a084d6c9f55e83f9182e4ab180e066059c21edd146cc19110e6f8e0",
+      "bytes": 812,
+      "role": "artifact_consistency_report"
+    },
+    {
+      "path": "canonical.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "73de0a4c7415e6382fdc139414f2c0caf95586e77bd0251207ac1bd43b5775f3",
+      "bytes": 10166,
+      "role": "canonical"
+    },
+    {
+      "path": "chunks.jsonl",
+      "required": true,
+      "media_type": "application/jsonl",
+      "sha256": "284deefa6099ee1cb98b4f5fbc20f027abd62c24885f6c23c60bd83fa4bb9ece",
+      "bytes": 11130,
+      "role": "chunks"
+    },
+    {
+      "path": "content.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "87a8abe56d0633bbc83bd3746aca4d9ddb42809f1814c47774f69030c3e58ecb",
+      "bytes": 2684,
+      "role": "structured_json"
+    },
+    {
+      "path": "content.md",
+      "required": true,
+      "media_type": "text/markdown",
+      "sha256": "d4029127560190a92ecf03da1d9a2197206b5ea1aa5824a65c7c6c8a4bf1a83e",
+      "bytes": 1544,
+      "role": "markdown"
+    },
+    {
+      "path": "content_organization_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "2f46d2516d7aa3d874c81b737ec678d9409ddfdf50abf476f21fdf81fa3c5122",
+      "bytes": 4583,
+      "role": "content_organization_report"
+    },
+    {
+      "path": "mapping_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "ac13115ab0b0af0c7253236cd6581d1ed5559afc10b8c5ced3f2ab46dc1e5ac3",
+      "bytes": 7332,
+      "role": "mapping_report"
+    },
+    {
+      "path": "metadata.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "1d4538f6d12ffe7eaa2b64c331812eba9560e40e91b8ac74e05f5c7cea4379d4",
+      "bytes": 2356,
+      "role": "package_metadata"
+    },
+    {
+      "path": "metadata_template_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "7f522cc939dd382dc3151c08648843670cceedd4bc819fd2e3a59d6132a90006",
+      "bytes": 780,
+      "role": "metadata_template_report"
+    },
+    {
+      "path": "transform_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "a932e4ab67ffdc6c1cc5e935fca95bf8be7a79545d42e7fd6230b71f05541761",
+      "bytes": 1804,
+      "role": "transform_report"
+    },
+    {
+      "path": "validation_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "5a3419d71fa227e2aab75191b4275170a20395928783529c4261889e133640f5",
+      "bytes": 272,
+      "role": "validation_report"
+    },
+    {
+      "path": "verifier_report.json",
+      "required": true,
+      "media_type": "application/json",
+      "sha256": "e868dd0f5767b33b5aabec26be675237b06d1c97caeb377596482bbfa2442cac",
+      "bytes": 112,
+      "role": "verifier_report"
+    }
+  ],
+  "generator": {
+    "name": "SchemaPack Agent",
+    "version": "service-layer-0.1.0",
+    "schema_id": "announcement_doc",
+    "schema_version": "1.0.0",
+    "template_id": "announcement_doc_base_v1"
+  }
+}

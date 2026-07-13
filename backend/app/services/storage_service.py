@@ -1,7 +1,7 @@
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 from uuid import uuid4
 
@@ -13,7 +13,11 @@ class StorageService:
 
     def resolve(self, relative_path: str | Path) -> Path:
         path = Path(relative_path)
-        if path.is_absolute() or ".." in path.parts:
+        if (
+            path.is_absolute()
+            or PureWindowsPath(str(relative_path)).is_absolute()
+            or ".." in path.parts
+        ):
             raise ValueError("unsafe storage path")
 
         resolved = (self.root / path).resolve()

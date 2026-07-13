@@ -118,7 +118,7 @@
   },
   "dataset_size": 18,
   "failures": [],
-  "generated_at": "2026-07-12T13:08:25.526818+00:00",
+  "generated_at": "2026-07-12T13:32:22.208128+00:00",
   "mapping_mode": "global_assignment",
   "metrics": {
     "assisted_recall": 1.0,

@@ -1,0 +1,89 @@
+{
+  "chunk_count": 4,
+  "chunks_with_content_tags": 4,
+  "chunks_with_keywords": 4,
+  "chunks_with_quality_tags": 4,
+  "chunks_with_source_links": 4,
+  "chunks_with_summary": 4,
+  "doc_id": "uir_announcement_001",
+  "summary": {
+    "avg_token_estimate": 10.5,
+    "child_chunk_count": 4,
+    "chunk_count": 4,
+    "chunks": [
+      {
+        "chunk_id": "chunk_topic5_2870ea776f14_0000",
+        "quality_flags": [],
+        "source_block_ids": [
+          "b1"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "chunk_id": "chunk_topic5_2870ea776f14_0001",
+        "quality_flags": [],
+        "source_block_ids": [
+          "b2"
+        ],
+        "token_estimate": 6
+      },
+      {
+        "chunk_id": "chunk_topic5_2870ea776f14_0002",
+        "quality_flags": [],
+        "source_block_ids": [
+          "b3"
+        ],
+        "token_estimate": 5
+      },
+      {
+        "chunk_id": "chunk_topic5_2870ea776f14_0003",
+        "quality_flags": [],
+        "source_block_ids": [
+          "b4"
+        ],
+        "token_estimate": 24
+      }
+    ],
+    "content_tag_counts": {
+      "announcement": 4
+    },
+    "empty_chunk_count": 0,
+    "length_ok_count": 1,
+    "max_token_estimate": 24,
+    "min_token_estimate": 5,
+    "options": {
+      "chunk_strategy": "source_block_aware",
+      "enable_light_semantic_boundary": true,
+      "enable_parent_child": false,
+      "keyword_mode": "deterministic",
+      "max_tokens": 1400,
+      "min_tokens": 1,
+      "overlap_tokens": 0,
+      "protect_code_blocks": true,
+      "protect_lists": true,
+      "protect_tables": true,
+      "summary_mode": "deterministic",
+      "target_tokens": 1200
+    },
+    "oversized_count": 0,
+    "oversized_protected_blocks_count": 0,
+    "parent_chunk_count": 0,
+    "protected_blocks_count": 0,
+    "quality_flags_summary": {},
+    "quality_tag_counts": {
+      "anchor_linked": 4,
+      "keyworded": 4,
+      "length_ok": 1,
+      "short_chunk": 3,
+      "source_linked": 4,
+      "summarized": 4,
+      "validation_passed": 4
+    },
+    "schema_id": "announcement_doc",
+    "source_linked_count": 4,
+    "strategy": "source_block_aware",
+    "template_id": "announcement_doc_base_v1"
+  },
+  "task_id": "topic5_2870ea776f14",
+  "warnings": []
+}

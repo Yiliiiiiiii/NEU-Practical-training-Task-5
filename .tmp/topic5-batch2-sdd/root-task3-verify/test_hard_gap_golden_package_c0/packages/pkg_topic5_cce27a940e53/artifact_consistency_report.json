@@ -1,0 +1,42 @@
+{
+  "block_coverage": 1.0,
+  "checks": [
+    {
+      "check_name": "fields",
+      "details": {},
+      "passed": true
+    },
+    {
+      "check_name": "metadata",
+      "details": {},
+      "passed": true
+    },
+    {
+      "check_name": "markdown_structured_data",
+      "details": {},
+      "passed": true
+    },
+    {
+      "check_name": "markdown_blocks",
+      "details": {},
+      "passed": true
+    },
+    {
+      "check_name": "document_summary",
+      "details": {},
+      "passed": true
+    },
+    {
+      "check_name": "chunk_sources",
+      "details": {},
+      "passed": true
+    }
+  ],
+  "chunk_source_coverage": 1.0,
+  "errors": [],
+  "field_coverage": 1.0,
+  "metadata_consistent": true,
+  "passed": true,
+  "summary_consistent": true,
+  "warnings": []
+}

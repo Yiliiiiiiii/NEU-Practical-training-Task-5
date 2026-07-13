@@ -1,0 +1,546 @@
+# Review package: cfe36b38..7c319c39
+
+## Commits
+7c319c39 fix: unify conversion status and validation semantics
+
+## Files changed
+ backend/app/services/conversion_status_service.py  | 12 +++-
+ .../services/global_assignment_mapping_service.py  | 17 +++++-
+ backend/app/services/mapping_service.py            | 36 ++++++++++++
+ backend/app/services/task_execution_service.py     |  6 +-
+ backend/app/services/topic5_conversion_service.py  |  6 +-
+ backend/tests/test_candidate_mapping_services.py   | 64 ++++++++++++++++++++++
+ backend/tests/test_conversion_status_service.py    | 45 +++++++++++++++
+ .../test_global_assignment_mapping_service.py      | 29 ++++++++++
+ backend/tests/test_topic5_convert_api.py           | 11 +++-
+ 9 files changed, 219 insertions(+), 7 deletions(-)
+
+## Diff
+diff --git a/backend/app/services/conversion_status_service.py b/backend/app/services/conversion_status_service.py
+index 3ac51d36..f10e1ecd 100644
+--- a/backend/app/services/conversion_status_service.py
++++ b/backend/app/services/conversion_status_service.py
+@@ -1,12 +1,12 @@
+ from dataclasses import dataclass
+-from typing import Literal
++from typing import Any, Literal
+ 
+ type ConversionStatus = Literal["failed", "review_required", "completed"]
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+ class ConversionStatusInput:
+     runtime_exception: bool = False
+     package_write_failed: bool = False
+     package_verifier_passed: bool | None = None
+     metadata_passed: bool | None = None
+@@ -17,20 +17,30 @@ class ConversionStatusInput:
+     mapping_review_item_count: int = 0
+     unmapped_required_source_present_count: int = 0
+     schema_validation_passed: bool = True
+     summary_faithfulness_passed: bool | None = None
+     artifact_consistency_passed: bool | None = None
+     provider_fallback_used: bool = False
+     provider_fallback_requires_review: bool = False
+ 
+ 
+ class ConversionStatusService:
++    @staticmethod
++    def count_required_unmapped_source_present(
++        unmapped: list[dict[str, Any]],
++    ) -> int:
++        return sum(
++            1
++            for item in unmapped
++            if item.get("required") is True and item.get("source_present") is True
++        )
++
+     @staticmethod
+     def determine(status_input: ConversionStatusInput) -> ConversionStatus:
+         if (
+             status_input.runtime_exception
+             or status_input.package_write_failed
+             or status_input.package_verifier_passed is False
+             or (status_input.metadata_passed is False and status_input.strict_metadata)
+             or (
+                 status_input.assertion_error_count > 0
+                 and status_input.strict_output_assertions
+diff --git a/backend/app/services/global_assignment_mapping_service.py b/backend/app/services/global_assignment_mapping_service.py
+index 48edd0c8..604b7a8f 100644
+--- a/backend/app/services/global_assignment_mapping_service.py
++++ b/backend/app/services/global_assignment_mapping_service.py
+@@ -150,22 +150,30 @@ class GlobalAssignmentMappingService:
+                             f"global assignment review score {features.final_score:.3f}"
+                         ),
+                     )
+                 )
+                 used_targets.add(target.field_id)
+                 strategy_counts["global_assignment_review"] += 1
+ 
+         resolved_targets = {
+             item["target_field_id"] for item in [*mappings, *review_required]
+         }
++        source_present_targets = {
++            row["target"].field_id
++            for row in pair_rows
++            if row["features"].final_score >= min_candidate_score
++        }
+         unmapped = [
+-            self._unmapped_dict(field)
++            self._unmapped_dict(
++                field,
++                source_present=field.field_id in source_present_targets,
++            )
+             for field in schema.fields
+             if field.required and field.field_id not in resolved_targets
+         ]
+         confidences = [
+             item["confidence"]
+             for item in [*mappings, *review_required]
+             if isinstance(item.get("confidence"), int | float)
+         ]
+         risk_flag_counts = Counter(
+             flag
+@@ -270,25 +278,30 @@ class GlobalAssignmentMappingService:
+             "type_score": features.type_score,
+             "value_score": features.value_score,
+             "path_score": features.path_score,
+             "context_score": features.context_score,
+             "evidence_score": features.evidence_score,
+             "negative_score": features.negative_score,
+             "source_quality_score": features.source_quality_score,
+         }
+ 
+     @staticmethod
+-    def _unmapped_dict(field: TargetField) -> dict[str, Any]:
++    def _unmapped_dict(
++        field: TargetField,
++        *,
++        source_present: bool,
++    ) -> dict[str, Any]:
+         return {
+             "target_field_id": field.field_id,
+             "target_field_name": field.name,
+             "required": field.required,
++            "source_present": source_present,
+             "reason": "required field was not confirmed by global assignment",
+             "status": "failed",
+             "confidence": 0.0,
+             "confidence_tier": "low",
+             "risk_flags": ["required_field_unmapped"],
+             "review_required_reason": "Required target field is unmapped.",
+             "evidence": [
+                 MappingEvidence(
+                     type="required_field_unmapped",
+                     message=f"Required field '{field.field_id}' was not mapped.",
+diff --git a/backend/app/services/mapping_service.py b/backend/app/services/mapping_service.py
+index c6dd6bcf..223ac2c9 100644
+--- a/backend/app/services/mapping_service.py
++++ b/backend/app/services/mapping_service.py
+@@ -172,20 +172,25 @@ class MappingService:
+             for item in review_required
+             if item.get("status") == "review_required"
+             and item.get("method") not in {"fuzzy", "llm_fallback"}
+         }
+         resolved_targets = mapped_targets | review_supported_targets
+         unmapped = [
+             {
+                 "target_field_id": field.field_id,
+                 "target_field_name": field.name,
+                 "required": field.required,
++                "source_present": self._source_present(
++                    field,
++                    template,
++                    candidates,
++                ),
+                 "reason": "required field was not confirmed by deterministic mapping",
+                 "status": "failed",
+                 "confidence": 0.0,
+                 "confidence_tier": "low",
+                 "risk_flags": ["required_field_unmapped"],
+                 "review_required_reason": "Required target field is unmapped.",
+                 "evidence": [
+                     MappingEvidence(
+                         type="required_field_unmapped",
+                         message=f"Required field '{field.field_id}' was not mapped.",
+@@ -237,20 +242,51 @@ class MappingService:
+                 "llm_suggestion_count": risk_flag_counts.get("llm_suggestion", 0),
+                 "warnings": llm_warnings,
+                 "methods": {key: value for key, value in strategy_counts.items() if value},
+                 "thresholds": options.get("thresholds", {}),
+             },
+             mappings=mappings,
+             unmapped=unmapped,
+             review_required_items=review_required,
+         )
+ 
++    def _source_present(
++        self,
++        field: TargetField,
++        template: MappingTemplate,
++        candidates: list[FieldCandidate],
++    ) -> bool:
++        target_descriptors = {
++            self.normalize_name(value)
++            for value in (
++                field.field_id,
++                field.name,
++                field.display_name,
++                *field.aliases,
++                *template.aliases.get(field.field_id, []),
++            )
++            if value
++        }
++        return any(
++            target_descriptors
++            & {
++                self.normalize_name(value)
++                for value in (
++                    candidate.source_name,
++                    candidate.display_name,
++                    *candidate.target_hints,
++                )
++                if value
++            }
++            for candidate in candidates
++        )
++
+     def _find_exact(
+         self,
+         task_id: str,
+         field: TargetField,
+         candidates: list[FieldCandidate],
+         used_source_paths: set[str],
+     ) -> FieldMapping | None:
+         target_names = {
+             self.normalize_name(field.field_id),
+             self.normalize_name(field.name),
+diff --git a/backend/app/services/task_execution_service.py b/backend/app/services/task_execution_service.py
+index e9164f0b..9bde18c0 100644
+--- a/backend/app/services/task_execution_service.py
++++ b/backend/app/services/task_execution_service.py
+@@ -566,21 +566,25 @@ class TaskExecutionService:
+         )
+         finished_at = self._now()
+         review_required_count = len(mapping_report.review_required_items)
+         unmapped_required_count = sum(
+             1 for item in mapping_report.unmapped if item.get("required")
+         )
+         status = ConversionStatusService.determine(
+             ConversionStatusInput(
+                 package_verifier_passed=package_result.verifier_report.passed,
+                 mapping_review_item_count=review_required_count,
+-                unmapped_required_source_present_count=unmapped_required_count,
++                unmapped_required_source_present_count=(
++                    ConversionStatusService.count_required_unmapped_source_present(
++                        mapping_report.unmapped
++                    )
++                ),
+                 schema_validation_passed=validation_report.passed,
+                 assertion_error_count=(
+                     int(conversion_assertion_report.get("error_count", 0))
+                     if conversion_assertion_report
+                     else 0
+                 ),
+                 strict_output_assertions=bool(
+                     options.get("strict_output_assertions", False)
+                 ),
+                 metadata_passed=(metadata_result.passed if metadata_result else None),
+diff --git a/backend/app/services/topic5_conversion_service.py b/backend/app/services/topic5_conversion_service.py
+index 906181c1..f139bd4d 100644
+--- a/backend/app/services/topic5_conversion_service.py
++++ b/backend/app/services/topic5_conversion_service.py
+@@ -243,22 +243,24 @@ class Topic5ConversionService:
+ 
+         verifier_passed = (
+             bool(verifier_report.get("passed"))
+             if isinstance(verifier_report, dict)
+             else None
+         )
+         status = ConversionStatusService.determine(
+             ConversionStatusInput(
+                 package_verifier_passed=verifier_passed,
+                 mapping_review_item_count=len(mapping_report.review_required_items),
+-                unmapped_required_source_present_count=sum(
+-                    1 for item in mapping_report.unmapped if item.get("required")
++                unmapped_required_source_present_count=(
++                    ConversionStatusService.count_required_unmapped_source_present(
++                        mapping_report.unmapped
++                    )
+                 ),
+                 schema_validation_passed=validation_report.passed,
+                 assertion_error_count=(
+                     int(conversion_assertion_report.get("error_count", 0))
+                     if conversion_assertion_report
+                     else 0
+                 ),
+                 strict_output_assertions=bool(
+                     options.get("strict_output_assertions", False)
+                 ),
+diff --git a/backend/tests/test_candidate_mapping_services.py b/backend/tests/test_candidate_mapping_services.py
+index 0c038740..9b56b5b0 100644
+--- a/backend/tests/test_candidate_mapping_services.py
++++ b/backend/tests/test_candidate_mapping_services.py
+@@ -329,25 +329,89 @@ def test_mapping_service_records_unmapped_required_fields():
+         task_id="task_meeting_003",
+         uir=uir,
+         schema=schema,
+         template=template,
+         candidates=candidates,
+     )
+ 
+     unmapped = next(item for item in report.unmapped if item["target_field_id"] == "meeting_date")
+     assert "required_field_unmapped" in unmapped["risk_flags"]
+     assert unmapped["status"] == "failed"
++    assert unmapped["source_present"] is False
+     assert unmapped["review_required_reason"]
+     assert report.summary["unmapped_required_fields"] >= 1
+     assert report.summary["required_unmapped_count"] >= 1
+ 
+ 
++def test_mapping_service_marks_source_present_from_generic_target_hints() -> None:
++    from app.schemas.mapping import FieldCandidate
++    from app.schemas.mapping_template import MappingTemplate
++    from app.schemas.target_schema import TargetField, TargetSchema
++    from app.services.mapping_service import MappingService
++
++    uir = load_uir("meeting/meeting_003_missing_required.json")
++    schema = TargetSchema(
++        schema_id="generic_doc",
++        name="Generic document",
++        version="1.0.0",
++        fields=[
++            TargetField(
++                field_id="primary",
++                name="primary",
++                display_name="Primary",
++                type="string",
++                aliases=["shared source"],
++            ),
++            TargetField(
++                field_id="secondary",
++                name="secondary",
++                display_name="Secondary",
++                type="string",
++                required=True,
++            ),
++        ],
++    )
++    template = MappingTemplate(
++        template_id="generic_doc_v1",
++        schema_id="generic_doc",
++        name="Generic document",
++        version="1.0.0",
++    )
++    candidates = [
++        FieldCandidate(
++            candidate_id="candidate-shared",
++            task_id="task-source-present",
++            doc_id=uir.doc_id,
++            source_path="$.metadata.shared_source",
++            source_name="shared source",
++            display_name="Shared source",
++            value_sample="value",
++            inferred_type="string",
++            confidence=0.9,
++            target_hints=["secondary"],
++        )
++    ]
++
++    report = MappingService().map_fields(
++        task_id="task-source-present",
++        uir=uir,
++        schema=schema,
++        template=template,
++        candidates=candidates,
++    )
++
++    unmapped = next(
++        item for item in report.unmapped if item["target_field_id"] == "secondary"
++    )
++    assert unmapped["source_present"] is True
++
++
+ def test_mapping_service_does_not_high_confidence_accept_badcase_source():
+     from app.services.candidate_service import CandidateService
+     from app.services.mapping_service import MappingService
+ 
+     uir = load_uir("policy/policy_004_low_confidence.json")
+     schema = load_schema("policy_doc")
+     template = load_template("policy_doc_base_v1")
+     candidates = CandidateService().extract_candidates("task_policy_004", uir)
+ 
+     report = MappingService().map_fields(
+diff --git a/backend/tests/test_conversion_status_service.py b/backend/tests/test_conversion_status_service.py
+index d6529c73..d7a4129e 100644
+--- a/backend/tests/test_conversion_status_service.py
++++ b/backend/tests/test_conversion_status_service.py
+@@ -68,10 +68,55 @@ def test_conversion_status_truth_table_is_exhaustive() -> None:
+ 
+ def test_absent_optional_checks_do_not_prevent_completion() -> None:
+     status_input = ConversionStatusInput(
+         package_verifier_passed=None,
+         metadata_passed=None,
+         summary_faithfulness_passed=None,
+         artifact_consistency_passed=None,
+     )
+ 
+     assert ConversionStatusService.determine(status_input) == "completed"
++
++
++def test_required_unmapped_only_requires_review_when_source_is_present() -> None:
++    source_absent = [{"required": True, "source_present": False}]
++    source_present = [{"required": True, "source_present": True}]
++
++    absent_count = ConversionStatusService.count_required_unmapped_source_present(
++        source_absent
++    )
++    present_count = ConversionStatusService.count_required_unmapped_source_present(
++        source_present
++    )
++
++    assert absent_count == 0
++    assert present_count == 1
++    assert (
++        ConversionStatusService.determine(
++            ConversionStatusInput(
++                unmapped_required_source_present_count=absent_count,
++            )
++        )
++        == "completed"
++    )
++    assert (
++        ConversionStatusService.determine(
++            ConversionStatusInput(
++                unmapped_required_source_present_count=present_count,
++            )
++        )
++        == "review_required"
++    )
++
++
++def test_required_unmapped_source_present_count_uses_strict_booleans() -> None:
++    unmapped = [
++        {"required": True, "source_present": True},
++        {"required": True, "source_present": False},
++        {"required": True},
++        {"required": 1, "source_present": True},
++        {"required": True, "source_present": 1},
++    ]
++
++    assert (
++        ConversionStatusService.count_required_unmapped_source_present(unmapped) == 1
++    )
+diff --git a/backend/tests/test_global_assignment_mapping_service.py b/backend/tests/test_global_assignment_mapping_service.py
+index e1337a77..50f5d4d4 100644
+--- a/backend/tests/test_global_assignment_mapping_service.py
++++ b/backend/tests/test_global_assignment_mapping_service.py
+@@ -124,23 +124,52 @@ def test_global_assignment_required_unmapped_fields_are_reported() -> None:
+     report = GlobalAssignmentMappingService().map_fields(
+         task_id="task-global",
+         uir=make_uir(),
+         schema=make_schema(field("title", required=True)),
+         template=template(),
+         candidates=[],
+     )
+ 
+     assert report.mappings == []
+     assert report.unmapped[0]["target_field_id"] == "title"
++    assert report.unmapped[0]["source_present"] is False
+     assert report.summary["required_unmapped_count"] == 1
+ 
+ 
++def test_global_assignment_tracks_source_present_at_candidate_threshold() -> None:
++    report = GlobalAssignmentMappingService().map_fields(
++        task_id="task-global",
++        uir=make_uir(),
++        schema=make_schema(field("title", required=True)),
++        template=template(),
++        candidates=[candidate("title", "title", "$.metadata.title", "Event")],
++        options={"auto_accept_threshold": 1.1, "review_threshold": 1.1},
++    )
++
++    assert report.mappings == []
++    assert report.review_required_items == []
++    assert report.unmapped[0]["source_present"] is True
++
++
++def test_global_assignment_does_not_proxy_source_presence_from_candidates() -> None:
++    report = GlobalAssignmentMappingService().map_fields(
++        task_id="task-global",
++        uir=make_uir(),
++        schema=make_schema(field("title", required=True)),
++        template=template(),
++        candidates=[candidate("other", "other", "$.metadata.other", "Event")],
++        options={"min_candidate_score": 1.1},
++    )
++
++    assert report.unmapped[0]["source_present"] is False
++
++
+ def test_global_assignment_negative_pair_is_blocked() -> None:
+     report = GlobalAssignmentMappingService().map_fields(
+         task_id="task-global",
+         uir=make_uir(),
+         schema=make_schema(field("event_time", "datetime", required=True)),
+         template=template(),
+         candidates=[
+             candidate(
+                 "publish",
+                 "publish date",
+diff --git a/backend/tests/test_topic5_convert_api.py b/backend/tests/test_topic5_convert_api.py
+index 34df1142..3c49b219 100644
+--- a/backend/tests/test_topic5_convert_api.py
++++ b/backend/tests/test_topic5_convert_api.py
+@@ -599,41 +599,50 @@ def test_topic5_request_rejects_unsafe_metadata_source_path(topic5_client):
+     payload = announcement_convert_request()
+     payload["metadata_template"]["metadata_fields"][0]["source_path"] = (
+         "environment.API_KEY"
+     )
+ 
+     response = client.post("/api/v1/topic5/convert", json=payload)
+ 
+     assert response.status_code == 422
+ 
+ 
+-def test_topic5_convert_review_required_when_required_field_unmapped(topic5_client):
++def test_topic5_convert_source_absent_unmapped_reviews_for_schema_validation(
++    topic5_client,
++):
+     client, _storage_root = topic5_client
+     payload = announcement_convert_request()
+     payload["target_schema"]["fields"].append(
+         {
+             "field_id": "audience",
+             "name": "audience",
+             "display_name": "audience",
+             "type": "string",
+             "required": True,
+             "aliases": ["audience"],
+             "constraints": {},
+         }
+     )
+ 
+     response = client.post("/api/v1/topic5/convert", json=payload)
+ 
+     assert response.status_code == 200
+     body = response.json()
+     assert body["status"] == "review_required"
+     assert body["mapping_report"]["summary"]["required_unmapped_count"] >= 1
++    audience = next(
++        item
++        for item in body["mapping_report"]["unmapped"]
++        if item["target_field_id"] == "audience"
++    )
++    assert audience["source_present"] is False
++    assert body["validation_report"]["passed"] is False
+ 
+ 
+ def test_topic5_convert_review_required_when_validation_fails(topic5_client):
+     client, _storage_root = topic5_client
+     payload = announcement_convert_request()
+     payload["target_schema"]["fields"][0]["type"] = "date"
+ 
+     response = client.post("/api/v1/topic5/convert", json=payload)
+ 
+     assert response.status_code == 200

@@ -1,0 +1,623 @@
+# Review package: 6c129f81..cfe36b38
+
+## Commits
+cfe36b38 fix: unify conversion status and validation semantics
+
+## Files changed
+ backend/app/services/conversion_status_service.py | 57 ++++++++++++++
+ backend/app/services/task_execution_service.py    | 78 +++++++------------
+ backend/app/services/topic5_conversion_service.py | 94 ++++++++---------------
+ backend/tests/test_conversion_status_service.py   | 77 +++++++++++++++++++
+ backend/tests/test_task_execution_api.py          | 60 +++++++++++++++
+ backend/tests/test_topic5_convert_api.py          | 39 ++++++----
+ 6 files changed, 276 insertions(+), 129 deletions(-)
+
+## Diff
+diff --git a/backend/app/services/conversion_status_service.py b/backend/app/services/conversion_status_service.py
+new file mode 100644
+index 00000000..3ac51d36
+--- /dev/null
++++ b/backend/app/services/conversion_status_service.py
+@@ -0,0 +1,57 @@
++from dataclasses import dataclass
++from typing import Literal
++
++type ConversionStatus = Literal["failed", "review_required", "completed"]
++
++
++@dataclass(frozen=True, slots=True)
++class ConversionStatusInput:
++    runtime_exception: bool = False
++    package_write_failed: bool = False
++    package_verifier_passed: bool | None = None
++    metadata_passed: bool | None = None
++    strict_metadata: bool = False
++    assertion_error_count: int = 0
++    strict_output_assertions: bool = False
++    strict_provider_failed: bool = False
++    mapping_review_item_count: int = 0
++    unmapped_required_source_present_count: int = 0
++    schema_validation_passed: bool = True
++    summary_faithfulness_passed: bool | None = None
++    artifact_consistency_passed: bool | None = None
++    provider_fallback_used: bool = False
++    provider_fallback_requires_review: bool = False
++
++
++class ConversionStatusService:
++    @staticmethod
++    def determine(status_input: ConversionStatusInput) -> ConversionStatus:
++        if (
++            status_input.runtime_exception
++            or status_input.package_write_failed
++            or status_input.package_verifier_passed is False
++            or (status_input.metadata_passed is False and status_input.strict_metadata)
++            or (
++                status_input.assertion_error_count > 0
++                and status_input.strict_output_assertions
++            )
++            or status_input.strict_provider_failed
++        ):
++            return "failed"
++
++        if (
++            status_input.mapping_review_item_count > 0
++            or status_input.unmapped_required_source_present_count > 0
++            or status_input.schema_validation_passed is False
++            or status_input.metadata_passed is False
++            or status_input.assertion_error_count > 0
++            or status_input.summary_faithfulness_passed is False
++            or status_input.artifact_consistency_passed is False
++            or (
++                status_input.provider_fallback_used
++                and status_input.provider_fallback_requires_review
++            )
++        ):
++            return "review_required"
++
++        return "completed"
+diff --git a/backend/app/services/task_execution_service.py b/backend/app/services/task_execution_service.py
+index 739e66d8..e9164f0b 100644
+--- a/backend/app/services/task_execution_service.py
++++ b/backend/app/services/task_execution_service.py
+@@ -17,20 +17,24 @@ from app.schemas.reports import MappingReport
+ from app.schemas.schema_pack_contract import SchemaPackManifest
+ from app.schemas.target_schema import TargetSchema
+ from app.schemas.uir import UIRDocument
+ from app.services.artifact_consistency_service import ArtifactConsistencyService
+ from app.services.candidate_service import CandidateService
+ from app.services.canonical_service import CanonicalService
+ from app.services.catalog_governance_service import CatalogGovernanceService
+ from app.services.chunk_organizer_service import ChunkOrganizerService
+ from app.services.chunk_providers.resolver import ChunkProviderResolver
+ from app.services.conversion_assertion_service import ConversionAssertionService
++from app.services.conversion_status_service import (
++    ConversionStatusInput,
++    ConversionStatusService,
++)
+ from app.services.document_summary_service import DocumentSummaryService
+ from app.services.effective_template_service import EffectiveTemplateService
+ from app.services.lineage_graph_service import LineageGraphService
+ from app.services.llm_fallback_service import LLMFallbackService
+ from app.services.mapping_service import MappingService
+ from app.services.metadata_template_service import MetadataTemplateService
+ from app.services.package_service import PackageService
+ from app.services.render_service import RenderedArtifacts, RenderService
+ from app.services.review_knowledge_workflow_service import ReviewKnowledgeWorkflowService
+ from app.services.schema_pack_service import SchemaPackService
+@@ -558,40 +562,45 @@ class TaskExecutionService:
+             metadata_result=metadata_result,
+             artifact_consistency_report=artifact_consistency_report.model_dump(
+                 mode="json"
+             ),
+         )
+         finished_at = self._now()
+         review_required_count = len(mapping_report.review_required_items)
+         unmapped_required_count = sum(
+             1 for item in mapping_report.unmapped if item.get("required")
+         )
+-        status = self._final_status(
+-            package_passed=package_result.verifier_report.passed,
+-            review_required_count=review_required_count,
+-            unmapped_required_count=unmapped_required_count,
+-            assertion_error_count=(
+-                int(conversion_assertion_report.get("error_count", 0))
+-                if conversion_assertion_report
+-                else 0
+-            ),
+-            strict_output_assertions=bool(
+-                options.get("strict_output_assertions", False)
+-            ),
+-            metadata_passed=(metadata_result.passed if metadata_result else None),
+-            strict_metadata_template=bool(
+-                options.get("strict_metadata_template", False)
+-            ),
+-            summary_faithfulness_passed=(
+-                document_summary.faithfulness_passed if document_summary else None
+-            ),
+-            artifact_consistency_passed=artifact_consistency_report.passed,
++        status = ConversionStatusService.determine(
++            ConversionStatusInput(
++                package_verifier_passed=package_result.verifier_report.passed,
++                mapping_review_item_count=review_required_count,
++                unmapped_required_source_present_count=unmapped_required_count,
++                schema_validation_passed=validation_report.passed,
++                assertion_error_count=(
++                    int(conversion_assertion_report.get("error_count", 0))
++                    if conversion_assertion_report
++                    else 0
++                ),
++                strict_output_assertions=bool(
++                    options.get("strict_output_assertions", False)
++                ),
++                metadata_passed=(metadata_result.passed if metadata_result else None),
++                strict_metadata=bool(options.get("strict_metadata_template", False)),
++                summary_faithfulness_passed=(
++                    document_summary.faithfulness_passed if document_summary else None
++                ),
++                artifact_consistency_passed=artifact_consistency_report.passed,
++                provider_fallback_used=provider_result.trace.fallback_used,
++                provider_fallback_requires_review=bool(
++                    options.get("provider_fallback_requires_review", False)
++                ),
++            )
+         )
+         artifacts: dict[str, str] = {}
+         assertion_report_path = report_paths.get("conversion_assertion_report")
+         if assertion_report_path is not None:
+             artifacts["conversion_assertion_report"] = assertion_report_path
+         execution_snapshot.update(
+             {
+                 "status": status,
+                 "finished_at": finished_at.isoformat(),
+                 "artifacts": artifacts,
+@@ -799,49 +808,20 @@ class TaskExecutionService:
+             )
+         if artifact_consistency_report is not None:
+             report_paths["artifact_consistency_report"] = str(
+                 self.storage.save_json(
+                     f"{base}/artifact_consistency_report.json",
+                     artifact_consistency_report,
+                 )
+             )
+         return report_paths
+ 
+-    @staticmethod
+-    def _final_status(
+-        package_passed: bool,
+-        review_required_count: int,
+-        unmapped_required_count: int,
+-        assertion_error_count: int = 0,
+-        strict_output_assertions: bool = False,
+-        metadata_passed: bool | None = None,
+-        strict_metadata_template: bool = False,
+-        summary_faithfulness_passed: bool | None = None,
+-        artifact_consistency_passed: bool | None = None,
+-    ) -> str:
+-        if not package_passed and artifact_consistency_passed is not False:
+-            return "failed"
+-        if strict_output_assertions and assertion_error_count:
+-            return "failed"
+-        if strict_metadata_template and metadata_passed is False:
+-            return "failed"
+-        if (
+-            review_required_count
+-            or unmapped_required_count
+-            or assertion_error_count
+-            or metadata_passed is False
+-            or summary_faithfulness_passed is False
+-            or artifact_consistency_passed is False
+-        ):
+-            return "review_required"
+-        return "completed"
+-
+     def _mark_failed(self, task: ConversionTask, error_code: str, message: str) -> None:
+         now = self._now()
+         if task.config_snapshot_path:
+             try:
+                 snapshot = self.execution_snapshot(task)
+                 snapshot.update(
+                     {
+                         "status": "failed",
+                         "finished_at": now.isoformat(),
+                         "error_code": error_code,
+diff --git a/backend/app/services/topic5_conversion_service.py b/backend/app/services/topic5_conversion_service.py
+index 775b9a88..906181c1 100644
+--- a/backend/app/services/topic5_conversion_service.py
++++ b/backend/app/services/topic5_conversion_service.py
+@@ -1,22 +1,25 @@
+ from pathlib import Path
+ from typing import Any
+ 
+ from app.config import Settings
+-from app.schemas.reports import MappingReport
+ from app.schemas.topic5_convert import Topic5ConvertRequest, Topic5ConvertResponse
+ from app.services.artifact_consistency_service import ArtifactConsistencyService
+ from app.services.candidate_service import CandidateService
+ from app.services.canonical_service import CanonicalService
+ from app.services.chunk_organizer_service import ChunkOrganizerService
+ from app.services.chunk_providers.resolver import ChunkProviderResolver
+ from app.services.conversion_assertion_service import ConversionAssertionService
++from app.services.conversion_status_service import (
++    ConversionStatusInput,
++    ConversionStatusService,
++)
+ from app.services.document_summary_service import DocumentSummaryService
+ from app.services.mapping_repair_service import MappingRepairService
+ from app.services.mapping_service import MappingService
+ from app.services.metadata_template_service import MetadataTemplateService
+ from app.services.package_service import PackageService
+ from app.services.render_service import RenderedArtifacts, RenderService
+ from app.services.schema_service import SchemaService
+ from app.services.template_service import TemplateService
+ from app.services.transform_service import TransformService
+ from app.services.validation_service import ValidationService
+@@ -236,41 +239,47 @@ class Topic5ConversionService:
+             manifest = package_result.manifest.model_dump(mode="json")
+             package_zip_path = package_result.metadata.zip_path
+             package_metadata = package_result.metadata.model_dump(mode="json")
+             verifier_report = package_result.verifier_report.model_dump(mode="json")
+ 
+         verifier_passed = (
+             bool(verifier_report.get("passed"))
+             if isinstance(verifier_report, dict)
+             else None
+         )
+-        status = self._final_status(
+-            mapping_report=mapping_report,
+-            validation_passed=validation_report.passed,
+-            verifier_passed=verifier_passed,
+-            create_package=create_package,
+-            assertion_error_count=(
+-                int(conversion_assertion_report.get("error_count", 0))
+-                if conversion_assertion_report
+-                else 0
+-            ),
+-            strict_output_assertions=bool(
+-                options.get("strict_output_assertions", False)
+-            ),
+-            metadata_passed=(metadata_result.passed if metadata_result else None),
+-            strict_metadata_template=bool(
+-                options.get("strict_metadata_template", False)
+-            ),
+-            summary_faithfulness_passed=(
+-                document_summary.faithfulness_passed if document_summary else None
+-            ),
+-            artifact_consistency_passed=artifact_consistency_report.passed,
++        status = ConversionStatusService.determine(
++            ConversionStatusInput(
++                package_verifier_passed=verifier_passed,
++                mapping_review_item_count=len(mapping_report.review_required_items),
++                unmapped_required_source_present_count=sum(
++                    1 for item in mapping_report.unmapped if item.get("required")
++                ),
++                schema_validation_passed=validation_report.passed,
++                assertion_error_count=(
++                    int(conversion_assertion_report.get("error_count", 0))
++                    if conversion_assertion_report
++                    else 0
++                ),
++                strict_output_assertions=bool(
++                    options.get("strict_output_assertions", False)
++                ),
++                metadata_passed=(metadata_result.passed if metadata_result else None),
++                strict_metadata=bool(options.get("strict_metadata_template", False)),
++                summary_faithfulness_passed=(
++                    document_summary.faithfulness_passed if document_summary else None
++                ),
++                artifact_consistency_passed=artifact_consistency_report.passed,
++                provider_fallback_used=provider_result.trace.fallback_used,
++                provider_fallback_requires_review=bool(
++                    options.get("provider_fallback_requires_review", False)
++                ),
++            )
+         )
+         return Topic5ConvertResponse(
+             task_id=task_id,
+             status=status,
+             schema_id=schema.schema_id,
+             template_id=template.template_id,
+             content_json=rendered.structured_json,
+             content_markdown=rendered.markdown,
+             chunks=rendered.chunks,
+             mapping_report=mapping_report.model_dump(mode="json"),
+@@ -287,51 +296,10 @@ class Topic5ConversionService:
+             metadata_template_report=(
+                 metadata_result.report.model_dump(mode="json")
+                 if metadata_result
+                 else None
+             ),
+             document_summary=document_summary_payload,
+             artifact_consistency_report=artifact_consistency_report.model_dump(
+                 mode="json"
+             ),
+         )
+-
+-    @staticmethod
+-    def _final_status(
+-        *,
+-        mapping_report: MappingReport,
+-        validation_passed: bool,
+-        verifier_passed: bool | None,
+-        create_package: bool,
+-        assertion_error_count: int = 0,
+-        strict_output_assertions: bool = False,
+-        metadata_passed: bool | None = None,
+-        strict_metadata_template: bool = False,
+-        summary_faithfulness_passed: bool | None = None,
+-        artifact_consistency_passed: bool | None = None,
+-    ) -> str:
+-        review_required_count = len(mapping_report.review_required_items)
+-        unmapped_required_count = sum(
+-            1 for item in mapping_report.unmapped if item.get("required")
+-        )
+-
+-        if create_package and verifier_passed is False and artifact_consistency_passed is not False:
+-            return "failed"
+-
+-        if strict_output_assertions and assertion_error_count:
+-            return "failed"
+-
+-        if strict_metadata_template and metadata_passed is False:
+-            return "failed"
+-
+-        if (
+-            review_required_count
+-            or unmapped_required_count
+-            or not validation_passed
+-            or assertion_error_count
+-            or metadata_passed is False
+-            or summary_faithfulness_passed is False
+-            or artifact_consistency_passed is False
+-        ):
+-            return "review_required"
+-
+-        return "completed"
+diff --git a/backend/tests/test_conversion_status_service.py b/backend/tests/test_conversion_status_service.py
+new file mode 100644
+index 00000000..d6529c73
+--- /dev/null
++++ b/backend/tests/test_conversion_status_service.py
+@@ -0,0 +1,77 @@
++from itertools import product
++
++from app.services.conversion_status_service import (
++    ConversionStatusInput,
++    ConversionStatusService,
++)
++
++
++def test_conversion_status_truth_table_is_exhaustive() -> None:
++    for values in product((False, True), repeat=15):
++        (
++            runtime_exception,
++            package_write_failed,
++            package_verifier_failed,
++            metadata_failed,
++            strict_metadata,
++            assertion_error,
++            strict_assertions,
++            strict_provider_failed,
++            mapping_review,
++            unmapped_required,
++            schema_validation_failed,
++            summary_faithfulness_failed,
++            artifact_consistency_failed,
++            provider_fallback_used,
++            provider_fallback_requires_review,
++        ) = values
++        status_input = ConversionStatusInput(
++            runtime_exception=runtime_exception,
++            package_write_failed=package_write_failed,
++            package_verifier_passed=not package_verifier_failed,
++            metadata_passed=not metadata_failed,
++            strict_metadata=strict_metadata,
++            assertion_error_count=int(assertion_error),
++            strict_output_assertions=strict_assertions,
++            strict_provider_failed=strict_provider_failed,
++            mapping_review_item_count=int(mapping_review),
++            unmapped_required_source_present_count=int(unmapped_required),
++            schema_validation_passed=not schema_validation_failed,
++            summary_faithfulness_passed=not summary_faithfulness_failed,
++            artifact_consistency_passed=not artifact_consistency_failed,
++            provider_fallback_used=provider_fallback_used,
++            provider_fallback_requires_review=provider_fallback_requires_review,
++        )
++
++        has_failure = (
++            runtime_exception
++            or package_write_failed
++            or package_verifier_failed
++            or (metadata_failed and strict_metadata)
++            or (assertion_error and strict_assertions)
++            or strict_provider_failed
++        )
++        has_review = (
++            mapping_review
++            or unmapped_required
++            or schema_validation_failed
++            or metadata_failed
++            or assertion_error
++            or summary_faithfulness_failed
++            or artifact_consistency_failed
++            or (provider_fallback_used and provider_fallback_requires_review)
++        )
++        expected = "failed" if has_failure else "review_required" if has_review else "completed"
++
++        assert ConversionStatusService.determine(status_input) == expected
++
++
++def test_absent_optional_checks_do_not_prevent_completion() -> None:
++    status_input = ConversionStatusInput(
++        package_verifier_passed=None,
++        metadata_passed=None,
++        summary_faithfulness_passed=None,
++        artifact_consistency_passed=None,
++    )
++
++    assert ConversionStatusService.determine(status_input) == "completed"
+diff --git a/backend/tests/test_task_execution_api.py b/backend/tests/test_task_execution_api.py
+index 3ac41d66..549252bd 100644
+--- a/backend/tests/test_task_execution_api.py
++++ b/backend/tests/test_task_execution_api.py
+@@ -231,20 +231,80 @@ def test_registered_task_topic11_missing_endpoint_uses_same_fallback(
+     report = json.loads(
+         Path(response.json()["report_paths"]["content_organization_report"]).read_text(
+             encoding="utf-8"
+         )
+     )
+     assert report["provider_trace"]["requested_provider"] == "topic11"
+     assert report["provider_trace"]["used_provider"] == "internal"
+     assert report["provider_trace"]["fallback_reason"] == "topic11_endpoint_missing"
+ 
+ 
++def test_registered_schema_validation_failure_requires_review(
++    execution_client,
++    monkeypatch,
++):
++    from app.services.validation_service import ValidationService
++
++    client, _storage_root = execution_client
++    original_validate = ValidationService.validate
++
++    def fail_schema_validation(self, *args, **kwargs):
++        report = original_validate(self, *args, **kwargs)
++        return report.model_copy(update={"passed": False})
++
++    monkeypatch.setattr(ValidationService, "validate", fail_schema_validation)
++    task_id = create_schema_pack_task(client, "announcement_doc", announcement_uir())
++
++    response = client.post(f"/api/v1/tasks/{task_id}/execute")
++
++    assert response.status_code == 200, response.text
++    payload = response.json()
++    validation_report = json.loads(
++        Path(payload["report_paths"]["validation_report"]).read_text(encoding="utf-8")
++    )
++    assert validation_report["passed"] is False
++    assert payload["status"] == "review_required"
++
++
++def test_registered_package_verifier_failure_overrides_consistency_failure(
++    execution_client,
++    monkeypatch,
++):
++    from app.services.artifact_consistency_service import ArtifactConsistencyService
++
++    client, _storage_root = execution_client
++    original_verify = ArtifactConsistencyService.verify
++
++    def fail_consistency(self, **kwargs):
++        report = original_verify(self, **kwargs)
++        return report.model_copy(update={"passed": False})
++
++    monkeypatch.setattr(ArtifactConsistencyService, "verify", fail_consistency)
++    task_id = create_schema_pack_task(client, "announcement_doc", announcement_uir())
++
++    response = client.post(f"/api/v1/tasks/{task_id}/execute")
++
++    assert response.status_code == 200, response.text
++    payload = response.json()
++    consistency_report = json.loads(
++        Path(payload["report_paths"]["artifact_consistency_report"]).read_text(
++            encoding="utf-8"
++        )
++    )
++    verifier_report = json.loads(
++        Path(payload["report_paths"]["verifier_report"]).read_text(encoding="utf-8")
++    )
++    assert consistency_report["passed"] is False
++    assert verifier_report["passed"] is False
++    assert payload["status"] == "failed"
++
++
+ def test_execute_task_marks_review_required_for_alias_variants(execution_client):
+     client, _storage_root = execution_client
+     doc_id = import_policy_document(client, "policy_002_alias_variants.json")
+     task_id = create_policy_task(client, doc_id)
+ 
+     response = client.post(f"/api/v1/tasks/{task_id}/execute")
+ 
+     assert response.status_code == 200
+     executed = response.json()
+     assert executed["status"] == "review_required"
+diff --git a/backend/tests/test_topic5_convert_api.py b/backend/tests/test_topic5_convert_api.py
+index e86d49a0..34df1142 100644
+--- a/backend/tests/test_topic5_convert_api.py
++++ b/backend/tests/test_topic5_convert_api.py
+@@ -7,24 +7,22 @@ from pathlib import Path
+ 
+ import pytest
+ from fastapi.testclient import TestClient
+ from pydantic import ValidationError
+ from sqlalchemy import create_engine
+ from sqlalchemy.orm import sessionmaker
+ 
+ from app.config import Settings
+ from app.db.models import Base
+ from app.main import create_app
+-from app.schemas.reports import MappingReport
+ from app.schemas.topic5_convert import Topic5ConvertRequest
+ from app.services.package_verifier_service import PackageVerifierService
+-from app.services.topic5_conversion_service import Topic5ConversionService
+ from tests.topic5_helpers import announcement_convert_request
+ 
+ 
+ @pytest.fixture
+ def topic5_client(tmp_path) -> Iterator[tuple[TestClient, Path]]:
+     from app.api.deps import get_db, get_storage_service
+     from app.services.storage_service import StorageService
+ 
+     engine = create_engine(
+         f"sqlite:///{tmp_path / 'test.db'}",
+@@ -637,28 +635,35 @@ def test_topic5_convert_review_required_when_validation_fails(topic5_client):
+     payload["target_schema"]["fields"][0]["type"] = "date"
+ 
+     response = client.post("/api/v1/topic5/convert", json=payload)
+ 
+     assert response.status_code == 200
+     body = response.json()
+     assert body["status"] == "review_required"
+     assert body["validation_report"]["passed"] is False
+ 
+ 
+-def test_topic5_final_status_failed_when_package_verifier_fails():
+-    report = MappingReport(
+-        task_id="task",
+-        schema_id="announcement_doc",
+-        summary={},
+-        mappings=[],
+-        unmapped=[],
+-        review_required_items=[],
+-    )
++def test_topic5_package_verifier_failure_overrides_artifact_consistency_failure(
++    topic5_client,
++    monkeypatch,
++):
++    from app.services.artifact_consistency_service import ArtifactConsistencyService
++
++    client, _storage_root = topic5_client
++    original_verify = ArtifactConsistencyService.verify
+ 
+-    status = Topic5ConversionService._final_status(
+-        mapping_report=report,
+-        validation_passed=True,
+-        verifier_passed=False,
+-        create_package=True,
++    def fail_consistency(self, **kwargs):
++        report = original_verify(self, **kwargs)
++        return report.model_copy(update={"passed": False})
++
++    monkeypatch.setattr(ArtifactConsistencyService, "verify", fail_consistency)
++
++    response = client.post(
++        "/api/v1/topic5/convert/package",
++        json=announcement_convert_request(),
+     )
+ 
+-    assert status == "failed"
++    assert response.status_code == 200, response.text
++    payload = response.json()
++    assert payload["artifact_consistency_report"]["passed"] is False
++    assert payload["verifier_report"]["passed"] is False
++    assert payload["status"] == "failed"

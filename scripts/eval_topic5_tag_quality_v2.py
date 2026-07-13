@@ -30,6 +30,10 @@ def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode()).hexdigest()
+
+
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return [
         json.loads(line)
@@ -55,7 +59,7 @@ def verify_frozen_hashes(root: Path) -> None:
     if not seal_path.is_file():
         raise ValueError("frozen file drift: manifest seal is missing")
     expected_seal = seal_path.read_text(encoding="utf-8").strip()
-    actual_seal = hashlib.sha256(manifest_bytes).hexdigest()
+    actual_seal = _sha256(manifest_path)
     if expected_seal != actual_seal:
         raise ValueError("frozen file drift: manifest seal")
     payload = json.loads(manifest_bytes)
@@ -76,7 +80,7 @@ def verify_frozen_hashes(root: Path) -> None:
         path = root / name
         if not path.is_file():
             raise ValueError(f"frozen file drift: missing {name}")
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        digest = _sha256(path)
         actual[name] = digest
         if digest != expected:
             raise ValueError(f"frozen file drift: {name}")
@@ -101,7 +105,7 @@ def verify_frozen_hashes(root: Path) -> None:
 
 def _load_uir(reference: dict[str, Any]) -> dict[str, Any]:
     path = ROOT / str(reference["source_path"])
-    if hashlib.sha256(path.read_bytes()).hexdigest() != reference["source_sha256"]:
+    if _sha256(path) != reference["source_sha256"]:
         raise ValueError(f"source UIR drift: {reference['doc_id']}")
     return load_json(path)
 
@@ -130,7 +134,7 @@ def validate_dataset(dataset: TagV2Dataset) -> None:
     source_path = ROOT / str(dataset.hashes.get("annotation_source_path", ""))
     if not source_path.is_file():
         raise ValueError("annotation source path is missing")
-    if hashlib.sha256(source_path.read_bytes()).hexdigest() != dataset.hashes.get(
+    if _sha256(source_path) != dataset.hashes.get(
         "annotation_source_sha256"
     ):
         raise ValueError("annotation source SHA mismatch")

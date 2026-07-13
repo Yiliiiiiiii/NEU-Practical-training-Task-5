@@ -2,8 +2,8 @@
   "baseline_source_commit": "70ff30236d90a3c9de0534a8f6313e5bb559cbf5",
   "dataset": {
     "id": "topic5_tag_quality",
-    "payload_sha256": "503321bfc890b60af884111bbffd62b27d5cfb1375a716bba9ceeae7a81f243f",
-    "sha256": "503321bfc890b60af884111bbffd62b27d5cfb1375a716bba9ceeae7a81f243f",
+    "payload_sha256": "3b7a47611f1b231250a3e74e79a61ca91c52421cfc119990089756d2b662adc8",
+    "sha256": "3b7a47611f1b231250a3e74e79a61ca91c52421cfc119990089756d2b662adc8",
     "version": "2.0.0"
   },
   "metrics": {

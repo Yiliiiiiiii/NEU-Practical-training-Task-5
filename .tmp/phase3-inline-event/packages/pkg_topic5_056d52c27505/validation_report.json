@@ -1,0 +1,13 @@
+{
+  "issues": [],
+  "passed": true,
+  "schema_id": "event_notice_doc",
+  "schema_valid": true,
+  "strict_semantic_valid": true,
+  "summary": {
+    "error_count": 0,
+    "failure_type_counts": {},
+    "warning_count": 0
+  },
+  "task_id": "topic5_056d52c27505"
+}

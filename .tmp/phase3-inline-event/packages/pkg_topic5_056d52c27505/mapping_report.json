@@ -1,0 +1,364 @@
+{
+  "mappings": [
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_056d52c27505_document_title_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target title",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target title"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_056d52c27505_title_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.85,
+        "evidence_score": 0.8,
+        "final_score": 0.9025,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "document_title",
+        "source_path": "$.metadata.document_title"
+      },
+      "source_field_name": "document_title",
+      "source_path": "$.metadata.document_title",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "title",
+      "target_field_name": "title",
+      "task_id": "topic5_056d52c27505",
+      "value_sample": "Network Security Lecture Notice"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_056d52c27505_organizer_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to organizer",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to organizer"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_056d52c27505_organizer_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.95,
+        "evidence_score": 0.7,
+        "final_score": 0.8975,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "e2"
+      ],
+      "source_field": {
+        "source_name": "organizer",
+        "source_path": "$.blocks.e2.text"
+      },
+      "source_field_name": "organizer",
+      "source_path": "$.blocks.e2.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "organizer",
+      "target_field_name": "organizer",
+      "task_id": "topic5_056d52c27505",
+      "value_sample": "Information Security School"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_056d52c27505_event_time_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to event_time",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to event_time"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_056d52c27505_event_time_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.95,
+        "evidence_score": 0.7,
+        "final_score": 0.8825,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 0.85
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "e3"
+      ],
+      "source_field": {
+        "source_name": "event_time",
+        "source_path": "$.blocks.e3.text"
+      },
+      "source_field_name": "event_time",
+      "source_path": "$.blocks.e3.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "event_time",
+      "target_field_name": "event_time",
+      "task_id": "topic5_056d52c27505",
+      "value_sample": "2026-07-12 14:00"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_056d52c27505_location_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to location",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to location"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_056d52c27505_location_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.95,
+        "evidence_score": 0.7,
+        "final_score": 0.8975,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "e4"
+      ],
+      "source_field": {
+        "source_name": "location",
+        "source_path": "$.blocks.e4.text"
+      },
+      "source_field_name": "location",
+      "source_path": "$.blocks.e4.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "location",
+      "target_field_name": "location",
+      "task_id": "topic5_056d52c27505",
+      "value_sample": "Main Building 301"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_056d52c27505_audience_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to audience",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to audience"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_056d52c27505_audience_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.95,
+        "evidence_score": 0.7,
+        "final_score": 0.8975,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "e5"
+      ],
+      "source_field": {
+        "source_name": "audience",
+        "source_path": "$.blocks.e5.text"
+      },
+      "source_field_name": "audience",
+      "source_path": "$.blocks.e5.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "audience",
+      "target_field_name": "audience",
+      "task_id": "topic5_056d52c27505",
+      "value_sample": "All information security students"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_056d52c27505_body_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to body",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to body"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_056d52c27505_body_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.7,
+        "evidence_score": 0.7,
+        "final_score": 0.8375,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 0.9
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "e6"
+      ],
+      "source_field": {
+        "source_name": "body",
+        "source_path": "$.blocks.e6.text"
+      },
+      "source_field_name": "body",
+      "source_path": "$.blocks.e6.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "body",
+      "target_field_name": "body",
+      "task_id": "topic5_056d52c27505",
+      "value_sample": "Please arrive ten minutes early. The lecture will cover phishing defense, data governance, and secure engineering practice."
+    }
+  ],
+  "review_required_items": [],
+  "schema_id": "event_notice_doc",
+  "summary": {
+    "accepted_count": 6,
+    "average_confidence": 0.9933,
+    "avg_confidence": 0.9933,
+    "badcase_blocked_count": 0,
+    "failed_count": 0,
+    "input_mode": "inline_topic5_config",
+    "llm_suggestion_count": 0,
+    "mapped_count": 6,
+    "mapped_fields": 6,
+    "mapping_input_name": "mapping_rules",
+    "mapping_mode": "legacy",
+    "methods": {
+      "alias": 1,
+      "exact": 5
+    },
+    "no_code_schema_pack_onboarding": true,
+    "required_unmapped_count": 0,
+    "review_required": 0,
+    "review_required_count": 0,
+    "risk_flag_counts": {},
+    "strategy_counts": {
+      "alias": 1,
+      "exact": 5,
+      "fuzzy": 0,
+      "llm_fallback": 0,
+      "regex": 0,
+      "type": 0
+    },
+    "target_fields": 6,
+    "template_id": "event_notice_doc_base_v1",
+    "thresholds": {
+      "auto_accept": 0.82,
+      "review_required": 0.62
+    },
+    "total_candidates": 9,
+    "total_target_fields": 6,
+    "unmapped_required_fields": 0,
+    "warnings": []
+  },
+  "task_id": "topic5_056d52c27505",
+  "unmapped": []
+}

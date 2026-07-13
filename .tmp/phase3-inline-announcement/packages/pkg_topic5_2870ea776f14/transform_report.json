@@ -1,0 +1,51 @@
+{
+  "doc_id": "uir_announcement_001",
+  "errors": [],
+  "schema_id": "announcement_doc",
+  "summary": {
+    "error_count": 0,
+    "trace_count": 4,
+    "transformed_fields": 4
+  },
+  "task_id": "topic5_2870ea776f14",
+  "template_id": "announcement_doc_base_v1",
+  "traces": [
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "document_title",
+        "source_path": "$.metadata.document_title"
+      },
+      "status": "ok",
+      "target_field_id": "title"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "issuer",
+        "source_path": "$.blocks.b2.text"
+      },
+      "status": "ok",
+      "target_field_id": "issuer"
+    },
+    {
+      "operation": "date_normalize",
+      "source_field": {
+        "source_name": "publish_date",
+        "source_path": "$.blocks.b3.text"
+      },
+      "status": "ok",
+      "target_field_id": "publish_date"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "正文",
+        "source_path": "$.blocks.b4.text"
+      },
+      "status": "ok",
+      "target_field_id": "body"
+    }
+  ],
+  "warnings": []
+}

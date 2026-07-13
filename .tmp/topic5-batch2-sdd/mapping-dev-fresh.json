@@ -1,0 +1,98 @@
+{
+  "baseline_source_commit": "223746f8dac5bb293ecb9d245dd4399ce0063b84",
+  "dataset": {
+    "group_hashes": {
+      "gold": "299e6f3322b6c1e1b30989d15afa024723fcdbcfc278bbea982830f19bc6bc88",
+      "mapping_rules": "7198937301c292c71281ce087b863ef93e134b4063f12947dbda0beb9d83db4a",
+      "splits": "e17dcd0cb9daba7c63b9aaf584bedf63a947fa8b060520dd969f2a1acc101b03",
+      "target_schemas": "495bc0a6ebfaec8d0813de1fb0cb544a0dfa1c09c10c064167b10f640bd1fdcb",
+      "uir": "13131fbeddf76db964c461a970b5bcc55f0e28cc11889b52da05b413d4657db4"
+    },
+    "id": "topic5_mapping_v2",
+    "sha256": "ba0c86305f456df9088c8dc22cd8cafef83284f346fd9deb4751c24f2236e32a",
+    "version": "2.0.0"
+  },
+  "engine": {
+    "llm_fallback": false,
+    "mapping_mode": "legacy",
+    "name": "current_mapping_service"
+  },
+  "external_blind": {
+    "reason": "independent annotations are not available",
+    "status": "not_run"
+  },
+  "metrics": {
+    "abstention_rate": 0.23404255319148937,
+    "auto_exact_field_accuracy": 0.6792452830188679,
+    "auto_f1": 0.8089887640449438,
+    "auto_precision": 1.0,
+    "auto_recall": 0.6792452830188679,
+    "document_count": 45,
+    "duplicate_source_violation_count": 0,
+    "invalid_cardinality_count": 0,
+    "macro_f1_by_schema": 0.8089887640449438,
+    "negative_pair_violation_count": 0,
+    "per_schema_f1": {
+      "event_brief": 0.8089887640449438,
+      "meeting_record": 0.8089887640449438,
+      "policy_release": 0.8089887640449438,
+      "procurement_notice": 0.8089887640449438,
+      "service_guide": 0.8089887640449438
+    },
+    "required_present_field_recall": 0.6944444444444444,
+    "review_required_rate": 0.0,
+    "schema_held_out_f1": 0.0,
+    "test_vs_dev_gap": null
+  },
+  "split": "dev",
+  "status": "failed",
+  "targets": {
+    "auto_exact_field_accuracy": 0.85,
+    "auto_f1": 0.87,
+    "auto_precision": 0.9,
+    "auto_recall": 0.85,
+    "macro_f1_by_schema": 0.82,
+    "required_present_field_recall": 0.95,
+    "review_required_rate_max": 0.2
+  },
+  "validation": {
+    "document_count": 90,
+    "documents_per_family": {
+      "event_brief": 15,
+      "grant_program": 15,
+      "meeting_record": 15,
+      "policy_release": 15,
+      "procurement_notice": 15,
+      "service_guide": 15
+    },
+    "exact_name_positive_rate": 0.0,
+    "negative_decision_count": 180,
+    "observed_variety": [
+      "abbreviations",
+      "budget_vs_award_amount",
+      "contact_vs_attendee",
+      "contact_vs_service_object",
+      "distinct_date_roles",
+      "en_labels",
+      "field_order_changes",
+      "historical_award_vs_funding_ceiling",
+      "issuer_vs_organizer",
+      "key_value_blocks",
+      "long_labels",
+      "metadata_candidates",
+      "missing_optional_fields",
+      "multiple_date_types",
+      "paragraph_blocks",
+      "paragraph_candidates",
+      "publish_date_vs_effective_date",
+      "semantic_distractors",
+      "sponsor_vs_organizer",
+      "tables",
+      "zh_labels"
+    ],
+    "positive_mapping_count": 534,
+    "schema_family_count": 6,
+    "schema_held_out_test_count": 15,
+    "test_held_out_source_rate": 0.6666666666666666
+  }
+}

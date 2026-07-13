@@ -1,0 +1,201 @@
+{
+  "assets": [],
+  "blocks": [
+    {
+      "block_id": "con001_b001",
+      "level": 1,
+      "source_anchor": {
+        "bbox": [
+          0.0,
+          0.0,
+          420.0,
+          40.0
+        ],
+        "page": 1
+      },
+      "source_blocks": [
+        "con001_b001"
+      ],
+      "text": "数据服务采购合同",
+      "text_hash": "sha256:ddbfb54c79736e560faf65e67ec2f0dde8c9aa2524ef2a2724542af23a13aa52",
+      "type": "heading"
+    },
+    {
+      "block_id": "con001_b002",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          0.0,
+          50.0,
+          420.0,
+          80.0
+        ],
+        "page": 1
+      },
+      "source_blocks": [
+        "con001_b002"
+      ],
+      "text": "合同金额：100,000.00元",
+      "text_hash": "sha256:3a8e9e71915e66d95c7c07ec2ae26255a587f677e0b6ab81720a4daa6383d434",
+      "type": "paragraph"
+    },
+    {
+      "block_id": "con001_b003",
+      "level": null,
+      "source_anchor": {
+        "bbox": [
+          0.0,
+          90.0,
+          420.0,
+          170.0
+        ],
+        "page": 1
+      },
+      "source_blocks": [
+        "con001_b003"
+      ],
+      "text": "正文：本合同约定数据服务范围、交付周期、验收标准与付款条件。",
+      "text_hash": "sha256:07078aa5d40f42116514533d942b2aebafcdb148b4e396f4c60ad10697e80003",
+      "type": "paragraph"
+    }
+  ],
+  "canonical_version": "1.0",
+  "doc_id": "contract_001_standard",
+  "doc_meta": {
+    "document_metadata": {},
+    "entities": [],
+    "execution_snapshot": {
+      "engine_version": "test"
+    },
+    "mapping_summary": {
+      "accepted_count": 7,
+      "average_confidence": 0.9657,
+      "avg_confidence": 0.9657,
+      "badcase_blocked_count": 0,
+      "failed_count": 0,
+      "llm_suggestion_count": 0,
+      "mapped_count": 7,
+      "mapped_fields": 7,
+      "mapping_mode": "legacy",
+      "methods": {
+        "alias": 6,
+        "exact": 1
+      },
+      "required_unmapped_count": 0,
+      "review_required": 0,
+      "review_required_count": 0,
+      "risk_flag_counts": {},
+      "strategy_counts": {
+        "alias": 6,
+        "exact": 1,
+        "fuzzy": 0,
+        "llm_fallback": 0,
+        "regex": 0,
+        "type": 0
+      },
+      "target_fields": 8,
+      "template_id": "contract_doc_base_v1",
+      "thresholds": {},
+      "total_candidates": 13,
+      "total_target_fields": 8,
+      "unmapped_required_fields": 0,
+      "warnings": []
+    },
+    "metadata": {
+      "content": "本合同约定数据服务范围、交付周期、验收标准与付款条件。",
+      "domain": "contract_doc",
+      "scenario": "standard aliases",
+      "乙方": "乙方数据服务有限公司",
+      "合同名称": "数据服务采购合同",
+      "合同金额": 100000,
+      "状态": "有效",
+      "甲方": "甲方科技有限公司",
+      "签署日期": "2024-01-20"
+    },
+    "metadata_template": null,
+    "metadata_template_report": null,
+    "source_metadata": {
+      "content": "本合同约定数据服务范围、交付周期、验收标准与付款条件。",
+      "domain": "contract_doc",
+      "scenario": "standard aliases",
+      "乙方": "乙方数据服务有限公司",
+      "合同名称": "数据服务采购合同",
+      "合同金额": 100000,
+      "状态": "有效",
+      "甲方": "甲方科技有限公司",
+      "签署日期": "2024-01-20"
+    },
+    "template_id": "contract_doc_base_v1",
+    "transform_summary": {
+      "error_count": 0,
+      "trace_count": 9,
+      "transformed_fields": 8
+    }
+  },
+  "fields": {
+    "amount": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_合同金额_1"
+      ],
+      "type": "number",
+      "value": 100000
+    },
+    "content": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_content_1"
+      ],
+      "type": "text",
+      "value": "本合同约定数据服务范围、交付周期、验收标准与付款条件。"
+    },
+    "contract_title": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_合同名称_1"
+      ],
+      "type": "string",
+      "value": "数据服务采购合同"
+    },
+    "currency": {
+      "source_blocks": [],
+      "source_candidates": [],
+      "type": "string",
+      "value": "CNY"
+    },
+    "party_a": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_甲方_1"
+      ],
+      "type": "string",
+      "value": "甲方科技有限公司"
+    },
+    "party_b": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_乙方_1"
+      ],
+      "type": "string",
+      "value": "乙方数据服务有限公司"
+    },
+    "sign_date": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_签署日期_1"
+      ],
+      "type": "date",
+      "value": "2024-01-20"
+    },
+    "status": {
+      "source_blocks": [],
+      "source_candidates": [
+        "cand_task_contract_001_状态_1"
+      ],
+      "type": "enum",
+      "value": "active"
+    }
+  },
+  "schema_id": "contract_doc",
+  "task_id": "task_contract_001"
+}

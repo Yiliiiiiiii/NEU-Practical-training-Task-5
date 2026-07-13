@@ -42,6 +42,10 @@ def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode()).hexdigest()
+
+
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -95,9 +99,7 @@ def verify_frozen_hashes(root: Path) -> None:
     seal_path = root.parent / f"{root.name}.hashes.sha256"
     if not seal_path.is_file():
         raise ValueError("frozen file drift: hashes seal is missing")
-    if seal_path.read_text(encoding="utf-8").strip() != hashlib.sha256(
-        hashes_bytes
-    ).hexdigest():
+    if seal_path.read_text(encoding="utf-8").strip() != _sha256(hashes_path):
         raise ValueError("frozen file drift: hashes seal")
     payload = json.loads(hashes_bytes)
     expected_names = set(payload.get("files", {})) | set(
@@ -121,7 +123,7 @@ def verify_frozen_hashes(root: Path) -> None:
         path = root / name
         if not path.is_file():
             raise ValueError(f"frozen file drift: missing {name}")
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        digest = _sha256(path)
         actual[name] = digest
         if digest != expected:
             raise ValueError(f"frozen file drift: {name}")
@@ -131,13 +133,11 @@ def verify_frozen_hashes(root: Path) -> None:
     if dataset_sha != payload.get("dataset_sha256"):
         raise ValueError("frozen file drift: dataset SHA")
     for name, expected in payload.get("report_files", {}).items():
-        if hashlib.sha256((root / name).read_bytes()).hexdigest() != expected:
+        if _sha256(root / name) != expected:
             raise ValueError(f"frozen file drift: {name}")
     source_root = ROOT / str(payload.get("source_path", ""))
     source_files = {
-        path.relative_to(source_root).as_posix(): hashlib.sha256(
-            path.read_bytes()
-        ).hexdigest()
+        path.relative_to(source_root).as_posix(): _sha256(path)
         for path in sorted(source_root.rglob("*"))
         if path.is_file()
     }

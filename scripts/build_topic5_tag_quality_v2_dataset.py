@@ -29,6 +29,10 @@ QUALITY_DEFINITIONS = {
 }
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode()).hexdigest()
+
+
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return [
         json.loads(line)
@@ -109,9 +113,7 @@ def _write_manifest(
     annotation_source_sha256: str,
 ) -> None:
     files = {
-        path.relative_to(output).as_posix(): hashlib.sha256(
-            path.read_bytes()
-        ).hexdigest()
+        path.relative_to(output).as_posix(): _sha256(path)
         for path in sorted(output.rglob("*"))
         if path.is_file() and path.name != "manifest.json"
     }
@@ -143,7 +145,7 @@ def _write_manifest(
         },
     )
     (output.parent / f"{output.name}.manifest.sha256").write_text(
-        hashlib.sha256(manifest_path.read_bytes()).hexdigest() + "\n",
+        _sha256(manifest_path) + "\n",
         encoding="utf-8",
     )
 
@@ -160,7 +162,7 @@ def build(output: Path, *, force: bool = False) -> None:
         seal_path.unlink()
     output.mkdir(parents=True)
     labels = load_jsonl(ANNOTATION_SPEC)
-    annotation_source_sha = hashlib.sha256(ANNOTATION_SPEC.read_bytes()).hexdigest()
+    annotation_source_sha = _sha256(ANNOTATION_SPEC)
     uir_paths = _uir_paths()
     references = []
     for row in labels:
@@ -169,7 +171,7 @@ def build(output: Path, *, force: bool = False) -> None:
             {
                 "doc_id": row["doc_id"],
                 "source_path": source_path.relative_to(ROOT).as_posix(),
-                "source_sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
+                "source_sha256": _sha256(source_path),
                 "snapshot_scope": "referenced UIR plus frozen source hash",
             }
         )
@@ -209,9 +211,7 @@ def build(output: Path, *, force: bool = False) -> None:
     )
     # Provisional metadata lets the evaluator validate counts before the final hash freeze.
     payload_files = {
-        path.relative_to(output).as_posix(): hashlib.sha256(
-            path.read_bytes()
-        ).hexdigest()
+        path.relative_to(output).as_posix(): _sha256(path)
         for path in sorted(output.rglob("*"))
         if path.is_file() and path.name != "manifest.json"
     }

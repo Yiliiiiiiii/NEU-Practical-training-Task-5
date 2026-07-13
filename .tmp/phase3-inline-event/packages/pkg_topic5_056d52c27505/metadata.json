@@ -1,0 +1,21 @@
+{
+  "artifact_roles": {
+    "canonical.json": "canonical",
+    "chunks.jsonl": "chunks",
+    "content.json": "structured_json",
+    "content.md": "markdown",
+    "content_organization_report.json": "content_organization_report",
+    "mapping_report.json": "mapping_report",
+    "metadata.json": "package_metadata",
+    "transform_report.json": "transform_report",
+    "validation_report.json": "validation_report"
+  },
+  "doc_id": "uir_event_notice_001",
+  "package_id": "pkg_topic5_056d52c27505",
+  "package_version": "1.0.0",
+  "schema_id": "event_notice_doc",
+  "schema_version": "1.0.0",
+  "task_id": "topic5_056d52c27505",
+  "template_id": "event_notice_doc_base_v1",
+  "template_version": "1.0.0"
+}

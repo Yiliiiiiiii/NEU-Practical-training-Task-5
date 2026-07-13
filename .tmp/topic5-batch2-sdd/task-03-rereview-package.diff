@@ -1,0 +1,284 @@
+# Review package: b26fc48f..d13d435c
+
+## Diff
+diff --git a/backend/app/services/render_service.py b/backend/app/services/render_service.py
+index a319b3f2..9d1c423f 100644
+--- a/backend/app/services/render_service.py
++++ b/backend/app/services/render_service.py
+@@ -1,63 +1,67 @@
+ import hashlib
+ import json
+ from dataclasses import dataclass
+ from typing import Any
+ 
+ from app.schemas.canonical import CanonicalBlock, CanonicalModel
+ 
+-_FORBIDDEN_BUSINESS_KEYS = {
++_INTERNAL_METADATA_KEYS = {
+     "access_token",
+     "api_key",
+-    "artifact_consistency_report",
+     "authorization",
+-    "content_organization_report",
+-    "conversion_assertion_report",
+     "credentials",
++    "doc_id",
+     "duration_ms",
+     "elapsed_ms",
+-    "execution_snapshot",
+-    "execution_trace",
+     "field_traces",
+-    "mapping_report",
+     "mapping_summary",
+-    "metadata_template_report",
+     "package_id",
+     "password",
+-    "provider_trace",
+     "refresh_token",
+     "report_paths",
+     "runtime_duration_ms",
++    "schema_id",
+     "secret",
+     "task_id",
+-    "transform_report",
+     "transform_summary",
+-    "validation_report",
+-    "verifier_report",
+ }
+-_FORBIDDEN_BUSINESS_SUFFIXES = (
++_OPERATIONAL_METADATA_SUFFIXES = (
++    "_duration",
++    "_duration_ms",
++    "_report",
++    "_reports",
++    "_report_path",
++    "_report_paths",
++    "_snapshot",
++    "_snapshots",
++    "_trace",
++)
++_CREDENTIAL_METADATA_SUFFIXES = (
+     "_access_token",
+     "_api_key",
++    "_authorization",
++    "_credential",
++    "_credentials",
+     "_password",
+     "_refresh_token",
+-    "_report_path",
+-    "_report_paths",
+     "_secret",
++    "_token",
+ )
+ 
+ 
+-def _is_forbidden_business_key(key: object) -> bool:
++def _is_internal_metadata_key(key: object) -> bool:
+     if not isinstance(key, str):
+         return False
+     normalized = key.casefold()
+-    return normalized in _FORBIDDEN_BUSINESS_KEYS or normalized.endswith(
+-        _FORBIDDEN_BUSINESS_SUFFIXES
++    return normalized in _INTERNAL_METADATA_KEYS or normalized.endswith(
++        _OPERATIONAL_METADATA_SUFFIXES + _CREDENTIAL_METADATA_SUFFIXES
+     )
+ 
+ 
+ @dataclass(frozen=True)
+ class RenderedArtifacts:
+     structured_json: dict[str, Any]
+     markdown: str
+     chunks: list[dict[str, Any]]
+ 
+ 
+@@ -78,57 +82,64 @@ class RenderService:
+                 key: metadata_template[key]
+                 for key in ("template_id", "version")
+                 if key in metadata_template
+             }
+             if isinstance(metadata_template, dict)
+             else {}
+         )
+         content_document_summary = (
+             document_summary if isinstance(document_summary, dict) else {}
+         )
+-        source_metadata = self._business_value(source_metadata)
+-        document_metadata = self._business_value(document_metadata)
+-        structured = self._business_value(
+-            {
+-                "source_metadata": source_metadata,
+-                "document_metadata": document_metadata,
+-                "metadata_template": content_metadata_template,
+-                "document_summary": content_document_summary,
+-                "data": {
+-                    field_id: field.value
+-                    for field_id, field in canonical.fields.items()
+-                },
+-                "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
+-                "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
+-                # Deprecated Package 1.1 alias. New consumers should use the two
+-                # explicit metadata fields above.
+-                "metadata": {**source_metadata, **document_metadata},
+-            }
+-        )
++        source_metadata = self._sanitize_metadata_value(source_metadata)
++        document_metadata = self._sanitize_metadata_value(document_metadata)
++        structured = {
++            "source_metadata": source_metadata,
++            "document_metadata": document_metadata,
++            "metadata_template": content_metadata_template,
++            "document_summary": self._sanitize_metadata_value(
++                content_document_summary
++            ),
++            "data": {
++                field_id: field.value for field_id, field in canonical.fields.items()
++            },
++            "blocks": [self._content_block(block) for block in canonical.blocks],
++            "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
++            # Deprecated Package 1.1 alias. New consumers should use the two
++            # explicit metadata fields above.
++            "metadata": {**source_metadata, **document_metadata},
++        }
+         return RenderedArtifacts(
+             structured_json=structured,
+             markdown=self._markdown(canonical),
+             chunks=self._chunks(canonical, chunk_size=chunk_size),
+         )
+ 
+     @classmethod
+-    def _business_value(cls, value: Any) -> Any:
++    def _sanitize_metadata_value(cls, value: Any) -> Any:
+         if isinstance(value, dict):
+             return {
+-                key: cls._business_value(child)
++                key: cls._sanitize_metadata_value(child)
+                 for key, child in value.items()
+-                if not _is_forbidden_business_key(key)
++                if not _is_internal_metadata_key(key)
+             }
+         if isinstance(value, list):
+-            return [cls._business_value(child) for child in value]
++            return [cls._sanitize_metadata_value(child) for child in value]
+         return value
+ 
++    @classmethod
++    def _content_block(cls, block: CanonicalBlock) -> dict[str, Any]:
++        payload = block.model_dump(mode="json")
++        source_anchor = payload.get("source_anchor")
++        if isinstance(source_anchor, dict):
++            payload["source_anchor"] = cls._sanitize_metadata_value(source_anchor)
++        return payload
++
+     def _markdown(self, canonical: CanonicalModel) -> str:
+         lines = [
+             (
+                 '<!-- topic5:document:start '
+                 f'doc_id="{self._marker_value(canonical.doc_id)}" '
+                 f'schema_id="{self._marker_value(canonical.schema_id)}" -->'
+             )
+         ]
+         document_summary = canonical.doc_meta.get("document_summary")
+         summary_text = (
+diff --git a/backend/tests/test_conversion_artifact_services.py b/backend/tests/test_conversion_artifact_services.py
+index e3a8aa94..a2336ec4 100644
+--- a/backend/tests/test_conversion_artifact_services.py
++++ b/backend/tests/test_conversion_artifact_services.py
+@@ -127,20 +127,98 @@ def test_canonical_and_render_services_preserve_sources_and_chunks():
+     assert "execution_snapshot" not in rendered.structured_json["source_metadata"]
+     assert canonical.doc_meta["execution_snapshot"] == {
+         "engine_version": "test"
+     }
+     assert "# 接口目录维护说明" in rendered.markdown
+     assert rendered.chunks
+     assert all(chunk["text"] for chunk in rendered.chunks)
+     assert all(chunk["source_block_ids"] for chunk in rendered.chunks)
+ 
+ 
++def test_render_service_sanitizes_only_arbitrary_metadata_branches():
++    from app.schemas.canonical import CanonicalBlock, CanonicalField, CanonicalModel
++    from app.services.render_service import RenderService
++
++    operational_values = {
++        "metadata_report": "private metadata report",
++        "mapping_trace": {"source": "private mapping trace"},
++        "processing_duration_ms": 42,
++        "bearer_token": "private bearer token",
++        "doc_id": "private document id",
++        "SCHEMA_ID": "private schema id",
++    }
++    target_values = {
++        key: CanonicalField(value={key: f"business {key}"}, type="object")
++        for key in operational_values
++    }
++    canonical = CanonicalModel(
++        canonical_version="1.0",
++        task_id="task_boundary",
++        doc_id="doc_boundary",
++        schema_id="boundary_doc",
++        doc_meta={
++            "source_metadata": {
++                "safe_source": "keep",
++                "nested": {"safe_nested": "keep", **operational_values},
++            },
++            "document_metadata": {
++                "safe_document": "keep",
++                "nested": {"safe_nested": "keep", **operational_values},
++            },
++            "document_summary": {
++                "text": "Keep summary",
++                "nested": {"safe_nested": "keep", **operational_values},
++            },
++        },
++        fields=target_values,
++        blocks=[
++            CanonicalBlock(
++                block_id="block_1",
++                type="paragraph",
++                text="Business content",
++                source_blocks=["source_1"],
++                source_anchor={
++                    "page": 1,
++                    "nested": {"safe_nested": "keep", **operational_values},
++                },
++            )
++        ],
++    )
++
++    content = RenderService().render(canonical).structured_json
++
++    assert content["source_metadata"] == {
++        "safe_source": "keep",
++        "nested": {"safe_nested": "keep"},
++    }
++    assert content["document_metadata"] == {
++        "safe_document": "keep",
++        "nested": {"safe_nested": "keep"},
++    }
++    assert content["document_summary"] == {
++        "text": "Keep summary",
++        "nested": {"safe_nested": "keep"},
++    }
++    assert content["blocks"][0]["source_anchor"] == {
++        "page": 1,
++        "nested": {"safe_nested": "keep"},
++    }
++    assert content["metadata"] == {
++        "safe_source": "keep",
++        "nested": {"safe_nested": "keep"},
++        "safe_document": "keep",
++    }
++    assert content["data"] == {
++        key: {key: f"business {key}"} for key in operational_values
++    }
++
++
+ def test_validation_service_checks_schema_and_render_outputs():
+     from app.services.render_service import RenderedArtifacts
+     from app.services.validation_service import ValidationService
+ 
+     schema = __import__(
+         "app.services.schema_service",
+         fromlist=["SchemaService"],
+     ).SchemaService(SCHEMAS_DIR).load_schema("policy_doc")
+     rendered = RenderedArtifacts(
+         structured_json={

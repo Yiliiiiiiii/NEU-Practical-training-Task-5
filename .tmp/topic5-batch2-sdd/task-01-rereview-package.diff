@@ -1,0 +1,2782 @@
+# Review package: e155994a..6c129f81
+
+## Commits
+6c129f81 fix: replace batch1 proxy metrics with dataset evaluators
+
+## Files changed
+ .github/workflows/ci.yml                           |  49 ++--
+ backend/tests/test_openapi_export.py               |  15 +
+ backend/tests/test_topic5_batch_2_ci.py            |  76 +++++
+ .../tests/test_topic5_batch_2_evaluator_reports.py | 257 +++++++++++++++++
+ .../test_topic5_batch_2_verification_runner.py     | 127 ++++++++
+ backend/tests/test_topic5_hard_gap_evaluators.py   |   8 +-
+ eval/topic5_artifact_consistency/v2/cases.json     | 108 +++++++
+ eval/topic5_entity_passthrough/v2/cases.json       |  72 +++++
+ eval/topic5_metadata_contract/v2/cases.json        |  56 ++++
+ eval/topic5_summary_faithfulness/v2/cases.json     |  47 +++
+ eval/topic5_topic11_adapter/v2/cases.json          |  72 +++++
+ scripts/check_topic5_batch_2_acceptance_gate.py    | 156 ++++++++++
+ scripts/check_topic5_hard_gap_batch_1_gate.py      | 152 ++++++++--
+ scripts/eval_topic5_artifact_consistency.py        | 139 +++++++++
+ scripts/eval_topic5_entity_passthrough.py          | 157 ++++++++++
+ scripts/eval_topic5_metadata_contract.py           | 122 ++++++++
+ scripts/eval_topic5_summary_faithfulness.py        | 130 +++++++++
+ scripts/eval_topic5_topic11_adapter.py             | 218 ++++++++++++++
+ scripts/export_openapi.py                          |  27 +-
+ scripts/run_topic5_batch_2_verification.py         | 321 +++++++++++++++++++++
+ scripts/topic5_eval_common.py                      |  71 +++++
+ 21 files changed, 2327 insertions(+), 53 deletions(-)
+
+## Diff
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 6c87b439..5e2e2cef 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -1,42 +1,37 @@
+ name: CI
+ 
+ on:
+   push:
+   pull_request:
+ 
+ jobs:
+-  backend:
+-    runs-on: windows-latest
++  topic5-batch-2-verification:
++    strategy:
++      fail-fast: false
++      matrix:
++        os: [windows-latest, ubuntu-latest]
++    runs-on: ${{ matrix.os }}
+     steps:
+       - uses: actions/checkout@v4
+       - uses: actions/setup-python@v5
+         with:
+-          python-version: "3.11"
+-      - name: Install backend dependencies
+-        run: |
+-          cd backend
+-          python -m pip install -r requirements.txt
+-      - name: Ruff
+-        run: |
+-          cd backend
+-          python -m ruff check .
+-      - name: Pytest
+-        run: |
+-          cd backend
+-          python -m pytest -q
+-
+-  frontend:
+-    runs-on: windows-latest
+-    steps:
+-      - uses: actions/checkout@v4
++          python-version: "3.13"
+       - uses: actions/setup-node@v4
+         with:
+           node-version: "20"
++          cache: npm
++          cache-dependency-path: frontend/package-lock.json
++      - name: Install backend dependencies
++        run: python -m pip install -r backend/requirements.txt
+       - name: Install frontend dependencies
+-        run: |
+-          cd frontend
+-          npm install
+-      - name: Build frontend
+-        run: |
+-          cd frontend
+-          npm run build
++        working-directory: frontend
++        run: npm ci
++      - name: Run Topic 5 Batch 2 verification
++        run: python scripts/run_topic5_batch_2_verification.py
++      - name: Upload verification evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: topic5-batch-2-${{ runner.os }}
++          path: reports/topic5_batch_2/verification
++          if-no-files-found: warn
+diff --git a/backend/tests/test_openapi_export.py b/backend/tests/test_openapi_export.py
+index a277d95b..dad414b0 100644
+--- a/backend/tests/test_openapi_export.py
++++ b/backend/tests/test_openapi_export.py
+@@ -26,10 +26,25 @@ def test_openapi_export_includes_demo_workflow_paths(tmp_path):
+     for path in [
+         "/api/v1/documents/import",
+         "/api/v1/schemas",
+         "/api/v1/templates",
+         "/api/v1/tasks",
+         "/api/v1/tasks/{task_id}/execute",
+         "/api/v1/tasks/{task_id}/reports/{report_name}",
+         "/api/v1/tasks/{task_id}/package/download",
+     ]:
+         assert path in schema["paths"]
++
++
++def test_openapi_check_detects_drift_without_rewriting_expected_file(tmp_path):
++    module = load_export_module()
++    expected = tmp_path / "openapi.json"
++    module.export_openapi(expected)
++    original = expected.read_bytes()
++
++    assert module.check_openapi_drift(expected) is True
++    assert expected.read_bytes() == original
++
++    expected.write_text("{}\n", encoding="utf-8")
++    drifted = expected.read_bytes()
++    assert module.check_openapi_drift(expected) is False
++    assert expected.read_bytes() == drifted
+diff --git a/backend/tests/test_topic5_batch_2_ci.py b/backend/tests/test_topic5_batch_2_ci.py
+new file mode 100644
+index 00000000..02ed4958
+--- /dev/null
++++ b/backend/tests/test_topic5_batch_2_ci.py
+@@ -0,0 +1,76 @@
++import importlib.util
++import sys
++from pathlib import Path
++from types import ModuleType
++
++ROOT = Path(__file__).resolve().parents[2]
++TOPIC5_TASK_SCRIPTS = {
++    "scripts/topic5_eval_common.py",
++    "scripts/eval_topic5_metadata_contract.py",
++    "scripts/eval_topic5_summary_faithfulness.py",
++    "scripts/eval_topic5_artifact_consistency.py",
++    "scripts/eval_topic5_entity_passthrough.py",
++    "scripts/eval_topic5_topic11_adapter.py",
++    "scripts/check_topic5_hard_gap_batch_1_gate.py",
++    "scripts/check_topic5_batch_2_acceptance_gate.py",
++    "scripts/run_topic5_batch_2_verification.py",
++    "scripts/export_openapi.py",
++}
++
++
++def _load_runner() -> ModuleType:
++    path = ROOT / "scripts" / "run_topic5_batch_2_verification.py"
++    spec = importlib.util.spec_from_file_location("topic5_batch2_ci_runner", path)
++    assert spec and spec.loader
++    module = importlib.util.module_from_spec(spec)
++    sys.modules[spec.name] = module
++    spec.loader.exec_module(module)
++    return module
++
++
++def test_ci_runs_batch_2_verification_on_windows_and_linux() -> None:
++    workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(
++        encoding="utf-8"
++    )
++    runner = (ROOT / "scripts" / "run_topic5_batch_2_verification.py").read_text(
++        encoding="utf-8"
++    )
++
++    for marker in (
++        "matrix.os",
++        "windows-latest",
++        "ubuntu-latest",
++        "actions/setup-python@v5",
++        "actions/setup-node@v4",
++        "python -m pip install -r backend/requirements.txt",
++        "npm ci",
++        "python scripts/run_topic5_batch_2_verification.py",
++    ):
++        assert marker in workflow
++
++    for marker in (
++        '"backend-tests"',
++        '"ruff"',
++        '"frontend-tests"',
++        '"frontend-build"',
++        '"openapi-drift"',
++        '"schemapack-contract-gate"',
++        '"batch2-acceptance-gate"',
++    ):
++        assert marker in runner
++
++    assert "secrets." not in workflow
++
++
++def test_ci_lints_topic5_task_scripts_explicitly_from_repo_root() -> None:
++    runner = _load_runner()
++
++    spec = next(
++        spec for spec in runner.command_specs() if spec.name == "ruff-topic5-scripts"
++    )
++
++    assert spec.mandatory is True
++    assert spec.cwd == ROOT
++    assert spec.command[:4] == (sys.executable, "-m", "ruff", "check")
++    assert TOPIC5_TASK_SCRIPTS <= set(spec.command[4:])
++    assert not {".", "scripts", "scripts/"} & set(spec.command[4:])
+diff --git a/backend/tests/test_topic5_batch_2_evaluator_reports.py b/backend/tests/test_topic5_batch_2_evaluator_reports.py
+new file mode 100644
+index 00000000..e6d3cbdd
+--- /dev/null
++++ b/backend/tests/test_topic5_batch_2_evaluator_reports.py
+@@ -0,0 +1,257 @@
++from __future__ import annotations
++
++import copy
++import hashlib
++import importlib.util
++import json
++from pathlib import Path
++from types import ModuleType
++
++import pytest
++
++ROOT = Path(__file__).resolve().parents[2]
++REQUIRED_REPORT_FIELDS = {
++    "dataset_id",
++    "dataset_version",
++    "dataset_sha256",
++    "commit_sha",
++    "case_count",
++    "passed_count",
++    "failed_cases",
++    "reproduction_command",
++    "claim_boundary",
++}
++EVALUATORS = {
++    "metadata_contract": {
++        "metrics": {
++            "metadata_template_effectiveness_rate": 1.0,
++            "metadata_required_localization_rate": 1.0,
++        }
++    },
++    "summary_faithfulness": {
++        "metrics": {
++            "document_summary_faithfulness": 1.0,
++            "document_summary_source_coverage": 1.0,
++            "document_summary_new_fact_violations": 0,
++        }
++    },
++    "artifact_consistency": {
++        "metrics": {
++            "artifact_consistency_pass_rate": 1.0,
++            "markdown_block_coverage": 1.0,
++            "chunk_source_coverage": 1.0,
++            "tampering_detection_rate": 1.0,
++        }
++    },
++    "entity_passthrough": {
++        "metrics": {
++            "entity_passthrough_coverage": 1.0,
++            "invented_entity_id_count": 0,
++        }
++    },
++    "topic11_adapter": {
++        "metrics": {
++            "topic11_fallback_success_rate": 1.0,
++            "topic11_invalid_output_acceptance_count": 0,
++            "secret_leak_count": 0,
++            "legacy_compatibility_rate": 1.0,
++        }
++    },
++}
++
++
++def _load_script(name: str) -> ModuleType:
++    path = ROOT / "scripts" / f"eval_topic5_{name}.py"
++    assert path.is_file(), f"missing evaluator: {path}"
++    spec = importlib.util.spec_from_file_location(f"eval_topic5_{name}", path)
++    assert spec and spec.loader
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++@pytest.mark.parametrize(("name", "contract"), EVALUATORS.items())
++def test_batch_2_evaluator_report_contract(name: str, contract: dict) -> None:
++    module = _load_script(name)
++    report = module.build_report()
++    fixture_path = ROOT / "eval" / f"topic5_{name}" / "v2" / "cases.json"
++    fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
++
++    assert REQUIRED_REPORT_FIELDS <= report.keys()
++    assert report["dataset_id"] == fixture["dataset_id"]
++    assert report["dataset_version"] == fixture["version"]
++    assert report["dataset_sha256"] == hashlib.sha256(fixture_path.read_bytes()).hexdigest()
++    assert report["case_count"] == len(fixture["cases"])
++    assert report["case_count"] > 0
++    assert report["passed_count"] == report["case_count"]
++    assert report["failed_cases"] == []
++    assert len(report["commit_sha"]) == 40
++    assert report["reproduction_command"]
++    assert report["claim_boundary"]
++    for metric, expected in contract["metrics"].items():
++        assert report[metric] == expected
++
++
++def test_metadata_evaluator_counts_a_declared_case_failure(tmp_path: Path) -> None:
++    module = _load_script("metadata_contract")
++    fixture = json.loads(module.DEFAULT_FIXTURE.read_text(encoding="utf-8"))
++    fixture["cases"][0]["expected_document_metadata"] = {"wrong": "value"}
++    mutated = tmp_path / "cases.json"
++    mutated.write_text(json.dumps(fixture), encoding="utf-8")
++
++    report = module.build_report(mutated)
++
++    assert report["case_count"] == len(fixture["cases"])
++    assert report["passed_count"] == report["case_count"] - 1
++    assert [case["case_id"] for case in report["failed_cases"]] == [
++        fixture["cases"][0]["case_id"]
++    ]
++
++
++@pytest.mark.parametrize(
++    ("report_name", "field", "tampered_value"),
++    [
++        ("metadata", "dataset_id", "forged_dataset"),
++        ("metadata", "dataset_version", "0.0.0"),
++        ("metadata", "dataset_sha256", "f" * 64),
++        ("metadata", "commit_sha", "0" * 40),
++        ("metadata", "case_count", 999),
++        ("metadata", "passed_count", 0),
++        ("metadata", "cases", []),
++        ("metadata", "failed_cases", [{"case_id": "forged-case"}]),
++        ("metadata", "reproduction_command", "python forged.py"),
++        ("metadata", "claim_boundary", "forged claim"),
++        ("metadata", "metadata_template_effectiveness_rate", 0.0),
++        ("summary", "document_summary_new_fact_violations", 99),
++        ("consistency", "tampering_detection_rate", 0.0),
++        ("entity", "invented_entity_id_count", 1),
++        ("topic11", "secret_leak_count", 1),
++    ],
++)
++def test_evaluator_report_validation_recomputes_registered_builder_output(
++    report_name: str,
++    field: str,
++    tampered_value: object,
++) -> None:
++    from scripts.check_topic5_hard_gap_batch_1_gate import (
++        _validated_evaluator_reports,
++        build_evaluator_reports,
++    )
++
++    reports = build_evaluator_reports()
++    reports[report_name][field] = tampered_value
++
++    with pytest.raises(ValueError, match=rf"{report_name}.*{field}"):
++        _validated_evaluator_reports(reports)
++
++
++def test_evaluator_report_validation_allows_generated_at_to_differ() -> None:
++    from scripts.check_topic5_hard_gap_batch_1_gate import (
++        _validated_evaluator_reports,
++        build_evaluator_reports,
++    )
++
++    reports = build_evaluator_reports()
++    reports["metadata"]["generated_at"] = "caller-recorded-timestamp"
++
++    assert _validated_evaluator_reports(reports) is reports
++
++
++def test_gate_uses_evaluator_reports_and_rejects_component_proxies() -> None:
++    from scripts.check_topic5_hard_gap_batch_1_gate import evaluate_gate
++
++    evaluator_reports = {
++        "metadata": _load_script("metadata_contract").build_report(),
++        "summary": _load_script("summary_faithfulness").build_report(),
++        "consistency": _load_script("artifact_consistency").build_report(),
++        "entity": _load_script("entity_passthrough").build_report(),
++        "topic11": _load_script("topic11_adapter").build_report(),
++    }
++    operations = {
++        "field_operation_accuracy": 1.0,
++        "rename_accuracy": 1.0,
++        "merge_accuracy": 1.0,
++        "split_accuracy": 1.0,
++        "unsafe_operation_count": 0,
++        "dataset_sha256": "operations",
++    }
++    localization = {
++        "schema_localization_rate": 1.0,
++        "error_code_accuracy": 1.0,
++        "stage_accuracy": 1.0,
++        "dataset_sha256": "localization",
++    }
++    tag_quality = {
++        "metrics": {
++            "content_tag_f1": 1.0,
++            "management_tag_f1": 1.0,
++            "quality_tag_f1": 1.0,
++            "unknown_tag_count": 0,
++        }
++    }
++    verification = {
++        "full_backend_tests_passed": True,
++        "ruff_clean": True,
++        "frontend_tests_passed": True,
++        "openapi_export_passed": True,
++    }
++    components = {
++        name: {"passed": True}
++        for name in ("metadata", "summary", "consistency", "entity", "topic11", "legacy")
++    }
++
++    passed = evaluate_gate(
++        operations=operations,
++        localization=localization,
++        tag_quality=tag_quality,
++        components=components,
++        evaluator_reports=evaluator_reports,
++        verification=verification,
++    )
++    assert passed["conclusion"] == "passed"
++
++    mutated = copy.deepcopy(evaluator_reports)
++    mutated["summary"]["document_summary_faithfulness"] = 0.5
++    with pytest.raises(ValueError, match="summary.*document_summary_faithfulness"):
++        evaluate_gate(
++            operations=operations,
++            localization=localization,
++            tag_quality=tag_quality,
++            components=components,
++            evaluator_reports=mutated,
++            verification=verification,
++        )
++
++    with pytest.raises(ValueError, match="evaluator report"):
++        evaluate_gate(
++            operations=operations,
++            localization=localization,
++            tag_quality=tag_quality,
++            components=components,
++            evaluator_reports={},
++            verification=verification,
++        )
++
++
++def test_batch_2_acceptance_gate_rejects_a_mutated_case_metric() -> None:
++    path = ROOT / "scripts" / "check_topic5_batch_2_acceptance_gate.py"
++    assert path.is_file(), f"missing acceptance gate: {path}"
++    spec = importlib.util.spec_from_file_location("topic5_batch2_acceptance", path)
++    assert spec and spec.loader
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++
++    reports = {
++        "metadata": _load_script("metadata_contract").build_report(),
++        "summary": _load_script("summary_faithfulness").build_report(),
++        "consistency": _load_script("artifact_consistency").build_report(),
++        "entity": _load_script("entity_passthrough").build_report(),
++        "topic11": _load_script("topic11_adapter").build_report(),
++    }
++    passed = module.evaluate_reports(reports)
++    assert passed["passed"] is True
++
++    mutated = copy.deepcopy(reports)
++    mutated["consistency"]["tampering_detection_rate"] = 0.5
++    with pytest.raises(ValueError, match="consistency.*tampering_detection_rate"):
++        module.evaluate_reports(mutated)
+diff --git a/backend/tests/test_topic5_batch_2_verification_runner.py b/backend/tests/test_topic5_batch_2_verification_runner.py
+new file mode 100644
+index 00000000..e68ef406
+--- /dev/null
++++ b/backend/tests/test_topic5_batch_2_verification_runner.py
+@@ -0,0 +1,127 @@
++from __future__ import annotations
++
++import importlib.util
++import json
++import sys
++from pathlib import Path
++from types import ModuleType
++
++import pytest
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++def _load_runner() -> ModuleType:
++    path = ROOT / "scripts" / "run_topic5_batch_2_verification.py"
++    assert path.is_file(), f"missing verification runner: {path}"
++    spec = importlib.util.spec_from_file_location("topic5_batch2_runner", path)
++    assert spec and spec.loader
++    module = importlib.util.module_from_spec(spec)
++    sys.modules[spec.name] = module
++    spec.loader.exec_module(module)
++    return module
++
++
++def test_dirty_tree_requires_explicit_override() -> None:
++    runner = _load_runner()
++
++    with pytest.raises(RuntimeError, match="dirty"):
++        runner.enforce_clean_tree(" M scripts/example.py\n", allow_dirty=False)
++
++    assert runner.enforce_clean_tree(" M scripts/example.py\n", allow_dirty=True) is True
++    assert runner.enforce_clean_tree("", allow_dirty=False) is False
++
++
++def test_skipped_mandatory_command_is_not_passed() -> None:
++    runner = _load_runner()
++    spec = runner.CommandSpec(
++        name="mandatory",
++        command=(sys.executable, "-c", "pass"),
++        cwd=ROOT,
++        mandatory=True,
++    )
++
++    result = runner.skipped_result(spec, "tool unavailable")
++
++    assert result["status"] == "skipped"
++    assert result["passed"] is False
++    assert result["return_code"] is None
++
++
++def test_command_capture_writes_non_empty_raw_log(tmp_path: Path) -> None:
++    runner = _load_runner()
++    spec = runner.CommandSpec(
++        name="capture",
++        command=(
++            sys.executable,
++            "-c",
++            "import sys; print('stdout-line'); print('stderr-line', file=sys.stderr)",
++        ),
++        cwd=ROOT,
++        mandatory=True,
++    )
++
++    result = runner.run_command(spec, tmp_path)
++
++    assert result["command"][0] == sys.executable
++    assert result["cwd"] == str(ROOT)
++    assert result["stdout"].strip() == "stdout-line"
++    assert result["stderr"].strip() == "stderr-line"
++    assert result["return_code"] == 0
++    assert result["duration_seconds"] >= 0
++    assert result["passed"] is True
++    raw_log = Path(result["raw_log"])
++    assert raw_log.is_file()
++    assert raw_log.stat().st_size > 0
++
++
++def test_summary_is_actual_json_and_fails_for_skipped_mandatory(
++    tmp_path: Path,
++) -> None:
++    runner = _load_runner()
++    spec = runner.CommandSpec(
++        name="mandatory",
++        command=(sys.executable, "-c", "pass"),
++        cwd=ROOT,
++        mandatory=True,
++    )
++    skipped = runner.skipped_result(spec, "tool unavailable")
++
++    path = runner.write_summary(
++        tmp_path,
++        commit_sha="a" * 40,
++        dirty=True,
++        allow_dirty=True,
++        records=[skipped],
++        tool_versions={"python": sys.version.split()[0]},
++    )
++    payload = json.loads(path.read_text(encoding="utf-8"))
++
++    assert path.name == "verification_summary.json"
++    assert path.stat().st_size > 0
++    assert payload["commit_sha"] == "a" * 40
++    assert payload["passed"] is False
++    assert payload["commands"][0]["status"] == "skipped"
++
++
++def test_cross_platform_command_selection_uses_current_python() -> None:
++    runner = _load_runner()
++
++    assert runner.npm_executable("win32") == "npm.cmd"
++    assert runner.npm_executable("linux") == "npm"
++    assert all(
++        spec.command[0] in {sys.executable, "npm", "npm.cmd"}
++        for spec in runner.command_specs()
++    )
++
++
++def test_schemapack_gate_is_configured_to_fail_on_gate() -> None:
++    runner = _load_runner()
++
++    spec = next(
++        spec
++        for spec in runner.command_specs()
++        if spec.name == "schemapack-contract-gate"
++    )
++
++    assert "--fail-on-gate" in spec.command
+diff --git a/backend/tests/test_topic5_hard_gap_evaluators.py b/backend/tests/test_topic5_hard_gap_evaluators.py
+index 9306c0cb..2fdaaf6c 100644
+--- a/backend/tests/test_topic5_hard_gap_evaluators.py
++++ b/backend/tests/test_topic5_hard_gap_evaluators.py
+@@ -1,18 +1,21 @@
+ from __future__ import annotations
+ 
+ import copy
+ import json
+ from pathlib import Path
+ 
+ import pytest
+-from scripts.check_topic5_hard_gap_batch_1_gate import evaluate_gate
++from scripts.check_topic5_hard_gap_batch_1_gate import (
++    build_evaluator_reports,
++    evaluate_gate,
++)
+ from scripts.eval_topic5_field_operations import build_report as field_report
+ from scripts.eval_topic5_field_operations import load_fixture as load_field_fixture
+ from scripts.eval_topic5_schema_localization import (
+     build_report as localization_report,
+ )
+ from scripts.eval_topic5_schema_localization import (
+     load_fixture as load_localization_fixture,
+ )
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+@@ -77,31 +80,34 @@ def test_gate_passes_all_thresholds_and_fails_mutated_metric() -> None:
+     components = {
+         name: {"passed": True}
+         for name in ("metadata", "summary", "consistency", "entity", "topic11", "legacy")
+     }
+     verification = {
+         "full_backend_tests_passed": True,
+         "ruff_clean": True,
+         "frontend_tests_passed": True,
+         "openapi_export_passed": True,
+     }
++    evaluator_reports = build_evaluator_reports()
+ 
+     passed = evaluate_gate(
+         operations=operations,
+         localization=localization,
+         tag_quality=tag_quality,
+         components=components,
++        evaluator_reports=evaluator_reports,
+         verification=verification,
+     )
+     assert passed["conclusion"] == "passed"
+ 
+     failed_operations = copy.deepcopy(operations)
+     failed_operations["merge_accuracy"] = 0.94
+     failed = evaluate_gate(
+         operations=failed_operations,
+         localization=localization,
+         tag_quality=tag_quality,
+         components=components,
++        evaluator_reports=evaluator_reports,
+         verification=verification,
+     )
+     assert failed["conclusion"] == "failed"
+     assert failed["failed_conditions"] == ["merge_accuracy"]
+diff --git a/eval/topic5_artifact_consistency/v2/cases.json b/eval/topic5_artifact_consistency/v2/cases.json
+new file mode 100644
+index 00000000..60b60bc0
+--- /dev/null
++++ b/eval/topic5_artifact_consistency/v2/cases.json
+@@ -0,0 +1,108 @@
++{
++  "dataset_id": "topic5_artifact_consistency",
++  "version": "2.0.0",
++  "base": {
++    "canonical": {
++      "canonical_version": "1.0",
++      "task_id": "artifact-eval",
++      "doc_id": "artifact-eval",
++      "schema_id": "artifact_eval",
++      "doc_meta": {
++        "document_metadata": {"language": "en-US"},
++        "entities": [
++          {
++            "mention": "OpenAI",
++            "canonical_name": "OpenAI",
++            "entity_type": "organization",
++            "normalized_id": "org:openai",
++            "link_status": "linked",
++            "confidence": 1.0,
++            "source_block_ids": ["b1"],
++            "source_agent": "topic7",
++            "evidence": {}
++          }
++        ]
++      },
++      "fields": {
++        "title": {"value": "Notice", "type": "string", "source_blocks": ["b1"]}
++      },
++      "blocks": [
++        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
++        {"block_id": "b2", "type": "table", "text": "Field: Value", "source_blocks": ["b2"]}
++      ]
++    },
++    "document_summary": {
++      "text": "OpenAI published the notice.",
++      "mode": "extractive",
++      "source_block_ids": ["b1"],
++      "source_chunk_ids": ["c1"],
++      "sentence_traces": [
++        {
++          "summary_sentence": "OpenAI published the notice.",
++          "source_block_id": "b1",
++          "source_text_span": "OpenAI published the notice."
++        }
++      ],
++      "char_count": 28,
++      "faithfulness_passed": true,
++      "warnings": []
++    },
++    "chunks": [
++      {
++        "chunk_id": "c1",
++        "parent_chunk_id": null,
++        "index": 0,
++        "chunk_index": 0,
++        "text": "OpenAI published the notice.",
++        "source_block_ids": ["b1"],
++        "source_links": [{"block_id": "b1", "source_path": "blocks[0]"}],
++        "entity_tags": [
++          {"mention": "OpenAI", "text": "OpenAI", "normalized_id": "org:openai", "source_block_ids": ["b1"], "link_status": "linked"}
++        ]
++      },
++      {
++        "chunk_id": "c2",
++        "parent_chunk_id": null,
++        "index": 1,
++        "chunk_index": 1,
++        "text": "Field: Value",
++        "source_block_ids": ["b2"],
++        "source_links": [{"block_id": "b2", "source_path": "blocks[1]"}],
++        "entity_tags": []
++      }
++    ]
++  },
++  "cases": [
++    {
++      "case_id": "consistent_artifacts",
++      "category": "baseline",
++      "mutation": "none",
++      "expected_report_passed": true
++    },
++    {
++      "case_id": "structured_field_tampering",
++      "category": "tampering",
++      "mutation": "structured_field_change",
++      "field_id": "title",
++      "replacement": "Changed",
++      "expected_report_passed": false,
++      "expected_error_code": "json_field_mismatch"
++    },
++    {
++      "case_id": "markdown_block_tampering",
++      "category": "tampering",
++      "mutation": "markdown_block_omission",
++      "block_id": "b2",
++      "expected_report_passed": false,
++      "expected_error_code": "markdown_block_missing"
++    },
++    {
++      "case_id": "chunk_source_tampering",
++      "category": "tampering",
++      "mutation": "chunk_unknown_source",
++      "chunk_index": 0,
++      "expected_report_passed": false,
++      "expected_error_code": "chunk_source_unknown"
++    }
++  ]
++}
+diff --git a/eval/topic5_entity_passthrough/v2/cases.json b/eval/topic5_entity_passthrough/v2/cases.json
+new file mode 100644
+index 00000000..d7309c0d
+--- /dev/null
++++ b/eval/topic5_entity_passthrough/v2/cases.json
+@@ -0,0 +1,72 @@
++{
++  "dataset_id": "topic5_entity_passthrough",
++  "version": "2.0.0",
++  "cases": [
++    {
++      "case_id": "linked_entity_single_source",
++      "entities": [
++        {
++          "mention": "OpenAI",
++          "canonical_name": "OpenAI",
++          "entity_type": "organization",
++          "normalized_id": "org:openai",
++          "link_status": "linked",
++          "confidence": 0.99,
++          "source_block_ids": ["b1"],
++          "source_agent": "topic7"
++        }
++      ],
++      "blocks": [
++        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
++        {"block_id": "b2", "type": "paragraph", "text": "A separate paragraph.", "source_blocks": ["b2"]}
++      ],
++      "chunks": [
++        {"chunk_id": "c1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
++        {"chunk_id": "c2", "text": "A separate paragraph.", "source_block_ids": ["b2"]}
++      ],
++      "expected_entity_keys_by_chunk": [["org:openai"], []]
++    },
++    {
++      "case_id": "linked_entity_multiple_sources",
++      "entities": [
++        {
++          "mention": "OpenAI",
++          "entity_type": "organization",
++          "normalized_id": "org:openai",
++          "link_status": "linked",
++          "source_block_ids": ["b1", "b2"]
++        }
++      ],
++      "blocks": [
++        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
++        {"block_id": "b2", "type": "paragraph", "text": "The university acknowledged OpenAI.", "source_blocks": ["b2"]}
++      ],
++      "chunks": [
++        {"chunk_id": "c1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
++        {"chunk_id": "c2", "text": "The university acknowledged OpenAI.", "source_block_ids": ["b2"]}
++      ],
++      "expected_entity_keys_by_chunk": [["org:openai"], ["org:openai"]]
++    },
++    {
++      "case_id": "unlinked_entity_keeps_nil_id",
++      "entities": [
++        {
++          "mention": "OpenAI",
++          "entity_type": "organization",
++          "normalized_id": null,
++          "link_status": "unlinked",
++          "source_block_ids": []
++        }
++      ],
++      "blocks": [
++        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
++        {"block_id": "b2", "type": "paragraph", "text": "A separate paragraph.", "source_blocks": ["b2"]}
++      ],
++      "chunks": [
++        {"chunk_id": "c1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
++        {"chunk_id": "c2", "text": "A separate paragraph.", "source_block_ids": ["b2"]}
++      ],
++      "expected_entity_keys_by_chunk": [["mention:OpenAI:unlinked"], []]
++    }
++  ]
++}
+diff --git a/eval/topic5_metadata_contract/v2/cases.json b/eval/topic5_metadata_contract/v2/cases.json
+new file mode 100644
+index 00000000..d267fb72
+--- /dev/null
++++ b/eval/topic5_metadata_contract/v2/cases.json
+@@ -0,0 +1,56 @@
++{
++  "dataset_id": "topic5_metadata_contract",
++  "version": "2.0.0",
++  "cases": [
++    {
++      "case_id": "metadata_source_value",
++      "category": "effectiveness",
++      "metadata": {"language": "zh-CN"},
++      "metadata_fields": [
++        {"field_id": "language", "type": "string"}
++      ],
++      "expected_passed": true,
++      "expected_document_metadata": {"language": "zh-CN"}
++    },
++    {
++      "case_id": "metadata_default_value",
++      "category": "effectiveness",
++      "metadata": {},
++      "metadata_fields": [
++        {"field_id": "language", "type": "string", "default": "en-US"}
++      ],
++      "expected_passed": true,
++      "expected_document_metadata": {"language": "en-US"}
++    },
++    {
++      "case_id": "metadata_required_missing",
++      "category": "localization",
++      "metadata": {},
++      "metadata_fields": [
++        {"field_id": "classification", "type": "string", "required": true}
++      ],
++      "expected_passed": false,
++      "expected_document_metadata": {},
++      "expected_issue": {
++        "stage": "metadata_template",
++        "path": "document_metadata.classification",
++        "error_code": "metadata_required_missing"
++      }
++    },
++    {
++      "case_id": "metadata_type_mismatch",
++      "category": "localization",
++      "metadata": {"retention_years": "seven"},
++      "metadata_fields": [
++        {"field_id": "retention_years", "type": "integer"}
++      ],
++      "expected_passed": false,
++      "expected_document_metadata": {},
++      "expected_issue": {
++        "stage": "metadata_template",
++        "path": "document_metadata.retention_years",
++        "error_code": "metadata_type_mismatch"
++      }
++    }
++  ]
++}
+diff --git a/eval/topic5_summary_faithfulness/v2/cases.json b/eval/topic5_summary_faithfulness/v2/cases.json
+new file mode 100644
+index 00000000..95cbfe35
+--- /dev/null
++++ b/eval/topic5_summary_faithfulness/v2/cases.json
+@@ -0,0 +1,47 @@
++{
++  "dataset_id": "topic5_summary_faithfulness",
++  "version": "2.0.0",
++  "cases": [
++    {
++      "case_id": "section_summary",
++      "blocks": [
++        {"block_id": "h1", "type": "heading", "level": 1, "text": "Overview", "source_blocks": ["h1"]},
++        {"block_id": "p1", "type": "paragraph", "text": "First overview fact. Second overview fact.", "source_blocks": ["p1"]},
++        {"block_id": "h2", "type": "heading", "level": 1, "text": "Details", "source_blocks": ["h2"]},
++        {"block_id": "p2", "type": "paragraph", "text": "First detail fact. Second detail fact.", "source_blocks": ["p2"]}
++      ],
++      "chunks": [
++        {"chunk_id": "c1", "source_block_ids": ["p1"]},
++        {"chunk_id": "c2", "source_block_ids": ["p2"]}
++      ],
++      "config": {"document_max_sentences": 5, "document_max_chars": 500},
++      "expected_text": "First overview fact.\nFirst detail fact.",
++      "expected_source_block_ids": ["p1", "p2"],
++      "expected_source_chunk_ids": ["c1", "c2"]
++    },
++    {
++      "case_id": "source_order_summary",
++      "blocks": [
++        {"block_id": "p1", "type": "paragraph", "text": "One. Two.", "source_blocks": ["p1"]},
++        {"block_id": "p2", "type": "paragraph", "text": "Three.", "source_blocks": ["p2"]}
++      ],
++      "chunks": [
++        {"chunk_id": "c1", "source_block_ids": ["p1"]},
++        {"chunk_id": "c2", "source_block_ids": ["p2"]}
++      ],
++      "config": {"document_max_sentences": 3, "document_max_chars": 500},
++      "expected_text": "One.\nTwo.\nThree.",
++      "expected_source_block_ids": ["p1", "p2"],
++      "expected_source_chunk_ids": ["c1", "c2"]
++    },
++    {
++      "case_id": "empty_document",
++      "blocks": [],
++      "chunks": [],
++      "config": {},
++      "expected_text": "",
++      "expected_source_block_ids": [],
++      "expected_source_chunk_ids": []
++    }
++  ]
++}
+diff --git a/eval/topic5_topic11_adapter/v2/cases.json b/eval/topic5_topic11_adapter/v2/cases.json
+new file mode 100644
+index 00000000..bf32a958
+--- /dev/null
++++ b/eval/topic5_topic11_adapter/v2/cases.json
+@@ -0,0 +1,72 @@
++{
++  "dataset_id": "topic5_topic11_adapter",
++  "version": "2.0.0",
++  "base": {
++    "canonical": {
++      "canonical_version": "1.0",
++      "task_id": "topic11-eval",
++      "doc_id": "topic11-eval",
++      "schema_id": "topic11_eval",
++      "doc_meta": {
++        "entities": [
++          {
++            "mention": "OpenAI",
++            "entity_type": "organization",
++            "normalized_id": "org:openai",
++            "link_status": "linked",
++            "source_block_ids": ["b1"]
++          }
++        ]
++      },
++      "blocks": [
++        {"block_id": "b1", "type": "paragraph", "text": "OpenAI published the notice.", "source_blocks": ["b1"]},
++        {"block_id": "table1", "type": "table", "text": "Field: Value", "source_blocks": ["table1"]}
++      ]
++    },
++    "legacy_chunks": [
++      {"chunk_id": "legacy-b1", "text": "OpenAI published the notice.", "source_block_ids": ["b1"]},
++      {"chunk_id": "legacy-table1", "text": "Field: Value", "source_block_ids": ["table1"]}
++    ]
++  },
++  "cases": [
++    {
++      "case_id": "timeout_fallback",
++      "category": "fallback",
++      "error_code": "topic11_timeout",
++      "expected_fallback_reason": "topic11_timeout"
++    },
++    {
++      "case_id": "http_error_fallback",
++      "category": "fallback",
++      "error_code": "topic11_http_error",
++      "expected_fallback_reason": "topic11_http_error"
++    },
++    {
++      "case_id": "unknown_source_rejected",
++      "category": "invalid",
++      "chunks": [
++        {"chunk_id": "bad", "text": "Unknown text", "source_block_ids": ["unknown"]}
++      ],
++      "expected_fallback_reason": "topic11_unknown_source_block"
++    },
++    {
++      "case_id": "invented_fact_rejected",
++      "category": "invalid",
++      "chunks": [
++        {"chunk_id": "bad", "text": "A fact absent from source.", "source_block_ids": ["b1"]},
++        {"chunk_id": "table", "text": "Field: Value", "source_block_ids": ["table1"]}
++      ],
++      "expected_fallback_reason": "topic11_chunk_text_not_derivable"
++    },
++    {
++      "case_id": "secret_redacted_on_timeout",
++      "category": "secret",
++      "secret": "topic11-evaluator-secret",
++      "expected_fallback_reason": "topic11_timeout"
++    },
++    {
++      "case_id": "legacy_chunks_unchanged",
++      "category": "legacy"
++    }
++  ]
++}
+diff --git a/scripts/check_topic5_batch_2_acceptance_gate.py b/scripts/check_topic5_batch_2_acceptance_gate.py
+new file mode 100644
+index 00000000..c734bd54
+--- /dev/null
++++ b/scripts/check_topic5_batch_2_acceptance_gate.py
+@@ -0,0 +1,156 @@
++"""Aggregate case-level Topic 5 Batch 2 evaluator reports into an acceptance gate."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from datetime import UTC, datetime
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++if str(ROOT) not in sys.path:
++    sys.path.insert(0, str(ROOT))
++
++from scripts.check_topic5_hard_gap_batch_1_gate import (  # noqa: E402
++    _validated_evaluator_reports,
++    build_evaluator_reports,
++)
++
++
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "acceptance_gate.json"
++REPORT_FILENAMES = {
++    "metadata": "metadata_contract.json",
++    "summary": "summary_faithfulness.json",
++    "consistency": "artifact_consistency.json",
++    "entity": "entity_passthrough.json",
++    "topic11": "topic11_adapter.json",
++}
++
++
++def load_evaluator_reports(report_dir: Path) -> dict[str, dict[str, Any]]:
++    reports: dict[str, dict[str, Any]] = {}
++    for name, filename in REPORT_FILENAMES.items():
++        path = report_dir / filename
++        if not path.is_file():
++            raise ValueError(f"missing evaluator report: {path}")
++        reports[name] = json.loads(path.read_text(encoding="utf-8"))
++    return reports
++
++
++def evaluate_reports(reports: dict[str, dict[str, Any]]) -> dict[str, Any]:
++    reports = _validated_evaluator_reports(reports)
++    metadata = reports["metadata"]
++    summary = reports["summary"]
++    consistency = reports["consistency"]
++    entity = reports["entity"]
++    topic11 = reports["topic11"]
++    values = {
++        "metadata_template_effective": bool(metadata["metadata_template_effective"]),
++        "metadata_required_localization_rate": float(
++            metadata["metadata_required_localization_rate"]
++        ),
++        "document_summary_faithfulness": float(
++            summary["document_summary_faithfulness"]
++        ),
++        "document_summary_source_coverage": float(
++            summary["document_summary_source_coverage"]
++        ),
++        "document_summary_new_fact_violations": int(
++            summary["document_summary_new_fact_violations"]
++        ),
++        "artifact_consistency_pass_rate": float(
++            consistency["artifact_consistency_pass_rate"]
++        ),
++        "markdown_block_coverage": float(consistency["markdown_block_coverage"]),
++        "chunk_source_coverage": float(consistency["chunk_source_coverage"]),
++        "tampering_detection_rate": float(consistency["tampering_detection_rate"]),
++        "entity_passthrough_coverage": float(entity["entity_passthrough_coverage"]),
++        "invented_entity_id_count": int(entity["invented_entity_id_count"]),
++        "topic11_fallback_success_rate": float(
++            topic11["topic11_fallback_success_rate"]
++        ),
++        "topic11_invalid_output_acceptance_count": int(
++            topic11["topic11_invalid_output_acceptance_count"]
++        ),
++        "secret_leak_count": int(topic11["secret_leak_count"]),
++        "legacy_compatibility_rate": float(topic11["legacy_compatibility_rate"]),
++    }
++    checks = {
++        **{
++            f"{name}_cases_passed": report["passed_count"] == report["case_count"]
++            for name, report in reports.items()
++        },
++        "metadata_template_effective": values["metadata_template_effective"] is True,
++        "metadata_required_localization_rate": (
++            values["metadata_required_localization_rate"] == 1.0
++        ),
++        "document_summary_faithfulness": (
++            values["document_summary_faithfulness"] == 1.0
++        ),
++        "document_summary_source_coverage": (
++            values["document_summary_source_coverage"] == 1.0
++        ),
++        "document_summary_new_fact_violations": (
++            values["document_summary_new_fact_violations"] == 0
++        ),
++        "artifact_consistency_pass_rate": (
++            values["artifact_consistency_pass_rate"] == 1.0
++        ),
++        "markdown_block_coverage": values["markdown_block_coverage"] == 1.0,
++        "chunk_source_coverage": values["chunk_source_coverage"] == 1.0,
++        "tampering_detection_rate": values["tampering_detection_rate"] == 1.0,
++        "entity_passthrough_coverage": values["entity_passthrough_coverage"] == 1.0,
++        "invented_entity_id_count": values["invented_entity_id_count"] == 0,
++        "topic11_fallback_success_rate": values["topic11_fallback_success_rate"] == 1.0,
++        "topic11_invalid_output_acceptance_count": (
++            values["topic11_invalid_output_acceptance_count"] == 0
++        ),
++        "secret_leak_count": values["secret_leak_count"] == 0,
++        "legacy_compatibility_rate": values["legacy_compatibility_rate"] == 1.0,
++    }
++    failed = [name for name, passed in checks.items() if not passed]
++    return {
++        "generated_at": datetime.now(UTC).isoformat(),
++        "passed": not failed,
++        "conclusion": "passed" if not failed else "failed",
++        "values": values,
++        "checks": checks,
++        "failed_conditions": failed,
++        "datasets": {
++            name: {
++                "dataset_id": report["dataset_id"],
++                "dataset_version": report["dataset_version"],
++                "dataset_sha256": report["dataset_sha256"],
++                "commit_sha": report["commit_sha"],
++                "case_count": report["case_count"],
++                "passed_count": report["passed_count"],
++            }
++            for name, report in reports.items()
++        },
++    }
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--report-dir", type=Path)
++    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
++    args = parser.parse_args()
++    reports = (
++        load_evaluator_reports(args.report_dir)
++        if args.report_dir is not None
++        else build_evaluator_reports()
++    )
++    gate = evaluate_reports(reports)
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_text(
++        json.dumps(gate, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
++        encoding="utf-8",
++    )
++    raise SystemExit(0 if gate["passed"] else 1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/check_topic5_hard_gap_batch_1_gate.py b/scripts/check_topic5_hard_gap_batch_1_gate.py
+index fcd4b7a6..aa020af6 100644
+--- a/scripts/check_topic5_hard_gap_batch_1_gate.py
++++ b/scripts/check_topic5_hard_gap_batch_1_gate.py
+@@ -9,23 +9,38 @@ import sys
+ from datetime import UTC, datetime
+ from pathlib import Path
+ from typing import Any
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ BACKEND = ROOT / "backend"
+ if str(ROOT) not in sys.path:
+     sys.path.insert(0, str(ROOT))
+ 
+ from scripts.eval_topic5_field_operations import build_report as field_report  # noqa: E402
++from scripts.eval_topic5_artifact_consistency import (  # noqa: E402
++    build_report as artifact_consistency_report,
++)
++from scripts.eval_topic5_entity_passthrough import (  # noqa: E402
++    build_report as entity_passthrough_report,
++)
++from scripts.eval_topic5_metadata_contract import (  # noqa: E402
++    build_report as metadata_contract_report,
++)
+ from scripts.eval_topic5_schema_localization import (  # noqa: E402
+     build_report as localization_report,
+ )
++from scripts.eval_topic5_summary_faithfulness import (  # noqa: E402
++    build_report as summary_faithfulness_report,
++)
++from scripts.eval_topic5_topic11_adapter import (  # noqa: E402
++    build_report as topic11_adapter_report,
++)
+ 
+ DEFAULT_OUTPUT = ROOT / "docs" / "交接" / "evidence" / "hard_gap_batch_1" / "operations"
+ DEFAULT_TAG_REPORT = ROOT / "docs" / "交接" / "evidence" / "hard_gap_batch_1" / "tags" / "content_tag_quality.json"
+ DEFAULT_VERIFICATION = DEFAULT_OUTPUT / "verification_summary.json"
+ 
+ COMPONENT_TESTS = {
+     "metadata": [
+         "backend/tests/test_metadata_template_service.py",
+         "backend/tests/test_topic5_convert_api.py",
+     ],
+@@ -39,27 +54,34 @@ COMPONENT_TESTS = {
+         "backend/tests/test_topic5_entity_passthrough.py",
+     ],
+     "topic11": [
+         "backend/tests/test_topic11_chunk_provider.py",
+     ],
+     "legacy": [
+         "backend/tests/test_package_1_1_assertion_report_compatibility.py",
+         "backend/tests/test_topic5_convert_api.py",
+     ],
+ }
++EVALUATOR_BUILDERS = {
++    "metadata": metadata_contract_report,
++    "summary": summary_faithfulness_report,
++    "consistency": artifact_consistency_report,
++    "entity": entity_passthrough_report,
++    "topic11": topic11_adapter_report,
++}
+ 
+ 
+ def run_component_checks() -> dict[str, dict[str, Any]]:
+     results: dict[str, dict[str, Any]] = {}
+     for name, paths in COMPONENT_TESTS.items():
+         command = [
+-            str(BACKEND / ".venv" / "Scripts" / "python.exe"),
++            sys.executable,
+             "-m",
+             "pytest",
+             *paths,
+             "-q",
+         ]
+         completed = subprocess.run(
+             command,
+             cwd=ROOT,
+             capture_output=True,
+             text=True,
+@@ -67,62 +89,144 @@ def run_component_checks() -> dict[str, dict[str, Any]]:
+         )
+         results[name] = {
+             "passed": completed.returncode == 0,
+             "return_code": completed.returncode,
+             "command": " ".join(command),
+             "summary": _last_nonempty_line(completed.stdout or completed.stderr),
+         }
+     return results
+ 
+ 
++def build_evaluator_reports() -> dict[str, dict[str, Any]]:
++    return {name: builder() for name, builder in EVALUATOR_BUILDERS.items()}
++
++
++def skipped_component_checks() -> dict[str, dict[str, Any]]:
++    return {
++        name: {
++            "passed": False,
++            "status": "skipped",
++            "return_code": None,
++            "summary": "skipped by caller",
++        }
++        for name in COMPONENT_TESTS
++    }
++
++
++def _validated_evaluator_reports(
++    reports: dict[str, dict[str, Any]] | None,
++) -> dict[str, dict[str, Any]]:
++    reports = reports or {}
++    missing = sorted(EVALUATOR_BUILDERS.keys() - reports.keys())
++    if missing:
++        raise ValueError(f"missing evaluator report(s): {', '.join(missing)}")
++    for name, builder in EVALUATOR_BUILDERS.items():
++        report = reports[name]
++        expected = builder()
++        required = expected.keys() - {"generated_at"}
++        absent = sorted(required - report.keys())
++        if absent:
++            raise ValueError(
++                f"{name} evaluator report is missing field(s): {', '.join(absent)}"
++            )
++        mismatched = sorted(
++            field
++            for field in required
++            if not _same_json_value(report[field], expected[field])
++        )
++        if mismatched:
++            raise ValueError(
++                f"{name} evaluator report differs from registered builder in "
++                f"field(s): {', '.join(mismatched)}"
++            )
++    return reports
++
++
++def _same_json_value(actual: Any, expected: Any) -> bool:
++    try:
++        return json.dumps(
++            actual,
++            ensure_ascii=False,
++            sort_keys=True,
++            separators=(",", ":"),
++            allow_nan=False,
++        ) == json.dumps(
++            expected,
++            ensure_ascii=False,
++            sort_keys=True,
++            separators=(",", ":"),
++            allow_nan=False,
++        )
++    except (TypeError, ValueError):
++        return False
++
++
+ def evaluate_gate(
+     *,
+     operations: dict[str, Any],
+     localization: dict[str, Any],
+     tag_quality: dict[str, Any],
+     components: dict[str, dict[str, Any]],
++    evaluator_reports: dict[str, dict[str, Any]] | None = None,
+     verification: dict[str, Any],
+ ) -> dict[str, Any]:
+     metrics = tag_quality.get("metrics", {})
+-
+-    def passed(name: str) -> bool:
+-        return bool(components.get(name, {}).get("passed"))
++    reports = _validated_evaluator_reports(evaluator_reports)
++    metadata = reports["metadata"]
++    summary = reports["summary"]
++    consistency = reports["consistency"]
++    entity = reports["entity"]
++    topic11 = reports["topic11"]
+ 
+     values = {
+-        "metadata_template_effective": passed("metadata"),
+-        "metadata_required_localization_rate": 1.0 if passed("metadata") else 0.0,
++        "metadata_template_effective": bool(metadata["metadata_template_effective"]),
++        "metadata_required_localization_rate": float(
++            metadata["metadata_required_localization_rate"]
++        ),
+         "content_tag_metric": float(metrics.get("content_tag_f1", 0.0)),
+         "management_tag_rule_accuracy": float(metrics.get("management_tag_f1", 0.0)),
+         "quality_tag_metric": float(metrics.get("quality_tag_f1", 0.0)),
+         "global_quality_tag_pollution_count": int(metrics.get("unknown_tag_count", -1)),
+-        "document_summary_faithfulness": 1.0 if passed("summary") else 0.0,
+-        "document_summary_source_coverage": 1.0 if passed("summary") else 0.0,
+-        "document_summary_new_fact_violations": 0 if passed("summary") else 1,
+-        "artifact_consistency_pass_rate": 1.0 if passed("consistency") else 0.0,
+-        "markdown_block_coverage": 1.0 if passed("consistency") else 0.0,
+-        "chunk_source_coverage": 1.0 if passed("consistency") else 0.0,
+-        "tampering_detection_rate": 1.0 if passed("consistency") else 0.0,
+-        "entity_passthrough_coverage": 1.0 if passed("entity") else 0.0,
+-        "invented_entity_id_count": 0 if passed("entity") else 1,
+-        "topic11_invalid_output_acceptance_count": 0 if passed("topic11") else 1,
+-        "topic11_fallback_success_rate": 1.0 if passed("topic11") else 0.0,
+-        "secret_leak_count": 0 if passed("topic11") else 1,
++        "document_summary_faithfulness": float(
++            summary["document_summary_faithfulness"]
++        ),
++        "document_summary_source_coverage": float(
++            summary["document_summary_source_coverage"]
++        ),
++        "document_summary_new_fact_violations": int(
++            summary["document_summary_new_fact_violations"]
++        ),
++        "artifact_consistency_pass_rate": float(
++            consistency["artifact_consistency_pass_rate"]
++        ),
++        "markdown_block_coverage": float(consistency["markdown_block_coverage"]),
++        "chunk_source_coverage": float(consistency["chunk_source_coverage"]),
++        "tampering_detection_rate": float(consistency["tampering_detection_rate"]),
++        "entity_passthrough_coverage": float(entity["entity_passthrough_coverage"]),
++        "invented_entity_id_count": int(entity["invented_entity_id_count"]),
++        "topic11_invalid_output_acceptance_count": int(
++            topic11["topic11_invalid_output_acceptance_count"]
++        ),
++        "topic11_fallback_success_rate": float(
++            topic11["topic11_fallback_success_rate"]
++        ),
++        "secret_leak_count": int(topic11["secret_leak_count"]),
+         "field_operation_accuracy": float(operations["field_operation_accuracy"]),
+         "rename_accuracy": float(operations["rename_accuracy"]),
+         "merge_accuracy": float(operations["merge_accuracy"]),
+         "split_accuracy": float(operations["split_accuracy"]),
+         "unsafe_operation_count": int(operations["unsafe_operation_count"]),
+         "schema_localization_rate": float(localization["schema_localization_rate"]),
+         "error_code_accuracy": float(localization["error_code_accuracy"]),
+         "stage_accuracy": float(localization["stage_accuracy"]),
+-        "legacy_request_regression": 0 if passed("legacy") else 1,
+-        "legacy_package_regression": 0 if passed("legacy") else 1,
++        "legacy_request_regression": int(topic11["legacy_request_regression"]),
++        "legacy_package_regression": int(topic11["legacy_package_regression"]),
+         "full_backend_tests_passed": bool(verification.get("full_backend_tests_passed")),
+         "ruff_clean": bool(verification.get("ruff_clean")),
+         "frontend_tests_passed": bool(verification.get("frontend_tests_passed")),
+         "openapi_export_passed": bool(verification.get("openapi_export_passed")),
+     }
+     checks = {
+         "metadata_template_effective": values["metadata_template_effective"] is True,
+         "metadata_required_localization_rate": values["metadata_required_localization_rate"] == 1.0,
+         "content_tag_metric": values["content_tag_metric"] >= 0.85,
+         "management_tag_rule_accuracy": values["management_tag_rule_accuracy"] == 1.0,
+@@ -159,22 +263,27 @@ def evaluate_gate(
+     return {
+         "generated_at": datetime.now(UTC).isoformat(),
+         "conclusion": "passed" if not failed else "failed",
+         "passed": not failed,
+         "values": values,
+         "checks": checks,
+         "failed_conditions": failed,
+         "datasets": {
+             "field_operations": operations["dataset_sha256"],
+             "schema_localization": localization["dataset_sha256"],
++            **{
++                name: report["dataset_sha256"]
++                for name, report in reports.items()
++            },
+         },
+         "component_checks": components,
++        "evaluator_reports": reports,
+     }
+ 
+ 
+ def render_markdown(report: dict[str, Any]) -> str:
+     lines = [
+         "# Topic 5 Hard-Gap Batch 1 Gate",
+         "",
+         f"Conclusion: **{report['conclusion']}**",
+         "",
+         "| Condition | Value | Passed |",
+@@ -195,29 +304,30 @@ def _last_nonempty_line(value: str) -> str:
+ def main() -> None:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUTPUT)
+     parser.add_argument("--tag-report", type=Path, default=DEFAULT_TAG_REPORT)
+     parser.add_argument("--verification", type=Path, default=DEFAULT_VERIFICATION)
+     parser.add_argument("--skip-component-tests", action="store_true")
+     args = parser.parse_args()
+     if not args.verification.is_file():
+         raise SystemExit(f"verification summary is missing: {args.verification}")
+     components = (
+-        {name: {"passed": True, "summary": "skipped by caller"} for name in COMPONENT_TESTS}
++        skipped_component_checks()
+         if args.skip_component_tests
+         else run_component_checks()
+     )
+     report = evaluate_gate(
+         operations=field_report(),
+         localization=localization_report(),
+         tag_quality=json.loads(args.tag_report.read_text(encoding="utf-8")),
+         components=components,
++        evaluator_reports=build_evaluator_reports(),
+         verification=json.loads(args.verification.read_text(encoding="utf-8")),
+     )
+     args.out_dir.mkdir(parents=True, exist_ok=True)
+     (args.out_dir / "hard_gap_batch_1_gate.json").write_text(
+         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+         encoding="utf-8",
+     )
+     (args.out_dir / "hard_gap_batch_1_gate.md").write_text(
+         render_markdown(report), encoding="utf-8"
+     )
+diff --git a/scripts/eval_topic5_artifact_consistency.py b/scripts/eval_topic5_artifact_consistency.py
+new file mode 100644
+index 00000000..71cad2fa
+--- /dev/null
++++ b/scripts/eval_topic5_artifact_consistency.py
+@@ -0,0 +1,139 @@
++"""Evaluate Topic 5 artifact consistency and declared tampering cases."""
++
++from __future__ import annotations
++
++import argparse
++import copy
++import re
++import sys
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++BACKEND = ROOT / "backend"
++for import_path in (ROOT, BACKEND):
++    if str(import_path) not in sys.path:
++        sys.path.insert(0, str(import_path))
++
++from app.schemas.canonical import CanonicalModel  # noqa: E402
++from app.schemas.document_summary import DocumentSummary  # noqa: E402
++from app.services.artifact_consistency_service import ArtifactConsistencyService  # noqa: E402
++from app.services.render_service import RenderService  # noqa: E402
++from scripts.topic5_eval_common import (  # noqa: E402
++    build_case_report,
++    load_case_fixture,
++    write_json_report,
++)
++
++
++DEFAULT_FIXTURE = ROOT / "eval" / "topic5_artifact_consistency" / "v2" / "cases.json"
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "artifact_consistency.json"
++DATASET_ID = "topic5_artifact_consistency"
++
++
++def load_fixture(path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_case_fixture(path, dataset_id=DATASET_ID)
++    if not isinstance(fixture.get("base"), dict):
++        raise ValueError("artifact-consistency fixture requires a base artifact")
++    return fixture
++
++
++def evaluate_case(case: dict[str, Any], base: dict[str, Any]) -> dict[str, Any]:
++    summary = DocumentSummary.model_validate(base["document_summary"])
++    canonical_payload = copy.deepcopy(base["canonical"])
++    canonical_payload.setdefault("doc_meta", {})["document_summary"] = summary.model_dump(
++        mode="json"
++    )
++    canonical = CanonicalModel.model_validate(canonical_payload)
++    rendered = RenderService().render(canonical)
++    structured = copy.deepcopy(rendered.structured_json)
++    markdown = rendered.markdown
++    chunks = copy.deepcopy(base["chunks"])
++
++    mutation = case["mutation"]
++    if mutation == "structured_field_change":
++        structured["data"][case["field_id"]] = case["replacement"]
++    elif mutation == "markdown_block_omission":
++        block_id = re.escape(case["block_id"])
++        markdown = re.sub(
++            rf'<!-- topic5:block:start id="{block_id}".*?'
++            rf'<!-- topic5:block:end id="{block_id}" -->\n?',
++            "",
++            markdown,
++            flags=re.DOTALL,
++        )
++    elif mutation == "chunk_unknown_source":
++        chunks[case["chunk_index"]]["source_block_ids"] = ["unknown"]
++    elif mutation != "none":
++        raise ValueError(f"unsupported artifact mutation: {mutation}")
++
++    report = ArtifactConsistencyService().verify(
++        canonical=canonical,
++        structured_json=structured,
++        markdown=markdown,
++        chunks=chunks,
++        document_summary=summary,
++    )
++    error_codes = [issue.error_code for issue in report.errors]
++    expected_code = case.get("expected_error_code")
++    detected = report.passed is False and (
++        expected_code is None or expected_code in error_codes
++    )
++    passed = report.passed is case["expected_report_passed"] and (
++        expected_code is None or expected_code in error_codes
++    )
++    return {
++        "case_id": case["case_id"],
++        "category": case["category"],
++        "passed": passed,
++        "expected_report_passed": case["expected_report_passed"],
++        "actual_report_passed": report.passed,
++        "error_codes": error_codes,
++        "tampering_detected": detected if case["category"] == "tampering" else None,
++        "block_coverage": report.block_coverage,
++        "chunk_source_coverage": report.chunk_source_coverage,
++    }
++
++
++def build_report(fixture_path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_fixture(fixture_path)
++    cases = [evaluate_case(case, fixture["base"]) for case in fixture["cases"]]
++    baselines = [case for case in cases if case["category"] == "baseline"]
++    tampering = [case for case in cases if case["category"] == "tampering"]
++    return build_case_report(
++        fixture_path=fixture_path,
++        fixture=fixture,
++        cases=cases,
++        metrics={
++            "artifact_consistency_pass_rate": (
++                sum(case["actual_report_passed"] for case in baselines) / len(baselines)
++            ),
++            "markdown_block_coverage": (
++                sum(case["block_coverage"] for case in baselines) / len(baselines)
++            ),
++            "chunk_source_coverage": (
++                sum(case["chunk_source_coverage"] for case in baselines) / len(baselines)
++            ),
++            "tampering_detection_rate": (
++                sum(case["tampering_detected"] for case in tampering) / len(tampering)
++            ),
++        },
++        reproduction_command="python scripts/eval_topic5_artifact_consistency.py",
++        claim_boundary=(
++            "Measures declared JSON/Markdown/chunk consistency and deterministic tampering "
++            "detection; it does not establish cryptographic package authenticity."
++        ),
++    )
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE)
++    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
++    args = parser.parse_args()
++    write_json_report(build_report(args.fixture), args.output)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval_topic5_entity_passthrough.py b/scripts/eval_topic5_entity_passthrough.py
+new file mode 100644
+index 00000000..47a832fb
+--- /dev/null
++++ b/scripts/eval_topic5_entity_passthrough.py
+@@ -0,0 +1,157 @@
++"""Evaluate Topic 5 upstream entity passthrough with declared chunk expectations."""
++
++from __future__ import annotations
++
++import argparse
++import sys
++from collections import Counter
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++BACKEND = ROOT / "backend"
++for import_path in (ROOT, BACKEND):
++    if str(import_path) not in sys.path:
++        sys.path.insert(0, str(import_path))
++
++from app.schemas.canonical import CanonicalModel  # noqa: E402
++from app.schemas.reports import MappingReport  # noqa: E402
++from app.schemas.target_schema import TargetSchema  # noqa: E402
++from app.services.chunk_organizer_service import ChunkOrganizerService  # noqa: E402
++from scripts.topic5_eval_common import (  # noqa: E402
++    build_case_report,
++    load_case_fixture,
++    write_json_report,
++)
++
++
++DEFAULT_FIXTURE = ROOT / "eval" / "topic5_entity_passthrough" / "v2" / "cases.json"
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "entity_passthrough.json"
++DATASET_ID = "topic5_entity_passthrough"
++
++
++def load_fixture(path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    return load_case_fixture(path, dataset_id=DATASET_ID)
++
++
++def _identity(entity: dict[str, Any]) -> str:
++    normalized_id = entity.get("normalized_id")
++    if normalized_id:
++        return str(normalized_id)
++    return f"mention:{entity.get('mention')}:{entity.get('link_status')}"
++
++
++def evaluate_case(case: dict[str, Any]) -> dict[str, Any]:
++    canonical = CanonicalModel.model_validate(
++        {
++            "canonical_version": "1.0",
++            "task_id": f"entity-{case['case_id']}",
++            "doc_id": case["case_id"],
++            "schema_id": "entity_eval",
++            "doc_meta": {"entities": case["entities"]},
++            "blocks": case["blocks"],
++        }
++    )
++    schema = TargetSchema.model_validate(
++        {
++            "schema_id": "entity_eval",
++            "name": "Entity Evaluation",
++            "version": "1.0.0",
++            "fields": [
++                {
++                    "field_id": "title",
++                    "name": "title",
++                    "display_name": "Title",
++                    "type": "string",
++                    "required": False,
++                }
++            ],
++        }
++    )
++    mapping = MappingReport(
++        task_id=f"entity-{case['case_id']}",
++        schema_id="entity_eval",
++        summary={},
++        mappings=[],
++        unmapped=[],
++        review_required_items=[],
++    )
++    chunks, _report = ChunkOrganizerService().organize_chunks(
++        chunks=case["chunks"],
++        canonical_model=canonical,
++        schema=schema,
++        mapping_report=mapping,
++        validation_report=None,
++        task_id=f"entity-{case['case_id']}",
++        doc_id=case["case_id"],
++        schema_id="entity_eval",
++        template_id="entity-eval-v2",
++        options=None,
++    )
++    actual = [
++        [_identity(tag) for tag in chunk.get("entity_tags", [])] for chunk in chunks
++    ]
++    expected = case["expected_entity_keys_by_chunk"]
++    matched_count = sum(
++        sum((Counter(expected_keys) & Counter(actual_keys)).values())
++        for expected_keys, actual_keys in zip(expected, actual, strict=True)
++    )
++    expected_count = sum(len(keys) for keys in expected)
++    upstream_ids = {
++        str(entity["normalized_id"])
++        for entity in case["entities"]
++        if entity.get("normalized_id")
++    }
++    actual_ids = {
++        str(tag["normalized_id"])
++        for chunk in chunks
++        for tag in chunk.get("entity_tags", [])
++        if tag.get("normalized_id")
++    }
++    invented_ids = sorted(actual_ids - upstream_ids)
++    return {
++        "case_id": case["case_id"],
++        "passed": actual == expected and not invented_ids,
++        "expected_entity_keys_by_chunk": expected,
++        "actual_entity_keys_by_chunk": actual,
++        "matched_count": matched_count,
++        "expected_count": expected_count,
++        "invented_entity_ids": invented_ids,
++    }
++
++
++def build_report(fixture_path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_fixture(fixture_path)
++    cases = [evaluate_case(case) for case in fixture["cases"]]
++    expected_count = sum(case["expected_count"] for case in cases)
++    matched_count = sum(case["matched_count"] for case in cases)
++    invented_count = sum(len(case["invented_entity_ids"]) for case in cases)
++    return build_case_report(
++        fixture_path=fixture_path,
++        fixture=fixture,
++        cases=cases,
++        metrics={
++            "entity_passthrough_coverage": (
++                1.0 if expected_count == 0 else matched_count / expected_count
++            ),
++            "invented_entity_id_count": invented_count,
++        },
++        reproduction_command="python scripts/eval_topic5_entity_passthrough.py",
++        claim_boundary=(
++            "Measures preservation of declared upstream entity identities in relevant "
++            "chunks; it does not evaluate entity recognition or linking accuracy."
++        ),
++    )
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE)
++    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
++    args = parser.parse_args()
++    write_json_report(build_report(args.fixture), args.output)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval_topic5_metadata_contract.py b/scripts/eval_topic5_metadata_contract.py
+new file mode 100644
+index 00000000..21bae917
+--- /dev/null
++++ b/scripts/eval_topic5_metadata_contract.py
+@@ -0,0 +1,122 @@
++"""Evaluate Topic 5 metadata-template behavior with declared case expectations."""
++
++from __future__ import annotations
++
++import argparse
++import sys
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++BACKEND = ROOT / "backend"
++for import_path in (ROOT, BACKEND):
++    if str(import_path) not in sys.path:
++        sys.path.insert(0, str(import_path))
++
++from app.schemas.metadata_template import MetadataTemplateConfig  # noqa: E402
++from app.schemas.uir import UIRDocument  # noqa: E402
++from app.services.metadata_template_service import MetadataTemplateService  # noqa: E402
++from scripts.topic5_eval_common import (  # noqa: E402
++    build_case_report,
++    load_case_fixture,
++    write_json_report,
++)
++
++
++DEFAULT_FIXTURE = ROOT / "eval" / "topic5_metadata_contract" / "v2" / "cases.json"
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "metadata_contract.json"
++DATASET_ID = "topic5_metadata_contract"
++
++
++def load_fixture(path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    return load_case_fixture(path, dataset_id=DATASET_ID)
++
++
++def evaluate_case(case: dict[str, Any]) -> dict[str, Any]:
++    template = MetadataTemplateConfig.model_validate(
++        {
++            "template_id": f"{case['case_id']}-template",
++            "schema_id": "topic5_metadata_eval",
++            "version": "2.0.0",
++            "metadata_fields": case["metadata_fields"],
++        }
++    )
++    result = MetadataTemplateService().render(
++        uir=UIRDocument.model_validate(
++            {
++                "uir_version": "1.0",
++                "doc_id": case["case_id"],
++                "metadata": case.get("metadata", {}),
++                "blocks": [],
++            }
++        ),
++        transformed_fields=case.get("transformed_fields", {}),
++        template=template,
++        system_context={"doc_id": case["case_id"]},
++    )
++    issues = [
++        {
++            "stage": issue.stage,
++            "path": issue.path,
++            "error_code": issue.error_code,
++        }
++        for issue in result.report.issues
++    ]
++    expected_issue = case.get("expected_issue")
++    issue_localized = expected_issue is None or expected_issue in issues
++    passed = (
++        result.passed is case["expected_passed"]
++        and result.document_metadata == case["expected_document_metadata"]
++        and issue_localized
++    )
++    return {
++        "case_id": case["case_id"],
++        "category": case["category"],
++        "passed": passed,
++        "expected_passed": case["expected_passed"],
++        "actual_passed": result.passed,
++        "expected_document_metadata": case["expected_document_metadata"],
++        "actual_document_metadata": result.document_metadata,
++        "expected_issue": expected_issue,
++        "actual_issues": issues,
++        "issue_localized": issue_localized,
++    }
++
++
++def build_report(fixture_path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_fixture(fixture_path)
++    cases = [evaluate_case(case) for case in fixture["cases"]]
++    effectiveness = [case for case in cases if case["category"] == "effectiveness"]
++    localization = [case for case in cases if case["category"] == "localization"]
++    effectiveness_rate = sum(case["passed"] for case in effectiveness) / len(effectiveness)
++    localization_rate = sum(case["issue_localized"] for case in localization) / len(
++        localization
++    )
++    return build_case_report(
++        fixture_path=fixture_path,
++        fixture=fixture,
++        cases=cases,
++        metrics={
++            "metadata_template_effective": effectiveness_rate == 1.0,
++            "metadata_template_effectiveness_rate": effectiveness_rate,
++            "metadata_required_localization_rate": localization_rate,
++        },
++        reproduction_command="python scripts/eval_topic5_metadata_contract.py",
++        claim_boundary=(
++            "Measures declared metadata-template rendering and exact issue localization; "
++            "it does not measure upstream extraction quality."
++        ),
++    )
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE)
++    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
++    args = parser.parse_args()
++    write_json_report(build_report(args.fixture), args.output)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval_topic5_summary_faithfulness.py b/scripts/eval_topic5_summary_faithfulness.py
+new file mode 100644
+index 00000000..f03f3599
+--- /dev/null
++++ b/scripts/eval_topic5_summary_faithfulness.py
+@@ -0,0 +1,130 @@
++"""Evaluate Topic 5 document-summary faithfulness from declared source cases."""
++
++from __future__ import annotations
++
++import argparse
++import sys
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++BACKEND = ROOT / "backend"
++for import_path in (ROOT, BACKEND):
++    if str(import_path) not in sys.path:
++        sys.path.insert(0, str(import_path))
++
++from app.schemas.canonical import CanonicalModel  # noqa: E402
++from app.schemas.content_organization import SummaryConfig  # noqa: E402
++from app.services.document_summary_service import DocumentSummaryService  # noqa: E402
++from scripts.topic5_eval_common import (  # noqa: E402
++    build_case_report,
++    load_case_fixture,
++    write_json_report,
++)
++
++
++DEFAULT_FIXTURE = ROOT / "eval" / "topic5_summary_faithfulness" / "v2" / "cases.json"
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "summary_faithfulness.json"
++DATASET_ID = "topic5_summary_faithfulness"
++
++
++def load_fixture(path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    return load_case_fixture(path, dataset_id=DATASET_ID)
++
++
++def evaluate_case(case: dict[str, Any]) -> dict[str, Any]:
++    canonical = CanonicalModel.model_validate(
++        {
++            "canonical_version": "1.0",
++            "task_id": f"summary-{case['case_id']}",
++            "doc_id": case["case_id"],
++            "schema_id": "summary_eval",
++            "blocks": case["blocks"],
++        }
++    )
++    summary = DocumentSummaryService().build(
++        canonical=canonical,
++        chunks=case.get("chunks", []),
++        config=SummaryConfig.model_validate(case.get("config", {})),
++    )
++    if summary is None:
++        return {
++            "case_id": case["case_id"],
++            "passed": False,
++            "faithful": False,
++            "source_coverage": 0.0,
++            "new_fact_violations": 1,
++            "actual_summary": None,
++        }
++
++    blocks = {block.block_id: block.text for block in canonical.blocks}
++    new_fact_violations = sum(
++        trace.source_block_id not in blocks
++        or trace.source_text_span not in blocks.get(trace.source_block_id, "")
++        or trace.summary_sentence != trace.source_text_span
++        for trace in summary.sentence_traces
++    )
++    faithful = summary.faithfulness_passed and new_fact_violations == 0
++    expected_blocks = set(case.get("expected_source_block_ids", []))
++    expected_chunks = set(case.get("expected_source_chunk_ids", []))
++    expected_sources = len(expected_blocks) + len(expected_chunks)
++    covered_sources = len(expected_blocks.intersection(summary.source_block_ids)) + len(
++        expected_chunks.intersection(summary.source_chunk_ids)
++    )
++    source_coverage = 1.0 if expected_sources == 0 else covered_sources / expected_sources
++    passed = (
++        summary.text == case["expected_text"]
++        and summary.source_block_ids == case.get("expected_source_block_ids", [])
++        and summary.source_chunk_ids == case.get("expected_source_chunk_ids", [])
++        and faithful
++        and source_coverage == 1.0
++    )
++    return {
++        "case_id": case["case_id"],
++        "passed": passed,
++        "faithful": faithful,
++        "source_coverage": source_coverage,
++        "new_fact_violations": new_fact_violations,
++        "expected_text": case["expected_text"],
++        "actual_summary": summary.model_dump(mode="json"),
++    }
++
++
++def build_report(fixture_path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_fixture(fixture_path)
++    cases = [evaluate_case(case) for case in fixture["cases"]]
++    total = len(cases)
++    return build_case_report(
++        fixture_path=fixture_path,
++        fixture=fixture,
++        cases=cases,
++        metrics={
++            "document_summary_faithfulness": (
++                sum(case["faithful"] for case in cases) / total
++            ),
++            "document_summary_source_coverage": (
++                sum(case["source_coverage"] for case in cases) / total
++            ),
++            "document_summary_new_fact_violations": sum(
++                case["new_fact_violations"] for case in cases
++            ),
++        },
++        reproduction_command="python scripts/eval_topic5_summary_faithfulness.py",
++        claim_boundary=(
++            "Measures extractive summary traces, declared source coverage, and facts absent "
++            "from those traces; it does not grade abstractiveness or writing quality."
++        ),
++    )
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE)
++    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
++    args = parser.parse_args()
++    write_json_report(build_report(args.fixture), args.output)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval_topic5_topic11_adapter.py b/scripts/eval_topic5_topic11_adapter.py
+new file mode 100644
+index 00000000..e232fb8b
+--- /dev/null
++++ b/scripts/eval_topic5_topic11_adapter.py
+@@ -0,0 +1,218 @@
++"""Evaluate offline Topic 11 adapter fallback, safety, and legacy compatibility."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from pathlib import Path
++from typing import Any
++
++import httpx
++
++
++ROOT = Path(__file__).resolve().parents[1]
++BACKEND = ROOT / "backend"
++for import_path in (ROOT, BACKEND):
++    if str(import_path) not in sys.path:
++        sys.path.insert(0, str(import_path))
++
++from app.config import Settings  # noqa: E402
++from app.schemas.canonical import CanonicalModel  # noqa: E402
++from app.schemas.chunk_provider import ChunkProviderResponse  # noqa: E402
++from app.schemas.content_organization import ContentOrganizationOptions  # noqa: E402
++from app.services.chunk_providers.base import (  # noqa: E402
++    ChunkProviderError,
++    ChunkProviderInvocation,
++)
++from app.services.chunk_providers.resolver import ChunkProviderResolver  # noqa: E402
++from app.services.chunk_providers.topic11_http import Topic11HttpChunkProvider  # noqa: E402
++from scripts.topic5_eval_common import (  # noqa: E402
++    build_case_report,
++    load_case_fixture,
++    write_json_report,
++)
++
++
++DEFAULT_FIXTURE = ROOT / "eval" / "topic5_topic11_adapter" / "v2" / "cases.json"
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "topic11_adapter.json"
++DATASET_ID = "topic5_topic11_adapter"
++
++
++class FixtureProvider:
++    def __init__(
++        self,
++        *,
++        response: ChunkProviderResponse | None = None,
++        error_code: str | None = None,
++    ) -> None:
++        self.response = response
++        self.error_code = error_code
++
++    def provide(self, _request) -> ChunkProviderInvocation:
++        if self.error_code:
++            raise ChunkProviderError(self.error_code)
++        if self.response is None:
++            raise AssertionError("fixture provider requires a response or error")
++        return ChunkProviderInvocation(response=self.response, latency_ms=1)
++
++
++def load_fixture(path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_case_fixture(path, dataset_id=DATASET_ID)
++    if not isinstance(fixture.get("base"), dict):
++        raise ValueError("Topic 11 fixture requires base canonical and legacy chunks")
++    return fixture
++
++
++def _options() -> ContentOrganizationOptions:
++    return ContentOrganizationOptions.model_validate(
++        {
++            "provider": "topic11",
++            "fallback_to_internal": True,
++            "strict_provider": False,
++            "chunk_strategy": "source_block_aware",
++            "target_tokens": 128,
++            "min_tokens": 1,
++            "max_tokens": 256,
++            "overlap_tokens": 0,
++        }
++    )
++
++
++def _response(chunks: list[dict[str, Any]]) -> ChunkProviderResponse:
++    return ChunkProviderResponse.model_validate(
++        {
++            "contract_version": "1.0",
++            "provider": "topic11",
++            "provider_version": "fixture-v2",
++            "chunks": chunks,
++            "warnings": [],
++            "trace": {},
++        }
++    )
++
++
++def evaluate_case(case: dict[str, Any], base: dict[str, Any]) -> dict[str, Any]:
++    canonical = CanonicalModel.model_validate(base["canonical"])
++    legacy_chunks = base["legacy_chunks"]
++    secret = str(case.get("secret") or "")
++    client: httpx.Client | None = None
++
++    if case["category"] == "legacy":
++        resolver = ChunkProviderResolver(settings=Settings(offline_mode=True))
++        result = resolver.resolve(
++            canonical=canonical,
++            options=None,
++            legacy_chunks=legacy_chunks,
++        )
++        legacy_compatible = result.chunks == legacy_chunks
++        return {
++            "case_id": case["case_id"],
++            "category": case["category"],
++            "passed": legacy_compatible,
++            "legacy_compatible": legacy_compatible,
++            "fallback_succeeded": None,
++            "invalid_output_accepted": False,
++            "secret_leaked": False,
++            "trace": result.trace.model_dump(mode="json"),
++        }
++
++    if case["category"] == "secret":
++        settings = Settings(
++            topic11_base_url="https://topic11.invalid",
++            topic11_api_key=secret,
++        )
++
++        def timeout_handler(_request: httpx.Request) -> httpx.Response:
++            raise httpx.ReadTimeout(secret)
++
++        client = httpx.Client(transport=httpx.MockTransport(timeout_handler))
++        provider = Topic11HttpChunkProvider(settings, client=client)
++    elif case["category"] == "invalid":
++        settings = Settings()
++        provider = FixtureProvider(response=_response(case["chunks"]))
++    else:
++        settings = Settings()
++        provider = FixtureProvider(error_code=case["error_code"])
++
++    try:
++        result = ChunkProviderResolver(
++            settings=settings,
++            external_provider=provider,
++        ).resolve(
++            canonical=canonical,
++            options=_options(),
++            legacy_chunks=legacy_chunks,
++        )
++    finally:
++        if client is not None:
++            client.close()
++
++    trace = result.trace.model_dump(mode="json")
++    fallback_succeeded = (
++        trace["fallback_used"] is True
++        and trace["used_provider"] == "internal"
++        and trace["fallback_reason"] == case["expected_fallback_reason"]
++    )
++    invalid_output_accepted = (
++        case["category"] == "invalid" and trace["used_provider"] == "topic11"
++    )
++    serialized = json.dumps(
++        {"trace": trace, "chunks": result.chunks}, ensure_ascii=False, sort_keys=True
++    )
++    secret_leaked = bool(secret and secret in serialized)
++    return {
++        "case_id": case["case_id"],
++        "category": case["category"],
++        "passed": fallback_succeeded and not invalid_output_accepted and not secret_leaked,
++        "legacy_compatible": None,
++        "fallback_succeeded": fallback_succeeded,
++        "invalid_output_accepted": invalid_output_accepted,
++        "secret_leaked": secret_leaked,
++        "trace": trace,
++    }
++
++
++def build_report(fixture_path: Path = DEFAULT_FIXTURE) -> dict[str, Any]:
++    fixture = load_fixture(fixture_path)
++    cases = [evaluate_case(case, fixture["base"]) for case in fixture["cases"]]
++    fallback_cases = [case for case in cases if case["category"] != "legacy"]
++    legacy_cases = [case for case in cases if case["category"] == "legacy"]
++    legacy_rate = sum(case["legacy_compatible"] for case in legacy_cases) / len(
++        legacy_cases
++    )
++    return build_case_report(
++        fixture_path=fixture_path,
++        fixture=fixture,
++        cases=cases,
++        metrics={
++            "topic11_fallback_success_rate": (
++                sum(case["fallback_succeeded"] for case in fallback_cases)
++                / len(fallback_cases)
++            ),
++            "topic11_invalid_output_acceptance_count": sum(
++                case["invalid_output_accepted"] for case in cases
++            ),
++            "secret_leak_count": sum(case["secret_leaked"] for case in cases),
++            "legacy_compatibility_rate": legacy_rate,
++            "legacy_request_regression": int(legacy_rate != 1.0),
++            "legacy_package_regression": int(legacy_rate != 1.0),
++        },
++        reproduction_command="python scripts/eval_topic5_topic11_adapter.py",
++        claim_boundary=(
++            "Measures deterministic offline Topic 11 adapter contracts with fixture and "
++            "mock transports; it makes no live-service availability claim."
++        ),
++    )
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE)
++    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
++    args = parser.parse_args()
++    write_json_report(build_report(args.fixture), args.output)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/export_openapi.py b/scripts/export_openapi.py
+index 63f0fd2e..80dcc5d3 100644
+--- a/scripts/export_openapi.py
++++ b/scripts/export_openapi.py
+@@ -8,35 +8,54 @@ from typing import Any
+ 
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ BACKEND_DIR = ROOT / "backend"
+ if str(BACKEND_DIR) not in sys.path:
+     sys.path.insert(0, str(BACKEND_DIR))
+ 
+ from app.main import create_app  # noqa: E402
+ 
+ 
++def _serialized_schema(schema: dict[str, Any]) -> str:
++    return json.dumps(schema, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
++
++
+ def export_openapi(output_path: Path) -> dict[str, Any]:
+     schema = create_app().openapi()
+     output_path.parent.mkdir(parents=True, exist_ok=True)
+-    output_path.write_text(
+-        json.dumps(schema, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+-        encoding="utf-8",
+-    )
++    output_path.write_text(_serialized_schema(schema), encoding="utf-8")
+     return schema
+ 
+ 
++def check_openapi_drift(expected_path: Path) -> bool:
++    if not expected_path.is_file():
++        return False
++    actual = _serialized_schema(create_app().openapi())
++    return expected_path.read_text(encoding="utf-8") == actual
++
++
+ def main() -> None:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument(
+         "--output",
+         type=Path,
+         default=ROOT / "docs" / "openapi.json",
+         help="Path to write the OpenAPI JSON schema.",
+     )
++    parser.add_argument(
++        "--check",
++        action="store_true",
++        help="Exit nonzero when the committed OpenAPI JSON differs; do not rewrite it.",
++    )
+     args = parser.parse_args()
++    if args.check:
++        if not check_openapi_drift(args.output):
++            print(f"OpenAPI drift detected for {args.output}")
++            raise SystemExit(1)
++        print(f"OpenAPI schema is current: {args.output}")
++        return
+     schema = export_openapi(args.output)
+     print(f"exported {len(schema.get('paths', {}))} paths to {args.output}")
+ 
+ 
+ if __name__ == "__main__":
+     main()
+diff --git a/scripts/run_topic5_batch_2_verification.py b/scripts/run_topic5_batch_2_verification.py
+new file mode 100644
+index 00000000..51087080
+--- /dev/null
++++ b/scripts/run_topic5_batch_2_verification.py
+@@ -0,0 +1,321 @@
++"""Run cross-platform Topic 5 Batch 2 verification with raw command evidence."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import platform
++import re
++import subprocess
++import sys
++import time
++from dataclasses import dataclass
++from datetime import UTC, datetime
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++BACKEND = ROOT / "backend"
++FRONTEND = ROOT / "frontend"
++DEFAULT_OUTPUT = ROOT / "reports" / "topic5_batch_2" / "verification"
++TOPIC5_TASK_SCRIPTS = (
++    "scripts/topic5_eval_common.py",
++    "scripts/eval_topic5_metadata_contract.py",
++    "scripts/eval_topic5_summary_faithfulness.py",
++    "scripts/eval_topic5_artifact_consistency.py",
++    "scripts/eval_topic5_entity_passthrough.py",
++    "scripts/eval_topic5_topic11_adapter.py",
++    "scripts/check_topic5_hard_gap_batch_1_gate.py",
++    "scripts/check_topic5_batch_2_acceptance_gate.py",
++    "scripts/run_topic5_batch_2_verification.py",
++    "scripts/export_openapi.py",
++)
++
++
++@dataclass(frozen=True)
++class CommandSpec:
++    name: str
++    command: tuple[str, ...]
++    cwd: Path
++    mandatory: bool = True
++
++
++def npm_executable(current_platform: str | None = None) -> str:
++    return "npm.cmd" if (current_platform or sys.platform) == "win32" else "npm"
++
++
++def command_specs(output_dir: Path = DEFAULT_OUTPUT) -> list[CommandSpec]:
++    npm = npm_executable()
++    evaluator_output = output_dir / "evaluator_reports"
++    return [
++        CommandSpec(
++            "backend-tests",
++            (sys.executable, "-m", "pytest", "-q"),
++            BACKEND,
++        ),
++        CommandSpec(
++            "ruff",
++            (sys.executable, "-m", "ruff", "check", "."),
++            BACKEND,
++        ),
++        CommandSpec(
++            "ruff-topic5-scripts",
++            (sys.executable, "-m", "ruff", "check", *TOPIC5_TASK_SCRIPTS),
++            ROOT,
++        ),
++        CommandSpec("frontend-tests", (npm, "run", "test"), FRONTEND),
++        CommandSpec("frontend-build", (npm, "run", "build"), FRONTEND),
++        CommandSpec(
++            "openapi-drift",
++            (sys.executable, "scripts/export_openapi.py", "--check"),
++            ROOT,
++        ),
++        CommandSpec(
++            "schemapack-contract-gate",
++            (
++                sys.executable,
++                "scripts/check_schema_pack_contract_gate.py",
++                "--fail-on-gate",
++            ),
++            ROOT,
++        ),
++        *[
++            CommandSpec(
++                f"evaluator-{name}",
++                (
++                    sys.executable,
++                    f"scripts/eval_topic5_{name}.py",
++                    "--output",
++                    str(evaluator_output / f"{name}.json"),
++                ),
++                ROOT,
++            )
++            for name in (
++                "metadata_contract",
++                "summary_faithfulness",
++                "artifact_consistency",
++                "entity_passthrough",
++                "topic11_adapter",
++            )
++        ],
++        CommandSpec(
++            "batch2-acceptance-gate",
++            (
++                sys.executable,
++                "scripts/check_topic5_batch_2_acceptance_gate.py",
++                "--report-dir",
++                str(evaluator_output),
++                "--output",
++                str(output_dir / "acceptance_gate.json"),
++            ),
++            ROOT,
++        ),
++    ]
++
++
++def enforce_clean_tree(status_output: str, *, allow_dirty: bool) -> bool:
++    dirty = bool(status_output.strip())
++    if dirty and not allow_dirty:
++        raise RuntimeError("git working tree is dirty; rerun with --allow-dirty to override")
++    return dirty
++
++
++def git_status(root: Path = ROOT) -> str:
++    completed = subprocess.run(
++        ["git", "status", "--porcelain", "--untracked-files=all"],
++        cwd=root,
++        check=True,
++        capture_output=True,
++        text=True,
++    )
++    return completed.stdout
++
++
++def git_commit_sha(root: Path = ROOT) -> str:
++    completed = subprocess.run(
++        ["git", "rev-parse", "HEAD"],
++        cwd=root,
++        check=True,
++        capture_output=True,
++        text=True,
++    )
++    return completed.stdout.strip()
++
++
++def skipped_result(spec: CommandSpec, reason: str) -> dict[str, Any]:
++    return {
++        "name": spec.name,
++        "command": list(spec.command),
++        "cwd": str(spec.cwd),
++        "stdout": "",
++        "stderr": reason,
++        "return_code": None,
++        "duration_seconds": 0.0,
++        "mandatory": spec.mandatory,
++        "status": "skipped",
++        "passed": False if spec.mandatory else True,
++        "raw_log": None,
++    }
++
++
++def run_command(spec: CommandSpec, log_dir: Path) -> dict[str, Any]:
++    log_dir.mkdir(parents=True, exist_ok=True)
++    started = time.perf_counter()
++    try:
++        completed = subprocess.run(
++            list(spec.command),
++            cwd=spec.cwd,
++            check=False,
++            capture_output=True,
++            text=True,
++        )
++    except FileNotFoundError as exc:
++        result = skipped_result(spec, str(exc))
++    else:
++        result = {
++            "name": spec.name,
++            "command": list(spec.command),
++            "cwd": str(spec.cwd),
++            "stdout": completed.stdout,
++            "stderr": completed.stderr,
++            "return_code": completed.returncode,
++            "duration_seconds": time.perf_counter() - started,
++            "mandatory": spec.mandatory,
++            "status": "passed" if completed.returncode == 0 else "failed",
++            "passed": completed.returncode == 0,
++            "raw_log": None,
++        }
++    result["duration_seconds"] = max(
++        float(result["duration_seconds"]), time.perf_counter() - started
++    )
++    log_path = log_dir / f"{_safe_name(spec.name)}.log"
++    log_path.write_text(_render_raw_log(result), encoding="utf-8")
++    result["raw_log"] = str(log_path.resolve())
++    return result
++
++
++def _safe_name(value: str) -> str:
++    return re.sub(r"[^A-Za-z0-9_.-]+", "-", value).strip("-") or "command"
++
++
++def _render_raw_log(result: dict[str, Any]) -> str:
++    command = subprocess.list2cmdline(result["command"])
++    return (
++        f"command: {command}\n"
++        f"cwd: {result['cwd']}\n"
++        f"status: {result['status']}\n"
++        f"return_code: {result['return_code']}\n"
++        f"duration_seconds: {result['duration_seconds']:.6f}\n"
++        "\n[stdout]\n"
++        f"{result['stdout']}"
++        "\n[stderr]\n"
++        f"{result['stderr']}\n"
++    )
++
++
++def tool_versions() -> dict[str, str]:
++    npm = npm_executable()
++    return {
++        "python": platform.python_version(),
++        "platform": platform.platform(),
++        "git": _version(["git", "--version"]),
++        "node": _version(["node", "--version"]),
++        "npm": _version([npm, "--version"]),
++    }
++
++
++def _version(command: list[str]) -> str:
++    try:
++        completed = subprocess.run(
++            command,
++            cwd=ROOT,
++            check=False,
++            capture_output=True,
++            text=True,
++        )
++    except FileNotFoundError:
++        return "unavailable"
++    output = (completed.stdout or completed.stderr).strip()
++    return output if completed.returncode == 0 and output else "unavailable"
++
++
++def write_summary(
++    output_dir: Path,
++    *,
++    commit_sha: str,
++    dirty: bool,
++    allow_dirty: bool,
++    records: list[dict[str, Any]],
++    tool_versions: dict[str, str],
++) -> Path:
++    output_dir.mkdir(parents=True, exist_ok=True)
++    mandatory = [record for record in records if record["mandatory"]]
++    payload = {
++        "generated_at": datetime.now(UTC).isoformat(),
++        "commit_sha": commit_sha,
++        "dirty_tree": dirty,
++        "allow_dirty": allow_dirty,
++        "tool_versions": tool_versions,
++        "commands": records,
++        "passed": bool(mandatory) and all(record["passed"] for record in mandatory),
++        "full_backend_tests_passed": _named_passed(records, "backend-tests"),
++        "ruff_clean": _named_passed(records, "ruff")
++        and _named_passed(records, "ruff-topic5-scripts"),
++        "ruff_topic5_scripts_clean": _named_passed(
++            records, "ruff-topic5-scripts"
++        ),
++        "frontend_tests_passed": _named_passed(records, "frontend-tests"),
++        "frontend_build_passed": _named_passed(records, "frontend-build"),
++        "openapi_export_passed": _named_passed(records, "openapi-drift"),
++        "schema_pack_contract_gate_passed": _named_passed(
++            records, "schemapack-contract-gate"
++        ),
++        "batch2_acceptance_gate_passed": _named_passed(
++            records, "batch2-acceptance-gate"
++        ),
++    }
++    path = output_dir / "verification_summary.json"
++    path.write_text(
++        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
++        encoding="utf-8",
++    )
++    return path
++
++
++def _named_passed(records: list[dict[str, Any]], name: str) -> bool:
++    return any(record["name"] == name and record["passed"] for record in records)
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
++    parser.add_argument("--allow-dirty", action="store_true")
++    args = parser.parse_args()
++
++    commit_sha = git_commit_sha()
++    try:
++        dirty = enforce_clean_tree(git_status(), allow_dirty=args.allow_dirty)
++    except RuntimeError as exc:
++        print(str(exc), file=sys.stderr)
++        raise SystemExit(2) from None
++
++    records = [
++        run_command(spec, args.output_dir / "raw_logs")
++        for spec in command_specs(args.output_dir)
++    ]
++    summary_path = write_summary(
++        args.output_dir,
++        commit_sha=commit_sha,
++        dirty=dirty,
++        allow_dirty=args.allow_dirty,
++        records=records,
++        tool_versions=tool_versions(),
++    )
++    payload = json.loads(summary_path.read_text(encoding="utf-8"))
++    print(f"wrote verification summary to {summary_path}")
++    raise SystemExit(0 if payload["passed"] else 1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/topic5_eval_common.py b/scripts/topic5_eval_common.py
+new file mode 100644
+index 00000000..5ddd7738
+--- /dev/null
++++ b/scripts/topic5_eval_common.py
+@@ -0,0 +1,71 @@
++"""Shared report utilities for case-level Topic 5 evaluators."""
++
++from __future__ import annotations
++
++import hashlib
++import json
++import subprocess
++from datetime import UTC, datetime
++from pathlib import Path
++from typing import Any
++
++
++ROOT = Path(__file__).resolve().parents[1]
++
++
++def load_case_fixture(path: Path, *, dataset_id: str) -> dict[str, Any]:
++    payload = json.loads(path.read_text(encoding="utf-8"))
++    cases = payload.get("cases")
++    if payload.get("dataset_id") != dataset_id:
++        raise ValueError(f"expected dataset_id {dataset_id}")
++    if payload.get("version") != "2.0.0" or not isinstance(cases, list) or not cases:
++        raise ValueError("Topic 5 evaluator fixture must be non-empty version 2.0.0")
++    case_ids = [case.get("case_id") for case in cases]
++    if any(not case_id for case_id in case_ids) or len(case_ids) != len(set(case_ids)):
++        raise ValueError("Topic 5 evaluator case_id values must be non-empty and unique")
++    return payload
++
++
++def build_case_report(
++    *,
++    fixture_path: Path,
++    fixture: dict[str, Any],
++    cases: list[dict[str, Any]],
++    metrics: dict[str, Any],
++    reproduction_command: str,
++    claim_boundary: str,
++) -> dict[str, Any]:
++    passed_count = sum(bool(case["passed"]) for case in cases)
++    return {
++        "dataset_id": fixture["dataset_id"],
++        "dataset_version": fixture["version"],
++        "dataset_sha256": hashlib.sha256(fixture_path.read_bytes()).hexdigest(),
++        "commit_sha": current_commit_sha(),
++        "generated_at": datetime.now(UTC).isoformat(),
++        "case_count": len(cases),
++        "passed_count": passed_count,
++        **metrics,
++        "failed_cases": [case for case in cases if not case["passed"]],
++        "cases": cases,
++        "reproduction_command": reproduction_command,
++        "claim_boundary": claim_boundary,
++    }
++
++
++def current_commit_sha() -> str:
++    completed = subprocess.run(
++        ["git", "rev-parse", "HEAD"],
++        cwd=ROOT,
++        check=True,
++        capture_output=True,
++        text=True,
++    )
++    return completed.stdout.strip()
++
++
++def write_json_report(report: dict[str, Any], path: Path) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
++        encoding="utf-8",
++    )

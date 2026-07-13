@@ -14,9 +14,13 @@ DEFAULT_OUTPUT = ROOT / "eval" / "topic5_mapping_v2"
 BASELINE_ENGINE_COMMIT = "70ff30236d90a3c9de0534a8f6313e5bb559cbf5"
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode()).hexdigest()
+
+
 def _hashes(root: Path, paths: list[Path]) -> dict[str, str]:
     return {
-        path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+        path.relative_to(root).as_posix(): _sha256(path)
         for path in paths
     }
 
@@ -66,7 +70,7 @@ def write_hashes(output: Path) -> None:
         encoding="utf-8",
     )
     (output.parent / f"{output.name}.hashes.sha256").write_text(
-        hashlib.sha256(hashes_path.read_bytes()).hexdigest() + "\n",
+        _sha256(hashes_path) + "\n",
         encoding="utf-8",
     )
 

@@ -1,0 +1,399 @@
+{
+  "mappings": [
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_合同名称_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target contract_title",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target contract_title"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_contract_title_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.75,
+        "evidence_score": 0.8,
+        "final_score": 0.8825,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "合同名称",
+        "source_path": "$.metadata.合同名称"
+      },
+      "source_field_name": "合同名称",
+      "source_path": "$.metadata.合同名称",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "contract_title",
+      "target_field_name": "contract_title",
+      "task_id": "task_contract_001",
+      "value_sample": "数据服务采购合同"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_甲方_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target party_a",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target party_a"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_party_a_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.75,
+        "evidence_score": 0.8,
+        "final_score": 0.8825,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "甲方",
+        "source_path": "$.metadata.甲方"
+      },
+      "source_field_name": "甲方",
+      "source_path": "$.metadata.甲方",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "party_a",
+      "target_field_name": "party_a",
+      "task_id": "task_contract_001",
+      "value_sample": "甲方科技有限公司"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_乙方_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target party_b",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target party_b"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_party_b_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.75,
+        "evidence_score": 0.8,
+        "final_score": 0.8825,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "乙方",
+        "source_path": "$.metadata.乙方"
+      },
+      "source_field_name": "乙方",
+      "source_path": "$.metadata.乙方",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "party_b",
+      "target_field_name": "party_b",
+      "task_id": "task_contract_001",
+      "value_sample": "乙方数据服务有限公司"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_签署日期_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target sign_date",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target sign_date"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_sign_date_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.75,
+        "evidence_score": 0.8,
+        "final_score": 0.8825,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "签署日期",
+        "source_path": "$.metadata.签署日期"
+      },
+      "source_field_name": "签署日期",
+      "source_path": "$.metadata.签署日期",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "sign_date",
+      "target_field_name": "sign_date",
+      "task_id": "task_contract_001",
+      "value_sample": "2024-01-20"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_合同金额_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target amount",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target amount"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_amount_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.75,
+        "evidence_score": 0.8,
+        "final_score": 0.8825,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "合同金额",
+        "source_path": "$.metadata.合同金额"
+      },
+      "source_field_name": "合同金额",
+      "source_path": "$.metadata.合同金额",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "amount",
+      "target_field_name": "amount",
+      "task_id": "task_contract_001",
+      "value_sample": 100000
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_状态_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target status",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target status"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_status_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.75,
+        "evidence_score": 0.8,
+        "final_score": 0.8225,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 0.4
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "状态",
+        "source_path": "$.metadata.状态"
+      },
+      "source_field_name": "状态",
+      "source_path": "$.metadata.状态",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "status",
+      "target_field_name": "status",
+      "task_id": "task_contract_001",
+      "value_sample": "有效"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_task_contract_001_content_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to content",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to content"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_task_contract_001_content_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.85,
+        "evidence_score": 0.8,
+        "final_score": 0.8925,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 0.9
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "content",
+        "source_path": "$.metadata.content"
+      },
+      "source_field_name": "content",
+      "source_path": "$.metadata.content",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "content",
+      "target_field_name": "content",
+      "task_id": "task_contract_001",
+      "value_sample": "本合同约定数据服务范围、交付周期、验收标准与付款条件。"
+    }
+  ],
+  "review_required_items": [],
+  "schema_id": "contract_doc",
+  "summary": {
+    "accepted_count": 7,
+    "average_confidence": 0.9657,
+    "avg_confidence": 0.9657,
+    "badcase_blocked_count": 0,
+    "failed_count": 0,
+    "llm_suggestion_count": 0,
+    "mapped_count": 7,
+    "mapped_fields": 7,
+    "mapping_mode": "legacy",
+    "methods": {
+      "alias": 6,
+      "exact": 1
+    },
+    "required_unmapped_count": 0,
+    "review_required": 0,
+    "review_required_count": 0,
+    "risk_flag_counts": {},
+    "strategy_counts": {
+      "alias": 6,
+      "exact": 1,
+      "fuzzy": 0,
+      "llm_fallback": 0,
+      "regex": 0,
+      "type": 0
+    },
+    "target_fields": 8,
+    "template_id": "contract_doc_base_v1",
+    "thresholds": {},
+    "total_candidates": 13,
+    "total_target_fields": 8,
+    "unmapped_required_fields": 0,
+    "warnings": []
+  },
+  "task_id": "task_contract_001",
+  "unmapped": []
+}

@@ -40,7 +40,7 @@ def _git_head() -> str:
 
 
 def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode()).hexdigest()
 
 
 def collect_dev_samples(

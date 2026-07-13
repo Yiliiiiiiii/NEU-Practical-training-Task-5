@@ -1,0 +1,149 @@
+{
+  "baseline_comparison": {
+    "baseline": "eval\\topic5_performance\\v1\\baseline.json",
+    "passed": true,
+    "regressions": [],
+    "status": "compared"
+  },
+  "case_count": 4,
+  "cases": [
+    {
+      "artifact_bytes": 30426,
+      "attempt_total_durations_ms": [
+        82.384,
+        32.503
+      ],
+      "block_count": 10,
+      "candidate_count": 11,
+      "chunk_count": 10,
+      "fixture": "10.json",
+      "measurement_repetitions": 2,
+      "passed": true,
+      "peak_memory_bytes": 453270,
+      "stage_durations_ms": {
+        "candidate_extraction": 11.871,
+        "canonical": 0.239,
+        "chunk": 16.506,
+        "mapping": 4.326,
+        "metadata": 0.096,
+        "render": 0.552,
+        "total": 57.444,
+        "transform": 2.97,
+        "validation": 0.163,
+        "validation_and_consistency": 1.002,
+        "verification": 0.839
+      },
+      "status": "completed",
+      "total_duration_ms": 57.444
+    },
+    {
+      "artifact_bytes": 292999,
+      "attempt_total_durations_ms": [
+        282.796,
+        253.086
+      ],
+      "block_count": 100,
+      "candidate_count": 43,
+      "chunk_count": 100,
+      "fixture": "100.json",
+      "measurement_repetitions": 2,
+      "passed": true,
+      "peak_memory_bytes": 2536584,
+      "stage_durations_ms": {
+        "candidate_extraction": 8.261,
+        "canonical": 1.043,
+        "chunk": 61.448,
+        "mapping": 25.147,
+        "metadata": 0.089,
+        "render": 2.827,
+        "total": 267.941,
+        "transform": 0.177,
+        "validation": 0.694,
+        "validation_and_consistency": 7.648,
+        "verification": 6.954
+      },
+      "status": "completed",
+      "total_duration_ms": 267.941
+    },
+    {
+      "artifact_bytes": 2927999,
+      "attempt_total_durations_ms": [
+        2607.405,
+        2474.11
+      ],
+      "block_count": 1000,
+      "candidate_count": 403,
+      "chunk_count": 1000,
+      "fixture": "1000.json",
+      "measurement_repetitions": 2,
+      "passed": true,
+      "peak_memory_bytes": 24873753,
+      "stage_durations_ms": {
+        "candidate_extraction": 85.582,
+        "canonical": 11.624,
+        "chunk": 628.856,
+        "mapping": 211.114,
+        "metadata": 0.096,
+        "render": 22.959,
+        "total": 2540.758,
+        "transform": 0.245,
+        "validation": 4.96,
+        "validation_and_consistency": 74.082,
+        "verification": 69.123
+      },
+      "status": "completed",
+      "total_duration_ms": 2540.758
+    },
+    {
+      "artifact_bytes": 29383957,
+      "attempt_total_durations_ms": [
+        31334.139,
+        31192.284
+      ],
+      "block_count": 10000,
+      "candidate_count": 4003,
+      "chunk_count": 10000,
+      "fixture": "10000.json",
+      "measurement_repetitions": 2,
+      "passed": true,
+      "peak_memory_bytes": 248084145,
+      "stage_durations_ms": {
+        "candidate_extraction": 876.891,
+        "canonical": 128.423,
+        "chunk": 9073.122,
+        "mapping": 2069.656,
+        "metadata": 0.117,
+        "render": 211.267,
+        "total": 31263.211,
+        "transform": 0.254,
+        "validation": 60.577,
+        "validation_and_consistency": 1557.8,
+        "verification": 1497.224
+      },
+      "status": "completed",
+      "total_duration_ms": 31263.211
+    }
+  ],
+  "claim_boundary": "Measured on the recorded host; no absolute production SLO claim.",
+  "commit_sha": "1a880985dfdd28d51c9ee9f7d8216ca76a430104",
+  "dataset_id": "topic5_performance",
+  "dataset_version": "1.0.0",
+  "environment": {
+    "logical_cpu_count": 16,
+    "memory_measurement": "tracemalloc Python allocations",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.13.5",
+    "total_memory_bytes": null
+  },
+  "measurement_repetitions": 2,
+  "passed_count": 4,
+  "reproduction_command": "python scripts/eval_topic5_performance.py",
+  "scaling": {
+    "declared_expectation": "approximately linear in block count",
+    "duration_ratio_1000_to_10000": 12.304678761220078,
+    "quadratic_blowup_detected": false,
+    "size_ratio_1000_to_10000": 10.0
+  },
+  "status": "passed"
+}

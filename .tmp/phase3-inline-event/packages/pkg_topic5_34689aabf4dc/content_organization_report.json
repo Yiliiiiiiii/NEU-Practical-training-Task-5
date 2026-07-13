@@ -1,0 +1,105 @@
+{
+  "chunk_count": 6,
+  "chunks_with_content_tags": 6,
+  "chunks_with_keywords": 6,
+  "chunks_with_quality_tags": 6,
+  "chunks_with_source_links": 6,
+  "chunks_with_summary": 6,
+  "doc_id": "uir_event_notice_001",
+  "summary": {
+    "avg_token_estimate": 11.5,
+    "child_chunk_count": 6,
+    "chunk_count": 6,
+    "chunks": [
+      {
+        "chunk_id": "chunk_topic5_34689aabf4dc_0000",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e1"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "chunk_id": "chunk_topic5_34689aabf4dc_0001",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e2"
+        ],
+        "token_estimate": 9
+      },
+      {
+        "chunk_id": "chunk_topic5_34689aabf4dc_0002",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e3"
+        ],
+        "token_estimate": 7
+      },
+      {
+        "chunk_id": "chunk_topic5_34689aabf4dc_0003",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e4"
+        ],
+        "token_estimate": 6
+      },
+      {
+        "chunk_id": "chunk_topic5_34689aabf4dc_0004",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e5"
+        ],
+        "token_estimate": 10
+      },
+      {
+        "chunk_id": "chunk_topic5_34689aabf4dc_0005",
+        "quality_flags": [],
+        "source_block_ids": [
+          "e6"
+        ],
+        "token_estimate": 30
+      }
+    ],
+    "content_tag_counts": {
+      "event_notice": 6
+    },
+    "empty_chunk_count": 0,
+    "length_ok_count": 2,
+    "max_token_estimate": 30,
+    "min_token_estimate": 6,
+    "options": {
+      "chunk_strategy": "source_block_aware",
+      "enable_light_semantic_boundary": true,
+      "enable_parent_child": false,
+      "keyword_mode": "deterministic",
+      "max_tokens": 1400,
+      "min_tokens": 1,
+      "overlap_tokens": 0,
+      "protect_code_blocks": true,
+      "protect_lists": true,
+      "protect_tables": true,
+      "summary_mode": "deterministic",
+      "target_tokens": 1200
+    },
+    "oversized_count": 0,
+    "oversized_protected_blocks_count": 0,
+    "parent_chunk_count": 0,
+    "protected_blocks_count": 0,
+    "quality_flags_summary": {},
+    "quality_tag_counts": {
+      "anchor_linked": 6,
+      "keyworded": 6,
+      "length_ok": 2,
+      "short_chunk": 4,
+      "source_linked": 6,
+      "summarized": 6,
+      "validation_passed": 6
+    },
+    "schema_id": "event_notice_doc",
+    "source_linked_count": 6,
+    "strategy": "source_block_aware",
+    "template_id": "event_notice_doc_base_v1"
+  },
+  "task_id": "topic5_34689aabf4dc",
+  "warnings": []
+}

@@ -1,0 +1,88 @@
+{
+  "doc_id": "uir_event_notice_001",
+  "errors": [],
+  "schema_id": "event_notice_doc",
+  "summary": {
+    "error_count": 0,
+    "trace_count": 8,
+    "transformed_fields": 6
+  },
+  "task_id": "topic5_0aa430c27863",
+  "template_id": "event_notice_doc_base_v1",
+  "traces": [
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "document_title",
+        "source_path": "$.metadata.document_title"
+      },
+      "status": "ok",
+      "target_field_id": "title"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "organizer",
+        "source_path": "$.blocks.e2.text"
+      },
+      "status": "ok",
+      "target_field_id": "organizer"
+    },
+    {
+      "normalized_value": "2026-07-12T14:00:00",
+      "normalizer": "datetime_normalize",
+      "operation": "datetime_normalize",
+      "source_field": {
+        "source_name": "event_time",
+        "source_path": "$.blocks.e3.text"
+      },
+      "source_value": "2026-07-12 14:00",
+      "status": "ok",
+      "target_field_id": "event_time"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "location",
+        "source_path": "$.blocks.e4.text"
+      },
+      "status": "ok",
+      "target_field_id": "location"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "audience",
+        "source_path": "$.blocks.e5.text"
+      },
+      "status": "ok",
+      "target_field_id": "audience"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "body",
+        "source_path": "$.blocks.e6.text"
+      },
+      "status": "ok",
+      "target_field_id": "body"
+    },
+    {
+      "operation": "normalize_datetime",
+      "rule_id": "normalize_event_time",
+      "source_field": null,
+      "source_fields": [],
+      "status": "ok",
+      "target_field_id": "event_time"
+    },
+    {
+      "operation": "trim",
+      "rule_id": "trim_title",
+      "source_field": null,
+      "source_fields": [],
+      "status": "ok",
+      "target_field_id": "title"
+    }
+  ],
+  "warnings": []
+}

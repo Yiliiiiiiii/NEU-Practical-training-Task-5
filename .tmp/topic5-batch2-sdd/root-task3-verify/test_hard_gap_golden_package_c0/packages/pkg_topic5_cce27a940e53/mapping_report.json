@@ -1,0 +1,258 @@
+{
+  "mappings": [
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_cce27a940e53_document_title_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target title",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target title"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_cce27a940e53_title_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.85,
+        "evidence_score": 0.8,
+        "final_score": 0.9025,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.85,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [],
+      "source_field": {
+        "source_name": "document_title",
+        "source_path": "$.metadata.document_title"
+      },
+      "source_field_name": "document_title",
+      "source_path": "$.metadata.document_title",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "title",
+      "target_field_name": "title",
+      "task_id": "topic5_cce27a940e53",
+      "value_sample": "关于开展系统维护的公告"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_cce27a940e53_issuer_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to issuer",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to issuer"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_cce27a940e53_issuer_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.95,
+        "evidence_score": 0.7,
+        "final_score": 0.8975,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "b2"
+      ],
+      "source_field": {
+        "source_name": "issuer",
+        "source_path": "$.blocks.b2.text"
+      },
+      "source_field_name": "issuer",
+      "source_path": "$.blocks.b2.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "issuer",
+      "target_field_name": "issuer",
+      "task_id": "topic5_cce27a940e53",
+      "value_sample": "信息化办公室"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_cce27a940e53_publish_date_1",
+      "confidence": 1.0,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "exact mapping to publish_date",
+          "metadata": {},
+          "source": null,
+          "type": "exact_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "exact mapping to publish_date"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_cce27a940e53_publish_date_exact",
+      "method": "exact",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.95,
+        "evidence_score": 0.7,
+        "final_score": 0.8975,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 1.0
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "b3"
+      ],
+      "source_field": {
+        "source_name": "publish_date",
+        "source_path": "$.blocks.b3.text"
+      },
+      "source_field_name": "publish_date",
+      "source_path": "$.blocks.b3.text",
+      "status": "accepted",
+      "strategy": "exact",
+      "target_field_id": "publish_date",
+      "target_field_name": "publish_date",
+      "task_id": "topic5_cce27a940e53",
+      "value_sample": "2026-07-09"
+    },
+    {
+      "badcase_filter": {
+        "blocked": false,
+        "checked": false,
+        "reason": null
+      },
+      "candidate_id": "cand_topic5_cce27a940e53_正文_1",
+      "confidence": 0.96,
+      "confidence_tier": "high",
+      "evidence": [
+        {
+          "message": "alias matched target body",
+          "metadata": {},
+          "source": null,
+          "type": "alias_match",
+          "weight": null
+        }
+      ],
+      "evidence_text": [
+        "alias matched target body"
+      ],
+      "llm_metadata": null,
+      "mapping_id": "map_topic5_cce27a940e53_body_alias",
+      "method": "alias",
+      "need_review": false,
+      "ranking_trace": {
+        "context_score": 0.7,
+        "evidence_score": 0.7,
+        "final_score": 0.8375,
+        "label_score": 1.0,
+        "risk_penalty": 0.0,
+        "source_quality_score": 0.95,
+        "type_score": 0.9
+      },
+      "rejected_candidates": [],
+      "review_required_reason": null,
+      "risk_flags": [],
+      "source_blocks": [
+        "b4"
+      ],
+      "source_field": {
+        "source_name": "正文",
+        "source_path": "$.blocks.b4.text"
+      },
+      "source_field_name": "正文",
+      "source_path": "$.blocks.b4.text",
+      "status": "accepted",
+      "strategy": "alias",
+      "target_field_id": "body",
+      "target_field_name": "body",
+      "task_id": "topic5_cce27a940e53",
+      "value_sample": "为提升系统稳定性，平台将于本周六凌晨进行维护。维护期间部分服务可能短暂不可用。"
+    }
+  ],
+  "review_required_items": [],
+  "schema_id": "announcement_doc",
+  "summary": {
+    "accepted_count": 4,
+    "average_confidence": 0.98,
+    "avg_confidence": 0.98,
+    "badcase_blocked_count": 0,
+    "failed_count": 0,
+    "input_mode": "inline_topic5_config",
+    "llm_suggestion_count": 0,
+    "mapped_count": 4,
+    "mapped_fields": 4,
+    "mapping_input_name": "mapping_rules",
+    "mapping_mode": "legacy",
+    "methods": {
+      "alias": 2,
+      "exact": 2
+    },
+    "no_code_schema_pack_onboarding": true,
+    "required_unmapped_count": 0,
+    "review_required": 0,
+    "review_required_count": 0,
+    "risk_flag_counts": {},
+    "strategy_counts": {
+      "alias": 2,
+      "exact": 2,
+      "fuzzy": 0,
+      "llm_fallback": 0,
+      "regex": 0,
+      "type": 0
+    },
+    "target_fields": 4,
+    "template_id": "announcement_doc_base_v1",
+    "thresholds": {
+      "auto_accept": 0.82,
+      "review_required": 0.62
+    },
+    "total_candidates": 9,
+    "total_target_fields": 4,
+    "unmapped_required_fields": 0,
+    "warnings": []
+  },
+  "task_id": "topic5_cce27a940e53",
+  "unmapped": []
+}

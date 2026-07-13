@@ -1,0 +1,419 @@
+# Review package: 7c319c39..b26fc48f
+
+## Commits
+b26fc48f fix: separate business metadata from operational reports
+
+## Files changed
+ .../app/services/artifact_consistency_service.py   |   2 +-
+ backend/app/services/render_service.py             | 100 +++++++++++++++++----
+ backend/tests/test_conversion_artifact_services.py |   7 +-
+ backend/tests/test_topic5_convert_api.py           |  94 ++++++++++++++++++-
+ 4 files changed, 183 insertions(+), 20 deletions(-)
+
+## Diff
+diff --git a/backend/app/services/artifact_consistency_service.py b/backend/app/services/artifact_consistency_service.py
+index 910e035c..dead1c59 100644
+--- a/backend/app/services/artifact_consistency_service.py
++++ b/backend/app/services/artifact_consistency_service.py
+@@ -241,21 +241,21 @@ class ArtifactConsistencyService:
+         return matched_ids
+ 
+     def _check_summary(
+         self,
+         structured: dict[str, Any],
+         markdown: str,
+         document_summary: DocumentSummary | None,
+         errors: list[ArtifactConsistencyIssue],
+     ) -> bool:
+         expected_payload = (
+-            document_summary.model_dump(mode="json") if document_summary else None
++            document_summary.model_dump(mode="json") if document_summary else {}
+         )
+         json_payload = structured.get("document_summary")
+         json_matches = json_payload == expected_payload
+         if not json_matches:
+             self._error(
+                 errors,
+                 "document_summary",
+                 "json_summary_mismatch",
+                 "Structured summary does not match the summary artifact.",
+             )
+diff --git a/backend/app/services/render_service.py b/backend/app/services/render_service.py
+index ffbe8c34..a319b3f2 100644
+--- a/backend/app/services/render_service.py
++++ b/backend/app/services/render_service.py
+@@ -1,17 +1,65 @@
+ import hashlib
+ import json
+ from dataclasses import dataclass
+ from typing import Any
+ 
+ from app.schemas.canonical import CanonicalBlock, CanonicalModel
+ 
++_FORBIDDEN_BUSINESS_KEYS = {
++    "access_token",
++    "api_key",
++    "artifact_consistency_report",
++    "authorization",
++    "content_organization_report",
++    "conversion_assertion_report",
++    "credentials",
++    "duration_ms",
++    "elapsed_ms",
++    "execution_snapshot",
++    "execution_trace",
++    "field_traces",
++    "mapping_report",
++    "mapping_summary",
++    "metadata_template_report",
++    "package_id",
++    "password",
++    "provider_trace",
++    "refresh_token",
++    "report_paths",
++    "runtime_duration_ms",
++    "secret",
++    "task_id",
++    "transform_report",
++    "transform_summary",
++    "validation_report",
++    "verifier_report",
++}
++_FORBIDDEN_BUSINESS_SUFFIXES = (
++    "_access_token",
++    "_api_key",
++    "_password",
++    "_refresh_token",
++    "_report_path",
++    "_report_paths",
++    "_secret",
++)
++
++
++def _is_forbidden_business_key(key: object) -> bool:
++    if not isinstance(key, str):
++        return False
++    normalized = key.casefold()
++    return normalized in _FORBIDDEN_BUSINESS_KEYS or normalized.endswith(
++        _FORBIDDEN_BUSINESS_SUFFIXES
++    )
++
+ 
+ @dataclass(frozen=True)
+ class RenderedArtifacts:
+     structured_json: dict[str, Any]
+     markdown: str
+     chunks: list[dict[str, Any]]
+ 
+ 
+ class RenderService:
+     def render(self, canonical: CanonicalModel, chunk_size: int = 1200) -> RenderedArtifacts:
+@@ -25,44 +73,62 @@ class RenderService:
+         )
+         metadata_template = canonical.doc_meta.get("metadata_template")
+         document_summary = canonical.doc_meta.get("document_summary")
+         content_metadata_template = (
+             {
+                 key: metadata_template[key]
+                 for key in ("template_id", "version")
+                 if key in metadata_template
+             }
+             if isinstance(metadata_template, dict)
+-            else None
++            else {}
++        )
++        content_document_summary = (
++            document_summary if isinstance(document_summary, dict) else {}
++        )
++        source_metadata = self._business_value(source_metadata)
++        document_metadata = self._business_value(document_metadata)
++        structured = self._business_value(
++            {
++                "source_metadata": source_metadata,
++                "document_metadata": document_metadata,
++                "metadata_template": content_metadata_template,
++                "document_summary": content_document_summary,
++                "data": {
++                    field_id: field.value
++                    for field_id, field in canonical.fields.items()
++                },
++                "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
++                "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
++                # Deprecated Package 1.1 alias. New consumers should use the two
++                # explicit metadata fields above.
++                "metadata": {**source_metadata, **document_metadata},
++            }
+         )
+-        structured = {
+-            "task_id": canonical.task_id,
+-            "doc_id": canonical.doc_id,
+-            "schema_id": canonical.schema_id,
+-            "data": {
+-                field_id: field.value
+-                for field_id, field in canonical.fields.items()
+-            },
+-            "metadata": {**source_metadata, **canonical.doc_meta},
+-            "document_metadata": document_metadata,
+-            "metadata_template": content_metadata_template,
+-            "document_summary": document_summary,
+-            "blocks": [block.model_dump(mode="json") for block in canonical.blocks],
+-            "assets": [asset.model_dump(mode="json") for asset in canonical.assets],
+-            "execution_snapshot": canonical.doc_meta.get("execution_snapshot", {}),
+-        }
+         return RenderedArtifacts(
+             structured_json=structured,
+             markdown=self._markdown(canonical),
+             chunks=self._chunks(canonical, chunk_size=chunk_size),
+         )
+ 
++    @classmethod
++    def _business_value(cls, value: Any) -> Any:
++        if isinstance(value, dict):
++            return {
++                key: cls._business_value(child)
++                for key, child in value.items()
++                if not _is_forbidden_business_key(key)
++            }
++        if isinstance(value, list):
++            return [cls._business_value(child) for child in value]
++        return value
++
+     def _markdown(self, canonical: CanonicalModel) -> str:
+         lines = [
+             (
+                 '<!-- topic5:document:start '
+                 f'doc_id="{self._marker_value(canonical.doc_id)}" '
+                 f'schema_id="{self._marker_value(canonical.schema_id)}" -->'
+             )
+         ]
+         document_summary = canonical.doc_meta.get("document_summary")
+         summary_text = (
+diff --git a/backend/tests/test_conversion_artifact_services.py b/backend/tests/test_conversion_artifact_services.py
+index 128f9c0a..e3a8aa94 100644
+--- a/backend/tests/test_conversion_artifact_services.py
++++ b/backend/tests/test_conversion_artifact_services.py
+@@ -113,21 +113,26 @@ def test_canonical_and_render_services_preserve_sources_and_chunks():
+         execution_snapshot={"engine_version": "test"},
+     )
+     rendered = RenderService().render(canonical)
+ 
+     assert canonical.fields["title"].value == "接口目录维护说明"
+     assert canonical.blocks[0].source_blocks == ["gen001_b001"]
+     assert rendered.structured_json["data"]["title"] == "接口目录维护说明"
+     assert rendered.structured_json["metadata"]["retrieved_at"] == (
+         "2026-07-10T00:00:00Z"
+     )
+-    assert rendered.structured_json["metadata"]["execution_snapshot"] == {
++    assert rendered.structured_json["source_metadata"]["retrieved_at"] == (
++        "2026-07-10T00:00:00Z"
++    )
++    assert "execution_snapshot" not in rendered.structured_json["metadata"]
++    assert "execution_snapshot" not in rendered.structured_json["source_metadata"]
++    assert canonical.doc_meta["execution_snapshot"] == {
+         "engine_version": "test"
+     }
+     assert "# 接口目录维护说明" in rendered.markdown
+     assert rendered.chunks
+     assert all(chunk["text"] for chunk in rendered.chunks)
+     assert all(chunk["source_block_ids"] for chunk in rendered.chunks)
+ 
+ 
+ def test_validation_service_checks_schema_and_render_outputs():
+     from app.services.render_service import RenderedArtifacts
+diff --git a/backend/tests/test_topic5_convert_api.py b/backend/tests/test_topic5_convert_api.py
+index 3c49b219..a5efa72b 100644
+--- a/backend/tests/test_topic5_convert_api.py
++++ b/backend/tests/test_topic5_convert_api.py
+@@ -11,20 +11,61 @@ from pydantic import ValidationError
+ from sqlalchemy import create_engine
+ from sqlalchemy.orm import sessionmaker
+ 
+ from app.config import Settings
+ from app.db.models import Base
+ from app.main import create_app
+ from app.schemas.topic5_convert import Topic5ConvertRequest
+ from app.services.package_verifier_service import PackageVerifierService
+ from tests.topic5_helpers import announcement_convert_request
+ 
++BUSINESS_CONTENT_KEYS = {
++    "source_metadata",
++    "document_metadata",
++    "metadata_template",
++    "document_summary",
++    "data",
++    "blocks",
++    "assets",
++    "metadata",  # Deprecated compatibility alias.
++}
++FORBIDDEN_BUSINESS_KEYS = {
++    "task_id",
++    "package_id",
++    "execution_snapshot",
++    "mapping_summary",
++    "transform_summary",
++    "metadata_template_report",
++    "report_paths",
++    "runtime_duration_ms",
++    "api_key",
++    "topic11_api_key",
++    "mapping_report_path",
++    "secret",
++    "password",
++    "access_token",
++}
++
++
++def _forbidden_key_paths(value: object, path: str = "$") -> list[str]:
++    matches: list[str] = []
++    if isinstance(value, dict):
++        for key, child in value.items():
++            child_path = f"{path}.{key}"
++            if key.lower() in FORBIDDEN_BUSINESS_KEYS:
++                matches.append(child_path)
++            matches.extend(_forbidden_key_paths(child, child_path))
++    elif isinstance(value, list):
++        for index, child in enumerate(value):
++            matches.extend(_forbidden_key_paths(child, f"{path}[{index}]"))
++    return matches
++
+ 
+ @pytest.fixture
+ def topic5_client(tmp_path) -> Iterator[tuple[TestClient, Path]]:
+     from app.api.deps import get_db, get_storage_service
+     from app.services.storage_service import StorageService
+ 
+     engine = create_engine(
+         f"sqlite:///{tmp_path / 'test.db'}",
+         connect_args={"check_same_thread": False},
+     )
+@@ -71,35 +112,85 @@ def test_topic5_convert_accepts_inline_config(topic5_client):
+     assert payload["chunks"]
+     assert payload["mapping_report"]["summary"]["input_mode"] == "inline_topic5_config"
+     assert payload["mapping_report"]["summary"]["mapping_input_name"] == "mapping_template"
+     assert payload["mapping_report"]["summary"]["review_required_count"] == 0
+     assert payload["mapping_report"]["summary"]["required_unmapped_count"] == 0
+     assert payload["content_organization_report"]["summary"]["chunk_count"] > 0
+     assert payload["manifest"] is None
+     assert payload["package_zip_path"] is None
+ 
+ 
++def test_inline_business_content_has_explicit_shape_and_no_operational_keys(
++    topic5_client,
++):
++    client, _storage_root = topic5_client
++    payload = announcement_convert_request()
++    payload["uir"]["metadata"]["safe_nested"] = {
++        "label": "business value",
++        "execution_snapshot": {"api_key": "inline-secret"},
++        "topic11_api_key": "provider-secret",
++        "runtime_duration_ms": 42,
++    }
++
++    response = client.post("/api/v1/topic5/convert", json=payload)
++
++    assert response.status_code == 200
++    body = response.json()
++    content = body["content_json"]
++    assert set(content) == BUSINESS_CONTENT_KEYS
++    assert _forbidden_key_paths(content) == []
++    assert content["source_metadata"]["safe_nested"] == {"label": "business value"}
++    assert content["metadata"] == {
++        **content["source_metadata"],
++        **content["document_metadata"],
++    }
++    assert body["metadata_template_report"]["field_traces"]
++
++
+ def test_topic5_convert_package_creates_verified_package(topic5_client):
+     client, _storage_root = topic5_client
+ 
+     response = client.post("/api/v1/topic5/convert/package", json=announcement_convert_request())
+ 
+     assert response.status_code == 200
+     payload = response.json()
+     assert payload["status"] == "completed"
+     assert payload["package_metadata"]["schema_id"] == "announcement_doc"
+     assert payload["package_zip_path"]
+     assert Path(payload["package_zip_path"]).is_file()
+     assert payload["package_metadata"]["status"] == "completed"
+     assert payload["verifier_report"]["passed"] is True
+ 
+ 
++def test_packaged_content_has_explicit_shape_and_no_operational_keys(topic5_client):
++    client, _storage_root = topic5_client
++    payload = announcement_convert_request()
++    payload["uir"]["metadata"]["nested"] = {
++        "safe": "business value",
++        "report_paths": {"mapping": "private/path.json"},
++        "mapping_report_path": "private/mapping.json",
++        "secret": "package-secret",
++    }
++
++    response = client.post("/api/v1/topic5/convert/package", json=payload)
++
++    assert response.status_code == 200
++    body = response.json()
++    package_dir = Path(body["package_zip_path"]).parent
++    content = json.loads((package_dir / "content.json").read_text(encoding="utf-8"))
++    assert set(content) == BUSINESS_CONTENT_KEYS
++    assert _forbidden_key_paths(content) == []
++    assert content["source_metadata"]["nested"] == {"safe": "business value"}
++    assert (package_dir / "mapping_report.json").is_file()
++    assert (package_dir / "metadata_template_report.json").is_file()
++
++
+ def test_topic5_metadata_template_controls_response_and_content_json(topic5_client):
+     client, _storage_root = topic5_client
+ 
+     response = client.post("/api/v1/topic5/convert", json=announcement_convert_request())
+ 
+     assert response.status_code == 200
+     body = response.json()
+     assert body["document_metadata"] == {"language": "zh-CN", "source": "example"}
+     assert body["content_json"]["document_metadata"] == body["document_metadata"]
+     assert body["content_json"]["metadata_template"] == {
+@@ -140,21 +231,21 @@ def test_topic5_document_summary_can_be_disabled(topic5_client):
+         "document_mode": "none",
+         "document_max_sentences": 5,
+         "document_max_chars": 500,
+     }
+ 
+     response = client.post("/api/v1/topic5/convert", json=payload)
+ 
+     assert response.status_code == 200
+     body = response.json()
+     assert body["document_summary"] is None
+-    assert body["content_json"]["document_summary"] is None
++    assert body["content_json"]["document_summary"] == {}
+     assert (
+         "<!-- topic5:summary:start -->\n\n<!-- topic5:summary:end -->"
+         in body["content_markdown"]
+     )
+     assert body["artifact_consistency_report"]["summary_consistent"] is True
+ 
+ 
+ def test_topic5_document_summary_is_deterministic_across_three_runs(topic5_client):
+     client, _storage_root = topic5_client
+ 
+@@ -291,20 +382,21 @@ def test_topic5_legacy_request_without_metadata_template_remains_valid(topic5_cl
+     payload.pop("metadata_template")
+ 
+     response = client.post("/api/v1/topic5/convert", json=payload)
+ 
+     assert response.status_code == 200
+     body = response.json()
+     assert body["status"] == "completed"
+     assert body["document_metadata"] == {}
+     assert body["metadata_template_report"] is None
+     assert body["content_json"]["document_metadata"] == {}
++    assert body["content_json"]["metadata_template"] == {}
+ 
+ 
+ def test_topic5_package_contains_metadata_template_artifact_and_feature(topic5_client):
+     client, _storage_root = topic5_client
+ 
+     response = client.post(
+         "/api/v1/topic5/convert/package", json=announcement_convert_request()
+     )
+ 
+     assert response.status_code == 200

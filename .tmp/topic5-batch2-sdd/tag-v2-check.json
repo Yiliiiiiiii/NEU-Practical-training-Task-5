@@ -1,0 +1,712 @@
+{
+  "baseline_source_commit": "7da04a7d1b9c59b7655b7e723302563a699a8e15",
+  "dataset": {
+    "id": "topic5_tag_quality",
+    "payload_sha256": "84f612afe798cfc536939b4a7c35cd95c3beb1d1d5a42e9d4c62a806b2116ccb",
+    "sha256": "84f612afe798cfc536939b4a7c35cd95c3beb1d1d5a42e9d4c62a806b2116ccb",
+    "version": "2.0.0"
+  },
+  "metrics": {
+    "content_semantic": {
+      "f1": 0.851063829787234,
+      "precision": 0.7407407407407407,
+      "recall": 1.0
+    },
+    "management_rule_correctness": {
+      "passed": true,
+      "rate": 1.0
+    },
+    "management_scope_correctness": {
+      "passed": true,
+      "rate": 1.0
+    },
+    "management_trace_correctness": {
+      "passed": true,
+      "rate": 1.0
+    },
+    "quality_rule_correctness": {
+      "passed": true,
+      "rate": 1.0
+    },
+    "quality_scope_correctness": {
+      "passed": true,
+      "rate": 1.0
+    },
+    "quality_trace_correctness": {
+      "passed": true,
+      "rate": 1.0
+    },
+    "unknown_tag_count": 7
+  },
+  "sample_count": 20,
+  "samples": [
+    {
+      "content_semantic": {
+        "actual": [
+          "general"
+        ],
+        "expected": [
+          "general"
+        ]
+      },
+      "doc_id": "real_general_001_notary_service_guide",
+      "management": {
+        "actual": [
+          "schema:general_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:general_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "general"
+        ],
+        "expected": [
+          "general"
+        ]
+      },
+      "doc_id": "real_general_003_textile_application_flow",
+      "management": {
+        "actual": [
+          "schema:general_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:general_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "general"
+        ],
+        "expected": [
+          "general"
+        ]
+      },
+      "doc_id": "real_general_004_tianhe_service_guide",
+      "management": {
+        "actual": [
+          "schema:general_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:general_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "meeting"
+        ],
+        "expected": [
+          "meeting"
+        ]
+      },
+      "doc_id": "real_meeting_001_changning_executive_minutes",
+      "management": {
+        "actual": [
+          "schema:meeting_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:meeting_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "meeting"
+        ],
+        "expected": [
+          "meeting"
+        ]
+      },
+      "doc_id": "real_meeting_004_shandan_2025_11_minutes",
+      "management": {
+        "actual": [
+          "schema:meeting_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:meeting_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "action_item",
+          "attendee",
+          "meeting"
+        ],
+        "expected": [
+          "meeting"
+        ]
+      },
+      "doc_id": "real_meeting_006_shandan_minutes",
+      "management": {
+        "actual": [
+          "schema:meeting_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:meeting_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_001_training_platform_rules",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_002_equipment_renewal",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_003_science_education_guide",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_005_ai_industry_guide",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy",
+          "procedure",
+          "responsibility"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_006_technology_incubator_rules",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_007_one_thing_list",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy",
+          "responsibility"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_008_sme_leader_training",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "compliance",
+          "policy"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_009_network_safety_work",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "policy",
+          "responsibility"
+        ],
+        "expected": [
+          "policy"
+        ]
+      },
+      "doc_id": "real_policy_010_auto_ota_management",
+      "management": {
+        "actual": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:policy_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "procurement"
+        ],
+        "expected": [
+          "procurement"
+        ]
+      },
+      "doc_id": "real_procurement_001_broadcast_security_supervision",
+      "management": {
+        "actual": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "procurement"
+        ],
+        "expected": [
+          "procurement"
+        ]
+      },
+      "doc_id": "real_procurement_002_special_equipment_bid",
+      "management": {
+        "actual": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "procurement"
+        ],
+        "expected": [
+          "procurement"
+        ]
+      },
+      "doc_id": "real_procurement_003_radiation_monitoring_award",
+      "management": {
+        "actual": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "procurement"
+        ],
+        "expected": [
+          "procurement"
+        ]
+      },
+      "doc_id": "real_procurement_004_veterinary_platform_award",
+      "management": {
+        "actual": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    },
+    {
+      "content_semantic": {
+        "actual": [
+          "procurement"
+        ],
+        "expected": [
+          "procurement"
+        ]
+      },
+      "doc_id": "real_procurement_005_rehabilitation_equipment_award",
+      "management": {
+        "actual": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ],
+        "correct": true,
+        "expected": [
+          "schema:procurement_doc",
+          "template_version:1.0.0"
+        ]
+      },
+      "quality": {
+        "actual": [
+          "anchor_linked",
+          "source_linked"
+        ],
+        "correct": true,
+        "expected": [
+          "anchor_linked",
+          "source_linked"
+        ]
+      }
+    }
+  ],
+  "status": "completed"
+}

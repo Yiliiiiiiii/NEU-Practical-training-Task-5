@@ -1,0 +1,95 @@
+{
+  "doc_id": "contract_001_standard",
+  "errors": [],
+  "schema_id": "contract_doc",
+  "summary": {
+    "error_count": 0,
+    "trace_count": 9,
+    "transformed_fields": 8
+  },
+  "task_id": "task_contract_001",
+  "template_id": "contract_doc_base_v1",
+  "traces": [
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "合同名称",
+        "source_path": "$.metadata.合同名称"
+      },
+      "status": "ok",
+      "target_field_id": "contract_title"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "甲方",
+        "source_path": "$.metadata.甲方"
+      },
+      "status": "ok",
+      "target_field_id": "party_a"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "乙方",
+        "source_path": "$.metadata.乙方"
+      },
+      "status": "ok",
+      "target_field_id": "party_b"
+    },
+    {
+      "operation": "date_normalize",
+      "source_field": {
+        "source_name": "签署日期",
+        "source_path": "$.metadata.签署日期"
+      },
+      "status": "ok",
+      "target_field_id": "sign_date"
+    },
+    {
+      "operation": "number_normalize",
+      "source_field": {
+        "source_name": "合同金额",
+        "source_path": "$.metadata.合同金额"
+      },
+      "status": "ok",
+      "target_field_id": "amount"
+    },
+    {
+      "normalized_value": "active",
+      "normalizer": "enum_map",
+      "operation": "enum_map",
+      "source_field": {
+        "source_name": "状态",
+        "source_path": "$.metadata.状态"
+      },
+      "source_value": "有效",
+      "status": "ok",
+      "target_field_id": "status"
+    },
+    {
+      "operation": "rename",
+      "source_field": {
+        "source_name": "content",
+        "source_path": "$.metadata.content"
+      },
+      "status": "ok",
+      "target_field_id": "content"
+    },
+    {
+      "operation": "default",
+      "source_field": null,
+      "status": "ok",
+      "target_field_id": "currency"
+    },
+    {
+      "operation": "enum_map",
+      "rule_id": "contract_status_enum",
+      "source_field": "metadata.状态",
+      "source_fields": [],
+      "status": "ok",
+      "target_field_id": "status"
+    }
+  ],
+  "warnings": []
+}

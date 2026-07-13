@@ -1,0 +1,37 @@
+{
+  "allow_dirty": true,
+  "batch2_acceptance_gate_passed": false,
+  "commands": [
+    {
+      "command": [
+        "F:\\p2\\backend\\.venv\\Scripts\\python.exe",
+        "-c",
+        "pass"
+      ],
+      "cwd": "F:\\p2",
+      "duration_seconds": 0.0,
+      "mandatory": true,
+      "name": "mandatory",
+      "passed": false,
+      "raw_log": null,
+      "return_code": null,
+      "status": "skipped",
+      "stderr": "tool unavailable",
+      "stdout": ""
+    }
+  ],
+  "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "dirty_tree": true,
+  "frontend_build_passed": false,
+  "frontend_tests_passed": false,
+  "full_backend_tests_passed": false,
+  "generated_at": "2026-07-10T12:40:12.524887+00:00",
+  "openapi_export_passed": false,
+  "passed": false,
+  "ruff_clean": false,
+  "ruff_topic5_scripts_clean": false,
+  "schema_pack_contract_gate_passed": false,
+  "tool_versions": {
+    "python": "3.13.5"
+  }
+}

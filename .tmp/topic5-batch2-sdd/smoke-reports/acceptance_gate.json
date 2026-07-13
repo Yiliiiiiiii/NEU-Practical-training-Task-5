@@ -1,0 +1,87 @@
+{
+  "checks": {
+    "artifact_consistency_pass_rate": true,
+    "chunk_source_coverage": true,
+    "consistency_cases_passed": true,
+    "document_summary_faithfulness": true,
+    "document_summary_new_fact_violations": true,
+    "document_summary_source_coverage": true,
+    "entity_cases_passed": true,
+    "entity_passthrough_coverage": true,
+    "invented_entity_id_count": true,
+    "legacy_compatibility_rate": true,
+    "markdown_block_coverage": true,
+    "metadata_cases_passed": true,
+    "metadata_required_localization_rate": true,
+    "metadata_template_effective": true,
+    "secret_leak_count": true,
+    "summary_cases_passed": true,
+    "tampering_detection_rate": true,
+    "topic11_cases_passed": true,
+    "topic11_fallback_success_rate": true,
+    "topic11_invalid_output_acceptance_count": true
+  },
+  "conclusion": "passed",
+  "datasets": {
+    "consistency": {
+      "case_count": 4,
+      "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+      "dataset_id": "topic5_artifact_consistency",
+      "dataset_sha256": "bb2640b9d110c986a43122753001d1514b2aed47e6f41792b39109f8bb6f9564",
+      "dataset_version": "2.0.0",
+      "passed_count": 4
+    },
+    "entity": {
+      "case_count": 3,
+      "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+      "dataset_id": "topic5_entity_passthrough",
+      "dataset_sha256": "fb303d415e7453aa98e2b6ccf04bab90e5835862e885d6b1d527e74958a29105",
+      "dataset_version": "2.0.0",
+      "passed_count": 3
+    },
+    "metadata": {
+      "case_count": 4,
+      "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+      "dataset_id": "topic5_metadata_contract",
+      "dataset_sha256": "905529b002bfb6f30694567c740c707dfd8fb5ee125f01f9cd5a82e104b6aee6",
+      "dataset_version": "2.0.0",
+      "passed_count": 4
+    },
+    "summary": {
+      "case_count": 3,
+      "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+      "dataset_id": "topic5_summary_faithfulness",
+      "dataset_sha256": "557b7eb4e67995ae3c249ba69bd7e6430fc2f71431206e07e81737bfe6980d9c",
+      "dataset_version": "2.0.0",
+      "passed_count": 3
+    },
+    "topic11": {
+      "case_count": 6,
+      "commit_sha": "661ad4480cfe4aa4982def583c83770c1521707a",
+      "dataset_id": "topic5_topic11_adapter",
+      "dataset_sha256": "d2b558c07c6b7acaa9d29e8d8f027f4a4b10c952ab7af8b69a20693a65f776da",
+      "dataset_version": "2.0.0",
+      "passed_count": 6
+    }
+  },
+  "failed_conditions": [],
+  "generated_at": "2026-07-10T12:08:40.720306+00:00",
+  "passed": true,
+  "values": {
+    "artifact_consistency_pass_rate": 1.0,
+    "chunk_source_coverage": 1.0,
+    "document_summary_faithfulness": 1.0,
+    "document_summary_new_fact_violations": 0,
+    "document_summary_source_coverage": 1.0,
+    "entity_passthrough_coverage": 1.0,
+    "invented_entity_id_count": 0,
+    "legacy_compatibility_rate": 1.0,
+    "markdown_block_coverage": 1.0,
+    "metadata_required_localization_rate": 1.0,
+    "metadata_template_effective": true,
+    "secret_leak_count": 0,
+    "tampering_detection_rate": 1.0,
+    "topic11_fallback_success_rate": 1.0,
+    "topic11_invalid_output_acceptance_count": 0
+  }
+}
