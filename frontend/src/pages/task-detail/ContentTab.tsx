@@ -16,11 +16,13 @@ function tagList(chunk: Record<string, any>) {
 export function ContentTab({
   organization,
   chunks,
-  loading
+  loading,
+  error
 }: {
   organization: ContentOrganizationReport | null;
   chunks: ChunksReport | null;
   loading: boolean;
+  error?: string;
 }) {
   const [selectedId, setSelectedId] = useState("");
   const items = chunks?.items ?? [];
@@ -30,6 +32,7 @@ export function ContentTab({
   }, [chunks]);
 
   if (loading) return <PageState kind="loading" title="正在读取内容报告" />;
+  if (error) return <PageState kind="error" title="内容报告读取失败" detail={error} />;
   if (!organization && !chunks) return <PageState kind="empty" title="内容报告尚未生成" detail="任务结果中没有可用的内容组织或 Chunk 报告。" />;
   if (!items.length) return <PageState kind="empty" title="内容报告未包含 Chunk" />;
 

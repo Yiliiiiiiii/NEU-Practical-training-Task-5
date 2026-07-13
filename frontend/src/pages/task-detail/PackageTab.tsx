@@ -8,6 +8,7 @@ export function PackageTab({
   verifier,
   packageMetadata,
   loading,
+  error,
   packageDownloadUrl
 }: {
   taskId: string;
@@ -15,9 +16,11 @@ export function PackageTab({
   verifier: VerifierReport | null;
   packageMetadata: PackageMetadata | null;
   loading: boolean;
+  error?: string;
   packageDownloadUrl: (taskId: string) => string;
 }) {
   if (loading) return <PageState kind="loading" title="正在读取 Package 报告" />;
+  if (error) return <PageState kind="error" title="Package 报告读取失败" detail={error} />;
 
   const passed = verifier?.passed === true;
   const downloadReason = "当前没有已通过验证器校验的 Package，因此不能下载。";

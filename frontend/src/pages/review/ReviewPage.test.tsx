@@ -102,7 +102,7 @@ describe("ReviewPage", () => {
     render(<ReviewPage />);
 
     expect(await screen.findByRole("option", { name: /会议主题/ })).toBeInTheDocument();
-    expect(screen.getByText("LLM 建议")).toBeInTheDocument();
+    expect(screen.getByText("LLM 建议（未自动采纳）")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "采纳" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "拒绝" })).toBeEnabled();
 

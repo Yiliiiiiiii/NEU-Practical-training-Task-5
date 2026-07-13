@@ -19,8 +19,9 @@ function firstText(issue: Record<string, any>, keys: string[], fallback = "—")
   return fallback;
 }
 
-export function ValidationTab({ report, loading }: { report: ValidationReport | null; loading: boolean }) {
+export function ValidationTab({ report, loading, error }: { report: ValidationReport | null; loading: boolean; error?: string }) {
   if (loading) return <PageState kind="loading" title="正在读取验证报告" />;
+  if (error) return <PageState kind="error" title="验证报告读取失败" detail={error} />;
   if (!report) return <PageState kind="empty" title="验证报告尚未生成" detail="任务结果中没有可用的验证报告。" />;
   if (!report.issues.length) return <PageState kind="empty" title={report.passed ? "Validation 已通过，未发现问题" : "验证报告未返回问题明细"} />;
 

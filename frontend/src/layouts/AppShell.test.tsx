@@ -3,6 +3,7 @@
 import "@testing-library/jest-dom/vitest";
 
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { api } from "../api";
@@ -11,7 +12,7 @@ import { AppShell } from "./AppShell";
 
 vi.mock("../api", () => ({
   api: {
-    listSchemas: vi.fn()
+    health: vi.fn()
   }
 }));
 
@@ -30,7 +31,7 @@ afterEach(cleanup);
 describe("AppShell", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(api.listSchemas).mockResolvedValue({ items: [], total: 0 });
+    vi.mocked(api.health).mockResolvedValue({ status: "ok" });
   });
 
   it("renders the global navigation and updates the active route", () => {
@@ -66,25 +67,57 @@ describe("AppShell", () => {
       .toHaveAttribute("aria-current", "page");
   });
 
-  it("reports backend connectivity from the schema API result", async () => {
-    let resolveSchemas: ((value: { items: []; total: number }) => void) | undefined;
-    vi.mocked(api.listSchemas).mockReturnValue(
-      new Promise((resolve) => { resolveSchemas = resolve; })
+  it("uses the health endpoint and reports connectivity", async () => {
+    let resolveHealth: ((value: { status: string }) => void) | undefined;
+    vi.mocked(api.health).mockReturnValue(
+      new Promise((resolve) => { resolveHealth = resolve; })
     );
     window.history.replaceState({}, "", "/");
     render(<RouteHarness />);
 
     expect(screen.getByText("后端状态：检查中")).toBeInTheDocument();
 
-    resolveSchemas?.({ items: [], total: 0 });
+    resolveHealth?.({ status: "ok" });
     await waitFor(() => expect(screen.getByText("后端状态：已连接")).toBeInTheDocument());
+    expect(api.health).toHaveBeenCalledTimes(1);
   });
 
   it("reports backend failure when the connectivity check rejects", async () => {
-    vi.mocked(api.listSchemas).mockRejectedValue(new Error("offline"));
+    vi.mocked(api.health).mockRejectedValue(new Error("offline"));
     window.history.replaceState({}, "", "/");
     render(<RouteHarness />);
 
     await waitFor(() => expect(screen.getByText("后端状态：未连接")).toBeInTheDocument());
+  });
+
+  it("retries the health check from the Chinese refresh action", async () => {
+    vi.mocked(api.health)
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce({ status: "ok" });
+    window.history.replaceState({}, "", "/");
+    render(<RouteHarness />);
+
+    await screen.findByText("后端状态：未连接");
+    fireEvent.click(screen.getByRole("button", { name: "重新检查" }));
+
+    await waitFor(() => expect(screen.getByText("后端状态：已连接")).toBeInTheDocument());
+    expect(api.health).toHaveBeenCalledTimes(2);
+  });
+
+  it("ignores an older health failure after a newer StrictMode health success", async () => {
+    let rejectFirst: ((reason?: unknown) => void) | undefined;
+    let resolveSecond: ((value: { status: string }) => void) | undefined;
+    vi.mocked(api.health)
+      .mockReturnValueOnce(new Promise((_, reject) => { rejectFirst = reject; }))
+      .mockReturnValueOnce(new Promise((resolve) => { resolveSecond = resolve; }));
+    window.history.replaceState({}, "", "/");
+    render(<StrictMode><RouteHarness /></StrictMode>);
+
+    resolveSecond?.({ status: "ok" });
+    await screen.findByText("后端状态：已连接");
+    rejectFirst?.(new Error("stale offline"));
+
+    await waitFor(() => expect(screen.getByText("后端状态：已连接")).toBeInTheDocument());
+    expect(screen.queryByText("后端状态：未连接")).not.toBeInTheDocument();
   });
 });

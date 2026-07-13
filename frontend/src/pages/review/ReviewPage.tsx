@@ -129,7 +129,7 @@ export function ReviewPage() {
                 >
                   <strong>{review.source_field_name ?? "未命名来源字段"}</strong>
                   <span>{review.target_field_id ?? "未映射"}</span>
-                  {isLlmSuggestion(review) ? <em>LLM 建议</em> : null}
+                  {isLlmSuggestion(review) ? <em>LLM 建议（未自动采纳）</em> : null}
                 </button>
               ))}
             </div>

@@ -34,8 +34,9 @@ function statusLabel(row: MappingRow) {
   return "自动采纳";
 }
 
-export function MappingTab({ report, loading }: { report: MappingReport | null; loading: boolean }) {
+export function MappingTab({ report, loading, error }: { report: MappingReport | null; loading: boolean; error?: string }) {
   if (loading) return <PageState kind="loading" title="正在读取映射报告" />;
+  if (error) return <PageState kind="error" title="映射报告读取失败" detail={error} />;
   if (!report) return <PageState kind="empty" title="映射报告尚未生成" detail="任务结果中没有可用的映射报告。" />;
 
   const rows: MappingRow[] = [

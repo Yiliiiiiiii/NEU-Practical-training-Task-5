@@ -33,6 +33,8 @@ const emptyEvidence: TaskEvidence = {
   verifier: null
 };
 
+const TASK_PAGE_SIZE = 100;
+
 function settledValue<T>(result: PromiseSettledResult<T>): T | null {
   return result.status === "fulfilled" ? result.value : null;
 }
@@ -47,20 +49,34 @@ export function EvidencePage() {
   const [evidence, setEvidence] = useState<TaskEvidence>(emptyEvidence);
 
   useEffect(() => {
-    void loadTasks();
+    let active = true;
+    void loadTasks(() => active);
+    return () => {
+      active = false;
+    };
   }, []);
 
-  async function loadTasks() {
+  async function loadTasks(isActive: () => boolean) {
     setTaskLoading(true);
     setError("");
     try {
-      const result = await api.listTasks();
-      setTasks(result.items);
-      setSelectedTaskId((current) => current || result.items[0]?.task_id || "");
+      const firstPage = await api.listTasks(1, TASK_PAGE_SIZE);
+      if (!isActive()) return;
+      const items = [...firstPage.items];
+      for (let page = 2; items.length < firstPage.total; page += 1) {
+        const nextPage = await api.listTasks(page, TASK_PAGE_SIZE);
+        if (!isActive()) return;
+        items.push(...nextPage.items);
+        if (!nextPage.items.length) break;
+      }
+      if (!isActive()) return;
+      setTasks(items);
+      setSelectedTaskId((current) => current || items[0]?.task_id || "");
     } catch (caught) {
+      if (!isActive()) return;
       setError(caught instanceof Error ? caught.message : "任务列表读取失败。");
     } finally {
-      setTaskLoading(false);
+      if (isActive()) setTaskLoading(false);
     }
   }
 

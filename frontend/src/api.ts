@@ -45,6 +45,13 @@ import type {
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
+export class ApiRequestError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message);
+    this.name = "ApiRequestError";
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
     headers: {
@@ -61,12 +68,13 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     } catch {
       // Keep the HTTP status text.
     }
-    throw new Error(message);
+    throw new ApiRequestError(message, response.status);
   }
   return response.json() as Promise<T>;
 }
 
 export const api = {
+  health: () => request<{ status: string }>("/health"),
   listSchemas: () => request<CatalogResponse<TargetSchema>>("/api/v1/schemas"),
   listTemplates: () => request<CatalogResponse<MappingTemplate>>("/api/v1/templates"),
   listExternalUirAdapters: () =>
@@ -315,9 +323,10 @@ export const api = {
       method: "POST",
       body: JSON.stringify(payload)
     }),
-  listAuditLogs: (entityId?: string) =>
-    request<AuditLogListResponse>(
-      `/api/v1/audit-logs${entityId ? `?entity_id=${encodeURIComponent(entityId)}` : ""}`
-    ),
+  listAuditLogs: (entityId?: string, limit = 100, offset = 0) => {
+    const params = new URLSearchParams({ limit: String(limit), offset: String(offset) });
+    if (entityId) params.set("entity_id", entityId);
+    return request<AuditLogListResponse>(`/api/v1/audit-logs?${params.toString()}`);
+  },
   packageDownloadUrl: (taskId: string) => `${API_BASE}/api/v1/tasks/${taskId}/package/download`
 };

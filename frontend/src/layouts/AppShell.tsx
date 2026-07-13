@@ -10,7 +10,7 @@ import {
   SquarePlus,
   type LucideIcon
 } from "lucide-react";
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 
 import { api } from "../api";
 import { navigate, type AppRoute } from "../app/router";
@@ -84,16 +84,28 @@ function handleNavigation(event: MouseEvent<HTMLAnchorElement>, href: string) {
 export function AppShell({ route, children }: AppShellProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [backendStatus, setBackendStatus] = useState<"checking" | "connected" | "disconnected">("checking");
+  const healthRequestRef = useRef(0);
   const ToggleIcon = isCollapsed ? PanelLeftOpen : PanelLeftClose;
   const toggleLabel = isCollapsed ? "展开导航" : "收起导航";
 
-  useEffect(() => {
-    let active = true;
-    void api.listSchemas()
-      .then(() => active && setBackendStatus("connected"))
-      .catch(() => active && setBackendStatus("disconnected"));
-    return () => { active = false; };
+  const checkBackend = useCallback(async () => {
+    const requestId = healthRequestRef.current + 1;
+    healthRequestRef.current = requestId;
+    setBackendStatus("checking");
+    try {
+      await api.health();
+      if (healthRequestRef.current === requestId) setBackendStatus("connected");
+    } catch {
+      if (healthRequestRef.current === requestId) setBackendStatus("disconnected");
+    }
   }, []);
+
+  useEffect(() => {
+    void checkBackend();
+    return () => {
+      healthRequestRef.current += 1;
+    };
+  }, [checkBackend]);
 
   const backendStatusLabel =
     backendStatus === "checking" ? "检查中" : backendStatus === "connected" ? "已连接" : "未连接";
@@ -152,6 +164,14 @@ export function AppShell({ route, children }: AppShellProps) {
           </div>
           <div className="application-session" aria-label="应用状态">
             <span className="backend-status"><i aria-hidden="true" />后端状态：{backendStatusLabel}</span>
+            <button
+              type="button"
+              className="backend-status-refresh"
+              onClick={() => void checkBackend()}
+              disabled={backendStatus === "checking"}
+            >
+              重新检查
+            </button>
             <span>本地会话</span>
           </div>
         </header>

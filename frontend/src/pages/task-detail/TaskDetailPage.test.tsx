@@ -170,8 +170,24 @@ describe("TaskDetailPage", () => {
     expect(await screen.findByText("LLM 建议（未自动采纳）")).toBeInTheDocument();
   });
 
-  it("shows an empty report state when a task result report is missing", async () => {
-    vi.mocked(api.getMappingReport).mockRejectedValue(new Error("报告尚未生成"));
+  it.each(["network unavailable", "500 Internal Server Error"])(
+    "shows the report failure instead of an empty state for %s",
+    async (message) => {
+      vi.mocked(api.getMappingReport).mockRejectedValue(new Error(message));
+      render(<TaskDetailPage taskId="task-1" />);
+
+      await screen.findByText("task-1");
+      fireEvent.click(screen.getByRole("tab", { name: "映射" }));
+
+      expect(await screen.findByText("映射报告读取失败")).toBeInTheDocument();
+      expect(screen.getByText(message)).toBeInTheDocument();
+      expect(screen.queryByText("映射报告尚未生成")).not.toBeInTheDocument();
+    }
+  );
+
+  it("shows an empty report state only for a confirmed missing report", async () => {
+    const missing = Object.assign(new Error("报告尚未生成"), { status: 404 });
+    vi.mocked(api.getMappingReport).mockRejectedValue(missing);
     render(<TaskDetailPage taskId="task-1" />);
 
     await screen.findByText("task-1");
@@ -189,6 +205,77 @@ describe("TaskDetailPage", () => {
     fireEvent.click(screen.getByRole("tab", { name: "执行" }));
 
     expect(await screen.findByText("task.execute")).toBeInTheDocument();
-    expect(api.listAuditLogs).toHaveBeenCalledWith("task-1");
+    expect(api.listAuditLogs).toHaveBeenCalledWith("task-1", 100, 0);
+  });
+
+  it("loads audit log pages and displays the shown count and total", async () => {
+    const audit = (index: number) => ({
+      audit_id: `audit-${index}`,
+      created_at: "2026-07-12T10:00:00Z",
+      action: `task.action.${index}`,
+      entity_type: "task",
+      entity_id: "task-1",
+      method: "POST",
+      path: "/api/v1/tasks/task-1/execute",
+      status_code: 200,
+      success: true,
+      metadata: {}
+    });
+    vi.mocked(api.listAuditLogs)
+      .mockResolvedValueOnce({
+        total: 101,
+        items: Array.from({ length: 100 }, (_, index) => audit(index + 1))
+      })
+      .mockResolvedValueOnce({ total: 101, items: [audit(101)] });
+    render(<TaskDetailPage taskId="task-1" />);
+
+    await screen.findByText("task-1");
+    fireEvent.click(screen.getByRole("tab", { name: "执行" }));
+
+    expect(await screen.findByText("已显示 100 / 共 101 条审计事件")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "加载更多审计事件" }));
+
+    expect(await screen.findByText("task.action.101")).toBeInTheDocument();
+    expect(screen.getByText("已显示 101 / 共 101 条审计事件")).toBeInTheDocument();
+    expect(api.listAuditLogs).toHaveBeenNthCalledWith(2, "task-1", 100, 100);
+  });
+
+  it("ignores an audit page that resolves after navigating to another task", async () => {
+    const audit = (entityId: string, index: number) => ({
+      audit_id: `${entityId}-audit-${index}`,
+      created_at: "2026-07-12T10:00:00Z",
+      action: `${entityId}.action.${index}`,
+      entity_type: "task",
+      entity_id: entityId,
+      method: "POST",
+      path: `/api/v1/tasks/${entityId}/execute`,
+      status_code: 200,
+      success: true,
+      metadata: {}
+    });
+    let resolveOlderTaskPage: (value: { total: number; items: ReturnType<typeof audit>[] }) => void = () => undefined;
+    vi.mocked(api.listAuditLogs)
+      .mockResolvedValueOnce({
+        total: 101,
+        items: Array.from({ length: 100 }, (_, index) => audit("task-a", index + 1))
+      })
+      .mockReturnValueOnce(new Promise((resolve) => {
+        resolveOlderTaskPage = resolve;
+      }))
+      .mockResolvedValueOnce({ total: 1, items: [audit("task-b", 1)] });
+    const { rerender } = render(<TaskDetailPage taskId="task-a" />);
+
+    await screen.findByText("task-1");
+    fireEvent.click(screen.getByRole("tab", { name: "执行" }));
+    expect(await screen.findByText("已显示 100 / 共 101 条审计事件")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "加载更多审计事件" }));
+    await waitFor(() => expect(api.listAuditLogs).toHaveBeenNthCalledWith(2, "task-a", 100, 100));
+
+    rerender(<TaskDetailPage taskId="task-b" />);
+    expect(await screen.findByText("task-b.action.1")).toBeInTheDocument();
+    resolveOlderTaskPage({ total: 101, items: [audit("task-a", 101)] });
+
+    await waitFor(() => expect(screen.getByText("已显示 1 / 共 1 条审计事件")).toBeInTheDocument());
+    expect(screen.queryByText("task-a.action.101")).not.toBeInTheDocument();
   });
 });

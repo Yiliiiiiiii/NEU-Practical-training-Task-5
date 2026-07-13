@@ -3,6 +3,7 @@ import {
   Files,
   FlaskConical,
   Search,
+  ShieldAlert,
   ShieldCheck
 } from "lucide-react";
 import { useState } from "react";
@@ -192,9 +193,16 @@ export function SchemaDraftLabPanel() {
             <strong>{discovery.sample_count}</strong>
             <span>候选项</span>
             <strong>{discovery.field_candidates.length}</strong>
-            <span>自动采纳</span>
+            <span>LLM 建议越过人工复核</span>
             <strong>{discovery.llm_auto_accepted_count}</strong>
           </div>
+          {discovery.llm_auto_accepted_count > 0 ? (
+            <p className="schema-draft-safety-alert" role="alert">
+              <ShieldAlert size={16} />
+              <strong>安全失败</strong>
+              检测到 {discovery.llm_auto_accepted_count} 条 LLM 建议越过人工复核，必须立即调查。
+            </p>
+          ) : null}
           <div className="schema-draft-fields">
             {discovery.field_candidates.slice(0, 8).map((field) => (
               <div key={field.field_name}>
