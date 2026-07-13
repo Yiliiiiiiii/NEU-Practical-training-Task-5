@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { api } from "../../api";
 import { ChunkEvidencePanel } from "../../components/ChunkEvidencePanel";
@@ -47,12 +47,14 @@ export function EvidencePage() {
   const [evidenceLoaded, setEvidenceLoaded] = useState(false);
   const [error, setError] = useState("");
   const [evidence, setEvidence] = useState<TaskEvidence>(emptyEvidence);
+  const evidenceRequestRevision = useRef(0);
 
   useEffect(() => {
     let active = true;
     void loadTasks(() => active);
     return () => {
       active = false;
+      evidenceRequestRevision.current += 1;
     };
   }, []);
 
@@ -82,15 +84,19 @@ export function EvidencePage() {
 
   async function loadEvidence() {
     if (!selectedTaskId) return;
+    const requestRevision = evidenceRequestRevision.current + 1;
+    evidenceRequestRevision.current = requestRevision;
+    const taskId = selectedTaskId;
     setEvidenceLoading(true);
     setError("");
     const results = await Promise.allSettled([
-      api.getMappingReport(selectedTaskId),
-      api.getValidationReport(selectedTaskId),
-      api.getChunksReport(selectedTaskId),
-      api.getManifestReport(selectedTaskId),
-      api.getVerifierReport(selectedTaskId)
+      api.getMappingReport(taskId),
+      api.getValidationReport(taskId),
+      api.getChunksReport(taskId),
+      api.getManifestReport(taskId),
+      api.getVerifierReport(taskId)
     ]);
+    if (evidenceRequestRevision.current !== requestRevision) return;
     setEvidence({
       mapping: settledValue(results[0]),
       validation: settledValue(results[1]),
@@ -136,9 +142,12 @@ export function EvidencePage() {
               <select
                 value={selectedTaskId}
                 onChange={(event) => {
+                  evidenceRequestRevision.current += 1;
                   setSelectedTaskId(event.target.value);
                   setEvidence(emptyEvidence);
                   setEvidenceLoaded(false);
+                  setEvidenceLoading(false);
+                  setError("");
                 }}
               >
                 {tasks.map((task) => <option key={task.task_id} value={task.task_id}>{task.task_id}</option>)}
