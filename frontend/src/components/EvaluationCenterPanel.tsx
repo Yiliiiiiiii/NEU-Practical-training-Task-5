@@ -101,7 +101,6 @@ export function EvaluationCenterPanel() {
         </div>
         <button
           type="button"
-          className="icon-button"
           onClick={() => void load()}
           title="刷新"
           aria-label="刷新评测数据"
