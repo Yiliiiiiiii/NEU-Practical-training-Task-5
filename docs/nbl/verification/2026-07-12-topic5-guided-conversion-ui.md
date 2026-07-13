@@ -4,13 +4,18 @@ Initial verification: 2026-07-12
 Responsive completion: 2026-07-13
 Health and operational-state revalidation: 2026-07-13
 
-Branch: `codex/topic5-guided-conversion-ui-fix6`
+Target branch: `feat/topic5-guided-conversion-ui`
 
 Prior verification-report commit: `f1c46cd8`.
 
 Visual-acceptance branch baseline: `2bc99187`. This identifies the code used
 for the local browser evidence below; it is not a claim that this is the final
 merged tip or that all later fixes have been reverified.
+
+Final verification source tip: `d16d2fa86981bbbab8ce8e29c72ba9edd398cf57`
+(immediately before this report's result-metadata update). It includes the
+External UIR invalidation and Evidence stale-request fixes in addition to the
+visual-acceptance changes.
 
 ## Scope And Runtime
 
@@ -80,8 +85,8 @@ Pop-Location
 ```
 
 The health and operational-state revalidation reran the frontend test and
-build commands. Their branch-baseline results are recorded in the self-review
-section below; final merged-tip verification remains a separate follow-up.
+build commands. Their branch-baseline results remain in the self-review section
+for traceability; the final merged-tip verification is recorded below.
 
 The README's documented repository gate is:
 
@@ -89,16 +94,18 @@ The README's documented repository gate is:
 backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-`backend\.venv\Scripts\python.exe` is absent in this isolated worktree, so
-the equivalent host-Python fallback was attempted:
+`backend\.venv\Scripts\python.exe` is absent in this isolated worktree. The
+same Python runtime from the primary workspace was invoked against this clean
+integration worktree:
 
 ```powershell
-python scripts\verify_all.py --check-openapi
+F:\p2\backend\.venv\Scripts\python.exe scripts\verify_all.py --check-openapi
 ```
 
-It did not complete before the 120-second tool limit. Exact outcome: process
-timeout after 124.05 seconds, with no final pass/fail output available. This
-verification does **not** claim that repository verification passed.
+Final result: PASS. `1229` backend tests passed, Ruff passed, the frontend
+production build passed, and OpenAPI export completed with `65` paths. The
+command completed successfully in the clean integration worktree; no backend
+or OpenAPI source file changed.
 
 ## Screenshot Inventory
 
@@ -231,11 +238,12 @@ PASS. Inspected the fresh connected Overview captures at 1280x900, 1024x768,
 and 1440x1024; the loaded Evidence capture; and the full-page Execution audit
 pagination capture. The AppShell remained legible at all requested widths, and
 the new evidence/audit controls reported their explicit text state without
-overlap or shell escape. On this visual-acceptance branch baseline, full
+overlap or shell escape. On the visual-acceptance branch baseline, full
 `npm test` passed 21 files and 94 tests in 7.22 seconds; `npm run build`
-completed in 2.62 seconds. These branch-baseline numbers are not final
-merged-tip verification. Repository-wide verification remains unclaimed due to
-the timeout documented above.
+completed in 2.62 seconds. On the final verification source tip, full
+`npm test` passed 21 files and 98 tests in 6.02 seconds, and `npm run build`
+passed in 2.54 seconds. The repository verification result is the passing gate
+recorded above.
 
 ## Changed Files And API Contract
 
